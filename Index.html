@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevOps Interview Practice Quiz</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Welcome Screen -->
+        <div id="welcome-screen" class="screen active">
+            <h1>🚀 DevOps Interview Practice</h1>
+            <p class="subtitle">Test your knowledge across Linux, Terraform, AWS, Ansible, Docker, Kubernetes, and Git</p>
+            
+            <div class="selection-grid">
+                <div class="selection-section">
+                    <h2>Select Difficulty Level</h2>
+                    <div class="button-group">
+                        <button class="selection-btn" data-level="beginner">
+                            <span class="icon">📚</span>
+                            <span class="label">Beginner</span>
+                        </button>
+                        <button class="selection-btn" data-level="intermediate">
+                            <span class="icon">💼</span>
+                            <span class="label">Intermediate</span>
+                        </button>
+                        <button class="selection-btn" data-level="advanced">
+                            <span class="icon">🎯</span>
+                            <span class="label">Advanced</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="selection-section">
+                    <h2>Number of Questions</h2>
+                    <div class="button-group">
+                        <button class="selection-btn" data-count="50">50 Questions</button>
+                        <button class="selection-btn" data-count="100">100 Questions</button>
+                        <button class="selection-btn" data-count="150">150 Questions</button>
+                        <button class="selection-btn" data-count="200">200 Questions</button>
+                    </div>
+                </div>
+            </div>
+
+            <button id="start-quiz-btn" class="primary-btn" disabled>Start Quiz</button>
+        </div>
+
+        <!-- Quiz Screen -->
+        <div id="quiz-screen" class="screen">
+            <div class="quiz-header">
+                <div class="progress-info">
+                    <span id="current-question">1</span> / <span id="total-questions">50</span>
+                </div>
+                <div class="difficulty-badge" id="difficulty-badge">Beginner</div>
+            </div>
+
+            <div class="progress-bar">
+                <div class="progress-fill" id="progress-fill"></div>
+            </div>
+
+            <div class="question-container">
+                <div class="tech-tag" id="tech-tag">Linux</div>
+                <h2 id="question-text">Question will appear here</h2>
+                <div id="options-container" class="options-container"></div>
+            </div>
+
+            <div class="quiz-controls">
+                <button id="prev-btn" class="secondary-btn" disabled>← Previous</button>
+                <button id="next-btn" class="primary-btn">Next →</button>
+            </div>
+        </div>
+
+        <!-- Results Screen -->
+        <div id="results-screen" class="screen">
+            <h1>🎉 Quiz Completed!</h1>
+            
+            <div class="score-card">
+                <div class="score-circle">
+                    <div class="score-value" id="score-percentage">0%</div>
+                    <div class="score-label">Score</div>
+                </div>
+                <div class="score-details">
+                    <p><strong id="correct-count">0</strong> Correct</p>
+                    <p><strong id="incorrect-count">0</strong> Incorrect</p>
+                    <p><strong id="total-answered">0</strong> Total Questions</p>
+                </div>
+            </div>
+
+            <div class="performance-breakdown">
+                <h3>Performance by Technology</h3>
+                <div id="tech-breakdown"></div>
+            </div>
+
+            <div class="action-buttons">
+                <button id="review-btn" class="secondary-btn">Review Answers</button>
+                <button id="restart-btn" class="primary-btn">Take Another Quiz</button>
+            </div>
+        </div>
+
+        <!-- Review Screen -->
+        <div id="review-screen" class="screen">
+            <h1>Review Your Answers</h1>
+            <button id="back-to-results" class="secondary-btn">← Back to Results</button>
+            <div id="review-container"></div>
+        </div>
+    </div>
+
+    <script src="questions.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -6,12 +6,13 @@ const curated = JSON.parse(fs.readFileSync(require("node:path").join(__dirname, 
 const levels = ["easy", "medium", "mediumHard", "hard"];
 const types = ["concept", "command", "scenario", "multi-select", "trade-off", "interview"];
 assert.deepEqual(curated.levels, levels, "The curated track must declare all four levels.");
-assert.ok(Array.isArray(curated.questions) && curated.questions.length >= 24, "The curated track should have at least 24 questions.");
+assert.ok(Array.isArray(curated.questions) && curated.questions.length === 124, "The curated track should have 120 graded questions plus four interview prompts.");
 
 const ids = new Set();
 const prompts = new Set();
 const counts = Object.fromEntries(levels.map(level => [level, 0]));
 const typeCounts = Object.fromEntries(types.map(type => [type, 0]));
+const gradedCounts = Object.fromEntries(levels.map(level => [level, 0]));
 
 for (const [index, q] of curated.questions.entries()) {
   const label = "kubernetes[" + index + "] " + (q.id || "(no id)");
@@ -50,9 +51,14 @@ for (const [index, q] of curated.questions.entries()) {
   assert.ok(!prompts.has(normalized), label + " duplicates another question prompt.");
   prompts.add(normalized);
   counts[q.level]++;
+  if (q.type !== "interview") gradedCounts[q.level]++;
   typeCounts[q.type]++;
 }
-for (const level of levels) assert.ok(counts[level] >= 6, level + " needs at least six curated questions.");
+for (const level of levels) {
+  assert.ok(counts[level] >= 6, level + " needs at least six curated questions including any interview prompt.");
+  assert.equal(gradedCounts[level], 30, level + " must have exactly 30 auto-graded questions.");
+}
+assert.equal(typeCounts.interview, 4, "Interview prompts must remain separate and non-auto-graded.");
 for (const type of types) assert.ok(typeCounts[type] >= 1, "Missing curated question type: " + type);
 
 let legacyTotal = 0;

@@ -27,7 +27,7 @@ The four path cards should lead to eight real destinations. These are not decora
 5. **Timed drills** — exam-style question sets with exact chosen count, timer and no in-question explanations.
 6. **Review queue** — saved, missed and low-confidence items; filters and a retry action that targets selected items.
 7. **Interview prompts** — open-ended prompts, answer framework, model answer, checklist and follow-up questions.
-8. **Self-assessment** — learner confidence, checklist completion, notes and suggested next topics; not a fake numeric score for prose.
+8. **Follow-ups** — progressive interviewer probes linked to the parent prompt, sample answer and competency checklist.
 
 ## 3. Technology subjects
 

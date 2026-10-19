@@ -10,7 +10,7 @@ The target content and session architecture is documented in [ARCHITECTURE.md](A
 4. Add schemas and CI rules that enforce content quality and minimum counts.
 5. Deliver each additional subject pack in its own PR.
 6. Redesign the page around working destinations and validated content.
-7. Sanitize the repository after confirming the old prototypes are unused.
+7. Keep the repository clean as features evolve; the retired standalone prototypes are removed and Pages publishes only the app runtime plus linked project documentation.
 
 ## Subject-by-subject content plan
 

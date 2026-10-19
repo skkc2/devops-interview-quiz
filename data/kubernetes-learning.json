@@ -1,0 +1,355 @@
+{
+  "subject": "kubernetes",
+  "version": "1.0.0",
+  "lessons": [
+    {
+      "id": "k8s-concept-pod",
+      "title": "Pod: the smallest deployable unit",
+      "topic": "workloads",
+      "summary": "A Pod groups one or more tightly coupled containers that share network identity and can share mounted storage.",
+      "sections": [
+        {
+          "heading": "Mental model",
+          "body": "A Pod is a scheduling and lifecycle unit, not usually the thing you scale manually for an application. A Deployment manages replicated Pods for most stateless workloads."
+        },
+        {
+          "heading": "What to remember",
+          "body": "Containers in one Pod share the Pod IP and port space. They can communicate over localhost and may share volumes. Containers in different Pods communicate over the network."
+        },
+        {
+          "heading": "Common mistake",
+          "body": "Do not treat a Pod as a durable server. Pods can be replaced, and a replacement normally has a different identity and IP."
+        }
+      ],
+      "takeaway": "Deploy and scale stateless workloads with a controller such as Deployment; use a Service for a stable network endpoint.",
+      "references": [
+        {
+          "title": "Pods",
+          "url": "https://kubernetes.io/docs/concepts/workloads/pods/"
+        }
+      ]
+    },
+    {
+      "id": "k8s-concept-node",
+      "title": "Node: where workloads run",
+      "topic": "architecture",
+      "summary": "A Node is a worker machine that provides compute capacity for Pods.",
+      "sections": [
+        {
+          "heading": "What runs on a node?",
+          "body": "The kubelet ensures assigned Pods are running, the container runtime runs containers, and networking components provide Pod connectivity."
+        },
+        {
+          "heading": "Scheduling relationship",
+          "body": "The scheduler selects a suitable node based on resource requests, constraints, taints/tolerations, affinity and other scheduling rules."
+        },
+        {
+          "heading": "Operational signal",
+          "body": "A Node becoming NotReady can affect many Pods at once. Inspect node conditions and events before assuming each workload has an independent fault."
+        }
+      ],
+      "takeaway": "When many unrelated Pods fail together, inspect shared infrastructure such as the Node before debugging every app separately.",
+      "references": [
+        {
+          "title": "Nodes",
+          "url": "https://kubernetes.io/docs/concepts/architecture/nodes/"
+        }
+      ]
+    },
+    {
+      "id": "k8s-concept-deployment",
+      "title": "Deployment and ReplicaSet",
+      "topic": "workloads",
+      "summary": "A Deployment declares desired state for a replicated stateless workload and manages rollout history.",
+      "sections": [
+        {
+          "heading": "Control loop",
+          "body": "The Deployment controller creates or updates a ReplicaSet. The ReplicaSet works to maintain the requested number of matching Pods."
+        },
+        {
+          "heading": "Rollouts",
+          "body": "A rolling update gradually replaces old Pods with new ones according to rollout strategy settings. Rollout status and history help identify stalled releases."
+        },
+        {
+          "heading": "When not to use it",
+          "body": "Stateful workloads may need stable identities and ordered storage semantics; evaluate StatefulSet or another controller when those properties matter."
+        }
+      ],
+      "takeaway": "Declare desired state and inspect rollout status; avoid hand-managing individual replicas when a controller is appropriate.",
+      "references": [
+        {
+          "title": "Deployments",
+          "url": "https://kubernetes.io/docs/concepts/workloads/controllers/deployment/"
+        }
+      ]
+    },
+    {
+      "id": "k8s-concept-service",
+      "title": "Service: stable network access",
+      "topic": "networking",
+      "summary": "A Service provides a stable virtual endpoint for a changing set of backend Pods.",
+      "sections": [
+        {
+          "heading": "Why it exists",
+          "body": "Pod IPs can change as Pods are replaced. A Service selects matching Pods and provides a stable name and virtual IP for clients."
+        },
+        {
+          "heading": "Selector and ports",
+          "body": "The selector identifies eligible Pods; port and targetPort determine how traffic reaches the workload. A mismatched selector or port can leave a Service without working backends."
+        },
+        {
+          "heading": "Debugging",
+          "body": "Check the Service selector, EndpointSlices, Pod readiness, and port mapping before changing network policy or application code."
+        }
+      ],
+      "takeaway": "A Service does not create Pods; it routes to eligible backends selected by labels.",
+      "references": [
+        {
+          "title": "Services",
+          "url": "https://kubernetes.io/docs/concepts/services-networking/service/"
+        }
+      ]
+    },
+    {
+      "id": "k8s-concept-probes",
+      "title": "Readiness, liveness and startup probes",
+      "topic": "health",
+      "summary": "Different probes answer different health questions and have different effects on traffic and restarts.",
+      "sections": [
+        {
+          "heading": "Readiness",
+          "body": "Readiness determines whether a Pod should receive Service traffic. A not-ready Pod can continue running while it warms up or waits for a dependency."
+        },
+        {
+          "heading": "Liveness",
+          "body": "Liveness detects a container that should be restarted when it cannot recover on its own. An overly aggressive liveness probe can create restart loops."
+        },
+        {
+          "heading": "Startup",
+          "body": "Startup probes protect slow-starting applications by delaying liveness and readiness evaluation until startup succeeds."
+        }
+      ],
+      "takeaway": "Readiness gates traffic; liveness triggers restarts; startup protects slow initialization.",
+      "references": [
+        {
+          "title": "Configure liveness, readiness and startup probes",
+          "url": "https://kubernetes.io/docs/concepts/configuration/liveness-readiness-startup-probes/"
+        }
+      ]
+    },
+    {
+      "id": "k8s-concept-requests-limits",
+      "title": "Resource requests and limits",
+      "topic": "resources",
+      "summary": "Requests inform scheduling; limits constrain resource use according to Kubernetes resource semantics.",
+      "sections": [
+        {
+          "heading": "Requests",
+          "body": "The scheduler uses CPU and memory requests when deciding whether a Pod fits on a node. Requests are not a reservation of a fixed CPU core."
+        },
+        {
+          "heading": "Limits",
+          "body": "CPU limits can throttle CPU use. Exceeding a memory limit can lead to the container being terminated for out-of-memory conditions."
+        },
+        {
+          "heading": "Troubleshooting",
+          "body": "Correlate Pod events, container termination reason, working-set metrics and node pressure rather than changing limits without evidence."
+        }
+      ],
+      "takeaway": "Requests affect placement; limits constrain use. Tune them using workload measurements and observed failure modes.",
+      "references": [
+        {
+          "title": "Resource management for Pods and containers",
+          "url": "https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/"
+        }
+      ]
+    }
+  ],
+  "commands": [
+    {
+      "id": "k8s-cmd-get-pods",
+      "title": "List Pods with placement and status",
+      "command": "kubectl get pods -o wide",
+      "purpose": "Inspect Pod readiness, restart counts, IP addresses and node placement at a glance.",
+      "environment": "kubectl configured for the intended cluster and namespace.",
+      "expectedOutput": "A table including READY, STATUS, RESTARTS, AGE, IP and NODE columns.",
+      "interpretation": "Use the namespace explicitly when needed; compare affected Pods and node placement to spot a shared failure domain.",
+      "safety": "Read-only command.",
+      "references": [
+        {
+          "title": "kubectl get",
+          "url": "https://kubernetes.io/docs/reference/kubectl/generated/kubectl_get/"
+        }
+      ]
+    },
+    {
+      "id": "k8s-cmd-describe-pod",
+      "title": "Inspect Pod events and conditions",
+      "command": "kubectl describe pod POD_NAME -n NAMESPACE",
+      "purpose": "Read the Pod's current conditions, container state, probe results and recent events.",
+      "environment": "Replace POD_NAME and NAMESPACE with the real Pod and namespace.",
+      "expectedOutput": "Pod details followed by container state and an Events section when events are available.",
+      "interpretation": "Look for scheduling failures, image pull errors, failed probes, mount errors and repeated restarts. Events expire, so absence of an event is not proof that nothing happened.",
+      "safety": "Read-only command; output may include environment metadata. Avoid sharing sensitive output publicly.",
+      "references": [
+        {
+          "title": "kubectl describe",
+          "url": "https://kubernetes.io/docs/reference/kubectl/generated/kubectl_describe/"
+        }
+      ]
+    },
+    {
+      "id": "k8s-cmd-logs",
+      "title": "Read recent container logs",
+      "command": "kubectl logs POD_NAME -n NAMESPACE --tail=100",
+      "purpose": "Read a bounded tail of the current container logs for a first-pass diagnosis.",
+      "environment": "Replace the Pod and namespace. Add -c CONTAINER_NAME when the Pod has multiple containers.",
+      "expectedOutput": "The last 100 log lines available from the selected container.",
+      "interpretation": "Correlate timestamps with the incident. For a restarted container, consider --previous; logs alone may not explain a scheduling or network issue.",
+      "safety": "Read-only command; redact tokens, credentials and personal data before sharing logs.",
+      "references": [
+        {
+          "title": "kubectl logs",
+          "url": "https://kubernetes.io/docs/reference/kubectl/generated/kubectl_logs/"
+        }
+      ]
+    },
+    {
+      "id": "k8s-cmd-events",
+      "title": "Sort recent namespace events",
+      "command": "kubectl get events -n NAMESPACE --sort-by=.lastTimestamp",
+      "purpose": "Review recent events in timestamp order to identify scheduling, image, probe and controller signals.",
+      "environment": "Replace NAMESPACE; use cluster-wide access only when you have a reason and permission.",
+      "expectedOutput": "An event list with type, reason, object, message and last timestamp.",
+      "interpretation": "Prioritize Warning events and correlate them with the affected resource and time window. Event retention is limited.",
+      "safety": "Read-only command.",
+      "references": [
+        {
+          "title": "Debugging applications",
+          "url": "https://kubernetes.io/docs/tasks/debug/"
+        }
+      ]
+    },
+    {
+      "id": "k8s-cmd-rollout-status",
+      "title": "Check Deployment rollout progress",
+      "command": "kubectl rollout status deployment/DEPLOYMENT_NAME -n NAMESPACE",
+      "purpose": "Wait for and report whether a Deployment rollout has completed.",
+      "environment": "Replace the Deployment name and namespace.",
+      "expectedOutput": "A success message when rollout completes, or a waiting/timeout message if it is stalled.",
+      "interpretation": "If it stalls, inspect the Deployment, ReplicaSets, Pods and events. This command observes progress; it does not itself repair the rollout.",
+      "safety": "Observational command. It waits until completion unless a timeout is supplied.",
+      "references": [
+        {
+          "title": "kubectl rollout status",
+          "url": "https://kubernetes.io/docs/reference/kubectl/generated/kubectl_rollout/kubectl_rollout_status/"
+        }
+      ]
+    },
+    {
+      "id": "k8s-cmd-top-pods",
+      "title": "Inspect current Pod resource usage",
+      "command": "kubectl top pods -n NAMESPACE",
+      "purpose": "View current CPU and memory usage when Metrics Server or a compatible metrics API is available.",
+      "environment": "Requires the metrics API to be installed and reporting data.",
+      "expectedOutput": "A table of Pod names and current CPU/memory usage.",
+      "interpretation": "Compare usage with requests and limits; this is a point-in-time sample, not a historical graph or root-cause explanation.",
+      "safety": "Read-only command.",
+      "references": [
+        {
+          "title": "kubectl top pod",
+          "url": "https://kubernetes.io/docs/reference/kubectl/generated/kubectl_top/kubectl_top_pod/"
+        }
+      ]
+    }
+  ],
+  "debugging": [
+    {
+      "id": "k8s-debug-pending",
+      "title": "Pod remains Pending",
+      "symptom": "A Pod has stayed Pending longer than expected.",
+      "steps": [
+        {
+          "action": "Inspect Pod scheduling conditions and events.",
+          "command": "kubectl describe pod POD_NAME -n NAMESPACE",
+          "evidence": "Look for insufficient CPU/memory, unbound PVCs, taints, affinity constraints or missing tolerations."
+        },
+        {
+          "action": "Check node capacity and allocatable resources.",
+          "command": "kubectl describe nodes",
+          "evidence": "Compare requested resources and node conditions; do not infer capacity from current CPU utilisation alone."
+        },
+        {
+          "action": "Check storage claims if events mention volumes.",
+          "command": "kubectl get pvc -n NAMESPACE",
+          "evidence": "A Pending claim can block Pod scheduling when the workload requires that volume."
+        }
+      ],
+      "avoid": "Do not delete and recreate the Pod repeatedly before understanding the scheduling constraint.",
+      "references": [
+        {
+          "title": "Debugging Pods",
+          "url": "https://kubernetes.io/docs/tasks/debug/debug-application/debug-pods/"
+        }
+      ]
+    },
+    {
+      "id": "k8s-debug-crashloop",
+      "title": "Container repeatedly restarts",
+      "symptom": "A container enters CrashLoopBackOff or its restart count rises quickly.",
+      "steps": [
+        {
+          "action": "Inspect last termination reason and recent events.",
+          "command": "kubectl describe pod POD_NAME -n NAMESPACE",
+          "evidence": "Check exit code, OOMKilled state, failed probes, mount errors and restart backoff."
+        },
+        {
+          "action": "Read current and previous container logs.",
+          "command": "kubectl logs POD_NAME -n NAMESPACE --tail=100; kubectl logs POD_NAME -n NAMESPACE --previous",
+          "evidence": "Compare startup errors with the prior container attempt; redact secrets before sharing output."
+        },
+        {
+          "action": "Compare the latest rollout and configuration changes.",
+          "command": "kubectl rollout history deployment/DEPLOYMENT_NAME -n NAMESPACE",
+          "evidence": "A failure aligned with a rollout may point to a bad image, configuration or dependency."
+        }
+      ],
+      "avoid": "Do not blindly increase liveness thresholds or roll back without checking the blast radius and current rollout state.",
+      "references": [
+        {
+          "title": "Debugging application failures",
+          "url": "https://kubernetes.io/docs/tasks/debug/"
+        }
+      ]
+    },
+    {
+      "id": "k8s-debug-service-no-endpoints",
+      "title": "Service has no ready endpoints",
+      "symptom": "A Service exists but requests fail or no ready backend endpoints appear.",
+      "steps": [
+        {
+          "action": "Check selector and Pod labels.",
+          "command": "kubectl describe service SERVICE_NAME -n NAMESPACE",
+          "evidence": "Verify the selector matches intended Pod labels."
+        },
+        {
+          "action": "Inspect EndpointSlices and readiness.",
+          "command": "kubectl get endpointslices -n NAMESPACE",
+          "evidence": "No ready endpoints can indicate selector mismatch or Pods failing readiness."
+        },
+        {
+          "action": "Verify port mapping and network policy only after confirming backends.",
+          "command": "kubectl get pods -n NAMESPACE -o wide",
+          "evidence": "Confirm targetPort matches the container's listening port and examine applicable policy if routing still fails."
+        }
+      ],
+      "avoid": "Do not expose a workload publicly as a shortcut for an internal Service connectivity problem.",
+      "references": [
+        {
+          "title": "Debug Services",
+          "url": "https://kubernetes.io/docs/tasks/debug/debug-application/debug-service/"
+        }
+      ]
+    }
+  ]
+}

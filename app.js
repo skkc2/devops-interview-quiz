@@ -230,6 +230,8 @@
     setScreen("learning");
   }
   function returnToSetupForModule(module){
+    if(module==="review"){state.forcedQuestionIds=[...state.flags];state.mode="practice";state.topic="all";state.type="all";state.count="all";}
+    else state.forcedQuestionIds=null;
     if(module==="concepts"){state.mode="practice";state.type="concept";state.count="all";}
     else if(module==="commands"){state.mode="practice";state.type="command";state.count="all";}
     else if(module==="debugging"){state.mode="practice";state.type="scenario";state.count="all";}

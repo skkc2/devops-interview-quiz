@@ -144,6 +144,84 @@
     $("topic-help").textContent=state.topic==="all"?"Kubernetes is the first curated track; legacy topics remain available.":state.topic==="kubernetes"?"Curated questions include official documentation references.":"Legacy questions are available here; content depth varies by subject.";
     renderHistory();
   }
+  function learningItemsForModule(module){
+    const topicOK=item=>state.topic==="all"||state.topic==="kubernetes"||item.topic===state.topic;
+    if(module==="concepts")return (learning?.lessons||[]).filter(topicOK);
+    if(module==="commands")return (learning?.commands||[]).filter(topicOK);
+    if(module==="scenarios")return curated.filter(q=>q.type==="scenario"&&topicOK(q));
+    if(module==="debugging")return (learning?.debugging||[]).filter(topicOK);
+    if(module==="review"){
+      const all=curated.concat(normaliseLegacy());
+      return all.filter(q=>state.flags.has(q.id)&&topicOK(q));
+    }
+    if(module==="interviews")return curated.filter(q=>isInterview(q)&&topicOK(q));
+    if(module==="timed")return [{id:"timed-drill-entry",title:"Configure a timed exam drill",summary:"Choose a difficulty, eligible question types and a count. The setup shows the exact number available before you start."}];
+    if(module==="self-assessment")return [{id:"self-assessment-entry",title:"Review your answer quality",summary:"Use the interview checklist to assess structure, evidence, trade-offs and verification. Review your recent interview sessions for ratings."}];
+    return [];
+  }
+  function renderLearningModule(module){
+    activeModule=MODULE_META[module]?module:"concepts";
+    const meta=MODULE_META[activeModule];
+    $("learning-title").textContent=meta.title;
+    $("learning-description").textContent=meta.description;
+    $("learning-subject-pill").textContent=state.topic==="all"?"All subjects":topicLabel(state.topic);
+    document.querySelectorAll("[data-module]").forEach(btn=>{
+      const active=btn.dataset.module===activeModule;
+      btn.classList.toggle("selected",active);
+      btn.setAttribute("aria-current",active?"page":"false");
+    });
+    const items=learningItemsForModule(activeModule);
+    $("learning-content-count").textContent=items.length+" "+(activeModule==="concepts"?"lessons":activeModule==="commands"?"command guides":activeModule==="debugging"?"playbooks":activeModule==="review"?"saved questions":activeModule==="interviews"?"interview prompts":activeModule==="scenarios"?"scenarios":"available action")+" available";
+    $("learning-content-list").innerHTML=items.length?items.map(item=>'<button type="button" class="learning-item '+(item.id===selectedContentId?"selected":"")+'" data-content-id="'+esc(item.id)+'"><strong>'+esc(item.title||item.question||"Learning item")+'</strong><small>'+esc(item.summary||item.objective||item.symptom||topicLabel(item.topic||"kubernetes"))+'</small></button>').join(""):'<div class="empty-state"><strong>No items here yet.</strong><p>Try Kubernetes or another learning module. This section will show a count only when matching content exists.</p></div>';
+    if(!items.length){$("learning-content-detail").innerHTML='<p class="empty-state">No content matches this module and subject selection yet.</p>';selectedContentId=null;return;}
+    let item=items.find(x=>x.id===selectedContentId)||items[0];
+    selectedContentId=item.id;
+    document.querySelectorAll("[data-content-id]").forEach(btn=>btn.classList.toggle("selected",btn.dataset.contentId===selectedContentId));
+    renderLearningDetail(activeModule,item);
+  }
+  function renderLearningDetail(module,item){
+    const detail=$("learning-content-detail");
+    const refs=(item.references||[]).map(ref=>{const url=safeUrl(ref.url);return url?'<li><a href="'+esc(url)+'" target="_blank" rel="noopener noreferrer">'+esc(ref.title||"Documentation")+' ↗</a></li>':"";}).join("");
+    let body="";
+    if(module==="concepts"){
+      body='<p class="learning-summary">'+esc(item.summary)+'</p>'+(item.sections||[]).map(section=>'<section class="lesson-section"><h3>'+esc(section.heading)+'</h3><p>'+esc(section.body)+'</p></section>').join("")+'<div class="takeaway-box"><div><strong>Remember this</strong><p>'+esc(item.takeaway||"Connect the concept to an observable system behaviour.")+'</p></div></div>';
+    }else if(module==="commands"){
+      body='<p class="learning-summary">'+esc(item.purpose)+'</p><div class="command-example"><span>COMMAND</span><code>'+esc(item.command)+'</code><button type="button" class="button button-secondary" id="copy-learning-command">Copy command</button></div><section class="lesson-section"><h3>Environment and prerequisites</h3><p>'+esc(item.environment)+'</p></section><section class="lesson-section"><h3>Expected output</h3><p>'+esc(item.expectedOutput)+'</p></section><section class="lesson-section"><h3>How to interpret it</h3><p>'+esc(item.interpretation)+'</p></section><section class="lesson-section"><h3>Safety</h3><p>'+esc(item.safety)+'</p></section>';
+    }else if(module==="debugging"){
+      body='<p class="learning-summary">'+esc(item.symptom)+'</p>'+(item.steps||[]).map((step,i)=>'<section class="lesson-section"><h3>Step '+(i+1)+': '+esc(step.action)+'</h3>'+(step.command?'<pre class="question-code"><code>'+esc(step.command)+'</code></pre>':'')+'<p>'+esc(step.evidence)+'</p></section>').join("")+'<div class="takeaway-box"><div><strong>What to avoid</strong><p>'+esc(item.avoid||"Make changes only after gathering evidence.")+'</p></div></div>';
+    }else if(module==="scenarios"){
+      body='<p class="learning-summary">'+esc(item.question)+'</p><section class="lesson-section"><h3>What this tests</h3><p>'+esc(item.objective)+'</p></section><section class="lesson-section"><h3>Reasoning and solution</h3><p>'+esc(item.explanation)+'</p></section><div class="takeaway-box"><div><strong>Practical takeaway</strong><p>'+esc(item.takeaway)+'</p></div></div><button type="button" class="button button-primary" id="practice-this-scenario">Practise scenarios at this difficulty →</button>';
+    }else if(module==="interviews"){
+      body='<p class="learning-summary">'+esc(item.question)+'</p><section class="lesson-section"><h3>Sample answer</h3><p>'+esc(item.sampleAnswer||item.explanation||"Use a structured answer: context, evidence, action, verification.")+'</p></section><section class="lesson-section"><h3>Self-review checklist</h3><ul>'+(item.answerChecklist||[]).map(x=>'<li>'+esc(x)+'</li>').join("")+'</ul></section><section class="lesson-section"><h3>Follow-up prompts</h3><ul>'+(item.followUps||[]).map(x=>'<li>'+esc(x)+'</li>').join("")+'</ul></section><button type="button" class="button button-primary" id="practise-interview-prompt">Practise an interview prompt →</button>';
+    }else if(module==="review"){
+      body='<p class="learning-summary">'+esc(item.question||item.title)+'</p><section class="lesson-section"><h3>Explanation</h3><p>'+esc(item.explanation||"Review the official reference and explain the reasoning in your own words.")+'</p></section><div class="takeaway-box"><div><strong>Takeaway</strong><p>'+esc(item.takeaway||"Return to the underlying concept and verify it in a safe lab.")+'</p></div></div><button type="button" class="button button-primary" id="practice-saved-questions">Build practice from saved questions →</button>';
+    }else if(module==="timed"){
+      body='<p class="learning-summary">'+esc(item.summary)+'</p><ul><li>Choose Easy, Medium, Medium hard or Hard.</li><li>Choose 5, 10, 20, 30, or all eligible questions.</li><li>Exam mode hides explanations until the results review.</li></ul><button type="button" class="button button-primary" id="configure-timed-drill">Configure timed drill →</button>';
+    }else{
+      const interviews=curated.filter(isInterview);
+      body='<p class="learning-summary">'+esc(item.summary)+'</p><section class="lesson-section"><h3>Use this checklist</h3><ul><li>State the impact and relevant constraints.</li><li>Explain which evidence you would gather and why.</li><li>Compare options and explain the safest next action.</li><li>Describe how you would verify recovery and prevent recurrence.</li></ul></section><section class="lesson-section"><h3>Available interview prompts</h3><p>'+interviews.length+' curated prompts currently include sample answers and self-review checklists. Your self-ratings are collected during interview sessions.</p></section><button type="button" class="button button-primary" id="open-interview-prompts">Browse interview prompts →</button>';
+    }
+    detail.innerHTML='<div class="learning-detail-overline">'+esc(MODULE_META[module].title)+' · '+esc(topicLabel(item.topic||"kubernetes"))+'</div><h2>'+esc(item.title||item.question||"Learning item")+'</h2>'+body+(refs?'<section class="lesson-section"><h3>References</h3><ul>'+refs+'</ul></section>':"");
+    if(module==="commands"&&$("copy-learning-command"))$("copy-learning-command").addEventListener("click",()=>{const text=item.command;if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text).then(()=>{$("copy-learning-command").textContent="Copied";}).catch(()=>{$("copy-learning-command").textContent="Copy unavailable";});}else{$("copy-learning-command").textContent="Copy unavailable";}});
+    if(module==="scenarios"&&$("practice-this-scenario"))$("practice-this-scenario").addEventListener("click",()=>{state.mode="practice";state.type="scenario";state.level=item.level||state.level;setScreen("home");renderSetup();$("setup-panel").scrollIntoView({behavior:"smooth"});});
+    if(module==="interviews"&&$("practise-interview-prompt"))$("practise-interview-prompt").addEventListener("click",()=>{state.mode="interview";state.type="interview";state.level=item.level||state.level;state.count="all";setScreen("home");renderSetup();$("setup-panel").scrollIntoView({behavior:"smooth"});});
+    if(module==="review"&&$("practice-saved-questions"))$("practice-saved-questions").addEventListener("click",()=>{state.mode="practice";state.type="all";state.count="all";setScreen("home");renderSetup();$("setup-panel").scrollIntoView({behavior:"smooth"});});
+    if(module==="timed"&&$("configure-timed-drill"))$("configure-timed-drill").addEventListener("click",()=>{state.mode="exam";state.timed=true;state.type="all";setScreen("home");renderSetup();$("setup-panel").scrollIntoView({behavior:"smooth"});});
+    if(module==="self-assessment"&&$("open-interview-prompts"))$("open-interview-prompts").addEventListener("click",()=>renderLearningModule("interviews"));
+  }
+  function openLearningModule(module){
+    activeModule=MODULE_META[module]?module:"concepts";
+    selectedContentId=null;
+    renderLearningModule(activeModule);
+    setScreen("learning");
+  }
+  function returnToSetupForModule(module){
+    if(module==="timed"){state.mode="exam";state.timed=true;state.type="all";state.count="all";}
+    else if(module==="review"){state.mode="practice";state.type="all";state.count="all";}
+    else if(module==="interviews"){state.mode="interview";state.type="interview";state.count="all";}
+    else if(module==="scenarios"){state.mode="practice";state.type="scenario";state.count="all";}
+    setScreen("home");renderSetup();$("setup-panel").scrollIntoView({behavior:"smooth"});
+  }
   function renderHistory(){
     const scored=history.filter(x=>Number.isFinite(x.score)&&x.graded>0);
     $("stat-attempts").textContent=history.length;
@@ -354,6 +432,12 @@
   }
   function wire(){
     $("jump-to-setup").addEventListener("click",()=>$("setup-panel").scrollIntoView({behavior:"smooth"}));
+    document.querySelectorAll("[data-module]").forEach(btn=>btn.addEventListener("click",()=>openLearningModule(btn.dataset.module)));
+    $("learning-module-nav").addEventListener("click",e=>{const btn=e.target.closest("[data-module]");if(btn)openLearningModule(btn.dataset.module);});
+    $("learning-content-list").addEventListener("click",e=>{const btn=e.target.closest("[data-content-id]");if(!btn)return;selectedContentId=btn.dataset.contentId;renderLearningModule(activeModule);});
+    $("back-from-learning").addEventListener("click",()=>{setScreen("home");renderSetup();$("learning-path").scrollIntoView({behavior:"smooth"});});
+    $("learning-back-setup").addEventListener("click",()=>{setScreen("home");renderSetup();$("setup-panel").scrollIntoView({behavior:"smooth"});});
+    $("learning-start-practice").addEventListener("click",()=>returnToSetupForModule(activeModule));
     const toggleRoadmap=()=>{const panel=$("roadmap-panel"),open=panel.hidden;panel.hidden=!open;$("toggle-roadmap").setAttribute("aria-expanded",String(open));$("toggle-roadmap-secondary").setAttribute("aria-expanded",String(open));};
     $("toggle-roadmap").addEventListener("click",toggleRoadmap);$("toggle-roadmap-secondary").addEventListener("click",toggleRoadmap);
     document.querySelectorAll("[data-mode]").forEach(btn=>btn.addEventListener("click",()=>{state.mode=btn.dataset.mode;if(state.mode==="exam")state.timed=true;if(state.mode==="learn"||state.mode==="interview")state.timed=false;renderSetup();}));

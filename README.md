@@ -1,118 +1,92 @@
-# DevOps & SRE Lab
+# OpsLab — DevOps & SRE Learning Studio
 
-A free, browser-based practice quiz for DevOps, platform engineering, cloud infrastructure, systems administration, and Site Reliability Engineering interviews.
+A free, browser-based learning and interview-practice app for DevOps, platform engineering, cloud infrastructure, systems administration and Site Reliability Engineering.
 
-**No build step, package manager, account, or server is required.** Open \`index.html\` in a modern browser, or serve the directory locally.
+The first curated learning track is **Kubernetes**. The app is intentionally static: HTML, CSS, JavaScript and JSON, hosted on GitHub Pages. No framework, build step, account, backend or API key is required.
 
-## What is in the repository today?
+## Start locally
 
-The project started as two standalone HTML prototypes:
+Because the app loads its curated question bank as JSON with fetch, serve the repository over HTTP instead of opening index.html as a file URL.
 
-- \`index-single-file.html\` — the original 210-question bank across Linux, Terraform, AWS, Ansible, Docker, Kubernetes, and Git, with three levels.
-- \`devops-quiz-v2.html\` — a smaller 25-question quiz with explanations and a timer, but a very small question pool that could repeat questions.
+    python3 -m http.server 8000
 
-Both prototypes are retained for reference. **\`index.html\` is the recommended entry point** for the consolidated experience. The new app reuses the legacy question bank and adds new material for SRE, observability, systems troubleshooting, and networking.
+Open http://localhost:8000.
 
-## Current features
+## Learning modes
 
-- Four learning levels: **Easy, Medium, Medium hard, Hard**.
-- Topic-specific or mixed-topic sessions.
-- Practice mode with immediate explanations, or exam simulation with feedback at the end.
-- Optional timer, randomized question order, and randomized answer order.
-- Progress indicator, previous/next navigation, and save-for-review flags.
-- End-of-session score, per-topic breakdown, missed-topic guidance, and answer review.
-- Exportable text review and local browser history.
-- Responsive layout, keyboard-friendly controls, and reduced-motion support.
-- Question-bank validation script and GitHub Actions workflow.
+- **Learn** — guided questions with explanations, a key takeaway and official references.
+- **Practice** — immediate answer feedback and a chance to correct misconceptions.
+- **Exam simulation** — optional timer and no in-question explanations; review answers at the end.
+- **Interview** — open-ended prompts, an example answer, a self-review checklist and follow-up questions. These prompts are not automatically scored.
 
-Progress history uses browser \`localStorage\` on the device where the quiz is run. It is not an account-based sync system.
+## Question design
 
-## Run locally
+The Kubernetes track starts with 28 curated questions, seven per difficulty:
 
-1. Download or clone this repository.
-2. Open \`index.html\` directly in a modern browser.
+- **Easy** — foundational objects, commands, probes and configuration.
+- **Medium** — operational diagnosis, logs, resource semantics and rollbacks.
+- **Medium hard** — rollout decisions, scheduling, disruption budgets and autoscaling.
+- **Hard** — node pressure, network policy, availability trade-offs and production incident leadership.
 
-Alternatively, run a local static server from the repository directory:
+Question types are **concept**, **command interpretation**, **troubleshooting scenario**, **multi-select**, **trade-off/design**, and **open-ended interview**. Every curated item includes a learning objective, explanation, takeaway and at least one link to official Kubernetes documentation. Interview prompts also include a sample answer, answer checklist and follow-up questions.
 
-\`\`\`bash
-python3 -m http.server 8000
-\`\`\`
+The older question bank is retained for breadth across Linux, AWS, Terraform, Docker, Ansible, Git, networking, systems administration, observability and SRE. Legacy questions have lighter explanations; they should be curated subject-by-subject rather than bulk-expanded without review.
 
-Then visit [http://localhost:8000](http://localhost:8000).
+## Architecture
 
-## Topics
+    index.html                         App shell and accessible UI
+    styles.css                         Responsive design and interaction states
+    app.js                             Session engine, filters, feedback and local progress
+    questions.js                       Legacy multi-subject question bank
+    data/kubernetes.json               Curated Kubernetes learning track
+    scripts/validate-question-bank.js  Question schema and editorial checks
+    .github/workflows/validate.yml     CI validation
+    .github/workflows/deploy-pages.yml GitHub Pages deployment
 
-| Topic | Examples of what to study |
-| --- | --- |
-| Kubernetes | Pods, workload controllers, Services, probes, scheduling, storage, debugging |
-| Docker | Images, containers, builds, runtime behaviour, networking and storage |
-| AWS | IAM, S3, EC2, VPC, load balancing, DNS, shared responsibility |
-| Terraform | HCL, providers, modules, state, planning, lifecycle and safe changes |
-| Linux and systems | Processes, memory, filesystems, permissions, systemd, logs and limits |
-| Ansible | Playbooks, inventories, roles, idempotency, facts and Vault |
-| Git and CI/CD | Branching, commits, history and delivery fundamentals |
-| Networking | DNS, TCP, routing, HTTP, TLS, MTU, NAT and packet troubleshooting |
-| Observability | Metrics, logs, traces, percentiles, cardinality, Prometheus concepts |
-| SRE | SLIs/SLOs/SLAs, error budgets, burn rates, incident command, postmortems, recovery |
+- **Static hosting:** GitHub Pages serves the files directly; no server-side runtime.
+- **Question content:** subject-specific JSON, separate from the quiz engine.
+- **Progress:** localStorage in the current browser only. It is not synced across devices or accounts.
+- **Validation:** Node.js checks JavaScript syntax, question schema, answer indexes, duplicate prompts, level coverage and official reference URLs.
+- **Deployment:** the Pages workflow deploys from main after validation succeeds.
 
-## Difficulty philosophy
+## GitHub Pages setup
 
-- **Easy:** vocabulary, core concepts, common commands, and foundational service behaviour.
-- **Medium:** day-to-day application, operational concepts, and interpreting common symptoms.
-- **Medium hard:** multi-signal troubleshooting, trade-offs, and scenario-based operational reasoning.
-- **Hard:** production incidents, failure containment, distributed systems, observability design, and senior-level decisions.
+1. Merge the reviewed pull request into main.
+2. Open **Settings → Pages** in the repository.
+3. Under **Build and deployment → Source**, select **GitHub Actions**.
+4. Check the **Actions** tab for the Deploy OpsLab to GitHub Pages workflow.
+5. Once deployment succeeds, use the site URL shown in the github-pages environment.
 
-Difficulty is a learning aid rather than a universal certification scale. Certification exams change, differ by provider, and include practical objectives that a multiple-choice quiz cannot fully reproduce.
+The expected project-site URL is https://skkc2.github.io/devops-interview-quiz/. GitHub Pages may take a few minutes to publish after the first deployment.
 
-## Validate the question bank
+## Validate locally
 
-Node.js 20 or newer is only needed to run the validation script; the quiz itself has no Node.js runtime requirement.
+Install Node.js 20 or later, then run:
 
-\`\`\`bash
-node --check app.js
-node --check questions.js
-node scripts/validate-question-bank.js
-\`\`\`
+    node --check app.js
+    node --check questions.js
+    node scripts/validate-question-bank.js
 
-GitHub Actions runs these checks for pushes and pull requests.
+The CI workflow runs the same checks on pushes and pull requests. A passing schema check does not replace editorial review or a browser smoke test.
 
-## Add a question
+## Contributing high-quality questions
 
-Questions live in \`questions.js\`. Add them under a level and topic group using this shape:
+Prefer small, reviewable PRs focused on one subject.
 
-\`\`\`js
-{
-  question: "A realistic, unambiguous question?",
-  options: [
-    "Plausible answer A",
-    "Plausible answer B",
-    "Plausible answer C",
-    "Plausible answer D"
-  ],
-  correct: 1,
-  explanation: "Explain why the answer is correct and clarify the key concept."
-}
-\`\`\`
+1. Define the competency being tested and its intended difficulty.
+2. Use plausible distractors based on real misconceptions, not joke answers.
+3. Include a concise explanation of why the answer is correct and why the tempting alternatives fail.
+4. Link primary documentation, and note version-specific behaviour where it matters.
+5. For scenarios, ask for the next useful diagnostic step and explain the evidence it provides.
+6. For interview prompts, provide a strong example answer, a checklist and follow-up prompts. Do not pretend open-ended answers have an objective numeric score.
+7. Run validation and manually test desktop, mobile, keyboard navigation, feedback and review.
 
-- \`correct\` is a zero-based option index.
-- Keep exactly four distinct options.
-- Prefer scenario-based questions over trivia where possible.
-- Make distractors plausible and explanations technically precise.
-- Avoid outdated commands, provider-specific assumptions without context, and absolute claims where behaviour depends on version or configuration.
-- Cite an official source or version note in the explanation for version-sensitive behaviour when practical.
+## Scope and limitations
 
-## Roadmap
+This is a study aid, not an official certification simulator or a guarantee of passing an exam. Difficulty labels are pedagogical, not official exam levels. Pair practice with hands-on labs, the current exam objectives and primary documentation.
 
-1. Expand question depth and coverage with reviewed, version-aware questions and references to official exam objectives.
-2. Add more command-output interpretation and troubleshooting scenarios.
-3. Add optional spaced repetition and a persistent missed-question practice queue.
-4. Add accessible keyboard shortcuts, a stronger test suite, and automated checks for duplicate/ambiguous questions.
-5. Consider a framework-backed app or hosted progress sync only if the project needs more than a static site.
-
-## Limitations and learning advice
-
-This project is an interview study aid, not an official exam simulator and not a guarantee of passing a certification. Question quality matters more than a large question count. Pair it with hands-on labs, reading primary documentation, explaining trade-offs aloud, and timed mock exams aligned to the specific certification you plan to take.
+Progress remains in local browser storage. Clearing browser data removes it. Do not enter production secrets or sensitive incident data into answer notes.
 
 ## License
 
-No license file was present in the original repository. Add a license explicitly if you want to grant users clear reuse and contribution permissions.
+No license file was present in the original repository. Add an explicit license if you want to grant users clear reuse and contribution permissions.

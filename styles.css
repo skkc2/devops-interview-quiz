@@ -19,3 +19,41 @@
 
 /* Assessment feedback states */
 .answer-option.answer-correct{border-color:#78b99a;background:#eff9f2}.answer-option.answer-correct .option-key{background:#247b63;color:#fff}.answer-option.answer-incorrect{border-color:#d98d80;background:#fff4f1}.answer-option.answer-incorrect .option-key{background:#b84646;color:#fff}
+
+
+/* Learning library and interactive learning-path destinations */
+.path-tags button{border:1px solid #dce7e0;background:#f2f5f3;color:#486454;border-radius:6px;font:inherit;font-size:9px;font-weight:750;padding:5px 7px;cursor:pointer;transition:background .15s,border-color .15s,transform .15s}
+.path-tags button:hover,.path-tags button:focus-visible{background:#e1f1e8;border-color:#78ae92;outline:2px solid #8bc5a4;outline-offset:2px}
+.path-tags button:active{transform:translateY(1px)}
+.screen#learning-screen{padding-top:28px}
+.learning-topline{display:flex;justify-content:space-between;align-items:center;gap:14px;margin-bottom:34px}
+.learning-hero{max-width:780px;margin:0 auto 25px;text-align:center}
+.learning-hero h1{font-size:clamp(32px,5vw,46px);letter-spacing:-1.5px;margin:8px 0}
+.learning-hero p{color:var(--muted);font-size:14px;line-height:1.7}
+.learning-module-nav{display:flex;flex-wrap:wrap;gap:7px;margin:0 0 16px;padding:12px;background:#f6f8f6;border:1px solid var(--line);border-radius:13px}
+.learning-module-nav button{border:1px solid transparent;background:transparent;color:var(--ink-soft);font-size:11px;font-weight:750;border-radius:8px;padding:9px 11px;cursor:pointer}
+.learning-module-nav button:hover,.learning-module-nav button:focus-visible{border-color:#b8d7c5;outline:2px solid #8bc5a4;outline-offset:1px}
+.learning-module-nav button.selected{background:#e1f1e8;color:#246446;border-color:#c1dfcd}
+.learning-browser{display:grid;grid-template-columns:minmax(220px,.75fr) minmax(0,1.6fr);gap:15px;margin-top:14px;align-items:start}
+.learning-content-list,.learning-content-detail{min-width:0;background:#fff;border:1px solid var(--line);border-radius:15px;padding:15px}
+.learning-content-list{display:flex;flex-direction:column;gap:7px}
+.learning-item{display:flex;flex-direction:column;gap:5px;text-align:left;width:100%;padding:12px;border:1px solid transparent;border-radius:10px;background:#f7f9f7;color:var(--ink);cursor:pointer}
+.learning-item strong{font-size:12px;line-height:1.45}
+.learning-item small{font-size:10px;line-height:1.55;color:var(--muted)}
+.learning-item:hover,.learning-item:focus-visible{border-color:#b8d7c5;outline:2px solid #8bc5a4;outline-offset:1px}
+.learning-item.selected{background:#e9f5ed;border-color:#afd4bd}
+.learning-content-detail{padding:clamp(17px,3vw,28px);min-height:340px}
+.learning-content-detail h2{font-size:clamp(22px,3vw,30px);letter-spacing:-.7px;margin:7px 0 18px}
+.learning-detail-overline{font-size:10px;text-transform:uppercase;letter-spacing:1px;font-weight:800;color:var(--green)}
+.learning-summary{font-size:14px;line-height:1.75;color:var(--ink-soft);margin:0 0 20px}
+.lesson-section{border-top:1px solid var(--line);padding:16px 0 2px}
+.lesson-section h3{font-size:14px;margin:0 0 7px}
+.lesson-section p,.lesson-section li{font-size:12px;line-height:1.75;color:var(--ink-soft)}
+.lesson-section ul{padding-left:20px}
+.command-example{display:grid;gap:10px;background:#132437;color:#f0f6f2;padding:17px;border-radius:12px;margin:18px 0}
+.command-example span{font-size:9px;letter-spacing:1.2px;color:#a8c7b6;font-weight:800}
+.command-example code,.question-code code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12px;white-space:pre-wrap;overflow-wrap:anywhere}
+.command-example .button{justify-self:start}
+.learning-footer{display:flex;gap:10px;justify-content:flex-end;margin:17px 0 38px}
+@media(max-width:760px){.learning-browser{grid-template-columns:1fr}.learning-content-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}.learning-content-detail{min-height:0}.learning-module-nav{gap:4px}.learning-module-nav button{padding:8px}.learning-topline{align-items:flex-start;flex-direction:column}}
+@media(max-width:520px){.learning-content-list{grid-template-columns:1fr}.learning-footer{flex-direction:column}.learning-footer .button{width:100%}}

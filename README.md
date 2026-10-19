@@ -34,6 +34,9 @@ The older question bank is retained for breadth across Linux, AWS, Terraform, Do
 
 ## Architecture
 
+The proposed scalable content model, eight clickable learning modules, subject-pack layout, session rules and acceptance criteria are documented in [ARCHITECTURE.md](ARCHITECTURE.md). The current implementation is still being migrated toward this model in small, testable PRs.
+
+
     index.html                         App shell and accessible UI
     styles.css                         Responsive design and interaction states
     app.js                             Session engine, filters, feedback and local progress

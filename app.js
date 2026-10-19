@@ -27,7 +27,7 @@
     timed:{title:"Timed drills",description:"Configure an exam-style session with a real eligible question count and timer."},
     review:{title:"Review queue",description:"Revisit questions you saved for review."},
     interviews:{title:"Interview prompts",description:"Practise structured answers and compare them with a sample answer and checklist."},
-    "self-assessment":{title:"Self-assessment",description:"Review your interview ratings and choose a focused next step."}
+    "followups":{title:"Follow-ups",description:"Explore interviewer probes connected to a parent prompt and practise answering them with context."}
   };
   let history = [];
   let historyAvailable = true;
@@ -157,6 +157,7 @@
       return all.filter(q=>state.flags.has(q.id)&&topicOK(q));
     }
     if(module==="interviews")return curated.filter(q=>isInterview(q)&&topicOK(q));
+    if(module==="followups")return curated.filter(isInterview).filter(topicOK).flatMap(q=>(q.followUps||[]).map((prompt,index)=>({id:q.id+"-followup-"+index,title:prompt,summary:"Follow-up to: "+(q.title||q.question),topic:q.topic,level:q.level,parent:q})));
     if(module==="timed")return [{id:"timed-drill-entry",title:"Configure a timed exam drill",summary:"Choose a difficulty, eligible question types and a count. The setup shows the exact number available before you start."}];
     if(module==="self-assessment")return [{id:"self-assessment-entry",title:"Review your answer quality",summary:"Use the interview checklist to assess structure, evidence, trade-offs and verification. Review your recent interview sessions for ratings."}];
     return [];
@@ -197,6 +198,8 @@
       body='<p class="learning-summary">'+esc(item.question)+'</p><section class="lesson-section"><h3>Sample answer</h3><p>'+esc(item.sampleAnswer||item.explanation||"Use a structured answer: context, evidence, action, verification.")+'</p></section><section class="lesson-section"><h3>Self-review checklist</h3><ul>'+(item.answerChecklist||[]).map(x=>'<li>'+esc(x)+'</li>').join("")+'</ul></section><section class="lesson-section"><h3>Follow-up prompts</h3><ul>'+(item.followUps||[]).map(x=>'<li>'+esc(x)+'</li>').join("")+'</ul></section><button type="button" class="button button-primary" id="practise-interview-prompt">Practise an interview prompt →</button>';
     }else if(module==="review"){
       body='<p class="learning-summary">'+esc(item.question||item.title)+'</p><section class="lesson-section"><h3>Explanation</h3><p>'+esc(item.explanation||"Review the official reference and explain the reasoning in your own words.")+'</p></section><div class="takeaway-box"><div><strong>Takeaway</strong><p>'+esc(item.takeaway||"Return to the underlying concept and verify it in a safe lab.")+'</p></div></div><button type="button" class="button button-primary" id="practice-saved-questions">Build practice from saved questions →</button>';
+    }else if(module==="followups"){
+      body='<p class="learning-summary">'+esc(item.title)+'</p><section class="lesson-section"><h3>Parent interview prompt</h3><p>'+esc(item.parent.title||item.parent.question)+'</p></section><section class="lesson-section"><h3>Sample answer to build from</h3><p>'+esc(item.parent.sampleAnswer||item.parent.explanation||"Structure your response around evidence, trade-offs and verification.")+'</p></section><section class="lesson-section"><h3>Self-check</h3><ul>'+(item.parent.answerChecklist||[]).map(x=>'<li>'+esc(x)+'</li>').join("")+'</ul></section><button type="button" class="button button-primary" id="practice-followup">Practise interview responses →</button>';
     }else if(module==="timed"){
       body='<p class="learning-summary">'+esc(item.summary)+'</p><ul><li>Choose Easy, Medium, Medium hard or Hard.</li><li>Choose 5, 10, 20, 30, or all eligible questions.</li><li>Exam mode hides explanations until the results review.</li></ul><button type="button" class="button button-primary" id="configure-timed-drill">Configure timed drill →</button>';
     }else{
@@ -209,7 +212,7 @@
     if(module==="interviews"&&$("practise-interview-prompt"))$("practise-interview-prompt").addEventListener("click",()=>{state.mode="interview";state.type="interview";state.level=item.level||state.level;state.count="all";setScreen("home");renderSetup();$("setup-panel").scrollIntoView({behavior:"smooth"});});
     if(module==="review"&&$("practice-saved-questions"))$("practice-saved-questions").addEventListener("click",()=>{state.mode="practice";state.type="all";state.count="all";setScreen("home");renderSetup();$("setup-panel").scrollIntoView({behavior:"smooth"});});
     if(module==="timed"&&$("configure-timed-drill"))$("configure-timed-drill").addEventListener("click",()=>{state.mode="exam";state.timed=true;state.type="all";setScreen("home");renderSetup();$("setup-panel").scrollIntoView({behavior:"smooth"});});
-    if(module==="self-assessment"&&$("open-interview-prompts"))$("open-interview-prompts").addEventListener("click",()=>renderLearningModule("interviews"));
+    if(module==="followups"&&$("practice-followup"))$("practice-followup").addEventListener("click",()=>{state.mode="interview";state.type="interview";state.count="all";setScreen("home");renderSetup();$("setup-panel").scrollIntoView({behavior:"smooth"});});
   }
   function openLearningModule(module){
     activeModule=MODULE_META[module]?module:"concepts";

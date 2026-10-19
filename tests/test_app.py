@@ -244,6 +244,22 @@ class OpsLabBrowserTests(unittest.TestCase):
         expect(self.page.locator("#quiz-screen")).to_be_visible()
         expect(self.page.locator("#question-title")).not_to_be_empty()
 
+    def test_saved_review_action_starts_with_the_saved_question_pool(self):
+        self.choose_mode("practice")
+        self.page.locator("#count-select").select_option("5")
+        self.start()
+        saved_title = self.page.locator("#question-title").inner_text()
+        self.page.locator("#flag-question").click()
+        self.page.once("dialog", lambda dialog: dialog.accept())
+        self.page.locator("#exit-quiz").click()
+        self.page.locator('[data-module="review"]').first.click()
+        expect(self.page.locator("#learning-title")).to_have_text("Review queue")
+        expect(self.page.locator("#learning-content-list .learning-item")).to_have_count(1)
+        self.page.locator("#practice-saved-questions").click()
+        expect(self.page.locator("#available-count")).to_contain_text("1 saved questions selected")
+        self.start()
+        expect(self.page.locator("#question-title")).to_have_text(saved_title)
+
     def test_export_review_downloads_text_file(self):
         self.choose_mode("practice")
         self.page.locator("#count-select").select_option("5")

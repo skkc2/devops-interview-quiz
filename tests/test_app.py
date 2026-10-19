@@ -174,6 +174,10 @@ class OpsLabBrowserTests(unittest.TestCase):
         expect(self.page.locator("#next-question")).to_be_visible()
         self.page.keyboard.press("ArrowRight")
         expect(self.page.locator("#question-counter")).to_contain_text("Question 2")
+        self.page.locator("#previous-question").click()
+        expect(self.page.locator("#question-counter")).to_contain_text("Question 1")
+        self.page.keyboard.press("ArrowRight")
+        expect(self.page.locator("#question-counter")).to_contain_text("Question 2")
         self.page.locator('[data-jump="0"]').click()
         expect(self.page.locator("#question-counter")).to_contain_text("Question 1")
 
@@ -194,6 +198,35 @@ class OpsLabBrowserTests(unittest.TestCase):
         self.page.once("dialog", lambda dialog: dialog.accept())
         self.page.locator("#clear-history").click()
         expect(self.page.locator("#stat-attempts")).to_have_text("0")
+
+    def test_timer_toggle_and_exit_confirmation(self):
+        self.choose_mode("practice")
+        self.page.locator("#timed-toggle").check()
+        self.start()
+        expect(self.page.locator("#timer-wrap")).to_be_visible()
+        with self.page.expect_dialog() as dialog_info:
+            self.page.locator("#exit-quiz").click()
+        dialog_info.value.dismiss()
+        expect(self.page.locator("#quiz-screen")).to_be_visible()
+        with self.page.expect_dialog() as dialog_info:
+            self.page.locator("#exit-quiz").click()
+        dialog_info.value.accept()
+        expect(self.page.locator("#home-screen")).to_be_visible()
+
+    def test_saved_review_filter_and_retry_button(self):
+        self.page.locator("#count-select").select_option("5")
+        self.start()
+        self.page.locator("#flag-question").click()
+        self.page.locator(f'[data-jump="{self.page.locator("[data-jump]").count() - 1}"]').click()
+        self.page.locator("#finish-quiz").click()
+        expect(self.page.locator("#results-screen")).to_be_visible()
+        self.page.locator("#review-filter").select_option("saved")
+        expect(self.page.locator("#review-list .review-card")).to_have_count(1)
+        self.page.locator("#review-focus").click()
+        expect(self.page.locator("#review-filter")).to_have_value("saved")
+        self.page.locator("#retry-quiz").click()
+        expect(self.page.locator("#quiz-screen")).to_be_visible()
+        expect(self.page.locator("#question-title")).not_to_be_empty()
 
     def test_export_review_downloads_text_file(self):
         self.page.locator("#count-select").select_option("5")

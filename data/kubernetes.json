@@ -893,7 +893,7 @@
       "title": "Diagnose a Service with no backends",
       "question": "An application reports connection failures to a Kubernetes Service, and it has no ready endpoints. Explain the order in which you would isolate the issue.",
       "objective": "Walk the path from Pod selection through readiness to ports and network.",
-      "options": "",
+      "options": [],
       "correct": [],
       "explanation": "A structured diagnosis checks selectors and labels, Pod readiness, EndpointSlices, then service port/targetPort and network path. Tests should distinguish DNS failure from refusal, timeout or application errors.",
       "takeaway": "Trace the path: client DNS → Service port → backend endpoint → Pod port → application dependencies.",

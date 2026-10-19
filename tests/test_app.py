@@ -119,6 +119,7 @@ class OpsLabBrowserTests(unittest.TestCase):
         self.page.locator("#check-answer").click()
         expect(self.page.locator("#question-feedback")).to_be_hidden()
         expect(self.page.locator("#check-answer")).to_be_hidden()
+        expect(self.page.locator('[data-option="0"]')).to_be_disabled()
         self.page.locator(f'[data-jump="{self.page.locator("[data-jump]").count() - 1}"]').click()
         self.page.locator("#finish-quiz").click()
         expect(self.page.locator("#results-screen")).to_be_visible()

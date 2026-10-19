@@ -3,133 +3,206 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#0a1020">
-  <meta name="description" content="Free DevOps and SRE interview practice for Kubernetes, Docker, AWS, Terraform, Linux, Ansible, systems administration, observability and reliability engineering.">
-  <title>DevOps & SRE Lab — Interview and Certification Practice</title>
+  <meta name="theme-color" content="#101c2b">
+  <meta name="description" content="Build DevOps and SRE interview readiness with guided learning, practice questions, exam simulation, and realistic Kubernetes troubleshooting scenarios.">
+  <title>DevOps &amp; SRE Lab — Learn. Practise. Be interview-ready.</title>
   <link rel="stylesheet" href="styles.css">
   <script defer src="questions.js"></script>
   <script defer src="app.js"></script>
 </head>
 <body>
-  <div class="shell">
+  <div class="app-shell">
     <header class="topbar">
-      <a class="brand" href="#" aria-label="DevOps and SRE Lab home">
-        <span class="brand-mark" aria-hidden="true">D/S</span>
-        <span>DevOps &amp; SRE Lab<small>Interview practice · Systems thinking</small></span>
+      <a class="brand" href="#home" aria-label="DevOps and SRE Lab home">
+        <span class="brand-mark" aria-hidden="true"><span></span><span></span><span></span></span>
+        <span class="brand-copy"><strong>ops<span>lab</span></strong><small>DevOps &amp; SRE learning studio</small></span>
       </a>
-      <a class="nav-link" href="README.md">Project guide ↗</a>
+      <nav class="top-nav" aria-label="Main navigation">
+        <a href="#learning-path">Learning path</a>
+        <a href="README.md">About the project <span aria-hidden="true">↗</span></a>
+      </nav>
     </header>
 
-    <main>
-      <section id="welcome-screen" class="screen active">
-        <div class="hero">
-          <div class="eyebrow">Your hands-on knowledge check</div>
-          <h1>Build the confidence to solve <span class="highlight">real production problems.</span></h1>
-          <p>Practice the concepts, commands, architecture decisions, and incident scenarios that DevOps, platform engineering, cloud, and SRE interviews expect you to reason through.</p>
-          <div class="hero-actions">
-            <button class="btn btn-primary" type="button" onclick="document.getElementById('level-heading').scrollIntoView({behavior:'smooth'})">Choose your level ↓</button>
-            <button id="show-roadmap" class="btn btn-quiet" type="button" aria-expanded="false">Explore learning roadmap</button>
+    <main id="home">
+      <section id="home-screen" class="screen is-active" aria-labelledby="hero-title">
+        <div class="hero-layout">
+          <div class="hero-copy">
+            <div class="eyebrow"><span class="eyebrow-dot"></span> A better way to prepare for real systems work</div>
+            <h1 id="hero-title">Learn the why.<br><span>Practise the how.</span></h1>
+            <p class="hero-lede">Build confidence for DevOps, platform and SRE interviews through guided learning, production-style scenarios, exam simulations and open-ended interview practice.</p>
+            <div class="hero-actions">
+              <button id="jump-to-setup" class="button button-primary" type="button">Build a study session <span aria-hidden="true">↘</span></button>
+              <button id="toggle-roadmap" class="button button-secondary" type="button" aria-expanded="false" aria-controls="roadmap-panel">Explore the learning path</button>
+            </div>
+            <div class="hero-note"><span class="tiny-check" aria-hidden="true">✓</span> Free · No account · Progress stays in this browser</div>
           </div>
+
+          <aside class="hero-side" aria-label="Learning approach">
+            <div class="terminal-card">
+              <div class="terminal-top"><span class="terminal-dots"><i></i><i></i><i></i></span><span>your-next-step.yml</span><span class="terminal-status">READY</span></div>
+              <div class="terminal-body">
+                <div><span class="code-muted">01</span> <span class="code-key">learn:</span> <span class="code-value">the fundamentals</span></div>
+                <div><span class="code-muted">02</span> <span class="code-key">practise:</span> <span class="code-value">the troubleshooting</span></div>
+                <div><span class="code-muted">03</span> <span class="code-key">simulate:</span> <span class="code-value">exam conditions</span></div>
+                <div><span class="code-muted">04</span> <span class="code-key">explain:</span> <span class="code-value">your reasoning</span></div>
+                <div class="terminal-output"><span aria-hidden="true">↳</span> <span>Ready for the next challenge</span><span class="cursor" aria-hidden="true"></span></div>
+              </div>
+            </div>
+            <div class="hero-side-caption"><span class="signal-icon" aria-hidden="true">◎</span><span><strong>Reasoning over rote memorisation</strong><small>Every curated question includes why it matters and what to investigate next.</small></span></div>
+          </aside>
         </div>
 
-        <div class="stats-grid" aria-label="Your saved learning progress">
-          <div class="stat-card"><div class="stat-label">Quiz attempts</div><div id="stat-attempts" class="stat-value">0</div></div>
-          <div class="stat-card"><div class="stat-label">Average score</div><div id="stat-average" class="stat-value">0%</div></div>
-          <div class="stat-card"><div class="stat-label">Personal best</div><div id="stat-best" class="stat-value">0%</div></div>
-        </div>
+        <section class="progress-overview" aria-label="Your learning progress">
+          <div class="progress-intro"><span class="section-kicker">YOUR PRACTICE</span><h2>Small steps add up.</h2><p>Your recent sessions help you spot what to revisit.</p></div>
+          <div class="stat-tile"><span class="stat-label">Sessions</span><strong id="stat-attempts">0</strong><span class="stat-foot">completed</span></div>
+          <div class="stat-tile"><span class="stat-label">Average score</span><strong id="stat-average">—</strong><span class="stat-foot">graded questions</span></div>
+          <div class="stat-tile"><span class="stat-label">Personal best</span><strong id="stat-best">—</strong><span class="stat-foot">graded session</span></div>
+        </section>
 
-        <section class="roadmap panel" id="roadmap-panel" hidden>
-          <h2>Learning roadmap</h2>
-          <div class="roadmap-content">
-            <ol>
-              <li><strong>Foundations:</strong> Linux commands and permissions, networking basics, Git, container concepts, cloud primitives.</li>
-              <li><strong>Practitioner:</strong> Kubernetes workloads and networking, Docker builds, Terraform state, Ansible idempotency, AWS IAM and VPCs.</li>
-              <li><strong>Operational depth:</strong> systemd, memory and I/O troubleshooting, DNS/TLS, metrics and traces, SLOs and alert design.</li>
-              <li><strong>Senior and exam readiness:</strong> incident leadership, error-budget decisions, failure isolation, capacity trade-offs, and multi-layer debugging.</li>
-            </ol>
-            <p>Progression is a learning path, not a guarantee of certification or job outcomes. Pair quizzes with labs, official documentation, and timed practice exams.</p>
+        <section id="setup-panel" class="setup-section" aria-labelledby="setup-heading">
+          <div class="section-heading">
+            <div><span class="section-kicker">MAKE IT COUNT</span><h2 id="setup-heading">Build your next session</h2><p>Pick the kind of practice that matches your goal today.</p></div>
+            <span class="step-chip"><span>01</span> Choose your route</span>
+          </div>
+
+          <div class="mode-grid" id="mode-options" role="group" aria-label="Study mode">
+            <button class="mode-card selected" data-mode="learn" type="button" aria-pressed="true">
+              <span class="mode-icon icon-learn" aria-hidden="true">✳</span><span class="mode-name">Learn</span><span class="mode-description">Build understanding with guided explanations and memorable takeaways.</span><span class="mode-bottom">CONCEPTS FIRST <span aria-hidden="true">↗</span></span>
+            </button>
+            <button class="mode-card" data-mode="practice" type="button" aria-pressed="false">
+              <span class="mode-icon icon-practice" aria-hidden="true">⌁</span><span class="mode-name">Practice</span><span class="mode-description">Answer, get immediate feedback, and learn from each distractor.</span><span class="mode-bottom">FEEDBACK AS YOU GO <span aria-hidden="true">↗</span></span>
+            </button>
+            <button class="mode-card" data-mode="exam" type="button" aria-pressed="false">
+              <span class="mode-icon icon-exam" aria-hidden="true">◷</span><span class="mode-name">Exam simulation</span><span class="mode-description">Work to a timer. Keep explanations hidden until the results review.</span><span class="mode-bottom">TIMED &amp; SCORED <span aria-hidden="true">↗</span></span>
+            </button>
+            <button class="mode-card" data-mode="interview" type="button" aria-pressed="false">
+              <span class="mode-icon icon-interview" aria-hidden="true">↗</span><span class="mode-name">Interview</span><span class="mode-description">Answer out loud or in writing, then compare with a strong answer outline.</span><span class="mode-bottom">EXPLAIN YOUR REASONING <span aria-hidden="true">↗</span></span>
+            </button>
+          </div>
+
+          <div class="builder-layout">
+            <section class="builder-card" aria-label="Session settings">
+              <div class="card-heading"><div><span class="section-kicker">SESSION SETTINGS</span><h3>Make it yours</h3></div><span class="settings-mark" aria-hidden="true">☷</span></div>
+              <div class="field-grid">
+                <div class="field"><label for="level-select">Difficulty</label><select id="level-select"><option value="easy">Easy</option><option value="medium">Medium</option><option value="mediumHard">Medium hard</option><option value="hard">Hard</option></select><small id="level-help">Build confidence with the essentials.</small></div>
+                <div class="field"><label for="topic-select">Technical subject</label><select id="topic-select"><option value="all">All available subjects</option></select><small id="topic-help">Focused Kubernetes content is curated first.</small></div>
+                <div class="field"><label for="type-select">Question type</label><select id="type-select"><option value="all">All question types</option><option value="concept">Core concepts</option><option value="scenario">Troubleshooting scenarios</option><option value="command">Command interpretation</option><option value="multi-select">Select all that apply</option><option value="trade-off">Trade-offs and design</option><option value="interview">Open-ended interview prompts</option></select><small>Use this to target one interview skill.</small></div>
+                <div class="field"><label for="count-select">Question count</label><select id="count-select"><option value="10">10 questions</option><option value="20" selected>20 questions</option><option value="30">30 questions</option><option value="all">All available questions</option></select><small id="count-help">The app never invents questions to fill a set.</small></div>
+              </div>
+              <label id="timer-control" class="toggle-control"><span class="toggle-copy"><strong>Run with a timer</strong><small>Useful for exam pacing and interview pressure.</small></span><input id="timed-toggle" type="checkbox"><span class="toggle-switch" aria-hidden="true"></span></label>
+              <div id="available-count" class="availability-note" aria-live="polite">Loading your question bank…</div>
+              <div id="setup-message" class="setup-message" role="status"></div>
+              <div class="builder-footer"><span class="privacy-note"><span aria-hidden="true">◉</span> Saved locally, not uploaded</span><button id="start-quiz" class="button button-primary" type="button" disabled>Start session <span aria-hidden="true">→</span></button></div>
+            </section>
+
+            <aside class="recent-card" aria-labelledby="recent-heading">
+              <div class="card-heading"><div><span class="section-kicker">KEEP THE MOMENTUM</span><h3 id="recent-heading">Recent sessions</h3></div><span class="history-mark" aria-hidden="true">↻</span></div>
+              <div id="recent-sessions" class="history-list"><p class="empty-state">Your completed sessions will appear here.</p></div>
+              <button id="clear-history" class="text-button" type="button">Clear saved history</button>
+              <div class="readiness-note"><span class="readiness-mark" aria-hidden="true">✦</span><div><strong>Interview-ready means explainable.</strong><p>For each miss, practise explaining the cause, the evidence you would gather, and the safest next action.</p></div></div>
+            </aside>
           </div>
         </section>
 
-        <div class="section-heading" id="level-heading">
-          <div><h2>1. Choose your difficulty</h2><p>Start where you are. Move up as your reasoning becomes consistent.</p></div>
-        </div>
-        <div id="level-options" class="level-grid" aria-label="Difficulty levels"></div>
+        <section id="learning-path" class="learning-path" aria-labelledby="path-heading">
+          <div class="section-heading path-heading"><div><span class="section-kicker">A PROGRESSION, NOT A RACE</span><h2 id="path-heading">Build the skill stack</h2><p>Learn the basics, then practise diagnosing messy real-world symptoms.</p></div><button id="toggle-roadmap-secondary" class="text-button" type="button" aria-expanded="false" aria-controls="roadmap-panel">View full roadmap <span aria-hidden="true">↗</span></button></div>
+          <div class="path-grid">
+            <article class="path-card"><span class="path-number">01</span><div class="path-icon" aria-hidden="true">⌘</div><h3>Foundation</h3><p>Understand the objects, tools, and language you use every day.</p><div class="path-tags"><span>Concepts</span><span>Commands</span></div></article>
+            <article class="path-card"><span class="path-number">02</span><div class="path-icon" aria-hidden="true">⌁</div><h3>Hands-on reasoning</h3><p>Use symptoms, logs, events, and configuration to narrow down causes.</p><div class="path-tags"><span>Scenarios</span><span>Debugging</span></div></article>
+            <article class="path-card"><span class="path-number">03</span><div class="path-icon" aria-hidden="true">◷</div><h3>Exam readiness</h3><p>Practise pacing, accuracy, and judgement without in-question hints.</p><div class="path-tags"><span>Timed</span><span>Review</span></div></article>
+            <article class="path-card"><span class="path-number">04</span><div class="path-icon" aria-hidden="true">↗</div><h3>Interview confidence</h3><p>Communicate trade-offs, structured diagnosis, and safe recovery.</p><div class="path-tags"><span>Open-ended</span><span>Follow-ups</span></div></article>
+          </div>
+          <section id="roadmap-panel" class="roadmap-panel" hidden>
+            <div><span class="section-kicker">CURATED ROADMAP</span><h3>From fundamentals to production judgement</h3></div>
+            <ol>
+              <li><strong>Foundations:</strong> Linux and networking basics, processes and permissions, containers, Kubernetes objects, Git, and cloud primitives.</li>
+              <li><strong>Practitioner skills:</strong> workload rollouts, resource requests and limits, service discovery, Terraform state, IAM, and idempotent configuration.</li>
+              <li><strong>Operational depth:</strong> systemd and memory troubleshooting, DNS/TLS, metrics and traces, SLOs, noisy alerts, and safe deployment recovery.</li>
+              <li><strong>Senior-level reasoning:</strong> incident command, error-budget trade-offs, capacity, blast radius, failure domains, and reliability design.</li>
+            </ol>
+            <p>Difficulty labels are a learning aid, not an official certification scale. Pair this tool with hands-on labs and the exam objectives for the certification you plan to take.</p>
+          </section>
+        </section>
 
-        <div class="setup-grid">
-          <section class="panel">
-            <h3>2. Customize your session</h3>
-            <p class="panel-intro">Mix all topics or focus on one area that needs more practice.</p>
-            <div class="field"><label for="topic-select">Technology or topic</label><select id="topic-select"><option value="all">All topics</option></select></div>
-            <div class="field"><label for="count-select">Question count</label><select id="count-select"><option value="20">20 questions</option></select></div>
-            <div class="field"><span class="field-label">Session mode</span>
-              <div class="mode-options">
-                <label class="mode-card"><input id="mode-practice" type="radio" name="quiz-mode" value="practice" checked><span><strong>Practice</strong><small>See explanations after each answer.</small></span></label>
-                <label class="mode-card"><input id="mode-exam" type="radio" name="quiz-mode" value="exam"><span><strong>Exam simulation</strong><small>Save feedback until the end.</small></span></label>
-              </div>
-            </div>
-            <label class="toggle-row"><input id="timed-toggle" type="checkbox" checked> Enable a timer</label>
-            <div id="available-count" class="muted">Questions available</div>
-            <div id="setup-message" class="setup-message" aria-live="polite"></div>
-            <div class="setup-footer"><span class="muted">Your history is saved in this browser.</span><button id="start-quiz" class="btn btn-primary" type="button">Start learning →</button></div>
-          </section>
-          <section class="panel">
-            <h3>Recent sessions</h3>
-            <p class="panel-intro">Use results to guide what you study next.</p>
-            <div id="recent-sessions" class="history-list"><p class="muted">Your results will appear here after your first quiz.</p></div>
-            <button id="clear-history" class="btn btn-quiet" type="button" style="margin-top:14px">Clear saved history</button>
-          </section>
-        </div>
+        <footer class="footer"><span>OpsLab · Open learning project</span><span>Practise with curiosity. Verify with official docs. Learn from every incident.</span></footer>
       </section>
 
       <section id="quiz-screen" class="screen" hidden aria-labelledby="question-title">
-        <div class="screen-header">
-          <div><div class="eyebrow">Focus mode</div><h2>Knowledge check</h2></div>
-          <div class="quiz-meta"><span id="quiz-level" class="pill">Easy</span><span id="quiz-mode" class="pill">Practice mode</span><span id="quiz-topic" class="pill">Mixed topics</span><span id="timer-wrap" class="pill timer"><span id="timer-value">20:00</span></span></div>
+        <div class="quiz-topline">
+          <button id="exit-quiz" class="back-link" type="button"><span aria-hidden="true">←</span> Leave session</button>
+          <div class="quiz-meta"><span id="quiz-mode-pill" class="meta-pill">Learn</span><span id="quiz-level-pill" class="meta-pill">Easy</span><span id="quiz-topic-pill" class="meta-pill">Kubernetes</span><span id="timer-wrap" class="meta-pill timer-pill" hidden><span aria-hidden="true">◷</span> <span id="timer-value">15:00</span></span></div>
         </div>
-        <div class="progress-row"><span id="question-number">Question 1 of 20</span><span id="progress-percent">5%</span></div>
-        <progress id="quiz-progress" max="20" value="1" aria-label="Quiz progress"></progress>
-        <div class="question-panel">
-          <div class="question-labels"><span id="question-topic" class="pill">Linux</span><span id="question-difficulty" class="pill">Easy</span><span id="answered-count" class="pill">0 answered</span></div>
-          <h1 id="question-title">Question will appear here</h1>
-          <div id="answer-options" class="answer-options"></div>
-          <div id="question-feedback" class="feedback" hidden aria-live="polite">
-            <h3 id="feedback-title"></h3><p id="feedback-explanation"></p><p id="feedback-answer"></p>
-          </div>
-          <p id="quiz-live-feedback" class="sr-only" aria-live="polite"></p>
-          <div class="quiz-controls">
-            <div class="quiz-controls-left"><button id="quit-quiz" class="btn btn-quiet" type="button">Exit quiz</button><button id="flag-question" class="btn btn-quiet" type="button">☆ Save for review</button></div>
-            <div class="quiz-controls-right"><button id="prev-question" class="btn" type="button" disabled>← Previous</button><button id="next-question" class="btn btn-primary" type="button">Next question →</button></div>
-          </div>
+        <div class="question-progress">
+          <div class="progress-caption"><span id="question-counter">Question 1 of 10</span><span id="progress-caption">10% complete</span></div>
+          <progress id="question-progress" max="10" value="1" aria-label="Session progress">1</progress>
+        </div>
+
+        <div class="quiz-layout">
+          <article class="question-card">
+            <div class="question-overline"><span id="question-type-pill" class="type-pill">Core concept</span><span id="question-level-pill" class="subtle-label">EASY</span><button id="flag-question" class="flag-button" type="button" aria-pressed="false"><span aria-hidden="true">☆</span> Save for review</button></div>
+            <div id="question-objective" class="learning-objective"><span class="objective-icon" aria-hidden="true">✳</span><p>Learning objective will appear here.</p></div>
+            <h1 id="question-title" tabindex="-1">Question will appear here</h1>
+            <p id="question-context" class="question-context" hidden></p>
+            <pre id="question-code" class="question-code" hidden><code></code></pre>
+            <p id="selection-hint" class="selection-hint"></p>
+            <div id="answer-options" class="answer-options" role="group" aria-label="Answer options"></div>
+            <div id="interview-answer-area" class="interview-answer-area" hidden>
+              <label for="interview-answer">Your answer <span>Write notes or use this as a speaking prompt.</span></label>
+              <textarea id="interview-answer" rows="6" placeholder="Explain your reasoning, the evidence you would gather, and how you would verify recovery…"></textarea>
+              <p class="interview-prompt-hint">Aim for a structured answer: context → evidence → action → verification.</p>
+              <div id="interview-self-check" class="self-check" hidden><strong>Self-check your response</strong><p>Did you cover these points in your answer?</p><ul id="interview-checklist"></ul><div id="interview-rating" class="self-rating" role="group" aria-label="How strong was your answer?"><button type="button" data-rating="1">Needs work</button><button type="button" data-rating="2">Getting there</button><button type="button" data-rating="3">Interview ready</button></div></div>
+            </div>
+
+            <div id="question-feedback" class="feedback-panel" hidden aria-live="polite">
+              <div class="feedback-header"><span id="feedback-status" class="feedback-status">Correct</span><span class="feedback-kicker">THE REASONING</span></div>
+              <p id="feedback-explanation" class="feedback-explanation"></p>
+              <div id="feedback-answer" class="feedback-answer" hidden></div>
+              <div class="takeaway-box"><span class="takeaway-icon" aria-hidden="true">✦</span><div><strong>Remember this</strong><p id="feedback-takeaway"></p></div></div>
+              <div id="feedback-references" class="reference-links"></div>
+              <div id="feedback-followups" class="followup-block" hidden><strong>Try these follow-up questions</strong><ul id="followup-list"></ul></div>
+            </div>
+
+            <p id="quiz-live-feedback" class="sr-only" role="status" aria-live="polite"></p>
+            <div class="question-actions">
+              <div class="question-actions-left"><button id="previous-question" class="button button-secondary" type="button" disabled>← Previous</button></div>
+              <div class="question-actions-right"><button id="check-answer" class="button button-primary" type="button">Check answer <span aria-hidden="true">↗</span></button><button id="next-question" class="button button-primary" type="button" hidden>Next question <span aria-hidden="true">→</span></button><button id="finish-quiz" class="button button-dark" type="button" hidden>Finish session <span aria-hidden="true">✓</span></button></div>
+            </div>
+          </article>
+          <aside class="session-sidebar">
+            <div class="sidebar-card">
+              <span class="section-kicker">SESSION MAP</span><h3>Keep your pace</h3>
+              <div class="sidebar-progress"><div><span id="sidebar-answered">0</span><small>answered</small></div><div><span id="sidebar-remaining">10</span><small>left</small></div></div>
+              <div id="question-jump-list" class="question-jump-list" aria-label="Navigate to question"></div>
+              <p class="sidebar-help">Use the question dots to revisit an answer or mark a tricky question for review.</p>
+            </div>
+            <div class="sidebar-tip"><span aria-hidden="true">✦</span><div><strong>Engineer’s habit</strong><p>State what you know, identify the missing evidence, then choose the safest next step.</p></div></div>
+          </aside>
         </div>
       </section>
 
-      <section id="results-screen" class="screen" hidden>
-        <div class="eyebrow">Session complete</div>
+      <section id="results-screen" class="screen" hidden aria-labelledby="result-title">
+        <div class="results-topline"><span class="section-kicker">SESSION COMPLETE</span><button id="new-session" class="back-link" type="button">← Back to study setup</button></div>
         <div class="results-hero">
-          <div class="score-orb"><strong id="result-score">0%</strong><span>Overall score</span></div>
-          <div><span id="result-level" class="pill">Easy · Practice</span><h1 id="result-title">A useful baseline to build on</h1><p id="result-summary" class="result-summary"></p></div>
+          <div class="result-orb"><strong id="result-score">—</strong><span id="result-score-label">Session score</span></div>
+          <div class="results-copy"><span id="result-badge" class="result-badge">Good practice</span><h1 id="result-title">Every session teaches you something.</h1><p id="result-summary"></p><div class="result-context"><span id="result-level">Easy</span><span>·</span><span id="result-mode">Learn</span><span>·</span><span id="result-duration">0 min</span></div></div>
         </div>
-        <div class="result-metrics">
-          <div class="result-metric"><strong id="result-correct">0</strong><span>Correct</span></div>
-          <div class="result-metric"><strong id="result-incorrect">0</strong><span>Incorrect</span></div>
-          <div class="result-metric"><strong id="result-unanswered">0</strong><span>Unanswered</span></div>
+        <div class="result-stats">
+          <div><span>Correct</span><strong id="result-correct">0</strong></div>
+          <div><span>Incorrect</span><strong id="result-incorrect">0</strong></div>
+          <div><span>Unanswered</span><strong id="result-unanswered">0</strong></div>
+          <div><span>Saved to revisit</span><strong id="result-flagged">0</strong></div>
         </div>
         <div class="results-grid">
-          <section class="panel"><h2>Performance by topic</h2><div id="result-breakdown"></div></section>
-          <section class="panel"><h2>What to focus on next</h2><div id="weak-topics" class="muted"></div><p class="muted" style="margin-top:18px">A high quiz score is a signal, not a certification guarantee. Confirm understanding in hands-on labs and official exam objectives.</p></section>
+          <section class="results-panel"><div class="card-heading"><div><span class="section-kicker">WHAT THE SIGNALS SAY</span><h2>By technical subject</h2></div></div><div id="result-breakdown"></div></section>
+          <section class="results-panel"><div class="card-heading"><div><span class="section-kicker">YOUR NEXT BEST STEP</span><h2>Focus for next time</h2></div></div><div id="weak-topics" class="next-focus"></div><button id="download-review" class="button button-secondary button-full" type="button">Export session notes <span aria-hidden="true">↓</span></button></section>
         </div>
-        <div class="result-actions"><button id="open-review" class="btn btn-primary" type="button">Review answers &amp; explanations</button><button id="retry-quiz" class="btn" type="button">Try this selection again</button><button id="new-quiz" class="btn btn-quiet" type="button">New quiz</button></div>
+        <section class="review-results-panel"><div class="card-heading"><div><span class="section-kicker">MAKE IT STICK</span><h2>Review and improve</h2><p>Read the rationale, check what you missed, and save useful prompts for later.</p></div><div class="review-filter-field"><label for="review-filter">Show</label><select id="review-filter"><option value="all">All questions</option><option value="missed">Incorrect or unanswered</option><option value="saved">Saved for review</option></select></div></div><div id="review-list" class="review-list"></div></section>
+        <div class="results-actions"><button id="retry-quiz" class="button button-primary" type="button">Try this session again <span aria-hidden="true">↻</span></button><button id="review-focus" class="button button-secondary" type="button">Review saved questions</button><button id="reset-setup" class="button button-secondary" type="button">Build a new session</button></div>
+        <footer class="footer"><span>Progress stays in this browser.</span><span>Pair quiz results with labs and official documentation.</span></footer>
       </section>
 
-      <section id="review-screen" class="screen" hidden>
-        <div class="screen-header"><div><div class="eyebrow">Learn from every answer</div><h2>Answer review</h2></div><button id="back-results" class="btn" type="button">← Back to results</button></div>
-        <div class="review-toolbar"><span id="review-count" class="muted">All questions</span><label for="review-filter" class="field-label">Show <select id="review-filter"><option value="all">All questions</option><option value="missed">Incorrect or unanswered</option><option value="saved">Saved for review</option></select></label><button id="download-review" class="btn btn-quiet" type="button">Export review (.txt)</button></div>
-        <div id="review-list" class="review-list"></div>
-      </section>
+      <div id="app-error" class="app-error" role="alert" hidden><strong>We couldn't load the learning content.</strong><p id="app-error-message">Check your connection and reload the page.</p><button id="reload-app" class="button button-secondary" type="button">Reload</button></div>
     </main>
-
-    <footer class="footer"><span>Open learning project · Runs locally in your browser</span><span>Improve with labs, official docs, and deliberate practice.</span></footer>
   </div>
 </body>
 </html>

@@ -164,7 +164,7 @@
       const selected=Array.isArray(state.answers[state.index])?state.answers[state.index].includes(i):state.answers[state.index]===i;
       let cls="answer-option"+(selected?" selected":"");
       if(submitted&&state.mode!=="exam"&&!isInterview(q)){if(correctSet(q).includes(i))cls+=" answer-correct";else if(selected)cls+=" answer-incorrect";}
-      return '<button type="button" class="'+cls+'" data-option="'+i+'" aria-pressed="'+selected+'" '+(submitted&&state.mode!=="exam"?"disabled":"")+'><span class="option-key">'+String.fromCharCode(65+i)+'</span><span>'+esc(opt)+'</span><span class="option-mark" aria-hidden="true">'+(selected?"✓":"")+'</span></button>';
+      return '<button type="button" class="'+cls+'" data-option="'+i+'" aria-pressed="'+selected+'" '+(submitted?"disabled":"")+'><span class="option-key">'+String.fromCharCode(65+i)+'</span><span>'+esc(opt)+'</span><span class="option-mark" aria-hidden="true">'+(selected?"✓":"")+'</span></button>';
     }).join("");
     $("interview-answer-area").hidden=!isInterview(q);
     $("interview-answer").value=isInterview(q)&&typeof state.answers[state.index]==="string"?state.answers[state.index]:"";

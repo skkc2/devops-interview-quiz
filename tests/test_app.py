@@ -46,7 +46,7 @@ class OpsLabBrowserTests(unittest.TestCase):
         self.context = self.browser.new_context(accept_downloads=True)
         self.page = self.context.new_page()
         self.page.goto(BASE_URL, wait_until="networkidle")
-        expect(self.page.locator("#available-count")).to_contain_text("questions match")
+        expect(self.page.locator("#available-count")).to_contain_text("available in the curated learning library")
 
     def tearDown(self):
         self.context.close()

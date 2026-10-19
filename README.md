@@ -34,16 +34,20 @@ The older question bank is retained for breadth across Linux, AWS, Terraform, Do
 
 ## Architecture
 
-The proposed scalable content model, eight clickable learning modules, subject-pack layout, session rules and acceptance criteria are documented in [ARCHITECTURE.md](ARCHITECTURE.md). The current implementation is still being migrated toward this model in small, testable PRs.
+The content model, eight learning modules, subject-pack layout, session rules and acceptance criteria are documented in [ARCHITECTURE.md](ARCHITECTURE.md). The current app implements the learning destinations and session foundations; the curated question bank and broader subject content are still being expanded.
 
 
     index.html                         App shell and accessible UI
     styles.css                         Responsive design and interaction states
     app.js                             Session engine, filters, feedback and local progress
     questions.js                       Legacy multi-subject question bank
-    data/kubernetes.json               Curated Kubernetes learning track
-    scripts/validate-question-bank.js  Question schema and editorial checks
-    .github/workflows/validate.yml     CI validation
+    data/kubernetes.json               Curated Kubernetes graded questions
+    data/kubernetes-learning.json      Kubernetes lessons, commands and debugging guides
+    scripts/validate-question-bank.js  Graded question schema and editorial checks
+    scripts/validate-learning-content.js Learning content schema and reference checks
+    tests/test_app.py                 Chromium browser interaction tests
+    TESTING.md                        How to run tests and coverage notes
+    .github/workflows/validate.yml     CI validation and browser tests
     .github/workflows/deploy-pages.yml GitHub Pages deployment
 
 - **Static hosting:** GitHub Pages serves the files directly; no server-side runtime.
@@ -69,8 +73,12 @@ Install Node.js 20 or later, then run:
     node --check app.js
     node --check questions.js
     node scripts/validate-question-bank.js
+    node scripts/validate-learning-content.js
+    python -m pip install playwright
+    python -m playwright install chromium
+    python -m unittest discover -s tests -v
 
-The CI workflow runs the same checks on pushes and pull requests. A passing schema check does not replace editorial review or a browser smoke test.
+The CI workflow runs the syntax and content checks plus the Chromium interaction suite on pushes and pull requests. A passing schema check does not replace editorial review or a live Pages smoke test.
 
 ## Contributing high-quality questions
 

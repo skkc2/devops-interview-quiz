@@ -70,42 +70,57 @@ class OpsLabBrowserTests(unittest.TestCase):
         self.choose_mode("learn")
         expect(self.page.locator("#timer-control")).to_be_hidden()
 
-    def test_mode_question_pool_counts_and_current_overlap(self):
-        counts = {}
-        titles = {}
-        for mode in ("learn", "practice", "exam", "interview"):
-            self.choose_mode(mode)
-            counts[mode] = self.page.locator("#available-count").inner_text()
-            self.page.locator("#count-select").select_option("all")
-            self.start()
-            titles[mode] = set()
-            total = self.page.locator("[data-jump]").count()
-            for i in range(total):
-                self.page.locator(f'[data-jump="{i}"]').click()
-                titles[mode].add(self.page.locator("#question-title").inner_text())
-            self.page.once("dialog", lambda dialog: dialog.accept())
-            self.page.locator("#exit-quiz").click()
-            expect(self.page.locator("#home-screen")).to_be_visible()
+    def test_learning_library_and_mode_pool_counts(self):
+        self.choose_mode("learn")
+        self.page.locator("#start-quiz").click()
+        expect(self.page.locator("#learning-screen")).to_be_visible()
+        expect(self.page.locator("#learning-title")).to_have_text("Concepts")
+        expect(self.page.locator("#learning-content-list .learning-item")).to_have_count(6)
+        self.page.locator('#learning-module-nav [data-module="commands"]').click()
+        expect(self.page.locator("#learning-title")).to_have_text("Commands")
+        expect(self.page.locator("#learning-content-list .learning-item")).to_have_count(6)
+        expect(self.page.locator("#learning-content-detail")).to_contain_text("kubectl get pods -o wide")
+        self.page.locator("#back-from-learning").click()
+        self.choose_mode("practice")
+        expect(self.page.locator("#available-count")).to_contain_text("6 questions")
+        self.choose_mode("exam")
+        expect(self.page.locator("#available-count")).to_contain_text("6 questions")
+        self.choose_mode("interview")
+        expect(self.page.locator("#available-count")).to_contain_text("1 questions")
+        expect(self.page.locator("#type-select")).to_have_value("interview")
 
-        self.assertIn("7 questions", counts["learn"])
-        self.assertIn("7 questions", counts["practice"])
-        self.assertIn("6 questions", counts["exam"])
-        self.assertIn("1 questions", counts["interview"])
-        self.assertEqual(titles["learn"], titles["practice"])
-        self.assertNotIn(next(iter(titles["interview"])), titles["exam"])
+    def test_requested_question_count_is_not_silently_reduced(self):
+        self.choose_mode("practice")
+        self.page.locator("#count-select").select_option("5")
+        expect(self.page.locator("#start-quiz")).to_be_enabled()
+        self.page.locator("#level-select").select_option("medium")
+        expect(self.page.locator("#count-select")).to_have_value("5")
+        self.page.locator("#type-select").select_option("scenario")
+        expect(self.page.locator("#available-count")).to_contain_text("2 questions")
+        expect(self.page.locator("#count-select")).to_have_value("5")
+        expect(self.page.locator("#start-quiz")).to_be_disabled()
+        expect(self.page.locator("#setup-message")).to_contain_text("Choose a smaller count")
+        self.page.locator("#count-select").select_option("all")
+        expect(self.page.locator("#start-quiz")).to_be_enabled()
 
-    def test_learn_and_practice_show_feedback_after_checking(self):
-        for mode in ("learn", "practice"):
-            self.choose_mode(mode)
-            self.page.locator("#count-select").select_option("5")
-            self.start()
-            self.page.locator('[data-option="0"]').click()
-            self.page.locator("#check-answer").click()
-            expect(self.page.locator("#question-feedback")).to_be_visible()
-            expect(self.page.locator("#feedback-explanation")).not_to_be_empty()
-            self.page.once("dialog", lambda dialog: dialog.accept())
-            self.page.locator("#exit-quiz").click()
-            expect(self.page.locator("#home-screen")).to_be_visible()
+    def test_all_eight_learning_destinations_open_and_show_content_or_empty_state(self):
+        expected = {
+            "concepts": "Concepts",
+            "commands": "Commands",
+            "scenarios": "Scenarios",
+            "debugging": "Debugging",
+            "timed": "Timed drills",
+            "review": "Review queue",
+            "interviews": "Interview prompts",
+            "self-assessment": "Self-assessment",
+        }
+        for module, title in expected.items():
+            self.page.locator(f'[data-module="{module}"]').first.click()
+            expect(self.page.locator("#learning-screen")).to_be_visible()
+            expect(self.page.locator("#learning-title")).to_have_text(title)
+            expect(self.page.locator("#learning-content-count")).not_to_be_empty()
+            expect(self.page.locator("#learning-content-detail")).not_to_be_empty()
+            self.page.locator("#back-from-learning").click()
 
     def test_exam_hides_feedback_until_session_finishes(self):
         self.choose_mode("exam")
@@ -126,6 +141,7 @@ class OpsLabBrowserTests(unittest.TestCase):
         expect(self.page.locator("#review-list .review-card")).to_have_count(5)
 
     def test_filters_update_available_pool_and_disable_empty_types(self):
+        self.choose_mode("practice")
         self.page.locator("#level-select").select_option("medium")
         self.page.locator("#type-select").select_option("scenario")
         expect(self.page.locator("#available-count")).to_contain_text("2 questions")
@@ -136,6 +152,7 @@ class OpsLabBrowserTests(unittest.TestCase):
         expect(self.page.locator("#start-quiz")).to_be_enabled()
 
     def test_multi_select_answer_requires_selection_and_shows_correct_choices(self):
+        self.choose_mode("practice")
         self.page.locator("#type-select").select_option("multi-select")
         self.start()
         self.page.locator("#check-answer").click()
@@ -162,6 +179,7 @@ class OpsLabBrowserTests(unittest.TestCase):
         expect(self.page.locator("#result-score")).to_have_text("—")
 
     def test_navigation_saved_question_and_keyboard_shortcut(self):
+        self.choose_mode("practice")
         self.page.locator("#count-select").select_option("5")
         self.start()
         expect(self.page.locator("#previous-question")).to_be_disabled()
@@ -211,6 +229,7 @@ class OpsLabBrowserTests(unittest.TestCase):
         expect(self.page.locator("#home-screen")).to_be_visible()
 
     def test_saved_review_filter_and_retry_button(self):
+        self.choose_mode("practice")
         self.page.locator("#count-select").select_option("5")
         self.start()
         self.page.locator("#flag-question").click()
@@ -226,6 +245,7 @@ class OpsLabBrowserTests(unittest.TestCase):
         expect(self.page.locator("#question-title")).not_to_be_empty()
 
     def test_export_review_downloads_text_file(self):
+        self.choose_mode("practice")
         self.page.locator("#count-select").select_option("5")
         self.start()
         self.page.locator(f'[data-jump="{self.page.locator("[data-jump]").count() - 1}"]').click()

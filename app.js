@@ -94,11 +94,13 @@
     $("level-select").value=state.level;
     $("level-help").textContent=LEVEL_HELP[state.level];
     document.querySelectorAll("[data-mode]").forEach(btn=>{const selected=btn.dataset.mode===state.mode;btn.classList.toggle("selected",selected);btn.setAttribute("aria-pressed",String(selected));});
-    const allTopics=new Set(curated.concat(normaliseLegacy()).map(q=>q.topic));
-    if(state.topic!=="all"&&!allTopics.has(state.topic))state.topic="all";
-    $("topic-select").innerHTML='<option value="all">All available subjects</option>'+[...allTopics].sort((a,b)=>topicLabel(a).localeCompare(topicLabel(b))).map(t=>'<option value="'+esc(t)+'">'+esc(topicLabel(t))+'</option>').join("");
-    $("topic-select").value=state.topic;
     const learnMode=state.mode==="learn";
+    const allTopics=new Set(learnMode?["kubernetes"]:curated.concat(normaliseLegacy()).map(q=>q.topic));
+    if(learnMode)state.topic="kubernetes";
+    else if(state.topic!=="all"&&!allTopics.has(state.topic))state.topic="all";
+    $("topic-select").innerHTML=(learnMode?'':'<option value="all">All available subjects</option>')+[...allTopics].sort((a,b)=>topicLabel(a).localeCompare(topicLabel(b))).map(t=>'<option value="'+esc(t)+'">'+esc(topicLabel(t))+(learnMode?' (curated)':'')+'</option>').join("");
+    $("topic-select").value=state.topic;
+    $("level-select").parentElement.hidden=learnMode;
     $("type-select").disabled=learnMode;
     $("type-select").title=learnMode?"Learn opens the subject learning library. Use the module navigation to choose content.":"Filter eligible questions by type.";
     $("type-select").parentElement.hidden=learnMode;

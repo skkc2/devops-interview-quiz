@@ -13,7 +13,7 @@
   const LEVEL_HELP = {easy:"Build confidence with the essentials.",medium:"Apply concepts to common operational work.",mediumHard:"Reason through multi-signal production problems.",hard:"Practise high-impact decisions and senior-level trade-offs."};
   const STORAGE_KEY = "opslab-history-v2";
   const FLAG_KEY = "opslab-saved-questions-v1";
-  const state = {level:"easy",topic:"all",type:"all",count:"10",mode:"learn",timed:false,questions:[],answers:[],submitted:[],ratings:{},flags:new Set(),index:0,remaining:0,timer:null,startedAt:0,finished:false,sessionId:0,reviewFilter:"all",reviewSavedOnly:false,session:null};
+  const state = {level:"easy",topic:"kubernetes",type:"all",count:"all",mode:"learn",timed:false,questions:[],answers:[],submitted:[],ratings:{},flags:new Set(),index:0,remaining:0,timer:null,startedAt:0,finished:false,sessionId:0,reviewFilter:"all",reviewSavedOnly:false,session:null};
   let curated = [];
   let legacy = {};
   let history = [];
@@ -310,7 +310,7 @@
     a.href=url;a.download="opslab-session-review.txt";document.body.appendChild(a);a.click();a.remove();URL.revokeObjectURL(url);
   }
   function resetSetup(){
-    clearInterval(state.timer);state.timer=null;state.finished=false;state.mode="learn";state.type="all";state.topic="all";state.count="10";state.timed=false;state.reviewSavedOnly=false;renderSetup();setScreen("home");
+    clearInterval(state.timer);state.timer=null;state.finished=false;state.mode="learn";state.type="all";state.topic="kubernetes";state.count="all";state.timed=false;state.reviewSavedOnly=false;renderSetup();setScreen("home");
   }
   function wire(){
     $("jump-to-setup").addEventListener("click",()=>$("setup-panel").scrollIntoView({behavior:"smooth"}));

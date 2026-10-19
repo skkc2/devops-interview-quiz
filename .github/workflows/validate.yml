@@ -19,6 +19,7 @@ jobs:
       - run: node --check app.js
       - run: node --check questions.js
       - run: node scripts/validate-question-bank.js
+      - run: node scripts/validate-learning-content.js
       - name: Install browser test dependencies
         run: |
           python -m pip install --upgrade pip

@@ -83,11 +83,9 @@ class OpsLabBrowserTests(unittest.TestCase):
             for i in range(total):
                 self.page.locator(f'[data-jump="{i}"]').click()
                 titles[mode].add(self.page.locator("#question-title").inner_text())
-            self.page.locator("#exit-quiz").click()
-            self.page.once("dialog", lambda dialog: dialog.accept())
-            # If the confirmation fired before listener registration, return to setup through results/reset instead.
-            if self.page.locator("#quiz-screen").is_visible():
+            with self.page.expect_dialog() as dialog_info:
                 self.page.locator("#exit-quiz").click()
+            dialog_info.value.accept()
             expect(self.page.locator("#home-screen")).to_be_visible()
 
         self.assertIn("7 questions", counts["learn"])
@@ -106,10 +104,9 @@ class OpsLabBrowserTests(unittest.TestCase):
             self.page.locator("#check-answer").click()
             expect(self.page.locator("#question-feedback")).to_be_visible()
             expect(self.page.locator("#feedback-explanation")).not_to_be_empty()
-            self.page.locator("#exit-quiz").click()
-            self.page.once("dialog", lambda dialog: dialog.accept())
-            if self.page.locator("#quiz-screen").is_visible():
+            with self.page.expect_dialog() as dialog_info:
                 self.page.locator("#exit-quiz").click()
+            dialog_info.value.accept()
             expect(self.page.locator("#home-screen")).to_be_visible()
 
     def test_exam_hides_feedback_until_session_finishes(self):

@@ -93,7 +93,7 @@ class OpsLabBrowserTests(unittest.TestCase):
         self.choose_mode("practice")
         self.page.locator("#count-select").select_option("5")
         expect(self.page.locator("#start-quiz")).to_be_enabled()
-        self.page.locator("#level-select").select_option("medium")
+        self.page.locator("#level-select").select_option("easy")
         expect(self.page.locator("#count-select")).to_have_value("5")
         self.page.locator("#type-select").select_option("scenario")
         expect(self.page.locator("#available-count")).to_contain_text("2 questions")

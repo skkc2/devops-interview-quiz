@@ -83,9 +83,8 @@ class OpsLabBrowserTests(unittest.TestCase):
             for i in range(total):
                 self.page.locator(f'[data-jump="{i}"]').click()
                 titles[mode].add(self.page.locator("#question-title").inner_text())
-            with self.page.expect_dialog() as dialog_info:
-                self.page.locator("#exit-quiz").click()
-            dialog_info.value.accept()
+            self.page.once("dialog", lambda dialog: dialog.accept())
+            self.page.locator("#exit-quiz").click()
             expect(self.page.locator("#home-screen")).to_be_visible()
 
         self.assertIn("7 questions", counts["learn"])
@@ -104,9 +103,8 @@ class OpsLabBrowserTests(unittest.TestCase):
             self.page.locator("#check-answer").click()
             expect(self.page.locator("#question-feedback")).to_be_visible()
             expect(self.page.locator("#feedback-explanation")).not_to_be_empty()
-            with self.page.expect_dialog() as dialog_info:
-                self.page.locator("#exit-quiz").click()
-            dialog_info.value.accept()
+            self.page.once("dialog", lambda dialog: dialog.accept())
+            self.page.locator("#exit-quiz").click()
             expect(self.page.locator("#home-screen")).to_be_visible()
 
     def test_exam_hides_feedback_until_session_finishes(self):
@@ -205,13 +203,11 @@ class OpsLabBrowserTests(unittest.TestCase):
         self.page.locator("#timed-toggle").check()
         self.start()
         expect(self.page.locator("#timer-wrap")).to_be_visible()
-        with self.page.expect_dialog() as dialog_info:
-            self.page.locator("#exit-quiz").click()
-        dialog_info.value.dismiss()
+        self.page.once("dialog", lambda dialog: dialog.dismiss())
+        self.page.locator("#exit-quiz").click()
         expect(self.page.locator("#quiz-screen")).to_be_visible()
-        with self.page.expect_dialog() as dialog_info:
-            self.page.locator("#exit-quiz").click()
-        dialog_info.value.accept()
+        self.page.once("dialog", lambda dialog: dialog.accept())
+        self.page.locator("#exit-quiz").click()
         expect(self.page.locator("#home-screen")).to_be_visible()
 
     def test_saved_review_filter_and_retry_button(self):

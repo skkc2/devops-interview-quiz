@@ -13,7 +13,7 @@
   const LEVEL_HELP = {easy:"Build confidence with the essentials.",medium:"Apply concepts to common operational work.",mediumHard:"Reason through multi-signal production problems.",hard:"Practise high-impact decisions and senior-level trade-offs."};
   const STORAGE_KEY = "opslab-history-v2";
   const FLAG_KEY = "opslab-saved-questions-v1";
-  const state = {level:"easy",topic:"kubernetes",type:"all",count:"all",mode:"learn",timed:false,questions:[],answers:[],submitted:[],ratings:{},flags:new Set(),index:0,remaining:0,timer:null,startedAt:0,finished:false,sessionId:0,reviewFilter:"all",reviewSavedOnly:false,session:null};
+  const state = {level:"easy",topic:"kubernetes",type:"all",count:"all",mode:"learn",timed:false,questions:[],answers:[],submitted:[],ratings:{},flags:new Set(),index:0,remaining:0,timer:null,startedAt:0,finished:false,sessionId:0,reviewFilter:"all",reviewSavedOnly:false,forcedQuestionIds:null,session:null};
   let curated = [];
   let legacy = {};
   let learning = null;
@@ -82,12 +82,18 @@
     return rows;
   }
   function poolForSetup(){
-    let all=curated.concat(normaliseLegacy()).filter(q=>q.level===state.level);
+    let all=curated.concat(normaliseLegacy());
+    if(Array.isArray(state.forcedQuestionIds)){
+      all=all.filter(q=>state.forcedQuestionIds.includes(q.id));
+      if(state.mode==="interview")return all.filter(isInterview);
+      if(state.mode==="practice"||state.mode==="exam")return all.filter(q=>!isInterview(q));
+      return all;
+    }
+    all=all.filter(q=>q.level===state.level);
     if(state.topic!=="all")all=all.filter(q=>q.topic===state.topic);
     if(state.type!=="all")all=all.filter(q=>q.type===state.type);
     if(state.mode==="interview")all=all.filter(isInterview);
     if(state.mode==="practice"||state.mode==="exam")all=all.filter(q=>!isInterview(q));
-    if(state.mode==="exam")all=all.filter(q=>!isInterview(q));
     return all;
   }
   function renderSetup(){
@@ -95,17 +101,20 @@
     $("level-help").textContent=LEVEL_HELP[state.level];
     document.querySelectorAll("[data-mode]").forEach(btn=>{const selected=btn.dataset.mode===state.mode;btn.classList.toggle("selected",selected);btn.setAttribute("aria-pressed",String(selected));});
     const learnMode=state.mode==="learn";
+    const reviewSelection=Array.isArray(state.forcedQuestionIds);
     const allTopics=new Set(learnMode?["kubernetes"]:curated.concat(normaliseLegacy()).map(q=>q.topic));
     if(learnMode)state.topic="kubernetes";
     else if(state.topic!=="all"&&!allTopics.has(state.topic))state.topic="all";
     $("topic-select").innerHTML=(learnMode?'':'<option value="all">All available subjects</option>')+[...allTopics].sort((a,b)=>topicLabel(a).localeCompare(topicLabel(b))).map(t=>'<option value="'+esc(t)+'">'+esc(topicLabel(t))+(learnMode?' (curated)':'')+'</option>').join("");
     $("topic-select").value=state.topic;
-    $("level-select").parentElement.hidden=learnMode;
+    $("level-select").parentElement.hidden=learnMode||reviewSelection;
+    $("topic-select").parentElement.hidden=learnMode||reviewSelection;
     $("type-select").disabled=learnMode;
     $("type-select").title=learnMode?"Learn opens the subject learning library. Use the module navigation to choose content.":"Filter eligible questions by type.";
-    $("type-select").parentElement.hidden=learnMode;
+    $("type-select").parentElement.hidden=learnMode||reviewSelection;
     $("count-select").parentElement.hidden=learnMode;
-    const availablePool=curated.concat(normaliseLegacy()).filter(q=>q.level===state.level&&(state.topic==="all"||q.topic===state.topic));
+    $("count-select").parentElement.hidden=learnMode;
+    const availablePool=curated.concat(normaliseLegacy()).filter(q=>reviewSelection?state.forcedQuestionIds.includes(q.id):(q.level===state.level&&(state.topic==="all"||q.topic===state.topic)));
     const eligible=availablePool.filter(q=>{
       if(state.mode==="interview")return isInterview(q);
       if(state.mode==="practice"||state.mode==="exam")return !isInterview(q);
@@ -138,10 +147,10 @@
       $("start-quiz").innerHTML='Open learning library <span aria-hidden="true">→</span>';
       $("setup-message").textContent=learning?"Choose Concepts or Commands in the learning path below to browse material.":"Learning content is loading.";
     }else{
-      $("available-count").textContent=count+" questions match your session";
+      $("available-count").textContent=reviewSelection?count+" saved questions selected":count+" questions match your session";
       $("start-quiz").disabled=count===0||(state.count!=="all"&&Number(state.count)>count);
       $("start-quiz").innerHTML='Start session <span aria-hidden="true">→</span>';
-      $("setup-message").textContent=count===0?(state.mode==="interview"?"No interview prompts match these filters yet. Try Kubernetes or clear the question type.":"No questions match these filters. Choose another subject, difficulty or type."):state.count!=="all"&&Number(state.count)>count?"Only "+count+" questions match these filters. Choose a smaller count or broaden your filters.":"";
+      $("setup-message").textContent=count===0?(reviewSelection?"No saved graded questions are available for practice yet. Save a graded question first.":state.mode==="interview"?"No interview prompts match these filters yet. Try Kubernetes or clear the question type.":"No questions match these filters. Choose another subject, difficulty or type."):state.count!=="all"&&Number(state.count)>count?"Only "+count+" questions match these filters. Choose a smaller count or broaden your filters.":reviewSelection?"This session is limited to your saved questions.":"";
     }
     $("topic-help").textContent=state.topic==="all"?"Kubernetes is the first curated track; legacy topics remain available.":state.topic==="kubernetes"?"Curated questions include official documentation references.":"Legacy questions are available here; content depth varies by subject.";
     renderHistory();
@@ -210,7 +219,7 @@
     if(module==="commands"&&$("copy-learning-command"))$("copy-learning-command").addEventListener("click",()=>{const text=item.command;if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text).then(()=>{$("copy-learning-command").textContent="Copied";}).catch(()=>{$("copy-learning-command").textContent="Copy unavailable";});}else{$("copy-learning-command").textContent="Copy unavailable";}});
     if(module==="scenarios"&&$("practice-this-scenario"))$("practice-this-scenario").addEventListener("click",()=>{state.mode="practice";state.type="scenario";state.level=item.level||state.level;setScreen("home");renderSetup();$("setup-panel").scrollIntoView({behavior:"smooth"});});
     if(module==="interviews"&&$("practise-interview-prompt"))$("practise-interview-prompt").addEventListener("click",()=>{state.mode="interview";state.type="interview";state.level=item.level||state.level;state.count="all";setScreen("home");renderSetup();$("setup-panel").scrollIntoView({behavior:"smooth"});});
-    if(module==="review"&&$("practice-saved-questions"))$("practice-saved-questions").addEventListener("click",()=>{state.mode="practice";state.type="all";state.count="all";setScreen("home");renderSetup();$("setup-panel").scrollIntoView({behavior:"smooth"});});
+    if(module==="review"&&$("practice-saved-questions"))$("practice-saved-questions").addEventListener("click",()=>{state.forcedQuestionIds=[...state.flags];state.mode="practice";state.topic="all";state.type="all";state.count="all";setScreen("home");renderSetup();$("setup-panel").scrollIntoView({behavior:"smooth"});});
     if(module==="timed"&&$("configure-timed-drill"))$("configure-timed-drill").addEventListener("click",()=>{state.mode="exam";state.timed=true;state.type="all";setScreen("home");renderSetup();$("setup-panel").scrollIntoView({behavior:"smooth"});});
     if(module==="followups"&&$("practice-followup"))$("practice-followup").addEventListener("click",()=>{state.mode="interview";state.type="interview";state.count="all";setScreen("home");renderSetup();$("setup-panel").scrollIntoView({behavior:"smooth"});});
   }
@@ -226,7 +235,7 @@
     else if(module==="debugging"){state.mode="practice";state.type="scenario";state.count="all";}
     else if(module==="timed"){state.mode="exam";state.timed=true;state.type="all";state.count="all";}
     else if(module==="review"){state.mode="practice";state.type="all";state.count="all";}
-    else if(module==="interviews"){state.mode="interview";state.type="interview";state.count="all";}
+    else if(module==="interviews"||module==="followups"){state.mode="interview";state.type="interview";state.count="all";}
     else if(module==="scenarios"){state.mode="practice";state.type="scenario";state.count="all";}
     setScreen("home");renderSetup();$("setup-panel").scrollIntoView({behavior:"smooth"});
   }
@@ -252,7 +261,7 @@
     state.submitted=new Array(state.questions.length).fill(false);
     state.ratings={};state.index=0;state.finished=false;state.sessionId++;state.startedAt=Date.now();
     state.remaining=Math.max(1,state.questions.length)*(state.mode==="exam"?75:60);
-    state.session={id:state.sessionId,level:state.level,topic:state.topic,mode:state.mode,modeLabel:MODE_LABELS[state.mode],levelLabel:levelMeta().label,startedAt:state.startedAt};
+    state.session={id:state.sessionId,level:state.level,topic:state.topic,mode:state.mode,modeLabel:MODE_LABELS[state.mode],levelLabel:Array.isArray(state.forcedQuestionIds)?"Saved review":levelMeta().label,startedAt:state.startedAt};
   }
   function startQuiz(){
     if(state.mode==="learn"){openLearningModule(state.type==="command"?"commands":"concepts");return;}
@@ -278,8 +287,8 @@
     $("question-counter").textContent="Question "+(state.index+1)+" of "+state.questions.length;
     $("progress-caption").textContent=Math.round((state.index+1)/state.questions.length*100)+"% through";
     $("question-progress").max=state.questions.length;$("question-progress").value=state.index+1;
-    $("quiz-mode-pill").textContent=MODE_LABELS[state.mode];$("quiz-level-pill").textContent=levelMeta().label;$("quiz-topic-pill").textContent=topicLabel(q.topic);
-    $("question-type-pill").textContent=TYPE_LABELS[q.type]||"Knowledge check";$("question-level-pill").textContent=state.level.toUpperCase();
+    $("quiz-mode-pill").textContent=MODE_LABELS[state.mode];$("quiz-level-pill").textContent=Array.isArray(state.forcedQuestionIds)?"Saved review":levelMeta().label;$("quiz-topic-pill").textContent=topicLabel(q.topic);
+    $("question-type-pill").textContent=TYPE_LABELS[q.type]||"Knowledge check";$("question-level-pill").textContent=(q.level||state.level).toUpperCase();
     $("question-title").textContent=q.title||q.question;
     $("question-objective").querySelector("p").textContent=q.objective||"Check your understanding, then explain the reasoning.";
     $("question-context").textContent=q.context||"";$("question-context").hidden=!q.context;
@@ -383,7 +392,7 @@
     const elapsed=Math.max(0,Math.round((Date.now()-state.startedAt)/1000));
     const byTopic={};
     qs.forEach((q,i)=>{const key=q.topic;byTopic[key] ||= {correct:0,graded:0,answered:0,total:0};const b=byTopic[key];b.total++;if(isAnswered(i))b.answered++;if(!isInterview(q)){b.graded++;if(isCorrect(i))b.correct++;}});
-    const entry={id:Date.now()+"-"+state.sessionId,date:new Date().toLocaleDateString(undefined,{month:"short",day:"numeric"}),level:state.level,levelLabel:levelMeta().label,topic:state.topic,mode:state.mode,modeLabel:MODE_LABELS[state.mode],score,graded:graded.length,correct,incorrect,unanswered,interviewCount,elapsed,byTopic};
+    const entry={id:Date.now()+"-"+state.sessionId,date:new Date().toLocaleDateString(undefined,{month:"short",day:"numeric"}),level:state.level,levelLabel:Array.isArray(state.forcedQuestionIds)?"Saved review":levelMeta().label,topic:state.topic,mode:state.mode,modeLabel:MODE_LABELS[state.mode],score,graded:graded.length,correct,incorrect,unanswered,interviewCount,elapsed,byTopic};
     history.push(entry);persistHistory();state.session.result=entry;
     renderResults(entry,auto);renderHistory();setScreen("results");
   }
@@ -436,7 +445,7 @@
     a.href=url;a.download="opslab-session-review.txt";document.body.appendChild(a);a.click();a.remove();URL.revokeObjectURL(url);
   }
   function resetSetup(){
-    clearInterval(state.timer);state.timer=null;state.finished=false;state.mode="learn";state.type="all";state.topic="kubernetes";state.count="all";state.timed=false;state.reviewSavedOnly=false;renderSetup();setScreen("home");
+    clearInterval(state.timer);state.timer=null;state.finished=false;state.mode="learn";state.type="all";state.topic="kubernetes";state.count="all";state.timed=false;state.reviewSavedOnly=false;state.forcedQuestionIds=null;renderSetup();setScreen("home");
   }
   function wire(){
     $("jump-to-setup").addEventListener("click",()=>$("setup-panel").scrollIntoView({behavior:"smooth"}));
@@ -447,10 +456,10 @@
     $("learning-start-practice").addEventListener("click",()=>returnToSetupForModule(activeModule));
     const toggleRoadmap=()=>{const panel=$("roadmap-panel"),open=panel.hidden;panel.hidden=!open;$("toggle-roadmap").setAttribute("aria-expanded",String(open));$("toggle-roadmap-secondary").setAttribute("aria-expanded",String(open));};
     $("toggle-roadmap").addEventListener("click",toggleRoadmap);$("toggle-roadmap-secondary").addEventListener("click",toggleRoadmap);
-    document.querySelectorAll("[data-mode]").forEach(btn=>btn.addEventListener("click",()=>{state.mode=btn.dataset.mode;if(state.mode==="exam")state.timed=true;if(state.mode==="learn"||state.mode==="interview")state.timed=false;renderSetup();}));
-    $("level-select").addEventListener("change",e=>{state.level=e.target.value;renderSetup();});
-    $("topic-select").addEventListener("change",e=>{state.topic=e.target.value;renderSetup();});
-    $("type-select").addEventListener("change",e=>{state.type=e.target.value;renderSetup();});
+    document.querySelectorAll("[data-mode]").forEach(btn=>btn.addEventListener("click",()=>{state.forcedQuestionIds=null;state.mode=btn.dataset.mode;if(state.mode==="exam")state.timed=true;if(state.mode==="learn"||state.mode==="interview")state.timed=false;renderSetup();}));
+    $("level-select").addEventListener("change",e=>{state.forcedQuestionIds=null;state.level=e.target.value;renderSetup();});
+    $("topic-select").addEventListener("change",e=>{state.forcedQuestionIds=null;state.topic=e.target.value;renderSetup();});
+    $("type-select").addEventListener("change",e=>{state.forcedQuestionIds=null;state.type=e.target.value;renderSetup();});
     $("count-select").addEventListener("change",e=>{state.count=e.target.value;renderSetup();});
     $("timed-toggle").addEventListener("change",e=>{state.timed=e.target.checked;if(state.mode==="exam"&&!state.timed){$("timer-control").querySelector("strong").textContent="Run without a timer";$("timer-control").querySelector("small").textContent="Turn on a timer for exam pacing.";}});
     $("start-quiz").addEventListener("click",startQuiz);

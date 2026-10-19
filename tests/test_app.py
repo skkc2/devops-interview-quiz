@@ -112,7 +112,7 @@ class OpsLabBrowserTests(unittest.TestCase):
             "timed": "Timed drills",
             "review": "Review queue",
             "interviews": "Interview prompts",
-            "self-assessment": "Self-assessment",
+            "followups": "Follow-ups",
         }
         for module, title in expected.items():
             self.page.locator(f'[data-module="{module}"]').first.click()

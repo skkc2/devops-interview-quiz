@@ -144,11 +144,11 @@ class OpsLabBrowserTests(unittest.TestCase):
         self.choose_mode("practice")
         self.page.locator("#level-select").select_option("medium")
         self.page.locator("#type-select").select_option("scenario")
-        expect(self.page.locator("#available-count")).to_contain_text("2 questions")
+        expect(self.page.locator("#available-count")).to_contain_text("10 questions")
         expect(self.page.locator('#type-select option[value="interview"]')).to_be_disabled()
         self.choose_mode("exam")
         expect(self.page.locator("#type-select")).to_have_value("scenario")
-        expect(self.page.locator("#available-count")).to_contain_text("2 questions")
+        expect(self.page.locator("#available-count")).to_contain_text("10 questions")
         expect(self.page.locator("#start-quiz")).to_be_enabled()
 
     def test_multi_select_answer_requires_selection_and_shows_correct_choices(self):

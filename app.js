@@ -122,7 +122,7 @@
     const countSelect=$("count-select");
     const choices=[{value:"5",label:"5 questions"},{value:"10",label:"10 questions"},{value:"20",label:"20 questions"},{value:"30",label:"30 questions"},{value:"all",label:"All available ("+count+")"}];
     countSelect.innerHTML=choices.map(c=>'<option value="'+c.value+'" '+(c.value!=="all"&&Number(c.value)>count?"disabled":"")+'>'+esc(c.label)+'</option>').join("");
-    if(state.count!=="all"&&Number(state.count)>count)state.count=String(count>=5?5:"all");
+
     countSelect.value=state.count;
     $("timed-toggle").checked=state.timed;
     $("timer-control").hidden=state.mode==="learn"||state.mode==="interview";
@@ -216,7 +216,10 @@
     setScreen("learning");
   }
   function returnToSetupForModule(module){
-    if(module==="timed"){state.mode="exam";state.timed=true;state.type="all";state.count="all";}
+    if(module==="concepts"){state.mode="practice";state.type="concept";state.count="all";}
+    else if(module==="commands"){state.mode="practice";state.type="command";state.count="all";}
+    else if(module==="debugging"){state.mode="practice";state.type="scenario";state.count="all";}
+    else if(module==="timed"){state.mode="exam";state.timed=true;state.type="all";state.count="all";}
     else if(module==="review"){state.mode="practice";state.type="all";state.count="all";}
     else if(module==="interviews"){state.mode="interview";state.type="interview";state.count="all";}
     else if(module==="scenarios"){state.mode="practice";state.type="scenario";state.count="all";}
@@ -433,7 +436,6 @@
   function wire(){
     $("jump-to-setup").addEventListener("click",()=>$("setup-panel").scrollIntoView({behavior:"smooth"}));
     document.querySelectorAll("[data-module]").forEach(btn=>btn.addEventListener("click",()=>openLearningModule(btn.dataset.module)));
-    $("learning-module-nav").addEventListener("click",e=>{const btn=e.target.closest("[data-module]");if(btn)openLearningModule(btn.dataset.module);});
     $("learning-content-list").addEventListener("click",e=>{const btn=e.target.closest("[data-content-id]");if(!btn)return;selectedContentId=btn.dataset.contentId;renderLearningModule(activeModule);});
     $("back-from-learning").addEventListener("click",()=>{setScreen("home");renderSetup();$("learning-path").scrollIntoView({behavior:"smooth"});});
     $("learning-back-setup").addEventListener("click",()=>{setScreen("home");renderSetup();$("setup-panel").scrollIntoView({behavior:"smooth"});});

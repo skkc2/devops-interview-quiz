@@ -5,26 +5,27 @@
       "id": "linux-lesson-01",
       "topic": "linux",
       "title": "File permissions",
-      "summary": "What does mode 640 grant to the owning group? The group can read but not write the file.",
+      "summary": "Unix mode bits grant read, write and execute rights separately to the owner, group and everyone else.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "Unix mode bits grant read, write and execute rights separately to the owner, group and everyone else."
+        },
+        {
           "heading": "How it works",
-          "body": "Directory search permission is needed to traverse a path."
-        },
-        {
-          "heading": "Apply it",
-          "body": "A teammate belongs to the file group but cannot open a file under a private parent directory. Inspect permissions on every parent directory."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "The group can execute the file. This is not a sound assumption; the group can read but not write the file."
+          "body": "For regular files, read exposes bytes, write changes bytes and execute permits execution. For directories, read lists names, execute traverses paths and write changes directory entries. Mode 640 grants owner read/write and group read; every parent directory still needs search permission."
         }
       ],
-      "takeaway": "Directory search permission is needed to traverse a path.",
+      "command": "stat -c '%A %a %U %G %n' /etc/hosts",
+      "takeaway": "For regular files, read exposes bytes, write changes bytes and execute permits execution. For directories, read lists names, execute traverses paths and write changes directory entries. Mode 640 grants owner read/write and group read; every parent directory still needs search permission.",
       "references": [
         {
-          "title": "File permissions \u2014 primary reference",
+          "title": "File permissions \u2014 primary documentation",
           "url": "https://man7.org/linux/man-pages/man7/path_resolution.7.html"
+        },
+        {
+          "title": "Related command \u2014 primary documentation",
+          "url": "https://man7.org/linux/man-pages/"
         }
       ]
     },
@@ -32,26 +33,27 @@
       "id": "linux-lesson-02",
       "topic": "linux",
       "title": "Ownership",
-      "summary": "What does chown change on a Linux file? It changes the owning user or group.",
+      "summary": "Each file has a numeric owner UID and group GID; names are lookups for those numbers.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "Each file has a numeric owner UID and group GID; names are lookups for those numbers."
+        },
+        {
           "heading": "How it works",
-          "body": "Ownership and permission bits are separate controls."
-        },
-        {
-          "heading": "Apply it",
-          "body": "A service running as app cannot read a root-owned configuration with mode 600. Check the service identity and grant narrowly scoped read access."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "It changes the file content encoding. This is not a sound assumption; it changes the owning user or group."
+          "body": "The kernel compares the process credentials with ownership and permission rules. chown changes ownership, while chmod changes mode bits. Supplementary groups and ACLs can affect access even when the displayed owner differs."
         }
       ],
-      "takeaway": "Ownership and permission bits are separate controls.",
+      "command": "id",
+      "takeaway": "The kernel compares the process credentials with ownership and permission rules. chown changes ownership, while chmod changes mode bits. Supplementary groups and ACLs can affect access even when the displayed owner differs.",
       "references": [
         {
-          "title": "Ownership \u2014 primary reference",
+          "title": "Ownership \u2014 primary documentation",
           "url": "https://man7.org/linux/man-pages/man7/credentials.7.html"
+        },
+        {
+          "title": "Related command \u2014 primary documentation",
+          "url": "https://man7.org/linux/man-pages/"
         }
       ]
     },
@@ -59,26 +61,27 @@
       "id": "linux-lesson-03",
       "topic": "linux",
       "title": "Symbolic links",
-      "summary": "Which statement describes a symbolic link? It stores a path to another filesystem object.",
+      "summary": "A symbolic link is a filesystem object containing another pathname.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "A symbolic link is a filesystem object containing another pathname."
+        },
+        {
           "heading": "How it works",
-          "body": "A symlink can become dangling when its target is removed."
-        },
-        {
-          "heading": "Apply it",
-          "body": "A deployment symlink points to a release directory that was removed. Inspect the link target and restore or repoint it to a valid release."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "It must share the target inode. This is not a sound assumption; it stores a path to another filesystem object."
+          "body": "The kernel follows the target during pathname resolution. Relative targets resolve from the link's directory, and targets can cross filesystems or disappear. Inspect the resolved path when a release link stops working."
         }
       ],
-      "takeaway": "A symlink can become dangling when its target is removed.",
+      "command": "readlink -f /etc/localtime",
+      "takeaway": "The kernel follows the target during pathname resolution. Relative targets resolve from the link's directory, and targets can cross filesystems or disappear. Inspect the resolved path when a release link stops working.",
       "references": [
         {
-          "title": "Symbolic links \u2014 primary reference",
+          "title": "Symbolic links \u2014 primary documentation",
           "url": "https://man7.org/linux/man-pages/man7/symlink.7.html"
+        },
+        {
+          "title": "Related command \u2014 primary documentation",
+          "url": "https://man7.org/linux/man-pages/"
         }
       ]
     },
@@ -86,26 +89,27 @@
       "id": "linux-lesson-04",
       "topic": "linux",
       "title": "Hard links",
-      "summary": "What is shared by two hard links to a regular file? Both directory entries reference the same inode.",
+      "summary": "Hard links are multiple directory entries referring to the same inode on one filesystem.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "Hard links are multiple directory entries referring to the same inode on one filesystem."
+        },
+        {
           "heading": "How it works",
-          "body": "Removing one hard link does not delete data while another link remains."
-        },
-        {
-          "heading": "Apply it",
-          "body": "Removing a filename does not reclaim the expected space and another hard link exists. Inspect the inode link count and remaining directory entries."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "Each link contains an independent data copy. This is not a sound assumption; both directory entries reference the same inode."
+          "body": "They share content and metadata. Removing one name decreases the link count; storage is reclaimed only when no links or open references remain. A hard link is not a second independent backup."
         }
       ],
-      "takeaway": "Removing one hard link does not delete data while another link remains.",
+      "command": "ls -li /etc/hosts",
+      "takeaway": "They share content and metadata. Removing one name decreases the link count; storage is reclaimed only when no links or open references remain. A hard link is not a second independent backup.",
       "references": [
         {
-          "title": "Hard links \u2014 primary reference",
+          "title": "Hard links \u2014 primary documentation",
           "url": "https://man7.org/linux/man-pages/man2/link.2.html"
+        },
+        {
+          "title": "Related command \u2014 primary documentation",
+          "url": "https://man7.org/linux/man-pages/"
         }
       ]
     },
@@ -113,26 +117,27 @@
       "id": "linux-lesson-05",
       "topic": "linux",
       "title": "Pipelines",
-      "summary": "What does a standard shell pipe connect? The first command's standard output to the next command's standard input.",
+      "summary": "A shell pipeline connects one program's standard output to another program's standard input.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "A shell pipeline connects one program's standard output to another program's standard input."
+        },
+        {
           "heading": "How it works",
-          "body": "Standard error is not included unless redirected."
-        },
-        {
-          "heading": "Apply it",
-          "body": "A command reports errors on the terminal but the downstream parser receives none. Check which output stream carries the messages."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "It automatically merges all standard error streams. This is not a sound assumption; the first command's standard output to the next command's standard input."
+          "body": "The pipe buffers bytes and applies backpressure when the reader is slower. Standard error stays separate unless redirected. In Bash, pipefail makes a failing earlier stage affect pipeline status, which matters in automation."
         }
       ],
-      "takeaway": "Standard error is not included unless redirected.",
+      "command": "set -o pipefail",
+      "takeaway": "The pipe buffers bytes and applies backpressure when the reader is slower. Standard error stays separate unless redirected. In Bash, pipefail makes a failing earlier stage affect pipeline status, which matters in automation.",
       "references": [
         {
-          "title": "Pipelines \u2014 primary reference",
+          "title": "Pipelines \u2014 primary documentation",
           "url": "https://www.gnu.org/software/bash/manual/bash.html"
+        },
+        {
+          "title": "Related command \u2014 primary documentation",
+          "url": "https://man7.org/linux/man-pages/"
         }
       ]
     },
@@ -140,26 +145,27 @@
       "id": "linux-lesson-06",
       "topic": "linux",
       "title": "Quoting",
-      "summary": "Why quote a shell expansion such as \"$file\"? Quoting prevents word splitting and pathname expansion on that value.",
+      "summary": "Shell quoting controls which expansions and special characters are interpreted by the shell.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "Shell quoting controls which expansions and special characters are interpreted by the shell."
+        },
+        {
           "heading": "How it works",
-          "body": "Untrusted values should be passed as data rather than evaluated as shell code."
-        },
-        {
-          "heading": "Apply it",
-          "body": "A cleanup script fails on filenames containing spaces. Quote expansions and test with representative filenames in a safe directory."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "Quoting executes the variable as a command. This is not a sound assumption; quoting prevents word splitting and pathname expansion on that value."
+          "body": "Double quotes allow variable expansion while preventing word splitting and globbing of the result. Single quotes preserve literal characters. Pass untrusted values as arguments rather than building shell code and evaluating it."
         }
       ],
-      "takeaway": "Untrusted values should be passed as data rather than evaluated as shell code.",
+      "command": "printf '%s\\n' \"$HOME\"",
+      "takeaway": "Double quotes allow variable expansion while preventing word splitting and globbing of the result. Single quotes preserve literal characters. Pass untrusted values as arguments rather than building shell code and evaluating it.",
       "references": [
         {
-          "title": "Quoting \u2014 primary reference",
+          "title": "Quoting \u2014 primary documentation",
           "url": "https://www.gnu.org/software/bash/manual/bash.html"
+        },
+        {
+          "title": "Related command \u2014 primary documentation",
+          "url": "https://man7.org/linux/man-pages/"
         }
       ]
     },
@@ -167,26 +173,27 @@
       "id": "linux-lesson-07",
       "topic": "linux",
       "title": "Processes",
-      "summary": "What does a process ID identify? A currently running process within a PID namespace.",
+      "summary": "A process is a running program with credentials, memory mappings, file descriptors and scheduling state.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "A process is a running program with credentials, memory mappings, file descriptors and scheduling state."
+        },
+        {
           "heading": "How it works",
-          "body": "PIDs may be reused after processes exit."
-        },
-        {
-          "heading": "Apply it",
-          "body": "A saved PID now belongs to a different process than yesterday. Verify process identity and start time before sending a signal."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "A PID is a globally permanent machine identifier. This is not a sound assumption; a currently running process within a PID namespace."
+          "body": "The kernel assigns a PID within a PID namespace. Child processes inherit selected state from their parent, and PIDs can be reused after exit. Check command, owner and start time before acting on a PID."
         }
       ],
-      "takeaway": "PIDs may be reused after processes exit.",
+      "command": "ps -eo pid,ppid,user,stat,etime,comm",
+      "takeaway": "The kernel assigns a PID within a PID namespace. Child processes inherit selected state from their parent, and PIDs can be reused after exit. Check command, owner and start time before acting on a PID.",
       "references": [
         {
-          "title": "Processes \u2014 primary reference",
+          "title": "Processes \u2014 primary documentation",
           "url": "https://man7.org/linux/man-pages/man7/credentials.7.html"
+        },
+        {
+          "title": "Related command \u2014 primary documentation",
+          "url": "https://man7.org/linux/man-pages/"
         }
       ]
     },
@@ -194,26 +201,27 @@
       "id": "linux-lesson-08",
       "topic": "linux",
       "title": "Signals",
-      "summary": "Which signal normally requests graceful termination? SIGTERM asks a process to terminate and may be handled.",
+      "summary": "Signals notify a process of events such as termination requests or child exits.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "Signals notify a process of events such as termination requests or child exits."
+        },
+        {
           "heading": "How it works",
-          "body": "SIGKILL cannot be caught for application cleanup."
-        },
-        {
-          "heading": "Apply it",
-          "body": "A service needs time to flush buffered work during shutdown. Send a graceful stop and wait for a bounded shutdown period."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "SIGKILL guarantees application cleanup completes. This is not a sound assumption; sIGTERM asks a process to terminate and may be handled."
+          "body": "SIGTERM can be handled for cleanup; SIGKILL cannot be caught. Graceful shutdown should stop new work, drain active work and exit within a deadline. A signal-based exit status alone does not establish why the signal was sent."
         }
       ],
-      "takeaway": "SIGKILL cannot be caught for application cleanup.",
+      "command": "kill -l",
+      "takeaway": "SIGTERM can be handled for cleanup; SIGKILL cannot be caught. Graceful shutdown should stop new work, drain active work and exit within a deadline. A signal-based exit status alone does not establish why the signal was sent.",
       "references": [
         {
-          "title": "Signals \u2014 primary reference",
+          "title": "Signals \u2014 primary documentation",
           "url": "https://man7.org/linux/man-pages/man7/signal.7.html"
+        },
+        {
+          "title": "Related command \u2014 primary documentation",
+          "url": "https://man7.org/linux/man-pages/"
         }
       ]
     },
@@ -221,26 +229,27 @@
       "id": "linux-lesson-09",
       "topic": "linux",
       "title": "Disk blocks",
-      "summary": "What does df primarily report? Space allocation for mounted filesystems.",
+      "summary": "Filesystems allocate storage in blocks, and df reports allocation for a mounted filesystem.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "Filesystems allocate storage in blocks, and df reports allocation for a mounted filesystem."
+        },
+        {
           "heading": "How it works",
-          "body": "Filesystem usage and directory usage can differ for open deleted files."
-        },
-        {
-          "heading": "Apply it",
-          "body": "df shows a full filesystem but du finds much less visible file data. Look for deleted files still held open by processes."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "It reports only the sizes of visible files in one directory. This is not a sound assumption; space allocation for mounted filesystems."
+          "body": "du totals file usage visible through directory traversal. Open deleted files, snapshots, reserved space and mount boundaries can explain differences between the two. Inspect these causes before deleting data to chase a discrepancy."
         }
       ],
-      "takeaway": "Filesystem usage and directory usage can differ for open deleted files.",
+      "command": "df -hT",
+      "takeaway": "du totals file usage visible through directory traversal. Open deleted files, snapshots, reserved space and mount boundaries can explain differences between the two. Inspect these causes before deleting data to chase a discrepancy.",
       "references": [
         {
-          "title": "Disk blocks \u2014 primary reference",
+          "title": "Disk blocks \u2014 primary documentation",
           "url": "https://man7.org/linux/man-pages/man2/unlink.2.html"
+        },
+        {
+          "title": "Related command \u2014 primary documentation",
+          "url": "https://man7.org/linux/man-pages/"
         }
       ]
     },
@@ -248,26 +257,27 @@
       "id": "linux-lesson-10",
       "topic": "linux",
       "title": "Inodes",
-      "summary": "What can inode exhaustion prevent even when free blocks remain? Creation of new filesystem objects.",
+      "summary": "An inode stores file metadata and references to its data, separately from the filename in a directory.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "An inode stores file metadata and references to its data, separately from the filename in a directory."
+        },
+        {
           "heading": "How it works",
-          "body": "Many tiny files can exhaust inodes before byte capacity."
-        },
-        {
-          "heading": "Apply it",
-          "body": "A filesystem has free gigabytes but creating a new file fails with no space. Check inode usage and locate excessive small-file growth."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "It only prevents existing files from being read. This is not a sound assumption; creation of new filesystem objects."
+          "body": "Some filesystems have a bounded inode supply. Millions of tiny files can consume it while byte capacity remains. Check both block and inode utilization when creating files fails with no space left."
         }
       ],
-      "takeaway": "Many tiny files can exhaust inodes before byte capacity.",
+      "command": "df -i",
+      "takeaway": "Some filesystems have a bounded inode supply. Millions of tiny files can consume it while byte capacity remains. Check both block and inode utilization when creating files fails with no space left.",
       "references": [
         {
-          "title": "Inodes \u2014 primary reference",
+          "title": "Inodes \u2014 primary documentation",
           "url": "https://man7.org/linux/man-pages/man7/inode.7.html"
+        },
+        {
+          "title": "Related command \u2014 primary documentation",
+          "url": "https://man7.org/linux/man-pages/"
         }
       ]
     },
@@ -275,26 +285,27 @@
       "id": "linux-lesson-11",
       "topic": "linux",
       "title": "Open file limits",
-      "summary": "What does a per-process file descriptor limit constrain? The number of file descriptors a process can hold open.",
+      "summary": "A file descriptor is a process-local handle for an open file, socket, pipe or similar resource.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "A file descriptor is a process-local handle for an open file, socket, pipe or similar resource."
+        },
+        {
           "heading": "How it works",
-          "body": "Sockets also consume file descriptors."
-        },
-        {
-          "heading": "Apply it",
-          "body": "A service logs too many open files while disk space remains healthy. Inspect descriptor usage and the service limit for leaks or legitimate demand."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "It limits only the number of directory entries on disk. This is not a sound assumption; the number of file descriptors a process can hold open."
+          "body": "The soft descriptor limit constrains normal allocation; the hard limit bounds unprivileged increases. Repeatedly rising descriptor counts may indicate a leak. Raising the limit without measuring demand can postpone rather than fix failure."
         }
       ],
-      "takeaway": "Sockets also consume file descriptors.",
+      "command": "ulimit -n",
+      "takeaway": "The soft descriptor limit constrains normal allocation; the hard limit bounds unprivileged increases. Repeatedly rising descriptor counts may indicate a leak. Raising the limit without measuring demand can postpone rather than fix failure.",
       "references": [
         {
-          "title": "Open file limits \u2014 primary reference",
+          "title": "Open file limits \u2014 primary documentation",
           "url": "https://man7.org/linux/man-pages/man2/getrlimit.2.html"
+        },
+        {
+          "title": "Related command \u2014 primary documentation",
+          "url": "https://man7.org/linux/man-pages/"
         }
       ]
     },
@@ -302,26 +313,27 @@
       "id": "linux-lesson-12",
       "topic": "linux",
       "title": "Load average",
-      "summary": "What can contribute to Linux load average besides runnable tasks? Tasks in uninterruptible sleep can contribute.",
+      "summary": "Linux load average summarizes runnable tasks and tasks in uninterruptible sleep over time.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "Linux load average summarizes runnable tasks and tasks in uninterruptible sleep over time."
+        },
+        {
           "heading": "How it works",
-          "body": "High load does not by itself prove CPU saturation."
-        },
-        {
-          "heading": "Apply it",
-          "body": "Load rises sharply while CPU utilization remains low and storage is slow. Inspect task states and storage latency alongside CPU metrics."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "Load average measures only CPU percentage. This is not a sound assumption; tasks in uninterruptible sleep can contribute."
+          "body": "The three values represent approximately one, five and fifteen minutes. Compare them with CPU count, task states and I/O latency. High load with idle CPU often requires investigating blocked I/O rather than adding cores."
         }
       ],
-      "takeaway": "High load does not by itself prove CPU saturation.",
+      "command": "uptime",
+      "takeaway": "The three values represent approximately one, five and fifteen minutes. Compare them with CPU count, task states and I/O latency. High load with idle CPU often requires investigating blocked I/O rather than adding cores.",
       "references": [
         {
-          "title": "Load average \u2014 primary reference",
+          "title": "Load average \u2014 primary documentation",
           "url": "https://man7.org/linux/man-pages/man5/proc_loadavg.5.html"
+        },
+        {
+          "title": "Related command \u2014 primary documentation",
+          "url": "https://man7.org/linux/man-pages/"
         }
       ]
     },
@@ -329,26 +341,27 @@
       "id": "linux-lesson-13",
       "topic": "linux",
       "title": "Memory cache",
-      "summary": "Why can Linux show little completely free memory on a healthy host? Unused RAM is often used for reclaimable filesystem cache.",
+      "summary": "The page cache keeps recently used file data in RAM to avoid repeated storage access.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "The page cache keeps recently used file data in RAM to avoid repeated storage access."
+        },
+        {
           "heading": "How it works",
-          "body": "Available memory is more useful than free memory alone for capacity triage."
-        },
-        {
-          "heading": "Apply it",
-          "body": "A host shows low free RAM but high available RAM and no memory pressure. Check available memory and pressure before declaring a leak."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "All cached memory is permanently unavailable to applications. This is not a sound assumption; unused RAM is often used for reclaimable filesystem cache."
+          "body": "Much cached memory is reclaimable when applications need it. Available memory estimates usable headroom more meaningfully than free memory alone. Reclaim pressure, swap activity and latency distinguish useful caching from shortage."
         }
       ],
-      "takeaway": "Available memory is more useful than free memory alone for capacity triage.",
+      "command": "free -h",
+      "takeaway": "Much cached memory is reclaimable when applications need it. Available memory estimates usable headroom more meaningfully than free memory alone. Reclaim pressure, swap activity and latency distinguish useful caching from shortage.",
       "references": [
         {
-          "title": "Memory cache \u2014 primary reference",
+          "title": "Memory cache \u2014 primary documentation",
           "url": "https://man7.org/linux/man-pages/man5/proc_meminfo.5.html"
+        },
+        {
+          "title": "Related command \u2014 primary documentation",
+          "url": "https://man7.org/linux/man-pages/"
         }
       ]
     },
@@ -356,26 +369,27 @@
       "id": "linux-lesson-14",
       "topic": "linux",
       "title": "OOM evidence",
-      "summary": "What is a useful source of evidence after a suspected Linux OOM kill? Kernel logs and the relevant cgroup memory events.",
+      "summary": "An out-of-memory kill occurs when the kernel or a constrained memory cgroup cannot satisfy memory demand under its policy.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "An out-of-memory kill occurs when the kernel or a constrained memory cgroup cannot satisfy memory demand under its policy."
+        },
+        {
           "heading": "How it works",
-          "body": "A container memory limit can be reached while the host still has free RAM."
-        },
-        {
-          "heading": "Apply it",
-          "body": "A container exits with 137 after a deployment. Correlate termination details with memory events and resource limits."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "Every exit code 137 proves a kernel OOM kill. This is not a sound assumption; kernel logs and the relevant cgroup memory events."
+          "body": "A cgroup can exhaust its own limit while the host has spare RAM. Confirm an OOM event through kernel logs or cgroup memory.events, then compare limits and workload growth. Exit 137 also occurs after other SIGKILL events."
         }
       ],
-      "takeaway": "A container memory limit can be reached while the host still has free RAM.",
+      "command": "journalctl -k --since '-15 min'",
+      "takeaway": "A cgroup can exhaust its own limit while the host has spare RAM. Confirm an OOM event through kernel logs or cgroup memory.events, then compare limits and workload growth. Exit 137 also occurs after other SIGKILL events.",
       "references": [
         {
-          "title": "OOM evidence \u2014 primary reference",
+          "title": "OOM evidence \u2014 primary documentation",
           "url": "https://man7.org/linux/man-pages/man7/cgroups.7.html"
+        },
+        {
+          "title": "Related command \u2014 primary documentation",
+          "url": "https://www.freedesktop.org/software/systemd/man/latest/journalctl.html"
         }
       ]
     },
@@ -383,26 +397,27 @@
       "id": "linux-lesson-15",
       "topic": "linux",
       "title": "Socket inspection",
-      "summary": "What does ss -lnt help inspect? Listening TCP sockets using numeric addresses.",
+      "summary": "A socket is an endpoint for network or local interprocess communication.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "A socket is an endpoint for network or local interprocess communication."
+        },
+        {
           "heading": "How it works",
-          "body": "A listener bound to loopback is not directly reachable through the host's external address."
-        },
-        {
-          "heading": "Apply it",
-          "body": "An application responds locally but not from another host. Check the listener address and port before investigating the network path."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "It proves every firewall permits the port. This is not a sound assumption; listening TCP sockets using numeric addresses."
+          "body": "Listening sockets accept new connections; established sockets carry active conversations. A listener bound to 127.0.0.1 is not exposed on the host's external interface. Inspect protocol, address and port before changing network rules."
         }
       ],
-      "takeaway": "A listener bound to loopback is not directly reachable through the host's external address.",
+      "command": "ss -lntp",
+      "takeaway": "Listening sockets accept new connections; established sockets carry active conversations. A listener bound to 127.0.0.1 is not exposed on the host's external interface. Inspect protocol, address and port before changing network rules.",
       "references": [
         {
-          "title": "Socket inspection \u2014 primary reference",
+          "title": "Socket inspection \u2014 primary documentation",
           "url": "https://man7.org/linux/man-pages/man7/ip.7.html"
+        },
+        {
+          "title": "Related command \u2014 primary documentation",
+          "url": "https://man7.org/linux/man-pages/"
         }
       ]
     },
@@ -410,26 +425,27 @@
       "id": "linux-lesson-16",
       "topic": "linux",
       "title": "Name resolution",
-      "summary": "Why can getent hosts differ from a direct DNS query? getent follows the configured name service lookup path.",
+      "summary": "Linux name-service resolution maps names to records using configured sources such as local files and DNS.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "Linux name-service resolution maps names to records using configured sources such as local files and DNS."
+        },
+        {
           "heading": "How it works",
-          "body": "Local host entries and resolver configuration can affect application resolution."
-        },
-        {
-          "heading": "Apply it",
-          "body": "A name resolves with a DNS tool but the application gets a different address. Compare the application's resolution path with NSS and local host configuration."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "getent always bypasses local host entries. This is not a sound assumption; getent follows the configured name service lookup path."
+          "body": "NSS configuration controls lookup order for applications using the system resolver. A direct DNS query does not test local hosts entries or every application's private cache. Compare getent results with DNS responses and application behavior."
         }
       ],
-      "takeaway": "Local host entries and resolver configuration can affect application resolution.",
+      "command": "getent hosts localhost",
+      "takeaway": "NSS configuration controls lookup order for applications using the system resolver. A direct DNS query does not test local hosts entries or every application's private cache. Compare getent results with DNS responses and application behavior.",
       "references": [
         {
-          "title": "Name resolution \u2014 primary reference",
+          "title": "Name resolution \u2014 primary documentation",
           "url": "https://man7.org/linux/man-pages/man5/nsswitch.conf.5.html"
+        },
+        {
+          "title": "Related command \u2014 primary documentation",
+          "url": "https://man7.org/linux/man-pages/"
         }
       ]
     },
@@ -437,26 +453,27 @@
       "id": "linux-lesson-17",
       "topic": "linux",
       "title": "Mount options",
-      "summary": "What does a read-only mount prevent? Writes through that mounted filesystem view.",
+      "summary": "A mount attaches a filesystem view to a directory and applies options to that view.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "A mount attaches a filesystem view to a directory and applies options to that view."
+        },
+        {
           "heading": "How it works",
-          "body": "Mount flags can deny writes even when file mode bits allow them."
-        },
-        {
-          "heading": "Apply it",
-          "body": "Writes fail with read-only filesystem after storage errors. Inspect mount state and kernel storage errors before attempting recovery."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "Root can always write through a read-only mount. This is not a sound assumption; writes through that mounted filesystem view."
+          "body": "Read-only, noexec, nosuid and nodev constrain different operations. File mode bits cannot override a read-only mount. A filesystem unexpectedly remounted read-only may signal storage errors that require investigation before restoring writes."
         }
       ],
-      "takeaway": "Mount flags can deny writes even when file mode bits allow them.",
+      "command": "findmnt -o TARGET,SOURCE,FSTYPE,OPTIONS",
+      "takeaway": "Read-only, noexec, nosuid and nodev constrain different operations. File mode bits cannot override a read-only mount. A filesystem unexpectedly remounted read-only may signal storage errors that require investigation before restoring writes.",
       "references": [
         {
-          "title": "Mount options \u2014 primary reference",
+          "title": "Mount options \u2014 primary documentation",
           "url": "https://man7.org/linux/man-pages/man2/mount.2.html"
+        },
+        {
+          "title": "Related command \u2014 primary documentation",
+          "url": "https://man7.org/linux/man-pages/"
         }
       ]
     },
@@ -464,26 +481,27 @@
       "id": "linux-lesson-18",
       "topic": "linux",
       "title": "Deleted executables",
-      "summary": "Why can a running process continue after its executable pathname is removed? The process retains references to the mapped executable data.",
+      "summary": "A process can retain mappings to executable data after its pathname has been removed or replaced.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "A process can retain mappings to executable data after its pathname has been removed or replaced."
+        },
+        {
           "heading": "How it works",
-          "body": "Updating an executable on disk does not automatically restart every running process."
-        },
-        {
-          "heading": "Apply it",
-          "body": "A security update replaces a binary but an old process is still running. Identify affected processes and schedule controlled restarts."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "Removing the pathname immediately terminates every process using it. This is not a sound assumption; the process retains references to the mapped executable data."
+          "body": "Replacing a package on disk does not switch an existing process to the new code. Controlled restarts are often needed after updates. Inspect mapped executable versions and service start times when verifying patch completion."
         }
       ],
-      "takeaway": "Updating an executable on disk does not automatically restart every running process.",
+      "command": "readlink /proc/1/exe",
+      "takeaway": "Replacing a package on disk does not switch an existing process to the new code. Controlled restarts are often needed after updates. Inspect mapped executable versions and service start times when verifying patch completion.",
       "references": [
         {
-          "title": "Deleted executables \u2014 primary reference",
+          "title": "Deleted executables \u2014 primary documentation",
           "url": "https://man7.org/linux/man-pages/man5/proc_pid_exe.5.html"
+        },
+        {
+          "title": "Related command \u2014 primary documentation",
+          "url": "https://man7.org/linux/man-pages/"
         }
       ]
     },
@@ -491,26 +509,27 @@
       "id": "linux-lesson-19",
       "topic": "linux",
       "title": "Zombies",
-      "summary": "What is a zombie process? An exited child whose termination status has not been reaped.",
+      "summary": "A zombie is an exited child process whose parent has not yet collected its exit status.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "A zombie is an exited child process whose parent has not yet collected its exit status."
+        },
+        {
           "heading": "How it works",
-          "body": "The parent normally reaps child status with a wait operation."
-        },
-        {
-          "heading": "Apply it",
-          "body": "A service parent accumulates many zombie children. Inspect the parent and correct its child reaping behavior."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "It is a process using all available CPU. This is not a sound assumption; an exited child whose termination status has not been reaped."
+          "body": "It no longer runs application code but retains a process-table entry. The parent should call a wait operation or otherwise arrange child reaping. Killing the zombie again is ineffective; investigate the parent's lifecycle handling."
         }
       ],
-      "takeaway": "The parent normally reaps child status with a wait operation.",
+      "command": "ps -eo pid,ppid,stat,comm",
+      "takeaway": "It no longer runs application code but retains a process-table entry. The parent should call a wait operation or otherwise arrange child reaping. Killing the zombie again is ineffective; investigate the parent's lifecycle handling.",
       "references": [
         {
-          "title": "Zombies \u2014 primary reference",
+          "title": "Zombies \u2014 primary documentation",
           "url": "https://man7.org/linux/man-pages/man2/wait.2.html"
+        },
+        {
+          "title": "Related command \u2014 primary documentation",
+          "url": "https://man7.org/linux/man-pages/"
         }
       ]
     },
@@ -518,26 +537,27 @@
       "id": "linux-lesson-20",
       "topic": "linux",
       "title": "System calls",
-      "summary": "What can strace reveal during troubleshooting? System calls and signals observed for a traced process.",
+      "summary": "A system call is a controlled request from user space to the kernel for services such as file I/O or memory mapping.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "A system call is a controlled request from user space to the kernel for services such as file I/O or memory mapping."
+        },
+        {
           "heading": "How it works",
-          "body": "Tracing can add overhead and expose sensitive argument data."
-        },
-        {
-          "heading": "Apply it",
-          "body": "A process hangs while opening a path and logs provide little detail. Use a scoped trace with appropriate permissions and inspect blocking calls."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "It always reconstructs high-level application source code. This is not a sound assumption; system calls and signals observed for a traced process."
+          "body": "Tracing shows call arguments, return codes and timing, making permission failures and blocking operations visible. It can add overhead and reveal sensitive arguments, so trace a narrow process and time window."
         }
       ],
-      "takeaway": "Tracing can add overhead and expose sensitive argument data.",
+      "command": "strace -e trace=file /usr/bin/true",
+      "takeaway": "Tracing shows call arguments, return codes and timing, making permission failures and blocking operations visible. It can add overhead and reveal sensitive arguments, so trace a narrow process and time window.",
       "references": [
         {
-          "title": "System calls \u2014 primary reference",
+          "title": "System calls \u2014 primary documentation",
           "url": "https://strace.io/"
+        },
+        {
+          "title": "Related command \u2014 primary documentation",
+          "url": "https://man7.org/linux/man-pages/"
         }
       ]
     },
@@ -545,26 +565,27 @@
       "id": "linux-lesson-21",
       "topic": "linux",
       "title": "Scheduling priority",
-      "summary": "What does a higher nice value generally mean under normal scheduling? Lower scheduling priority relative to competing normal tasks.",
+      "summary": "The normal Linux scheduler shares CPU among runnable tasks using scheduling weights and other controls.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "The normal Linux scheduler shares CPU among runnable tasks using scheduling weights and other controls."
+        },
+        {
           "heading": "How it works",
-          "body": "Nice values do not impose a hard CPU usage ceiling."
-        },
-        {
-          "heading": "Apply it",
-          "body": "A batch job interferes with latency-sensitive work on a shared host. Evaluate scheduling priority and resource controls for the batch workload."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "A higher nice value guarantees more CPU time. This is not a sound assumption; lower scheduling priority relative to competing normal tasks."
+          "body": "Nice values influence relative weight; a larger nice value usually means less preference. They do not impose a hard CPU ceiling or guarantee latency. Cgroup bandwidth limits and placement solve different problems."
         }
       ],
-      "takeaway": "Nice values do not impose a hard CPU usage ceiling.",
+      "command": "ps -eo pid,ni,pri,comm",
+      "takeaway": "Nice values influence relative weight; a larger nice value usually means less preference. They do not impose a hard CPU ceiling or guarantee latency. Cgroup bandwidth limits and placement solve different problems.",
       "references": [
         {
-          "title": "Scheduling priority \u2014 primary reference",
+          "title": "Scheduling priority \u2014 primary documentation",
           "url": "https://man7.org/linux/man-pages/man7/sched.7.html"
+        },
+        {
+          "title": "Related command \u2014 primary documentation",
+          "url": "https://man7.org/linux/man-pages/"
         }
       ]
     },
@@ -572,26 +593,27 @@
       "id": "linux-lesson-22",
       "topic": "linux",
       "title": "Swap pressure",
-      "summary": "What does sustained swapping often indicate during a slowdown? Memory pressure requiring closer investigation.",
+      "summary": "Swap provides backing storage for selected memory pages when the kernel moves them out of RAM.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "Swap provides backing storage for selected memory pages when the kernel moves them out of RAM."
+        },
+        {
           "heading": "How it works",
-          "body": "Swap activity should be correlated with latency and working-set demand."
-        },
-        {
-          "heading": "Apply it",
-          "body": "Latency spikes coincide with sustained swap-in and swap-out activity. Inspect memory demand and reduce pressure before changing swap policy."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "Any configured swap proves the host is unhealthy. This is not a sound assumption; memory pressure requiring closer investigation."
+          "body": "Configured swap is not itself a fault. Sustained swap-in and swap-out combined with reclaim stalls and latency suggests working-set pressure. Disabling swap under pressure can instead force allocation failures or OOM kills."
         }
       ],
-      "takeaway": "Swap activity should be correlated with latency and working-set demand.",
+      "command": "vmstat 1 5",
+      "takeaway": "Configured swap is not itself a fault. Sustained swap-in and swap-out combined with reclaim stalls and latency suggests working-set pressure. Disabling swap under pressure can instead force allocation failures or OOM kills.",
       "references": [
         {
-          "title": "Swap pressure \u2014 primary reference",
+          "title": "Swap pressure \u2014 primary documentation",
           "url": "https://man7.org/linux/man-pages/man5/proc_vmstat.5.html"
+        },
+        {
+          "title": "Related command \u2014 primary documentation",
+          "url": "https://man7.org/linux/man-pages/"
         }
       ]
     },
@@ -599,26 +621,27 @@
       "id": "linux-lesson-23",
       "topic": "linux",
       "title": "Capabilities",
-      "summary": "What do Linux capabilities provide? A way to split traditionally root-associated privileges.",
+      "summary": "Linux capabilities divide traditional root privileges into more specific permissions.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "Linux capabilities divide traditional root privileges into more specific permissions."
+        },
+        {
           "heading": "How it works",
-          "body": "Granting only required capabilities can reduce privilege scope."
-        },
-        {
-          "heading": "Apply it",
-          "body": "A service only needs to bind a privileged port. Evaluate granting the narrow required capability instead of full root."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "Any single capability is equivalent to no privilege. This is not a sound assumption; a way to split traditionally root-associated privileges."
+          "body": "A process may receive narrowly scoped powers such as binding privileged ports. Effective, permitted and other capability sets determine what can be exercised or inherited. Some capabilities remain very powerful, so combine them with other isolation controls."
         }
       ],
-      "takeaway": "Granting only required capabilities can reduce privilege scope.",
+      "command": "getcap /usr/bin/ping",
+      "takeaway": "A process may receive narrowly scoped powers such as binding privileged ports. Effective, permitted and other capability sets determine what can be exercised or inherited. Some capabilities remain very powerful, so combine them with other isolation controls.",
       "references": [
         {
-          "title": "Capabilities \u2014 primary reference",
+          "title": "Capabilities \u2014 primary documentation",
           "url": "https://man7.org/linux/man-pages/man7/capabilities.7.html"
+        },
+        {
+          "title": "Related command \u2014 primary documentation",
+          "url": "https://man7.org/linux/man-pages/"
         }
       ]
     },
@@ -626,26 +649,27 @@
       "id": "linux-lesson-24",
       "topic": "linux",
       "title": "ACL masks",
-      "summary": "How can a POSIX ACL mask affect a named user's access? It limits effective permissions for named users and the group class.",
+      "summary": "POSIX ACLs extend the owner/group/other model with named users and groups.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "POSIX ACLs extend the owner/group/other model with named users and groups."
+        },
+        {
           "heading": "How it works",
-          "body": "The effective ACL must be considered together with the visible entry."
-        },
-        {
-          "heading": "Apply it",
-          "body": "An ACL entry grants write but effective permissions show read-only. Inspect the ACL mask and intended access policy."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "The mask always grants permissions absent from the entry. This is not a sound assumption; it limits effective permissions for named users and the group class."
+          "body": "The ACL mask caps the effective rights of named users and the group class. An entry may display write permission while its effective rights exclude write. Default directory ACLs influence new entries but do not retroactively update existing files."
         }
       ],
-      "takeaway": "The effective ACL must be considered together with the visible entry.",
+      "command": "getfacl /etc/hosts",
+      "takeaway": "The ACL mask caps the effective rights of named users and the group class. An entry may display write permission while its effective rights exclude write. Default directory ACLs influence new entries but do not retroactively update existing files.",
       "references": [
         {
-          "title": "ACL masks \u2014 primary reference",
+          "title": "ACL masks \u2014 primary documentation",
           "url": "https://man7.org/linux/man-pages/man5/acl.5.html"
+        },
+        {
+          "title": "Related command \u2014 primary documentation",
+          "url": "https://man7.org/linux/man-pages/"
         }
       ]
     },
@@ -653,25 +677,22 @@
       "id": "linux-lesson-25",
       "topic": "linux",
       "title": "Atomic replacement",
-      "summary": "Why write a new file and rename it over a configuration on the same filesystem? Rename can atomically replace the directory entry.",
+      "summary": "Atomic replacement publishes a complete new file by renaming it over the old directory entry on the same filesystem.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "Atomic replacement publishes a complete new file by renaming it over the old directory entry on the same filesystem."
+        },
+        {
           "heading": "How it works",
-          "body": "Atomic visibility does not by itself guarantee durability after power loss."
-        },
-        {
-          "heading": "Apply it",
-          "body": "Readers sometimes see partially written configuration files. Use a validated temporary file and atomic replacement with appropriate durability handling."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "Rename across arbitrary filesystems is always atomic. This is not a sound assumption; rename can atomically replace the directory entry."
+          "body": "Readers opening the path see an old or new version rather than a partly written file. Existing open descriptors may still read the old inode. Crash durability additionally needs appropriate file and directory synchronization; atomic visibility alone is insufficient."
         }
       ],
-      "takeaway": "Atomic visibility does not by itself guarantee durability after power loss.",
+      "command": "",
+      "takeaway": "Readers opening the path see an old or new version rather than a partly written file. Existing open descriptors may still read the old inode. Crash durability additionally needs appropriate file and directory synchronization; atomic visibility alone is insufficient.",
       "references": [
         {
-          "title": "Atomic replacement \u2014 primary reference",
+          "title": "Atomic replacement \u2014 primary documentation",
           "url": "https://man7.org/linux/man-pages/man2/rename.2.html"
         }
       ]
@@ -680,26 +701,27 @@
       "id": "linux-lesson-26",
       "topic": "linux",
       "title": "Namespaces",
-      "summary": "What do Linux namespaces isolate? Views of resources such as processes mounts and network stacks.",
+      "summary": "Namespaces give processes separate views of resources such as PIDs, mounts, networks and hostnames.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "Namespaces give processes separate views of resources such as PIDs, mounts, networks and hostnames."
+        },
+        {
           "heading": "How it works",
-          "body": "Namespaces are isolation mechanisms rather than resource usage budgets."
-        },
-        {
-          "heading": "Apply it",
-          "body": "Two containers have different interfaces but contend for host CPU. Inspect namespace isolation separately from cgroup resource controls."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "A network namespace imposes a CPU limit. This is not a sound assumption; views of resources such as processes mounts and network stacks."
+          "body": "They control visibility and identity boundaries. Two processes in different network namespaces can have separate routing tables while still sharing CPU and the kernel. Cgroups provide resource accounting and limits rather than namespace visibility."
         }
       ],
-      "takeaway": "Namespaces are isolation mechanisms rather than resource usage budgets.",
+      "command": "lsns",
+      "takeaway": "They control visibility and identity boundaries. Two processes in different network namespaces can have separate routing tables while still sharing CPU and the kernel. Cgroups provide resource accounting and limits rather than namespace visibility.",
       "references": [
         {
-          "title": "Namespaces \u2014 primary reference",
+          "title": "Namespaces \u2014 primary documentation",
           "url": "https://man7.org/linux/man-pages/man7/namespaces.7.html"
+        },
+        {
+          "title": "Related command \u2014 primary documentation",
+          "url": "https://man7.org/linux/man-pages/"
         }
       ]
     },
@@ -707,26 +729,27 @@
       "id": "linux-lesson-27",
       "topic": "linux",
       "title": "Cgroup throttling",
-      "summary": "What can happen when a cgroup exhausts its CPU quota? Runnable tasks can be throttled until budget becomes available.",
+      "summary": "Control groups account for and constrain resource use by groups of processes.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "Control groups account for and constrain resource use by groups of processes."
+        },
+        {
           "heading": "How it works",
-          "body": "CPU throttling can increase latency even without host-wide CPU saturation."
-        },
-        {
-          "heading": "Apply it",
-          "body": "A service is slow despite idle host cores and rising throttling counters. Compare CPU quota throttling and workload demand."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "Quota exhaustion necessarily kills all processes immediately. This is not a sound assumption; runnable tasks can be throttled until budget becomes available."
+          "body": "A CPU quota limits runnable time during a scheduling period. A group can be throttled even when other host cores are idle. Compare throttling counters, quotas and latency before raising a limit or changing concurrency."
         }
       ],
-      "takeaway": "CPU throttling can increase latency even without host-wide CPU saturation.",
+      "command": "cat /sys/fs/cgroup/cpu.stat",
+      "takeaway": "A CPU quota limits runnable time during a scheduling period. A group can be throttled even when other host cores are idle. Compare throttling counters, quotas and latency before raising a limit or changing concurrency.",
       "references": [
         {
-          "title": "Cgroup throttling \u2014 primary reference",
+          "title": "Cgroup throttling \u2014 primary documentation",
           "url": "https://man7.org/linux/man-pages/man7/cgroups.7.html"
+        },
+        {
+          "title": "Related command \u2014 primary documentation",
+          "url": "https://man7.org/linux/man-pages/"
         }
       ]
     },
@@ -734,26 +757,27 @@
       "id": "linux-lesson-28",
       "topic": "linux",
       "title": "Filesystem recovery",
-      "summary": "Why avoid running a repair tool against an actively mounted writable filesystem? Concurrent writes can undermine repair assumptions and risk corruption.",
+      "summary": "Filesystem recovery restores metadata consistency after damage or an unclean failure.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "Filesystem recovery restores metadata consistency after damage or an unclean failure."
+        },
+        {
           "heading": "How it works",
-          "body": "Recovery should follow filesystem-specific procedures and preserve evidence."
-        },
-        {
-          "heading": "Apply it",
-          "body": "A volume reports metadata errors while applications continue writing. Protect data and arrange a controlled filesystem-specific recovery process."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "Repair tools are always safe on live writable filesystems. This is not a sound assumption; concurrent writes can undermine repair assumptions and risk corruption."
+          "body": "Tools and procedures depend on the filesystem. Stop uncontrolled writes, preserve recoverable data and use the supported offline or online process. Repairing an actively writable filesystem with an offline repair tool can worsen corruption."
         }
       ],
-      "takeaway": "Recovery should follow filesystem-specific procedures and preserve evidence.",
+      "command": "lsblk -f",
+      "takeaway": "Tools and procedures depend on the filesystem. Stop uncontrolled writes, preserve recoverable data and use the supported offline or online process. Repairing an actively writable filesystem with an offline repair tool can worsen corruption.",
       "references": [
         {
-          "title": "Filesystem recovery \u2014 primary reference",
+          "title": "Filesystem recovery \u2014 primary documentation",
           "url": "https://www.kernel.org/doc/html/latest/filesystems/ext4/index.html"
+        },
+        {
+          "title": "Related command \u2014 primary documentation",
+          "url": "https://man7.org/linux/man-pages/"
         }
       ]
     },
@@ -761,26 +785,27 @@
       "id": "linux-lesson-29",
       "topic": "linux",
       "title": "Clock selection",
-      "summary": "Why use a monotonic clock for elapsed-time measurement? It is not subject to wall-clock time adjustments in the same way.",
+      "summary": "Wall clocks represent calendar time; monotonic clocks measure elapsed time within a system's clock domain.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "Wall clocks represent calendar time; monotonic clocks measure elapsed time within a system's clock domain."
+        },
+        {
           "heading": "How it works",
-          "body": "Wall-clock timestamps and elapsed durations serve different purposes."
-        },
-        {
-          "heading": "Apply it",
-          "body": "A timeout calculation behaves strangely after a clock correction. Measure elapsed durations with the appropriate monotonic clock."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "Wall-clock time can never move backward. This is not a sound assumption; it is not subject to wall-clock time adjustments in the same way."
+          "body": "Clock synchronization or administrative changes can adjust wall time. Deadlines and durations should use an appropriate monotonic source, while distributed logs need synchronized wall timestamps and correlation IDs. Monotonic timestamps from different hosts are not directly comparable."
         }
       ],
-      "takeaway": "Wall-clock timestamps and elapsed durations serve different purposes.",
+      "command": "timedatectl status",
+      "takeaway": "Clock synchronization or administrative changes can adjust wall time. Deadlines and durations should use an appropriate monotonic source, while distributed logs need synchronized wall timestamps and correlation IDs. Monotonic timestamps from different hosts are not directly comparable.",
       "references": [
         {
-          "title": "Clock selection \u2014 primary reference",
+          "title": "Clock selection \u2014 primary documentation",
           "url": "https://man7.org/linux/man-pages/man2/clock_gettime.2.html"
+        },
+        {
+          "title": "Related command \u2014 primary documentation",
+          "url": "https://www.freedesktop.org/software/systemd/man/latest/timedatectl.html"
         }
       ]
     },
@@ -788,30 +813,571 @@
       "id": "linux-lesson-30",
       "topic": "linux",
       "title": "Kernel versus user space",
-      "summary": "What is the boundary crossed by a system call? A controlled transition from user space into kernel services.",
+      "summary": "User space runs ordinary applications; the kernel mediates privileged access to hardware and shared resources.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "User space runs ordinary applications; the kernel mediates privileged access to hardware and shared resources."
+        },
+        {
           "heading": "How it works",
-          "body": "Kernel-level faults can affect more than one application."
-        },
-        {
-          "heading": "Apply it",
-          "body": "Several applications experience I/O failures after a kernel update. Correlate kernel and device evidence with the shared failure timeline."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "Every library function requires a system call. This is not a sound assumption; a controlled transition from user space into kernel services."
+          "body": "Applications request kernel services through system calls. Device, filesystem and kernel failures can affect unrelated applications simultaneously. Shared symptoms and kernel logs help distinguish infrastructure faults from a single application's logic."
         }
       ],
-      "takeaway": "Kernel-level faults can affect more than one application.",
+      "command": "uname -r",
+      "takeaway": "Applications request kernel services through system calls. Device, filesystem and kernel failures can affect unrelated applications simultaneously. Shared symptoms and kernel logs help distinguish infrastructure faults from a single application's logic.",
       "references": [
         {
-          "title": "Kernel versus user space \u2014 primary reference",
+          "title": "Kernel versus user space \u2014 primary documentation",
           "url": "https://man7.org/linux/man-pages/man2/syscalls.2.html"
+        },
+        {
+          "title": "Related command \u2014 primary documentation",
+          "url": "https://man7.org/linux/man-pages/"
         }
       ]
     }
   ],
-  "commands": [],
-  "debugging": []
+  "commands": [
+    {
+      "id": "linux-command-01",
+      "topic": "linux",
+      "title": "Inspect identity",
+      "command": "id",
+      "kind": "Shell command",
+      "definition": "Prints the current user's UID, primary group and supplementary groups.",
+      "purpose": "Check the credentials involved in a permission failure.",
+      "environment": "Read-only; run in the same identity context as the failing process.",
+      "expectedOutput": "uid=1000(app) gid=1000(app) groups=1000(app),1001(readers)",
+      "interpretation": "uid is the user identity; gid is the primary group; groups lists additional memberships.",
+      "safety": "Read-only; run in the same identity context as the failing process.",
+      "references": [
+        {
+          "title": "Inspect identity \u2014 primary documentation",
+          "url": "https://man7.org/linux/man-pages/"
+        }
+      ]
+    },
+    {
+      "id": "linux-command-02",
+      "topic": "linux",
+      "title": "Inspect path permissions",
+      "command": "namei -l /srv/app/config.yml",
+      "kind": "Shell command",
+      "definition": "Walks a path and displays permissions and ownership for each component.",
+      "purpose": "Locate a parent directory that blocks traversal despite readable file permissions.",
+      "environment": "Read-only; replace the example path. namei is commonly supplied by util-linux.",
+      "expectedOutput": "drwx------ root root srv",
+      "interpretation": "Each row is a path component; directory execute permission is required for traversal.",
+      "safety": "Read-only; replace the example path. namei is commonly supplied by util-linux.",
+      "references": [
+        {
+          "title": "Inspect path permissions \u2014 primary documentation",
+          "url": "https://man7.org/linux/man-pages/"
+        }
+      ]
+    },
+    {
+      "id": "linux-command-03",
+      "topic": "linux",
+      "title": "Disk capacity",
+      "command": "df -hT",
+      "kind": "Shell command",
+      "definition": "Reports mounted-filesystem block capacity with readable units and filesystem type.",
+      "purpose": "Identify the full filesystem before cleaning or expanding storage.",
+      "environment": "Read-only; compare the mount containing the failing path.",
+      "expectedOutput": "Filesystem Type Size Used Avail Use% Mounted on",
+      "interpretation": "Use% is block utilization; Mounted on identifies the mount, not just a directory name.",
+      "safety": "Read-only; compare the mount containing the failing path.",
+      "references": [
+        {
+          "title": "Disk capacity \u2014 primary documentation",
+          "url": "https://man7.org/linux/man-pages/"
+        }
+      ]
+    },
+    {
+      "id": "linux-command-04",
+      "topic": "linux",
+      "title": "Inode capacity",
+      "command": "df -i",
+      "kind": "Shell command",
+      "definition": "Reports inode allocation for mounted filesystems.",
+      "purpose": "Detect no-space failures caused by many small files.",
+      "environment": "Read-only; inode semantics vary by filesystem.",
+      "expectedOutput": "Filesystem Inodes IUsed IFree IUse% Mounted on",
+      "interpretation": "IUse% tracks inode use; free bytes can remain when IFree reaches zero.",
+      "safety": "Read-only; inode semantics vary by filesystem.",
+      "references": [
+        {
+          "title": "Inode capacity \u2014 primary documentation",
+          "url": "https://man7.org/linux/man-pages/"
+        }
+      ]
+    },
+    {
+      "id": "linux-command-05",
+      "topic": "linux",
+      "title": "Memory headroom",
+      "command": "free -h",
+      "kind": "Shell command",
+      "definition": "Summarizes memory and swap accounting.",
+      "purpose": "Distinguish reclaimable cache from genuine memory shortage.",
+      "environment": "Read-only; correlate with pressure and swap activity.",
+      "expectedOutput": "Mem: total used free shared buff/cache available",
+      "interpretation": "Available is estimated usable headroom; free alone excludes useful reclaimable cache.",
+      "safety": "Read-only; correlate with pressure and swap activity.",
+      "references": [
+        {
+          "title": "Memory headroom \u2014 primary documentation",
+          "url": "https://man7.org/linux/man-pages/"
+        }
+      ]
+    },
+    {
+      "id": "linux-command-06",
+      "topic": "linux",
+      "title": "Process states",
+      "command": "ps -eo pid,ppid,user,stat,etime,comm",
+      "kind": "Shell command",
+      "definition": "Prints selected fields for every visible process.",
+      "purpose": "Find parent-child relationships, zombies and blocked tasks.",
+      "environment": "Read-only; visibility depends on namespace and permissions.",
+      "expectedOutput": "PID PPID USER STAT ELAPSED COMMAND",
+      "interpretation": "STAT includes R for runnable, S for interruptible sleep, D for uninterruptible sleep and Z for zombie; ETIME is elapsed lifetime.",
+      "safety": "Read-only; visibility depends on namespace and permissions.",
+      "references": [
+        {
+          "title": "Process states \u2014 primary documentation",
+          "url": "https://man7.org/linux/man-pages/"
+        }
+      ]
+    },
+    {
+      "id": "linux-command-07",
+      "topic": "linux",
+      "title": "Listening sockets",
+      "command": "ss -lntp",
+      "kind": "Shell command",
+      "definition": "Lists listening TCP sockets numerically and requests process information.",
+      "purpose": "Check whether a service listens on the expected address and port.",
+      "environment": "Read-only; loopback binding is not external reachability.",
+      "expectedOutput": "LISTEN 0 128 127.0.0.1:8080 0.0.0.0:*",
+      "interpretation": "-l selects listeners, -n avoids name lookup, -t selects TCP, -p adds process data when permitted.",
+      "safety": "Read-only; loopback binding is not external reachability.",
+      "references": [
+        {
+          "title": "Listening sockets \u2014 primary documentation",
+          "url": "https://man7.org/linux/man-pages/"
+        }
+      ]
+    },
+    {
+      "id": "linux-command-08",
+      "topic": "linux",
+      "title": "System activity",
+      "command": "vmstat 1 5",
+      "kind": "Shell command",
+      "definition": "Samples process, memory, paging, I/O and CPU counters five times.",
+      "purpose": "Separate CPU contention, swapping and I/O waits.",
+      "environment": "Read-only; interpret several signals together rather than one column.",
+      "expectedOutput": "r b swpd free buff cache si so bi bo in cs us sy id wa st",
+      "interpretation": "The first row summarizes since boot; later rows cover intervals. r is runnable tasks, b is blocked tasks, si/so are swap traffic.",
+      "safety": "Read-only; interpret several signals together rather than one column.",
+      "references": [
+        {
+          "title": "System activity \u2014 primary documentation",
+          "url": "https://man7.org/linux/man-pages/"
+        }
+      ]
+    },
+    {
+      "id": "linux-command-09",
+      "topic": "linux",
+      "title": "Kernel events",
+      "command": "journalctl -k --since '-15 min' --no-pager",
+      "kind": "Shell command",
+      "definition": "Shows recent kernel journal messages.",
+      "purpose": "Find OOM, device and filesystem evidence near an incident.",
+      "environment": "Read-only; access and retention vary, and logs may contain sensitive metadata.",
+      "expectedOutput": "kernel: ... Out of memory ...",
+      "interpretation": "-k selects kernel messages; --since bounds time. Match timestamps and affected devices or cgroups.",
+      "safety": "Read-only; access and retention vary, and logs may contain sensitive metadata.",
+      "references": [
+        {
+          "title": "Kernel events \u2014 primary documentation",
+          "url": "https://www.freedesktop.org/software/systemd/man/latest/journalctl.html"
+        }
+      ]
+    },
+    {
+      "id": "linux-command-10",
+      "topic": "linux",
+      "title": "Mount inspection",
+      "command": "findmnt -o TARGET,SOURCE,FSTYPE,OPTIONS",
+      "kind": "Shell command",
+      "definition": "Displays mounted filesystems and selected fields.",
+      "purpose": "Find read-only mounts or unexpected backing devices.",
+      "environment": "Read-only; do not remount until the reason for read-only state is understood.",
+      "expectedOutput": "/data /dev/mapper/vg-data ext4 ro,relatime",
+      "interpretation": "TARGET is the path; SOURCE is the backing object; ro in OPTIONS means read-only.",
+      "safety": "Read-only; do not remount until the reason for read-only state is understood.",
+      "references": [
+        {
+          "title": "Mount inspection \u2014 primary documentation",
+          "url": "https://man7.org/linux/man-pages/"
+        }
+      ]
+    },
+    {
+      "id": "linux-command-11",
+      "topic": "linux",
+      "title": "Open deleted files",
+      "command": "lsof +L1",
+      "kind": "Shell command",
+      "definition": "Lists open files with link counts below one.",
+      "purpose": "Explain disk space retained after a log was deleted.",
+      "environment": "Read-only but may require elevated visibility; do not kill a process solely from this output.",
+      "expectedOutput": "app 123 app 4w REG ... /var/log/app.log (deleted)",
+      "interpretation": "Look at COMMAND, PID, SIZE/OFF and NAME marked deleted; the process still holds the inode.",
+      "safety": "Read-only but may require elevated visibility; do not kill a process solely from this output.",
+      "references": [
+        {
+          "title": "Open deleted files \u2014 primary documentation",
+          "url": "https://man7.org/linux/man-pages/"
+        }
+      ]
+    },
+    {
+      "id": "linux-command-12",
+      "topic": "linux",
+      "title": "System resolver",
+      "command": "getent hosts example.com",
+      "kind": "Shell command",
+      "definition": "Queries the configured name-service lookup path.",
+      "purpose": "Compare application-style resolution with direct DNS tools.",
+      "environment": "Read-only; example addresses are illustrative and actual results differ.",
+      "expectedOutput": "192.0.2.10 example.com",
+      "interpretation": "Returned addresses follow system NSS behavior and can include local overrides.",
+      "safety": "Read-only; example addresses are illustrative and actual results differ.",
+      "references": [
+        {
+          "title": "System resolver \u2014 primary documentation",
+          "url": "https://man7.org/linux/man-pages/"
+        }
+      ]
+    }
+  ],
+  "debugging": [
+    {
+      "id": "linux-scenario-guide-01",
+      "topic": "linux",
+      "title": "Readable file still denied",
+      "symptom": "The service belongs to the file's group but cannot open a mode-640 configuration.",
+      "steps": [
+        {
+          "action": "Inspect and diagnose",
+          "command": "namei -l /srv/app/config.yml",
+          "evidence": "Compare the service UID/groups with each path component. A parent directory without search permission blocks access before the file's read bit matters. Also inspect ACL effective rights when present."
+        },
+        {
+          "action": "Fix the evidenced cause",
+          "evidence": "Grant the intended identity narrowly scoped traversal and file access; preserve restrictions for other users. Do not apply recursive 777."
+        },
+        {
+          "action": "Verify recovery",
+          "evidence": "Open the file as the actual service identity and confirm unrelated identities remain denied."
+        }
+      ],
+      "references": [
+        {
+          "title": "Readable file still denied \u2014 primary documentation",
+          "url": "https://man7.org/linux/man-pages/"
+        },
+        {
+          "title": "Diagnostic tool \u2014 primary documentation",
+          "url": "https://man7.org/linux/man-pages/"
+        }
+      ]
+    },
+    {
+      "id": "linux-scenario-guide-02",
+      "topic": "linux",
+      "title": "Disk full after deleting logs",
+      "symptom": "df reports nearly full storage while du shows much less visible data.",
+      "steps": [
+        {
+          "action": "Inspect and diagnose",
+          "command": "lsof +L1",
+          "evidence": "Find large deleted files still open by a process and confirm their device matches the full mount. Also account for snapshots and mount boundaries."
+        },
+        {
+          "action": "Fix the evidenced cause",
+          "evidence": "Use the application's supported log reopen or a controlled restart after assessing impact. Correct rotation so future logs reopen properly."
+        },
+        {
+          "action": "Verify recovery",
+          "evidence": "Confirm free blocks recover and new logs continue arriving at the expected path."
+        }
+      ],
+      "references": [
+        {
+          "title": "Disk full after deleting logs \u2014 primary documentation",
+          "url": "https://man7.org/linux/man-pages/"
+        },
+        {
+          "title": "Diagnostic tool \u2014 primary documentation",
+          "url": "https://man7.org/linux/man-pages/"
+        }
+      ]
+    },
+    {
+      "id": "linux-scenario-guide-03",
+      "topic": "linux",
+      "title": "No space with free gigabytes",
+      "symptom": "Creating files fails even though byte capacity remains.",
+      "steps": [
+        {
+          "action": "Inspect and diagnose",
+          "command": "df -i",
+          "evidence": "Check IFree and IUse% on the affected mount. Identify a directory generating excessive small files before deleting anything."
+        },
+        {
+          "action": "Fix the evidenced cause",
+          "evidence": "Remove only confirmed disposable files under a retention policy and fix the producer or lifecycle rule. Plan filesystem capacity if the workload is legitimate."
+        },
+        {
+          "action": "Verify recovery",
+          "evidence": "Confirm inode headroom and successful file creation; observe growth over the next workload cycle."
+        }
+      ],
+      "references": [
+        {
+          "title": "No space with free gigabytes \u2014 primary documentation",
+          "url": "https://man7.org/linux/man-pages/"
+        },
+        {
+          "title": "Diagnostic tool \u2014 primary documentation",
+          "url": "https://man7.org/linux/man-pages/"
+        }
+      ]
+    },
+    {
+      "id": "linux-scenario-guide-04",
+      "topic": "linux",
+      "title": "High load and idle CPU",
+      "symptom": "Requests slow down while load average rises but CPU remains mostly idle.",
+      "steps": [
+        {
+          "action": "Inspect and diagnose",
+          "command": "vmstat 1 5",
+          "evidence": "Inspect blocked tasks, I/O waits and storage latency. Correlate D-state processes with a device or network filesystem; load alone does not identify the bottleneck."
+        },
+        {
+          "action": "Fix the evidenced cause",
+          "evidence": "Reduce or pause the offending I/O workload, restore the storage path, or shift traffic using a tested procedure. Avoid treating CPU expansion as the first fix."
+        },
+        {
+          "action": "Verify recovery",
+          "evidence": "Verify blocked-task count, storage latency and application response times recover together."
+        }
+      ],
+      "references": [
+        {
+          "title": "High load and idle CPU \u2014 primary documentation",
+          "url": "https://man7.org/linux/man-pages/"
+        },
+        {
+          "title": "Diagnostic tool \u2014 primary documentation",
+          "url": "https://man7.org/linux/man-pages/"
+        }
+      ]
+    },
+    {
+      "id": "linux-scenario-guide-05",
+      "topic": "linux",
+      "title": "Too many open files",
+      "symptom": "A service rejects connections with descriptor-allocation errors.",
+      "steps": [
+        {
+          "action": "Inspect and diagnose",
+          "command": "cat /proc/PID/limits",
+          "evidence": "Compare the actual process limit with descriptor counts and types over time. A steadily rising count under stable traffic suggests a leak; a bounded peak may be legitimate demand."
+        },
+        {
+          "action": "Fix the evidenced cause",
+          "evidence": "Fix leaked handles or unbounded connection creation. If demand is valid, raise the service limit within host capacity and roll out safely."
+        },
+        {
+          "action": "Verify recovery",
+          "evidence": "Repeat the workload and verify descriptor counts stabilize below the limit without increased host pressure."
+        }
+      ],
+      "references": [
+        {
+          "title": "Too many open files \u2014 primary documentation",
+          "url": "https://man7.org/linux/man-pages/"
+        },
+        {
+          "title": "Diagnostic tool \u2014 primary documentation",
+          "url": "https://man7.org/linux/man-pages/"
+        }
+      ]
+    },
+    {
+      "id": "linux-scenario-guide-06",
+      "topic": "linux",
+      "title": "Exit 137 after deployment",
+      "symptom": "A containerized process disappears with exit status 137.",
+      "steps": [
+        {
+          "action": "Inspect and diagnose",
+          "command": "journalctl -k --since '-15 min'",
+          "evidence": "Look for a matching OOM event and inspect the relevant cgroup memory.events and limit. Also check operator or orchestrator termination; the exit code alone only suggests SIGKILL."
+        },
+        {
+          "action": "Fix the evidenced cause",
+          "evidence": "If memory pressure is confirmed, roll back a regression or adjust measured capacity and concurrency. If another actor killed it, correct that lifecycle behavior."
+        },
+        {
+          "action": "Verify recovery",
+          "evidence": "Verify the termination reason no longer recurs and memory/latency remain stable at representative load."
+        }
+      ],
+      "references": [
+        {
+          "title": "Exit 137 after deployment \u2014 primary documentation",
+          "url": "https://man7.org/linux/man-pages/"
+        },
+        {
+          "title": "Diagnostic tool \u2014 primary documentation",
+          "url": "https://www.freedesktop.org/software/systemd/man/latest/journalctl.html"
+        }
+      ]
+    },
+    {
+      "id": "linux-scenario-guide-07",
+      "topic": "linux",
+      "title": "Local service unreachable remotely",
+      "symptom": "curl on localhost succeeds but clients on another host fail.",
+      "steps": [
+        {
+          "action": "Inspect and diagnose",
+          "command": "ss -lntp",
+          "evidence": "Check whether the listener binds only to 127.0.0.1 and confirm the intended port. If it listens externally, inspect routing and firewall evidence next."
+        },
+        {
+          "action": "Fix the evidenced cause",
+          "evidence": "Bind to the intended interface and apply only the required network access rules. Do not disable the firewall globally."
+        },
+        {
+          "action": "Verify recovery",
+          "evidence": "Test from an authorized remote client and verify unauthorized networks remain blocked."
+        }
+      ],
+      "references": [
+        {
+          "title": "Local service unreachable remotely \u2014 primary documentation",
+          "url": "https://man7.org/linux/man-pages/"
+        },
+        {
+          "title": "Diagnostic tool \u2014 primary documentation",
+          "url": "https://man7.org/linux/man-pages/"
+        }
+      ]
+    },
+    {
+      "id": "linux-scenario-guide-08",
+      "topic": "linux",
+      "title": "Read-only filesystem",
+      "symptom": "Writes fail with read-only filesystem after device warnings.",
+      "steps": [
+        {
+          "action": "Inspect and diagnose",
+          "command": "findmnt -o TARGET,SOURCE,FSTYPE,OPTIONS",
+          "evidence": "Confirm the mount is ro and correlate kernel messages with the backing device. Distinguish an intentional read-only mount from protective remount after errors."
+        },
+        {
+          "action": "Fix the evidenced cause",
+          "evidence": "Protect recoverable data, stop affected writers and follow filesystem-specific recovery. Do not force a writable remount while underlying corruption remains unresolved."
+        },
+        {
+          "action": "Verify recovery",
+          "evidence": "Validate filesystem health and restored writes through an application-level check before returning full traffic."
+        }
+      ],
+      "references": [
+        {
+          "title": "Read-only filesystem \u2014 primary documentation",
+          "url": "https://man7.org/linux/man-pages/"
+        },
+        {
+          "title": "Diagnostic tool \u2014 primary documentation",
+          "url": "https://man7.org/linux/man-pages/"
+        }
+      ]
+    },
+    {
+      "id": "linux-scenario-guide-09",
+      "topic": "linux",
+      "title": "Zombie accumulation",
+      "symptom": "A service accumulates many Z-state child processes.",
+      "steps": [
+        {
+          "action": "Inspect and diagnose",
+          "command": "ps -eo pid,ppid,stat,comm",
+          "evidence": "Group zombies by parent PID and check whether the parent collects child exit status. The children have already exited and cannot be repaired by another kill signal."
+        },
+        {
+          "action": "Fix the evidenced cause",
+          "evidence": "Correct the parent's wait/reaping behavior; use a controlled parent restart as mitigation if appropriate. Container init behavior may need correction."
+        },
+        {
+          "action": "Verify recovery",
+          "evidence": "Run repeated child workloads and confirm process-table entries are reaped rather than accumulating."
+        }
+      ],
+      "references": [
+        {
+          "title": "Zombie accumulation \u2014 primary documentation",
+          "url": "https://man7.org/linux/man-pages/"
+        },
+        {
+          "title": "Diagnostic tool \u2014 primary documentation",
+          "url": "https://man7.org/linux/man-pages/"
+        }
+      ]
+    },
+    {
+      "id": "linux-scenario-guide-10",
+      "topic": "linux",
+      "title": "Latency under CPU quota",
+      "symptom": "A service's latency rises even though host cores are idle.",
+      "steps": [
+        {
+          "action": "Inspect and diagnose",
+          "command": "cat /sys/fs/cgroup/cpu.stat",
+          "evidence": "Read the affected cgroup's throttling counters over time, not necessarily the root cgroup. Compare quota, concurrency and latency in the same interval."
+        },
+        {
+          "action": "Fix the evidenced cause",
+          "evidence": "Tune quota or workload concurrency based on demand and host capacity. Preserve isolation requirements rather than removing all limits."
+        },
+        {
+          "action": "Verify recovery",
+          "evidence": "Verify throttling and tail latency improve under representative traffic without starving neighbors."
+        }
+      ],
+      "references": [
+        {
+          "title": "Latency under CPU quota \u2014 primary documentation",
+          "url": "https://man7.org/linux/man-pages/"
+        },
+        {
+          "title": "Diagnostic tool \u2014 primary documentation",
+          "url": "https://man7.org/linux/man-pages/"
+        }
+      ]
+    }
+  ]
 }

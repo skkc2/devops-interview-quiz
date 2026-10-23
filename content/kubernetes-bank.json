@@ -1,0 +1,3883 @@
+{
+  "schemaVersion": 1,
+  "subject": "Kubernetes",
+  "description": "A curated Kubernetes learning and interview track. Verify version-specific behaviour against the documentation for your cluster.",
+  "levels": [
+    "easy",
+    "medium",
+    "mediumHard",
+    "hard"
+  ],
+  "questions": [
+    {
+      "id": "k8s-e-01",
+      "level": "easy",
+      "topic": "kubernetes",
+      "type": "concept",
+      "title": "Deployment vs Pod",
+      "question": "A stateless API should run three replicas and use rolling updates. Which resource normally declares that desired state?",
+      "objective": "Choose the controller that manages replica count and rollout history.",
+      "options": [
+        "A bare Pod for each replica",
+        "A Deployment with three replicas",
+        "A Service with three ports",
+        "A ConfigMap with the image name"
+      ],
+      "correct": [
+        1
+      ],
+      "explanation": "A Deployment manages a ReplicaSet that maintains the desired number of Pods and coordinates updates. A Service provides a stable network endpoint; it does not create or replace Pods.",
+      "takeaway": "Use a Deployment for replicated stateless workloads; add a Service when clients need a stable endpoint.",
+      "references": [
+        {
+          "title": "Deployments",
+          "url": "https://kubernetes.io/docs/concepts/workloads/controllers/deployment/"
+        },
+        {
+          "title": "Services",
+          "url": "https://kubernetes.io/docs/concepts/services-networking/service/"
+        }
+      ],
+      "tags": [
+        "workloads",
+        "controllers"
+      ]
+    },
+    {
+      "id": "k8s-e-02",
+      "level": "easy",
+      "topic": "kubernetes",
+      "type": "concept",
+      "title": "Which probe controls traffic?",
+      "question": "A process is alive but is still loading a cache. It must not receive requests yet. Which probe expresses this state?",
+      "objective": "Distinguish a process that is alive from one ready to serve users.",
+      "options": [
+        "Liveness probe",
+        "Readiness probe",
+        "PodDisruptionBudget",
+        "A startup probe alone"
+      ],
+      "correct": [
+        1
+      ],
+      "explanation": "A failed readiness probe marks the Pod unready, removing it from the set of ready Service backends. Liveness is used to detect a process that should be restarted; startup probes protect slow initialization.",
+      "takeaway": "Readiness gates traffic; liveness affects restart decisions.",
+      "references": [
+        {
+          "title": "Liveness, readiness and startup probes",
+          "url": "https://kubernetes.io/docs/concepts/configuration/liveness-readiness-startup-probes/"
+        },
+        {
+          "title": "Services",
+          "url": "https://kubernetes.io/docs/concepts/services-networking/service/"
+        }
+      ],
+      "tags": [
+        "probes",
+        "traffic"
+      ]
+    },
+    {
+      "id": "k8s-e-03",
+      "level": "easy",
+      "topic": "kubernetes",
+      "type": "command",
+      "title": "List Pods cluster-wide",
+      "question": "Your current context points to one namespace. Which command lists Pods across all namespaces?",
+      "objective": "Interpret the scope flag without changing the active context.",
+      "options": [
+        "kubectl get pods -A",
+        "kubectl describe pod --all",
+        "kubectl logs --all",
+        "kubectl get nodes -n all"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "The -A (or --all-namespaces) flag lists namespaced resources across namespaces. It does not change your context or default namespace.",
+      "takeaway": "Use kubectl get pods -A for inventory, then narrow the investigation.",
+      "references": [
+        {
+          "title": "Debugging Pods",
+          "url": "https://kubernetes.io/docs/tasks/debug/debug-application/debug-running-pod/"
+        }
+      ],
+      "tags": [
+        "kubectl",
+        "inventory"
+      ],
+      "code": "kubectl get pods -A"
+    },
+    {
+      "id": "k8s-e-04",
+      "level": "easy",
+      "topic": "kubernetes",
+      "type": "scenario",
+      "title": "A Pod stays Pending",
+      "question": "A new Pod is Pending and has no container logs because it has not started. What is the best first diagnostic step?",
+      "objective": "Investigate scheduling before container-runtime behaviour.",
+      "options": [
+        "Delete the Pod repeatedly",
+        "Describe the Pod and inspect its conditions and Events",
+        "Increase the liveness failure threshold",
+        "Exec into the container"
+      ],
+      "correct": [
+        1
+      ],
+      "explanation": "Pending can mean the Pod is not scheduled or is waiting for storage or another prerequisite. Events often identify insufficient resources, taints, affinity constraints or volume binding issues. There may be no running container to exec into.",
+      "takeaway": "Start with Pod conditions and Events; let the scheduler's message guide the next check.",
+      "references": [
+        {
+          "title": "Debugging Pods",
+          "url": "https://kubernetes.io/docs/tasks/debug/debug-application/debug-running-pod/"
+        },
+        {
+          "title": "Taints and tolerations",
+          "url": "https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/"
+        }
+      ],
+      "tags": [
+        "scheduling",
+        "pending"
+      ]
+    },
+    {
+      "id": "k8s-e-05",
+      "level": "easy",
+      "topic": "kubernetes",
+      "type": "multi-select",
+      "title": "ConfigMaps and Secrets",
+      "question": "Select the TWO accurate statements about Kubernetes configuration objects.",
+      "objective": "Separate non-confidential configuration from sensitive values.",
+      "options": [
+        "ConfigMaps are intended for non-confidential configuration.",
+        "Secrets are intended for sensitive data, but access still needs to be controlled.",
+        "Base64 encoding makes Secret data encrypted.",
+        "Every Secret is automatically encrypted at rest in every cluster."
+      ],
+      "correct": [
+        0,
+        1
+      ],
+      "explanation": "ConfigMaps are for non-confidential values. Secrets are intended for sensitive values, but base64 is encoding, not encryption. Encryption at rest depends on cluster configuration and RBAC should restrict access.",
+      "takeaway": "A Secret object is one part of protecting credentials, not a complete security guarantee.",
+      "references": [
+        {
+          "title": "Secrets",
+          "url": "https://kubernetes.io/docs/concepts/configuration/secret/"
+        },
+        {
+          "title": "RBAC good practices",
+          "url": "https://kubernetes.io/docs/concepts/security/rbac-good-practices/"
+        }
+      ],
+      "tags": [
+        "security",
+        "configuration"
+      ]
+    },
+    {
+      "id": "k8s-e-06",
+      "level": "easy",
+      "topic": "kubernetes",
+      "type": "trade-off",
+      "title": "Resource requests",
+      "question": "The scheduler reports that no node has enough CPU available for a Pod. Which setting most directly influences this scheduling decision?",
+      "objective": "Separate scheduling reservations from runtime limits.",
+      "options": [
+        "The container CPU request",
+        "The container CPU limit only",
+        "The restart policy",
+        "The Service targetPort"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "The scheduler uses resource requests when selecting a node. Limits constrain runtime consumption but do not reserve node capacity in the same way. Placement also depends on allocatable capacity and other constraints.",
+      "takeaway": "Realistic requests help scheduling; oversized requests can leave Pods Pending.",
+      "references": [
+        {
+          "title": "Resource management",
+          "url": "https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/"
+        }
+      ],
+      "tags": [
+        "resources",
+        "scheduling"
+      ]
+    },
+    {
+      "id": "k8s-m-01",
+      "level": "medium",
+      "topic": "kubernetes",
+      "type": "scenario",
+      "title": "Investigate CrashLoopBackOff",
+      "question": "A container repeatedly exits and its Pod shows CrashLoopBackOff. Which first-pass sequence is most useful?",
+      "objective": "Use the previous process logs, Pod events and configuration as evidence.",
+      "options": [
+        "Increase replicas and wait",
+        "Inspect Pod Events and read current and previous container logs",
+        "Delete the namespace and recreate it",
+        "Change the Service selector"
+      ],
+      "correct": [
+        1
+      ],
+      "explanation": "CrashLoopBackOff is a back-off state, not a root cause. describe reveals configuration and Events; kubectl logs --previous often exposes the last startup error. Then check exit code, command, environment, mounts and resource termination signals.",
+      "takeaway": "Treat CrashLoopBackOff as a symptom. Capture the exit reason and previous logs before changing the workload.",
+      "references": [
+        {
+          "title": "Debugging Pods",
+          "url": "https://kubernetes.io/docs/tasks/debug/debug-application/debug-running-pod/"
+        }
+      ],
+      "tags": [
+        "troubleshooting",
+        "restarts"
+      ]
+    },
+    {
+      "id": "k8s-m-02",
+      "level": "medium",
+      "topic": "kubernetes",
+      "type": "command",
+      "title": "Read the previous container logs",
+      "question": "The current container exits too quickly to inspect manually. Which command requests logs from the previous terminated container instance?",
+      "objective": "Know the option that retrieves logs from the last terminated container.",
+      "options": [
+        "kubectl logs api-7d4f -c api --previous",
+        "kubectl describe node api-7d4f",
+        "kubectl exec api-7d4f --previous -- sh",
+        "kubectl get logs api-7d4f --restart"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "kubectl logs --previous retrieves logs for the previous terminated container in a Pod. Include -c for multi-container Pods. It is often the fastest way to find a startup failure.",
+      "takeaway": "Use logs --previous alongside describe output and the container's exit reason.",
+      "references": [
+        {
+          "title": "Debugging Pods",
+          "url": "https://kubernetes.io/docs/tasks/debug/debug-application/debug-running-pod/"
+        }
+      ],
+      "tags": [
+        "kubectl",
+        "logs"
+      ],
+      "code": "kubectl logs api-7d4f -c api --previous"
+    },
+    {
+      "id": "k8s-m-03",
+      "level": "medium",
+      "topic": "kubernetes",
+      "type": "multi-select",
+      "title": "CPU and memory semantics",
+      "question": "Choose all THREE generally correct statements about container requests and limits.",
+      "objective": "Separate scheduling, CPU enforcement and memory enforcement.",
+      "options": [
+        "The scheduler uses requests when selecting a node.",
+        "A container exceeding its CPU limit may be throttled.",
+        "A container exceeding its memory limit may be terminated with an OOM kill.",
+        "A CPU request guarantees instant CPU service under contention."
+      ],
+      "correct": [
+        0,
+        1,
+        2
+      ],
+      "explanation": "Requests inform placement and resource accounting. CPU limits can cause throttling; memory-limit breaches commonly lead to OOM termination. A request is not a guarantee of instantaneous service or immunity from node contention.",
+      "takeaway": "CPU pressure can throttle; memory pressure can terminate a process. Diagnose the observed signal.",
+      "references": [
+        {
+          "title": "Resource management",
+          "url": "https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/"
+        }
+      ],
+      "tags": [
+        "resources",
+        "cpu",
+        "memory"
+      ]
+    },
+    {
+      "id": "k8s-m-04",
+      "level": "medium",
+      "topic": "kubernetes",
+      "type": "scenario",
+      "title": "Service has no endpoints",
+      "question": "A Service exists, but EndpointSlices show no ready backends. The Pods appear Running. What should you verify first?",
+      "objective": "Check the Service selector, Pod labels and readiness.",
+      "options": [
+        "The selector matches Pod labels and the Pods are Ready",
+        "Every Pod has a public IP",
+        "The liveness probe is named health",
+        "The Service and Deployment have identical names"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "Services select backends using labels, not resource names. If no Pods match the selector, or selected Pods are not Ready, usable endpoints may be absent. Then check targetPort and EndpointSlice details.",
+      "takeaway": "Running is not the same as Ready; Service selectors must match intended Pod labels.",
+      "references": [
+        {
+          "title": "Services",
+          "url": "https://kubernetes.io/docs/concepts/services-networking/service/"
+        },
+        {
+          "title": "Liveness, readiness and startup probes",
+          "url": "https://kubernetes.io/docs/concepts/configuration/liveness-readiness-startup-probes/"
+        }
+      ],
+      "tags": [
+        "services",
+        "networking"
+      ]
+    },
+    {
+      "id": "k8s-m-05",
+      "level": "medium",
+      "topic": "kubernetes",
+      "type": "concept",
+      "title": "Rollback a failed Deployment",
+      "question": "A Deployment update uses an image tag that does not exist, and new Pods fail to start. Which command attempts to revert to the previous revision?",
+      "objective": "Recognize the Deployment rollout recovery operation.",
+      "options": [
+        "kubectl rollout undo deployment/api",
+        "kubectl delete service/api",
+        "kubectl scale deployment/api --replicas=0",
+        "kubectl drain every node"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "kubectl rollout undo requests a rollback to a previous Deployment revision. Confirm that the revision is the desired recovery target, then verify rollout status and user-facing health.",
+      "takeaway": "Rollback can mitigate impact, but still investigate why the release failed.",
+      "references": [
+        {
+          "title": "Deployments",
+          "url": "https://kubernetes.io/docs/concepts/workloads/controllers/deployment/"
+        }
+      ],
+      "tags": [
+        "rollouts",
+        "rollback"
+      ],
+      "code": "kubectl rollout undo deployment/api\nkubectl rollout status deployment/api"
+    },
+    {
+      "id": "k8s-m-06",
+      "level": "medium",
+      "topic": "kubernetes",
+      "type": "trade-off",
+      "title": "HPA needs resource requests",
+      "question": "A HorizontalPodAutoscaler targets 70% average CPU utilization, but containers have no CPU requests. Why can this fail to produce the intended scaling signal?",
+      "objective": "Connect utilization percentages to the configured resource requests.",
+      "options": [
+        "CPU utilization relative to requests cannot be calculated as intended without requests",
+        "HPA only works for StatefulSets",
+        "CPU requests disable horizontal scaling",
+        "A Service must be NodePort for HPA"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "Utilization targets are measured relative to requested CPU. Without relevant CPU requests, utilization can be undefined and the HPA may not act on that metric. Metrics availability and real capacity also matter.",
+      "takeaway": "CPU-utilization HPA needs meaningful CPU requests and a working metrics pipeline.",
+      "references": [
+        {
+          "title": "Horizontal Pod Autoscaling",
+          "url": "https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/"
+        },
+        {
+          "title": "Resource management",
+          "url": "https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/"
+        }
+      ],
+      "tags": [
+        "autoscaling",
+        "resources"
+      ]
+    },
+    {
+      "id": "k8s-mh-01",
+      "level": "mediumHard",
+      "topic": "kubernetes",
+      "type": "scenario",
+      "title": "A rollout stalls on readiness",
+      "question": "A new Deployment revision has started, but new Pods never become Ready and production error rate is rising. What is the safest response?",
+      "objective": "Balance evidence gathering with a controlled path back to service health.",
+      "options": [
+        "Increase maxUnavailable immediately",
+        "Inspect rollout status, Pod conditions, Events and logs; if impact continues, consider rollback to the known-good revision",
+        "Disable readiness probes on every Pod",
+        "Delete the old ReplicaSet"
+      ],
+      "correct": [
+        1
+      ],
+      "explanation": "A stalled rollout can be caused by the app, configuration, dependencies or probe design. Under active impact, a verified rollback may be safer than weakening health checks or deleting revision history. Confirm capacity and user-facing recovery.",
+      "takeaway": "Protect the working revision; do not make a failing rollout appear healthy by removing its checks.",
+      "references": [
+        {
+          "title": "Deployments",
+          "url": "https://kubernetes.io/docs/concepts/workloads/controllers/deployment/"
+        },
+        {
+          "title": "Liveness, readiness and startup probes",
+          "url": "https://kubernetes.io/docs/concepts/configuration/liveness-readiness-startup-probes/"
+        }
+      ],
+      "tags": [
+        "rollouts",
+        "incident"
+      ]
+    },
+    {
+      "id": "k8s-mh-02",
+      "level": "mediumHard",
+      "topic": "kubernetes",
+      "type": "command",
+      "title": "Find why a Pod cannot be scheduled",
+      "question": "A Pod is Pending. You suspect a taint, affinity mismatch or resource shortage. What is the most useful first command for this Pod?",
+      "objective": "Use object-level conditions and Events for the scheduler's explanation.",
+      "options": [
+        "kubectl describe pod <pod-name> -n <namespace>",
+        "kubectl logs <pod-name> -n <namespace>",
+        "kubectl rollout undo deployment/<name>",
+        "kubectl top pods --containers"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "describe exposes scheduling conditions and Events, including common messages about insufficient resources, untolerated taints or affinity constraints. Logs generally require a container to have started.",
+      "takeaway": "Read the scheduler's event message before changing requests, selectors, affinity or tolerations.",
+      "references": [
+        {
+          "title": "Debugging Pods",
+          "url": "https://kubernetes.io/docs/tasks/debug/debug-application/debug-running-pod/"
+        },
+        {
+          "title": "Taints and tolerations",
+          "url": "https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/"
+        }
+      ],
+      "tags": [
+        "kubectl",
+        "scheduling"
+      ],
+      "code": "kubectl describe pod <pod-name> -n <namespace>"
+    },
+    {
+      "id": "k8s-mh-03",
+      "level": "mediumHard",
+      "topic": "kubernetes",
+      "type": "multi-select",
+      "title": "Taints, tolerations and placement",
+      "question": "Choose all THREE statements that correctly describe taints, tolerations and placement.",
+      "objective": "Separate permission to land on a node from positive placement rules.",
+      "options": [
+        "A matching toleration lets a Pod tolerate a taint but does not force placement there.",
+        "Node selectors or node affinity can express a placement requirement.",
+        "A NoSchedule taint normally blocks Pods without a matching toleration.",
+        "Any toleration guarantees that a Pod runs on that node."
+      ],
+      "correct": [
+        0,
+        1,
+        2
+      ],
+      "explanation": "Taints repel Pods without matching tolerations. A toleration removes that scheduling barrier but is not a placement instruction; use nodeSelector or affinity to target nodes. Other constraints and capacity still apply.",
+      "takeaway": "Toleration means “allowed here,” not “must run here.”",
+      "references": [
+        {
+          "title": "Taints and tolerations",
+          "url": "https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/"
+        }
+      ],
+      "tags": [
+        "scheduling",
+        "taints"
+      ]
+    },
+    {
+      "id": "k8s-mh-04",
+      "level": "mediumHard",
+      "topic": "kubernetes",
+      "type": "scenario",
+      "title": "What a PDB cannot guarantee",
+      "question": "A three-replica service has a PodDisruptionBudget requiring two available. A worker node suddenly fails and all its Pods disappear. Why might fewer than two replicas be available temporarily?",
+      "objective": "Distinguish voluntary disruption controls from infrastructure failures.",
+      "options": [
+        "A PDB cannot prevent involuntary disruptions such as node failure",
+        "PDBs only work with LoadBalancer Services",
+        "A PDB recreates Pods on the failed node immediately",
+        "A PDB sets the Deployment replica count to zero"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "PDBs limit certain voluntary disruptions, such as eviction-based maintenance. They cannot prevent a node crash or guarantee immediate replacement capacity; controllers need schedulable capacity to restore replicas.",
+      "takeaway": "A PDB is one availability control, not a substitute for spare capacity and failure-domain design.",
+      "references": [
+        {
+          "title": "Pod disruptions and disruption budgets",
+          "url": "https://kubernetes.io/docs/concepts/workloads/pods/disruptions/"
+        },
+        {
+          "title": "Deployments",
+          "url": "https://kubernetes.io/docs/concepts/workloads/controllers/deployment/"
+        }
+      ],
+      "tags": [
+        "availability",
+        "disruptions"
+      ]
+    },
+    {
+      "id": "k8s-mh-05",
+      "level": "mediumHard",
+      "topic": "kubernetes",
+      "type": "trade-off",
+      "title": "HPA reached maxReplicas",
+      "question": "Latency is rising and HPA has reached maxReplicas. What should you establish before increasing the limit?",
+      "objective": "Check whether more replicas can help and whether the cluster can schedule them.",
+      "options": [
+        "Check metric health, bottlenecks, Pending replicas and node capacity",
+        "Increase maxReplicas tenfold as the first action",
+        "Remove CPU requests to lower utilization",
+        "Send all traffic to one Pod"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "A higher ceiling helps only if extra replicas can schedule and adding replicas relieves the bottleneck. A saturated dependency, lock contention, CPU throttling, unavailable nodes or stale metrics can make naive scaling ineffective.",
+      "takeaway": "At the HPA ceiling, verify metrics, bottleneck, scheduling and downstream capacity before raising the limit.",
+      "references": [
+        {
+          "title": "Horizontal Pod Autoscaling",
+          "url": "https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/"
+        },
+        {
+          "title": "Resource management",
+          "url": "https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/"
+        }
+      ],
+      "tags": [
+        "autoscaling",
+        "capacity"
+      ]
+    },
+    {
+      "id": "k8s-mh-06",
+      "level": "mediumHard",
+      "topic": "kubernetes",
+      "type": "concept",
+      "title": "NetworkPolicy enforcement",
+      "question": "A team applies an ingress-deny NetworkPolicy, but traffic still reaches the Pod. What prerequisite should be checked before assuming the rule is wrong?",
+      "objective": "Understand that policy objects need enforcement by the cluster networking implementation.",
+      "options": [
+        "Whether the networking plugin supports and enforces NetworkPolicy",
+        "Whether the Pod is managed by a Deployment",
+        "Whether the image tag is immutable",
+        "Whether the Service has a ClusterIP"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "Enforcement depends on the networking implementation. Creating a policy object does not guarantee that every cluster's dataplane enforces it. If supported, inspect selectors, ports and traffic direction.",
+      "takeaway": "Check CNI support first, then validate selectors and the exact direction and port.",
+      "references": [
+        {
+          "title": "Network Policies",
+          "url": "https://kubernetes.io/docs/concepts/services-networking/network-policies/"
+        }
+      ],
+      "tags": [
+        "networking",
+        "security"
+      ]
+    },
+    {
+      "id": "k8s-h-01",
+      "level": "hard",
+      "topic": "kubernetes",
+      "type": "scenario",
+      "title": "Node memory pressure and evictions",
+      "question": "Several Pods on one node are evicted during a traffic spike. The node reports MemoryPressure, and one container shows OOMKilled. What is the best first response?",
+      "objective": "Separate node-level pressure from a container exceeding its own memory limit.",
+      "options": [
+        "Raise every container memory limit immediately",
+        "Inspect node conditions and allocated requests, identify top consumers and eviction reasons, then mitigate based on evidence",
+        "Disable eviction mechanisms cluster-wide",
+        "Delete the namespace"
+      ],
+      "correct": [
+        1
+      ],
+      "explanation": "MemoryPressure is a node condition; OOMKilled is a container termination reason. They can be related but are not interchangeable. Inspect node Events, workload requests/limits, actual consumption and recent changes. Recovery may require capacity, rescheduling or memory-use fixes.",
+      "takeaway": "Establish whether the failure is node-wide, container-local, or both before changing limits.",
+      "references": [
+        {
+          "title": "Resource management",
+          "url": "https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/"
+        },
+        {
+          "title": "Debugging Pods",
+          "url": "https://kubernetes.io/docs/tasks/debug/debug-application/debug-running-pod/"
+        }
+      ],
+      "tags": [
+        "incident",
+        "memory",
+        "eviction"
+      ]
+    },
+    {
+      "id": "k8s-h-02",
+      "level": "hard",
+      "topic": "kubernetes",
+      "type": "command",
+      "title": "Inspect node pressure",
+      "question": "Pods are evicted on worker-3 and new replicas remain Pending. Which command best inspects node conditions, allocated resources and Events?",
+      "objective": "Choose a command that exposes node-level signals, not only Pod symptoms.",
+      "options": [
+        "kubectl describe node worker-3",
+        "kubectl logs worker-3",
+        "kubectl rollout undo node/worker-3",
+        "kubectl get services worker-3"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "describe node reports conditions, capacity and allocatable resources, allocated requests, taints and Events. Pair this with Pod resource data and eviction reasons.",
+      "takeaway": "For node incidents, inspect both the node condition and the requests/consumption of affected workloads.",
+      "references": [
+        {
+          "title": "Resource management",
+          "url": "https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/"
+        },
+        {
+          "title": "Debugging Pods",
+          "url": "https://kubernetes.io/docs/tasks/debug/debug-application/debug-running-pod/"
+        }
+      ],
+      "tags": [
+        "kubectl",
+        "nodes"
+      ],
+      "code": "kubectl describe node worker-3"
+    },
+    {
+      "id": "k8s-h-03",
+      "level": "hard",
+      "topic": "kubernetes",
+      "type": "multi-select",
+      "title": "NetworkPolicy behaviour",
+      "question": "Choose all THREE correct statements about NetworkPolicy behaviour.",
+      "objective": "Think about selected Pods, traffic directions and enforcement.",
+      "options": [
+        "A policy applies to Pods selected by its podSelector in the policy's namespace.",
+        "For isolated traffic directions, allowed connections are additive across applicable policies.",
+        "A networking implementation must enforce NetworkPolicy for rules to affect traffic.",
+        "A NetworkPolicy creates a Service and updates its selector."
+      ],
+      "correct": [
+        0,
+        1,
+        2
+      ],
+      "explanation": "Policies select Pods and specify ingress and/or egress rules. For a Pod isolated in a direction, allowances from applicable policies are combined for that direction. Policies do not create Services, and enforcement requires compatible networking support.",
+      "takeaway": "Debug policy selection and dataplane enforcement separately from Service discovery.",
+      "references": [
+        {
+          "title": "Network Policies",
+          "url": "https://kubernetes.io/docs/concepts/services-networking/network-policies/"
+        }
+      ],
+      "tags": [
+        "networking",
+        "security"
+      ]
+    },
+    {
+      "id": "k8s-h-04",
+      "level": "hard",
+      "topic": "kubernetes",
+      "type": "trade-off",
+      "title": "PDB versus rollout strategy",
+      "question": "A team assumes a strict PodDisruptionBudget alone guarantees zero-downtime Deployment updates. Which response best corrects that assumption?",
+      "objective": "Separate voluntary disruption protection from update strategy and application readiness.",
+      "options": [
+        "A PDB replaces readiness probes and rolling-update strategy",
+        "Use a PDB alongside appropriate rollout strategy, readiness, replica placement and capacity; test the combined behaviour",
+        "Set maxUnavailable to 100%",
+        "A PDB pins replicas to separate nodes automatically"
+      ],
+      "correct": [
+        1
+      ],
+      "explanation": "A PDB helps limit certain voluntary disruptions, but it does not replace Deployment rolling-update settings, meaningful readiness checks, sufficient healthy replicas or failure-domain placement. Availability depends on the combined design.",
+      "takeaway": "Availability is a property of the system, not a single policy object.",
+      "references": [
+        {
+          "title": "Pod disruptions and disruption budgets",
+          "url": "https://kubernetes.io/docs/concepts/workloads/pods/disruptions/"
+        },
+        {
+          "title": "Deployments",
+          "url": "https://kubernetes.io/docs/concepts/workloads/controllers/deployment/"
+        },
+        {
+          "title": "Liveness, readiness and startup probes",
+          "url": "https://kubernetes.io/docs/concepts/configuration/liveness-readiness-startup-probes/"
+        }
+      ],
+      "tags": [
+        "availability",
+        "design"
+      ]
+    },
+    {
+      "id": "k8s-h-05",
+      "level": "hard",
+      "topic": "kubernetes",
+      "type": "scenario",
+      "title": "Pods are Ready, but users receive 503s",
+      "question": "After a release, every Pod reports Ready, yet clients receive HTTP 503s. The readiness probe only checks that the process responds on /health. What is the strongest next hypothesis?",
+      "objective": "A green probe can coexist with a broken request path or dependency.",
+      "options": [
+        "Kubernetes guarantees requests succeed when Pods are Ready",
+        "Investigate app errors, dependency health, routing and traces; the probe may be too shallow",
+        "Restart all nodes because 503 always means kubelet failure",
+        "Increase namespaces"
+      ],
+      "correct": [
+        1
+      ],
+      "explanation": "Readiness reflects the condition implemented by the probe. A shallow endpoint may pass while real requests fail due to dependencies, routing, saturation or application errors. Correlate user-facing metrics, logs and traces across the request path.",
+      "takeaway": "A readiness signal is only as useful as the failure modes it represents; pair it with user-facing SLIs.",
+      "references": [
+        {
+          "title": "Liveness, readiness and startup probes",
+          "url": "https://kubernetes.io/docs/concepts/configuration/liveness-readiness-startup-probes/"
+        },
+        {
+          "title": "Services",
+          "url": "https://kubernetes.io/docs/concepts/services-networking/service/"
+        },
+        {
+          "title": "Debugging Pods",
+          "url": "https://kubernetes.io/docs/tasks/debug/debug-application/debug-running-pod/"
+        }
+      ],
+      "tags": [
+        "incident",
+        "readiness",
+        "observability"
+      ]
+    },
+    {
+      "id": "k8s-h-06",
+      "level": "hard",
+      "topic": "kubernetes",
+      "type": "concept",
+      "title": "Secret storage and least privilege",
+      "question": "Which is the safest general statement about Kubernetes Secret objects?",
+      "objective": "Separate the API object's intent from actual storage and access controls.",
+      "options": [
+        "Secret values are safe to expose because they are base64 encoded",
+        "A Secret alone guarantees encryption at rest and least-privilege access",
+        "Secrets are for sensitive data, but RBAC and encryption-at-rest configuration still need review",
+        "Every Pod in a namespace can only read its own Secrets"
+      ],
+      "correct": [
+        2
+      ],
+      "explanation": "Secrets are the API object for sensitive data, but base64 is not encryption. Access depends on API/RBAC permissions and workload use. Encryption at rest must be checked against the cluster's actual configuration.",
+      "takeaway": "Do not equate “stored in a Secret” with “fully protected.” Review RBAC, encryption, exposure paths and rotation.",
+      "references": [
+        {
+          "title": "Secrets",
+          "url": "https://kubernetes.io/docs/concepts/configuration/secret/"
+        },
+        {
+          "title": "RBAC good practices",
+          "url": "https://kubernetes.io/docs/concepts/security/rbac-good-practices/"
+        }
+      ],
+      "tags": [
+        "security",
+        "secrets"
+      ]
+    },
+    {
+      "id": "k8s-e-i-01",
+      "level": "easy",
+      "topic": "kubernetes",
+      "type": "interview",
+      "title": "Explain Pod, Deployment and Service",
+      "question": "In an interview, explain the difference between a Pod, a Deployment and a Service. Give an example of when each is needed.",
+      "objective": "Structure the answer by responsibility, then connect the objects in a realistic deployment.",
+      "options": [],
+      "correct": [],
+      "explanation": "A strong answer separates execution, desired-state management and network discovery. A Service is not a Pod controller and a Deployment does not give clients a stable endpoint.",
+      "takeaway": "A typical flow is Deployment → ReplicaSet → Pods, with a Service selecting matching ready Pods.",
+      "references": [
+        {
+          "title": "Deployments",
+          "url": "https://kubernetes.io/docs/concepts/workloads/controllers/deployment/"
+        },
+        {
+          "title": "Services",
+          "url": "https://kubernetes.io/docs/concepts/services-networking/service/"
+        }
+      ],
+      "tags": [
+        "interview",
+        "fundamentals"
+      ],
+      "sampleAnswer": "A Pod is the smallest deployable unit. A Deployment manages desired replicas and controlled updates through ReplicaSets. A Service provides a stable endpoint and selects matching Pods so clients do not track changing Pod IPs.",
+      "answerChecklist": [
+        "Defines a Pod as the running unit",
+        "Explains Deployment desired state and rollout",
+        "Explains Service endpoint and selector",
+        "Connects the objects in a realistic example"
+      ],
+      "followUps": [
+        "What happens when a Deployment scales down?",
+        "How would you expose a Service inside versus outside the cluster?"
+      ]
+    },
+    {
+      "id": "k8s-m-i-01",
+      "level": "medium",
+      "topic": "kubernetes",
+      "type": "interview",
+      "title": "Walk through CrashLoopBackOff",
+      "question": "A production Pod entered CrashLoopBackOff immediately after a configuration change. Talk through your first five minutes and how you would keep impact bounded.",
+      "objective": "Order checks by information gain and customer impact.",
+      "options": [],
+      "correct": [],
+      "explanation": "A good answer correlates the change with impact, captures previous logs and exit reason, checks rendered configuration and mounted files, and considers rollback if user impact is ongoing.",
+      "takeaway": "Mitigate impact and preserve evidence; avoid deleting Pods before capturing useful logs.",
+      "references": [
+        {
+          "title": "Debugging Pods",
+          "url": "https://kubernetes.io/docs/tasks/debug/debug-application/debug-running-pod/"
+        }
+      ],
+      "tags": [
+        "interview",
+        "incident"
+      ],
+      "sampleAnswer": "I would check service impact and correlation with the change, then inspect Pod status, Events, exit code and previous logs. I would compare rendered configuration and mounts with the last working revision. If impact is material, I would roll back to a known-good version, then verify readiness, error rate and restarts.",
+      "answerChecklist": [
+        "Checks customer impact and recent changes",
+        "Uses describe/events and previous logs",
+        "Investigates config, command, mounts and exit reason",
+        "Mentions bounded mitigation when impact is ongoing",
+        "Defines recovery verification"
+      ],
+      "followUps": [
+        "What if previous logs are empty?",
+        "How would you distinguish OOMKilled from an application exit?"
+      ]
+    },
+    {
+      "id": "k8s-mh-i-01",
+      "level": "mediumHard",
+      "topic": "kubernetes",
+      "type": "interview",
+      "title": "Diagnose a Service with no backends",
+      "question": "An application reports connection failures to a Kubernetes Service, and it has no ready endpoints. Explain the order in which you would isolate the issue.",
+      "objective": "Walk the path from Pod selection through readiness to ports and network.",
+      "options": [],
+      "correct": [],
+      "explanation": "A structured diagnosis checks selectors and labels, Pod readiness, EndpointSlices, then service port/targetPort and network path. Tests should distinguish DNS failure from refusal, timeout or application errors.",
+      "takeaway": "Trace the path: client DNS → Service port → backend endpoint → Pod port → application dependencies.",
+      "references": [
+        {
+          "title": "Services",
+          "url": "https://kubernetes.io/docs/concepts/services-networking/service/"
+        },
+        {
+          "title": "Liveness, readiness and startup probes",
+          "url": "https://kubernetes.io/docs/concepts/configuration/liveness-readiness-startup-probes/"
+        }
+      ],
+      "tags": [
+        "interview",
+        "services"
+      ],
+      "sampleAnswer": "I would compare the Service selector with Pod labels, inspect Ready conditions and EndpointSlices, then verify port and targetPort mapping. If endpoints exist, I would test DNS and connectivity from a relevant client Pod. I would distinguish no endpoints, refusal, timeout and application-level errors because they point to different layers.",
+      "answerChecklist": [
+        "Checks selector against labels",
+        "Checks readiness and EndpointSlices",
+        "Checks port/targetPort mapping",
+        "Tests DNS and connectivity from a relevant client",
+        "Distinguishes timeout, refusal and application errors"
+      ],
+      "followUps": [
+        "How would you test whether NetworkPolicy blocks traffic?",
+        "Why can a Running Pod be absent from a Service?"
+      ]
+    },
+    {
+      "id": "k8s-h-i-01",
+      "level": "hard",
+      "topic": "kubernetes",
+      "type": "interview",
+      "title": "Lead a failed production rollout",
+      "question": "A Kubernetes rollout coincides with rising 5xx rate and p95 latency, some new replicas are Pending, and the change owner is offline. Talk through the first 15 minutes.",
+      "objective": "Demonstrate incident leadership, technical triage, bounded mitigation and verification.",
+      "options": [],
+      "correct": [],
+      "explanation": "A strong response establishes impact and ownership, pauses or mitigates the change, investigates scheduling and rollout evidence, chooses rollback or traffic mitigation based on risk, and verifies user-facing recovery. Root-cause analysis follows containment.",
+      "takeaway": "State the incident, protect users, assign ownership, act on evidence and verify recovery before prevention work.",
+      "references": [
+        {
+          "title": "Deployments",
+          "url": "https://kubernetes.io/docs/concepts/workloads/controllers/deployment/"
+        },
+        {
+          "title": "Resource management",
+          "url": "https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/"
+        },
+        {
+          "title": "Debugging Pods",
+          "url": "https://kubernetes.io/docs/tasks/debug/debug-application/debug-running-pod/"
+        }
+      ],
+      "tags": [
+        "interview",
+        "incident",
+        "sre"
+      ],
+      "sampleAnswer": "I would establish an incident owner and quantify 5xx/latency impact, correlating it with the rollout. I would inspect rollout status, Pending Pod Events, capacity and readiness, and determine whether the prior revision is safe. With ongoing material impact, I would pause further rollout and execute the safest mitigation or rollback, communicating the decision. I would verify error rate, p95, Ready capacity and dependency health, then capture a timeline and assign follow-ups.",
+      "answerChecklist": [
+        "Establishes impact and clear ownership",
+        "Correlates deployment and inspects Pending/Ready replicas",
+        "Chooses a bounded mitigation and communicates it",
+        "Verifies recovery with user-facing and capacity signals",
+        "Separates restoration from later root-cause analysis"
+      ],
+      "followUps": [
+        "Which conditions would make rollback unsafe?",
+        "How would SLO-based release gates reduce this risk?"
+      ]
+    },
+    {
+      "id": "k8s-e-07",
+      "level": "easy",
+      "topic": "kubernetes",
+      "type": "concept",
+      "title": "Namespace scope",
+      "question": "Two teams need the same resource names in one cluster while keeping namespaced workloads logically separate. What is a Namespace primarily for?",
+      "objective": "Namespace scope: identify the correct Kubernetes behaviour, command or operational response.",
+      "options": [
+        "Logical scope for namespaced resources",
+        "Separate physical control plane per team",
+        "Automatic encryption of all objects",
+        "Guaranteed network isolation"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "Namespaces scope names and organise resources; they do not create separate clusters or automatically enforce network isolation.",
+      "takeaway": "Remember: namespace scope — Namespaces scope names and organise resources; they do not create separate clusters or automatically enforce network isolation.",
+      "references": [
+        {
+          "title": "Namespaces",
+          "url": "https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/"
+        }
+      ],
+      "tags": [
+        "namespaces",
+        "objects"
+      ]
+    },
+    {
+      "id": "k8s-e-08",
+      "level": "easy",
+      "topic": "kubernetes",
+      "type": "concept",
+      "title": "ReplicaSet responsibility",
+      "question": "A Deployment requests four replicas. Which component normally maintains that desired count of matching Pods?",
+      "objective": "ReplicaSet responsibility: identify the correct Kubernetes behaviour, command or operational response.",
+      "options": [
+        "A ReplicaSet managed by the Deployment",
+        "A Service controller",
+        "kube-proxy",
+        "The EndpointSlice controller"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "A Deployment manages ReplicaSets, and the ReplicaSet controller creates or removes Pods toward the desired count. A Service does not maintain replicas.",
+      "takeaway": "Remember: replicaset responsibility — A Deployment manages ReplicaSets, and the ReplicaSet controller creates or removes Pods toward the desired count. A Service does not maintain replicas.",
+      "references": [
+        {
+          "title": "Deployments",
+          "url": "https://kubernetes.io/docs/concepts/workloads/controllers/deployment/"
+        }
+      ],
+      "tags": [
+        "controllers",
+        "replicas"
+      ]
+    },
+    {
+      "id": "k8s-e-09",
+      "level": "easy",
+      "topic": "kubernetes",
+      "type": "concept",
+      "title": "StatefulSet identity",
+      "question": "A database workload needs stable Pod identities and stable per-replica storage claims. Which controller best fits?",
+      "objective": "StatefulSet identity: identify the correct Kubernetes behaviour, command or operational response.",
+      "options": [
+        "StatefulSet",
+        "Deployment",
+        "DaemonSet",
+        "Job"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "StatefulSets provide stable ordinal identities and can associate stable storage with replicas, but do not replace database replication or backups.",
+      "takeaway": "Remember: statefulset identity — StatefulSets provide stable ordinal identities and can associate stable storage with replicas, but do not replace database replication or backups.",
+      "references": [
+        {
+          "title": "StatefulSets",
+          "url": "https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/"
+        }
+      ],
+      "tags": [
+        "workloads",
+        "stateful"
+      ]
+    },
+    {
+      "id": "k8s-e-10",
+      "level": "easy",
+      "topic": "kubernetes",
+      "type": "concept",
+      "title": "Run a finite task",
+      "question": "A data import must run to completion and report success instead of serving traffic continuously. Which controller matches this pattern?",
+      "objective": "Run a finite task: identify the correct Kubernetes behaviour, command or operational response.",
+      "options": [
+        "Job",
+        "Deployment",
+        "DaemonSet",
+        "Service"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "A Job tracks completion of finite work and retries according to its configuration. A Deployment is for continuously running application workloads.",
+      "takeaway": "Remember: run a finite task — A Job tracks completion of finite work and retries according to its configuration. A Deployment is for continuously running application workloads.",
+      "references": [
+        {
+          "title": "Jobs",
+          "url": "https://kubernetes.io/docs/concepts/workloads/controllers/job/"
+        }
+      ],
+      "tags": [
+        "jobs",
+        "batch"
+      ]
+    },
+    {
+      "id": "k8s-e-11",
+      "level": "easy",
+      "topic": "kubernetes",
+      "type": "concept",
+      "title": "One Pod per eligible node",
+      "question": "A cluster agent should run on every eligible worker node, including nodes added later. Which controller is designed for this?",
+      "objective": "One Pod per eligible node: identify the correct Kubernetes behaviour, command or operational response.",
+      "options": [
+        "DaemonSet",
+        "StatefulSet",
+        "Job",
+        "ReplicaSet"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "A DaemonSet manages a Pod on each node matching placement constraints; taints, selectors, affinity and resources still affect eligibility.",
+      "takeaway": "Remember: one pod per eligible node — A DaemonSet manages a Pod on each node matching placement constraints; taints, selectors, affinity and resources still affect eligibility.",
+      "references": [
+        {
+          "title": "DaemonSets",
+          "url": "https://kubernetes.io/docs/concepts/workloads/controllers/daemonset/"
+        }
+      ],
+      "tags": [
+        "daemonset",
+        "nodes"
+      ]
+    },
+    {
+      "id": "k8s-e-12",
+      "level": "easy",
+      "topic": "kubernetes",
+      "type": "concept",
+      "title": "Service discovery labels",
+      "question": "A Service selects Pods with `app: catalog`. What must be true for a Pod to match the selector?",
+      "objective": "Service discovery labels: identify the correct Kubernetes behaviour, command or operational response.",
+      "options": [
+        "Its labels match the Service selector",
+        "Its name equals the Service name",
+        "Its container port equals the Service port",
+        "It runs in the default namespace"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "Service selectors use labels on Pods in the Service namespace. Names and port values do not create selector matches.",
+      "takeaway": "Remember: service discovery labels — Service selectors use labels on Pods in the Service namespace. Names and port values do not create selector matches.",
+      "references": [
+        {
+          "title": "Services",
+          "url": "https://kubernetes.io/docs/concepts/services-networking/service/"
+        }
+      ],
+      "tags": [
+        "labels",
+        "services"
+      ]
+    },
+    {
+      "id": "k8s-e-13",
+      "level": "easy",
+      "topic": "kubernetes",
+      "type": "command",
+      "title": "List Deployments in a namespace",
+      "question": "You need a concise list of Deployments in namespace `payments`. Which command is appropriate?",
+      "objective": "List Deployments in a namespace: identify the correct Kubernetes behaviour, command or operational response.",
+      "options": [
+        "kubectl get deployments -n payments",
+        "kubectl logs deployments -n payments",
+        "kubectl describe nodes -n payments",
+        "kubectl get deployments --all-namespaces payments"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "`kubectl get deployments -n payments` lists Deployments in that namespace without changing live state.",
+      "takeaway": "Remember: list deployments in a namespace — `kubectl get deployments -n payments` lists Deployments in that namespace without changing live state.",
+      "references": [
+        {
+          "title": "kubectl reference",
+          "url": "https://kubernetes.io/docs/reference/kubectl/"
+        }
+      ],
+      "tags": [
+        "kubectl",
+        "inventory"
+      ],
+      "code": "kubectl get deployments -n payments"
+    },
+    {
+      "id": "k8s-e-14",
+      "level": "easy",
+      "topic": "kubernetes",
+      "type": "command",
+      "title": "Inspect Service details",
+      "question": "A Pod cannot reach a backend Service. Which command shows the Service selector, ports and useful event details in namespace `shop`?",
+      "objective": "Inspect Service details: identify the correct Kubernetes behaviour, command or operational response.",
+      "options": [
+        "kubectl describe service catalog -n shop",
+        "kubectl logs service/catalog -n shop",
+        "kubectl exec service/catalog -n shop -- sh",
+        "kubectl rollout restart service/catalog -n shop"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "`describe service` reports selector and port configuration and can show endpoint-related clues; it does not execute inside a container.",
+      "takeaway": "Remember: inspect service details — `describe service` reports selector and port configuration and can show endpoint-related clues; it does not execute inside a container.",
+      "references": [
+        {
+          "title": "Debugging Services",
+          "url": "https://kubernetes.io/docs/tasks/debug/debug-application/debug-service/"
+        }
+      ],
+      "tags": [
+        "kubectl",
+        "services"
+      ],
+      "code": "kubectl describe service catalog -n shop"
+    },
+    {
+      "id": "k8s-e-15",
+      "level": "easy",
+      "topic": "kubernetes",
+      "type": "command",
+      "title": "Wait for rollout status",
+      "question": "A Deployment update is in progress. Which command waits for its rollout status in namespace `prod`?",
+      "objective": "Wait for rollout status: identify the correct Kubernetes behaviour, command or operational response.",
+      "options": [
+        "kubectl rollout status deployment/api -n prod",
+        "kubectl rollout undo deployment/api -n prod",
+        "kubectl wait pod/api -n prod",
+        "kubectl get rollout deployment/api -n prod"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "`kubectl rollout status` waits for a rollout to complete or report failure/timeout. `rollout undo` instead requests a rollback.",
+      "takeaway": "Remember: wait for rollout status — `kubectl rollout status` waits for a rollout to complete or report failure/timeout. `rollout undo` instead requests a rollback.",
+      "references": [
+        {
+          "title": "Deployments",
+          "url": "https://kubernetes.io/docs/concepts/workloads/controllers/deployment/"
+        }
+      ],
+      "tags": [
+        "kubectl",
+        "rollouts"
+      ],
+      "code": "kubectl rollout status deployment/api -n prod"
+    },
+    {
+      "id": "k8s-e-16",
+      "level": "easy",
+      "topic": "kubernetes",
+      "type": "command",
+      "title": "Follow container logs",
+      "question": "You want to stream logs from container `web` in Pod `web-0`, namespace `edge`. Which command is suitable?",
+      "objective": "Follow container logs: identify the correct Kubernetes behaviour, command or operational response.",
+      "options": [
+        "kubectl logs -f pod/web-0 -c web -n edge",
+        "kubectl describe pod/web-0 -c web -n edge",
+        "kubectl get events -f pod/web-0 -n edge",
+        "kubectl exec pod/web-0 -c web -n edge -- logs -f"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "`kubectl logs -f` follows container logs; `-c` selects a container and `-n` scopes the namespace.",
+      "takeaway": "Remember: follow container logs — `kubectl logs -f` follows container logs; `-c` selects a container and `-n` scopes the namespace.",
+      "references": [
+        {
+          "title": "Debugging Pods",
+          "url": "https://kubernetes.io/docs/tasks/debug/debug-application/debug-running-pod/"
+        }
+      ],
+      "tags": [
+        "kubectl",
+        "logs"
+      ],
+      "code": "kubectl logs -f pod/web-0 -c web -n edge"
+    },
+    {
+      "id": "k8s-e-17",
+      "level": "easy",
+      "topic": "kubernetes",
+      "type": "command",
+      "title": "Explain a Pod field",
+      "question": "You are unsure what a Pod spec field means and want schema-oriented help. Which command inspects resource fields?",
+      "objective": "Explain a Pod field: identify the correct Kubernetes behaviour, command or operational response.",
+      "options": [
+        "kubectl explain pod.spec",
+        "kubectl help pod.spec --live",
+        "kubectl describe schema pod.spec",
+        "kubectl docs pod.spec --server"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "`kubectl explain` prints descriptions for resource fields using API schema information, which can vary with API/server version.",
+      "takeaway": "Remember: explain a pod field — `kubectl explain` prints descriptions for resource fields using API schema information, which can vary with API/server version.",
+      "references": [
+        {
+          "title": "kubectl reference",
+          "url": "https://kubernetes.io/docs/reference/kubectl/"
+        }
+      ],
+      "tags": [
+        "kubectl",
+        "schema"
+      ],
+      "code": "kubectl explain pod.spec"
+    },
+    {
+      "id": "k8s-e-18",
+      "level": "easy",
+      "topic": "kubernetes",
+      "type": "command",
+      "title": "Scale a Deployment",
+      "question": "Set the desired replicas of Deployment `frontend` to five in namespace `store`. Which command changes that count?",
+      "objective": "Scale a Deployment: identify the correct Kubernetes behaviour, command or operational response.",
+      "options": [
+        "kubectl scale deployment/frontend --replicas=5 -n store",
+        "kubectl set image deployment/frontend replicas=5 -n store",
+        "kubectl expose deployment/frontend --replicas=5 -n store",
+        "kubectl patch service/frontend --replicas=5 -n store"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "`kubectl scale` changes the desired replica count. In a declarative workflow, also align the source of truth so reconciliation does not revert it.",
+      "takeaway": "Remember: scale a deployment — `kubectl scale` changes the desired replica count. In a declarative workflow, also align the source of truth so reconciliation does not revert it.",
+      "references": [
+        {
+          "title": "Deployments",
+          "url": "https://kubernetes.io/docs/concepts/workloads/controllers/deployment/"
+        }
+      ],
+      "tags": [
+        "kubectl",
+        "scale"
+      ],
+      "code": "kubectl scale deployment/frontend --replicas=5 -n store"
+    },
+    {
+      "id": "k8s-e-19",
+      "level": "easy",
+      "topic": "kubernetes",
+      "type": "command",
+      "title": "Read active context",
+      "question": "Before a change, you need to confirm the selected kubeconfig context. Which command prints its name?",
+      "objective": "Read active context: identify the correct Kubernetes behaviour, command or operational response.",
+      "options": [
+        "kubectl config current-context",
+        "kubectl get context active",
+        "kubectl context show --server",
+        "kubectl cluster current"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "`kubectl config current-context` prints the selected context, but verify namespace, permissions and cluster purpose before mutation.",
+      "takeaway": "Remember: read active context — `kubectl config current-context` prints the selected context, but verify namespace, permissions and cluster purpose before mutation.",
+      "references": [
+        {
+          "title": "Configure access to multiple clusters",
+          "url": "https://kubernetes.io/docs/tasks/access-application-cluster/configure-access-multiple-clusters/"
+        }
+      ],
+      "tags": [
+        "kubectl",
+        "safety"
+      ],
+      "code": "kubectl config current-context"
+    },
+    {
+      "id": "k8s-e-20",
+      "level": "easy",
+      "topic": "kubernetes",
+      "type": "concept",
+      "title": "Service port mapping",
+      "question": "A Service sets `port: 80` and `targetPort: 8080`. What does `targetPort` identify?",
+      "objective": "Service port mapping: identify the correct Kubernetes behaviour, command or operational response.",
+      "options": [
+        "The backend port used for selected endpoints",
+        "The public port on every node",
+        "The control-plane API port",
+        "The port used only by kubelet probes"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "Service `port` is client-facing; `targetPort` directs traffic to a backend endpoint port and can be numeric or named.",
+      "takeaway": "Remember: service port mapping — Service `port` is client-facing; `targetPort` directs traffic to a backend endpoint port and can be numeric or named.",
+      "references": [
+        {
+          "title": "Services",
+          "url": "https://kubernetes.io/docs/concepts/services-networking/service/"
+        }
+      ],
+      "tags": [
+        "services",
+        "ports"
+      ]
+    },
+    {
+      "id": "k8s-e-21",
+      "level": "easy",
+      "topic": "kubernetes",
+      "type": "concept",
+      "title": "Internal Service type",
+      "question": "A service should be reachable from workloads inside the cluster but is not intentionally exposed externally. Which Service type is the default fit?",
+      "objective": "Internal Service type: identify the correct Kubernetes behaviour, command or operational response.",
+      "options": [
+        "ClusterIP",
+        "NodePort",
+        "LoadBalancer",
+        "ExternalName"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "ClusterIP exposes a Service at an internal cluster IP. NodePort and LoadBalancer add exposure mechanisms; ExternalName maps the Service name to DNS.",
+      "takeaway": "Remember: internal service type — ClusterIP exposes a Service at an internal cluster IP. NodePort and LoadBalancer add exposure mechanisms; ExternalName maps the Service name to DNS.",
+      "references": [
+        {
+          "title": "Services",
+          "url": "https://kubernetes.io/docs/concepts/services-networking/service/"
+        }
+      ],
+      "tags": [
+        "services",
+        "exposure"
+      ]
+    },
+    {
+      "id": "k8s-e-22",
+      "level": "easy",
+      "topic": "kubernetes",
+      "type": "multi-select",
+      "title": "Labels are selection metadata",
+      "question": "Select the TWO true statements about Kubernetes labels.",
+      "objective": "Labels are selection metadata: identify the correct Kubernetes behaviour, command or operational response.",
+      "options": [
+        "Label selectors can identify groups of objects",
+        "Services commonly use labels to select Pods",
+        "Labels are globally unique IDs",
+        "Changing a label automatically changes the image"
+      ],
+      "correct": [
+        0,
+        1
+      ],
+      "explanation": "Labels are key-value metadata for selection and organisation. They are not globally unique identifiers and do not change image fields by themselves.",
+      "takeaway": "Remember: labels are selection metadata — Labels are key-value metadata for selection and organisation. They are not globally unique identifiers and do not change image fields by themselves.",
+      "references": [
+        {
+          "title": "Services",
+          "url": "https://kubernetes.io/docs/concepts/services-networking/service/"
+        }
+      ],
+      "tags": [
+        "labels",
+        "selectors"
+      ]
+    },
+    {
+      "id": "k8s-e-23",
+      "level": "easy",
+      "topic": "kubernetes",
+      "type": "multi-select",
+      "title": "Service port vocabulary",
+      "question": "Select the TWO correct statements about common Service ports.",
+      "objective": "Service port vocabulary: identify the correct Kubernetes behaviour, command or operational response.",
+      "options": [
+        "`port` is exposed by the Service",
+        "`targetPort` selects the backend endpoint port",
+        "Every ClusterIP Service gets a nodePort by default",
+        "`targetPort` must always equal declared `containerPort`"
+      ],
+      "correct": [
+        0,
+        1
+      ],
+      "explanation": "`port` and `targetPort` serve different purposes. `containerPort` is metadata and is not a firewall; a numeric targetPort can work without a containerPort declaration.",
+      "takeaway": "Remember: service port vocabulary — `port` and `targetPort` serve different purposes. `containerPort` is metadata and is not a firewall; a numeric targetPort can work without a containerPort declaration.",
+      "references": [
+        {
+          "title": "Services",
+          "url": "https://kubernetes.io/docs/concepts/services-networking/service/"
+        }
+      ],
+      "tags": [
+        "services",
+        "ports"
+      ]
+    },
+    {
+      "id": "k8s-e-24",
+      "level": "easy",
+      "topic": "kubernetes",
+      "type": "multi-select",
+      "title": "ConfigMap uses",
+      "question": "Select the TWO appropriate uses of a ConfigMap.",
+      "objective": "ConfigMap uses: identify the correct Kubernetes behaviour, command or operational response.",
+      "options": [
+        "Store non-confidential application settings",
+        "Supply values through supported environment or volume mechanisms",
+        "Store passwords securely because ConfigMaps are encrypted by default",
+        "Automatically restart Pods when any key changes"
+      ],
+      "correct": [
+        0,
+        1
+      ],
+      "explanation": "ConfigMaps hold non-confidential data and can be consumed as environment variables or mounted files. They are not Secret storage and changes do not universally restart applications.",
+      "takeaway": "Remember: configmap uses — ConfigMaps hold non-confidential data and can be consumed as environment variables or mounted files. They are not Secret storage and changes do not universally restart applications.",
+      "references": [
+        {
+          "title": "ConfigMaps",
+          "url": "https://kubernetes.io/docs/concepts/configuration/configmap/"
+        }
+      ],
+      "tags": [
+        "configuration",
+        "configmaps"
+      ]
+    },
+    {
+      "id": "k8s-e-25",
+      "level": "easy",
+      "topic": "kubernetes",
+      "type": "trade-off",
+      "title": "Declarative manifest workflow",
+      "question": "A team wants reviewable, repeatable changes tracked in version control. Which approach best supports that goal?",
+      "objective": "Declarative manifest workflow: identify the correct Kubernetes behaviour, command or operational response.",
+      "options": [
+        "Keep desired manifests in version control and apply them declaratively",
+        "Edit live objects manually and discard command history",
+        "Delete every object before every apply",
+        "Store desired settings only in shell history"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "A reviewed manifest captures intended state and supports reproducible changes; teams should also manage drift and multiple writers deliberately.",
+      "takeaway": "Remember: declarative manifest workflow — A reviewed manifest captures intended state and supports reproducible changes; teams should also manage drift and multiple writers deliberately.",
+      "references": [
+        {
+          "title": "Declarative configuration",
+          "url": "https://kubernetes.io/docs/tasks/manage-kubernetes-objects/declarative-config/"
+        }
+      ],
+      "tags": [
+        "declarative",
+        "workflow"
+      ]
+    },
+    {
+      "id": "k8s-e-26",
+      "level": "easy",
+      "topic": "kubernetes",
+      "type": "trade-off",
+      "title": "Internal service exposure",
+      "question": "An internal API has no external clients. Which choice avoids unnecessary network exposure?",
+      "objective": "Internal service exposure: identify the correct Kubernetes behaviour, command or operational response.",
+      "options": [
+        "Keep a ClusterIP Service until external access is required",
+        "Create a NodePort for every workload by default",
+        "Use hostNetwork for all Pods",
+        "Give each Pod a public IP and bypass Services"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "ClusterIP is the standard internal Service type. External exposure adds reachability and operational responsibilities that should meet an explicit need.",
+      "takeaway": "Remember: internal service exposure — ClusterIP is the standard internal Service type. External exposure adds reachability and operational responsibilities that should meet an explicit need.",
+      "references": [
+        {
+          "title": "Services",
+          "url": "https://kubernetes.io/docs/concepts/services-networking/service/"
+        }
+      ],
+      "tags": [
+        "services",
+        "security"
+      ]
+    },
+    {
+      "id": "k8s-e-27",
+      "level": "easy",
+      "topic": "kubernetes",
+      "type": "scenario",
+      "title": "Service has no backends",
+      "question": "A Service exists but its endpoint records show no ready backend Pods. Which check should come first?",
+      "objective": "Service has no backends: identify the correct Kubernetes behaviour, command or operational response.",
+      "options": [
+        "Compare the Service selector with Pod labels and readiness",
+        "Increase the Service IP range",
+        "Restart the API server immediately",
+        "Change the client DNS resolver"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "Selector mismatch or a lack of ready matching Pods commonly leaves a Service without usable endpoints. Inspect labels and readiness before altering networking.",
+      "takeaway": "Remember: service has no backends — Selector mismatch or a lack of ready matching Pods commonly leaves a Service without usable endpoints. Inspect labels and readiness before altering networking.",
+      "references": [
+        {
+          "title": "Debugging Services",
+          "url": "https://kubernetes.io/docs/tasks/debug/debug-application/debug-service/"
+        }
+      ],
+      "tags": [
+        "services",
+        "troubleshooting"
+      ]
+    },
+    {
+      "id": "k8s-e-28",
+      "level": "easy",
+      "topic": "kubernetes",
+      "type": "scenario",
+      "title": "Cross-namespace DNS",
+      "question": "A Pod in namespace `web` cannot resolve `payments`, a Service in `billing`. What is the best next check?",
+      "objective": "Cross-namespace DNS: identify the correct Kubernetes behaviour, command or operational response.",
+      "options": [
+        "Try `payments.billing` and investigate cluster DNS if it still fails",
+        "Replace the Service with NodePort",
+        "Change the Pod port to 53",
+        "Assume short names resolve globally across namespaces"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "Short Service names resolve relative to the caller namespace. Namespace-qualified names are used for cross-namespace lookups.",
+      "takeaway": "Remember: cross-namespace dns — Short Service names resolve relative to the caller namespace. Namespace-qualified names are used for cross-namespace lookups.",
+      "references": [
+        {
+          "title": "DNS for Services and Pods",
+          "url": "https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/"
+        }
+      ],
+      "tags": [
+        "dns",
+        "services"
+      ]
+    },
+    {
+      "id": "k8s-e-29",
+      "level": "easy",
+      "topic": "kubernetes",
+      "type": "scenario",
+      "title": "Choose controller for completed work",
+      "question": "A batch process exits successfully and should not be kept running as a service. Which controller semantics best fit?",
+      "objective": "Choose controller for completed work: identify the correct Kubernetes behaviour, command or operational response.",
+      "options": [
+        "A Job configured for completion",
+        "A Deployment with a readiness probe",
+        "A DaemonSet with one Pod per node",
+        "A Service with session affinity"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "A Job models finite work and tracks completion. A Deployment instead maintains continuously running application Pods.",
+      "takeaway": "Remember: choose controller for completed work — A Job models finite work and tracks completion. A Deployment instead maintains continuously running application Pods.",
+      "references": [
+        {
+          "title": "Jobs",
+          "url": "https://kubernetes.io/docs/concepts/workloads/controllers/job/"
+        }
+      ],
+      "tags": [
+        "jobs",
+        "batch"
+      ]
+    },
+    {
+      "id": "k8s-e-30",
+      "level": "easy",
+      "topic": "kubernetes",
+      "type": "scenario",
+      "title": "Alive but not ready",
+      "question": "A process is alive but must not receive requests until warm-up completes. Which configuration directly communicates that state?",
+      "objective": "Alive but not ready: identify the correct Kubernetes behaviour, command or operational response.",
+      "options": [
+        "A readiness probe that fails until the app can serve",
+        "A liveness probe that always fails during warm-up",
+        "A PDB with minAvailable zero",
+        "A larger Service targetPort"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "A failed readiness probe leaves the process running but marks the Pod unready for Service routing. Liveness failures trigger restart behavior.",
+      "takeaway": "Remember: alive but not ready — A failed readiness probe leaves the process running but marks the Pod unready for Service routing. Liveness failures trigger restart behavior.",
+      "references": [
+        {
+          "title": "Liveness, readiness and startup probes",
+          "url": "https://kubernetes.io/docs/concepts/configuration/liveness-readiness-startup-probes/"
+        }
+      ],
+      "tags": [
+        "probes",
+        "availability"
+      ]
+    },
+    {
+      "id": "k8s-m-07",
+      "level": "medium",
+      "topic": "kubernetes",
+      "type": "concept",
+      "title": "Deployment rollback history",
+      "question": "An image change causes errors and a previous Deployment revision remains available. Which capability reverts the rollout?",
+      "objective": "Deployment rollback history: identify the correct Kubernetes behaviour, command or operational response.",
+      "options": [
+        "Deployment rollout undo",
+        "Service endpoint reconciliation",
+        "PodDisruptionBudget eviction",
+        "ConfigMap garbage collection"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "`kubectl rollout undo` reverts a Deployment to a prior revision when history is available; verify restored version and regression cause.",
+      "takeaway": "Remember: deployment rollback history — `kubectl rollout undo` reverts a Deployment to a prior revision when history is available; verify restored version and regression cause.",
+      "references": [
+        {
+          "title": "Deployments and rollback",
+          "url": "https://kubernetes.io/docs/concepts/workloads/controllers/deployment/#rolling-back-a-deployment"
+        }
+      ],
+      "tags": [
+        "deployments",
+        "rollback"
+      ]
+    },
+    {
+      "id": "k8s-m-08",
+      "level": "medium",
+      "topic": "kubernetes",
+      "type": "concept",
+      "title": "PDB and voluntary disruption",
+      "question": "A PodDisruptionBudget is configured for a replicated app. Which event does it primarily regulate?",
+      "objective": "PDB and voluntary disruption: identify the correct Kubernetes behaviour, command or operational response.",
+      "options": [
+        "Voluntary evictions that respect disruption budgets",
+        "Every failure including sudden power loss",
+        "The number of Deployment replicas created",
+        "The maximum CPU a container can consume"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "PDBs limit certain voluntary disruptions such as eligible evictions. They do not prevent involuntary failures or directly set replicas.",
+      "takeaway": "Remember: pdb and voluntary disruption — PDBs limit certain voluntary disruptions such as eligible evictions. They do not prevent involuntary failures or directly set replicas.",
+      "references": [
+        {
+          "title": "Pod disruptions",
+          "url": "https://kubernetes.io/docs/tasks/run-application/configure-pdb/"
+        }
+      ],
+      "tags": [
+        "pdb",
+        "availability"
+      ]
+    },
+    {
+      "id": "k8s-m-09",
+      "level": "medium",
+      "topic": "kubernetes",
+      "type": "concept",
+      "title": "HPA utilization needs",
+      "question": "An HPA scales on CPU utilization. What else is typically required for utilization to be calculated meaningfully?",
+      "objective": "HPA utilization needs: identify the correct Kubernetes behaviour, command or operational response.",
+      "options": [
+        "CPU requests for relevant containers and a working metrics pipeline",
+        "A NodePort Service and fixed external IP",
+        "A readiness probe returning HTTP 200",
+        "A PVC for every replica"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "CPU utilization is evaluated relative to CPU requests, and HPA relies on current metrics from a functioning resource metrics pipeline.",
+      "takeaway": "Remember: hpa utilization needs — CPU utilization is evaluated relative to CPU requests, and HPA relies on current metrics from a functioning resource metrics pipeline.",
+      "references": [
+        {
+          "title": "Horizontal Pod Autoscaling",
+          "url": "https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/"
+        }
+      ],
+      "tags": [
+        "autoscaling",
+        "metrics"
+      ]
+    },
+    {
+      "id": "k8s-m-10",
+      "level": "medium",
+      "topic": "kubernetes",
+      "type": "command",
+      "title": "Inspect rollout history",
+      "question": "Before reverting a Deployment, inspect its revision history in namespace `prod`. Which command is appropriate?",
+      "objective": "Inspect rollout history: identify the correct Kubernetes behaviour, command or operational response.",
+      "options": [
+        "kubectl rollout history deployment/api -n prod",
+        "kubectl history deployment/api -n prod",
+        "kubectl get deployment/api --revisions -n prod",
+        "kubectl describe rollout/api -n prod"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "`kubectl rollout history` displays revisions when recorded; detail and retention depend on rollout history settings.",
+      "takeaway": "Remember: inspect rollout history — `kubectl rollout history` displays revisions when recorded; detail and retention depend on rollout history settings.",
+      "references": [
+        {
+          "title": "Deployments and rollback",
+          "url": "https://kubernetes.io/docs/concepts/workloads/controllers/deployment/#rolling-back-a-deployment"
+        }
+      ],
+      "tags": [
+        "kubectl",
+        "rollback"
+      ],
+      "code": "kubectl rollout history deployment/api -n prod"
+    },
+    {
+      "id": "k8s-m-11",
+      "level": "medium",
+      "topic": "kubernetes",
+      "type": "command",
+      "title": "Sort recent Events",
+      "question": "You need namespace Events to understand a stalled rollout. Which command sorts them by creation timestamp?",
+      "objective": "Sort recent Events: identify the correct Kubernetes behaviour, command or operational response.",
+      "options": [
+        "kubectl get events -n prod --sort-by=.metadata.creationTimestamp",
+        "kubectl logs events -n prod --sort-by=time",
+        "kubectl describe events -n prod --tail",
+        "kubectl get pods -n prod --sort-by=.status.eventTime"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "The common kubectl pattern sorts Events by `.metadata.creationTimestamp`. Events may be aggregated or expire, so combine them with current status and logs.",
+      "takeaway": "Remember: sort recent events — The common kubectl pattern sorts Events by `.metadata.creationTimestamp`. Events may be aggregated or expire, so combine them with current status and logs.",
+      "references": [
+        {
+          "title": "kubectl reference",
+          "url": "https://kubernetes.io/docs/reference/kubectl/"
+        }
+      ],
+      "tags": [
+        "kubectl",
+        "events"
+      ],
+      "code": "kubectl get events -n prod --sort-by=.metadata.creationTimestamp"
+    },
+    {
+      "id": "k8s-m-12",
+      "level": "medium",
+      "topic": "kubernetes",
+      "type": "command",
+      "title": "ImagePullBackOff first step",
+      "question": "A Pod shows `ImagePullBackOff`. Which command best reveals its image reference, pull events and conditions?",
+      "objective": "ImagePullBackOff first step: identify the correct Kubernetes behaviour, command or operational response.",
+      "options": [
+        "kubectl describe pod <pod-name> -n <namespace>",
+        "kubectl rollout undo deployment/<name>",
+        "kubectl exec <pod-name> -- sh",
+        "kubectl expose pod <pod-name>"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "Pod Events often reveal a bad tag, authentication issue, missing image or registry/network problem. A container that never started cannot be inspected with exec.",
+      "takeaway": "Remember: imagepullbackoff first step — Pod Events often reveal a bad tag, authentication issue, missing image or registry/network problem. A container that never started cannot be inspected with exec.",
+      "references": [
+        {
+          "title": "Debugging Pods",
+          "url": "https://kubernetes.io/docs/tasks/debug/debug-application/debug-running-pod/"
+        }
+      ],
+      "tags": [
+        "kubectl",
+        "images"
+      ],
+      "code": "kubectl describe pod <pod-name> -n <namespace>"
+    },
+    {
+      "id": "k8s-m-13",
+      "level": "medium",
+      "topic": "kubernetes",
+      "type": "command",
+      "title": "Test Service from workload context",
+      "question": "You need to test DNS and TCP access to an internal Service. Which approach produces the most relevant evidence?",
+      "objective": "Test Service from workload context: identify the correct Kubernetes behaviour, command or operational response.",
+      "options": [
+        "Use a diagnostic Pod in the relevant network context to test Service DNS and port",
+        "Only curl the Service from a laptop outside the cluster",
+        "Inspect image tag and assume connectivity is proven",
+        "Restart all nodes before collecting evidence"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "An in-cluster test evaluates DNS, routing and policies from a similar network context. An external test answers a different question.",
+      "takeaway": "Remember: test service from workload context — An in-cluster test evaluates DNS, routing and policies from a similar network context. An external test answers a different question.",
+      "references": [
+        {
+          "title": "Debugging Services",
+          "url": "https://kubernetes.io/docs/tasks/debug/debug-application/debug-service/"
+        }
+      ],
+      "tags": [
+        "networking",
+        "dns"
+      ]
+    },
+    {
+      "id": "k8s-m-14",
+      "level": "medium",
+      "topic": "kubernetes",
+      "type": "command",
+      "title": "Inspect HPA state",
+      "question": "An HPA does not scale under load. Which command provides its current metrics, targets and conditions?",
+      "objective": "Inspect HPA state: identify the correct Kubernetes behaviour, command or operational response.",
+      "options": [
+        "kubectl describe hpa api -n prod",
+        "kubectl logs hpa/api -n prod",
+        "kubectl rollout status hpa/api -n prod",
+        "kubectl get node api -n prod"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "`describe hpa` shows reported metrics, replica counts and conditions that can explain missing metrics or scaling constraints.",
+      "takeaway": "Remember: inspect hpa state — `describe hpa` shows reported metrics, replica counts and conditions that can explain missing metrics or scaling constraints.",
+      "references": [
+        {
+          "title": "Horizontal Pod Autoscaling",
+          "url": "https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/"
+        }
+      ],
+      "tags": [
+        "kubectl",
+        "autoscaling"
+      ],
+      "code": "kubectl describe hpa api -n prod"
+    },
+    {
+      "id": "k8s-m-15",
+      "level": "medium",
+      "topic": "kubernetes",
+      "type": "scenario",
+      "title": "Taint blocks scheduling",
+      "question": "A node has taint `dedicated=payments:NoSchedule`, and a Pod has no matching toleration. Why is the Pod not placed there?",
+      "objective": "Taint blocks scheduling: identify the correct Kubernetes behaviour, command or operational response.",
+      "options": [
+        "The scheduler avoids that node for this Pod",
+        "The taint forces the Pod onto the node",
+        "The kubelet removes the taint at startup",
+        "A Service selector overrides scheduling taints"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "A NoSchedule taint prevents placement of non-tolerating Pods. A toleration permits consideration but does not force placement or bypass other scheduling checks.",
+      "takeaway": "Remember: taint blocks scheduling — A NoSchedule taint prevents placement of non-tolerating Pods. A toleration permits consideration but does not force placement or bypass other scheduling checks.",
+      "references": [
+        {
+          "title": "Taints and tolerations",
+          "url": "https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/"
+        }
+      ],
+      "tags": [
+        "scheduling",
+        "taints"
+      ]
+    },
+    {
+      "id": "k8s-m-16",
+      "level": "medium",
+      "topic": "kubernetes",
+      "type": "scenario",
+      "title": "PVC stays Pending",
+      "question": "A Pod and its PVC are Pending, and the StorageClass uses delayed binding. What should be checked before deleting the Pod?",
+      "objective": "PVC stays Pending: identify the correct Kubernetes behaviour, command or operational response.",
+      "options": [
+        "PVC events, StorageClass, provisioner status and topology/capacity constraints",
+        "The Pod's liveness threshold only",
+        "The Service targetPort",
+        "Container logs from a container that never started"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "A pending claim can indicate provisioning errors, unsupported parameters, quota or topology issues; delayed binding can also wait for consuming Pod scheduling.",
+      "takeaway": "Remember: pvc stays pending — A pending claim can indicate provisioning errors, unsupported parameters, quota or topology issues; delayed binding can also wait for consuming Pod scheduling.",
+      "references": [
+        {
+          "title": "Persistent volumes",
+          "url": "https://kubernetes.io/docs/concepts/storage/persistent-volumes/"
+        }
+      ],
+      "tags": [
+        "storage",
+        "pvc"
+      ]
+    },
+    {
+      "id": "k8s-m-17",
+      "level": "medium",
+      "topic": "kubernetes",
+      "type": "scenario",
+      "title": "Service routes to unexpected Pods",
+      "question": "After deployment, a Service routes to unexpected application instances. What is the most useful initial comparison?",
+      "objective": "Service routes to unexpected Pods: identify the correct Kubernetes behaviour, command or operational response.",
+      "options": [
+        "Service selector against labels on the old and new Pods",
+        "ReplicaSet revision against Service port number",
+        "Kubelet version against DNS suffix only",
+        "ConfigMap name against ClusterIP"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "Overly broad or overlapping selectors can include unintended Pods. Compare selectors with actual labels and endpoints before altering networking.",
+      "takeaway": "Remember: service routes to unexpected pods — Overly broad or overlapping selectors can include unintended Pods. Compare selectors with actual labels and endpoints before altering networking.",
+      "references": [
+        {
+          "title": "Services",
+          "url": "https://kubernetes.io/docs/concepts/services-networking/service/"
+        }
+      ],
+      "tags": [
+        "services",
+        "labels"
+      ]
+    },
+    {
+      "id": "k8s-m-18",
+      "level": "medium",
+      "topic": "kubernetes",
+      "type": "scenario",
+      "title": "CrashLoop after Secret rotation",
+      "question": "A container starts crash-looping just after a Secret rotation. What is the best diagnostic sequence?",
+      "objective": "CrashLoop after Secret rotation: identify the correct Kubernetes behaviour, command or operational response.",
+      "options": [
+        "Inspect recent changes, Events, previous logs and how the process consumes the Secret",
+        "Assume Kubernetes restarts every Pod for every Secret update",
+        "Delete and recreate the Secret immediately",
+        "Increase replicas to hide the crash"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "Environment variables remain fixed for a container process; mounted Secret volumes update eventually, but apps may need to reload or restart. Gather evidence before repeated changes.",
+      "takeaway": "Remember: crashloop after secret rotation — Environment variables remain fixed for a container process; mounted Secret volumes update eventually, but apps may need to reload or restart. Gather evidence before repeated changes.",
+      "references": [
+        {
+          "title": "Secrets",
+          "url": "https://kubernetes.io/docs/concepts/configuration/secret/"
+        }
+      ],
+      "tags": [
+        "secrets",
+        "troubleshooting"
+      ]
+    },
+    {
+      "id": "k8s-m-19",
+      "level": "medium",
+      "topic": "kubernetes",
+      "type": "multi-select",
+      "title": "Verify a successful rollout",
+      "question": "Select the TWO useful checks before declaring a Deployment rollout successful.",
+      "objective": "Verify a successful rollout: identify the correct Kubernetes behaviour, command or operational response.",
+      "options": [
+        "Confirm `kubectl rollout status` completed",
+        "Check ready/available replicas and relevant app health signals",
+        "Treat desired replica count as proof every Pod serves traffic",
+        "Delete old ReplicaSets immediately"
+      ],
+      "correct": [
+        0,
+        1
+      ],
+      "explanation": "Rollout status reflects controller progress, while readiness and application-level checks confirm that the service can serve requests.",
+      "takeaway": "Remember: verify a successful rollout — Rollout status reflects controller progress, while readiness and application-level checks confirm that the service can serve requests.",
+      "references": [
+        {
+          "title": "Deployments",
+          "url": "https://kubernetes.io/docs/concepts/workloads/controllers/deployment/"
+        }
+      ],
+      "tags": [
+        "rollouts",
+        "observability"
+      ]
+    },
+    {
+      "id": "k8s-m-20",
+      "level": "medium",
+      "topic": "kubernetes",
+      "type": "multi-select",
+      "title": "NetworkPolicy prerequisites",
+      "question": "Select the TWO correct statements about NetworkPolicy.",
+      "objective": "NetworkPolicy prerequisites: identify the correct Kubernetes behaviour, command or operational response.",
+      "options": [
+        "Policies select Pods and describe allowed ingress/egress traffic",
+        "Enforcement requires a plugin that implements NetworkPolicy",
+        "Creating any policy automatically encrypts traffic",
+        "A namespace-local Pod selector selects Pods in all namespaces"
+      ],
+      "correct": [
+        0,
+        1
+      ],
+      "explanation": "NetworkPolicy describes allowed traffic, but a compatible plugin must enforce it. Policies do not inherently encrypt traffic and namespace scope affects selectors.",
+      "takeaway": "Remember: networkpolicy prerequisites — NetworkPolicy describes allowed traffic, but a compatible plugin must enforce it. Policies do not inherently encrypt traffic and namespace scope affects selectors.",
+      "references": [
+        {
+          "title": "Network Policies",
+          "url": "https://kubernetes.io/docs/concepts/services-networking/network-policies/"
+        }
+      ],
+      "tags": [
+        "networkpolicy",
+        "security"
+      ]
+    },
+    {
+      "id": "k8s-m-21",
+      "level": "medium",
+      "topic": "kubernetes",
+      "type": "multi-select",
+      "title": "Requests and limits",
+      "question": "Choose the TWO accurate statements about container resource settings.",
+      "objective": "Requests and limits: identify the correct Kubernetes behaviour, command or operational response.",
+      "options": [
+        "CPU limits can throttle a process",
+        "Memory-limit breaches can trigger an OOM kill",
+        "CPU requests guarantee a Pod can never be throttled",
+        "Memory request is a hard maximum"
+      ],
+      "correct": [
+        0,
+        1
+      ],
+      "explanation": "Requests affect scheduling/accounting; CPU limits can throttle and memory-limit violations can terminate a container. Requests are not hard maxima.",
+      "takeaway": "Remember: requests and limits — Requests affect scheduling/accounting; CPU limits can throttle and memory-limit violations can terminate a container. Requests are not hard maxima.",
+      "references": [
+        {
+          "title": "Resource management",
+          "url": "https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/"
+        }
+      ],
+      "tags": [
+        "resources",
+        "cpu",
+        "memory"
+      ]
+    },
+    {
+      "id": "k8s-m-22",
+      "level": "medium",
+      "topic": "kubernetes",
+      "type": "trade-off",
+      "title": "PDB is not redundancy",
+      "question": "A single-replica app must remain available during voluntary maintenance. Which conclusion is most accurate?",
+      "objective": "PDB is not redundancy: identify the correct Kubernetes behaviour, command or operational response.",
+      "options": [
+        "A PDB alone cannot create redundancy; add replicas and adequate capacity",
+        "Set minAvailable to 100% and Kubernetes creates replicas",
+        "A PDB prevents involuntary node failures",
+        "Set liveness timeout to zero to block eviction"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "A PDB constrains voluntary disruptions but cannot create another healthy replica. One replica can still fail or be impossible to evict without violating the budget.",
+      "takeaway": "Remember: pdb is not redundancy — A PDB constrains voluntary disruptions but cannot create another healthy replica. One replica can still fail or be impossible to evict without violating the budget.",
+      "references": [
+        {
+          "title": "Pod disruptions",
+          "url": "https://kubernetes.io/docs/tasks/run-application/configure-pdb/"
+        }
+      ],
+      "tags": [
+        "pdb",
+        "availability"
+      ]
+    },
+    {
+      "id": "k8s-m-23",
+      "level": "medium",
+      "topic": "kubernetes",
+      "type": "trade-off",
+      "title": "CPU-only scaling signal",
+      "question": "A service bottleneck is external API latency while CPU remains low. Why might CPU-only HPA fail to help?",
+      "objective": "CPU-only scaling signal: identify the correct Kubernetes behaviour, command or operational response.",
+      "options": [
+        "CPU utilization may not represent dependency latency or queue backlog",
+        "HPA can only scale StatefulSets",
+        "CPU metrics directly measure downstream saturation",
+        "More replicas guarantee the dependency recovers"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "CPU-only autoscaling reacts to CPU utilization, not every demand signal; extra replicas can worsen pressure on a rate-limited dependency.",
+      "takeaway": "Remember: cpu-only scaling signal — CPU-only autoscaling reacts to CPU utilization, not every demand signal; extra replicas can worsen pressure on a rate-limited dependency.",
+      "references": [
+        {
+          "title": "Horizontal Pod Autoscaling",
+          "url": "https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/"
+        }
+      ],
+      "tags": [
+        "autoscaling",
+        "capacity"
+      ]
+    },
+    {
+      "id": "k8s-m-24",
+      "level": "medium",
+      "topic": "kubernetes",
+      "type": "trade-off",
+      "title": "Secret via environment variable",
+      "question": "A process reads a Secret through an environment variable. What is an operational trade-off during rotation?",
+      "objective": "Secret via environment variable: identify the correct Kubernetes behaviour, command or operational response.",
+      "options": [
+        "The process environment is set at start and usually requires a restart to reread",
+        "Kubernetes updates every process environment variable in place",
+        "The value is automatically encrypted inside process memory",
+        "Privileged diagnostic tools can never view environment variables"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "Updating a Secret does not rewrite a running process's environment; plan controlled restarts or another reload-capable consumption mechanism.",
+      "takeaway": "Remember: secret via environment variable — Updating a Secret does not rewrite a running process's environment; plan controlled restarts or another reload-capable consumption mechanism.",
+      "references": [
+        {
+          "title": "Secrets",
+          "url": "https://kubernetes.io/docs/concepts/configuration/secret/"
+        }
+      ],
+      "tags": [
+        "secrets",
+        "rotation"
+      ]
+    },
+    {
+      "id": "k8s-m-25",
+      "level": "medium",
+      "topic": "kubernetes",
+      "type": "scenario",
+      "title": "Readiness passes but users see errors",
+      "question": "A Pod's readiness probe succeeds, but users receive 500 errors. What does that suggest?",
+      "objective": "Readiness passes but users see errors: identify the correct Kubernetes behaviour, command or operational response.",
+      "options": [
+        "The probe may not test the failing capability or dependency",
+        "The Service necessarily routes to a non-ready Pod",
+        "Readiness guarantees every business request succeeds",
+        "Kubernetes automatically rolls back the app"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "Readiness tests only its configured check; a shallow check can leave a Pod ready despite user-visible failure.",
+      "takeaway": "Remember: readiness passes but users see errors — Readiness tests only its configured check; a shallow check can leave a Pod ready despite user-visible failure.",
+      "references": [
+        {
+          "title": "Liveness, readiness and startup probes",
+          "url": "https://kubernetes.io/docs/concepts/configuration/liveness-readiness-startup-probes/"
+        }
+      ],
+      "tags": [
+        "probes",
+        "health"
+      ]
+    },
+    {
+      "id": "k8s-m-26",
+      "level": "medium",
+      "topic": "kubernetes",
+      "type": "scenario",
+      "title": "Deployment rollout stalled",
+      "question": "New Pods fail readiness during rollout, old replicas remain available and maxUnavailable is zero. What should you inspect first?",
+      "objective": "Deployment rollout stalled: identify the correct Kubernetes behaviour, command or operational response.",
+      "options": [
+        "New ReplicaSet Pod conditions/events and Deployment rollout conditions",
+        "DNS suffix before checking Pod Events",
+        "Node image garbage collection only",
+        "Service NodePort allocation"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "The rollout can pause when new Pods are unavailable and maxUnavailable prevents reducing availability. Inspect probes, events and rollout conditions.",
+      "takeaway": "Remember: deployment rollout stalled — The rollout can pause when new Pods are unavailable and maxUnavailable prevents reducing availability. Inspect probes, events and rollout conditions.",
+      "references": [
+        {
+          "title": "Deployments",
+          "url": "https://kubernetes.io/docs/concepts/workloads/controllers/deployment/"
+        }
+      ],
+      "tags": [
+        "deployment",
+        "troubleshooting"
+      ]
+    },
+    {
+      "id": "k8s-m-27",
+      "level": "medium",
+      "topic": "kubernetes",
+      "type": "scenario",
+      "title": "Namespace quota rejection",
+      "question": "A namespace reports quota exceeded when more Pods are created. Which response addresses the immediate cause?",
+      "objective": "Namespace quota rejection: identify the correct Kubernetes behaviour, command or operational response.",
+      "options": [
+        "Review ResourceQuota usage and requested resources, then adjust workload or quota through approved process",
+        "Change the Service selector",
+        "Increase progressDeadlineSeconds",
+        "Add a toleration to every Pod"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "ResourceQuota limits aggregate consumption or object counts in a namespace. More replicas may worsen rejection, so inspect usage and requests.",
+      "takeaway": "Remember: namespace quota rejection — ResourceQuota limits aggregate consumption or object counts in a namespace. More replicas may worsen rejection, so inspect usage and requests.",
+      "references": [
+        {
+          "title": "Resource quotas",
+          "url": "https://kubernetes.io/docs/concepts/policy/resource-quotas/"
+        }
+      ],
+      "tags": [
+        "quota",
+        "resources"
+      ]
+    },
+    {
+      "id": "k8s-m-28",
+      "level": "medium",
+      "topic": "kubernetes",
+      "type": "command",
+      "title": "Preview a manifest change",
+      "question": "Before applying a manifest, you want to preview changes against live state. Which command is the standard review step?",
+      "objective": "Preview a manifest change: identify the correct Kubernetes behaviour, command or operational response.",
+      "options": [
+        "kubectl diff -f deployment.yaml",
+        "kubectl delete -f deployment.yaml --dry-run=client",
+        "kubectl logs -f deployment.yaml",
+        "kubectl rollout undo -f deployment.yaml"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "`kubectl diff -f` compares live configuration to what would be applied; review output and context before mutating resources.",
+      "takeaway": "Remember: preview a manifest change — `kubectl diff -f` compares live configuration to what would be applied; review output and context before mutating resources.",
+      "references": [
+        {
+          "title": "Declarative configuration",
+          "url": "https://kubernetes.io/docs/tasks/manage-kubernetes-objects/declarative-config/"
+        }
+      ],
+      "tags": [
+        "kubectl",
+        "declarative"
+      ],
+      "code": "kubectl diff -f deployment.yaml"
+    },
+    {
+      "id": "k8s-m-29",
+      "level": "medium",
+      "topic": "kubernetes",
+      "type": "scenario",
+      "title": "ConfigMap changed but app uses old config",
+      "question": "A mounted ConfigMap changes, but the application continues using old settings. What is the most likely explanation?",
+      "objective": "ConfigMap changed but app uses old config: identify the correct Kubernetes behaviour, command or operational response.",
+      "options": [
+        "Mounted files may update eventually, but the process has not reloaded configuration",
+        "ConfigMaps always restart Pods automatically",
+        "A Service caches application settings forever",
+        "ConfigMaps cannot be mounted as volumes"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "Kubernetes does not universally signal applications to reload configuration. Environment-variable consumers need a new process to receive changed values.",
+      "takeaway": "Remember: configmap changed but app uses old config — Kubernetes does not universally signal applications to reload configuration. Environment-variable consumers need a new process to receive changed values.",
+      "references": [
+        {
+          "title": "ConfigMaps",
+          "url": "https://kubernetes.io/docs/concepts/configuration/configmap/"
+        }
+      ],
+      "tags": [
+        "configuration",
+        "reload"
+      ]
+    },
+    {
+      "id": "k8s-m-30",
+      "level": "medium",
+      "topic": "kubernetes",
+      "type": "concept",
+      "title": "EndpointSlice purpose",
+      "question": "A Service has many backends and you need the scalable API representation of endpoint addresses and conditions. Which resource should you inspect?",
+      "objective": "EndpointSlice purpose: identify the correct Kubernetes behaviour, command or operational response.",
+      "options": [
+        "EndpointSlices",
+        "A ConfigMap listing every Pod IP forever",
+        "A ReplicaSet per Service",
+        "A NodePort per endpoint"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "EndpointSlices represent subsets of network endpoints and support scalable endpoint data management for Services.",
+      "takeaway": "Remember: endpointslice purpose — EndpointSlices represent subsets of network endpoints and support scalable endpoint data management for Services.",
+      "references": [
+        {
+          "title": "Services",
+          "url": "https://kubernetes.io/docs/concepts/services-networking/service/"
+        }
+      ],
+      "tags": [
+        "services",
+        "endpoints"
+      ]
+    },
+    {
+      "id": "k8s-mh-07",
+      "level": "mediumHard",
+      "topic": "kubernetes",
+      "type": "concept",
+      "title": "Topology spread constraints",
+      "question": "A replicated API should distribute Pods across zones to reduce correlated failures. Which feature expresses that desired distribution?",
+      "objective": "Topology spread constraints: identify the correct Kubernetes behaviour, command or operational response.",
+      "options": [
+        "Topology spread constraints",
+        "Service targetPort",
+        "ConfigMap immutable flag",
+        "terminationMessagePolicy"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "Topology spread constraints express how matching Pods should spread over domains such as zones/nodes, subject to constraints and eligible capacity.",
+      "takeaway": "Remember: topology spread constraints — Topology spread constraints express how matching Pods should spread over domains such as zones/nodes, subject to constraints and eligible capacity.",
+      "references": [
+        {
+          "title": "Topology spread constraints",
+          "url": "https://kubernetes.io/docs/concepts/scheduling-eviction/topology-spread-constraints/"
+        }
+      ],
+      "tags": [
+        "scheduling",
+        "availability"
+      ]
+    },
+    {
+      "id": "k8s-mh-08",
+      "level": "mediumHard",
+      "topic": "kubernetes",
+      "type": "concept",
+      "title": "Priority and preemption",
+      "question": "A high-priority Pod cannot schedule because eligible nodes lack resources. What can preemption do when permitted?",
+      "objective": "Priority and preemption: identify the correct Kubernetes behaviour, command or operational response.",
+      "options": [
+        "Evict lower-priority Pods to free capacity for the higher-priority Pod",
+        "Increase physical capacity of every node",
+        "Ignore all taints and affinity",
+        "Convert CPU limits to requests"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "Priority affects scheduling order; preemption can remove lower-priority Pods but cannot create capacity or bypass all other constraints.",
+      "takeaway": "Remember: priority and preemption — Priority affects scheduling order; preemption can remove lower-priority Pods but cannot create capacity or bypass all other constraints.",
+      "references": [
+        {
+          "title": "Pod priority and preemption",
+          "url": "https://kubernetes.io/docs/concepts/scheduling-eviction/pod-priority-preemption/"
+        }
+      ],
+      "tags": [
+        "scheduling",
+        "priority"
+      ]
+    },
+    {
+      "id": "k8s-mh-09",
+      "level": "mediumHard",
+      "topic": "kubernetes",
+      "type": "concept",
+      "title": "Admission controller role",
+      "question": "A request is authenticated and authorized, but the API server rejects it because a policy is unmet. Which extension point can validate or mutate requests during admission?",
+      "objective": "Admission controller role: identify the correct Kubernetes behaviour, command or operational response.",
+      "options": [
+        "An admission controller",
+        "kube-proxy",
+        "The scheduler scoring phase only",
+        "A readiness probe"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "Admission controllers can validate or mutate API requests before persistence, after authentication and authorization. Enabled policies depend on cluster configuration.",
+      "takeaway": "Remember: admission controller role — Admission controllers can validate or mutate API requests before persistence, after authentication and authorization. Enabled policies depend on cluster configuration.",
+      "references": [
+        {
+          "title": "Admission controllers",
+          "url": "https://kubernetes.io/docs/reference/access-authn-authz/admission-controllers/"
+        }
+      ],
+      "tags": [
+        "apiserver",
+        "policy"
+      ]
+    },
+    {
+      "id": "k8s-mh-10",
+      "level": "mediumHard",
+      "topic": "kubernetes",
+      "type": "command",
+      "title": "Inspect assigned node",
+      "question": "You need only the node assigned to Pod `api-0` in namespace `prod`. Which command selects that field?",
+      "objective": "Inspect assigned node: identify the correct Kubernetes behaviour, command or operational response.",
+      "options": [
+        "kubectl get pod api-0 -n prod -o jsonpath='{.spec.nodeName}'",
+        "kubectl logs pod/api-0 -n prod --jsonpath=node",
+        "kubectl describe pod api-0 -n prod -o node",
+        "kubectl config get-contexts api-0 -n prod"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "`-o jsonpath` evaluates a template against resource data; `.spec.nodeName` identifies the assigned node and may be empty before scheduling.",
+      "takeaway": "Remember: inspect assigned node — `-o jsonpath` evaluates a template against resource data; `.spec.nodeName` identifies the assigned node and may be empty before scheduling.",
+      "references": [
+        {
+          "title": "kubectl JSONPath",
+          "url": "https://kubernetes.io/docs/reference/kubectl/jsonpath/"
+        }
+      ],
+      "tags": [
+        "kubectl",
+        "jsonpath"
+      ],
+      "code": "kubectl get pod api-0 -n prod -o jsonpath='{.spec.nodeName}'"
+    },
+    {
+      "id": "k8s-mh-11",
+      "level": "mediumHard",
+      "topic": "kubernetes",
+      "type": "command",
+      "title": "Patch a narrow field",
+      "question": "A reviewed emergency change updates one field on an API object. Which kubectl subcommand applies a patch expression or document?",
+      "objective": "Patch a narrow field: identify the correct Kubernetes behaviour, command or operational response.",
+      "options": [
+        "kubectl patch",
+        "kubectl explain",
+        "kubectl logs",
+        "kubectl top"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "`kubectl patch` applies a patch type supported by the resource. It is imperative and should be verified and reconciled with the source of truth.",
+      "takeaway": "Remember: patch a narrow field — `kubectl patch` applies a patch type supported by the resource. It is imperative and should be verified and reconciled with the source of truth.",
+      "references": [
+        {
+          "title": "Update API objects with patch",
+          "url": "https://kubernetes.io/docs/tasks/manage-kubernetes-objects/update-api-object-kubectl-patch/"
+        }
+      ],
+      "tags": [
+        "kubectl",
+        "patch"
+      ],
+      "code": "kubectl patch"
+    },
+    {
+      "id": "k8s-mh-12",
+      "level": "mediumHard",
+      "topic": "kubernetes",
+      "type": "scenario",
+      "title": "Readiness fails in one zone",
+      "question": "A new release is ready in two zones but fails readiness in the third. What should you investigate first?",
+      "objective": "Readiness fails in one zone: identify the correct Kubernetes behaviour, command or operational response.",
+      "options": [
+        "Compare Pod placement, node/zone conditions, local dependencies and Events",
+        "Increase replicas without checking placement",
+        "Disable readiness cluster-wide",
+        "Replace ClusterIP with NodePort"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "Failure isolated to one topology domain suggests local dependencies, capacity, configuration or networking. Compare failing Pods with healthy peers.",
+      "takeaway": "Remember: readiness fails in one zone — Failure isolated to one topology domain suggests local dependencies, capacity, configuration or networking. Compare failing Pods with healthy peers.",
+      "references": [
+        {
+          "title": "Debugging Pods",
+          "url": "https://kubernetes.io/docs/tasks/debug/debug-application/debug-running-pod/"
+        }
+      ],
+      "tags": [
+        "availability",
+        "zones"
+      ]
+    },
+    {
+      "id": "k8s-mh-13",
+      "level": "mediumHard",
+      "topic": "kubernetes",
+      "type": "scenario",
+      "title": "HPA has unknown custom metrics",
+      "question": "A custom-metrics HPA reports unknown values despite the application exporting queue depth. What is the best next check?",
+      "objective": "HPA has unknown custom metrics: identify the correct Kubernetes behaviour, command or operational response.",
+      "options": [
+        "Verify metrics adapter/API availability and metric mapping for the target",
+        "Raise maxReplicas first",
+        "Add a readiness probe that always fails",
+        "Change the Service type"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "Publishing an application metric does not guarantee Kubernetes can query it as a custom metric. Check adapter/API registration, metric labels, target mapping and HPA conditions.",
+      "takeaway": "Remember: hpa has unknown custom metrics — Publishing an application metric does not guarantee Kubernetes can query it as a custom metric. Check adapter/API registration, metric labels, target mapping and HPA conditions.",
+      "references": [
+        {
+          "title": "Horizontal Pod Autoscaling",
+          "url": "https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/"
+        }
+      ],
+      "tags": [
+        "autoscaling",
+        "custom-metrics"
+      ]
+    },
+    {
+      "id": "k8s-mh-14",
+      "level": "mediumHard",
+      "topic": "kubernetes",
+      "type": "scenario",
+      "title": "Eviction blocked by PDB",
+      "question": "A node drain reports eviction would violate a PDB. What is the safest initial response?",
+      "objective": "Eviction blocked by PDB: identify the correct Kubernetes behaviour, command or operational response.",
+      "options": [
+        "Check healthy replicas and allowed disruptions, then restore capacity/health or plan an approved exception",
+        "Force-delete all remaining Pods immediately",
+        "Remove readiness probes so every Pod counts as available",
+        "Disable the scheduler"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "A blocked drain may indicate too few healthy replicas or a strict budget. Inspect health and maintenance intent before changing policy.",
+      "takeaway": "Remember: eviction blocked by pdb — A blocked drain may indicate too few healthy replicas or a strict budget. Inspect health and maintenance intent before changing policy.",
+      "references": [
+        {
+          "title": "Pod disruptions",
+          "url": "https://kubernetes.io/docs/tasks/run-application/configure-pdb/"
+        }
+      ],
+      "tags": [
+        "pdb",
+        "maintenance"
+      ]
+    },
+    {
+      "id": "k8s-mh-15",
+      "level": "mediumHard",
+      "topic": "kubernetes",
+      "type": "scenario",
+      "title": "Finalizer blocks deletion",
+      "question": "A custom resource remains Terminating with a finalizer. Why might another delete request not remove it?",
+      "objective": "Finalizer blocks deletion: identify the correct Kubernetes behaviour, command or operational response.",
+      "options": [
+        "The object remains until cleanup completes and the responsible controller removes the finalizer",
+        "Finalizers permanently encrypt object names",
+        "The scheduler assigned too many replicas",
+        "Kubelet must restart before API deletion"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "A finalizer signals cleanup must finish before final deletion. If the controller is unavailable or cleanup fails, the object may stay Terminating.",
+      "takeaway": "Remember: finalizer blocks deletion — A finalizer signals cleanup must finish before final deletion. If the controller is unavailable or cleanup fails, the object may stay Terminating.",
+      "references": [
+        {
+          "title": "Finalizers",
+          "url": "https://kubernetes.io/docs/concepts/overview/working-with-objects/finalizers/"
+        }
+      ],
+      "tags": [
+        "finalizers",
+        "cleanup"
+      ]
+    },
+    {
+      "id": "k8s-mh-16",
+      "level": "mediumHard",
+      "topic": "kubernetes",
+      "type": "multi-select",
+      "title": "Diagnose node pressure",
+      "question": "Select the TWO useful evidence sources when Pods are evicted due to node resource pressure.",
+      "objective": "Diagnose node pressure: identify the correct Kubernetes behaviour, command or operational response.",
+      "options": [
+        "Node conditions and Events showing pressure/eviction",
+        "Time-correlated resource usage, requests and limits",
+        "Only Service selector labels",
+        "Only imagePullPolicy"
+      ],
+      "correct": [
+        0,
+        1
+      ],
+      "explanation": "Node conditions/events identify memory, disk or PID pressure; resource usage and Pod requests help explain which workloads and thresholds were involved.",
+      "takeaway": "Remember: diagnose node pressure — Node conditions/events identify memory, disk or PID pressure; resource usage and Pod requests help explain which workloads and thresholds were involved.",
+      "references": [
+        {
+          "title": "Nodes",
+          "url": "https://kubernetes.io/docs/concepts/architecture/nodes/"
+        }
+      ],
+      "tags": [
+        "nodes",
+        "pressure"
+      ]
+    },
+    {
+      "id": "k8s-mh-17",
+      "level": "mediumHard",
+      "topic": "kubernetes",
+      "type": "multi-select",
+      "title": "Least-privilege ServiceAccount",
+      "question": "Select the TWO practices that support least-privilege workload API access.",
+      "objective": "Least-privilege ServiceAccount: identify the correct Kubernetes behaviour, command or operational response.",
+      "options": [
+        "Grant only the Roles and permissions the workload needs",
+        "Avoid wildcard permissions and unnecessary cluster-wide bindings",
+        "Give default ServiceAccount cluster-admin for convenience",
+        "Assume a namespace name alone prevents API access"
+      ],
+      "correct": [
+        0,
+        1
+      ],
+      "explanation": "Use appropriately scoped identities and roles. Broad cluster-admin bindings expand blast radius, and namespaces do not replace authorization.",
+      "takeaway": "Remember: least-privilege serviceaccount — Use appropriately scoped identities and roles. Broad cluster-admin bindings expand blast radius, and namespaces do not replace authorization.",
+      "references": [
+        {
+          "title": "RBAC good practices",
+          "url": "https://kubernetes.io/docs/concepts/security/rbac-good-practices/"
+        }
+      ],
+      "tags": [
+        "rbac",
+        "security"
+      ]
+    },
+    {
+      "id": "k8s-mh-18",
+      "level": "mediumHard",
+      "topic": "kubernetes",
+      "type": "multi-select",
+      "title": "PVC binding and durability",
+      "question": "Select the TWO accurate statements about PVCs and StorageClasses.",
+      "objective": "PVC binding and durability: identify the correct Kubernetes behaviour, command or operational response.",
+      "options": [
+        "A PVC can remain Pending when no compatible volume/provisioning path is available",
+        "Storage topology and binding mode can affect Pod placement",
+        "A PVC guarantees data is backed up",
+        "Deleting a Pod always deletes persistent data"
+      ],
+      "correct": [
+        0,
+        1
+      ],
+      "explanation": "A claim needs a compatible volume or successful provisioning. Topology and binding policies affect placement; persistence is not a backup guarantee.",
+      "takeaway": "Remember: pvc binding and durability — A claim needs a compatible volume or successful provisioning. Topology and binding policies affect placement; persistence is not a backup guarantee.",
+      "references": [
+        {
+          "title": "Persistent volumes",
+          "url": "https://kubernetes.io/docs/concepts/storage/persistent-volumes/"
+        }
+      ],
+      "tags": [
+        "storage",
+        "pvc"
+      ]
+    },
+    {
+      "id": "k8s-mh-19",
+      "level": "mediumHard",
+      "topic": "kubernetes",
+      "type": "trade-off",
+      "title": "Probe checks shared dependency",
+      "question": "Readiness fails during a brief downstream outage, although degraded responses remain useful. What is the risk?",
+      "objective": "Probe checks shared dependency: identify the correct Kubernetes behaviour, command or operational response.",
+      "options": [
+        "All replicas may become unready without improving the shared dependency",
+        "Readiness failures always restart containers",
+        "Liveness guarantees the provider recovers",
+        "Readiness runs only once"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "Readiness changes routing. If all replicas use one shared transient check, the service can become unready even when degraded responses remain useful.",
+      "takeaway": "Remember: probe checks shared dependency — Readiness changes routing. If all replicas use one shared transient check, the service can become unready even when degraded responses remain useful.",
+      "references": [
+        {
+          "title": "Liveness, readiness and startup probes",
+          "url": "https://kubernetes.io/docs/concepts/configuration/liveness-readiness-startup-probes/"
+        }
+      ],
+      "tags": [
+        "probes",
+        "resilience"
+      ]
+    },
+    {
+      "id": "k8s-mh-20",
+      "level": "mediumHard",
+      "topic": "kubernetes",
+      "type": "trade-off",
+      "title": "DaemonSet versus Deployment",
+      "question": "A log collector must run on every eligible node, including future nodes. Why is a DaemonSet preferable to a Deployment with many replicas?",
+      "objective": "DaemonSet versus Deployment: identify the correct Kubernetes behaviour, command or operational response.",
+      "options": [
+        "DaemonSet placement follows eligible nodes rather than a fixed cluster-wide count",
+        "A Deployment cannot run more than one Pod",
+        "DaemonSet supplies persistent storage automatically",
+        "DaemonSet bypasses node taints"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "DaemonSets reconcile one Pod per eligible node. Deployments maintain desired replica counts without guaranteeing node-level coverage.",
+      "takeaway": "Remember: daemonset versus deployment — DaemonSets reconcile one Pod per eligible node. Deployments maintain desired replica counts without guaranteeing node-level coverage.",
+      "references": [
+        {
+          "title": "DaemonSets",
+          "url": "https://kubernetes.io/docs/concepts/workloads/controllers/daemonset/"
+        }
+      ],
+      "tags": [
+        "daemonset",
+        "scheduling"
+      ]
+    },
+    {
+      "id": "k8s-mh-21",
+      "level": "mediumHard",
+      "topic": "kubernetes",
+      "type": "trade-off",
+      "title": "Graceful termination budget",
+      "question": "An app needs 40 seconds to drain requests after SIGTERM, but its grace period is 15 seconds. What should be considered?",
+      "objective": "Graceful termination budget: identify the correct Kubernetes behaviour, command or operational response.",
+      "options": [
+        "Increase the grace period to fit measured draining and ensure shutdown finishes within it",
+        "Increase liveness timeout only",
+        "Set the grace period to zero",
+        "Use a PDB instead of shutdown handling"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "Kubernetes grants a shutdown window; an app that needs longer may be killed before draining finishes. Hook execution consumes part of the termination window.",
+      "takeaway": "Remember: graceful termination budget — Kubernetes grants a shutdown window; an app that needs longer may be killed before draining finishes. Hook execution consumes part of the termination window.",
+      "references": [
+        {
+          "title": "Pod termination",
+          "url": "https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#pod-termination"
+        }
+      ],
+      "tags": [
+        "termination",
+        "availability"
+      ]
+    },
+    {
+      "id": "k8s-mh-22",
+      "level": "mediumHard",
+      "topic": "kubernetes",
+      "type": "trade-off",
+      "title": "Quota versus autoscaling",
+      "question": "Namespace ResourceQuota is fully consumed, and HPA requests more replicas but new Pods fail admission. What is the conflict?",
+      "objective": "Quota versus autoscaling: identify the correct Kubernetes behaviour, command or operational response.",
+      "options": [
+        "Autoscaling demand exceeds the namespace's resource/object budget",
+        "HPA cannot scale Deployments",
+        "ResourceQuota applies only to StatefulSets",
+        "The Service IP range is exhausted"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "HPA can raise desired replicas, but Pod admission can fail when namespace quota is exhausted. Plan approved headroom for required scale.",
+      "takeaway": "Remember: quota versus autoscaling — HPA can raise desired replicas, but Pod admission can fail when namespace quota is exhausted. Plan approved headroom for required scale.",
+      "references": [
+        {
+          "title": "Resource quotas",
+          "url": "https://kubernetes.io/docs/concepts/policy/resource-quotas/"
+        }
+      ],
+      "tags": [
+        "quota",
+        "autoscaling"
+      ]
+    },
+    {
+      "id": "k8s-mh-23",
+      "level": "mediumHard",
+      "topic": "kubernetes",
+      "type": "command",
+      "title": "Observe node resource metrics",
+      "question": "You need a quick view of current CPU and memory use on nodes. Which command is intended for resource metrics?",
+      "objective": "Observe node resource metrics: identify the correct Kubernetes behaviour, command or operational response.",
+      "options": [
+        "kubectl top nodes",
+        "kubectl describe nodes --metrics",
+        "kubectl logs nodes --cpu",
+        "kubectl get nodes -o metrics"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "`kubectl top nodes` uses the resource metrics API and requires a working metrics pipeline; it is not historical monitoring.",
+      "takeaway": "Remember: observe node resource metrics — `kubectl top nodes` uses the resource metrics API and requires a working metrics pipeline; it is not historical monitoring.",
+      "references": [
+        {
+          "title": "Resource metrics pipeline",
+          "url": "https://kubernetes.io/docs/tasks/debug/debug-cluster/resource-metrics-pipeline/"
+        }
+      ],
+      "tags": [
+        "kubectl",
+        "metrics"
+      ],
+      "code": "kubectl top nodes"
+    },
+    {
+      "id": "k8s-mh-24",
+      "level": "mediumHard",
+      "topic": "kubernetes",
+      "type": "scenario",
+      "title": "NetworkPolicy appears ineffective",
+      "question": "A default-deny NetworkPolicy exists, but traffic still succeeds. What should be verified before assuming the object is wrong?",
+      "objective": "NetworkPolicy appears ineffective: identify the correct Kubernetes behaviour, command or operational response.",
+      "options": [
+        "Confirm the CNI plugin enforces NetworkPolicy and the intended Pods match selectors",
+        "Increase Service targetPort",
+        "Change Deployment strategy",
+        "Delete CoreDNS"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "A network plugin must enforce NetworkPolicy. Then verify Pod/namespace selectors, ports and peers; policy-object existence alone does not prove enforcement.",
+      "takeaway": "Remember: networkpolicy appears ineffective — A network plugin must enforce NetworkPolicy. Then verify Pod/namespace selectors, ports and peers; policy-object existence alone does not prove enforcement.",
+      "references": [
+        {
+          "title": "Network Policies",
+          "url": "https://kubernetes.io/docs/concepts/services-networking/network-policies/"
+        }
+      ],
+      "tags": [
+        "networkpolicy",
+        "security"
+      ]
+    },
+    {
+      "id": "k8s-mh-25",
+      "level": "mediumHard",
+      "topic": "kubernetes",
+      "type": "scenario",
+      "title": "StatefulSet volume mount fails",
+      "question": "A replacement StatefulSet Pod uses the same ordinal and claim but cannot mount its volume. What should you inspect?",
+      "objective": "StatefulSet volume mount fails: identify the correct Kubernetes behaviour, command or operational response.",
+      "options": [
+        "Pod/PVC/PV events, attachment state, access mode and node topology",
+        "Service external traffic policy",
+        "Unrelated Deployment history",
+        "Container CPU request only"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "Stable StatefulSet identity does not guarantee volume attachment succeeds; backend state, topology, access modes and stale attachments can block mounting.",
+      "takeaway": "Remember: statefulset volume mount fails — Stable StatefulSet identity does not guarantee volume attachment succeeds; backend state, topology, access modes and stale attachments can block mounting.",
+      "references": [
+        {
+          "title": "Debugging Persistent Volumes",
+          "url": "https://kubernetes.io/docs/tasks/debug/debug-persistent-volume/"
+        }
+      ],
+      "tags": [
+        "stateful",
+        "storage"
+      ]
+    },
+    {
+      "id": "k8s-mh-26",
+      "level": "mediumHard",
+      "topic": "kubernetes",
+      "type": "concept",
+      "title": "Pod Security Standards",
+      "question": "An organisation wants built-in namespace policy levels such as Baseline and Restricted. Which feature defines those profiles?",
+      "objective": "Pod Security Standards: identify the correct Kubernetes behaviour, command or operational response.",
+      "options": [
+        "Pod Security Standards with Pod Security Admission",
+        "ServiceAccount token projection alone",
+        "NetworkPolicy egress rules",
+        "Deployment progress deadlines"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "Pod Security Standards define profiles; Pod Security Admission can enforce configured namespace levels and should be tested against workload requirements.",
+      "takeaway": "Remember: pod security standards — Pod Security Standards define profiles; Pod Security Admission can enforce configured namespace levels and should be tested against workload requirements.",
+      "references": [
+        {
+          "title": "Pod Security Standards",
+          "url": "https://kubernetes.io/docs/concepts/security/pod-security-standards/"
+        }
+      ],
+      "tags": [
+        "security",
+        "pod-security"
+      ]
+    },
+    {
+      "id": "k8s-mh-27",
+      "level": "mediumHard",
+      "topic": "kubernetes",
+      "type": "command",
+      "title": "Check RBAC permission",
+      "question": "Test whether ServiceAccount `payments:worker` can list Pods in namespace `payments`. Which command checks the authorization decision?",
+      "objective": "Check RBAC permission: identify the correct Kubernetes behaviour, command or operational response.",
+      "options": [
+        "kubectl auth can-i list pods -n payments --as=system:serviceaccount:payments:worker",
+        "kubectl get rolebindings --can-i list pods",
+        "kubectl rbac show list pods -n payments",
+        "kubectl auth describe pods --as=payments"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "`kubectl auth can-i` checks a verb/resource decision for an identity; impersonation itself requires permission, and the result does not prove networking works.",
+      "takeaway": "Remember: check rbac permission — `kubectl auth can-i` checks a verb/resource decision for an identity; impersonation itself requires permission, and the result does not prove networking works.",
+      "references": [
+        {
+          "title": "RBAC",
+          "url": "https://kubernetes.io/docs/reference/access-authn-authz/rbac/"
+        }
+      ],
+      "tags": [
+        "kubectl",
+        "rbac"
+      ],
+      "code": "kubectl auth can-i list pods -n payments --as=system:serviceaccount:payments:worker"
+    },
+    {
+      "id": "k8s-mh-28",
+      "level": "mediumHard",
+      "topic": "kubernetes",
+      "type": "scenario",
+      "title": "Strict topology spread",
+      "question": "Availability goals require spreading across zones, but one zone has no capacity. What is the trade-off of a strict spread constraint?",
+      "objective": "Strict topology spread: identify the correct Kubernetes behaviour, command or operational response.",
+      "options": [
+        "Pods may stay Pending rather than be placed with greater skew in available zones",
+        "Kubernetes automatically provisions new zones",
+        "Spread constraints bypass requests",
+        "The Service begins routing by zone"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "A strict topology spread policy can make placement unschedulable when eligible capacity cannot satisfy maxSkew; looser rules improve placement but weaken distribution.",
+      "takeaway": "Remember: strict topology spread — A strict topology spread policy can make placement unschedulable when eligible capacity cannot satisfy maxSkew; looser rules improve placement but weaken distribution.",
+      "references": [
+        {
+          "title": "Topology spread constraints",
+          "url": "https://kubernetes.io/docs/concepts/scheduling-eviction/topology-spread-constraints/"
+        }
+      ],
+      "tags": [
+        "scheduling",
+        "topology"
+      ]
+    },
+    {
+      "id": "k8s-mh-29",
+      "level": "mediumHard",
+      "topic": "kubernetes",
+      "type": "command",
+      "title": "Inspect PDB allowance",
+      "question": "An eviction is blocked. Which command shows PDB health counts and allowed disruptions?",
+      "objective": "Inspect PDB allowance: identify the correct Kubernetes behaviour, command or operational response.",
+      "options": [
+        "kubectl describe poddisruptionbudget <name> -n <namespace>",
+        "kubectl logs poddisruptionbudget/<name> -n <namespace>",
+        "kubectl rollout status poddisruptionbudget/<name>",
+        "kubectl get endpoints poddisruptionbudget/<name>"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "PDB describe output reports selector, health counts and allowed disruptions where available. Compare these with actual Pod readiness and replicas.",
+      "takeaway": "Remember: inspect pdb allowance — PDB describe output reports selector, health counts and allowed disruptions where available. Compare these with actual Pod readiness and replicas.",
+      "references": [
+        {
+          "title": "Pod disruptions",
+          "url": "https://kubernetes.io/docs/tasks/run-application/configure-pdb/"
+        }
+      ],
+      "tags": [
+        "kubectl",
+        "pdb"
+      ],
+      "code": "kubectl describe poddisruptionbudget <name> -n <namespace>"
+    },
+    {
+      "id": "k8s-mh-30",
+      "level": "mediumHard",
+      "topic": "kubernetes",
+      "type": "scenario",
+      "title": "Pod affinity selector mismatch",
+      "question": "A Pod remains Pending with required Pod affinity. Matching workloads exist, but they run in another namespace. What should you inspect?",
+      "objective": "Pod affinity selector mismatch: identify the correct Kubernetes behaviour, command or operational response.",
+      "options": [
+        "The affinity namespace scope and namespace selector along with topology key",
+        "The Service's targetPort",
+        "The container image pull policy",
+        "The Deployment revision history only"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "Required Pod affinity depends on matching Pod labels in the namespaces and topology domains the rule selects. Similar labels elsewhere do not necessarily satisfy the rule.",
+      "takeaway": "Remember: pod affinity selector mismatch — Required Pod affinity depends on matching Pod labels in the namespaces and topology domains the rule selects. Similar labels elsewhere do not necessarily satisfy the rule.",
+      "references": [
+        {
+          "title": "Assigning Pods to nodes",
+          "url": "https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/"
+        }
+      ],
+      "tags": [
+        "scheduling",
+        "affinity"
+      ]
+    },
+    {
+      "id": "k8s-h-07",
+      "level": "hard",
+      "topic": "kubernetes",
+      "type": "concept",
+      "title": "Persistence versus reconciliation",
+      "question": "An object is admitted and persisted, but its desired workload state has not been achieved. Which architectural model explains why persistence alone is insufficient?",
+      "objective": "Persistence versus reconciliation: identify the correct Kubernetes behaviour, command or operational response.",
+      "options": [
+        "Controllers continually reconcile observed state toward desired state",
+        "The API server runs every container before returning",
+        "CoreDNS schedules Pods after every write",
+        "A Service owns every matching Pod lifecycle"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "The API server validates/admit requests and persists objects; controllers reconcile desired state, followed by scheduling and node/runtime actions.",
+      "takeaway": "Remember: persistence versus reconciliation — The API server validates/admit requests and persists objects; controllers reconcile desired state, followed by scheduling and node/runtime actions.",
+      "references": [
+        {
+          "title": "Controller pattern",
+          "url": "https://kubernetes.io/docs/concepts/architecture/controller/"
+        }
+      ],
+      "tags": [
+        "architecture",
+        "controllers"
+      ]
+    },
+    {
+      "id": "k8s-h-08",
+      "level": "hard",
+      "topic": "kubernetes",
+      "type": "concept",
+      "title": "etcd recovery planning",
+      "question": "A cluster administrator is planning etcd maintenance. Which principle is most important for recovery?",
+      "objective": "etcd recovery planning: identify the correct Kubernetes behaviour, command or operational response.",
+      "options": [
+        "Validate backups and a tested restore procedure, then follow version-appropriate maintenance guidance",
+        "Assume Deployment replicas back up cluster metadata",
+        "Delete etcd members without a quorum plan",
+        "Use PDB as the only safeguard for quorum"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "etcd stores Kubernetes API state; application replicas do not replace etcd backups. Membership changes affect quorum and require documented procedures.",
+      "takeaway": "Remember: etcd recovery planning — etcd stores Kubernetes API state; application replicas do not replace etcd backups. Membership changes affect quorum and require documented procedures.",
+      "references": [
+        {
+          "title": "Operating etcd clusters",
+          "url": "https://kubernetes.io/docs/tasks/administer-cluster/configure-upgrade-etcd/"
+        }
+      ],
+      "tags": [
+        "etcd",
+        "disaster-recovery"
+      ]
+    },
+    {
+      "id": "k8s-h-09",
+      "level": "hard",
+      "topic": "kubernetes",
+      "type": "concept",
+      "title": "Encryption at rest limits",
+      "question": "A cluster enables encryption at rest for Secrets. Which statement remains accurate?",
+      "objective": "Encryption at rest limits: identify the correct Kubernetes behaviour, command or operational response.",
+      "options": [
+        "Encryption and key management still need secure operations and recovery planning",
+        "Base64 becomes cryptographic encryption in every client",
+        "RBAC can be ignored because etcd is encrypted",
+        "All external copies are automatically encrypted"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "Encryption at rest protects configured stored API data; key handling, authorization, backups and external copies remain security responsibilities.",
+      "takeaway": "Remember: encryption at rest limits — Encryption at rest protects configured stored API data; key handling, authorization, backups and external copies remain security responsibilities.",
+      "references": [
+        {
+          "title": "Encrypting API data at rest",
+          "url": "https://kubernetes.io/docs/tasks/administer-cluster/encrypt-data/"
+        }
+      ],
+      "tags": [
+        "security",
+        "encryption"
+      ]
+    },
+    {
+      "id": "k8s-h-10",
+      "level": "hard",
+      "topic": "kubernetes",
+      "type": "command",
+      "title": "Inspect certificate requests",
+      "question": "A workload identity certificate request is pending approval. Which command lists Kubernetes CertificateSigningRequest objects?",
+      "objective": "Inspect certificate requests: identify the correct Kubernetes behaviour, command or operational response.",
+      "options": [
+        "kubectl get csr",
+        "kubectl get certs -A",
+        "kubectl describe serviceaccount --certificates",
+        "kubectl auth can-i approve certificates"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "`kubectl get csr` lists CertificateSigningRequest objects; approval and signing depend on signer, authorisation and cluster workflow.",
+      "takeaway": "Remember: inspect certificate requests — `kubectl get csr` lists CertificateSigningRequest objects; approval and signing depend on signer, authorisation and cluster workflow.",
+      "references": [
+        {
+          "title": "CertificateSigningRequests",
+          "url": "https://kubernetes.io/docs/reference/access-authn-authz/certificate-signing-requests/"
+        }
+      ],
+      "tags": [
+        "certificates",
+        "security"
+      ],
+      "code": "kubectl get csr"
+    },
+    {
+      "id": "k8s-h-11",
+      "level": "hard",
+      "topic": "kubernetes",
+      "type": "scenario",
+      "title": "API accepts but Pods never schedule",
+      "question": "The API server responds and new Pods are persisted, but they stay Pending without nodeName. Existing workloads run. Which subsystem is most directly implicated?",
+      "objective": "API accepts but Pods never schedule: identify the correct Kubernetes behaviour, command or operational response.",
+      "options": [
+        "The scheduler or its scheduling constraints/capacity",
+        "The container liveness probe",
+        "CoreDNS alone",
+        "The Service load balancer"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "An unset `spec.nodeName` on a Pending Pod suggests it has not been bound to a node. Inspect scheduling events, scheduler health, capacity and constraints.",
+      "takeaway": "Remember: api accepts but pods never schedule — An unset `spec.nodeName` on a Pending Pod suggests it has not been bound to a node. Inspect scheduling events, scheduler health, capacity and constraints.",
+      "references": [
+        {
+          "title": "Kube-scheduler",
+          "url": "https://kubernetes.io/docs/concepts/scheduling-eviction/kube-scheduler/"
+        }
+      ],
+      "tags": [
+        "scheduler",
+        "pending"
+      ]
+    },
+    {
+      "id": "k8s-h-12",
+      "level": "hard",
+      "topic": "kubernetes",
+      "type": "scenario",
+      "title": "Scheduled Pod cannot start image",
+      "question": "A Pod has nodeName but the container stays waiting due to image pull errors. After Pod Events, which node-side path is most relevant?",
+      "objective": "Scheduled Pod cannot start image: identify the correct Kubernetes behaviour, command or operational response.",
+      "options": [
+        "The kubelet and container runtime on the assigned node",
+        "The Deployment Service selector only",
+        "CoreDNS for every possible cause",
+        "Admission configuration only"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "After binding, the kubelet and container runtime start containers. Registry reachability, credentials and node/runtime events become relevant.",
+      "takeaway": "Remember: scheduled pod cannot start image — After binding, the kubelet and container runtime start containers. Registry reachability, credentials and node/runtime events become relevant.",
+      "references": [
+        {
+          "title": "kubelet reference",
+          "url": "https://kubernetes.io/docs/reference/command-line-tools-reference/kubelet/"
+        }
+      ],
+      "tags": [
+        "kubelet",
+        "runtime"
+      ]
+    },
+    {
+      "id": "k8s-h-13",
+      "level": "hard",
+      "topic": "kubernetes",
+      "type": "scenario",
+      "title": "DNS works but connection is refused",
+      "question": "A Pod resolves a Service FQDN to a ClusterIP but gets connection refused on the expected port. What should you check next?",
+      "objective": "DNS works but connection is refused: identify the correct Kubernetes behaviour, command or operational response.",
+      "options": [
+        "Service port/targetPort, endpoint addresses and whether the app listens on that port",
+        "Replace CoreDNS because name resolution succeeded",
+        "Create another Service with a random IP",
+        "Increase memory without reading logs"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "Successful DNS narrows the issue. Inspect Service routing, endpoints, targetPort and a process listening on the expected socket; policy/path issues may still matter.",
+      "takeaway": "Remember: dns works but connection is refused — Successful DNS narrows the issue. Inspect Service routing, endpoints, targetPort and a process listening on the expected socket; policy/path issues may still matter.",
+      "references": [
+        {
+          "title": "Debugging Services",
+          "url": "https://kubernetes.io/docs/tasks/debug/debug-application/debug-service/"
+        }
+      ],
+      "tags": [
+        "networking",
+        "services"
+      ]
+    },
+    {
+      "id": "k8s-h-14",
+      "level": "hard",
+      "topic": "kubernetes",
+      "type": "scenario",
+      "title": "Immutable Deployment selector",
+      "question": "An update changes an existing Deployment selector and the API rejects the field as immutable. What is the correct response pattern?",
+      "objective": "Immutable Deployment selector: identify the correct Kubernetes behaviour, command or operational response.",
+      "options": [
+        "Plan a compatible migration or replacement resource rather than retrying the same spec",
+        "Disable API validation on the namespace",
+        "Change the Service type",
+        "Increase progressDeadlineSeconds until accepted"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "Deployment selector changes are constrained by API immutability. Repeating the same apply will not fix it; assess ownership, labels and downtime if replacement is required.",
+      "takeaway": "Remember: immutable deployment selector — Deployment selector changes are constrained by API immutability. Repeating the same apply will not fix it; assess ownership, labels and downtime if replacement is required.",
+      "references": [
+        {
+          "title": "Deployments",
+          "url": "https://kubernetes.io/docs/concepts/workloads/controllers/deployment/"
+        }
+      ],
+      "tags": [
+        "deployments",
+        "api"
+      ]
+    },
+    {
+      "id": "k8s-h-15",
+      "level": "hard",
+      "topic": "kubernetes",
+      "type": "multi-select",
+      "title": "Incident evidence",
+      "question": "During an incident, select the TWO evidence sources that help distinguish a rollout regression from node pressure.",
+      "objective": "Incident evidence: identify the correct Kubernetes behaviour, command or operational response.",
+      "options": [
+        "Deployment/ReplicaSet history and rollout conditions",
+        "Node conditions/events and time-correlated Pod termination reasons",
+        "Only the Service name and ClusterIP",
+        "Only desired replica count in the manifest"
+      ],
+      "correct": [
+        0,
+        1
+      ],
+      "explanation": "A rollout timeline identifies revision changes; node events and termination states help identify pressure or eviction. Correlate timestamps instead of treating either as sole proof.",
+      "takeaway": "Remember: incident evidence — A rollout timeline identifies revision changes; node events and termination states help identify pressure or eviction. Correlate timestamps instead of treating either as sole proof.",
+      "references": [
+        {
+          "title": "Deployments",
+          "url": "https://kubernetes.io/docs/concepts/workloads/controllers/deployment/"
+        }
+      ],
+      "tags": [
+        "incident",
+        "diagnostics"
+      ]
+    },
+    {
+      "id": "k8s-h-16",
+      "level": "hard",
+      "topic": "kubernetes",
+      "type": "multi-select",
+      "title": "Reduce RBAC blast radius",
+      "question": "Select the TWO changes most likely to reduce blast radius from a compromised workload ServiceAccount.",
+      "objective": "Reduce RBAC blast radius: identify the correct Kubernetes behaviour, command or operational response.",
+      "options": [
+        "Replace wildcards with required verbs/resources",
+        "Prefer namespace-scoped Roles/RoleBindings where possible",
+        "Grant cluster-admin after each restart",
+        "Use a namespace name instead of reviewing effective permissions"
+      ],
+      "correct": [
+        0,
+        1
+      ],
+      "explanation": "Specific verbs/resources and scoped grants limit access. Namespace names do not replace review of effective permissions or impersonation paths.",
+      "takeaway": "Remember: reduce rbac blast radius — Specific verbs/resources and scoped grants limit access. Namespace names do not replace review of effective permissions or impersonation paths.",
+      "references": [
+        {
+          "title": "RBAC good practices",
+          "url": "https://kubernetes.io/docs/concepts/security/rbac-good-practices/"
+        }
+      ],
+      "tags": [
+        "rbac",
+        "audit"
+      ]
+    },
+    {
+      "id": "k8s-h-17",
+      "level": "hard",
+      "topic": "kubernetes",
+      "type": "trade-off",
+      "title": "Surge capacity versus quota",
+      "question": "A release requires zero unavailable replicas, but quota allows only the steady-state Pod count. What trade-off must be resolved for rolling update?",
+      "objective": "Surge capacity versus quota: identify the correct Kubernetes behaviour, command or operational response.",
+      "options": [
+        "Provide temporary quota/capacity headroom or assess another strategy; these requirements may not fit together",
+        "Raise maxSurge above quota because admission is bypassed",
+        "Set maxUnavailable zero and expect no new Pods",
+        "Delete old Pods first and call it rolling update"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "A zero-unavailable rollout may need surge Pods. If quota blocks creation, rollout stalls; changing strategy may trade availability for capacity and needs explicit assessment.",
+      "takeaway": "Remember: surge capacity versus quota — A zero-unavailable rollout may need surge Pods. If quota blocks creation, rollout stalls; changing strategy may trade availability for capacity and needs explicit assessment.",
+      "references": [
+        {
+          "title": "Deployments",
+          "url": "https://kubernetes.io/docs/concepts/workloads/controllers/deployment/"
+        }
+      ],
+      "tags": [
+        "deployment",
+        "capacity"
+      ]
+    },
+    {
+      "id": "k8s-h-18",
+      "level": "hard",
+      "topic": "kubernetes",
+      "type": "trade-off",
+      "title": "Security policy migration",
+      "question": "Workloads fail when Pod Security Admission changes to enforce Restricted. What is the safest rollout approach for a fleet?",
+      "objective": "Security policy migration: identify the correct Kubernetes behaviour, command or operational response.",
+      "options": [
+        "Inventory violations, remediate, validate namespaces and increase enforcement in stages",
+        "Disable all admission controls immediately",
+        "Assume running Pods will always terminate on label change",
+        "Grant privileged access to every workload"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "Enforcement can reject violating create/update requests. Audit violations, validate workload changes and progressively enforce to preserve deployment/remediation paths.",
+      "takeaway": "Remember: security policy migration — Enforcement can reject violating create/update requests. Audit violations, validate workload changes and progressively enforce to preserve deployment/remediation paths.",
+      "references": [
+        {
+          "title": "Pod Security Standards",
+          "url": "https://kubernetes.io/docs/concepts/security/pod-security-standards/"
+        }
+      ],
+      "tags": [
+        "security",
+        "rollout"
+      ]
+    },
+    {
+      "id": "k8s-h-19",
+      "level": "hard",
+      "topic": "kubernetes",
+      "type": "trade-off",
+      "title": "Default-deny policy design",
+      "question": "A team applies default-deny ingress and egress. What should prevent accidental blockage of required traffic?",
+      "objective": "Default-deny policy design: identify the correct Kubernetes behaviour, command or operational response.",
+      "options": [
+        "Explicitly model and test needed flows including DNS and dependency access",
+        "Assume default-deny affects only internet traffic",
+        "Add NodePort to bypass Pod policies",
+        "Use hostNetwork for every Pod"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "Default-deny may block DNS and required Service traffic until matching rules allow it; enforcement and selectors depend on plugin and policy configuration.",
+      "takeaway": "Remember: default-deny policy design — Default-deny may block DNS and required Service traffic until matching rules allow it; enforcement and selectors depend on plugin and policy configuration.",
+      "references": [
+        {
+          "title": "Network Policies",
+          "url": "https://kubernetes.io/docs/concepts/services-networking/network-policies/"
+        }
+      ],
+      "tags": [
+        "networkpolicy",
+        "security"
+      ]
+    },
+    {
+      "id": "k8s-h-20",
+      "level": "hard",
+      "topic": "kubernetes",
+      "type": "scenario",
+      "title": "Investigate API audit record",
+      "question": "A security team needs to establish which API identity made a sensitive change and what request was recorded. Which capability records API server activity under configured policy?",
+      "objective": "Investigate API audit record: identify the correct Kubernetes behaviour, command or operational response.",
+      "options": [
+        "Kubernetes audit logging",
+        "PDB status",
+        "Readiness history",
+        "Deployment replica count"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "Audit policy can record identity, verb, resource and request/response metadata based on configured level; availability and retention depend on cluster settings.",
+      "takeaway": "Remember: investigate api audit record — Audit policy can record identity, verb, resource and request/response metadata based on configured level; availability and retention depend on cluster settings.",
+      "references": [
+        {
+          "title": "Auditing",
+          "url": "https://kubernetes.io/docs/tasks/debug/debug-cluster/audit/"
+        }
+      ],
+      "tags": [
+        "audit",
+        "security"
+      ]
+    },
+    {
+      "id": "k8s-h-21",
+      "level": "hard",
+      "topic": "kubernetes",
+      "type": "scenario",
+      "title": "Dependent object remains",
+      "question": "A dependent object remains after its owner is deleted. Which mechanism can affect when the dependent is removed?",
+      "objective": "Dependent object remains: identify the correct Kubernetes behaviour, command or operational response.",
+      "options": [
+        "Owner references, garbage-collection propagation policy and finalizers",
+        "Service port naming alone",
+        "Readiness probe success count",
+        "HPA target utilization"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "Garbage collection follows owner references and propagation policy; finalizers may delay removal, so inspect ownership and cleanup behavior.",
+      "takeaway": "Remember: dependent object remains — Garbage collection follows owner references and propagation policy; finalizers may delay removal, so inspect ownership and cleanup behavior.",
+      "references": [
+        {
+          "title": "Garbage collection",
+          "url": "https://kubernetes.io/docs/concepts/architecture/garbage-collection/"
+        }
+      ],
+      "tags": [
+        "garbage-collection",
+        "cleanup"
+      ]
+    },
+    {
+      "id": "k8s-h-22",
+      "level": "hard",
+      "topic": "kubernetes",
+      "type": "scenario",
+      "title": "Node NotReady availability",
+      "question": "A node becomes NotReady after a network partition. Which expectation is most accurate for affected Pods?",
+      "objective": "Node NotReady availability: identify the correct Kubernetes behaviour, command or operational response.",
+      "options": [
+        "Node lifecycle handling governs marking/eviction; replacement is not instant process migration",
+        "Every Pod moves instantly with process memory intact",
+        "A PDB prevents the node becoming NotReady",
+        "Changing Service type repairs node heartbeats"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "Failure handling depends on detection, taints, eviction, controllers and budgets. A process does not move to another node with its memory intact.",
+      "takeaway": "Remember: node notready availability — Failure handling depends on detection, taints, eviction, controllers and budgets. A process does not move to another node with its memory intact.",
+      "references": [
+        {
+          "title": "Nodes",
+          "url": "https://kubernetes.io/docs/concepts/architecture/nodes/"
+        }
+      ],
+      "tags": [
+        "nodes",
+        "availability"
+      ]
+    },
+    {
+      "id": "k8s-h-23",
+      "level": "hard",
+      "topic": "kubernetes",
+      "type": "scenario",
+      "title": "Endpoint transition during termination",
+      "question": "A Service has endpoint records, but requests fail while old Pods terminate. What should be reviewed beyond endpoint existence?",
+      "objective": "Endpoint transition during termination: identify the correct Kubernetes behaviour, command or operational response.",
+      "options": [
+        "Endpoint conditions, graceful shutdown, readiness and connection draining",
+        "Only the Service ClusterIP",
+        "ConfigMap key order",
+        "HPA minimum replica count alone"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "Endpoint transitions interact with readiness, shutdown and client connections; an endpoint record does not prove requests drain cleanly.",
+      "takeaway": "Remember: endpoint transition during termination — Endpoint transitions interact with readiness, shutdown and client connections; an endpoint record does not prove requests drain cleanly.",
+      "references": [
+        {
+          "title": "Pod lifecycle",
+          "url": "https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/"
+        }
+      ],
+      "tags": [
+        "endpoints",
+        "termination"
+      ]
+    },
+    {
+      "id": "k8s-h-24",
+      "level": "hard",
+      "topic": "kubernetes",
+      "type": "trade-off",
+      "title": "CronJob concurrency policy",
+      "question": "A scheduled reconciliation sometimes runs longer than its interval. Which CronJob policy skips the next run while the prior Job is still running?",
+      "objective": "CronJob concurrency policy: identify the correct Kubernetes behaviour, command or operational response.",
+      "options": [
+        "Forbid",
+        "Allow",
+        "Replace",
+        "SuspendForever"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "CronJob `Forbid` skips a scheduled Job while the prior Job is running; `Allow` permits overlap and `Replace` terminates the current Job in favour of the new one.",
+      "takeaway": "Remember: cronjob concurrency policy — CronJob `Forbid` skips a scheduled Job while the prior Job is running; `Allow` permits overlap and `Replace` terminates the current Job in favour of the new one.",
+      "references": [
+        {
+          "title": "CronJobs",
+          "url": "https://kubernetes.io/docs/concepts/workloads/controllers/cron-jobs/"
+        }
+      ],
+      "tags": [
+        "cronjob",
+        "batch"
+      ]
+    },
+    {
+      "id": "k8s-h-25",
+      "level": "hard",
+      "topic": "kubernetes",
+      "type": "scenario",
+      "title": "Resource metrics API unavailable",
+      "question": "`kubectl top pods` fails, but traffic is healthy and Prometheus still shows application metrics. What distinction should be investigated?",
+      "objective": "Resource metrics API unavailable: identify the correct Kubernetes behaviour, command or operational response.",
+      "options": [
+        "The resource metrics API used by kubectl top may fail independently of app metrics collection",
+        "The Service has no endpoints because top failed",
+        "Deployments cannot run without metrics API",
+        "CoreDNS must be stale"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "`kubectl top` depends on the resource metrics API, while application monitoring may use another pipeline. Diagnose the APIService/metrics path rather than inferring app health.",
+      "takeaway": "Remember: resource metrics api unavailable — `kubectl top` depends on the resource metrics API, while application monitoring may use another pipeline. Diagnose the APIService/metrics path rather than inferring app health.",
+      "references": [
+        {
+          "title": "Resource metrics pipeline",
+          "url": "https://kubernetes.io/docs/tasks/debug/debug-cluster/resource-metrics-pipeline/"
+        }
+      ],
+      "tags": [
+        "metrics",
+        "observability"
+      ]
+    },
+    {
+      "id": "k8s-h-26",
+      "level": "hard",
+      "topic": "kubernetes",
+      "type": "concept",
+      "title": "Ephemeral debugging containers",
+      "question": "A minimal production container lacks a shell and diagnostic tools. Which feature can add a temporary debugging container to an existing Pod context?",
+      "objective": "Ephemeral debugging containers: identify the correct Kubernetes behaviour, command or operational response.",
+      "options": [
+        "Ephemeral containers",
+        "Init containers added to a live Pod spec",
+        "ServiceAccount token rotation",
+        "A new Deployment with hostNetwork"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "Ephemeral containers support targeted troubleshooting of running Pods but have limitations and should follow security/audit controls.",
+      "takeaway": "Remember: ephemeral debugging containers — Ephemeral containers support targeted troubleshooting of running Pods but have limitations and should follow security/audit controls.",
+      "references": [
+        {
+          "title": "Ephemeral containers",
+          "url": "https://kubernetes.io/docs/concepts/workloads/pods/ephemeral-containers/"
+        }
+      ],
+      "tags": [
+        "debugging",
+        "containers"
+      ]
+    },
+    {
+      "id": "k8s-h-27",
+      "level": "hard",
+      "topic": "kubernetes",
+      "type": "scenario",
+      "title": "Persistent volume expansion",
+      "question": "A PVC's requested capacity needs to increase. What must be verified before attempting in-place expansion?",
+      "objective": "Persistent volume expansion: identify the correct Kubernetes behaviour, command or operational response.",
+      "options": [
+        "StorageClass/provisioner support and backend/filesystem constraints",
+        "Whether Service DNS is headless",
+        "Whether Deployment uses Recreate",
+        "Whether Pod has a startup probe"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "PVC expansion depends on StorageClass/provisioner and storage backend capabilities; filesystem expansion and restart needs vary by volume type.",
+      "takeaway": "Remember: persistent volume expansion — PVC expansion depends on StorageClass/provisioner and storage backend capabilities; filesystem expansion and restart needs vary by volume type.",
+      "references": [
+        {
+          "title": "Storage classes",
+          "url": "https://kubernetes.io/docs/concepts/storage/storage-classes/"
+        }
+      ],
+      "tags": [
+        "storage",
+        "capacity"
+      ]
+    },
+    {
+      "id": "k8s-h-28",
+      "level": "hard",
+      "topic": "kubernetes",
+      "type": "trade-off",
+      "title": "Audit verbosity and sensitive data",
+      "question": "A team increases audit logging to capture request bodies for sensitive resources. What is a key trade-off?",
+      "objective": "Audit verbosity and sensitive data: identify the correct Kubernetes behaviour, command or operational response.",
+      "options": [
+        "More forensic detail can increase log volume and risk storing sensitive fields",
+        "Audit policies redact every Secret in every backend",
+        "A larger audit log changes RBAC decisions",
+        "Audit logging replaces encryption at rest"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "Higher audit levels can capture request/response bodies depending on policy, improving investigations while increasing volume and possible sensitive-data retention.",
+      "takeaway": "Remember: audit verbosity and sensitive data — Higher audit levels can capture request/response bodies depending on policy, improving investigations while increasing volume and possible sensitive-data retention.",
+      "references": [
+        {
+          "title": "Auditing",
+          "url": "https://kubernetes.io/docs/tasks/debug/debug-cluster/audit/"
+        }
+      ],
+      "tags": [
+        "audit",
+        "security"
+      ]
+    },
+    {
+      "id": "k8s-h-29",
+      "level": "hard",
+      "topic": "kubernetes",
+      "type": "scenario",
+      "title": "Secret volume mount failure",
+      "question": "A Pod cannot mount a Secret volume although a Secret with that name exists. What should be checked next?",
+      "objective": "Secret volume mount failure: identify the correct Kubernetes behaviour, command or operational response.",
+      "options": [
+        "Secret namespace/name, Pod Events, volume mounts and referenced keys",
+        "Public Ingress hostname first",
+        "Topology spread skew only",
+        "Whether Service port equals a Secret key"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "Secrets are namespaced and the Pod must reference the right object, key and volume setup. Pod Events often report missing references or mount errors.",
+      "takeaway": "Remember: secret volume mount failure — Secrets are namespaced and the Pod must reference the right object, key and volume setup. Pod Events often report missing references or mount errors.",
+      "references": [
+        {
+          "title": "Secrets",
+          "url": "https://kubernetes.io/docs/concepts/configuration/secret/"
+        }
+      ],
+      "tags": [
+        "secrets",
+        "volumes"
+      ]
+    },
+    {
+      "id": "k8s-h-30",
+      "level": "hard",
+      "topic": "kubernetes",
+      "type": "command",
+      "title": "Investigate admission rejection",
+      "question": "A workload request is rejected by policy before a Pod is created. Which evidence should you collect first?",
+      "objective": "Investigate admission rejection: identify the correct Kubernetes behaviour, command or operational response.",
+      "options": [
+        "API error message and relevant admission policy/controller configuration",
+        "Container stdout from the rejected Pod",
+        "Liveness probe history",
+        "Service endpoint latency"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "Admission rejection is returned by the API request and may identify the policy or validation issue. If no Pod exists, runtime logs and probes cannot explain it.",
+      "takeaway": "Remember: investigate admission rejection — Admission rejection is returned by the API request and may identify the policy or validation issue. If no Pod exists, runtime logs and probes cannot explain it.",
+      "references": [
+        {
+          "title": "Admission controllers",
+          "url": "https://kubernetes.io/docs/reference/access-authn-authz/admission-controllers/"
+        }
+      ],
+      "tags": [
+        "admission",
+        "troubleshooting"
+      ]
+    }
+  ]
+}
+

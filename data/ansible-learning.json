@@ -5,26 +5,27 @@
       "id": "ansible-lesson-01",
       "topic": "ansible",
       "title": "Inventory",
-      "summary": "What does an Ansible inventory describe? Managed hosts and their grouping or connection data.",
+      "summary": "Ansible inventory defines managed hosts, groups and associated connection or variable data.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "Ansible inventory defines managed hosts, groups and associated connection or variable data."
+        },
+        {
           "heading": "How it works",
-          "body": "Inventory selection determines the potential execution scope."
-        },
-        {
-          "heading": "Apply it",
-          "body": "A production play unexpectedly targets a staging group too. Inspect inventory groups and the resolved host pattern before execution."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "It is a list of Docker image layers. This is not a sound assumption; managed hosts and their grouping or connection data."
+          "body": "Static files and dynamic plugins provide targets. Group membership influences variable resolution and play selection. Inspect the resolved inventory before a fleet-wide action so an unexpected group cannot broaden the target set."
         }
       ],
-      "takeaway": "Inventory selection determines the potential execution scope.",
+      "command": "ansible-inventory -i inventory.yml --graph",
+      "takeaway": "Static files and dynamic plugins provide targets. Group membership influences variable resolution and play selection. Inspect the resolved inventory before a fleet-wide action so an unexpected group cannot broaden the target set.",
       "references": [
         {
-          "title": "Inventory \u2014 primary reference",
+          "title": "Inventory \u2014 primary documentation",
           "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
+        },
+        {
+          "title": "Related command \u2014 primary documentation",
+          "url": "https://docs.ansible.com/ansible/latest/command_guide/command_line_tools.html"
         }
       ]
     },
@@ -32,26 +33,27 @@
       "id": "ansible-lesson-02",
       "topic": "ansible",
       "title": "Playbooks",
-      "summary": "What does a playbook organize? Plays mapping tasks and roles to target hosts.",
+      "summary": "A playbook describes plays that apply ordered tasks to selected hosts.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "A playbook describes plays that apply ordered tasks to selected hosts."
+        },
+        {
           "heading": "How it works",
-          "body": "Task order and conditions affect execution behavior."
-        },
-        {
-          "heading": "Apply it",
-          "body": "A task intended for web servers runs on database hosts. Correct the play's host selection and verify the resolved list."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "It is only a database of passwords. This is not a sound assumption; plays mapping tasks and roles to target hosts."
+          "body": "Each play establishes hosts, variables and execution settings; tasks invoke modules. Execution can vary with conditions, handlers and failure strategy. Read the target list and task order before assuming a playbook affects only one service."
         }
       ],
-      "takeaway": "Task order and conditions affect execution behavior.",
+      "command": "ansible-playbook -i inventory.yml site.yml --list-tasks",
+      "takeaway": "Each play establishes hosts, variables and execution settings; tasks invoke modules. Execution can vary with conditions, handlers and failure strategy. Read the target list and task order before assuming a playbook affects only one service.",
       "references": [
         {
-          "title": "Playbooks \u2014 primary reference",
+          "title": "Playbooks \u2014 primary documentation",
           "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
+        },
+        {
+          "title": "Related command \u2014 primary documentation",
+          "url": "https://docs.ansible.com/ansible/latest/command_guide/command_line_tools.html"
         }
       ]
     },
@@ -59,26 +61,27 @@
       "id": "ansible-lesson-03",
       "topic": "ansible",
       "title": "Modules",
-      "summary": "Why prefer purpose-built modules over shell commands? Modules often model desired state and support idempotent behavior.",
+      "summary": "Modules implement individual operations such as managing packages, files or services.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "Modules implement individual operations such as managing packages, files or services."
+        },
+        {
           "heading": "How it works",
-          "body": "Module documentation defines supported parameters and return values."
-        },
-        {
-          "heading": "Apply it",
-          "body": "A shell task appends the same configuration line on every run. Use an appropriate declarative file or configuration module."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "Every shell command is automatically idempotent. This is not a sound assumption; modules often model desired state and support idempotent behavior."
+          "body": "Purpose-built modules often understand desired state and report meaningful changes better than shell commands. Their check-mode and diff support varies. Use module documentation to understand required parameters and side effects."
         }
       ],
-      "takeaway": "Module documentation defines supported parameters and return values.",
+      "command": "ansible-doc ansible.builtin.copy",
+      "takeaway": "Purpose-built modules often understand desired state and report meaningful changes better than shell commands. Their check-mode and diff support varies. Use module documentation to understand required parameters and side effects.",
       "references": [
         {
-          "title": "Modules \u2014 primary reference",
+          "title": "Modules \u2014 primary documentation",
           "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
+        },
+        {
+          "title": "Related command \u2014 primary documentation",
+          "url": "https://docs.ansible.com/ansible/latest/command_guide/command_line_tools.html"
         }
       ]
     },
@@ -86,25 +89,22 @@
       "id": "ansible-lesson-04",
       "topic": "ansible",
       "title": "Idempotence",
-      "summary": "What does idempotence mean for a configuration task? Repeated execution can preserve the already-correct desired state.",
+      "summary": "Idempotence means repeating automation with the same desired state should not produce additional unintended changes.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "Idempotence means repeating automation with the same desired state should not produce additional unintended changes."
+        },
+        {
           "heading": "How it works",
-          "body": "A no-change run is useful evidence but not a complete correctness proof."
-        },
-        {
-          "heading": "Apply it",
-          "body": "A second identical run still recreates an unchanged configuration file. Inspect task behavior and use state-aware operations."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "An idempotent task must execute exactly once forever. This is not a sound assumption; repeated execution can preserve the already-correct desired state."
+          "body": "Modules compare actual state with requested state where possible. A shell command that always appends a line is not idempotent. Test a second run and inspect changed results rather than treating a successful first run as sufficient."
         }
       ],
-      "takeaway": "A no-change run is useful evidence but not a complete correctness proof.",
+      "command": "",
+      "takeaway": "Modules compare actual state with requested state where possible. A shell command that always appends a line is not idempotent. Test a second run and inspect changed results rather than treating a successful first run as sufficient.",
       "references": [
         {
-          "title": "Idempotence \u2014 primary reference",
+          "title": "Idempotence \u2014 primary documentation",
           "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
         }
       ]
@@ -113,25 +113,22 @@
       "id": "ansible-lesson-05",
       "topic": "ansible",
       "title": "Become",
-      "summary": "What does become enable? Privilege escalation for selected operations.",
+      "summary": "Privilege escalation lets Ansible perform selected tasks as another user through mechanisms such as sudo.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "Privilege escalation lets Ansible perform selected tasks as another user through mechanisms such as sudo."
+        },
+        {
           "heading": "How it works",
-          "body": "Escalation should be scoped to tasks that need it."
-        },
-        {
-          "heading": "Apply it",
-          "body": "A task needs root only to install one package. Scope privilege escalation and use the package module."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "It automatically encrypts all variables. This is not a sound assumption; privilege escalation for selected operations."
+          "body": "The SSH connection user and become user are distinct. Apply escalation only where needed and verify the target policy. Broad root execution can hide ownership mistakes and increase the impact of incorrect inventory."
         }
       ],
-      "takeaway": "Escalation should be scoped to tasks that need it.",
+      "command": "",
+      "takeaway": "The SSH connection user and become user are distinct. Apply escalation only where needed and verify the target policy. Broad root execution can hide ownership mistakes and increase the impact of incorrect inventory.",
       "references": [
         {
-          "title": "Become \u2014 primary reference",
+          "title": "Become \u2014 primary documentation",
           "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
         }
       ]
@@ -140,25 +137,22 @@
       "id": "ansible-lesson-06",
       "topic": "ansible",
       "title": "Variables",
-      "summary": "What is an important property of Ansible variables? Values can come from multiple sources with precedence rules.",
+      "summary": "Variables parameterize tasks, templates and roles.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "Variables parameterize tasks, templates and roles."
+        },
+        {
           "heading": "How it works",
-          "body": "Unexpected values should be traced to their actual source."
-        },
-        {
-          "heading": "Apply it",
-          "body": "A host uses a different port than its role default. Inspect higher-precedence inventory and runtime overrides."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "The last alphabetic variable name always wins. This is not a sound assumption; values can come from multiple sources with precedence rules."
+          "body": "Values can come from inventory, playbooks, roles and runtime inputs with defined precedence. Unexpected overrides often explain environment-specific behavior. Keep sources clear and avoid relying on obscure precedence to encode critical production differences."
         }
       ],
-      "takeaway": "Unexpected values should be traced to their actual source.",
+      "command": "",
+      "takeaway": "Values can come from inventory, playbooks, roles and runtime inputs with defined precedence. Unexpected overrides often explain environment-specific behavior. Keep sources clear and avoid relying on obscure precedence to encode critical production differences.",
       "references": [
         {
-          "title": "Variables \u2014 primary reference",
+          "title": "Variables \u2014 primary documentation",
           "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
         }
       ]
@@ -167,26 +161,27 @@
       "id": "ansible-lesson-07",
       "topic": "ansible",
       "title": "Facts",
-      "summary": "What are gathered facts typically used for? Discover host characteristics for conditional automation.",
+      "summary": "Facts describe information gathered from managed hosts, such as operating system and network details.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "Facts describe information gathered from managed hosts, such as operating system and network details."
+        },
+        {
           "heading": "How it works",
-          "body": "Facts can become stale if cached beyond relevant changes."
-        },
-        {
-          "heading": "Apply it",
-          "body": "A cached operating-system fact no longer matches a rebuilt host. Refresh relevant facts and inspect cache policy."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "Facts are always a live view of every host property. This is not a sound assumption; discover host characteristics for conditional automation."
+          "body": "Fact gathering invokes setup or other collectors and can add overhead. Cached facts may become stale. Use facts for supported platform branching, but verify assumptions before destructive storage or network changes."
         }
       ],
-      "takeaway": "Facts can become stale if cached beyond relevant changes.",
+      "command": "ansible localhost -m ansible.builtin.setup -a 'filter=ansible_distribution'",
+      "takeaway": "Fact gathering invokes setup or other collectors and can add overhead. Cached facts may become stale. Use facts for supported platform branching, but verify assumptions before destructive storage or network changes.",
       "references": [
         {
-          "title": "Facts \u2014 primary reference",
+          "title": "Facts \u2014 primary documentation",
           "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
+        },
+        {
+          "title": "Related command \u2014 primary documentation",
+          "url": "https://docs.ansible.com/ansible/latest/command_guide/command_line_tools.html"
         }
       ]
     },
@@ -194,25 +189,22 @@
       "id": "ansible-lesson-08",
       "topic": "ansible",
       "title": "Handlers",
-      "summary": "When are notified handlers normally run? At defined handler execution points after notifying changes.",
+      "summary": "Handlers run actions notified by tasks that report changes.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "Handlers run actions notified by tasks that report changes."
+        },
+        {
           "heading": "How it works",
-          "body": "Multiple notifications can coalesce into one handler execution."
-        },
-        {
-          "heading": "Apply it",
-          "body": "Three configuration tasks require one service restart. Notify a shared handler and verify the restart timing."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "Every handler runs after every task unconditionally. This is not a sound assumption; at defined handler execution points after notifying changes."
+          "body": "They usually run at defined flush points and coalesce repeated notifications. This makes a single restart possible after several configuration updates. Failure behavior and force-handlers settings affect whether a notified handler eventually runs."
         }
       ],
-      "takeaway": "Multiple notifications can coalesce into one handler execution.",
+      "command": "",
+      "takeaway": "They usually run at defined flush points and coalesce repeated notifications. This makes a single restart possible after several configuration updates. Failure behavior and force-handlers settings affect whether a notified handler eventually runs.",
       "references": [
         {
-          "title": "Handlers \u2014 primary reference",
+          "title": "Handlers \u2014 primary documentation",
           "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
         }
       ]
@@ -221,26 +213,27 @@
       "id": "ansible-lesson-09",
       "topic": "ansible",
       "title": "Check mode",
-      "summary": "What is a limitation of Ansible check mode? Support and predictive accuracy depend on the module and task.",
+      "summary": "Check mode asks supported modules to predict changes without applying them.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "Check mode asks supported modules to predict changes without applying them."
+        },
+        {
           "heading": "How it works",
-          "body": "A dry run does not prove every runtime side effect is safe."
-        },
-        {
-          "heading": "Apply it",
-          "body": "A task depends on output from a command skipped in check mode. Review check-mode support and test safely in a representative environment."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "Check mode guarantees an exact simulation of every shell command. This is not a sound assumption; support and predictive accuracy depend on the module and task."
+          "body": "Not every module supports prediction, and tasks depending on registered results can behave differently. It is a planning aid, not proof that a real run is harmless. Validate in an isolated representative environment as well."
         }
       ],
-      "takeaway": "A dry run does not prove every runtime side effect is safe.",
+      "command": "ansible-playbook -i inventory.yml site.yml --check",
+      "takeaway": "Not every module supports prediction, and tasks depending on registered results can behave differently. It is a planning aid, not proof that a real run is harmless. Validate in an isolated representative environment as well.",
       "references": [
         {
-          "title": "Check mode \u2014 primary reference",
+          "title": "Check mode \u2014 primary documentation",
           "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
+        },
+        {
+          "title": "Related command \u2014 primary documentation",
+          "url": "https://docs.ansible.com/ansible/latest/command_guide/command_line_tools.html"
         }
       ]
     },
@@ -248,26 +241,27 @@
       "id": "ansible-lesson-10",
       "topic": "ansible",
       "title": "Diff mode",
-      "summary": "Why use diff output carefully? It can reveal sensitive configuration content.",
+      "summary": "Diff mode displays supported before-and-after changes, especially for text files.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "Diff mode displays supported before-and-after changes, especially for text files."
+        },
+        {
           "heading": "How it works",
-          "body": "Secret-bearing tasks may need protected output and no_log."
-        },
-        {
-          "heading": "Apply it",
-          "body": "A template diff shows credentials in CI logs. Suppress sensitive output and review exposure and credential rotation."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "Diff output can never contain secrets. This is not a sound assumption; it can reveal sensitive configuration content."
+          "body": "It makes configuration review easier but can expose secrets in templates or file contents. Combine it with check mode where supported and disable diff for sensitive tasks. A diff shows proposed bytes, not application validity."
         }
       ],
-      "takeaway": "Secret-bearing tasks may need protected output and no_log.",
+      "command": "ansible-playbook -i inventory.yml site.yml --check --diff",
+      "takeaway": "It makes configuration review easier but can expose secrets in templates or file contents. Combine it with check mode where supported and disable diff for sensitive tasks. A diff shows proposed bytes, not application validity.",
       "references": [
         {
-          "title": "Diff mode \u2014 primary reference",
+          "title": "Diff mode \u2014 primary documentation",
           "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
+        },
+        {
+          "title": "Related command \u2014 primary documentation",
+          "url": "https://docs.ansible.com/ansible/latest/command_guide/command_line_tools.html"
         }
       ]
     },
@@ -275,26 +269,27 @@
       "id": "ansible-lesson-11",
       "topic": "ansible",
       "title": "Vault",
-      "summary": "What does Ansible Vault protect? Encrypted content at rest when properly managed.",
+      "summary": "Ansible Vault encrypts selected files or variable values at rest.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "Ansible Vault encrypts selected files or variable values at rest."
+        },
+        {
           "heading": "How it works",
-          "body": "Decrypted values can still leak through task output or external systems."
-        },
-        {
-          "heading": "Apply it",
-          "body": "An encrypted secret is printed by a debug task. Remove the disclosure and protect runtime logging."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "Vault prevents every runtime secret exposure. This is not a sound assumption; encrypted content at rest when properly managed."
+          "body": "Authorized execution decrypts values for use, so logs and generated files still need protection. Separate vault credentials from encrypted data and scope access by environment. Encryption does not replace least privilege on target systems."
         }
       ],
-      "takeaway": "Decrypted values can still leak through task output or external systems.",
+      "command": "ansible-vault view secrets.yml",
+      "takeaway": "Authorized execution decrypts values for use, so logs and generated files still need protection. Separate vault credentials from encrypted data and scope access by environment. Encryption does not replace least privilege on target systems.",
       "references": [
         {
-          "title": "Vault \u2014 primary reference",
+          "title": "Vault \u2014 primary documentation",
           "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
+        },
+        {
+          "title": "Related command \u2014 primary documentation",
+          "url": "https://docs.ansible.com/ansible/latest/command_guide/command_line_tools.html"
         }
       ]
     },
@@ -302,25 +297,22 @@
       "id": "ansible-lesson-12",
       "topic": "ansible",
       "title": "Templates",
-      "summary": "What does a Jinja template allow? Render configuration from variables and expressions.",
+      "summary": "Templates render configuration files using variables and Jinja expressions.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "Templates render configuration files using variables and Jinja expressions."
+        },
+        {
           "heading": "How it works",
-          "body": "Rendered configuration should be validated before service activation."
-        },
-        {
-          "heading": "Apply it",
-          "body": "A rendered web-server configuration has invalid syntax. Validate the candidate configuration before replacing or reloading it."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "Templates guarantee valid syntax for every target service. This is not a sound assumption; render configuration from variables and expressions."
+          "body": "The template module compares rendered output with the destination and can notify handlers on change. Validate generated syntax before replacing a working configuration. Avoid embedding environment-specific secrets in broadly readable artifacts."
         }
       ],
-      "takeaway": "Rendered configuration should be validated before service activation.",
+      "command": "",
+      "takeaway": "The template module compares rendered output with the destination and can notify handlers on change. Validate generated syntax before replacing a working configuration. Avoid embedding environment-specific secrets in broadly readable artifacts.",
       "references": [
         {
-          "title": "Templates \u2014 primary reference",
+          "title": "Templates \u2014 primary documentation",
           "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
         }
       ]
@@ -329,25 +321,22 @@
       "id": "ansible-lesson-13",
       "topic": "ansible",
       "title": "Roles",
-      "summary": "What does an Ansible role package? Related tasks defaults handlers and supporting files.",
+      "summary": "Roles organize reusable tasks, handlers, defaults, variables and files.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "Roles organize reusable tasks, handlers, defaults, variables and files."
+        },
+        {
           "heading": "How it works",
-          "body": "Roles benefit from explicit interfaces and limited assumptions."
-        },
-        {
-          "heading": "Apply it",
-          "body": "A shared role requires undocumented variables and breaks callers. Document defaults and required inputs and test representative callers."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "A role is necessarily a separate remote user account. This is not a sound assumption; related tasks defaults handlers and supporting files."
+          "body": "They provide a conventional structure and an interface through variables. Keep dependencies and assumptions documented so the role can be tested independently. A role should not silently change unrelated system settings."
         }
       ],
-      "takeaway": "Roles benefit from explicit interfaces and limited assumptions.",
+      "command": "",
+      "takeaway": "They provide a conventional structure and an interface through variables. Keep dependencies and assumptions documented so the role can be tested independently. A role should not silently change unrelated system settings.",
       "references": [
         {
-          "title": "Roles \u2014 primary reference",
+          "title": "Roles \u2014 primary documentation",
           "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
         }
       ]
@@ -356,26 +345,27 @@
       "id": "ansible-lesson-14",
       "topic": "ansible",
       "title": "Collections",
-      "summary": "What is an Ansible collection used for? Distribute related modules plugins and roles.",
+      "summary": "Collections package modules, plugins, roles and documentation under a namespace.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "Collections package modules, plugins, roles and documentation under a namespace."
+        },
+        {
           "heading": "How it works",
-          "body": "Pinning tested collection versions helps reproducibility."
-        },
-        {
-          "heading": "Apply it",
-          "body": "CI fails because a module collection is absent on a clean runner. Declare and install versioned collection requirements."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "Collections are always included in every ansible-core installation. This is not a sound assumption; distribute related modules plugins and roles."
+          "body": "Versioned collection requirements make controller environments reproducible. Pin and review updates because module behavior can change. The controller's installed collection version is part of the automation's effective implementation."
         }
       ],
-      "takeaway": "Pinning tested collection versions helps reproducibility.",
+      "command": "ansible-galaxy collection list",
+      "takeaway": "Versioned collection requirements make controller environments reproducible. Pin and review updates because module behavior can change. The controller's installed collection version is part of the automation's effective implementation.",
       "references": [
         {
-          "title": "Collections \u2014 primary reference",
+          "title": "Collections \u2014 primary documentation",
           "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
+        },
+        {
+          "title": "Related command \u2014 primary documentation",
+          "url": "https://docs.ansible.com/ansible/latest/command_guide/command_line_tools.html"
         }
       ]
     },
@@ -383,26 +373,27 @@
       "id": "ansible-lesson-15",
       "topic": "ansible",
       "title": "FQCNs",
-      "summary": "Why use fully qualified collection names for modules? Make the intended module namespace explicit.",
+      "summary": "A fully qualified collection name identifies a plugin or module by namespace and collection.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "A fully qualified collection name identifies a plugin or module by namespace and collection."
+        },
+        {
           "heading": "How it works",
-          "body": "Explicit names reduce ambiguity when collections overlap."
-        },
-        {
-          "heading": "Apply it",
-          "body": "Two collections provide similarly named modules. Use the intended collection namespace and verify its documentation."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "A fully qualified name automatically grants more privileges. This is not a sound assumption; make the intended module namespace explicit."
+          "body": "For example, ansible.builtin.copy explicitly selects the built-in copy module. Qualification avoids ambiguity when collections provide similarly named plugins and makes documentation lookup clearer."
         }
       ],
-      "takeaway": "Explicit names reduce ambiguity when collections overlap.",
+      "command": "ansible-doc ansible.builtin.service",
+      "takeaway": "For example, ansible.builtin.copy explicitly selects the built-in copy module. Qualification avoids ambiguity when collections provide similarly named plugins and makes documentation lookup clearer.",
       "references": [
         {
-          "title": "FQCNs \u2014 primary reference",
+          "title": "FQCNs \u2014 primary documentation",
           "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
+        },
+        {
+          "title": "Related command \u2014 primary documentation",
+          "url": "https://docs.ansible.com/ansible/latest/command_guide/command_line_tools.html"
         }
       ]
     },
@@ -410,25 +401,22 @@
       "id": "ansible-lesson-16",
       "topic": "ansible",
       "title": "Conditionals",
-      "summary": "What does a when expression control? Whether a task executes for a host based on a condition.",
+      "summary": "Conditionals decide whether a task runs for a host based on evaluated data.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "Conditionals decide whether a task runs for a host based on evaluated data."
+        },
+        {
           "heading": "How it works",
-          "body": "Conditions should use correctly typed and available values."
-        },
-        {
-          "heading": "Apply it",
-          "body": "A task unexpectedly runs because a string value was treated as truthy. Normalize input types and inspect the condition."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "It changes inventory membership permanently. This is not a sound assumption; whether a task executes for a host based on a condition."
+          "body": "when expressions can use facts, variables and registered results. Handle undefined values deliberately and avoid assuming string values behave like booleans. A skipped prerequisite may leave later tasks without the data they expect."
         }
       ],
-      "takeaway": "Conditions should use correctly typed and available values.",
+      "command": "",
+      "takeaway": "when expressions can use facts, variables and registered results. Handle undefined values deliberately and avoid assuming string values behave like booleans. A skipped prerequisite may leave later tasks without the data they expect.",
       "references": [
         {
-          "title": "Conditionals \u2014 primary reference",
+          "title": "Conditionals \u2014 primary documentation",
           "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
         }
       ]
@@ -437,25 +425,22 @@
       "id": "ansible-lesson-17",
       "topic": "ansible",
       "title": "Registered results",
-      "summary": "What does register capture? A task result for later use in the play.",
+      "summary": "A registered result stores a task's returned fields for later decisions.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "A registered result stores a task's returned fields for later decisions."
+        },
+        {
           "heading": "How it works",
-          "body": "Result fields depend on the module and execution outcome."
-        },
-        {
-          "heading": "Apply it",
-          "body": "A later task accesses stdout on a skipped result. Guard for skipped or missing result fields."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "Register stores a permanent system environment variable. This is not a sound assumption; a task result for later use in the play."
+          "body": "Return structures differ by module; command results often include rc, stdout and stderr. Inspect documented fields before writing conditions. A skipped task or failed command can produce a different result shape."
         }
       ],
-      "takeaway": "Result fields depend on the module and execution outcome.",
+      "command": "",
+      "takeaway": "Return structures differ by module; command results often include rc, stdout and stderr. Inspect documented fields before writing conditions. A skipped task or failed command can produce a different result shape.",
       "references": [
         {
-          "title": "Registered results \u2014 primary reference",
+          "title": "Registered results \u2014 primary documentation",
           "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
         }
       ]
@@ -464,25 +449,22 @@
       "id": "ansible-lesson-18",
       "topic": "ansible",
       "title": "Loops",
-      "summary": "Why choose loop variable names deliberately? Avoid variable collisions in nested or included tasks.",
+      "summary": "Loops apply a task to a sequence of items.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "Loops apply a task to a sequence of items."
+        },
+        {
           "heading": "How it works",
-          "body": "Loop results often require handling a collection of per-item results."
-        },
-        {
-          "heading": "Apply it",
-          "body": "An included task overwrites the outer item variable. Use loop_control with distinct variable names."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "A loop always executes on all hosts serially. This is not a sound assumption; avoid variable collisions in nested or included tasks."
+          "body": "Each item produces its own result, and registered loop output contains a results collection. Label loops to keep logs readable and avoid leaking secrets through item values. Repeated service restarts inside loops can often be replaced with a handler."
         }
       ],
-      "takeaway": "Loop results often require handling a collection of per-item results.",
+      "command": "",
+      "takeaway": "Each item produces its own result, and registered loop output contains a results collection. Label loops to keep logs readable and avoid leaking secrets through item values. Repeated service restarts inside loops can often be replaced with a handler.",
       "references": [
         {
-          "title": "Loops \u2014 primary reference",
+          "title": "Loops \u2014 primary documentation",
           "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
         }
       ]
@@ -491,25 +473,22 @@
       "id": "ansible-lesson-19",
       "topic": "ansible",
       "title": "Failure conditions",
-      "summary": "What does failed_when customize? The condition under which a task is considered failed.",
+      "summary": "failed_when defines which result should count as task failure.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "failed_when defines which result should count as task failure."
+        },
+        {
           "heading": "How it works",
-          "body": "Exit status and output semantics should guide failure criteria."
-        },
-        {
-          "heading": "Apply it",
-          "body": "A command returns a documented nonzero code for a harmless state. Define an explicit failure condition matching the command contract."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "It suppresses all future errors automatically. This is not a sound assumption; the condition under which a task is considered failed."
+          "body": "Some commands return nonzero statuses for expected conditions, while a zero status may still carry an invalid result. Express the application's actual failure rule. Broad ignore_errors can allow broken prerequisites to cascade into misleading later success."
         }
       ],
-      "takeaway": "Exit status and output semantics should guide failure criteria.",
+      "command": "",
+      "takeaway": "Some commands return nonzero statuses for expected conditions, while a zero status may still carry an invalid result. Express the application's actual failure rule. Broad ignore_errors can allow broken prerequisites to cascade into misleading later success.",
       "references": [
         {
-          "title": "Failure conditions \u2014 primary reference",
+          "title": "Failure conditions \u2014 primary documentation",
           "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
         }
       ]
@@ -518,25 +497,22 @@
       "id": "ansible-lesson-20",
       "topic": "ansible",
       "title": "Change reporting",
-      "summary": "What does changed_when customize? Whether a task reports that it changed state.",
+      "summary": "changed_when defines whether a task reports a state change.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "changed_when defines whether a task reports a state change."
+        },
+        {
           "heading": "How it works",
-          "body": "Accurate change reporting affects handler notifications."
-        },
-        {
-          "heading": "Apply it",
-          "body": "A read-only diagnostic command triggers a restart handler. Mark the diagnostic as unchanged when appropriate."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "It prevents the command from executing. This is not a sound assumption; whether a task reports that it changed state."
+          "body": "Accurate reporting drives handlers and helps detect drift. Marking every shell task unchanged hides real changes; marking every read-only task changed causes unnecessary restarts. Prefer state-aware modules and define custom conditions where necessary."
         }
       ],
-      "takeaway": "Accurate change reporting affects handler notifications.",
+      "command": "",
+      "takeaway": "Accurate reporting drives handlers and helps detect drift. Marking every shell task unchanged hides real changes; marking every read-only task changed causes unnecessary restarts. Prefer state-aware modules and define custom conditions where necessary.",
       "references": [
         {
-          "title": "Change reporting \u2014 primary reference",
+          "title": "Change reporting \u2014 primary documentation",
           "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
         }
       ]
@@ -545,25 +521,22 @@
       "id": "ansible-lesson-21",
       "topic": "ansible",
       "title": "Serial rollout",
-      "summary": "What does serial control in a play? The batch size of hosts processed through the play.",
+      "summary": "serial limits the number or percentage of hosts processed in each play batch.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "serial limits the number or percentage of hosts processed in each play batch."
+        },
+        {
           "heading": "How it works",
-          "body": "Batch size should reflect availability and failure-domain constraints."
-        },
-        {
-          "heading": "Apply it",
-          "body": "A fleet-wide restart would remove all serving capacity. Use bounded batches with health verification and stop criteria."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "It changes the number of CPU cores on each host. This is not a sound assumption; the batch size of hosts processed through the play."
+          "body": "Batching preserves capacity during maintenance and lets health gates stop expansion. Verify group size and failure thresholds before use. A batch size of one still needs meaningful validation between hosts."
         }
       ],
-      "takeaway": "Batch size should reflect availability and failure-domain constraints.",
+      "command": "",
+      "takeaway": "Batching preserves capacity during maintenance and lets health gates stop expansion. Verify group size and failure thresholds before use. A batch size of one still needs meaningful validation between hosts.",
       "references": [
         {
-          "title": "Serial rollout \u2014 primary reference",
+          "title": "Serial rollout \u2014 primary documentation",
           "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
         }
       ]
@@ -572,25 +545,22 @@
       "id": "ansible-lesson-22",
       "topic": "ansible",
       "title": "Delegation",
-      "summary": "What does delegate_to change? The host on which a task executes.",
+      "summary": "Delegation runs a task on a different host from the play's current target.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "Delegation runs a task on a different host from the play's current target."
+        },
+        {
           "heading": "How it works",
-          "body": "Variable and connection context need care with delegated tasks."
-        },
-        {
-          "heading": "Apply it",
-          "body": "A load-balancer update should run through a control endpoint. Delegate the specific operation and verify credentials and context."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "It permanently moves every later task to that host. This is not a sound assumption; the host on which a task executes."
+          "body": "It supports load-balancer operations or controller-side API calls while iterating application hosts. Variable and connection context need attention, and delegated tasks may still execute concurrently. Protect shared delegated resources from races."
         }
       ],
-      "takeaway": "Variable and connection context need care with delegated tasks.",
+      "command": "",
+      "takeaway": "It supports load-balancer operations or controller-side API calls while iterating application hosts. Variable and connection context need attention, and delegated tasks may still execute concurrently. Protect shared delegated resources from races.",
       "references": [
         {
-          "title": "Delegation \u2014 primary reference",
+          "title": "Delegation \u2014 primary documentation",
           "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
         }
       ]
@@ -599,25 +569,22 @@
       "id": "ansible-lesson-23",
       "topic": "ansible",
       "title": "Run once",
-      "summary": "What is a nuance of run_once with serial batches? Execution can occur once per batch rather than once for the whole inventory.",
+      "summary": "run_once schedules a task once for the applicable execution batch rather than for every host.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "run_once schedules a task once for the applicable execution batch rather than for every host."
+        },
+        {
           "heading": "How it works",
-          "body": "Global singleton actions need explicit design under batching."
-        },
-        {
-          "heading": "Apply it",
-          "body": "A migration unexpectedly repeats during a serial rollout. Review batch semantics and implement a deliberate singleton migration step."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "Run_once always means once across every possible play execution. This is not a sound assumption; execution can occur once per batch rather than once for the whole inventory."
+          "body": "With serial execution, it can run once per batch. Host-dependent conditions and variables may come from the selected host. Use a dedicated play or explicit coordination when an operation must occur exactly once across an entire deployment."
         }
       ],
-      "takeaway": "Global singleton actions need explicit design under batching.",
+      "command": "",
+      "takeaway": "With serial execution, it can run once per batch. Host-dependent conditions and variables may come from the selected host. Use a dedicated play or explicit coordination when an operation must occur exactly once across an entire deployment.",
       "references": [
         {
-          "title": "Run once \u2014 primary reference",
+          "title": "Run once \u2014 primary documentation",
           "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
         }
       ]
@@ -626,25 +593,22 @@
       "id": "ansible-lesson-24",
       "topic": "ansible",
       "title": "Blocks and rescue",
-      "summary": "What is a rescue block useful for? Handle qualifying task failures with recovery steps.",
+      "summary": "Blocks group tasks and attach shared settings, rescue handling and cleanup behavior.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "Blocks group tasks and attach shared settings, rescue handling and cleanup behavior."
+        },
+        {
           "heading": "How it works",
-          "body": "Recovery logic must still account for partial side effects."
-        },
-        {
-          "heading": "Apply it",
-          "body": "A deployment task fails after writing part of its configuration. Use explicit recovery and verify the resulting host state."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "Rescue automatically rolls back every previous change. This is not a sound assumption; handle qualifying task failures with recovery steps."
+          "body": "A rescue section can handle qualifying task failures; always can perform cleanup. Unreachable hosts and some invalid task definitions do not behave like ordinary task failures. Recovery must still verify whether partially applied changes remain."
         }
       ],
-      "takeaway": "Recovery logic must still account for partial side effects.",
+      "command": "",
+      "takeaway": "A rescue section can handle qualifying task failures; always can perform cleanup. Unreachable hosts and some invalid task definitions do not behave like ordinary task failures. Recovery must still verify whether partially applied changes remain.",
       "references": [
         {
-          "title": "Blocks and rescue \u2014 primary reference",
+          "title": "Blocks and rescue \u2014 primary documentation",
           "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
         }
       ]
@@ -653,25 +617,22 @@
       "id": "ansible-lesson-25",
       "topic": "ansible",
       "title": "Async tasks",
-      "summary": "What can async execution support? Long-running tasks without holding a normal synchronous wait.",
+      "summary": "Async execution lets long-running tasks continue beyond the normal synchronous task duration.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "Async execution lets long-running tasks continue beyond the normal synchronous task duration."
+        },
+        {
           "heading": "How it works",
-          "body": "Polling and completion handling must match operational needs."
-        },
-        {
-          "heading": "Apply it",
-          "body": "A long maintenance task exceeds the default connection wait. Use bounded async execution and track the final result."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "Async automatically guarantees successful completion. This is not a sound assumption; long-running tasks without holding a normal synchronous wait."
+          "body": "poll controls waiting behavior and async sets a time bound. With poll zero, follow up using async_status rather than assuming completion. Avoid launching unbounded concurrent work against a shared dependency."
         }
       ],
-      "takeaway": "Polling and completion handling must match operational needs.",
+      "command": "",
+      "takeaway": "poll controls waiting behavior and async sets a time bound. With poll zero, follow up using async_status rather than assuming completion. Avoid launching unbounded concurrent work against a shared dependency.",
       "references": [
         {
-          "title": "Async tasks \u2014 primary reference",
+          "title": "Async tasks \u2014 primary documentation",
           "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
         }
       ]
@@ -680,26 +641,27 @@
       "id": "ansible-lesson-26",
       "topic": "ansible",
       "title": "Tags",
-      "summary": "What is a risk of selective tag execution? Required prerequisite tasks may be skipped.",
+      "summary": "Tags select subsets of tasks for execution.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "Tags select subsets of tasks for execution."
+        },
+        {
           "heading": "How it works",
-          "body": "Tagged execution needs testing as its own supported path."
-        },
-        {
-          "heading": "Apply it",
-          "body": "Running only a deployment tag skips required configuration setup. Test the selected path and encode needed prerequisites deliberately."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "Tags always resolve every prerequisite automatically. This is not a sound assumption; required prerequisite tasks may be skipped."
+          "body": "They speed focused operations but may skip prerequisites or validation. Document supported tag combinations and test them. A tagged task can still depend on variables or facts normally prepared by omitted tasks."
         }
       ],
-      "takeaway": "Tagged execution needs testing as its own supported path.",
+      "command": "ansible-playbook -i inventory.yml site.yml --list-tags",
+      "takeaway": "They speed focused operations but may skip prerequisites or validation. Document supported tag combinations and test them. A tagged task can still depend on variables or facts normally prepared by omitted tasks.",
       "references": [
         {
-          "title": "Tags \u2014 primary reference",
+          "title": "Tags \u2014 primary documentation",
           "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
+        },
+        {
+          "title": "Related command \u2014 primary documentation",
+          "url": "https://docs.ansible.com/ansible/latest/command_guide/command_line_tools.html"
         }
       ]
     },
@@ -707,25 +669,22 @@
       "id": "ansible-lesson-27",
       "topic": "ansible",
       "title": "Dynamic inventory",
-      "summary": "Why use dynamic inventory? Discover hosts from an external authoritative source.",
+      "summary": "Dynamic inventory discovers hosts from external systems through plugins.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "Dynamic inventory discovers hosts from external systems through plugins."
+        },
+        {
           "heading": "How it works",
-          "body": "Discovery filters and credentials determine scope."
-        },
-        {
-          "heading": "Apply it",
-          "body": "A cloud inventory plugin includes hosts from an unintended environment. Narrow discovery filters and inspect the generated inventory."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "Dynamic inventory can never become stale. This is not a sound assumption; discover hosts from an external authoritative source."
+          "body": "The resulting membership can change between runs, so verify the target snapshot and filtering rules. Credentials, caching and naming conventions affect correctness. A discovery API failure must not silently become an unintended empty or broad deployment."
         }
       ],
-      "takeaway": "Discovery filters and credentials determine scope.",
+      "command": "",
+      "takeaway": "The resulting membership can change between runs, so verify the target snapshot and filtering rules. Credentials, caching and naming conventions affect correctness. A discovery API failure must not silently become an unintended empty or broad deployment.",
       "references": [
         {
-          "title": "Dynamic inventory \u2014 primary reference",
+          "title": "Dynamic inventory \u2014 primary documentation",
           "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
         }
       ]
@@ -734,25 +693,22 @@
       "id": "ansible-lesson-28",
       "topic": "ansible",
       "title": "Concurrency",
-      "summary": "What can excessive forks cause? Overload of targets controllers or shared dependencies.",
+      "summary": "Ansible concurrency determines how many hosts and tasks can progress simultaneously.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "Ansible concurrency determines how many hosts and tasks can progress simultaneously."
+        },
+        {
           "heading": "How it works",
-          "body": "Concurrency should match workload and service capacity."
-        },
-        {
-          "heading": "Apply it",
-          "body": "A configuration run overloads a shared package repository. Bound concurrency and stage work based on dependency capacity."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "More forks always reduces risk. This is not a sound assumption; overload of targets controllers or shared dependencies."
+          "body": "forks, serial, throttle and strategy settings control different dimensions. More concurrency can overwhelm package mirrors, APIs or shared databases. Choose limits from dependency capacity and deployment failure domains."
         }
       ],
-      "takeaway": "Concurrency should match workload and service capacity.",
+      "command": "",
+      "takeaway": "forks, serial, throttle and strategy settings control different dimensions. More concurrency can overwhelm package mirrors, APIs or shared databases. Choose limits from dependency capacity and deployment failure domains.",
       "references": [
         {
-          "title": "Concurrency \u2014 primary reference",
+          "title": "Concurrency \u2014 primary documentation",
           "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
         }
       ]
@@ -761,25 +717,22 @@
       "id": "ansible-lesson-29",
       "topic": "ansible",
       "title": "Secret logging",
-      "summary": "What does no_log help protect? Sensitive task data from normal Ansible output.",
+      "summary": "Automation can expose sensitive values in task arguments, diffs, registered results or debug output.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "Automation can expose sensitive values in task arguments, diffs, registered results or debug output."
+        },
+        {
           "heading": "How it works",
-          "body": "It does not prevent a command from leaking secrets into external files or services."
-        },
-        {
-          "heading": "Apply it",
-          "body": "A task hides output but writes a password into a world-readable file. Fix file handling and permissions in addition to suppressing logs."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "No_log encrypts every remote file created by a task. This is not a sound assumption; sensitive task data from normal Ansible output."
+          "body": "no_log suppresses selected task output but does not secure every downstream use or generated file. Keep secrets out of loop labels and broad debug dumps. Protect controller logs and target-file permissions."
         }
       ],
-      "takeaway": "It does not prevent a command from leaking secrets into external files or services.",
+      "command": "",
+      "takeaway": "no_log suppresses selected task output but does not secure every downstream use or generated file. Keep secrets out of loop labels and broad debug dumps. Protect controller logs and target-file permissions.",
       "references": [
         {
-          "title": "Secret logging \u2014 primary reference",
+          "title": "Secret logging \u2014 primary documentation",
           "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
         }
       ]
@@ -788,30 +741,571 @@
       "id": "ansible-lesson-30",
       "topic": "ansible",
       "title": "Automation validation",
-      "summary": "What should follow successful syntax validation? Representative execution and checks of the resulting system behavior.",
+      "summary": "Validation checks syntax, targets, rendered configuration and runtime behavior before broad execution.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "Validation checks syntax, targets, rendered configuration and runtime behavior before broad execution."
+        },
+        {
           "heading": "How it works",
-          "body": "Syntax checks cannot prove target permissions or service readiness."
-        },
-        {
-          "heading": "Apply it",
-          "body": "A play passes lint but fails during a live service reload. Test in a representative environment with explicit postconditions."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "Syntax success guarantees the play is safe for production. This is not a sound assumption; representative execution and checks of the resulting system behavior."
+          "body": "Combine syntax checks, inventory review, supported check mode and a representative test host. Run twice to assess idempotence and verify application health after changes. A syntax-valid playbook can still target the wrong machines."
         }
       ],
-      "takeaway": "Syntax checks cannot prove target permissions or service readiness.",
+      "command": "ansible-playbook -i inventory.yml site.yml --syntax-check",
+      "takeaway": "Combine syntax checks, inventory review, supported check mode and a representative test host. Run twice to assess idempotence and verify application health after changes. A syntax-valid playbook can still target the wrong machines.",
       "references": [
         {
-          "title": "Automation validation \u2014 primary reference",
+          "title": "Automation validation \u2014 primary documentation",
           "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
+        },
+        {
+          "title": "Related command \u2014 primary documentation",
+          "url": "https://docs.ansible.com/ansible/latest/command_guide/command_line_tools.html"
         }
       ]
     }
   ],
-  "commands": [],
-  "debugging": []
+  "commands": [
+    {
+      "id": "ansible-command-01",
+      "topic": "ansible",
+      "title": "Inventory graph",
+      "command": "ansible-inventory -i inventory.yml --graph",
+      "kind": "Shell command",
+      "definition": "Resolves inventory and displays group membership.",
+      "purpose": "Review the exact fleet before running a play.",
+      "environment": "Read-only discovery may call external inventory APIs; inspect a trusted inventory source.",
+      "expectedOutput": "@web: ... host1 ... host2",
+      "interpretation": "Group branches show membership; unexpected hosts indicate inventory or filter problems.",
+      "safety": "Read-only discovery may call external inventory APIs; inspect a trusted inventory source.",
+      "references": [
+        {
+          "title": "Inventory graph \u2014 primary documentation",
+          "url": "https://docs.ansible.com/ansible/latest/command_guide/command_line_tools.html"
+        }
+      ]
+    },
+    {
+      "id": "ansible-command-02",
+      "topic": "ansible",
+      "title": "Host variables",
+      "command": "ansible-inventory -i inventory.yml --host HOST",
+      "kind": "Shell command",
+      "definition": "Prints resolved inventory variables for one host.",
+      "purpose": "Find connection settings or unexpected variable values.",
+      "environment": "Can reveal secrets; replace HOST and protect output.",
+      "expectedOutput": "{\"ansible_host\":\"192.0.2.10\"}",
+      "interpretation": "JSON keys show inventory-derived values, not every later play-level override.",
+      "safety": "Can reveal secrets; replace HOST and protect output.",
+      "references": [
+        {
+          "title": "Host variables \u2014 primary documentation",
+          "url": "https://docs.ansible.com/ansible/latest/command_guide/command_line_tools.html"
+        }
+      ]
+    },
+    {
+      "id": "ansible-command-03",
+      "topic": "ansible",
+      "title": "List play targets",
+      "command": "ansible-playbook -i inventory.yml site.yml --list-hosts",
+      "kind": "Shell command",
+      "definition": "Lists hosts matched by each play without executing its tasks.",
+      "purpose": "Verify host patterns and limits before changes.",
+      "environment": "Inventory plugins may execute discovery; use trusted project files.",
+      "expectedOutput": "hosts (2): host1 host2",
+      "interpretation": "Read the play name, pattern and host count for every play.",
+      "safety": "Inventory plugins may execute discovery; use trusted project files.",
+      "references": [
+        {
+          "title": "List play targets \u2014 primary documentation",
+          "url": "https://docs.ansible.com/ansible/latest/command_guide/command_line_tools.html"
+        }
+      ]
+    },
+    {
+      "id": "ansible-command-04",
+      "topic": "ansible",
+      "title": "List tasks",
+      "command": "ansible-playbook -i inventory.yml site.yml --list-tasks",
+      "kind": "Shell command",
+      "definition": "Shows statically discoverable tasks selected by a playbook.",
+      "purpose": "Review order and scope before execution.",
+      "environment": "Does not execute normal tasks; not a complete prediction of dynamic behavior.",
+      "expectedOutput": "tasks: Install package ... Configure service ...",
+      "interpretation": "Dynamic includes may not expose every eventual task in this view.",
+      "safety": "Does not execute normal tasks; not a complete prediction of dynamic behavior.",
+      "references": [
+        {
+          "title": "List tasks \u2014 primary documentation",
+          "url": "https://docs.ansible.com/ansible/latest/command_guide/command_line_tools.html"
+        }
+      ]
+    },
+    {
+      "id": "ansible-command-05",
+      "topic": "ansible",
+      "title": "Syntax validation",
+      "command": "ansible-playbook -i inventory.yml site.yml --syntax-check",
+      "kind": "Shell command",
+      "definition": "Parses and checks playbook syntax.",
+      "purpose": "Catch malformed YAML and structural issues early.",
+      "environment": "Does not validate every runtime variable, remote command or application configuration.",
+      "expectedOutput": "playbook: site.yml",
+      "interpretation": "Success normally prints the playbook name; failures identify parsing context.",
+      "safety": "Does not validate every runtime variable, remote command or application configuration.",
+      "references": [
+        {
+          "title": "Syntax validation \u2014 primary documentation",
+          "url": "https://docs.ansible.com/ansible/latest/command_guide/command_line_tools.html"
+        }
+      ]
+    },
+    {
+      "id": "ansible-command-06",
+      "topic": "ansible",
+      "title": "Check mode",
+      "command": "ansible-playbook -i inventory.yml site.yml --check --limit CANARY",
+      "kind": "Shell command",
+      "definition": "Requests predicted changes on a limited target set.",
+      "purpose": "Preview supported operations before a real rollout.",
+      "environment": "Not a universal dry run; modules and tasks can have exceptions, so review trusted content and use a safe canary.",
+      "expectedOutput": "PLAY RECAP ... changed=1 failed=0",
+      "interpretation": "changed means a predicted change for supporting modules; skipped tasks may reduce coverage.",
+      "safety": "Not a universal dry run; modules and tasks can have exceptions, so review trusted content and use a safe canary.",
+      "references": [
+        {
+          "title": "Check mode \u2014 primary documentation",
+          "url": "https://docs.ansible.com/ansible/latest/command_guide/command_line_tools.html"
+        }
+      ]
+    },
+    {
+      "id": "ansible-command-07",
+      "topic": "ansible",
+      "title": "Check with diff",
+      "command": "ansible-playbook -i inventory.yml site.yml --check --diff --limit CANARY",
+      "kind": "Shell command",
+      "definition": "Adds supported before/after diffs to check-mode output.",
+      "purpose": "Review rendered configuration changes.",
+      "environment": "Diffs can expose secrets; disable diff on sensitive tasks.",
+      "expectedOutput": "--- before ... +++ after",
+      "interpretation": "Lines prefixed - are removed and + are added; inspect paths and values.",
+      "safety": "Diffs can expose secrets; disable diff on sensitive tasks.",
+      "references": [
+        {
+          "title": "Check with diff \u2014 primary documentation",
+          "url": "https://docs.ansible.com/ansible/latest/command_guide/command_line_tools.html"
+        }
+      ]
+    },
+    {
+      "id": "ansible-command-08",
+      "topic": "ansible",
+      "title": "Module documentation",
+      "command": "ansible-doc ansible.builtin.template",
+      "kind": "Shell command",
+      "definition": "Displays the installed module's options, behavior and examples.",
+      "purpose": "Confirm parameters and check-mode support for the actual installed version.",
+      "environment": "Local read-only documentation lookup.",
+      "expectedOutput": "OPTIONS ... ATTRIBUTES ... RETURN VALUES",
+      "interpretation": "Read required fields, attributes and return values before using conditions.",
+      "safety": "Local read-only documentation lookup.",
+      "references": [
+        {
+          "title": "Module documentation \u2014 primary documentation",
+          "url": "https://docs.ansible.com/ansible/latest/command_guide/command_line_tools.html"
+        }
+      ]
+    },
+    {
+      "id": "ansible-command-09",
+      "topic": "ansible",
+      "title": "Collection versions",
+      "command": "ansible-galaxy collection list",
+      "kind": "Shell command",
+      "definition": "Lists installed collections and versions.",
+      "purpose": "Reproduce a controller environment and diagnose version differences.",
+      "environment": "Read-only; compare with project requirements.",
+      "expectedOutput": "Collection Version ... ansible.posix ...",
+      "interpretation": "Multiple installation paths may contain different versions; note the path headings.",
+      "safety": "Read-only; compare with project requirements.",
+      "references": [
+        {
+          "title": "Collection versions \u2014 primary documentation",
+          "url": "https://docs.ansible.com/ansible/latest/command_guide/command_line_tools.html"
+        }
+      ]
+    },
+    {
+      "id": "ansible-command-10",
+      "topic": "ansible",
+      "title": "Connectivity test",
+      "command": "ansible -i inventory.yml CANARY -m ansible.builtin.ping",
+      "kind": "Shell command",
+      "definition": "Tests Ansible connection and Python execution on selected hosts.",
+      "purpose": "Distinguish transport or interpreter problems from playbook logic.",
+      "environment": "Not ICMP ping; runs a module on the authorized target.",
+      "expectedOutput": "HOST SUCCESS => {\"ping\":\"pong\"}",
+      "interpretation": "pong means module execution succeeded; unreachable indicates connection-level failure.",
+      "safety": "Not ICMP ping; runs a module on the authorized target.",
+      "references": [
+        {
+          "title": "Connectivity test \u2014 primary documentation",
+          "url": "https://docs.ansible.com/ansible/latest/command_guide/command_line_tools.html"
+        }
+      ]
+    },
+    {
+      "id": "ansible-command-11",
+      "topic": "ansible",
+      "title": "Gather selected facts",
+      "command": "ansible -i inventory.yml CANARY -m ansible.builtin.setup -a 'filter=ansible_distribution*'",
+      "kind": "Shell command",
+      "definition": "Collects filtered operating-system facts.",
+      "purpose": "Check platform assumptions used by roles.",
+      "environment": "Runs read-oriented fact gathering remotely; scope targets and protect inventory details.",
+      "expectedOutput": "\"ansible_distribution\": \"Debian\"",
+      "interpretation": "Returned ansible_facts show distribution and version fields available on the host.",
+      "safety": "Runs read-oriented fact gathering remotely; scope targets and protect inventory details.",
+      "references": [
+        {
+          "title": "Gather selected facts \u2014 primary documentation",
+          "url": "https://docs.ansible.com/ansible/latest/command_guide/command_line_tools.html"
+        }
+      ]
+    },
+    {
+      "id": "ansible-command-12",
+      "topic": "ansible",
+      "title": "List tags",
+      "command": "ansible-playbook -i inventory.yml site.yml --list-tags",
+      "kind": "Shell command",
+      "definition": "Shows tags available for task selection.",
+      "purpose": "Understand supported partial-run entry points.",
+      "environment": "Read-only task discovery; test tag combinations before production use.",
+      "expectedOutput": "TASK TAGS: [config, packages]",
+      "interpretation": "TASK TAGS identifies selectable labels; dependencies may still be omitted by selective execution.",
+      "safety": "Read-only task discovery; test tag combinations before production use.",
+      "references": [
+        {
+          "title": "List tags \u2014 primary documentation",
+          "url": "https://docs.ansible.com/ansible/latest/command_guide/command_line_tools.html"
+        }
+      ]
+    }
+  ],
+  "debugging": [
+    {
+      "id": "ansible-scenario-guide-01",
+      "topic": "ansible",
+      "title": "Unexpected deployment targets",
+      "symptom": "A playbook resolves more hosts than the operator intended.",
+      "steps": [
+        {
+          "action": "Inspect and diagnose",
+          "command": "ansible-playbook -i inventory.yml site.yml --list-hosts",
+          "evidence": "Inspect group membership, inventory plugins and host-pattern expansion. Confirm limits apply to every relevant play."
+        },
+        {
+          "action": "Fix the evidenced cause",
+          "evidence": "Stop before execution and correct inventory filters or the host pattern. Use a verified canary subset before broader batches."
+        },
+        {
+          "action": "Verify recovery",
+          "evidence": "Repeat target listing and confirm exact expected hosts, then verify no unrelated hosts changed after rollout."
+        }
+      ],
+      "references": [
+        {
+          "title": "Unexpected deployment targets \u2014 primary documentation",
+          "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
+        },
+        {
+          "title": "Diagnostic tool \u2014 primary documentation",
+          "url": "https://docs.ansible.com/ansible/latest/command_guide/command_line_tools.html"
+        }
+      ]
+    },
+    {
+      "id": "ansible-scenario-guide-02",
+      "topic": "ansible",
+      "title": "Every run reports changes",
+      "symptom": "A configuration play reports changed on every execution despite stable desired state.",
+      "steps": [
+        {
+          "action": "Inspect and diagnose",
+          "command": "ansible-playbook -i inventory.yml site.yml --check --diff --limit CANARY",
+          "evidence": "Identify tasks with nondeterministic template values or shell commands lacking state-aware conditions. Distinguish reporting errors from actual repeated writes."
+        },
+        {
+          "action": "Fix the evidenced cause",
+          "evidence": "Use purpose-built modules, stable templates and accurate changed_when rules. Do not mark real changes unchanged merely to make the recap green."
+        },
+        {
+          "action": "Verify recovery",
+          "evidence": "Run twice on a test host; the second run should show no unintended changes or restarts while deliberate drift is still corrected."
+        }
+      ],
+      "references": [
+        {
+          "title": "Every run reports changes \u2014 primary documentation",
+          "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
+        },
+        {
+          "title": "Diagnostic tool \u2014 primary documentation",
+          "url": "https://docs.ansible.com/ansible/latest/command_guide/command_line_tools.html"
+        }
+      ]
+    },
+    {
+      "id": "ansible-scenario-guide-03",
+      "topic": "ansible",
+      "title": "Handler never restarts service",
+      "symptom": "A configuration file changes but the service keeps old behavior.",
+      "steps": [
+        {
+          "action": "Inspect and diagnose",
+          "command": "ansible-playbook -i inventory.yml site.yml --list-tasks",
+          "evidence": "Check notify names, task changed status, handler scope and earlier failures. A handler may not run after a later failure under default behavior."
+        },
+        {
+          "action": "Fix the evidenced cause",
+          "evidence": "Correct notification wiring and validate configuration before restart. Choose failure/handler behavior deliberately rather than forcing every handler unconditionally."
+        },
+        {
+          "action": "Verify recovery",
+          "evidence": "Change a harmless test setting and confirm one restart or reload occurs and the application uses the new configuration."
+        }
+      ],
+      "references": [
+        {
+          "title": "Handler never restarts service \u2014 primary documentation",
+          "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
+        },
+        {
+          "title": "Diagnostic tool \u2014 primary documentation",
+          "url": "https://docs.ansible.com/ansible/latest/command_guide/command_line_tools.html"
+        }
+      ]
+    },
+    {
+      "id": "ansible-scenario-guide-04",
+      "topic": "ansible",
+      "title": "Check mode misses a failure",
+      "symptom": "A dry run passes but the real deployment fails on a dependent task.",
+      "steps": [
+        {
+          "action": "Inspect and diagnose",
+          "command": "ansible-doc MODULE_FQCN",
+          "evidence": "Review module check-mode support and tasks that depend on registered results or resources not created during check mode."
+        },
+        {
+          "action": "Fix the evidenced cause",
+          "evidence": "Add representative integration tests and explicit validation for the dependency. Treat check mode as one signal rather than the sole gate."
+        },
+        {
+          "action": "Verify recovery",
+          "evidence": "Run the real workflow on an isolated canary and test both the first and second execution before promotion."
+        }
+      ],
+      "references": [
+        {
+          "title": "Check mode misses a failure \u2014 primary documentation",
+          "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
+        },
+        {
+          "title": "Diagnostic tool \u2014 primary documentation",
+          "url": "https://docs.ansible.com/ansible/latest/command_guide/command_line_tools.html"
+        }
+      ]
+    },
+    {
+      "id": "ansible-scenario-guide-05",
+      "topic": "ansible",
+      "title": "Secret appears in output",
+      "symptom": "A failed template task prints a credential into the CI log.",
+      "steps": [
+        {
+          "action": "Inspect and diagnose",
+          "command": "ansible-playbook -i inventory.yml site.yml --list-tasks",
+          "evidence": "Trace where the secret entered task arguments, diffs, debug output or loop labels. Identify log readers and retained artifacts."
+        },
+        {
+          "action": "Fix the evidenced cause",
+          "evidence": "Rotate the exposed value, restrict affected logs and add no_log or diff suppression where needed. Secure generated files as well as controller output."
+        },
+        {
+          "action": "Verify recovery",
+          "evidence": "Use a nonproduction sentinel secret in a controlled test and confirm it does not appear in logs or artifacts."
+        }
+      ],
+      "references": [
+        {
+          "title": "Secret appears in output \u2014 primary documentation",
+          "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
+        },
+        {
+          "title": "Diagnostic tool \u2014 primary documentation",
+          "url": "https://docs.ansible.com/ansible/latest/command_guide/command_line_tools.html"
+        }
+      ]
+    },
+    {
+      "id": "ansible-scenario-guide-06",
+      "topic": "ansible",
+      "title": "Variable unexpectedly overridden",
+      "symptom": "A role uses a production endpoint during a staging run.",
+      "steps": [
+        {
+          "action": "Inspect and diagnose",
+          "command": "ansible-inventory -i inventory.yml --host HOST",
+          "evidence": "Compare inventory variables with role defaults, play vars and runtime extra variables. Inventory output alone does not show every precedence source."
+        },
+        {
+          "action": "Fix the evidenced cause",
+          "evidence": "Remove ambiguous overrides and make environment inputs explicit. Add assertions for expected environment and endpoint before mutation."
+        },
+        {
+          "action": "Verify recovery",
+          "evidence": "Render and validate configuration for each environment and verify the effective endpoint on the canary."
+        }
+      ],
+      "references": [
+        {
+          "title": "Variable unexpectedly overridden \u2014 primary documentation",
+          "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
+        },
+        {
+          "title": "Diagnostic tool \u2014 primary documentation",
+          "url": "https://docs.ansible.com/ansible/latest/command_guide/command_line_tools.html"
+        }
+      ]
+    },
+    {
+      "id": "ansible-scenario-guide-07",
+      "topic": "ansible",
+      "title": "Rolling update removes too much capacity",
+      "symptom": "A service becomes unavailable during a fleet play.",
+      "steps": [
+        {
+          "action": "Inspect and diagnose",
+          "command": "ansible-playbook -i inventory.yml site.yml --list-hosts",
+          "evidence": "Inspect serial, forks, strategy and health checks. Confirm the batch size relative to replica count and failure domains."
+        },
+        {
+          "action": "Fix the evidenced cause",
+          "evidence": "Stop expansion, restore healthy capacity and reduce batch size. Gate each batch on application readiness and dependency capacity."
+        },
+        {
+          "action": "Verify recovery",
+          "evidence": "Run a controlled rollout and verify minimum serving capacity and user success remain within the objective throughout."
+        }
+      ],
+      "references": [
+        {
+          "title": "Rolling update removes too much capacity \u2014 primary documentation",
+          "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
+        },
+        {
+          "title": "Diagnostic tool \u2014 primary documentation",
+          "url": "https://docs.ansible.com/ansible/latest/command_guide/command_line_tools.html"
+        }
+      ]
+    },
+    {
+      "id": "ansible-scenario-guide-08",
+      "topic": "ansible",
+      "title": "Privilege escalation fails",
+      "symptom": "SSH connectivity works but privileged tasks fail.",
+      "steps": [
+        {
+          "action": "Inspect and diagnose",
+          "command": "ansible -i inventory.yml CANARY -m ansible.builtin.ping",
+          "evidence": "Separate connection identity from become identity and inspect the actual sudo policy and error. Connectivity success does not prove escalation rights."
+        },
+        {
+          "action": "Fix the evidenced cause",
+          "evidence": "Grant the narrowly required escalation or adjust task scope to avoid unnecessary privilege. Do not default every role to unrestricted root."
+        },
+        {
+          "action": "Verify recovery",
+          "evidence": "Test the required privileged operation and confirm unrelated privileged operations remain denied."
+        }
+      ],
+      "references": [
+        {
+          "title": "Privilege escalation fails \u2014 primary documentation",
+          "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
+        },
+        {
+          "title": "Diagnostic tool \u2014 primary documentation",
+          "url": "https://docs.ansible.com/ansible/latest/command_guide/command_line_tools.html"
+        }
+      ]
+    },
+    {
+      "id": "ansible-scenario-guide-09",
+      "topic": "ansible",
+      "title": "Run-once migration repeats",
+      "symptom": "A database migration runs more than once during a serial deployment.",
+      "steps": [
+        {
+          "action": "Inspect and diagnose",
+          "command": "ansible-playbook -i inventory.yml site.yml --list-tasks",
+          "evidence": "Check whether run_once is evaluated once per serial batch and whether delegation causes shared-target concurrency."
+        },
+        {
+          "action": "Fix the evidenced cause",
+          "evidence": "Move the migration to an explicitly coordinated stage or dedicated play and make it idempotent. Protect it with an application-level migration lock where appropriate."
+        },
+        {
+          "action": "Verify recovery",
+          "evidence": "Test multiple batches and verify exactly the intended migration outcome with safe handling of retries."
+        }
+      ],
+      "references": [
+        {
+          "title": "Run-once migration repeats \u2014 primary documentation",
+          "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
+        },
+        {
+          "title": "Diagnostic tool \u2014 primary documentation",
+          "url": "https://docs.ansible.com/ansible/latest/command_guide/command_line_tools.html"
+        }
+      ]
+    },
+    {
+      "id": "ansible-scenario-guide-10",
+      "topic": "ansible",
+      "title": "Partial configuration after failure",
+      "symptom": "A play changes several files and then fails before validation completes.",
+      "steps": [
+        {
+          "action": "Inspect and diagnose",
+          "command": "ansible-playbook -i inventory.yml site.yml --check --diff --limit CANARY",
+          "evidence": "Inspect which tasks completed and actual target state. Rescue behavior is not a transaction rollback, and unreachable hosts need separate handling."
+        },
+        {
+          "action": "Fix the evidenced cause",
+          "evidence": "Restore a known-good configuration or complete a controlled forward repair, then improve validation-before-activation and recovery blocks."
+        },
+        {
+          "action": "Verify recovery",
+          "evidence": "Verify application health and a clean repeat run on affected hosts before continuing the fleet."
+        }
+      ],
+      "references": [
+        {
+          "title": "Partial configuration after failure \u2014 primary documentation",
+          "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
+        },
+        {
+          "title": "Diagnostic tool \u2014 primary documentation",
+          "url": "https://docs.ansible.com/ansible/latest/command_guide/command_line_tools.html"
+        }
+      ]
+    }
+  ]
 }

@@ -20,3 +20,7 @@ Do not put a literal pipe inside a field. Each row becomes four related exercise
 Run `python3 scripts/build-subject-packs.py`, then all validation and browser tests in the root README. Commit source and generated JSON together. `--check` is a read-only reproducibility gate. The browser loads JSON directly; Python is not required by visitors or by static hosting.
 
 Editorial checks: verify both true statements, ensure both misconceptions are actually false in the specified context, make the scenario action defensible from the stated evidence, and avoid version-sensitive absolutes. Read the generated answer outline as well as the input row. Prefer targeted follow-up improvements over adding variants merely to increase counts.
+
+## Authored learning library
+
+Concept lessons, command guides, worked scenarios and interview prompts now come from [library/README.md](library/README.md). They are independent authored material rather than short quiz-derived summaries. Edit `content/kubernetes-bank.json` for the original Kubernetes bank; all runtime JSON is compiled.

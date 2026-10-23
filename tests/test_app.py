@@ -75,18 +75,18 @@ class OpsLabBrowserTests(unittest.TestCase):
         self.page.locator("#start-quiz").click()
         expect(self.page.locator("#learning-screen")).to_be_visible()
         expect(self.page.locator("#learning-title")).to_have_text("Concepts")
-        expect(self.page.locator("#learning-content-list .learning-item")).to_have_count(6)
+        expect(self.page.locator("#learning-content-list .learning-item")).to_have_count(30)
         self.page.locator('#learning-module-nav [data-module="commands"]').click()
         expect(self.page.locator("#learning-title")).to_have_text("Commands")
-        expect(self.page.locator("#learning-content-list .learning-item")).to_have_count(6)
-        expect(self.page.locator("#learning-content-detail")).to_contain_text("kubectl get pods -o wide")
+        expect(self.page.locator("#learning-content-list .learning-item")).to_have_count(12)
+        expect(self.page.locator("#learning-content-detail")).to_contain_text("kubectl config current-context")
         self.page.locator("#back-from-learning").click()
         self.choose_mode("practice")
         expect(self.page.locator("#available-count")).to_contain_text("30 questions")
         self.choose_mode("exam")
         expect(self.page.locator("#available-count")).to_contain_text("30 questions")
         self.choose_mode("interview")
-        expect(self.page.locator("#available-count")).to_contain_text("1 questions")
+        expect(self.page.locator("#available-count")).to_contain_text("8 questions")
         expect(self.page.locator("#type-select")).to_have_value("interview")
 
     def test_requested_question_count_is_not_silently_reduced(self):
@@ -103,12 +103,11 @@ class OpsLabBrowserTests(unittest.TestCase):
         self.page.locator("#count-select").select_option("all")
         expect(self.page.locator("#start-quiz")).to_be_enabled()
 
-    def test_all_eight_learning_destinations_open_and_show_content_or_empty_state(self):
+    def test_all_learning_destinations_open_and_show_content_or_empty_state(self):
         expected = {
             "concepts": "Concepts",
             "commands": "Commands",
-            "scenarios": "Scenarios",
-            "debugging": "Debugging",
+            "scenarios": "Scenarios & debugging",
             "timed": "Timed drills",
             "review": "Review queue",
             "interviews": "Interview prompts",
@@ -174,6 +173,7 @@ class OpsLabBrowserTests(unittest.TestCase):
         self.page.locator("#check-answer").click()
         expect(self.page.locator("#interview-self-check")).to_be_visible()
         self.page.locator('[data-rating="3"]').click()
+        self.page.locator(f'[data-jump="{self.page.locator("[data-jump]").count() - 1}"]').click()
         self.page.locator("#finish-quiz").click()
         expect(self.page.locator("#results-screen")).to_be_visible()
         expect(self.page.locator("#result-score")).to_have_text("—")
@@ -201,6 +201,8 @@ class OpsLabBrowserTests(unittest.TestCase):
     def test_roadmap_toggle_clear_history_and_reset_setup(self):
         self.page.locator("#toggle-roadmap").click()
         expect(self.page.locator("#roadmap-panel")).to_be_visible()
+        expect(self.page.locator("#roadmap-panel")).to_be_in_viewport()
+        expect(self.page.locator("#roadmap-panel")).to_be_focused()
         self.page.locator("#toggle-roadmap-secondary").click()
         expect(self.page.locator("#roadmap-panel")).to_be_hidden()
         self.choose_mode("exam")
@@ -275,7 +277,7 @@ class OpsLabBrowserTests(unittest.TestCase):
     def test_catalog_has_all_subjects_and_honest_counts(self):
         expect(self.page.locator("#subject-grid .subject-card")).to_have_count(11)
         expect(self.page.locator("#catalog-count")).to_contain_text("1,020 scored")
-        expect(self.page.locator("#catalog-count")).to_contain_text("304 interview")
+        expect(self.page.locator("#catalog-count")).to_contain_text("330 interview")
         self.page.locator("#subject-search").fill("network")
         expect(self.page.locator("#subject-grid .subject-card")).to_have_count(1)
         self.page.locator('[data-subject="networking"]').click()
@@ -329,9 +331,9 @@ class OpsLabBrowserTests(unittest.TestCase):
         expect(self.page.locator("#learning-content-detail")).to_contain_text("No content matches")
         self.page.locator("#learning-search").fill("")
         self.page.locator("#learning-topic").select_option("kubernetes")
-        expect(self.page.locator("#learning-content-list .learning-item")).to_have_count(6)
+        expect(self.page.locator("#learning-content-list .learning-item")).to_have_count(30)
         self.page.locator('#learning-module-nav [data-module="scenarios"]').click()
-        expect(self.page.locator("#learning-content-list .learning-item")).to_have_count(38)
+        expect(self.page.locator("#learning-content-list .learning-item")).to_have_count(10)
 
     def test_partial_pack_failure_keeps_other_subjects_usable(self):
         self.page.route("**/data/linux.json", lambda route: route.fulfill(status=503, body="Unavailable"))
@@ -365,6 +367,63 @@ class OpsLabBrowserTests(unittest.TestCase):
         self.page.locator("#topic-select").select_option("linux")
         self.start()
         expect(self.page.locator("#question-title")).not_to_be_empty()
+
+
+    def test_about_links_to_rendered_repository_readme(self):
+        expect(self.page.get_by_role("link", name="About the project")).to_have_attribute(
+            "href", "https://github.com/skkc2/devops-interview-quiz#readme")
+
+    def test_circular_icons_preserve_subject_selection(self):
+        for subject in ("kubernetes", "linux", "networking", "sre", "systems", "aws", "terraform", "docker", "ansible", "git", "observability"):
+            card = self.page.locator(f'[data-subject="{subject}"]')
+            expect(card.locator("svg")).to_have_count(1)
+            self.assertEqual(card.locator(".subject-symbol").evaluate("el => getComputedStyle(el).borderRadius"), "50%")
+            card.click()
+            expect(self.page.locator("#topic-select")).to_have_value(subject)
+            expect(self.page.locator(f'[data-subject="{subject}"]')).to_have_attribute("aria-pressed", "true")
+            expect(self.page.locator("#topic-select")).to_be_in_viewport()
+
+    def test_complete_learning_modules_for_every_subject(self):
+        self.page.locator("#start-quiz").click()
+        for subject in ("kubernetes", "linux", "networking", "sre", "systems", "aws", "terraform", "docker", "ansible", "git", "observability"):
+            with self.subTest(subject=subject):
+                self.page.locator("#learning-topic").select_option(subject)
+                for module, count in (("concepts", 30), ("commands", 12), ("scenarios", 10), ("interviews", 30)):
+                    self.page.locator(f'#learning-module-nav [data-module="{module}"]').click()
+                    expect(self.page.locator("#learning-content-list .learning-item")).to_have_count(count)
+                    detail = self.page.locator("#learning-content-detail")
+                    if module == "concepts":
+                        expect(detail).to_contain_text("What it is")
+                        expect(detail).to_contain_text("How it works")
+                        expect(detail).not_to_contain_text("Misconception")
+                        expect(detail).not_to_contain_text("Apply it")
+                    elif module == "commands":
+                        for heading in ("What it is", "Why use it", "How to read it", "Illustrative output"):
+                            expect(detail).to_contain_text(heading)
+                    elif module == "scenarios":
+                        for heading in ("The issue", "Inspect and diagnose", "Fix the evidenced cause", "Verify recovery"):
+                            expect(detail).to_contain_text(heading)
+                    else:
+                        expect(detail).to_contain_text("Sample answer")
+                        expect(detail).to_contain_text("Follow-up prompts")
+                expect(self.page.locator('[data-module="debugging"]')).to_have_count(0)
+
+    def test_command_guides_have_usable_practice_path(self):
+        self.page.locator('[data-subject="linux"]').click()
+        self.page.locator("#start-quiz").click()
+        self.page.locator('#learning-module-nav [data-module="commands"]').click()
+        self.page.locator("#learning-start-practice").click()
+        expect(self.page.locator("#start-quiz")).to_be_enabled()
+        self.start()
+
+    def test_mobile_lesson_selection_reaches_detail(self):
+        self.page.set_viewport_size({"width": 390, "height": 844})
+        self.page.emulate_media(reduced_motion="reduce")
+        self.page.locator("#start-quiz").click()
+        self.page.locator("#learning-content-list .learning-item").nth(10).click()
+        expect(self.page.locator("#learning-content-detail")).to_be_in_viewport()
+        expect(self.page.locator("#learning-content-detail")).to_be_focused()
+        self.assertFalse(self.page.evaluate("document.documentElement.scrollWidth > innerWidth"))
 
 
 if __name__ == "__main__":

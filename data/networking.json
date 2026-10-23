@@ -88,7 +88,7 @@
       "id": "networking-01-principles",
       "title": "TCP delivery \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing tcp delivery, which TWO statements are sound operational principles?",
+      "question": "What does TCP provide to an application byte stream? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "Every send corresponds to exactly one receive",
         "TCP guarantees a fixed delivery latency",
@@ -122,7 +122,7 @@
       "question": "Explain framing and partial reads in a TCP application protocol.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Reliable ordered delivery within a connection. TCP does not preserve application message boundaries. A practical response is: Implement explicit message framing and handle partial reads. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that every send corresponds to exactly one receive.",
+      "sampleAnswer": "TCP does not preserve application message boundaries. Consider this situation: A receiver assumes one read contains one complete application message. A practical response is: Implement explicit message framing and handle partial reads. The relevant concept is: What does TCP provide to an application byte stream? Reliable ordered delivery within a connection. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that every send corresponds to exactly one receive.",
       "answerChecklist": [
         "Reliable ordered delivery within a connection",
         "TCP does not preserve application message boundaries",
@@ -212,7 +212,7 @@
       "id": "networking-02-principles",
       "title": "UDP semantics \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing udp semantics, which TWO statements are sound operational principles?",
+      "question": "Which property distinguishes UDP from TCP? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "UDP establishes a reliable ordered byte stream",
         "UDP preserves datagram boundaries without built-in reliable delivery",
@@ -246,7 +246,7 @@
       "question": "Explain when UDP is appropriate and what the application must provide.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "UDP preserves datagram boundaries without built-in reliable delivery. Applications must handle loss or duplication when their protocol requires it. A practical response is: Measure loss and decide whether application reliability is required. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that uDP retransmits every lost datagram automatically.",
+      "sampleAnswer": "Applications must handle loss or duplication when their protocol requires it. Consider this situation: A telemetry collector sees gaps in UDP sequence numbers. A practical response is: Measure loss and decide whether application reliability is required. The relevant concept is: Which property distinguishes UDP from TCP? UDP preserves datagram boundaries without built-in reliable delivery. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that uDP retransmits every lost datagram automatically.",
       "answerChecklist": [
         "UDP preserves datagram boundaries without built-in reliable delivery",
         "Applications must handle loss or duplication when their protocol requires it",
@@ -336,7 +336,7 @@
       "id": "networking-03-principles",
       "title": "DNS records \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing dns records, which TWO statements are sound operational principles?",
+      "question": "What does an A record normally contain? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "An IPv4 address for a DNS name",
         "AAAA records carry IPv6 addresses",
@@ -370,7 +370,7 @@
       "question": "Explain the difference between A AAAA and service discovery records.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "An IPv4 address for a DNS name. AAAA records carry IPv6 addresses. A practical response is: Check the AAAA record and client IPv6 connectivity. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that an A record contains a TCP port.",
+      "sampleAnswer": "AAAA records carry IPv6 addresses. Consider this situation: A client resolves only IPv4 while the intended endpoint is IPv6-only. A practical response is: Check the AAAA record and client IPv6 connectivity. The relevant concept is: What does an A record normally contain? An IPv4 address for a DNS name. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that an A record contains a TCP port.",
       "answerChecklist": [
         "An IPv4 address for a DNS name",
         "AAAA records carry IPv6 addresses",
@@ -460,7 +460,7 @@
       "id": "networking-04-principles",
       "title": "DNS caching \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing dns caching, which TWO statements are sound operational principles?",
+      "question": "What does a DNS record TTL influence? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "Lowering TTL before a change does not retroactively expire existing caches",
         "Changing a record instantly flushes every resolver cache",
@@ -494,7 +494,7 @@
       "question": "Explain a low-risk DNS migration and rollback plan.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "How long a resolver may cache that record. Lowering TTL before a change does not retroactively expire existing caches. A practical response is: Check prior TTLs and resolver caches before declaring the update failed. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that changing a record instantly flushes every resolver cache.",
+      "sampleAnswer": "Lowering TTL before a change does not retroactively expire existing caches. Consider this situation: Some clients still reach the old address just after a DNS change. A practical response is: Check prior TTLs and resolver caches before declaring the update failed. The relevant concept is: What does a DNS record TTL influence? How long a resolver may cache that record. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that changing a record instantly flushes every resolver cache.",
       "answerChecklist": [
         "How long a resolver may cache that record",
         "Lowering TTL before a change does not retroactively expire existing caches",
@@ -584,7 +584,7 @@
       "id": "networking-05-principles",
       "title": "Subnets \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing subnets, which TWO statements are sound operational principles?",
+      "question": "What does an IPv4 prefix length describe? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "A larger prefix length always means more host addresses",
         "The prefix length is the default TCP port",
@@ -618,7 +618,7 @@
       "question": "Explain how subnet masks affect direct versus routed delivery.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "The number of network-prefix bits in the address. Longer prefixes describe smaller address ranges. A practical response is: Compare their addresses prefix lengths and interface configuration. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that a larger prefix length always means more host addresses.",
+      "sampleAnswer": "Longer prefixes describe smaller address ranges. Consider this situation: Two hosts believed to share a subnet cannot communicate directly. A practical response is: Compare their addresses prefix lengths and interface configuration. The relevant concept is: What does an IPv4 prefix length describe? The number of network-prefix bits in the address. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that a larger prefix length always means more host addresses.",
       "answerChecklist": [
         "The number of network-prefix bits in the address",
         "Longer prefixes describe smaller address ranges",
@@ -708,7 +708,7 @@
       "id": "networking-06-principles",
       "title": "Default routes \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing default routes, which TWO statements are sound operational principles?",
+      "question": "When is a default route typically used? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "A default route is required for same-subnet communication",
         "When no more specific matching route is selected",
@@ -742,7 +742,7 @@
       "question": "Explain route selection and how you would troubleshoot a missing default route.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "When no more specific matching route is selected. Longest-prefix matching favors a more specific matching route. A practical response is: Inspect the selected route and default gateway reachability. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that the default route overrides every more specific route.",
+      "sampleAnswer": "Longest-prefix matching favors a more specific matching route. Consider this situation: A host reaches its local subnet but cannot reach external networks. A practical response is: Inspect the selected route and default gateway reachability. The relevant concept is: When is a default route typically used? When no more specific matching route is selected. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that the default route overrides every more specific route.",
       "answerChecklist": [
         "When no more specific matching route is selected",
         "Longest-prefix matching favors a more specific matching route",
@@ -832,7 +832,7 @@
       "id": "networking-07-principles",
       "title": "ARP \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing arp, which TWO statements are sound operational principles?",
+      "question": "What does ARP resolve on an IPv4 local link? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "An IPv4 address to a link-layer address",
         "ARP is scoped to the local broadcast domain",
@@ -866,7 +866,7 @@
       "question": "Explain how you distinguish a local neighbor problem from a routing problem.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "An IPv4 address to a link-layer address. ARP is scoped to the local broadcast domain. A practical response is: Check local-link connectivity addressing and neighbor discovery evidence. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that aRP resolves domain names through recursive DNS.",
+      "sampleAnswer": "ARP is scoped to the local broadcast domain. Consider this situation: A host cannot reach a same-subnet peer and its neighbor entry stays incomplete. A practical response is: Check local-link connectivity addressing and neighbor discovery evidence. The relevant concept is: What does ARP resolve on an IPv4 local link? An IPv4 address to a link-layer address. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that aRP resolves domain names through recursive DNS.",
       "answerChecklist": [
         "An IPv4 address to a link-layer address",
         "ARP is scoped to the local broadcast domain",
@@ -956,7 +956,7 @@
       "id": "networking-08-principles",
       "title": "Ports \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing ports, which TWO statements are sound operational principles?",
+      "question": "What identifies a TCP connection together with protocol context? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "A listening port alone does not prove application health",
         "A destination port uniquely identifies every connection globally",
@@ -990,7 +990,7 @@
       "question": "Explain the difference between port reachability and service readiness.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Source and destination addresses and ports. A listening port alone does not prove application health. A practical response is: Check application behavior after connection establishment. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that a destination port uniquely identifies every connection globally.",
+      "sampleAnswer": "A listening port alone does not prove application health. Consider this situation: A port accepts connections but requests fail immediately. A practical response is: Check application behavior after connection establishment. The relevant concept is: What identifies a TCP connection together with protocol context? Source and destination addresses and ports. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that a destination port uniquely identifies every connection globally.",
       "answerChecklist": [
         "Source and destination addresses and ports",
         "A listening port alone does not prove application health",
@@ -1080,7 +1080,7 @@
       "id": "networking-09-principles",
       "title": "TCP handshake \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing tcp handshake, which TWO statements are sound operational principles?",
+      "question": "What does a successful TCP handshake establish? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "It proves the server certificate is trusted",
         "It proves every backend dependency is healthy",
@@ -1114,7 +1114,7 @@
       "question": "Explain how to separate TCP TLS and HTTP failures.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Transport-level connection state between endpoints. It does not prove that a later TLS or application exchange will succeed. A practical response is: Inspect the TLS handshake and application-layer error separately. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that it proves the server certificate is trusted.",
+      "sampleAnswer": "It does not prove that a later TLS or application exchange will succeed. Consider this situation: TCP connects quickly but HTTPS fails afterward. A practical response is: Inspect the TLS handshake and application-layer error separately. The relevant concept is: What does a successful TCP handshake establish? Transport-level connection state between endpoints. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that it proves the server certificate is trusted.",
       "answerChecklist": [
         "Transport-level connection state between endpoints",
         "It does not prove that a later TLS or application exchange will succeed",
@@ -1204,7 +1204,7 @@
       "id": "networking-10-principles",
       "title": "TLS identity \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing tls identity, which TWO statements are sound operational principles?",
+      "question": "What does hostname verification protect against? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "Encrypting traffic removes the need to verify peer identity",
         "Accepting a certificate for a different service identity",
@@ -1238,7 +1238,7 @@
       "question": "Explain TLS identity validation and safe certificate troubleshooting.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Accepting a certificate for a different service identity. A trusted issuer alone is insufficient if the hostname does not match. A practical response is: Check the requested hostname certificate names and server selection. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that any certificate from a trusted issuer matches every hostname.",
+      "sampleAnswer": "A trusted issuer alone is insufficient if the hostname does not match. Consider this situation: A client reports a certificate hostname mismatch. A practical response is: Check the requested hostname certificate names and server selection. The relevant concept is: What does hostname verification protect against? Accepting a certificate for a different service identity. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that any certificate from a trusted issuer matches every hostname.",
       "answerChecklist": [
         "Accepting a certificate for a different service identity",
         "A trusted issuer alone is insufficient if the hostname does not match",
@@ -1328,7 +1328,7 @@
       "id": "networking-11-principles",
       "title": "HTTP status \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing http status, which TWO statements are sound operational principles?",
+      "question": "What does an HTTP 503 response normally indicate? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "The server is currently unable to handle the request",
         "An HTTP response means communication reached an HTTP-speaking component",
@@ -1362,7 +1362,7 @@
       "question": "Explain how status codes narrow a troubleshooting investigation.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "The server is currently unable to handle the request. An HTTP response means communication reached an HTTP-speaking component. A practical response is: Inspect target health and the reason each backend fails checks. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that it proves DNS resolution failed.",
+      "sampleAnswer": "An HTTP response means communication reached an HTTP-speaking component. Consider this situation: A load balancer returns 503 while targets are marked unhealthy. A practical response is: Inspect target health and the reason each backend fails checks. The relevant concept is: What does an HTTP 503 response normally indicate? The server is currently unable to handle the request. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that it proves DNS resolution failed.",
       "answerChecklist": [
         "The server is currently unable to handle the request",
         "An HTTP response means communication reached an HTTP-speaking component",
@@ -1452,7 +1452,7 @@
       "id": "networking-12-principles",
       "title": "NAT state \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing nat state, which TWO statements are sound operational principles?",
+      "question": "Why can outbound NAT capacity limit new connections? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "Existing successful connections do not prove capacity for unlimited new ones",
         "NAT creates infinitely many source ports",
@@ -1486,7 +1486,7 @@
       "question": "Explain NAT exhaustion and how connection pooling changes the demand.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Translation devices have finite state and port resources. Existing successful connections do not prove capacity for unlimited new ones. A practical response is: Inspect translation state port allocation and connection reuse. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that nAT creates infinitely many source ports.",
+      "sampleAnswer": "Existing successful connections do not prove capacity for unlimited new ones. Consider this situation: New outbound connections fail during a connection-rate spike. A practical response is: Inspect translation state port allocation and connection reuse. The relevant concept is: Why can outbound NAT capacity limit new connections? Translation devices have finite state and port resources. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that nAT creates infinitely many source ports.",
       "answerChecklist": [
         "Translation devices have finite state and port resources",
         "Existing successful connections do not prove capacity for unlimited new ones",
@@ -1576,7 +1576,7 @@
       "id": "networking-13-principles",
       "title": "Firewall direction \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing firewall direction, which TWO statements are sound operational principles?",
+      "question": "What distinguishes stateful filtering from stateless filtering? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "Stateless filtering always remembers connection state",
         "Stateful filtering eliminates routing requirements",
@@ -1610,7 +1610,7 @@
       "question": "Explain request and response rules for a stateless packet filter.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Stateful filtering can track established flow state. Stateless rules may require explicit rules for return traffic. A practical response is: Check return-path rules including ephemeral destination ports. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that stateless filtering always remembers connection state.",
+      "sampleAnswer": "Stateless rules may require explicit rules for return traffic. Consider this situation: Requests leave a subnet but stateless rules reject the replies. A practical response is: Check return-path rules including ephemeral destination ports. The relevant concept is: What distinguishes stateful filtering from stateless filtering? Stateful filtering can track established flow state. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that stateless filtering always remembers connection state.",
       "answerChecklist": [
         "Stateful filtering can track established flow state",
         "Stateless rules may require explicit rules for return traffic",
@@ -1700,7 +1700,7 @@
       "id": "networking-14-principles",
       "title": "MTU \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing mtu, which TWO statements are sound operational principles?",
+      "question": "What can an MTU mismatch cause? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "A successful small ping proves all packet sizes work",
         "Large packets may fail while small exchanges succeed",
@@ -1734,7 +1734,7 @@
       "question": "Explain a path MTU black hole and the evidence you would collect.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Large packets may fail while small exchanges succeed. Blocked path-MTU feedback can create difficult size-dependent failures. A practical response is: Investigate path MTU fragmentation behavior and necessary ICMP feedback. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that mTU sets the maximum number of concurrent TCP connections.",
+      "sampleAnswer": "Blocked path-MTU feedback can create difficult size-dependent failures. Consider this situation: Small requests work but larger responses stall on a tunneled path. A practical response is: Investigate path MTU fragmentation behavior and necessary ICMP feedback. The relevant concept is: What can an MTU mismatch cause? Large packets may fail while small exchanges succeed. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that mTU sets the maximum number of concurrent TCP connections.",
       "answerChecklist": [
         "Large packets may fail while small exchanges succeed",
         "Blocked path-MTU feedback can create difficult size-dependent failures",
@@ -1824,7 +1824,7 @@
       "id": "networking-15-principles",
       "title": "Packet loss \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing packet loss, which TWO statements are sound operational principles?",
+      "question": "Why correlate packet loss with TCP retransmissions and latency? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "Retransmission recovery can increase request completion time",
         "Loss location and timing matter more than one isolated counter",
@@ -1858,7 +1858,7 @@
       "question": "Explain how you would determine whether packet loss is causing user-visible latency.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Retransmission recovery can increase request completion time. Loss location and timing matter more than one isolated counter. A practical response is: Measure loss and congestion along the actual affected path. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that any lost packet proves the destination application crashed.",
+      "sampleAnswer": "Loss location and timing matter more than one isolated counter. Consider this situation: Latency worsens during bursts and retransmissions rise. A practical response is: Measure loss and congestion along the actual affected path. The relevant concept is: Why correlate packet loss with TCP retransmissions and latency? Retransmission recovery can increase request completion time. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that any lost packet proves the destination application crashed.",
       "answerChecklist": [
         "Retransmission recovery can increase request completion time",
         "Loss location and timing matter more than one isolated counter",
@@ -1948,7 +1948,7 @@
       "id": "networking-16-principles",
       "title": "DNS negative caching \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing dns negative caching, which TWO statements are sound operational principles?",
+      "question": "Why can a newly created DNS name still appear nonexistent? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "Negative-cache lifetime can differ from the new record's TTL",
         "NXDOMAIN responses can never be cached",
@@ -1982,7 +1982,7 @@
       "question": "Explain negative DNS caching during a service launch.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Resolvers may cache a prior negative response. Negative-cache lifetime can differ from the new record's TTL. A practical response is: Inspect the cached negative response and authoritative answer. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that nXDOMAIN responses can never be cached.",
+      "sampleAnswer": "Negative-cache lifetime can differ from the new record's TTL. Consider this situation: A hostname was queried before it existed and still fails at one resolver. A practical response is: Inspect the cached negative response and authoritative answer. The relevant concept is: Why can a newly created DNS name still appear nonexistent? Resolvers may cache a prior negative response. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that nXDOMAIN responses can never be cached.",
       "answerChecklist": [
         "Resolvers may cache a prior negative response",
         "Negative-cache lifetime can differ from the new record's TTL",
@@ -2072,7 +2072,7 @@
       "id": "networking-17-principles",
       "title": "Keepalive \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing keepalive, which TWO statements are sound operational principles?",
+      "question": "What is a limitation of TCP keepalive for service monitoring? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "A keepalive response guarantees every database query will succeed",
         "Keepalive is equivalent to an end-to-end synthetic transaction",
@@ -2106,7 +2106,7 @@
       "question": "Explain transport liveness versus application health.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "It does not prove that the application can process a request. Application-level health checks test behavior beyond transport state. A practical response is: Use a meaningful application check and bounded request deadlines. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that a keepalive response guarantees every database query will succeed.",
+      "sampleAnswer": "Application-level health checks test behavior beyond transport state. Consider this situation: A connection stays established while the application worker is deadlocked. A practical response is: Use a meaningful application check and bounded request deadlines. The relevant concept is: What is a limitation of TCP keepalive for service monitoring? It does not prove that the application can process a request. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that a keepalive response guarantees every database query will succeed.",
       "answerChecklist": [
         "It does not prove that the application can process a request",
         "Application-level health checks test behavior beyond transport state",
@@ -2196,7 +2196,7 @@
       "id": "networking-18-principles",
       "title": "Connection pooling \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing connection pooling, which TWO statements are sound operational principles?",
+      "question": "What benefit can connection pooling provide? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "An unbounded pool is always the safest setting",
         "It reduces repeated connection setup overhead",
@@ -2230,7 +2230,7 @@
       "question": "Explain connection pooling trade-offs under bursty load.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "It reduces repeated connection setup overhead. Pools need bounded size idle handling and timeout policy. A practical response is: Measure setup cost and evaluate a bounded reusable connection pool. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that a pool eliminates every network failure.",
+      "sampleAnswer": "Pools need bounded size idle handling and timeout policy. Consider this situation: A service creates a new TLS connection for every short request. A practical response is: Measure setup cost and evaluate a bounded reusable connection pool. The relevant concept is: What benefit can connection pooling provide? It reduces repeated connection setup overhead. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that a pool eliminates every network failure.",
       "answerChecklist": [
         "It reduces repeated connection setup overhead",
         "Pools need bounded size idle handling and timeout policy",
@@ -2320,7 +2320,7 @@
       "id": "networking-19-principles",
       "title": "Load balancing \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing load balancing, which TWO statements are sound operational principles?",
+      "question": "What can an L7 HTTP load balancer inspect for routing? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "HTTP-level fields such as host and path",
         "TLS termination placement affects which component can inspect HTTP content",
@@ -2354,7 +2354,7 @@
       "question": "Explain the difference between L4 and L7 load balancing.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "HTTP-level fields such as host and path. TLS termination placement affects which component can inspect HTTP content. A practical response is: Use appropriate HTTP-aware routing at a component that can inspect the request. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that an L4 balancer always parses every HTTP path.",
+      "sampleAnswer": "TLS termination placement affects which component can inspect HTTP content. Consider this situation: Two applications share an address but require routing by URL path. A practical response is: Use appropriate HTTP-aware routing at a component that can inspect the request. The relevant concept is: What can an L7 HTTP load balancer inspect for routing? HTTP-level fields such as host and path. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that an L4 balancer always parses every HTTP path.",
       "answerChecklist": [
         "HTTP-level fields such as host and path",
         "TLS termination placement affects which component can inspect HTTP content",
@@ -2444,7 +2444,7 @@
       "id": "networking-20-principles",
       "title": "Proxy headers \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing proxy headers, which TWO statements are sound operational principles?",
+      "question": "Why should forwarded client-address headers be trusted selectively? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "The trusted proxy boundary must be configured explicitly",
         "Any X-Forwarded-For value proves the original client identity",
@@ -2478,7 +2478,7 @@
       "question": "Explain secure handling of client identity behind reverse proxies.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Clients can forge headers unless a trusted proxy controls them. The trusted proxy boundary must be configured explicitly. A practical response is: Restrict trusted proxies and sanitize forwarding metadata. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that any X-Forwarded-For value proves the original client identity.",
+      "sampleAnswer": "The trusted proxy boundary must be configured explicitly. Consider this situation: An access rule accepts a forged forwarding header from a direct client. A practical response is: Restrict trusted proxies and sanitize forwarding metadata. The relevant concept is: Why should forwarded client-address headers be trusted selectively? Clients can forge headers unless a trusted proxy controls them. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that any X-Forwarded-For value proves the original client identity.",
       "answerChecklist": [
         "Clients can forge headers unless a trusted proxy controls them",
         "The trusted proxy boundary must be configured explicitly",
@@ -2568,7 +2568,7 @@
       "id": "networking-21-principles",
       "title": "Retries \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing retries, which TWO statements are sound operational principles?",
+      "question": "How can network retries amplify an outage? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "Every failed request should be retried immediately forever",
         "Retries always reduce total server load",
@@ -2602,7 +2602,7 @@
       "question": "Explain how retry behavior can turn a partial failure into a larger outage.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "They increase offered load while capacity may already be impaired. Retry budgets backoff and jitter help control amplification. A practical response is: Bound retries and use backoff with jitter while measuring load. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that every failed request should be retried immediately forever.",
+      "sampleAnswer": "Retry budgets backoff and jitter help control amplification. Consider this situation: A dependency slows and callers launch synchronized repeated requests. A practical response is: Bound retries and use backoff with jitter while measuring load. The relevant concept is: How can network retries amplify an outage? They increase offered load while capacity may already be impaired. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that every failed request should be retried immediately forever.",
       "answerChecklist": [
         "They increase offered load while capacity may already be impaired",
         "Retry budgets backoff and jitter help control amplification",
@@ -2692,7 +2692,7 @@
       "id": "networking-22-principles",
       "title": "Timeout budgets \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing timeout budgets, which TWO statements are sound operational principles?",
+      "question": "Why coordinate deadlines across a request chain? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "A client timeout guarantees that no write occurred",
         "Downstream work should fit within the caller's remaining budget",
@@ -2726,7 +2726,7 @@
       "question": "Explain deadlines cancellation and ambiguous outcomes in network calls.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Downstream work should fit within the caller's remaining budget. A timeout does not prove the server performed no side effect. A practical response is: Check idempotency and operation status before repeating a write. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that every layer should wait longer than its caller indefinitely.",
+      "sampleAnswer": "A timeout does not prove the server performed no side effect. Consider this situation: A payment request times out and the client is about to repeat it. A practical response is: Check idempotency and operation status before repeating a write. The relevant concept is: Why coordinate deadlines across a request chain? Downstream work should fit within the caller's remaining budget. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that every layer should wait longer than its caller indefinitely.",
       "answerChecklist": [
         "Downstream work should fit within the caller's remaining budget",
         "A timeout does not prove the server performed no side effect",
@@ -2816,7 +2816,7 @@
       "id": "networking-23-principles",
       "title": "Asymmetric routing \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing asymmetric routing, which TWO statements are sound operational principles?",
+      "question": "Why can asymmetric routing break a stateful firewall path? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "Return traffic may bypass the device holding the connection state",
         "Both forward and reverse paths matter when stateful devices are involved",
@@ -2850,7 +2850,7 @@
       "question": "Explain how you would diagnose asymmetric-path connectivity failures.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Return traffic may bypass the device holding the connection state. Both forward and reverse paths matter when stateful devices are involved. A practical response is: Trace both directions and inspect stateful-device routing. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that only the forward route matters for TCP connectivity.",
+      "sampleAnswer": "Both forward and reverse paths matter when stateful devices are involved. Consider this situation: Packets reach the server but replies take a different firewall path and disappear. A practical response is: Trace both directions and inspect stateful-device routing. The relevant concept is: Why can asymmetric routing break a stateful firewall path? Return traffic may bypass the device holding the connection state. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that only the forward route matters for TCP connectivity.",
       "answerChecklist": [
         "Return traffic may bypass the device holding the connection state",
         "Both forward and reverse paths matter when stateful devices are involved",
@@ -2940,7 +2940,7 @@
       "id": "networking-24-principles",
       "title": "Anycast \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing anycast, which TWO statements are sound operational principles?",
+      "question": "What is the core idea of IP anycast? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "Routing chooses a path rather than an application-level session scheduler",
         "Anycast guarantees all requests from a user reach one process forever",
@@ -2974,7 +2974,7 @@
       "question": "Explain anycast benefits and session-continuity risks.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Multiple locations advertise reachability for the same address. Routing chooses a path rather than an application-level session scheduler. A practical response is: Check route convergence and whether session state tolerates location changes. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that anycast guarantees all requests from a user reach one process forever.",
+      "sampleAnswer": "Routing chooses a path rather than an application-level session scheduler. Consider this situation: A route change moves traffic to another anycast location. A practical response is: Check route convergence and whether session state tolerates location changes. The relevant concept is: What is the core idea of IP anycast? Multiple locations advertise reachability for the same address. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that anycast guarantees all requests from a user reach one process forever.",
       "answerChecklist": [
         "Multiple locations advertise reachability for the same address",
         "Routing chooses a path rather than an application-level session scheduler",
@@ -3064,7 +3064,7 @@
       "id": "networking-25-principles",
       "title": "BGP policy \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing bgp policy, which TWO statements are sound operational principles?",
+      "question": "What primarily distinguishes BGP path selection from a pure latency optimizer? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "BGP continuously measures application response time for every route",
         "BGP guarantees the geographically nearest server",
@@ -3098,7 +3098,7 @@
       "question": "Explain why Internet routing may not follow the shortest geographic path.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Policy and path attributes guide route selection. The selected route need not be the path with lowest measured latency. A practical response is: Inspect route advertisements and policy attributes. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that bGP continuously measures application response time for every route.",
+      "sampleAnswer": "The selected route need not be the path with lowest measured latency. Consider this situation: Traffic follows an unexpected provider path despite a nearby alternative. A practical response is: Inspect route advertisements and policy attributes. The relevant concept is: What primarily distinguishes BGP path selection from a pure latency optimizer? Policy and path attributes guide route selection. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that bGP continuously measures application response time for every route.",
       "answerChecklist": [
         "Policy and path attributes guide route selection",
         "The selected route need not be the path with lowest measured latency",
@@ -3188,7 +3188,7 @@
       "id": "networking-26-principles",
       "title": "IPv6 neighbor discovery \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing ipv6 neighbor discovery, which TWO statements are sound operational principles?",
+      "question": "What replaces ARP's local-neighbor role in IPv6? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "ICMPv6 is only optional diagnostic ping traffic",
         "ICMPv6 Neighbor Discovery",
@@ -3222,7 +3222,7 @@
       "question": "Explain why blanket ICMPv6 blocking is unsafe for IPv6 connectivity.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "ICMPv6 Neighbor Discovery. Blocking all ICMPv6 can break essential IPv6 operation. A practical response is: Review required Neighbor Discovery and path-MTU control traffic. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that iPv6 uses IPv4 ARP broadcasts unchanged.",
+      "sampleAnswer": "Blocking all ICMPv6 can break essential IPv6 operation. Consider this situation: IPv6 communication breaks after a blanket ICMPv6 deny rule. A practical response is: Review required Neighbor Discovery and path-MTU control traffic. The relevant concept is: What replaces ARP's local-neighbor role in IPv6? ICMPv6 Neighbor Discovery. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that iPv6 uses IPv4 ARP broadcasts unchanged.",
       "answerChecklist": [
         "ICMPv6 Neighbor Discovery",
         "Blocking all ICMPv6 can break essential IPv6 operation",
@@ -3312,7 +3312,7 @@
       "id": "networking-27-principles",
       "title": "TCP TIME_WAIT \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing tcp time_wait, which TWO statements are sound operational principles?",
+      "question": "Why does TCP keep some closed connections in TIME_WAIT? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "It helps handle delayed segments and the final close exchange",
         "Large TIME_WAIT counts need context rather than automatic deletion",
@@ -3346,7 +3346,7 @@
       "question": "Explain TIME_WAIT and when connection churn becomes a capacity problem.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "It helps handle delayed segments and the final close exchange. Large TIME_WAIT counts need context rather than automatic deletion. A practical response is: Inspect connection churn port capacity and reuse patterns. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that tIME_WAIT means every socket is actively processing requests.",
+      "sampleAnswer": "Large TIME_WAIT counts need context rather than automatic deletion. Consider this situation: A busy client creates many short connections and accumulates TIME_WAIT sockets. A practical response is: Inspect connection churn port capacity and reuse patterns. The relevant concept is: Why does TCP keep some closed connections in TIME_WAIT? It helps handle delayed segments and the final close exchange. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that tIME_WAIT means every socket is actively processing requests.",
       "answerChecklist": [
         "It helps handle delayed segments and the final close exchange",
         "Large TIME_WAIT counts need context rather than automatic deletion",
@@ -3436,7 +3436,7 @@
       "id": "networking-28-principles",
       "title": "Queueing \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing queueing, which TWO statements are sound operational principles?",
+      "question": "Why can a large network queue worsen interactive latency? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "More buffering can trade packet loss for queueing delay",
         "Increasing every buffer always lowers latency",
@@ -3470,7 +3470,7 @@
       "question": "Explain throughput latency and bufferbloat trade-offs.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Packets wait longer before transmission under sustained congestion. More buffering can trade packet loss for queueing delay. A practical response is: Measure queueing delay and evaluate traffic management. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that increasing every buffer always lowers latency.",
+      "sampleAnswer": "More buffering can trade packet loss for queueing delay. Consider this situation: Throughput looks stable but interactive latency climbs during bulk transfers. A practical response is: Measure queueing delay and evaluate traffic management. The relevant concept is: Why can a large network queue worsen interactive latency? Packets wait longer before transmission under sustained congestion. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that increasing every buffer always lowers latency.",
       "answerChecklist": [
         "Packets wait longer before transmission under sustained congestion",
         "More buffering can trade packet loss for queueing delay",
@@ -3560,7 +3560,7 @@
       "id": "networking-29-principles",
       "title": "TLS termination \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing tls termination, which TWO statements are sound operational principles?",
+      "question": "What changes when TLS is terminated at a proxy? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "Terminating TLS automatically encrypts the backend hop",
         "The proxy cannot see decrypted HTTP headers",
@@ -3594,7 +3594,7 @@
       "question": "Explain end-to-end transport protection through a reverse proxy.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "The proxy can access plaintext application traffic. Encryption to the backend is a separate connection policy. A practical response is: Verify and configure encryption on the backend connection too. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that terminating TLS automatically encrypts the backend hop.",
+      "sampleAnswer": "Encryption to the backend is a separate connection policy. Consider this situation: A compliance requirement covers traffic between the proxy and backend. A practical response is: Verify and configure encryption on the backend connection too. The relevant concept is: What changes when TLS is terminated at a proxy? The proxy can access plaintext application traffic. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that terminating TLS automatically encrypts the backend hop.",
       "answerChecklist": [
         "The proxy can access plaintext application traffic",
         "Encryption to the backend is a separate connection policy",
@@ -3684,7 +3684,7 @@
       "id": "networking-30-principles",
       "title": "Idempotency \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing idempotency, which TWO statements are sound operational principles?",
+      "question": "Why is idempotency useful for retried network writes? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "A random new key for every retry prevents duplicate effects",
         "Repeated requests can avoid duplicating the intended effect",
@@ -3718,7 +3718,7 @@
       "question": "Explain how you would design retries for a write whose response can be lost.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Repeated requests can avoid duplicating the intended effect. Idempotency keys need scoped storage and a retention policy. A practical response is: Reuse an operation identifier and check recorded outcomes. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that every HTTP POST is automatically idempotent.",
+      "sampleAnswer": "Idempotency keys need scoped storage and a retention policy. Consider this situation: A client may retry an order after losing the response. A practical response is: Reuse an operation identifier and check recorded outcomes. The relevant concept is: Why is idempotency useful for retried network writes? Repeated requests can avoid duplicating the intended effect. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that every HTTP POST is automatically idempotent.",
       "answerChecklist": [
         "Repeated requests can avoid duplicating the intended effect",
         "Idempotency keys need scoped storage and a retention policy",

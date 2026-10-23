@@ -88,7 +88,7 @@
       "id": "sre-01-principles",
       "title": "SLIs \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing slis, which TWO statements are sound operational principles?",
+      "question": "What does an SLI measure? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "An SLI is always a contractual penalty",
         "An SLI is simply the number of on-call engineers",
@@ -122,7 +122,7 @@
       "question": "Explain how you would define a user-centered checkout SLI.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "An aspect of service behavior experienced by users. Choose a measurement population and a precise definition. A practical response is: Define a checkout success indicator from eligible requests. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that an SLI is always a contractual penalty.",
+      "sampleAnswer": "Choose a measurement population and a precise definition. Consider this situation: A dashboard tracks CPU but users report failed checkouts. A practical response is: Define a checkout success indicator from eligible requests. The relevant concept is: What does an SLI measure? An aspect of service behavior experienced by users. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that an SLI is always a contractual penalty.",
       "answerChecklist": [
         "An aspect of service behavior experienced by users",
         "Choose a measurement population and a precise definition",
@@ -212,7 +212,7 @@
       "id": "sre-02-principles",
       "title": "SLOs \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing slos, which TWO statements are sound operational principles?",
+      "question": "What does an SLO specify? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "An SLO must always be exactly 100 percent",
         "A target for an SLI over a defined window",
@@ -246,7 +246,7 @@
       "question": "Explain how you would negotiate a realistic SLO.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "A target for an SLI over a defined window. Targets should reflect user needs and business trade-offs. A practical response is: Agree on a measurable target and evaluation window. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that an SLO guarantees that outages cannot happen.",
+      "sampleAnswer": "Targets should reflect user needs and business trade-offs. Consider this situation: Teams argue over whether current reliability is sufficient. A practical response is: Agree on a measurable target and evaluation window. The relevant concept is: What does an SLO specify? A target for an SLI over a defined window. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that an SLO guarantees that outages cannot happen.",
       "answerChecklist": [
         "A target for an SLI over a defined window",
         "Targets should reflect user needs and business trade-offs",
@@ -336,7 +336,7 @@
       "id": "sre-03-principles",
       "title": "Error budgets \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing error budgets, which TWO statements are sound operational principles?",
+      "question": "What is an error budget? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "The allowed unreliability implied by an SLO",
         "Budget policy connects reliability performance to release decisions",
@@ -370,7 +370,7 @@
       "question": "Explain how an error-budget policy changes engineering priorities.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "The allowed unreliability implied by an SLO. Budget policy connects reliability performance to release decisions. A practical response is: Apply the agreed reliability policy and prioritize stabilization. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that it is a budget for buying monitoring software.",
+      "sampleAnswer": "Budget policy connects reliability performance to release decisions. Consider this situation: A service exhausts its error budget during repeated risky releases. A practical response is: Apply the agreed reliability policy and prioritize stabilization. The relevant concept is: What is an error budget? The allowed unreliability implied by an SLO. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that it is a budget for buying monitoring software.",
       "answerChecklist": [
         "The allowed unreliability implied by an SLO",
         "Budget policy connects reliability performance to release decisions",
@@ -460,7 +460,7 @@
       "id": "sre-04-principles",
       "title": "Incident roles \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing incident roles, which TWO statements are sound operational principles?",
+      "question": "Why assign an incident commander? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "Coordination can be separate from hands-on diagnosis",
         "The commander must personally execute every command",
@@ -494,7 +494,7 @@
       "question": "Explain how you would organize the first minutes of a major incident.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "To coordinate decisions roles and communication. Coordination can be separate from hands-on diagnosis. A practical response is: Establish coordination and track owners of mitigation actions. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that the commander must personally execute every command.",
+      "sampleAnswer": "Coordination can be separate from hands-on diagnosis. Consider this situation: Several responders make conflicting production changes. A practical response is: Establish coordination and track owners of mitigation actions. The relevant concept is: Why assign an incident commander? To coordinate decisions roles and communication. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that the commander must personally execute every command.",
       "answerChecklist": [
         "To coordinate decisions roles and communication",
         "Coordination can be separate from hands-on diagnosis",
@@ -584,7 +584,7 @@
       "id": "sre-05-principles",
       "title": "Mitigation \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing mitigation, which TWO statements are sound operational principles?",
+      "question": "What is the immediate priority during an active user-impacting outage? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "A full root-cause report must precede every mitigation",
         "Collecting every possible log is more important than restoring service",
@@ -618,7 +618,7 @@
       "question": "Explain when rollback is a better first step than live debugging.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Reduce impact while preserving useful evidence. Root-cause investigation can continue after stabilization. A practical response is: Evaluate and execute the known rollback while monitoring recovery. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that a full root-cause report must precede every mitigation.",
+      "sampleAnswer": "Root-cause investigation can continue after stabilization. Consider this situation: A recent release is strongly correlated with failures and rollback is safe. A practical response is: Evaluate and execute the known rollback while monitoring recovery. The relevant concept is: What is the immediate priority during an active user-impacting outage? Reduce impact while preserving useful evidence. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that a full root-cause report must precede every mitigation.",
       "answerChecklist": [
         "Reduce impact while preserving useful evidence",
         "Root-cause investigation can continue after stabilization",
@@ -708,7 +708,7 @@
       "id": "sre-06-principles",
       "title": "Postmortems \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing postmortems, which TWO statements are sound operational principles?",
+      "question": "What is the purpose of a blameless postmortem? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "The goal is to identify one person to punish",
         "Learn how system conditions enabled an incident",
@@ -742,7 +742,7 @@
       "question": "Explain how a postmortem should change the system.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Learn how system conditions enabled an incident. Useful actions have owners and verifiable outcomes. A practical response is: Create specific owned improvements and track completion. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that blameless means avoiding any discussion of decisions.",
+      "sampleAnswer": "Useful actions have owners and verifiable outcomes. Consider this situation: The same outage recurs after a report with vague recommendations. A practical response is: Create specific owned improvements and track completion. The relevant concept is: What is the purpose of a blameless postmortem? Learn how system conditions enabled an incident. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that blameless means avoiding any discussion of decisions.",
       "answerChecklist": [
         "Learn how system conditions enabled an incident",
         "Useful actions have owners and verifiable outcomes",
@@ -832,7 +832,7 @@
       "id": "sre-07-principles",
       "title": "Toil \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing toil, which TWO statements are sound operational principles?",
+      "question": "Which work best matches SRE toil? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "Repetitive operational work that scales with service growth",
         "Not all valuable operational work is toil",
@@ -866,7 +866,7 @@
       "question": "Explain how you would identify and reduce a source of toil.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Repetitive operational work that scales with service growth. Not all valuable operational work is toil. A practical response is: Measure the repetition and evaluate safe automation. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that every manual task is necessarily worthless.",
+      "sampleAnswer": "Not all valuable operational work is toil. Consider this situation: Engineers manually perform the same routine provisioning each day. A practical response is: Measure the repetition and evaluate safe automation. The relevant concept is: Which work best matches SRE toil? Repetitive operational work that scales with service growth. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that every manual task is necessarily worthless.",
       "answerChecklist": [
         "Repetitive operational work that scales with service growth",
         "Not all valuable operational work is toil",
@@ -956,7 +956,7 @@
       "id": "sre-08-principles",
       "title": "Runbooks \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing runbooks, which TWO statements are sound operational principles?",
+      "question": "What makes a runbook useful during an incident? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "Runbooks need ownership and periodic validation",
         "A long untested command list is sufficient",
@@ -990,7 +990,7 @@
       "question": "Explain how you would test and maintain an operational runbook.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Clear symptoms evidence actions and escalation criteria. Runbooks need ownership and periodic validation. A practical response is: Validate the procedure and add bounded steps with stop conditions. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that a long untested command list is sufficient.",
+      "sampleAnswer": "Runbooks need ownership and periodic validation. Consider this situation: A responder follows an old procedure and worsens an outage. A practical response is: Validate the procedure and add bounded steps with stop conditions. The relevant concept is: What makes a runbook useful during an incident? Clear symptoms evidence actions and escalation criteria. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that a long untested command list is sufficient.",
       "answerChecklist": [
         "Clear symptoms evidence actions and escalation criteria",
         "Runbooks need ownership and periodic validation",
@@ -1080,7 +1080,7 @@
       "id": "sre-09-principles",
       "title": "Burn rate \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing burn rate, which TWO statements are sound operational principles?",
+      "question": "What does an error-budget burn rate greater than one indicate? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "It always means the entire budget is already exhausted",
         "It measures only CPU utilization",
@@ -1114,7 +1114,7 @@
       "question": "Explain short and long windows in error-budget alerting.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Budget is being consumed faster than the sustainable SLO rate. Burn rate must be interpreted with its measurement window. A practical response is: Evaluate multiwindow burn-rate alerts against meaningful budget consumption. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that it always means the entire budget is already exhausted.",
+      "sampleAnswer": "Burn rate must be interpreted with its measurement window. Consider this situation: A brief spike triggers pages despite negligible long-term budget impact. A practical response is: Evaluate multiwindow burn-rate alerts against meaningful budget consumption. The relevant concept is: What does an error-budget burn rate greater than one indicate? Budget is being consumed faster than the sustainable SLO rate. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that it always means the entire budget is already exhausted.",
       "answerChecklist": [
         "Budget is being consumed faster than the sustainable SLO rate",
         "Burn rate must be interpreted with its measurement window",
@@ -1204,7 +1204,7 @@
       "id": "sre-10-principles",
       "title": "Latency indicators \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing latency indicators, which TWO statements are sound operational principles?",
+      "question": "Why can average latency hide poor user experience? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "A low average proves every user is fast",
         "A small slow tail can be masked by many fast requests",
@@ -1238,7 +1238,7 @@
       "question": "Explain how you would measure tail latency without losing user context.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "A small slow tail can be masked by many fast requests. Latency targets should define thresholds and relevant populations. A practical response is: Inspect latency distribution and affected cohorts. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that the average always equals the slowest request.",
+      "sampleAnswer": "Latency targets should define thresholds and relevant populations. Consider this situation: Mean latency is stable but a subset of users sees long delays. A practical response is: Inspect latency distribution and affected cohorts. The relevant concept is: Why can average latency hide poor user experience? A small slow tail can be masked by many fast requests. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that the average always equals the slowest request.",
       "answerChecklist": [
         "A small slow tail can be masked by many fast requests",
         "Latency targets should define thresholds and relevant populations",
@@ -1328,7 +1328,7 @@
       "id": "sre-11-principles",
       "title": "Alert actionability \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing alert actionability, which TWO statements are sound operational principles?",
+      "question": "What should a paging alert usually imply? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "A human action is needed within a relevant response time",
         "Nonurgent information can often become a ticket or dashboard",
@@ -1362,7 +1362,7 @@
       "question": "Explain how you would reduce alert fatigue without hiding real failures.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "A human action is needed within a relevant response time. Nonurgent information can often become a ticket or dashboard. A practical response is: Review pages for impact urgency and an actionable response. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that every metric anomaly must page immediately.",
+      "sampleAnswer": "Nonurgent information can often become a ticket or dashboard. Consider this situation: Responders receive hundreds of nonactionable overnight alerts. A practical response is: Review pages for impact urgency and an actionable response. The relevant concept is: What should a paging alert usually imply? A human action is needed within a relevant response time. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that every metric anomaly must page immediately.",
       "answerChecklist": [
         "A human action is needed within a relevant response time",
         "Nonurgent information can often become a ticket or dashboard",
@@ -1452,7 +1452,7 @@
       "id": "sre-12-principles",
       "title": "Capacity headroom \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing capacity headroom, which TWO statements are sound operational principles?",
+      "question": "Why maintain capacity headroom? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "Capacity planning should include loss of a failure domain",
         "Average demand alone is sufficient for all capacity decisions",
@@ -1486,7 +1486,7 @@
       "question": "Explain capacity planning for a service that must tolerate one zone failure.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "To absorb demand variation failures and recovery work. Capacity planning should include loss of a failure domain. A practical response is: Evaluate remaining capacity under the failure scenario. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that average demand alone is sufficient for all capacity decisions.",
+      "sampleAnswer": "Capacity planning should include loss of a failure domain. Consider this situation: One zone fails and surviving instances immediately saturate. A practical response is: Evaluate remaining capacity under the failure scenario. The relevant concept is: Why maintain capacity headroom? To absorb demand variation failures and recovery work. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that average demand alone is sufficient for all capacity decisions.",
       "answerChecklist": [
         "To absorb demand variation failures and recovery work",
         "Capacity planning should include loss of a failure domain",
@@ -1576,7 +1576,7 @@
       "id": "sre-13-principles",
       "title": "Load shedding \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing load shedding, which TWO statements are sound operational principles?",
+      "question": "What is the goal of load shedding? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "Accepting every request always improves availability",
         "An infinite queue removes overload risk",
@@ -1610,7 +1610,7 @@
       "question": "Explain a load-shedding policy and how clients should react.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Reject some work to protect useful service under overload. Prioritization and bounded queues can preserve critical traffic. A practical response is: Bound the queue and shed lower-priority work with clear signals. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that accepting every request always improves availability.",
+      "sampleAnswer": "Prioritization and bounded queues can preserve critical traffic. Consider this situation: A backend is overloaded and queues grow without bound. A practical response is: Bound the queue and shed lower-priority work with clear signals. The relevant concept is: What is the goal of load shedding? Reject some work to protect useful service under overload. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that accepting every request always improves availability.",
       "answerChecklist": [
         "Reject some work to protect useful service under overload",
         "Prioritization and bounded queues can preserve critical traffic",
@@ -1700,7 +1700,7 @@
       "id": "sre-14-principles",
       "title": "Backpressure \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing backpressure, which TWO statements are sound operational principles?",
+      "question": "What does backpressure communicate? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "It means silently dropping every message",
         "Downstream capacity constraints to upstream producers",
@@ -1734,7 +1734,7 @@
       "question": "Explain how you would propagate backpressure through a pipeline.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Downstream capacity constraints to upstream producers. Producer behavior must respond to the signal to be effective. A practical response is: Limit producer rate or increase sustainable processing capacity. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that backpressure creates unlimited downstream capacity.",
+      "sampleAnswer": "Producer behavior must respond to the signal to be effective. Consider this situation: A queue grows faster than workers can drain it. A practical response is: Limit producer rate or increase sustainable processing capacity. The relevant concept is: What does backpressure communicate? Downstream capacity constraints to upstream producers. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that backpressure creates unlimited downstream capacity.",
       "answerChecklist": [
         "Downstream capacity constraints to upstream producers",
         "Producer behavior must respond to the signal to be effective",
@@ -1824,7 +1824,7 @@
       "id": "sre-15-principles",
       "title": "Retry storms \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing retry storms, which TWO statements are sound operational principles?",
+      "question": "Why can layered retries multiply load? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "Each layer may repeat work already being retried elsewhere",
         "Retry policies need an end-to-end budget",
@@ -1858,7 +1858,7 @@
       "question": "Explain how you would prevent retry amplification across services.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Each layer may repeat work already being retried elsewhere. Retry policies need an end-to-end budget. A practical response is: Coordinate retry ownership and bound total attempts. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that retries at every layer always reduce traffic.",
+      "sampleAnswer": "Retry policies need an end-to-end budget. Consider this situation: Three service layers each retry failed calls several times. A practical response is: Coordinate retry ownership and bound total attempts. The relevant concept is: Why can layered retries multiply load? Each layer may repeat work already being retried elsewhere. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that retries at every layer always reduce traffic.",
       "answerChecklist": [
         "Each layer may repeat work already being retried elsewhere",
         "Retry policies need an end-to-end budget",
@@ -1948,7 +1948,7 @@
       "id": "sre-16-principles",
       "title": "Recovery testing \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing recovery testing, which TWO statements are sound operational principles?",
+      "question": "What demonstrates that a backup is operationally useful? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "Backup completion alone does not prove recoverability",
         "A green backup job guarantees any restore will work",
@@ -1982,7 +1982,7 @@
       "question": "Explain a practical restore test and its acceptance criteria.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "A successful verified restore meeting recovery requirements. Backup completion alone does not prove recoverability. A practical response is: Run an isolated restore exercise and verify data and service behavior. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that a green backup job guarantees any restore will work.",
+      "sampleAnswer": "Backup completion alone does not prove recoverability. Consider this situation: Backups succeed but no one has restored the current application version. A practical response is: Run an isolated restore exercise and verify data and service behavior. The relevant concept is: What demonstrates that a backup is operationally useful? A successful verified restore meeting recovery requirements. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that a green backup job guarantees any restore will work.",
       "answerChecklist": [
         "A successful verified restore meeting recovery requirements",
         "Backup completion alone does not prove recoverability",
@@ -2072,7 +2072,7 @@
       "id": "sre-17-principles",
       "title": "RTO \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing rto, which TWO statements are sound operational principles?",
+      "question": "What does a recovery time objective describe? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "It specifies the maximum acceptable data-loss window",
         "It measures average CPU utilization",
@@ -2106,7 +2106,7 @@
       "question": "Explain how you would validate an end-to-end RTO.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "The target duration to restore service after disruption. Recovery dependencies and human steps contribute to elapsed recovery time. A practical response is: Exercise the complete dependency chain and revise the plan. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that it specifies the maximum acceptable data-loss window.",
+      "sampleAnswer": "Recovery dependencies and human steps contribute to elapsed recovery time. Consider this situation: A recovery plan promises one hour but identity recovery takes two hours. A practical response is: Exercise the complete dependency chain and revise the plan. The relevant concept is: What does a recovery time objective describe? The target duration to restore service after disruption. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that it specifies the maximum acceptable data-loss window.",
       "answerChecklist": [
         "The target duration to restore service after disruption",
         "Recovery dependencies and human steps contribute to elapsed recovery time",
@@ -2196,7 +2196,7 @@
       "id": "sre-18-principles",
       "title": "RPO \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing rpo, which TWO statements are sound operational principles?",
+      "question": "What does a recovery point objective describe? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "Synchronous replication replaces all recovery testing",
         "The acceptable data-loss window after a disruption",
@@ -2230,7 +2230,7 @@
       "question": "Explain RPO and how you would measure whether it is achievable.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "The acceptable data-loss window after a disruption. Replication lag and backup frequency affect achievable recovery points. A practical response is: Compare backup and replication behavior with the required loss window. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that it is the maximum allowed service restart time.",
+      "sampleAnswer": "Replication lag and backup frequency affect achievable recovery points. Consider this situation: A restore loses six hours of writes despite a one-hour RPO. A practical response is: Compare backup and replication behavior with the required loss window. The relevant concept is: What does a recovery point objective describe? The acceptable data-loss window after a disruption. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that it is the maximum allowed service restart time.",
       "answerChecklist": [
         "The acceptable data-loss window after a disruption",
         "Replication lag and backup frequency affect achievable recovery points",
@@ -2320,7 +2320,7 @@
       "id": "sre-19-principles",
       "title": "Canary releases \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing canary releases, which TWO statements are sound operational principles?",
+      "question": "Why use a canary rollout? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "Limit exposure while comparing a new version with a baseline",
         "Canary metrics must represent meaningful user impact",
@@ -2354,7 +2354,7 @@
       "question": "Explain canary evaluation and automatic rollback criteria.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Limit exposure while comparing a new version with a baseline. Canary metrics must represent meaningful user impact. A practical response is: Compare relevant cohorts and stop or roll back the canary. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that a canary proves there can be no production defects.",
+      "sampleAnswer": "Canary metrics must represent meaningful user impact. Consider this situation: A new version raises error rates only for one request category. A practical response is: Compare relevant cohorts and stop or roll back the canary. The relevant concept is: Why use a canary rollout? Limit exposure while comparing a new version with a baseline. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that a canary proves there can be no production defects.",
       "answerChecklist": [
         "Limit exposure while comparing a new version with a baseline",
         "Canary metrics must represent meaningful user impact",
@@ -2444,7 +2444,7 @@
       "id": "sre-20-principles",
       "title": "Feature flags \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing feature flags, which TWO statements are sound operational principles?",
+      "question": "What operational benefit can a feature flag provide? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "Flags need ownership lifecycle management and tested fallback paths",
         "Flags automatically undo irreversible data mutations",
@@ -2478,7 +2478,7 @@
       "question": "Explain feature-flag rollback limits and cleanup responsibilities.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Disable a behavior independently of redeploying the whole binary. Flags need ownership lifecycle management and tested fallback paths. A practical response is: Disable the flag if its fallback is safe and verify recovery. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that flags automatically undo irreversible data mutations.",
+      "sampleAnswer": "Flags need ownership lifecycle management and tested fallback paths. Consider this situation: A newly enabled feature causes a dependency overload. A practical response is: Disable the flag if its fallback is safe and verify recovery. The relevant concept is: What operational benefit can a feature flag provide? Disable a behavior independently of redeploying the whole binary. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that flags automatically undo irreversible data mutations.",
       "answerChecklist": [
         "Disable a behavior independently of redeploying the whole binary",
         "Flags need ownership lifecycle management and tested fallback paths",
@@ -2568,7 +2568,7 @@
       "id": "sre-21-principles",
       "title": "Dependencies \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing dependencies, which TWO statements are sound operational principles?",
+      "question": "Why map critical service dependencies? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "Independent service names guarantee independent failure modes",
         "A green dependency dashboard proves every caller is healthy",
@@ -2602,7 +2602,7 @@
       "question": "Explain how dependency mapping changes incident diagnosis.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Shared dependencies can create correlated failures. Dependency health should be understood from the caller's perspective. A practical response is: Investigate the common dependency and caller failure behavior. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that independent service names guarantee independent failure modes.",
+      "sampleAnswer": "Dependency health should be understood from the caller's perspective. Consider this situation: Several services fail after a shared identity system outage. A practical response is: Investigate the common dependency and caller failure behavior. The relevant concept is: Why map critical service dependencies? Shared dependencies can create correlated failures. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that independent service names guarantee independent failure modes.",
       "answerChecklist": [
         "Shared dependencies can create correlated failures",
         "Dependency health should be understood from the caller's perspective",
@@ -2692,7 +2692,7 @@
       "id": "sre-22-principles",
       "title": "Graceful degradation \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing graceful degradation, which TWO statements are sound operational principles?",
+      "question": "What is graceful degradation? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "It guarantees identical behavior during every failure",
         "Preserving important functions when some capabilities fail",
@@ -2726,7 +2726,7 @@
       "question": "Explain how to distinguish optional from critical dependencies.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Preserving important functions when some capabilities fail. Fallback behavior should be explicitly designed and tested. A practical response is: Serve checkout with the optional recommendation feature degraded. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that it means reporting success for every failed request.",
+      "sampleAnswer": "Fallback behavior should be explicitly designed and tested. Consider this situation: Recommendations fail but checkout can work without them. A practical response is: Serve checkout with the optional recommendation feature degraded. The relevant concept is: What is graceful degradation? Preserving important functions when some capabilities fail. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that it means reporting success for every failed request.",
       "answerChecklist": [
         "Preserving important functions when some capabilities fail",
         "Fallback behavior should be explicitly designed and tested",
@@ -2816,7 +2816,7 @@
       "id": "sre-23-principles",
       "title": "Chaos experiments \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing chaos experiments, which TWO statements are sound operational principles?",
+      "question": "What makes a resilience experiment controlled? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "A hypothesis limited scope and explicit abort conditions",
         "Start with safe scope and measurable steady-state behavior",
@@ -2850,7 +2850,7 @@
       "question": "Explain how you would design a small resilience experiment.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "A hypothesis limited scope and explicit abort conditions. Start with safe scope and measurable steady-state behavior. A practical response is: Define a hypothesis blast radius and stop conditions first. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that randomly breaking production is sufficient experiment design.",
+      "sampleAnswer": "Start with safe scope and measurable steady-state behavior. Consider this situation: A team proposes an unbounded production failure test. A practical response is: Define a hypothesis blast radius and stop conditions first. The relevant concept is: What makes a resilience experiment controlled? A hypothesis limited scope and explicit abort conditions. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that randomly breaking production is sufficient experiment design.",
       "answerChecklist": [
         "A hypothesis limited scope and explicit abort conditions",
         "Start with safe scope and measurable steady-state behavior",
@@ -2940,7 +2940,7 @@
       "id": "sre-24-principles",
       "title": "Incident communication \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing incident communication, which TWO statements are sound operational principles?",
+      "question": "Why publish regular incident updates? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "Uncertainty should be stated rather than replaced with invented certainty",
         "Only a final root cause is worth communicating",
@@ -2974,7 +2974,7 @@
       "question": "Explain what belongs in a useful incident status update.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Stakeholders need consistent impact and recovery information. Uncertainty should be stated rather than replaced with invented certainty. A practical response is: Assign a communication owner and publish evidence-based updates. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that only a final root cause is worth communicating.",
+      "sampleAnswer": "Uncertainty should be stated rather than replaced with invented certainty. Consider this situation: Support receives conflicting guesses from different responders. A practical response is: Assign a communication owner and publish evidence-based updates. The relevant concept is: Why publish regular incident updates? Stakeholders need consistent impact and recovery information. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that only a final root cause is worth communicating.",
       "answerChecklist": [
         "Stakeholders need consistent impact and recovery information",
         "Uncertainty should be stated rather than replaced with invented certainty",
@@ -3064,7 +3064,7 @@
       "id": "sre-25-principles",
       "title": "SLO aggregation \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing slo aggregation, which TWO statements are sound operational principles?",
+      "question": "Why can a global success rate hide important failures? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "An overall SLO guarantees every region meets the same target",
         "Low-volume users cannot experience meaningful impact",
@@ -3098,7 +3098,7 @@
       "question": "Explain how you would prevent reliability metrics from masking small cohorts.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "High-volume healthy traffic can mask a failing user segment. Segmented indicators can complement an overall SLO. A practical response is: Inspect region and critical-journey indicators alongside the global metric. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that an overall SLO guarantees every region meets the same target.",
+      "sampleAnswer": "Segmented indicators can complement an overall SLO. Consider this situation: One region is down but global availability remains above target. A practical response is: Inspect region and critical-journey indicators alongside the global metric. The relevant concept is: Why can a global success rate hide important failures? High-volume healthy traffic can mask a failing user segment. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that an overall SLO guarantees every region meets the same target.",
       "answerChecklist": [
         "High-volume healthy traffic can mask a failing user segment",
         "Segmented indicators can complement an overall SLO",
@@ -3188,7 +3188,7 @@
       "id": "sre-26-principles",
       "title": "Overload recovery \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing overload recovery, which TWO statements are sound operational principles?",
+      "question": "Why can recovery traffic worsen an outage? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "A recovered dependency immediately has unlimited spare capacity",
         "Retries cache warming and reconnects add demand during recovery",
@@ -3222,7 +3222,7 @@
       "question": "Explain how you would prevent a thundering herd during recovery.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Retries cache warming and reconnects add demand during recovery. Recovery should be staged within available capacity. A practical response is: Ramp traffic and control retries while observing saturation. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that restarting every instance simultaneously always restores service fastest.",
+      "sampleAnswer": "Recovery should be staged within available capacity. Consider this situation: A restored service is overwhelmed by reconnecting clients. A practical response is: Ramp traffic and control retries while observing saturation. The relevant concept is: Why can recovery traffic worsen an outage? Retries cache warming and reconnects add demand during recovery. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that restarting every instance simultaneously always restores service fastest.",
       "answerChecklist": [
         "Retries cache warming and reconnects add demand during recovery",
         "Recovery should be staged within available capacity",
@@ -3312,7 +3312,7 @@
       "id": "sre-27-principles",
       "title": "Consistency trade-offs \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing consistency trade-offs, which TWO statements are sound operational principles?",
+      "question": "Why make consistency requirements explicit? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "Failure behavior depends on which guarantees the application needs",
         "Different operations can require different consistency guarantees",
@@ -3346,7 +3346,7 @@
       "question": "Explain how business invariants guide partition-time behavior.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Failure behavior depends on which guarantees the application needs. Different operations can require different consistency guarantees. A practical response is: Prioritize the required correctness guarantee and define failure behavior. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that every distributed operation can always be available and strongly consistent during partitions.",
+      "sampleAnswer": "Different operations can require different consistency guarantees. Consider this situation: A partition forces a decision for account-balance updates. A practical response is: Prioritize the required correctness guarantee and define failure behavior. The relevant concept is: Why make consistency requirements explicit? Failure behavior depends on which guarantees the application needs. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that every distributed operation can always be available and strongly consistent during partitions.",
       "answerChecklist": [
         "Failure behavior depends on which guarantees the application needs",
         "Different operations can require different consistency guarantees",
@@ -3436,7 +3436,7 @@
       "id": "sre-28-principles",
       "title": "Reliability investment \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing reliability investment, which TWO statements are sound operational principles?",
+      "question": "How should reliability work be prioritized? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "Frequency duration and blast radius all influence value",
         "The newest monitoring tool is always the highest-value investment",
@@ -3470,7 +3470,7 @@
       "question": "Explain how you would choose between two reliability improvement projects.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "By user impact risk and expected reduction of recurring failure. Frequency duration and blast radius all influence value. A practical response is: Compare impact and risk before selecting the next engineering project. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that the newest monitoring tool is always the highest-value investment.",
+      "sampleAnswer": "Frequency duration and blast radius all influence value. Consider this situation: A rare failure affects all customers while frequent minor alerts affect none. A practical response is: Compare impact and risk before selecting the next engineering project. The relevant concept is: How should reliability work be prioritized? By user impact risk and expected reduction of recurring failure. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that the newest monitoring tool is always the highest-value investment.",
       "answerChecklist": [
         "By user impact risk and expected reduction of recurring failure",
         "Frequency duration and blast radius all influence value",
@@ -3560,7 +3560,7 @@
       "id": "sre-29-principles",
       "title": "Incident metrics \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing incident metrics, which TWO statements are sound operational principles?",
+      "question": "Why is a single average recovery time insufficient? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "A lower average always proves every incident class improved",
         "Removing slow incidents from the dataset improves actual reliability",
@@ -3594,7 +3594,7 @@
       "question": "Explain pitfalls in measuring incident response performance.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "It can hide distribution incident severity and changing classification. Metrics need stable definitions and contextual interpretation. A practical response is: Audit definitions and inspect distributions by comparable incident class. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that a lower average always proves every incident class improved.",
+      "sampleAnswer": "Metrics need stable definitions and contextual interpretation. Consider this situation: A dashboard improves after severe incidents are reclassified away. A practical response is: Audit definitions and inspect distributions by comparable incident class. The relevant concept is: Why is a single average recovery time insufficient? It can hide distribution incident severity and changing classification. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that a lower average always proves every incident class improved.",
       "answerChecklist": [
         "It can hide distribution incident severity and changing classification",
         "Metrics need stable definitions and contextual interpretation",
@@ -3684,7 +3684,7 @@
       "id": "sre-30-principles",
       "title": "Safe automation \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing safe automation, which TWO statements are sound operational principles?",
+      "question": "What should high-impact remediation automation include? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "A successful command exit code guarantees user recovery",
         "Bounded scope verification and a safe stop or rollback path",
@@ -3718,7 +3718,7 @@
       "question": "Explain how you would design and validate automated remediation.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Bounded scope verification and a safe stop or rollback path. Automation can amplify mistakes as quickly as successful actions. A practical response is: Add evidence-based guards cooldowns and post-action checks. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that automated actions are inherently safer than manual actions.",
+      "sampleAnswer": "Automation can amplify mistakes as quickly as successful actions. Consider this situation: An automated restart loop repeatedly disrupts healthy instances. A practical response is: Add evidence-based guards cooldowns and post-action checks. The relevant concept is: What should high-impact remediation automation include? Bounded scope verification and a safe stop or rollback path. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that automated actions are inherently safer than manual actions.",
       "answerChecklist": [
         "Bounded scope verification and a safe stop or rollback path",
         "Automation can amplify mistakes as quickly as successful actions",

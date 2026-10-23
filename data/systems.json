@@ -88,7 +88,7 @@
       "id": "systems-01-principles",
       "title": "Service managers \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing service managers, which TWO statements are sound operational principles?",
+      "question": "What is a service manager responsible for? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "Starting a service proves all business operations succeed",
         "A service manager replaces every application health check",
@@ -122,7 +122,7 @@
       "question": "Explain service lifecycle versus application readiness.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Managing configured service lifecycle and supervision. A running process and a healthy service are different observations. A practical response is: Inspect application health and logs alongside unit status. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that starting a service proves all business operations succeed.",
+      "sampleAnswer": "A running process and a healthy service are different observations. Consider this situation: A service is active but its endpoint returns errors. A practical response is: Inspect application health and logs alongside unit status. The relevant concept is: What is a service manager responsible for? Managing configured service lifecycle and supervision. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that starting a service proves all business operations succeed.",
       "answerChecklist": [
         "Managing configured service lifecycle and supervision",
         "A running process and a healthy service are different observations",
@@ -212,7 +212,7 @@
       "id": "systems-02-principles",
       "title": "Enable versus start \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing enable versus start, which TWO statements are sound operational principles?",
+      "question": "What does enabling a systemd service generally configure? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "Start always enables the service on future boots",
         "Activation through configured unit installation relationships such as boot targets",
@@ -246,7 +246,7 @@
       "question": "Explain systemd enable start and their operational differences.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Activation through configured unit installation relationships such as boot targets. Enabling and starting are separate operations unless explicitly combined. A practical response is: Inspect enablement and the intended boot activation path. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that enable always starts the process immediately.",
+      "sampleAnswer": "Enabling and starting are separate operations unless explicitly combined. Consider this situation: A service works now but does not return after reboot. A practical response is: Inspect enablement and the intended boot activation path. The relevant concept is: What does enabling a systemd service generally configure? Activation through configured unit installation relationships such as boot targets. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that enable always starts the process immediately.",
       "answerChecklist": [
         "Activation through configured unit installation relationships such as boot targets",
         "Enabling and starting are separate operations unless explicitly combined",
@@ -336,7 +336,7 @@
       "id": "systems-03-principles",
       "title": "Unit overrides \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing unit overrides, which TWO statements are sound operational principles?",
+      "question": "Why use a systemd drop-in override? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "Customize a unit without directly editing a vendor-supplied unit file",
         "Configuration changes may require daemon reload and service action",
@@ -370,7 +370,7 @@
       "question": "Explain maintainable service configuration overrides.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Customize a unit without directly editing a vendor-supplied unit file. Configuration changes may require daemon reload and service action. A practical response is: Use a managed drop-in and verify the effective unit configuration. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that drop-ins are ignored whenever packages update.",
+      "sampleAnswer": "Configuration changes may require daemon reload and service action. Consider this situation: A package upgrade replaces local service tuning. A practical response is: Use a managed drop-in and verify the effective unit configuration. The relevant concept is: Why use a systemd drop-in override? Customize a unit without directly editing a vendor-supplied unit file. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that drop-ins are ignored whenever packages update.",
       "answerChecklist": [
         "Customize a unit without directly editing a vendor-supplied unit file",
         "Configuration changes may require daemon reload and service action",
@@ -460,7 +460,7 @@
       "id": "systems-04-principles",
       "title": "Journals \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing journals, which TWO statements are sound operational principles?",
+      "question": "What is journalctl useful for? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "Retention and persistence settings determine available history",
         "The journal always retains all logs forever",
@@ -494,7 +494,7 @@
       "question": "Explain focused journal-based service troubleshooting.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Querying journal records with filters such as unit and time. Retention and persistence settings determine available history. A practical response is: Query the relevant unit and time window. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that the journal always retains all logs forever.",
+      "sampleAnswer": "Retention and persistence settings determine available history. Consider this situation: A restart failure needs investigation around a known time. A practical response is: Query the relevant unit and time window. The relevant concept is: What is journalctl useful for? Querying journal records with filters such as unit and time. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that the journal always retains all logs forever.",
       "answerChecklist": [
         "Querying journal records with filters such as unit and time",
         "Retention and persistence settings determine available history",
@@ -584,7 +584,7 @@
       "id": "systems-05-principles",
       "title": "Accounts \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing accounts, which TWO statements are sound operational principles?",
+      "question": "Why use separate service accounts? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "Separate usernames automatically isolate all files and networks",
         "Every service should share one administrator account",
@@ -618,7 +618,7 @@
       "question": "Explain service identity isolation on a shared host.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Limit access and attribute activity to distinct workloads. Account separation must be paired with appropriate permissions. A practical response is: Separate identities and narrow file and service access. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that separate usernames automatically isolate all files and networks.",
+      "sampleAnswer": "Account separation must be paired with appropriate permissions. Consider this situation: One service account can read unrelated applications' secrets. A practical response is: Separate identities and narrow file and service access. The relevant concept is: Why use separate service accounts? Limit access and attribute activity to distinct workloads. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that separate usernames automatically isolate all files and networks.",
       "answerChecklist": [
         "Limit access and attribute activity to distinct workloads",
         "Account separation must be paired with appropriate permissions",
@@ -708,7 +708,7 @@
       "id": "systems-06-principles",
       "title": "SSH keys \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing ssh keys, which TWO statements are sound operational principles?",
+      "question": "Why protect private SSH keys? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "A public key must remain secret like a password",
         "Possession can enable authentication wherever the key is trusted",
@@ -742,7 +742,7 @@
       "question": "Explain response to an exposed SSH private key.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Possession can enable authentication wherever the key is trusted. Key removal and rotation require reviewing authorized locations. A practical response is: Revoke or rotate the key and review affected access. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that a private key is safe to publish if the username is hidden.",
+      "sampleAnswer": "Key removal and rotation require reviewing authorized locations. Consider this situation: A private deployment key appears in a shared log. A practical response is: Revoke or rotate the key and review affected access. The relevant concept is: Why protect private SSH keys? Possession can enable authentication wherever the key is trusted. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that a private key is safe to publish if the username is hidden.",
       "answerChecklist": [
         "Possession can enable authentication wherever the key is trusted",
         "Key removal and rotation require reviewing authorized locations",
@@ -832,7 +832,7 @@
       "id": "systems-07-principles",
       "title": "Package management \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing package management, which TWO statements are sound operational principles?",
+      "question": "Why prefer the distribution package manager for system packages? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "It tracks package ownership dependencies and updates",
         "Third-party sources still require trust and version review",
@@ -866,7 +866,7 @@
       "question": "Explain maintaining an auditable system software inventory.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "It tracks package ownership dependencies and updates. Third-party sources still require trust and version review. A practical response is: Inventory the installation and establish a supported update path. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that a package manager proves every package is vulnerability-free.",
+      "sampleAnswer": "Third-party sources still require trust and version review. Consider this situation: A critical library was installed manually outside package tracking. A practical response is: Inventory the installation and establish a supported update path. The relevant concept is: Why prefer the distribution package manager for system packages? It tracks package ownership dependencies and updates. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that a package manager proves every package is vulnerability-free.",
       "answerChecklist": [
         "It tracks package ownership dependencies and updates",
         "Third-party sources still require trust and version review",
@@ -956,7 +956,7 @@
       "id": "systems-08-principles",
       "title": "Scheduled jobs \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing scheduled jobs, which TWO statements are sound operational principles?",
+      "question": "Why define explicit environments for scheduled jobs? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "Use explicit paths and controlled output handling",
         "Cron always inherits an interactive shell's full environment",
@@ -990,7 +990,7 @@
       "question": "Explain reliable scheduled-job design.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "They may run with different PATH working directory and credentials. Use explicit paths and controlled output handling. A practical response is: Compare identity environment paths and working directory. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that cron always inherits an interactive shell's full environment.",
+      "sampleAnswer": "Use explicit paths and controlled output handling. Consider this situation: A script works interactively but fails under the scheduler. A practical response is: Compare identity environment paths and working directory. The relevant concept is: Why define explicit environments for scheduled jobs? They may run with different PATH working directory and credentials. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that cron always inherits an interactive shell's full environment.",
       "answerChecklist": [
         "They may run with different PATH working directory and credentials",
         "Use explicit paths and controlled output handling",
@@ -1080,7 +1080,7 @@
       "id": "systems-09-principles",
       "title": "Time synchronization \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing time synchronization, which TWO statements are sound operational principles?",
+      "question": "Why does consistent system time matter operationally? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "Clock synchronization makes all machines perfectly simultaneous forever",
         "Wall-clock timestamps alone establish exact distributed event order",
@@ -1114,7 +1114,7 @@
       "question": "Explain clock drift detection and its operational impact.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Authentication log correlation and distributed behavior can depend on it. Elapsed-time measurement may need monotonic clocks separately. A practical response is: Inspect synchronization state and correct the time source safely. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that clock synchronization makes all machines perfectly simultaneous forever.",
+      "sampleAnswer": "Elapsed-time measurement may need monotonic clocks separately. Consider this situation: Authentication failures coincide with clock drift. A practical response is: Inspect synchronization state and correct the time source safely. The relevant concept is: Why does consistent system time matter operationally? Authentication log correlation and distributed behavior can depend on it. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that clock synchronization makes all machines perfectly simultaneous forever.",
       "answerChecklist": [
         "Authentication log correlation and distributed behavior can depend on it",
         "Elapsed-time measurement may need monotonic clocks separately",
@@ -1204,7 +1204,7 @@
       "id": "systems-10-principles",
       "title": "Disk layout \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing disk layout, which TWO statements are sound operational principles?",
+      "question": "Why separate growth-prone data from critical system paths? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "A separate partition can never fill up",
         "Reduce the chance one workload exhausts space needed for core operation",
@@ -1238,7 +1238,7 @@
       "question": "Explain disk layout and capacity protection for production hosts.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Reduce the chance one workload exhausts space needed for core operation. Capacity limits and monitoring still matter after separation. A practical response is: Bound log growth and evaluate storage isolation. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that separate directories alone always mean separate capacity.",
+      "sampleAnswer": "Capacity limits and monitoring still matter after separation. Consider this situation: Application logs fill the root filesystem and disrupt system services. A practical response is: Bound log growth and evaluate storage isolation. The relevant concept is: Why separate growth-prone data from critical system paths? Reduce the chance one workload exhausts space needed for core operation. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that separate directories alone always mean separate capacity.",
       "answerChecklist": [
         "Reduce the chance one workload exhausts space needed for core operation",
         "Capacity limits and monitoring still matter after separation",
@@ -1328,7 +1328,7 @@
       "id": "systems-11-principles",
       "title": "Log rotation \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing log rotation, which TWO statements are sound operational principles?",
+      "question": "What should log rotation include beyond renaming files? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "A retention policy and appropriate application file-handle behavior",
         "A process may keep writing to a renamed or deleted open file",
@@ -1362,7 +1362,7 @@
       "question": "Explain safe log rotation and open-file behavior.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "A retention policy and appropriate application file-handle behavior. A process may keep writing to a renamed or deleted open file. A practical response is: Inspect open handles and use the application's supported reopen mechanism. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that renaming a log guarantees the process reopens a new file.",
+      "sampleAnswer": "A process may keep writing to a renamed or deleted open file. Consider this situation: Disk usage remains high after a log file was deleted. A practical response is: Inspect open handles and use the application's supported reopen mechanism. The relevant concept is: What should log rotation include beyond renaming files? A retention policy and appropriate application file-handle behavior. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that renaming a log guarantees the process reopens a new file.",
       "answerChecklist": [
         "A retention policy and appropriate application file-handle behavior",
         "A process may keep writing to a renamed or deleted open file",
@@ -1452,7 +1452,7 @@
       "id": "systems-12-principles",
       "title": "Backups \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing backups, which TWO statements are sound operational principles?",
+      "question": "What distinguishes a backup from a second live copy? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "Replication can propagate accidental deletion or corruption",
         "Replication always replaces historical backups",
@@ -1486,7 +1486,7 @@
       "question": "Explain backups versus replication.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Recoverable retained data protected from relevant failure modes. Replication can propagate accidental deletion or corruption. A practical response is: Restore from a verified retained recovery point. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that replication always replaces historical backups.",
+      "sampleAnswer": "Replication can propagate accidental deletion or corruption. Consider this situation: An operator deletes data and replication mirrors the deletion. A practical response is: Restore from a verified retained recovery point. The relevant concept is: What distinguishes a backup from a second live copy? Recoverable retained data protected from relevant failure modes. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that replication always replaces historical backups.",
       "answerChecklist": [
         "Recoverable retained data protected from relevant failure modes",
         "Replication can propagate accidental deletion or corruption",
@@ -1576,7 +1576,7 @@
       "id": "systems-13-principles",
       "title": "Restore verification \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing restore verification, which TWO statements are sound operational principles?",
+      "question": "What should a restore test verify? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "A completed file copy proves the application can recover",
         "A restore test never needs application-level checks",
@@ -1610,7 +1610,7 @@
       "question": "Explain acceptance criteria for a restore exercise.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Data integrity and usable application behavior after recovery. Recovery time and required credentials belong in the test. A practical response is: Validate business-relevant data and recovery-point expectations. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that a completed file copy proves the application can recover.",
+      "sampleAnswer": "Recovery time and required credentials belong in the test. Consider this situation: A restored database starts but required records are missing. A practical response is: Validate business-relevant data and recovery-point expectations. The relevant concept is: What should a restore test verify? Data integrity and usable application behavior after recovery. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that a completed file copy proves the application can recover.",
       "answerChecklist": [
         "Data integrity and usable application behavior after recovery",
         "Recovery time and required credentials belong in the test",
@@ -1700,7 +1700,7 @@
       "id": "systems-14-principles",
       "title": "RAID \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing raid, which TWO statements are sound operational principles?",
+      "question": "What is a limitation of RAID? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "Any RAID level survives any number of disk failures",
         "It does not protect against every logical deletion or corruption event",
@@ -1734,7 +1734,7 @@
       "question": "Explain redundancy versus recoverability.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "It does not protect against every logical deletion or corruption event. Redundancy and independent backups solve different problems. A practical response is: Recover from appropriate backups rather than expecting redundancy to undo deletion. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that rAID makes backups unnecessary.",
+      "sampleAnswer": "Redundancy and independent backups solve different problems. Consider this situation: An administrator deletes a directory on a redundant array. A practical response is: Recover from appropriate backups rather than expecting redundancy to undo deletion. The relevant concept is: What is a limitation of RAID? It does not protect against every logical deletion or corruption event. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that rAID makes backups unnecessary.",
       "answerChecklist": [
         "It does not protect against every logical deletion or corruption event",
         "Redundancy and independent backups solve different problems",
@@ -1824,7 +1824,7 @@
       "id": "systems-15-principles",
       "title": "LVM \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing lvm, which TWO statements are sound operational principles?",
+      "question": "What does logical volume management provide? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "An abstraction for allocating logical storage from physical capacity",
         "Filesystem resizing requirements are separate from volume resizing",
@@ -1858,7 +1858,7 @@
       "question": "Explain layered storage resizing and verification.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "An abstraction for allocating logical storage from physical capacity. Filesystem resizing requirements are separate from volume resizing. A practical response is: Check and perform the filesystem-specific growth step safely. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that growing a logical volume always grows every filesystem automatically.",
+      "sampleAnswer": "Filesystem resizing requirements are separate from volume resizing. Consider this situation: A logical volume was extended but df shows unchanged capacity. A practical response is: Check and perform the filesystem-specific growth step safely. The relevant concept is: What does logical volume management provide? An abstraction for allocating logical storage from physical capacity. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that growing a logical volume always grows every filesystem automatically.",
       "answerChecklist": [
         "An abstraction for allocating logical storage from physical capacity",
         "Filesystem resizing requirements are separate from volume resizing",
@@ -1948,7 +1948,7 @@
       "id": "systems-16-principles",
       "title": "Filesystem mounts \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing filesystem mounts, which TWO statements are sound operational principles?",
+      "question": "Why use stable device identifiers in mount configuration? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "Mount configuration should be tested before a critical reboot",
         "A disk always keeps the same enumeration name forever",
@@ -1982,7 +1982,7 @@
       "question": "Explain reliable persistent mount configuration.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Device enumeration names can change across boots. Mount configuration should be tested before a critical reboot. A practical response is: Use stable identifiers and verify mount dependencies. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that a disk always keeps the same enumeration name forever.",
+      "sampleAnswer": "Mount configuration should be tested before a critical reboot. Consider this situation: A host mounts the wrong volume after device ordering changes. A practical response is: Use stable identifiers and verify mount dependencies. The relevant concept is: Why use stable device identifiers in mount configuration? Device enumeration names can change across boots. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that a disk always keeps the same enumeration name forever.",
       "answerChecklist": [
         "Device enumeration names can change across boots",
         "Mount configuration should be tested before a critical reboot",
@@ -2072,7 +2072,7 @@
       "id": "systems-17-principles",
       "title": "Boot recovery \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing boot recovery, which TWO statements are sound operational principles?",
+      "question": "What is a safe first step when a host fails after a boot configuration change? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "Repeated blind rebooting repairs every configuration error",
         "Boot failures always prove the physical disk is dead",
@@ -2106,7 +2106,7 @@
       "question": "Explain a controlled response to a boot-time configuration failure.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Use an authorized recovery path and inspect the specific boot failure. Keep a known recovery route before making risky boot changes. A practical response is: Use recovery access to inspect and correct the faulty entry. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that repeated blind rebooting repairs every configuration error.",
+      "sampleAnswer": "Keep a known recovery route before making risky boot changes. Consider this situation: A modified mount entry prevents normal boot. A practical response is: Use recovery access to inspect and correct the faulty entry. The relevant concept is: What is a safe first step when a host fails after a boot configuration change? Use an authorized recovery path and inspect the specific boot failure. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that repeated blind rebooting repairs every configuration error.",
       "answerChecklist": [
         "Use an authorized recovery path and inspect the specific boot failure",
         "Keep a known recovery route before making risky boot changes",
@@ -2196,7 +2196,7 @@
       "id": "systems-18-principles",
       "title": "Patching \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing patching, which TWO statements are sound operational principles?",
+      "question": "What should a patch rollout include? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "Every patch should be deployed fleet-wide without observation",
         "Representative validation staged deployment and recovery planning",
@@ -2230,7 +2230,7 @@
       "question": "Explain patch verification for running systems.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Representative validation staged deployment and recovery planning. Some updates require service restart or reboot to take effect. A practical response is: Plan and verify the required reboot within availability constraints. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that installing a package proves all running processes use the new code.",
+      "sampleAnswer": "Some updates require service restart or reboot to take effect. Consider this situation: A kernel update is installed but the old kernel remains running. A practical response is: Plan and verify the required reboot within availability constraints. The relevant concept is: What should a patch rollout include? Representative validation staged deployment and recovery planning. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that installing a package proves all running processes use the new code.",
       "answerChecklist": [
         "Representative validation staged deployment and recovery planning",
         "Some updates require service restart or reboot to take effect",
@@ -2320,7 +2320,7 @@
       "id": "systems-19-principles",
       "title": "Configuration drift \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing configuration drift, which TWO statements are sound operational principles?",
+      "question": "Why monitor configuration drift? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "Untracked changes can undermine reproducibility and policy",
         "Intentional emergency changes need reconciliation into the managed baseline",
@@ -2354,7 +2354,7 @@
       "question": "Explain closing the loop after emergency configuration changes.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Untracked changes can undermine reproducibility and policy. Intentional emergency changes need reconciliation into the managed baseline. A practical response is: Review the change and adopt or revert it deliberately. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that every manual change is malicious.",
+      "sampleAnswer": "Intentional emergency changes need reconciliation into the managed baseline. Consider this situation: A host differs from its declared baseline after incident mitigation. A practical response is: Review the change and adopt or revert it deliberately. The relevant concept is: Why monitor configuration drift? Untracked changes can undermine reproducibility and policy. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that every manual change is malicious.",
       "answerChecklist": [
         "Untracked changes can undermine reproducibility and policy",
         "Intentional emergency changes need reconciliation into the managed baseline",
@@ -2444,7 +2444,7 @@
       "id": "systems-20-principles",
       "title": "Access reviews \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing access reviews, which TWO statements are sound operational principles?",
+      "question": "Why periodically review privileged access? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "Removal should account for service dependencies and emergency access",
         "Once granted privileged access should never expire",
@@ -2478,7 +2478,7 @@
       "question": "Explain a practical privileged-access review.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Roles and operational needs change over time. Removal should account for service dependencies and emergency access. A practical response is: Revoke access through the managed identity path and audit related credentials. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that once granted privileged access should never expire.",
+      "sampleAnswer": "Removal should account for service dependencies and emergency access. Consider this situation: A departed team member retains production administrative access. A practical response is: Revoke access through the managed identity path and audit related credentials. The relevant concept is: Why periodically review privileged access? Roles and operational needs change over time. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that once granted privileged access should never expire.",
       "answerChecklist": [
         "Roles and operational needs change over time",
         "Removal should account for service dependencies and emergency access",
@@ -2568,7 +2568,7 @@
       "id": "systems-21-principles",
       "title": "Sudo policy \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing sudo policy, which TWO statements are sound operational principles?",
+      "question": "Why scope sudo permissions carefully? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "Allowing any editor as root is always harmless",
         "A command allowlist makes argument handling irrelevant",
@@ -2602,7 +2602,7 @@
       "question": "Explain pitfalls in designing restricted sudo rules.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Privileged commands can expose more capability than their names suggest. Editors shells and writable command paths can enable escalation. A practical response is: Review effective capabilities and narrow the allowed operation. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that allowing any editor as root is always harmless.",
+      "sampleAnswer": "Editors shells and writable command paths can enable escalation. Consider this situation: A restricted sudo rule permits a tool that can launch arbitrary shells. A practical response is: Review effective capabilities and narrow the allowed operation. The relevant concept is: Why scope sudo permissions carefully? Privileged commands can expose more capability than their names suggest. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that allowing any editor as root is always harmless.",
       "answerChecklist": [
         "Privileged commands can expose more capability than their names suggest",
         "Editors shells and writable command paths can enable escalation",
@@ -2692,7 +2692,7 @@
       "id": "systems-22-principles",
       "title": "Resource limits \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing resource limits, which TWO statements are sound operational principles?",
+      "question": "Why set service-specific resource limits? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "One host-wide limit is optimal for every service",
         "Contain resource consumption and protect shared capacity",
@@ -2726,7 +2726,7 @@
       "question": "Explain balancing containment with service capacity.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Contain resource consumption and protect shared capacity. Limits must be tested against legitimate workload needs. A practical response is: Compare legitimate demand with observed usage and tune deliberately. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that any low limit improves reliability without trade-offs.",
+      "sampleAnswer": "Limits must be tested against legitimate workload needs. Consider this situation: A service fails under load after an aggressive descriptor limit. A practical response is: Compare legitimate demand with observed usage and tune deliberately. The relevant concept is: Why set service-specific resource limits? Contain resource consumption and protect shared capacity. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that any low limit improves reliability without trade-offs.",
       "answerChecklist": [
         "Contain resource consumption and protect shared capacity",
         "Limits must be tested against legitimate workload needs",
@@ -2816,7 +2816,7 @@
       "id": "systems-23-principles",
       "title": "System monitoring \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing system monitoring, which TWO statements are sound operational principles?",
+      "question": "Why monitor both resource and service indicators? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "Resource pressure and user-visible behavior provide complementary evidence",
         "A healthy host metric alone does not prove application success",
@@ -2850,7 +2850,7 @@
       "question": "Explain a useful monitoring model for a production host.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Resource pressure and user-visible behavior provide complementary evidence. A healthy host metric alone does not prove application success. A practical response is: Inspect application and dependency indicators alongside host health. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that low CPU guarantees healthy service behavior.",
+      "sampleAnswer": "A healthy host metric alone does not prove application success. Consider this situation: Users see errors while host resources look normal. A practical response is: Inspect application and dependency indicators alongside host health. The relevant concept is: Why monitor both resource and service indicators? Resource pressure and user-visible behavior provide complementary evidence. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that low CPU guarantees healthy service behavior.",
       "answerChecklist": [
         "Resource pressure and user-visible behavior provide complementary evidence",
         "A healthy host metric alone does not prove application success",
@@ -2940,7 +2940,7 @@
       "id": "systems-24-principles",
       "title": "Immutable hosts \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing immutable hosts, which TWO statements are sound operational principles?",
+      "question": "What is an advantage of replacing hosts from a known image? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "Persistent data and identity must survive through explicit design",
         "Replacing a host automatically preserves all local mutable data",
@@ -2974,7 +2974,7 @@
       "question": "Explain immutable infrastructure and its state-management requirements.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Reduce divergence caused by accumulated manual changes. Persistent data and identity must survive through explicit design. A practical response is: Capture the intended configuration and rebuild a tested image. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that replacing a host automatically preserves all local mutable data.",
+      "sampleAnswer": "Persistent data and identity must survive through explicit design. Consider this situation: A manually repaired host cannot be reproduced elsewhere. A practical response is: Capture the intended configuration and rebuild a tested image. The relevant concept is: What is an advantage of replacing hosts from a known image? Reduce divergence caused by accumulated manual changes. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that replacing a host automatically preserves all local mutable data.",
       "answerChecklist": [
         "Reduce divergence caused by accumulated manual changes",
         "Persistent data and identity must survive through explicit design",
@@ -3064,7 +3064,7 @@
       "id": "systems-25-principles",
       "title": "Capacity forecasts \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing capacity forecasts, which TWO statements are sound operational principles?",
+      "question": "Why consider growth and failure scenarios in capacity forecasts? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "Current free space guarantees next month's capacity",
         "Capacity planning is unnecessary when monitoring exists",
@@ -3098,7 +3098,7 @@
       "question": "Explain proactive capacity management.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Normal averages can underestimate future or degraded-mode demand. Forecasts should be checked against observed trends and load tests. A practical response is: Project the trend and act before the required lead time is consumed. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that current free space guarantees next month's capacity.",
+      "sampleAnswer": "Forecasts should be checked against observed trends and load tests. Consider this situation: Storage growth will exhaust capacity before the procurement lead time. A practical response is: Project the trend and act before the required lead time is consumed. The relevant concept is: Why consider growth and failure scenarios in capacity forecasts? Normal averages can underestimate future or degraded-mode demand. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that current free space guarantees next month's capacity.",
       "answerChecklist": [
         "Normal averages can underestimate future or degraded-mode demand",
         "Forecasts should be checked against observed trends and load tests",
@@ -3188,7 +3188,7 @@
       "id": "systems-26-principles",
       "title": "Remote administration \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing remote administration, which TWO statements are sound operational principles?",
+      "question": "Why preserve an independent recovery path during network changes? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "Remote firewall edits cannot affect the current operator",
         "A faulty change can cut off the primary management connection",
@@ -3222,7 +3222,7 @@
       "question": "Explain safe remote network maintenance.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "A faulty change can cut off the primary management connection. Test and stage changes with a rollback path. A practical response is: Use staged rules and verified console or rollback access. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that an SSH session guarantees permanent recovery access.",
+      "sampleAnswer": "Test and stage changes with a rollback path. Consider this situation: A firewall change risks removing management access. A practical response is: Use staged rules and verified console or rollback access. The relevant concept is: Why preserve an independent recovery path during network changes? A faulty change can cut off the primary management connection. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that an SSH session guarantees permanent recovery access.",
       "answerChecklist": [
         "A faulty change can cut off the primary management connection",
         "Test and stage changes with a rollback path",
@@ -3312,7 +3312,7 @@
       "id": "systems-27-principles",
       "title": "Data sanitization \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing data sanitization, which TWO statements are sound operational principles?",
+      "question": "Why distinguish file deletion from secure media disposal? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "Deleted data may remain recoverable depending on storage and controls",
         "Disposal procedures must match media technology and sensitivity",
@@ -3346,7 +3346,7 @@
       "question": "Explain the operational difference between deletion and sanitization.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Deleted data may remain recoverable depending on storage and controls. Disposal procedures must match media technology and sensitivity. A practical response is: Follow an approved media-specific sanitization or destruction process. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that deleting a filename always overwrites every physical copy.",
+      "sampleAnswer": "Disposal procedures must match media technology and sensitivity. Consider this situation: A retired disk contains sensitive production data. A practical response is: Follow an approved media-specific sanitization or destruction process. The relevant concept is: Why distinguish file deletion from secure media disposal? Deleted data may remain recoverable depending on storage and controls. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that deleting a filename always overwrites every physical copy.",
       "answerChecklist": [
         "Deleted data may remain recoverable depending on storage and controls",
         "Disposal procedures must match media technology and sensitivity",
@@ -3436,7 +3436,7 @@
       "id": "systems-28-principles",
       "title": "Fleet changes \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing fleet changes, which TWO statements are sound operational principles?",
+      "question": "Why use staged rollouts for system configuration? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "Canaries should represent important workload variations",
         "A successful change on one idle host proves fleet-wide safety",
@@ -3470,7 +3470,7 @@
       "question": "Explain representative canaries for heterogeneous fleets.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Limit impact and observe behavior before wider deployment. Canaries should represent important workload variations. A practical response is: Test representative groups and expand with monitored stop criteria. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that a successful change on one idle host proves fleet-wide safety.",
+      "sampleAnswer": "Canaries should represent important workload variations. Consider this situation: A kernel setting works on one host but harms busy database hosts. A practical response is: Test representative groups and expand with monitored stop criteria. The relevant concept is: Why use staged rollouts for system configuration? Limit impact and observe behavior before wider deployment. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that a successful change on one idle host proves fleet-wide safety.",
       "answerChecklist": [
         "Limit impact and observe behavior before wider deployment",
         "Canaries should represent important workload variations",
@@ -3560,7 +3560,7 @@
       "id": "systems-29-principles",
       "title": "Disaster documentation \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing disaster documentation, which TWO statements are sound operational principles?",
+      "question": "What must recovery documentation include to be usable? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "Documentation stored only on the failed system is sufficient",
         "A list of server names is a complete recovery plan",
@@ -3594,7 +3594,7 @@
       "question": "Explain avoiding circular dependencies in recovery plans.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Dependencies access requirements verification and responsible owners. Recovery instructions should be accessible during the failure they address. A practical response is: Provide an authorized resilient documentation and access path. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that documentation stored only on the failed system is sufficient.",
+      "sampleAnswer": "Recovery instructions should be accessible during the failure they address. Consider this situation: A recovery team cannot access the instructions because identity services are down. A practical response is: Provide an authorized resilient documentation and access path. The relevant concept is: What must recovery documentation include to be usable? Dependencies access requirements verification and responsible owners. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that documentation stored only on the failed system is sufficient.",
       "answerChecklist": [
         "Dependencies access requirements verification and responsible owners",
         "Recovery instructions should be accessible during the failure they address",
@@ -3684,7 +3684,7 @@
       "id": "systems-30-principles",
       "title": "Change verification \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing change verification, which TWO statements are sound operational principles?",
+      "question": "What should follow a successful administration command? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "Verification is unnecessary after an automated command",
         "Verify the intended system outcome and relevant side effects",
@@ -3718,7 +3718,7 @@
       "question": "Explain outcome-based verification after operational changes.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Verify the intended system outcome and relevant side effects. Exit status is evidence about the command rather than complete service health. A practical response is: Check service behavior logs and the actual loaded configuration. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that exit code zero proves every user workflow is healthy.",
+      "sampleAnswer": "Exit status is evidence about the command rather than complete service health. Consider this situation: A reload command succeeds but requests still fail. A practical response is: Check service behavior logs and the actual loaded configuration. The relevant concept is: What should follow a successful administration command? Verify the intended system outcome and relevant side effects. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that exit code zero proves every user workflow is healthy.",
       "answerChecklist": [
         "Verify the intended system outcome and relevant side effects",
         "Exit status is evidence about the command rather than complete service health",

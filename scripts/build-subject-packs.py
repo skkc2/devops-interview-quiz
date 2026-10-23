@@ -37,10 +37,10 @@ for topic,name in NAMES.items():
             questions.append(dict(base,id=f'{topic}-{i+1:02}-{suffix}',title=title+' · '+suffix, type=kind,question=question,options=opts,correct=correct,**extra))
         add('concept','concept',prompt,[fact,false1,false2,bad],[0])
         add('scenario','scenario',scenario+' What is the best next step?', [action,bad,false1,false2],[0])
-        add('principles','multi-select',f'When reviewing {title.lower()}, which TWO statements are sound operational principles?',[fact,principle,false1,false2],[0,1])
-        answer=f'{fact}. {principle}. A practical response is: {action}. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that {false1[0].lower()+false1[1:]}.'
+        add('principles','multi-select',f'{prompt} Considering this context and its operational implications, which TWO statements are accurate?',[fact,principle,false1,false2],[0,1])
+        answer=f'{principle}. Consider this situation: {scenario} A practical response is: {action}. The relevant concept is: {prompt} {fact}. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that {false1[0].lower()+false1[1:]}.'
         add('interview','interview',probe,[],[],sampleAnswer=answer,answerChecklist=[fact,principle,action,'Explain how you would verify the outcome and stop if it worsens.'],followUps=[scenario+' Explain the evidence that would change your decision.'])
-        lessons.append({'id':f'{topic}-lesson-{i+1:02}','topic':topic,'title':title,'summary':fact+'.','sections':[{'heading':'How it works','body':principle+'.'},{'heading':'Apply it','body':scenario+' '+action+'.'},{'heading':'Misconception to challenge','body':false1+'. This is not a sound assumption; '+fact[0].lower()+fact[1:]+'.'}],'takeaway':principle+'.','references':refs})
+        lessons.append({'id':f'{topic}-lesson-{i+1:02}','topic':topic,'title':title,'summary':prompt+' '+fact+'.','sections':[{'heading':'How it works','body':principle+'.'},{'heading':'Apply it','body':scenario+' '+action+'.'},{'heading':'Misconception to challenge','body':false1+'. This is not a sound assumption; '+fact[0].lower()+fact[1:]+'.'}],'takeaway':principle+'.','references':refs})
     pack={'schemaVersion':1,'subject':name,'levels':LEVELS,'description':'30 competency sets: 90 scored questions and 30 self-reviewed interview prompts. Related questions intentionally reinforce a competency from different angles.','questions':questions}
     write_json(ROOT/'data'/f'{topic}.json',pack)
     write_json(ROOT/'data'/f'{topic}-learning.json',{'subject':topic,'lessons':lessons,'commands':[],'debugging':[]})

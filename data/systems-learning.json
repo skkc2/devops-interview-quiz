@@ -5,7 +5,7 @@
       "id": "systems-lesson-01",
       "topic": "systems",
       "title": "Service managers",
-      "summary": "Managing configured service lifecycle and supervision.",
+      "summary": "What is a service manager responsible for? Managing configured service lifecycle and supervision.",
       "sections": [
         {
           "heading": "How it works",
@@ -32,7 +32,7 @@
       "id": "systems-lesson-02",
       "topic": "systems",
       "title": "Enable versus start",
-      "summary": "Activation through configured unit installation relationships such as boot targets.",
+      "summary": "What does enabling a systemd service generally configure? Activation through configured unit installation relationships such as boot targets.",
       "sections": [
         {
           "heading": "How it works",
@@ -59,7 +59,7 @@
       "id": "systems-lesson-03",
       "topic": "systems",
       "title": "Unit overrides",
-      "summary": "Customize a unit without directly editing a vendor-supplied unit file.",
+      "summary": "Why use a systemd drop-in override? Customize a unit without directly editing a vendor-supplied unit file.",
       "sections": [
         {
           "heading": "How it works",
@@ -86,7 +86,7 @@
       "id": "systems-lesson-04",
       "topic": "systems",
       "title": "Journals",
-      "summary": "Querying journal records with filters such as unit and time.",
+      "summary": "What is journalctl useful for? Querying journal records with filters such as unit and time.",
       "sections": [
         {
           "heading": "How it works",
@@ -113,7 +113,7 @@
       "id": "systems-lesson-05",
       "topic": "systems",
       "title": "Accounts",
-      "summary": "Limit access and attribute activity to distinct workloads.",
+      "summary": "Why use separate service accounts? Limit access and attribute activity to distinct workloads.",
       "sections": [
         {
           "heading": "How it works",
@@ -140,7 +140,7 @@
       "id": "systems-lesson-06",
       "topic": "systems",
       "title": "SSH keys",
-      "summary": "Possession can enable authentication wherever the key is trusted.",
+      "summary": "Why protect private SSH keys? Possession can enable authentication wherever the key is trusted.",
       "sections": [
         {
           "heading": "How it works",
@@ -167,7 +167,7 @@
       "id": "systems-lesson-07",
       "topic": "systems",
       "title": "Package management",
-      "summary": "It tracks package ownership dependencies and updates.",
+      "summary": "Why prefer the distribution package manager for system packages? It tracks package ownership dependencies and updates.",
       "sections": [
         {
           "heading": "How it works",
@@ -194,7 +194,7 @@
       "id": "systems-lesson-08",
       "topic": "systems",
       "title": "Scheduled jobs",
-      "summary": "They may run with different PATH working directory and credentials.",
+      "summary": "Why define explicit environments for scheduled jobs? They may run with different PATH working directory and credentials.",
       "sections": [
         {
           "heading": "How it works",
@@ -221,7 +221,7 @@
       "id": "systems-lesson-09",
       "topic": "systems",
       "title": "Time synchronization",
-      "summary": "Authentication log correlation and distributed behavior can depend on it.",
+      "summary": "Why does consistent system time matter operationally? Authentication log correlation and distributed behavior can depend on it.",
       "sections": [
         {
           "heading": "How it works",
@@ -248,7 +248,7 @@
       "id": "systems-lesson-10",
       "topic": "systems",
       "title": "Disk layout",
-      "summary": "Reduce the chance one workload exhausts space needed for core operation.",
+      "summary": "Why separate growth-prone data from critical system paths? Reduce the chance one workload exhausts space needed for core operation.",
       "sections": [
         {
           "heading": "How it works",
@@ -275,7 +275,7 @@
       "id": "systems-lesson-11",
       "topic": "systems",
       "title": "Log rotation",
-      "summary": "A retention policy and appropriate application file-handle behavior.",
+      "summary": "What should log rotation include beyond renaming files? A retention policy and appropriate application file-handle behavior.",
       "sections": [
         {
           "heading": "How it works",
@@ -302,7 +302,7 @@
       "id": "systems-lesson-12",
       "topic": "systems",
       "title": "Backups",
-      "summary": "Recoverable retained data protected from relevant failure modes.",
+      "summary": "What distinguishes a backup from a second live copy? Recoverable retained data protected from relevant failure modes.",
       "sections": [
         {
           "heading": "How it works",
@@ -329,7 +329,7 @@
       "id": "systems-lesson-13",
       "topic": "systems",
       "title": "Restore verification",
-      "summary": "Data integrity and usable application behavior after recovery.",
+      "summary": "What should a restore test verify? Data integrity and usable application behavior after recovery.",
       "sections": [
         {
           "heading": "How it works",
@@ -356,7 +356,7 @@
       "id": "systems-lesson-14",
       "topic": "systems",
       "title": "RAID",
-      "summary": "It does not protect against every logical deletion or corruption event.",
+      "summary": "What is a limitation of RAID? It does not protect against every logical deletion or corruption event.",
       "sections": [
         {
           "heading": "How it works",
@@ -383,7 +383,7 @@
       "id": "systems-lesson-15",
       "topic": "systems",
       "title": "LVM",
-      "summary": "An abstraction for allocating logical storage from physical capacity.",
+      "summary": "What does logical volume management provide? An abstraction for allocating logical storage from physical capacity.",
       "sections": [
         {
           "heading": "How it works",
@@ -410,7 +410,7 @@
       "id": "systems-lesson-16",
       "topic": "systems",
       "title": "Filesystem mounts",
-      "summary": "Device enumeration names can change across boots.",
+      "summary": "Why use stable device identifiers in mount configuration? Device enumeration names can change across boots.",
       "sections": [
         {
           "heading": "How it works",
@@ -437,7 +437,7 @@
       "id": "systems-lesson-17",
       "topic": "systems",
       "title": "Boot recovery",
-      "summary": "Use an authorized recovery path and inspect the specific boot failure.",
+      "summary": "What is a safe first step when a host fails after a boot configuration change? Use an authorized recovery path and inspect the specific boot failure.",
       "sections": [
         {
           "heading": "How it works",
@@ -464,7 +464,7 @@
       "id": "systems-lesson-18",
       "topic": "systems",
       "title": "Patching",
-      "summary": "Representative validation staged deployment and recovery planning.",
+      "summary": "What should a patch rollout include? Representative validation staged deployment and recovery planning.",
       "sections": [
         {
           "heading": "How it works",
@@ -491,7 +491,7 @@
       "id": "systems-lesson-19",
       "topic": "systems",
       "title": "Configuration drift",
-      "summary": "Untracked changes can undermine reproducibility and policy.",
+      "summary": "Why monitor configuration drift? Untracked changes can undermine reproducibility and policy.",
       "sections": [
         {
           "heading": "How it works",
@@ -518,7 +518,7 @@
       "id": "systems-lesson-20",
       "topic": "systems",
       "title": "Access reviews",
-      "summary": "Roles and operational needs change over time.",
+      "summary": "Why periodically review privileged access? Roles and operational needs change over time.",
       "sections": [
         {
           "heading": "How it works",
@@ -545,7 +545,7 @@
       "id": "systems-lesson-21",
       "topic": "systems",
       "title": "Sudo policy",
-      "summary": "Privileged commands can expose more capability than their names suggest.",
+      "summary": "Why scope sudo permissions carefully? Privileged commands can expose more capability than their names suggest.",
       "sections": [
         {
           "heading": "How it works",
@@ -572,7 +572,7 @@
       "id": "systems-lesson-22",
       "topic": "systems",
       "title": "Resource limits",
-      "summary": "Contain resource consumption and protect shared capacity.",
+      "summary": "Why set service-specific resource limits? Contain resource consumption and protect shared capacity.",
       "sections": [
         {
           "heading": "How it works",
@@ -599,7 +599,7 @@
       "id": "systems-lesson-23",
       "topic": "systems",
       "title": "System monitoring",
-      "summary": "Resource pressure and user-visible behavior provide complementary evidence.",
+      "summary": "Why monitor both resource and service indicators? Resource pressure and user-visible behavior provide complementary evidence.",
       "sections": [
         {
           "heading": "How it works",
@@ -626,7 +626,7 @@
       "id": "systems-lesson-24",
       "topic": "systems",
       "title": "Immutable hosts",
-      "summary": "Reduce divergence caused by accumulated manual changes.",
+      "summary": "What is an advantage of replacing hosts from a known image? Reduce divergence caused by accumulated manual changes.",
       "sections": [
         {
           "heading": "How it works",
@@ -653,7 +653,7 @@
       "id": "systems-lesson-25",
       "topic": "systems",
       "title": "Capacity forecasts",
-      "summary": "Normal averages can underestimate future or degraded-mode demand.",
+      "summary": "Why consider growth and failure scenarios in capacity forecasts? Normal averages can underestimate future or degraded-mode demand.",
       "sections": [
         {
           "heading": "How it works",
@@ -680,7 +680,7 @@
       "id": "systems-lesson-26",
       "topic": "systems",
       "title": "Remote administration",
-      "summary": "A faulty change can cut off the primary management connection.",
+      "summary": "Why preserve an independent recovery path during network changes? A faulty change can cut off the primary management connection.",
       "sections": [
         {
           "heading": "How it works",
@@ -707,7 +707,7 @@
       "id": "systems-lesson-27",
       "topic": "systems",
       "title": "Data sanitization",
-      "summary": "Deleted data may remain recoverable depending on storage and controls.",
+      "summary": "Why distinguish file deletion from secure media disposal? Deleted data may remain recoverable depending on storage and controls.",
       "sections": [
         {
           "heading": "How it works",
@@ -734,7 +734,7 @@
       "id": "systems-lesson-28",
       "topic": "systems",
       "title": "Fleet changes",
-      "summary": "Limit impact and observe behavior before wider deployment.",
+      "summary": "Why use staged rollouts for system configuration? Limit impact and observe behavior before wider deployment.",
       "sections": [
         {
           "heading": "How it works",
@@ -761,7 +761,7 @@
       "id": "systems-lesson-29",
       "topic": "systems",
       "title": "Disaster documentation",
-      "summary": "Dependencies access requirements verification and responsible owners.",
+      "summary": "What must recovery documentation include to be usable? Dependencies access requirements verification and responsible owners.",
       "sections": [
         {
           "heading": "How it works",
@@ -788,7 +788,7 @@
       "id": "systems-lesson-30",
       "topic": "systems",
       "title": "Change verification",
-      "summary": "Verify the intended system outcome and relevant side effects.",
+      "summary": "What should follow a successful administration command? Verify the intended system outcome and relevant side effects.",
       "sections": [
         {
           "heading": "How it works",

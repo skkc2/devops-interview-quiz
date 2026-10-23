@@ -5,7 +5,7 @@
       "id": "observability-lesson-01",
       "topic": "observability",
       "title": "Metrics",
-      "summary": "Aggregated measurements of system behavior over time.",
+      "summary": "What are metrics best suited to represent? Aggregated measurements of system behavior over time.",
       "sections": [
         {
           "heading": "How it works",
@@ -32,7 +32,7 @@
       "id": "observability-lesson-02",
       "topic": "observability",
       "title": "Logs",
-      "summary": "Discrete event records with contextual detail.",
+      "summary": "What do logs commonly provide? Discrete event records with contextual detail.",
       "sections": [
         {
           "heading": "How it works",
@@ -59,7 +59,7 @@
       "id": "observability-lesson-03",
       "topic": "observability",
       "title": "Traces",
-      "summary": "Related spans representing work across a request path.",
+      "summary": "What does a distributed trace describe? Related spans representing work across a request path.",
       "sections": [
         {
           "heading": "How it works",
@@ -86,7 +86,7 @@
       "id": "observability-lesson-04",
       "topic": "observability",
       "title": "Counters",
-      "summary": "It accumulates events and may reset when its producer restarts.",
+      "summary": "What is a typical property of a counter? It accumulates events and may reset when its producer restarts.",
       "sections": [
         {
           "heading": "How it works",
@@ -113,7 +113,7 @@
       "id": "observability-lesson-05",
       "topic": "observability",
       "title": "Gauges",
-      "summary": "A value that can rise or fall such as queue depth.",
+      "summary": "What does a gauge commonly represent? A value that can rise or fall such as queue depth.",
       "sections": [
         {
           "heading": "How it works",
@@ -140,7 +140,7 @@
       "id": "observability-lesson-06",
       "topic": "observability",
       "title": "Histograms",
-      "summary": "A distribution of observations using buckets or supported histogram structures.",
+      "summary": "What does a histogram capture? A distribution of observations using buckets or supported histogram structures.",
       "sections": [
         {
           "heading": "How it works",
@@ -167,7 +167,7 @@
       "id": "observability-lesson-07",
       "topic": "observability",
       "title": "Labels",
-      "summary": "Each unique label combination can create another time series.",
+      "summary": "Why limit metric label cardinality? Each unique label combination can create another time series.",
       "sections": [
         {
           "heading": "How it works",
@@ -194,7 +194,7 @@
       "id": "observability-lesson-08",
       "topic": "observability",
       "title": "Dashboards",
-      "summary": "It supports specific questions about service behavior and impact.",
+      "summary": "What makes a dashboard operationally useful? It supports specific questions about service behavior and impact.",
       "sections": [
         {
           "heading": "How it works",
@@ -221,7 +221,7 @@
       "id": "observability-lesson-09",
       "topic": "observability",
       "title": "Rate before aggregation",
-      "summary": "Per-series reset detection can be lost after combining counters.",
+      "summary": "Why often calculate counter rates before summing series? Per-series reset detection can be lost after combining counters.",
       "sections": [
         {
           "heading": "How it works",
@@ -248,7 +248,7 @@
       "id": "observability-lesson-10",
       "topic": "observability",
       "title": "Percentiles",
-      "summary": "An average of quantiles is not the quantile of the combined distribution.",
+      "summary": "Why should you avoid averaging instance p99 values? An average of quantiles is not the quantile of the combined distribution.",
       "sections": [
         {
           "heading": "How it works",
@@ -275,7 +275,7 @@
       "id": "observability-lesson-11",
       "topic": "observability",
       "title": "Missing data",
-      "summary": "Absence can mean collection or service failure rather than zero activity.",
+      "summary": "Why distinguish missing samples from zero values? Absence can mean collection or service failure rather than zero activity.",
       "sections": [
         {
           "heading": "How it works",
@@ -302,7 +302,7 @@
       "id": "observability-lesson-12",
       "topic": "observability",
       "title": "Scrape health",
-      "summary": "The collector could not obtain the expected metrics response.",
+      "summary": "What does a failed metrics scrape indicate? The collector could not obtain the expected metrics response.",
       "sections": [
         {
           "heading": "How it works",
@@ -329,7 +329,7 @@
       "id": "observability-lesson-13",
       "topic": "observability",
       "title": "Recording rules",
-      "summary": "Precompute useful derived time series for repeated queries.",
+      "summary": "What is a common use of recording rules? Precompute useful derived time series for repeated queries.",
       "sections": [
         {
           "heading": "How it works",
@@ -356,7 +356,7 @@
       "id": "observability-lesson-14",
       "topic": "observability",
       "title": "Alert duration",
-      "summary": "Pages caused by brief threshold crossings.",
+      "summary": "What does a sustained-condition alert delay help reduce? Pages caused by brief threshold crossings.",
       "sections": [
         {
           "heading": "How it works",
@@ -383,7 +383,7 @@
       "id": "observability-lesson-15",
       "topic": "observability",
       "title": "Alert grouping",
-      "summary": "Reduce duplicated notifications about the same operational event.",
+      "summary": "Why group related alerts? Reduce duplicated notifications about the same operational event.",
       "sections": [
         {
           "heading": "How it works",
@@ -410,7 +410,7 @@
       "id": "observability-lesson-16",
       "topic": "observability",
       "title": "Alert inhibition",
-      "summary": "Suppress lower-level notifications when a related higher-level condition applies.",
+      "summary": "What is alert inhibition used for? Suppress lower-level notifications when a related higher-level condition applies.",
       "sections": [
         {
           "heading": "How it works",
@@ -437,7 +437,7 @@
       "id": "observability-lesson-17",
       "topic": "observability",
       "title": "Sampling",
-      "summary": "Reduce volume at the cost of retaining only part of traffic.",
+      "summary": "What is a trade-off of trace sampling? Reduce volume at the cost of retaining only part of traffic.",
       "sections": [
         {
           "heading": "How it works",
@@ -464,7 +464,7 @@
       "id": "observability-lesson-18",
       "topic": "observability",
       "title": "Tail sampling",
-      "summary": "Decisions can use information collected about a trace after processing.",
+      "summary": "What distinguishes tail-based trace sampling? Decisions can use information collected about a trace after processing.",
       "sections": [
         {
           "heading": "How it works",
@@ -491,7 +491,7 @@
       "id": "observability-lesson-19",
       "topic": "observability",
       "title": "Context propagation",
-      "summary": "Context may not be carried through queues or task boundaries automatically.",
+      "summary": "Why can asynchronous work break trace continuity? Context may not be carried through queues or task boundaries automatically.",
       "sections": [
         {
           "heading": "How it works",
@@ -518,7 +518,7 @@
       "id": "observability-lesson-20",
       "topic": "observability",
       "title": "Correlation",
-      "summary": "Shared identifiers connect detailed events to request paths.",
+      "summary": "How can logs and traces complement each other? Shared identifiers connect detailed events to request paths.",
       "sections": [
         {
           "heading": "How it works",
@@ -545,7 +545,7 @@
       "id": "observability-lesson-21",
       "topic": "observability",
       "title": "Sensitive telemetry",
-      "summary": "Logs traces and labels can become secondary stores of private data.",
+      "summary": "Why minimize sensitive data in telemetry? Logs traces and labels can become secondary stores of private data.",
       "sections": [
         {
           "heading": "How it works",
@@ -572,7 +572,7 @@
       "id": "observability-lesson-22",
       "topic": "observability",
       "title": "Retention",
-      "summary": "Balance operational investigation requirements cost and data sensitivity.",
+      "summary": "How should telemetry retention be chosen? Balance operational investigation requirements cost and data sensitivity.",
       "sections": [
         {
           "heading": "How it works",
@@ -599,7 +599,7 @@
       "id": "observability-lesson-23",
       "topic": "observability",
       "title": "Telemetry pipelines",
-      "summary": "Delivery delay or loss when telemetry production exceeds processing capacity.",
+      "summary": "What can collector backpressure affect? Delivery delay or loss when telemetry production exceeds processing capacity.",
       "sections": [
         {
           "heading": "How it works",
@@ -626,7 +626,7 @@
       "id": "observability-lesson-24",
       "topic": "observability",
       "title": "Resource identity",
-      "summary": "Identify the service environment and instance producing telemetry.",
+      "summary": "Why use consistent resource attributes? Identify the service environment and instance producing telemetry.",
       "sections": [
         {
           "heading": "How it works",
@@ -653,7 +653,7 @@
       "id": "observability-lesson-25",
       "topic": "observability",
       "title": "Clock skew",
-      "summary": "Timestamps across hosts may imply a misleading event order.",
+      "summary": "How can clock skew affect distributed investigation? Timestamps across hosts may imply a misleading event order.",
       "sections": [
         {
           "heading": "How it works",
@@ -680,7 +680,7 @@
       "id": "observability-lesson-26",
       "topic": "observability",
       "title": "RED signals",
-      "summary": "Rate errors and duration.",
+      "summary": "What does RED focus on for request-driven services? Rate errors and duration.",
       "sections": [
         {
           "heading": "How it works",
@@ -707,7 +707,7 @@
       "id": "observability-lesson-27",
       "topic": "observability",
       "title": "USE signals",
-      "summary": "Utilization saturation and errors.",
+      "summary": "What does USE examine for resources? Utilization saturation and errors.",
       "sections": [
         {
           "heading": "How it works",
@@ -734,7 +734,7 @@
       "id": "observability-lesson-28",
       "topic": "observability",
       "title": "Synthetic checks",
-      "summary": "Active checks of selected user journeys or endpoints.",
+      "summary": "What can synthetic monitoring provide? Active checks of selected user journeys or endpoints.",
       "sections": [
         {
           "heading": "How it works",
@@ -761,7 +761,7 @@
       "id": "observability-lesson-29",
       "topic": "observability",
       "title": "Instrumentation cost",
-      "summary": "Telemetry collection can consume CPU memory network and storage.",
+      "summary": "Why measure instrumentation overhead? Telemetry collection can consume CPU memory network and storage.",
       "sections": [
         {
           "heading": "How it works",
@@ -788,7 +788,7 @@
       "id": "observability-lesson-30",
       "topic": "observability",
       "title": "Evidence and causality",
-      "summary": "Simultaneous changes do not prove one caused the other.",
+      "summary": "Why distinguish correlation from causation in dashboards? Simultaneous changes do not prove one caused the other.",
       "sections": [
         {
           "heading": "How it works",

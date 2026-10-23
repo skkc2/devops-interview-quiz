@@ -88,7 +88,7 @@
       "id": "aws-01-principles",
       "title": "Regions \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing regions, which TWO statements are sound operational principles?",
+      "question": "What is an AWS Region? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "Every Region shares one physical data center",
         "Selecting a Region automatically replicates every resource worldwide",
@@ -122,7 +122,7 @@
       "question": "Explain regional deployment and recovery boundaries.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "A geographic area containing multiple Availability Zones. Regional service availability and requirements should be verified. A practical response is: Inventory regional dependencies and explicitly provision the recovery environment. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that every Region shares one physical data center.",
+      "sampleAnswer": "Regional service availability and requirements should be verified. Consider this situation: A recovery plan assumes resources exist in a second Region. A practical response is: Inventory regional dependencies and explicitly provision the recovery environment. The relevant concept is: What is an AWS Region? A geographic area containing multiple Availability Zones. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that every Region shares one physical data center.",
       "answerChecklist": [
         "A geographic area containing multiple Availability Zones",
         "Regional service availability and requirements should be verified",
@@ -212,7 +212,7 @@
       "id": "aws-02-principles",
       "title": "Availability Zones \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing availability zones, which TWO statements are sound operational principles?",
+      "question": "Why distribute workloads across Availability Zones? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "Multi-AZ placement automatically fixes application state management",
         "Reduce exposure to a single zone failure",
@@ -246,7 +246,7 @@
       "question": "Explain how you validate a multi-AZ design.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Reduce exposure to a single zone failure. Applications still need sufficient surviving capacity. A practical response is: Verify surviving capacity and cross-zone application behavior. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that two instances in one zone guarantee zone-failure tolerance.",
+      "sampleAnswer": "Applications still need sufficient surviving capacity. Consider this situation: A zone outage removes half the service capacity. A practical response is: Verify surviving capacity and cross-zone application behavior. The relevant concept is: Why distribute workloads across Availability Zones? Reduce exposure to a single zone failure. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that two instances in one zone guarantee zone-failure tolerance.",
       "answerChecklist": [
         "Reduce exposure to a single zone failure",
         "Applications still need sufficient surviving capacity",
@@ -336,7 +336,7 @@
       "id": "aws-03-principles",
       "title": "IAM roles \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing iam roles, which TWO statements are sound operational principles?",
+      "question": "Why prefer roles with temporary credentials for workloads? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "Reduce dependence on embedded long-lived access keys",
         "Role permissions should match the workload's required actions",
@@ -370,7 +370,7 @@
       "question": "Explain workload identity and temporary credentials.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Reduce dependence on embedded long-lived access keys. Role permissions should match the workload's required actions. A practical response is: Use an appropriate workload role and rotate the exposed key. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that roles always grant administrator access.",
+      "sampleAnswer": "Role permissions should match the workload's required actions. Consider this situation: An application image contains a long-lived AWS access key. A practical response is: Use an appropriate workload role and rotate the exposed key. The relevant concept is: Why prefer roles with temporary credentials for workloads? Reduce dependence on embedded long-lived access keys. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that roles always grant administrator access.",
       "answerChecklist": [
         "Reduce dependence on embedded long-lived access keys",
         "Role permissions should match the workload's required actions",
@@ -460,7 +460,7 @@
       "id": "aws-04-principles",
       "title": "Least privilege \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing least privilege, which TWO statements are sound operational principles?",
+      "question": "What is the goal of least-privilege IAM policies? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "Explicit denies can override otherwise allowed actions",
         "An allow statement always overrides every explicit deny",
@@ -494,7 +494,7 @@
       "question": "Explain how you would reduce an overly broad IAM policy.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Allow only required actions on intended resources under appropriate conditions. Explicit denies can override otherwise allowed actions. A practical response is: Narrow actions resources and conditions after verifying actual needs. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that an allow statement always overrides every explicit deny.",
+      "sampleAnswer": "Explicit denies can override otherwise allowed actions. Consider this situation: A service can delete unrelated production resources. A practical response is: Narrow actions resources and conditions after verifying actual needs. The relevant concept is: What is the goal of least-privilege IAM policies? Allow only required actions on intended resources under appropriate conditions. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that an allow statement always overrides every explicit deny.",
       "answerChecklist": [
         "Allow only required actions on intended resources under appropriate conditions",
         "Explicit denies can override otherwise allowed actions",
@@ -584,7 +584,7 @@
       "id": "aws-05-principles",
       "title": "S3 storage \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing s3 storage, which TWO statements are sound operational principles?",
+      "question": "What storage model does Amazon S3 primarily provide? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "An S3 bucket is automatically a mounted block device",
         "Every object supports arbitrary in-place POSIX writes",
@@ -618,7 +618,7 @@
       "question": "Explain object storage versus block and filesystem storage.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Object storage addressed through buckets and object keys. Object storage differs from a local POSIX filesystem. A practical response is: Review the object API and redesign the storage interaction appropriately. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that an S3 bucket is automatically a mounted block device.",
+      "sampleAnswer": "Object storage differs from a local POSIX filesystem. Consider this situation: An application assumes S3 supports local filesystem locking semantics. A practical response is: Review the object API and redesign the storage interaction appropriately. The relevant concept is: What storage model does Amazon S3 primarily provide? Object storage addressed through buckets and object keys. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that an S3 bucket is automatically a mounted block device.",
       "answerChecklist": [
         "Object storage addressed through buckets and object keys",
         "Object storage differs from a local POSIX filesystem",
@@ -708,7 +708,7 @@
       "id": "aws-06-principles",
       "title": "EBS \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing ebs, which TWO statements are sound operational principles?",
+      "question": "What is a common use of Amazon EBS? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "Every EBS volume can attach freely across Regions",
         "Block storage for EC2 workloads",
@@ -742,7 +742,7 @@
       "question": "Explain EBS persistence and recovery planning.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Block storage for EC2 workloads. Volume durability does not replace independent backups. A practical response is: Choose suitable volumes and implement tested snapshot or backup recovery. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that an EBS volume is automatically a global shared filesystem.",
+      "sampleAnswer": "Volume durability does not replace independent backups. Consider this situation: An EC2 database needs recoverable persistent block storage. A practical response is: Choose suitable volumes and implement tested snapshot or backup recovery. The relevant concept is: What is a common use of Amazon EBS? Block storage for EC2 workloads. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that an EBS volume is automatically a global shared filesystem.",
       "answerChecklist": [
         "Block storage for EC2 workloads",
         "Volume durability does not replace independent backups",
@@ -832,7 +832,7 @@
       "id": "aws-07-principles",
       "title": "Security groups \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing security groups, which TWO statements are sound operational principles?",
+      "question": "How do security groups generally filter traffic? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "Stateful rules allow specified traffic for associated resources",
         "Rules should be scoped to required sources and ports",
@@ -866,7 +866,7 @@
       "question": "Explain security-group design for a private application database.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Stateful rules allow specified traffic for associated resources. Rules should be scoped to required sources and ports. A practical response is: Restrict sources to intended application identities or network ranges. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that security groups are stateless subnet-wide deny lists.",
+      "sampleAnswer": "Rules should be scoped to required sources and ports. Consider this situation: A database security group allows inbound traffic from everywhere. A practical response is: Restrict sources to intended application identities or network ranges. The relevant concept is: How do security groups generally filter traffic? Stateful rules allow specified traffic for associated resources. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that security groups are stateless subnet-wide deny lists.",
       "answerChecklist": [
         "Stateful rules allow specified traffic for associated resources",
         "Rules should be scoped to required sources and ports",
@@ -956,7 +956,7 @@
       "id": "aws-08-principles",
       "title": "VPC subnets \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing vpc subnets, which TWO statements are sound operational principles?",
+      "question": "What makes a subnet public in the usual IPv4 routing sense? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "Instances also need appropriate addressing and security controls for reachability",
         "A subnet name containing public automatically provides Internet access",
@@ -990,7 +990,7 @@
       "question": "Explain the components required for public EC2 connectivity.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "A route to an Internet Gateway supports direct Internet routing. Instances also need appropriate addressing and security controls for reachability. A practical response is: Inspect addressing route table gateway and security controls. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that a subnet name containing public automatically provides Internet access.",
+      "sampleAnswer": "Instances also need appropriate addressing and security controls for reachability. Consider this situation: An instance in a public subnet cannot reach the Internet. A practical response is: Inspect addressing route table gateway and security controls. The relevant concept is: What makes a subnet public in the usual IPv4 routing sense? A route to an Internet Gateway supports direct Internet routing. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that a subnet name containing public automatically provides Internet access.",
       "answerChecklist": [
         "A route to an Internet Gateway supports direct Internet routing",
         "Instances also need appropriate addressing and security controls for reachability",
@@ -1080,7 +1080,7 @@
       "id": "aws-09-principles",
       "title": "NAT gateways \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing nat gateways, which TWO statements are sound operational principles?",
+      "question": "What is a typical purpose of a NAT gateway? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "A NAT gateway is an inbound application load balancer",
         "Private instances never need a route to use NAT",
@@ -1114,7 +1114,7 @@
       "question": "Explain private-subnet egress design and its failure modes.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Allow private-subnet workloads to initiate suitable outbound connections. Outbound NAT does not by itself publish inbound application access. A practical response is: Configure an appropriate NAT path and verify routes and security. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that a NAT gateway is an inbound application load balancer.",
+      "sampleAnswer": "Outbound NAT does not by itself publish inbound application access. Consider this situation: A private workload needs outbound IPv4 access without a public address. A practical response is: Configure an appropriate NAT path and verify routes and security. The relevant concept is: What is a typical purpose of a NAT gateway? Allow private-subnet workloads to initiate suitable outbound connections. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that a NAT gateway is an inbound application load balancer.",
       "answerChecklist": [
         "Allow private-subnet workloads to initiate suitable outbound connections",
         "Outbound NAT does not by itself publish inbound application access",
@@ -1204,7 +1204,7 @@
       "id": "aws-10-principles",
       "title": "VPC endpoints \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing vpc endpoints, which TWO statements are sound operational principles?",
+      "question": "Why use a VPC endpoint for a supported service? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "An endpoint automatically grants all service permissions",
         "Provide a private connectivity path without relying on ordinary Internet egress",
@@ -1238,7 +1238,7 @@
       "question": "Explain private service access and authorization boundaries.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Provide a private connectivity path without relying on ordinary Internet egress. Endpoint type policies DNS and service support affect behavior. A practical response is: Evaluate the suitable endpoint and verify routing and authorization. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that every endpoint supports every AWS service identically.",
+      "sampleAnswer": "Endpoint type policies DNS and service support affect behavior. Consider this situation: A private workload must access S3 without the planned NAT path. A practical response is: Evaluate the suitable endpoint and verify routing and authorization. The relevant concept is: Why use a VPC endpoint for a supported service? Provide a private connectivity path without relying on ordinary Internet egress. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that every endpoint supports every AWS service identically.",
       "answerChecklist": [
         "Provide a private connectivity path without relying on ordinary Internet egress",
         "Endpoint type policies DNS and service support affect behavior",
@@ -1328,7 +1328,7 @@
       "id": "aws-11-principles",
       "title": "Application Load Balancers \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing application load balancers, which TWO statements are sound operational principles?",
+      "question": "What kind of routing is an ALB designed to support? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "Application-layer routing for protocols such as HTTP",
         "Healthy target selection depends on configured checks",
@@ -1362,7 +1362,7 @@
       "question": "Explain ALB health checks and request routing.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Application-layer routing for protocols such as HTTP. Healthy target selection depends on configured checks. A practical response is: Inspect target registration health-check settings and application responses. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that an ALB automatically makes every database query healthy.",
+      "sampleAnswer": "Healthy target selection depends on configured checks. Consider this situation: An ALB reports no healthy targets after deployment. A practical response is: Inspect target registration health-check settings and application responses. The relevant concept is: What kind of routing is an ALB designed to support? Application-layer routing for protocols such as HTTP. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that an ALB automatically makes every database query healthy.",
       "answerChecklist": [
         "Application-layer routing for protocols such as HTTP",
         "Healthy target selection depends on configured checks",
@@ -1452,7 +1452,7 @@
       "id": "aws-12-principles",
       "title": "Auto Scaling \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing auto scaling, which TWO statements are sound operational principles?",
+      "question": "What should drive a useful scaling policy? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "Scaling requires warm-up time and downstream capacity",
         "Adding instances instantly fixes every bottleneck",
@@ -1486,7 +1486,7 @@
       "question": "Explain scaling a queue-based worker service.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "A metric and target aligned with workload capacity needs. Scaling requires warm-up time and downstream capacity. A practical response is: Choose a workload-relevant signal and investigate the dependency bottleneck. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that adding instances instantly fixes every bottleneck.",
+      "sampleAnswer": "Scaling requires warm-up time and downstream capacity. Consider this situation: Queue age grows while worker CPU remains low due to slow external calls. A practical response is: Choose a workload-relevant signal and investigate the dependency bottleneck. The relevant concept is: What should drive a useful scaling policy? A metric and target aligned with workload capacity needs. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that adding instances instantly fixes every bottleneck.",
       "answerChecklist": [
         "A metric and target aligned with workload capacity needs",
         "Scaling requires warm-up time and downstream capacity",
@@ -1576,7 +1576,7 @@
       "id": "aws-13-principles",
       "title": "CloudWatch metrics \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing cloudwatch metrics, which TWO statements are sound operational principles?",
+      "question": "What does a CloudWatch metric represent? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "Every metric point is a complete application trace",
         "Metrics automatically capture every application-specific business event",
@@ -1610,7 +1610,7 @@
       "question": "Explain designing useful CloudWatch metrics and alarms.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Time-series measurements identified by namespace and dimensions. Resolution aggregation and dimensions influence interpretation. A practical response is: Inspect dimensions and aggregation alongside per-resource evidence. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that every metric point is a complete application trace.",
+      "sampleAnswer": "Resolution aggregation and dimensions influence interpretation. Consider this situation: A dashboard combines different dimensions and hides one unhealthy instance. A practical response is: Inspect dimensions and aggregation alongside per-resource evidence. The relevant concept is: What does a CloudWatch metric represent? Time-series measurements identified by namespace and dimensions. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that every metric point is a complete application trace.",
       "answerChecklist": [
         "Time-series measurements identified by namespace and dimensions",
         "Resolution aggregation and dimensions influence interpretation",
@@ -1700,7 +1700,7 @@
       "id": "aws-14-principles",
       "title": "CloudTrail \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing cloudtrail, which TWO statements are sound operational principles?",
+      "question": "What is CloudTrail commonly used to investigate? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "Every possible data event is automatically captured with identical defaults",
         "AWS API activity and associated identity context",
@@ -1734,7 +1734,7 @@
       "question": "Explain how you would investigate an unexpected AWS configuration change.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "AWS API activity and associated identity context. Coverage and event configuration must match the required audit use case. A practical response is: Inspect relevant audit events and confirm event coverage. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that cloudTrail is a replacement for all application logs.",
+      "sampleAnswer": "Coverage and event configuration must match the required audit use case. Consider this situation: A resource was deleted and the responsible API caller is unknown. A practical response is: Inspect relevant audit events and confirm event coverage. The relevant concept is: What is CloudTrail commonly used to investigate? AWS API activity and associated identity context. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that cloudTrail is a replacement for all application logs.",
       "answerChecklist": [
         "AWS API activity and associated identity context",
         "Coverage and event configuration must match the required audit use case",
@@ -1824,7 +1824,7 @@
       "id": "aws-15-principles",
       "title": "Shared responsibility \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing shared responsibility, which TWO statements are sound operational principles?",
+      "question": "What does AWS shared responsibility imply? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "AWS and customers own different security responsibilities",
         "Customer configuration data and identity controls remain important",
@@ -1858,7 +1858,7 @@
       "question": "Explain shared responsibility using a concrete storage example.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "AWS and customers own different security responsibilities. Customer configuration data and identity controls remain important. A practical response is: Correct customer-controlled access and investigate the exposure. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that aWS automatically secures every customer IAM policy.",
+      "sampleAnswer": "Customer configuration data and identity controls remain important. Consider this situation: A public bucket exposes sensitive customer data. A practical response is: Correct customer-controlled access and investigate the exposure. The relevant concept is: What does AWS shared responsibility imply? AWS and customers own different security responsibilities. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that aWS automatically secures every customer IAM policy.",
       "answerChecklist": [
         "AWS and customers own different security responsibilities",
         "Customer configuration data and identity controls remain important",
@@ -1948,7 +1948,7 @@
       "id": "aws-16-principles",
       "title": "S3 versioning \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing s3 versioning, which TWO statements are sound operational principles?",
+      "question": "What can S3 versioning help recover from? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "Versioning still needs lifecycle cost and access considerations",
         "Versioning guarantees protection from every authorized destructive action",
@@ -1982,7 +1982,7 @@
       "question": "Explain versioning retention and recovery trade-offs.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Accidental overwrites or deletions when prior versions remain available. Versioning still needs lifecycle cost and access considerations. A practical response is: Inspect retained versions and restore the intended one safely. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that versioning guarantees protection from every authorized destructive action.",
+      "sampleAnswer": "Versioning still needs lifecycle cost and access considerations. Consider this situation: An object was overwritten with incorrect content. A practical response is: Inspect retained versions and restore the intended one safely. The relevant concept is: What can S3 versioning help recover from? Accidental overwrites or deletions when prior versions remain available. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that versioning guarantees protection from every authorized destructive action.",
       "answerChecklist": [
         "Accidental overwrites or deletions when prior versions remain available",
         "Versioning still needs lifecycle cost and access considerations",
@@ -2072,7 +2072,7 @@
       "id": "aws-17-principles",
       "title": "RDS availability \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing rds availability, which TWO statements are sound operational principles?",
+      "question": "What is the main purpose of a standard RDS Multi-AZ deployment? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "Every standby is automatically a readable scaling replica",
         "Multi-AZ guarantees zero interruption for all clients",
@@ -2106,7 +2106,7 @@
       "question": "Explain application behavior during managed database failover.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Improve availability through managed standby and failover mechanisms. Availability features do not replace application reconnect behavior and backups. A practical response is: Verify reconnect handling timeouts and recovery behavior. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that every standby is automatically a readable scaling replica.",
+      "sampleAnswer": "Availability features do not replace application reconnect behavior and backups. Consider this situation: A database failover occurs and clients retain broken connections. A practical response is: Verify reconnect handling timeouts and recovery behavior. The relevant concept is: What is the main purpose of a standard RDS Multi-AZ deployment? Improve availability through managed standby and failover mechanisms. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that every standby is automatically a readable scaling replica.",
       "answerChecklist": [
         "Improve availability through managed standby and failover mechanisms",
         "Availability features do not replace application reconnect behavior and backups",
@@ -2196,7 +2196,7 @@
       "id": "aws-18-principles",
       "title": "Read replicas \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing read replicas, which TWO statements are sound operational principles?",
+      "question": "What is a common role of database read replicas? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "A read replica automatically replaces every backup",
         "Offload eligible reads or support specific replication use cases",
@@ -2230,7 +2230,7 @@
       "question": "Explain when read replicas are unsuitable for read-after-write requirements.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Offload eligible reads or support specific replication use cases. Replication lag can affect freshness of reads. A practical response is: Review consistency requirements and route freshness-sensitive reads appropriately. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that all replicas always provide immediately current writes.",
+      "sampleAnswer": "Replication lag can affect freshness of reads. Consider this situation: Users read stale data immediately after a write. A practical response is: Review consistency requirements and route freshness-sensitive reads appropriately. The relevant concept is: What is a common role of database read replicas? Offload eligible reads or support specific replication use cases. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that all replicas always provide immediately current writes.",
       "answerChecklist": [
         "Offload eligible reads or support specific replication use cases",
         "Replication lag can affect freshness of reads",
@@ -2320,7 +2320,7 @@
       "id": "aws-19-principles",
       "title": "Lambda retries \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing lambda retries, which TWO statements are sound operational principles?",
+      "question": "Why design Lambda event processing for duplicate delivery where applicable? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "Event sources and retries can deliver work more than once",
         "Handlers should use idempotent operations for duplicate-sensitive effects",
@@ -2354,7 +2354,7 @@
       "question": "Explain idempotent serverless event processing.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Event sources and retries can deliver work more than once. Handlers should use idempotent operations for duplicate-sensitive effects. A practical response is: Use an operation identity and durable deduplication strategy. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that every Lambda event source guarantees exactly one execution.",
+      "sampleAnswer": "Handlers should use idempotent operations for duplicate-sensitive effects. Consider this situation: An event triggers the same order action twice. A practical response is: Use an operation identity and durable deduplication strategy. The relevant concept is: Why design Lambda event processing for duplicate delivery where applicable? Event sources and retries can deliver work more than once. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that every Lambda event source guarantees exactly one execution.",
       "answerChecklist": [
         "Event sources and retries can deliver work more than once",
         "Handlers should use idempotent operations for duplicate-sensitive effects",
@@ -2444,7 +2444,7 @@
       "id": "aws-20-principles",
       "title": "SQS visibility \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing sqs visibility, which TWO statements are sound operational principles?",
+      "question": "What does SQS visibility timeout control? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "Processing longer than visibility can lead to duplicate concurrent work",
         "Receiving a message permanently deletes it",
@@ -2478,7 +2478,7 @@
       "question": "Explain visibility timeout and safe message completion.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "How long a received message is hidden from other consumers before deletion or expiry. Processing longer than visibility can lead to duplicate concurrent work. A practical response is: Adjust or extend visibility appropriately and keep processing idempotent. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that receiving a message permanently deletes it.",
+      "sampleAnswer": "Processing longer than visibility can lead to duplicate concurrent work. Consider this situation: A long-running worker sees the same message processed elsewhere. A practical response is: Adjust or extend visibility appropriately and keep processing idempotent. The relevant concept is: What does SQS visibility timeout control? How long a received message is hidden from other consumers before deletion or expiry. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that receiving a message permanently deletes it.",
       "answerChecklist": [
         "How long a received message is hidden from other consumers before deletion or expiry",
         "Processing longer than visibility can lead to duplicate concurrent work",
@@ -2568,7 +2568,7 @@
       "id": "aws-21-principles",
       "title": "Dead-letter queues \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing dead-letter queues, which TWO statements are sound operational principles?",
+      "question": "What is a dead-letter queue useful for? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "A dead-letter queue automatically fixes malformed messages",
         "Messages in a dead-letter queue require no monitoring",
@@ -2602,7 +2602,7 @@
       "question": "Explain dead-letter queue operations and alerting.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Isolate repeatedly failing messages for investigation and recovery. Redrive needs care to avoid replaying the same failure at scale. A practical response is: Inspect failures route them appropriately and define a controlled redrive. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that a dead-letter queue automatically fixes malformed messages.",
+      "sampleAnswer": "Redrive needs care to avoid replaying the same failure at scale. Consider this situation: Poison messages repeatedly fail and block useful processing. A practical response is: Inspect failures route them appropriately and define a controlled redrive. The relevant concept is: What is a dead-letter queue useful for? Isolate repeatedly failing messages for investigation and recovery. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that a dead-letter queue automatically fixes malformed messages.",
       "answerChecklist": [
         "Isolate repeatedly failing messages for investigation and recovery",
         "Redrive needs care to avoid replaying the same failure at scale",
@@ -2692,7 +2692,7 @@
       "id": "aws-22-principles",
       "title": "DynamoDB keys \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing dynamodb keys, which TWO statements are sound operational principles?",
+      "question": "Why is partition-key design important? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "Adding attributes automatically distributes all hot-key traffic",
         "It affects data distribution and access patterns",
@@ -2726,7 +2726,7 @@
       "question": "Explain DynamoDB key design around real access patterns.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "It affects data distribution and access patterns. A highly concentrated key can create a hot workload. A practical response is: Inspect access concentration and redesign or shard the hot pattern where justified. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that every partition key provides identical performance for every access pattern.",
+      "sampleAnswer": "A highly concentrated key can create a hot workload. Consider this situation: Most requests target one popular key and experience throttling. A practical response is: Inspect access concentration and redesign or shard the hot pattern where justified. The relevant concept is: Why is partition-key design important? It affects data distribution and access patterns. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that every partition key provides identical performance for every access pattern.",
       "answerChecklist": [
         "It affects data distribution and access patterns",
         "A highly concentrated key can create a hot workload",
@@ -2816,7 +2816,7 @@
       "id": "aws-23-principles",
       "title": "KMS controls \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing kms controls, which TWO statements are sound operational principles?",
+      "question": "What is an important aspect of KMS authorization? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "Key policies and applicable identity permissions govern key use",
         "Encryption does not eliminate the need to control decrypt permissions",
@@ -2850,7 +2850,7 @@
       "question": "Explain troubleshooting encrypted-data access failures.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Key policies and applicable identity permissions govern key use. Encryption does not eliminate the need to control decrypt permissions. A practical response is: Inspect the key policy identity permissions and encryption context. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that any user can decrypt data merely because it is encrypted.",
+      "sampleAnswer": "Encryption does not eliminate the need to control decrypt permissions. Consider this situation: A workload can read object metadata but cannot decrypt the encrypted object. A practical response is: Inspect the key policy identity permissions and encryption context. The relevant concept is: What is an important aspect of KMS authorization? Key policies and applicable identity permissions govern key use. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that any user can decrypt data merely because it is encrypted.",
       "answerChecklist": [
         "Key policies and applicable identity permissions govern key use",
         "Encryption does not eliminate the need to control decrypt permissions",
@@ -2940,7 +2940,7 @@
       "id": "aws-24-principles",
       "title": "Secrets rotation \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing secrets rotation, which TWO statements are sound operational principles?",
+      "question": "What must accompany credential rotation? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "Rotation should include validation and recovery behavior",
         "Changing a secret automatically updates every application cache",
@@ -2974,7 +2974,7 @@
       "question": "Explain a reliable secret-rotation workflow.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Consumers must obtain and use the updated credential correctly. Rotation should include validation and recovery behavior. A practical response is: Refresh consumer credentials and verify the rotation integration. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that changing a secret automatically updates every application cache.",
+      "sampleAnswer": "Rotation should include validation and recovery behavior. Consider this situation: A rotated database credential breaks clients using a cached old value. A practical response is: Refresh consumer credentials and verify the rotation integration. The relevant concept is: What must accompany credential rotation? Consumers must obtain and use the updated credential correctly. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that changing a secret automatically updates every application cache.",
       "answerChecklist": [
         "Consumers must obtain and use the updated credential correctly",
         "Rotation should include validation and recovery behavior",
@@ -3064,7 +3064,7 @@
       "id": "aws-25-principles",
       "title": "Route 53 failover \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing route 53 failover, which TWO statements are sound operational principles?",
+      "question": "What is a limitation of DNS-based failover? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "DNS failover moves every established TCP connection instantly",
         "A record update flushes all caches globally",
@@ -3098,7 +3098,7 @@
       "question": "Explain realistic expectations for DNS failover.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Resolver caching and client behavior affect switchover timing. Health checks must reflect the intended service failure conditions. A practical response is: Inspect TTLs caches and client reconnect behavior. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that dNS failover moves every established TCP connection instantly.",
+      "sampleAnswer": "Health checks must reflect the intended service failure conditions. Consider this situation: A failover record changes but some clients still reach the old endpoint. A practical response is: Inspect TTLs caches and client reconnect behavior. The relevant concept is: What is a limitation of DNS-based failover? Resolver caching and client behavior affect switchover timing. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that dNS failover moves every established TCP connection instantly.",
       "answerChecklist": [
         "Resolver caching and client behavior affect switchover timing",
         "Health checks must reflect the intended service failure conditions",
@@ -3188,7 +3188,7 @@
       "id": "aws-26-principles",
       "title": "CloudFront caching \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing cloudfront caching, which TWO statements are sound operational principles?",
+      "question": "Why include relevant request variation in cache policy? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "Caching authenticated responses is safe regardless of cache key",
         "Different responses must not incorrectly share one cache entry",
@@ -3222,7 +3222,7 @@
       "question": "Explain safe caching for personalized application content.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Different responses must not incorrectly share one cache entry. Cache keys and origin behavior need deliberate alignment. A practical response is: Disable unsafe caching and correct cache-key and response policy. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that a cache always knows which cookies are security-sensitive.",
+      "sampleAnswer": "Cache keys and origin behavior need deliberate alignment. Consider this situation: One user's personalized response appears for another user. A practical response is: Disable unsafe caching and correct cache-key and response policy. The relevant concept is: Why include relevant request variation in cache policy? Different responses must not incorrectly share one cache entry. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that a cache always knows which cookies are security-sensitive.",
       "answerChecklist": [
         "Different responses must not incorrectly share one cache entry",
         "Cache keys and origin behavior need deliberate alignment",
@@ -3312,7 +3312,7 @@
       "id": "aws-27-principles",
       "title": "Cross-account access \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing cross-account access, which TWO statements are sound operational principles?",
+      "question": "What must be evaluated for role assumption across accounts? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "The role trust relationship and caller authorization",
         "Trusting an account is distinct from granting every possible action",
@@ -3346,7 +3346,7 @@
       "question": "Explain cross-account deployment identity and least privilege.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "The role trust relationship and caller authorization. Trusting an account is distinct from granting every possible action. A practical response is: Inspect trust policy caller permissions and required conditions. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that a role name alone authorizes any external caller.",
+      "sampleAnswer": "Trusting an account is distinct from granting every possible action. Consider this situation: A pipeline cannot assume a deployment role in another account. A practical response is: Inspect trust policy caller permissions and required conditions. The relevant concept is: What must be evaluated for role assumption across accounts? The role trust relationship and caller authorization. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that a role name alone authorizes any external caller.",
       "answerChecklist": [
         "The role trust relationship and caller authorization",
         "Trusting an account is distinct from granting every possible action",
@@ -3436,7 +3436,7 @@
       "id": "aws-28-principles",
       "title": "Service quotas \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing service quotas, which TWO statements are sound operational principles?",
+      "question": "Why include service quotas in capacity planning? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "Quota increases and regional differences may require advance preparation",
         "Auto Scaling bypasses every service quota",
@@ -3470,7 +3470,7 @@
       "question": "Explain quota-aware launch and disaster-recovery planning.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Quota limits can block scaling even when the design is otherwise valid. Quota increases and regional differences may require advance preparation. A practical response is: Inspect the relevant quota and plan capacity or approved increases. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that auto Scaling bypasses every service quota.",
+      "sampleAnswer": "Quota increases and regional differences may require advance preparation. Consider this situation: A surge triggers scaling but new capacity is rejected at a quota. A practical response is: Inspect the relevant quota and plan capacity or approved increases. The relevant concept is: Why include service quotas in capacity planning? Quota limits can block scaling even when the design is otherwise valid. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that auto Scaling bypasses every service quota.",
       "answerChecklist": [
         "Quota limits can block scaling even when the design is otherwise valid",
         "Quota increases and regional differences may require advance preparation",
@@ -3560,7 +3560,7 @@
       "id": "aws-29-principles",
       "title": "Cost attribution \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing cost attribution, which TWO statements are sound operational principles?",
+      "question": "Why use cost allocation and workload ownership metadata? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "The lowest bill always represents the best architecture",
         "Tags automatically prevent every unexpected charge",
@@ -3594,7 +3594,7 @@
       "question": "Explain evidence-based cost investigation without causing an outage.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Connect spend to accountable services and teams. Cost optimization should preserve required reliability and security. A practical response is: Attribute usage to resources and compare with workload changes. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that the lowest bill always represents the best architecture.",
+      "sampleAnswer": "Cost optimization should preserve required reliability and security. Consider this situation: An unexplained bill increase follows a new deployment. A practical response is: Attribute usage to resources and compare with workload changes. The relevant concept is: Why use cost allocation and workload ownership metadata? Connect spend to accountable services and teams. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that the lowest bill always represents the best architecture.",
       "answerChecklist": [
         "Connect spend to accountable services and teams",
         "Cost optimization should preserve required reliability and security",
@@ -3684,7 +3684,7 @@
       "id": "aws-30-principles",
       "title": "Disaster recovery \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing disaster recovery, which TWO statements are sound operational principles?",
+      "question": "What makes a second-Region recovery design credible? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "An unused recovery Region requires no maintenance",
         "Tested recovery of data identities dependencies and traffic handling",
@@ -3718,7 +3718,7 @@
       "question": "Explain how you validate regional disaster recovery.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Tested recovery of data identities dependencies and traffic handling. Recovery objectives must be measured in realistic exercises. A practical response is: Test the full recovery dependency chain and remediate gaps. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that copying one machine image proves full regional recovery.",
+      "sampleAnswer": "Recovery objectives must be measured in realistic exercises. Consider this situation: A regional exercise fails because required secrets and quotas are missing. A practical response is: Test the full recovery dependency chain and remediate gaps. The relevant concept is: What makes a second-Region recovery design credible? Tested recovery of data identities dependencies and traffic handling. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that copying one machine image proves full regional recovery.",
       "answerChecklist": [
         "Tested recovery of data identities dependencies and traffic handling",
         "Recovery objectives must be measured in realistic exercises",

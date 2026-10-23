@@ -5,7 +5,7 @@
       "id": "sre-lesson-01",
       "topic": "sre",
       "title": "SLIs",
-      "summary": "An aspect of service behavior experienced by users.",
+      "summary": "What does an SLI measure? An aspect of service behavior experienced by users.",
       "sections": [
         {
           "heading": "How it works",
@@ -32,7 +32,7 @@
       "id": "sre-lesson-02",
       "topic": "sre",
       "title": "SLOs",
-      "summary": "A target for an SLI over a defined window.",
+      "summary": "What does an SLO specify? A target for an SLI over a defined window.",
       "sections": [
         {
           "heading": "How it works",
@@ -59,7 +59,7 @@
       "id": "sre-lesson-03",
       "topic": "sre",
       "title": "Error budgets",
-      "summary": "The allowed unreliability implied by an SLO.",
+      "summary": "What is an error budget? The allowed unreliability implied by an SLO.",
       "sections": [
         {
           "heading": "How it works",
@@ -86,7 +86,7 @@
       "id": "sre-lesson-04",
       "topic": "sre",
       "title": "Incident roles",
-      "summary": "To coordinate decisions roles and communication.",
+      "summary": "Why assign an incident commander? To coordinate decisions roles and communication.",
       "sections": [
         {
           "heading": "How it works",
@@ -113,7 +113,7 @@
       "id": "sre-lesson-05",
       "topic": "sre",
       "title": "Mitigation",
-      "summary": "Reduce impact while preserving useful evidence.",
+      "summary": "What is the immediate priority during an active user-impacting outage? Reduce impact while preserving useful evidence.",
       "sections": [
         {
           "heading": "How it works",
@@ -140,7 +140,7 @@
       "id": "sre-lesson-06",
       "topic": "sre",
       "title": "Postmortems",
-      "summary": "Learn how system conditions enabled an incident.",
+      "summary": "What is the purpose of a blameless postmortem? Learn how system conditions enabled an incident.",
       "sections": [
         {
           "heading": "How it works",
@@ -167,7 +167,7 @@
       "id": "sre-lesson-07",
       "topic": "sre",
       "title": "Toil",
-      "summary": "Repetitive operational work that scales with service growth.",
+      "summary": "Which work best matches SRE toil? Repetitive operational work that scales with service growth.",
       "sections": [
         {
           "heading": "How it works",
@@ -194,7 +194,7 @@
       "id": "sre-lesson-08",
       "topic": "sre",
       "title": "Runbooks",
-      "summary": "Clear symptoms evidence actions and escalation criteria.",
+      "summary": "What makes a runbook useful during an incident? Clear symptoms evidence actions and escalation criteria.",
       "sections": [
         {
           "heading": "How it works",
@@ -221,7 +221,7 @@
       "id": "sre-lesson-09",
       "topic": "sre",
       "title": "Burn rate",
-      "summary": "Budget is being consumed faster than the sustainable SLO rate.",
+      "summary": "What does an error-budget burn rate greater than one indicate? Budget is being consumed faster than the sustainable SLO rate.",
       "sections": [
         {
           "heading": "How it works",
@@ -248,7 +248,7 @@
       "id": "sre-lesson-10",
       "topic": "sre",
       "title": "Latency indicators",
-      "summary": "A small slow tail can be masked by many fast requests.",
+      "summary": "Why can average latency hide poor user experience? A small slow tail can be masked by many fast requests.",
       "sections": [
         {
           "heading": "How it works",
@@ -275,7 +275,7 @@
       "id": "sre-lesson-11",
       "topic": "sre",
       "title": "Alert actionability",
-      "summary": "A human action is needed within a relevant response time.",
+      "summary": "What should a paging alert usually imply? A human action is needed within a relevant response time.",
       "sections": [
         {
           "heading": "How it works",
@@ -302,7 +302,7 @@
       "id": "sre-lesson-12",
       "topic": "sre",
       "title": "Capacity headroom",
-      "summary": "To absorb demand variation failures and recovery work.",
+      "summary": "Why maintain capacity headroom? To absorb demand variation failures and recovery work.",
       "sections": [
         {
           "heading": "How it works",
@@ -329,7 +329,7 @@
       "id": "sre-lesson-13",
       "topic": "sre",
       "title": "Load shedding",
-      "summary": "Reject some work to protect useful service under overload.",
+      "summary": "What is the goal of load shedding? Reject some work to protect useful service under overload.",
       "sections": [
         {
           "heading": "How it works",
@@ -356,7 +356,7 @@
       "id": "sre-lesson-14",
       "topic": "sre",
       "title": "Backpressure",
-      "summary": "Downstream capacity constraints to upstream producers.",
+      "summary": "What does backpressure communicate? Downstream capacity constraints to upstream producers.",
       "sections": [
         {
           "heading": "How it works",
@@ -383,7 +383,7 @@
       "id": "sre-lesson-15",
       "topic": "sre",
       "title": "Retry storms",
-      "summary": "Each layer may repeat work already being retried elsewhere.",
+      "summary": "Why can layered retries multiply load? Each layer may repeat work already being retried elsewhere.",
       "sections": [
         {
           "heading": "How it works",
@@ -410,7 +410,7 @@
       "id": "sre-lesson-16",
       "topic": "sre",
       "title": "Recovery testing",
-      "summary": "A successful verified restore meeting recovery requirements.",
+      "summary": "What demonstrates that a backup is operationally useful? A successful verified restore meeting recovery requirements.",
       "sections": [
         {
           "heading": "How it works",
@@ -437,7 +437,7 @@
       "id": "sre-lesson-17",
       "topic": "sre",
       "title": "RTO",
-      "summary": "The target duration to restore service after disruption.",
+      "summary": "What does a recovery time objective describe? The target duration to restore service after disruption.",
       "sections": [
         {
           "heading": "How it works",
@@ -464,7 +464,7 @@
       "id": "sre-lesson-18",
       "topic": "sre",
       "title": "RPO",
-      "summary": "The acceptable data-loss window after a disruption.",
+      "summary": "What does a recovery point objective describe? The acceptable data-loss window after a disruption.",
       "sections": [
         {
           "heading": "How it works",
@@ -491,7 +491,7 @@
       "id": "sre-lesson-19",
       "topic": "sre",
       "title": "Canary releases",
-      "summary": "Limit exposure while comparing a new version with a baseline.",
+      "summary": "Why use a canary rollout? Limit exposure while comparing a new version with a baseline.",
       "sections": [
         {
           "heading": "How it works",
@@ -518,7 +518,7 @@
       "id": "sre-lesson-20",
       "topic": "sre",
       "title": "Feature flags",
-      "summary": "Disable a behavior independently of redeploying the whole binary.",
+      "summary": "What operational benefit can a feature flag provide? Disable a behavior independently of redeploying the whole binary.",
       "sections": [
         {
           "heading": "How it works",
@@ -545,7 +545,7 @@
       "id": "sre-lesson-21",
       "topic": "sre",
       "title": "Dependencies",
-      "summary": "Shared dependencies can create correlated failures.",
+      "summary": "Why map critical service dependencies? Shared dependencies can create correlated failures.",
       "sections": [
         {
           "heading": "How it works",
@@ -572,7 +572,7 @@
       "id": "sre-lesson-22",
       "topic": "sre",
       "title": "Graceful degradation",
-      "summary": "Preserving important functions when some capabilities fail.",
+      "summary": "What is graceful degradation? Preserving important functions when some capabilities fail.",
       "sections": [
         {
           "heading": "How it works",
@@ -599,7 +599,7 @@
       "id": "sre-lesson-23",
       "topic": "sre",
       "title": "Chaos experiments",
-      "summary": "A hypothesis limited scope and explicit abort conditions.",
+      "summary": "What makes a resilience experiment controlled? A hypothesis limited scope and explicit abort conditions.",
       "sections": [
         {
           "heading": "How it works",
@@ -626,7 +626,7 @@
       "id": "sre-lesson-24",
       "topic": "sre",
       "title": "Incident communication",
-      "summary": "Stakeholders need consistent impact and recovery information.",
+      "summary": "Why publish regular incident updates? Stakeholders need consistent impact and recovery information.",
       "sections": [
         {
           "heading": "How it works",
@@ -653,7 +653,7 @@
       "id": "sre-lesson-25",
       "topic": "sre",
       "title": "SLO aggregation",
-      "summary": "High-volume healthy traffic can mask a failing user segment.",
+      "summary": "Why can a global success rate hide important failures? High-volume healthy traffic can mask a failing user segment.",
       "sections": [
         {
           "heading": "How it works",
@@ -680,7 +680,7 @@
       "id": "sre-lesson-26",
       "topic": "sre",
       "title": "Overload recovery",
-      "summary": "Retries cache warming and reconnects add demand during recovery.",
+      "summary": "Why can recovery traffic worsen an outage? Retries cache warming and reconnects add demand during recovery.",
       "sections": [
         {
           "heading": "How it works",
@@ -707,7 +707,7 @@
       "id": "sre-lesson-27",
       "topic": "sre",
       "title": "Consistency trade-offs",
-      "summary": "Failure behavior depends on which guarantees the application needs.",
+      "summary": "Why make consistency requirements explicit? Failure behavior depends on which guarantees the application needs.",
       "sections": [
         {
           "heading": "How it works",
@@ -734,7 +734,7 @@
       "id": "sre-lesson-28",
       "topic": "sre",
       "title": "Reliability investment",
-      "summary": "By user impact risk and expected reduction of recurring failure.",
+      "summary": "How should reliability work be prioritized? By user impact risk and expected reduction of recurring failure.",
       "sections": [
         {
           "heading": "How it works",
@@ -761,7 +761,7 @@
       "id": "sre-lesson-29",
       "topic": "sre",
       "title": "Incident metrics",
-      "summary": "It can hide distribution incident severity and changing classification.",
+      "summary": "Why is a single average recovery time insufficient? It can hide distribution incident severity and changing classification.",
       "sections": [
         {
           "heading": "How it works",
@@ -788,7 +788,7 @@
       "id": "sre-lesson-30",
       "topic": "sre",
       "title": "Safe automation",
-      "summary": "Bounded scope verification and a safe stop or rollback path.",
+      "summary": "What should high-impact remediation automation include? Bounded scope verification and a safe stop or rollback path.",
       "sections": [
         {
           "heading": "How it works",

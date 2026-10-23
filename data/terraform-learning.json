@@ -5,7 +5,7 @@
       "id": "terraform-lesson-01",
       "topic": "terraform",
       "title": "Desired state",
-      "summary": "The desired state of managed infrastructure.",
+      "summary": "What does Terraform configuration primarily express? The desired state of managed infrastructure.",
       "sections": [
         {
           "heading": "How it works",
@@ -32,7 +32,7 @@
       "id": "terraform-lesson-02",
       "topic": "terraform",
       "title": "Initialization",
-      "summary": "Initialize the working directory and required dependencies.",
+      "summary": "What is terraform init used for? Initialize the working directory and required dependencies.",
       "sections": [
         {
           "heading": "How it works",
@@ -59,7 +59,7 @@
       "id": "terraform-lesson-03",
       "topic": "terraform",
       "title": "Planning",
-      "summary": "A proposed set of changes based on configuration and observed state.",
+      "summary": "What does terraform plan produce? A proposed set of changes based on configuration and observed state.",
       "sections": [
         {
           "heading": "How it works",
@@ -86,7 +86,7 @@
       "id": "terraform-lesson-04",
       "topic": "terraform",
       "title": "State mapping",
-      "summary": "To map configuration addresses to managed remote objects.",
+      "summary": "Why does Terraform maintain state? To map configuration addresses to managed remote objects.",
       "sections": [
         {
           "heading": "How it works",
@@ -113,7 +113,7 @@
       "id": "terraform-lesson-05",
       "topic": "terraform",
       "title": "Variables",
-      "summary": "Parameters for a Terraform module.",
+      "summary": "What do input variables provide? Parameters for a Terraform module.",
       "sections": [
         {
           "heading": "How it works",
@@ -140,7 +140,7 @@
       "id": "terraform-lesson-06",
       "topic": "terraform",
       "title": "Outputs",
-      "summary": "Expose selected values from a module.",
+      "summary": "What are Terraform outputs used for? Expose selected values from a module.",
       "sections": [
         {
           "heading": "How it works",
@@ -167,7 +167,7 @@
       "id": "terraform-lesson-07",
       "topic": "terraform",
       "title": "Providers",
-      "summary": "A plugin implementing interactions with a service or platform.",
+      "summary": "What is a Terraform provider? A plugin implementing interactions with a service or platform.",
       "sections": [
         {
           "heading": "How it works",
@@ -194,7 +194,7 @@
       "id": "terraform-lesson-08",
       "topic": "terraform",
       "title": "Modules",
-      "summary": "A reusable group of Terraform configuration.",
+      "summary": "What does a module encapsulate? A reusable group of Terraform configuration.",
       "sections": [
         {
           "heading": "How it works",
@@ -221,7 +221,7 @@
       "id": "terraform-lesson-09",
       "topic": "terraform",
       "title": "Lock files",
-      "summary": "Selected provider versions and checksums.",
+      "summary": "What does the dependency lock file primarily record? Selected provider versions and checksums.",
       "sections": [
         {
           "heading": "How it works",
@@ -248,7 +248,7 @@
       "id": "terraform-lesson-10",
       "topic": "terraform",
       "title": "Remote state",
-      "summary": "It centralizes state access and can support collaboration controls.",
+      "summary": "Why use a suitably secured remote backend for shared work? It centralizes state access and can support collaboration controls.",
       "sections": [
         {
           "heading": "How it works",
@@ -275,7 +275,7 @@
       "id": "terraform-lesson-11",
       "topic": "terraform",
       "title": "State locking",
-      "summary": "Concurrent writers corrupting the same state workflow.",
+      "summary": "What does state locking help prevent? Concurrent writers corrupting the same state workflow.",
       "sections": [
         {
           "heading": "How it works",
@@ -302,7 +302,7 @@
       "id": "terraform-lesson-12",
       "topic": "terraform",
       "title": "Sensitive values",
-      "summary": "Redact it from ordinary user-facing output.",
+      "summary": "What does marking a value sensitive generally do? Redact it from ordinary user-facing output.",
       "sections": [
         {
           "heading": "How it works",
@@ -329,7 +329,7 @@
       "id": "terraform-lesson-13",
       "topic": "terraform",
       "title": "Resource addresses",
-      "summary": "Keys form part of resource instance identity.",
+      "summary": "Why do stable for_each keys matter? Keys form part of resource instance identity.",
       "sections": [
         {
           "heading": "How it works",
@@ -356,7 +356,7 @@
       "id": "terraform-lesson-14",
       "topic": "terraform",
       "title": "Count indexing",
-      "summary": "Later numeric indices can shift their resource associations.",
+      "summary": "What risk comes from removing an item in a count-indexed list? Later numeric indices can shift their resource associations.",
       "sections": [
         {
           "heading": "How it works",
@@ -383,7 +383,7 @@
       "id": "terraform-lesson-15",
       "topic": "terraform",
       "title": "Dependencies",
-      "summary": "References between resource values form graph edges.",
+      "summary": "How does Terraform infer many resource dependencies? References between resource values form graph edges.",
       "sections": [
         {
           "heading": "How it works",
@@ -410,7 +410,7 @@
       "id": "terraform-lesson-16",
       "topic": "terraform",
       "title": "Data sources",
-      "summary": "Read information about objects or service data.",
+      "summary": "What is a data source typically used for? Read information about objects or service data.",
       "sections": [
         {
           "heading": "How it works",
@@ -437,7 +437,7 @@
       "id": "terraform-lesson-17",
       "topic": "terraform",
       "title": "Import",
-      "summary": "A mapping from an existing remote object to a resource address.",
+      "summary": "What does importing an existing resource establish? A mapping from an existing remote object to a resource address.",
       "sections": [
         {
           "heading": "How it works",
@@ -464,7 +464,7 @@
       "id": "terraform-lesson-18",
       "topic": "terraform",
       "title": "Moved blocks",
-      "summary": "An intentional resource address change.",
+      "summary": "What can a moved block communicate? An intentional resource address change.",
       "sections": [
         {
           "heading": "How it works",
@@ -491,7 +491,7 @@
       "id": "terraform-lesson-19",
       "topic": "terraform",
       "title": "Lifecycle protection",
-      "summary": "It is a configuration safeguard rather than universal deletion protection.",
+      "summary": "What is a limitation of prevent_destroy? It is a configuration safeguard rather than universal deletion protection.",
       "sections": [
         {
           "heading": "How it works",
@@ -518,7 +518,7 @@
       "id": "terraform-lesson-20",
       "topic": "terraform",
       "title": "Ignored changes",
-      "summary": "It delegates selected differences away from normal reconciliation.",
+      "summary": "What trade-off does ignore_changes introduce? It delegates selected differences away from normal reconciliation.",
       "sections": [
         {
           "heading": "How it works",
@@ -545,7 +545,7 @@
       "id": "terraform-lesson-21",
       "topic": "terraform",
       "title": "Replacement order",
-      "summary": "Create a replacement before destroying the old object.",
+      "summary": "What does create_before_destroy try to change? Create a replacement before destroying the old object.",
       "sections": [
         {
           "heading": "How it works",
@@ -572,7 +572,7 @@
       "id": "terraform-lesson-22",
       "topic": "terraform",
       "title": "Targeted applies",
-      "summary": "Targeting can leave the overall configuration only partially reconciled.",
+      "summary": "Why avoid routine broad reliance on -target? Targeting can leave the overall configuration only partially reconciled.",
       "sections": [
         {
           "heading": "How it works",
@@ -599,7 +599,7 @@
       "id": "terraform-lesson-23",
       "topic": "terraform",
       "title": "Provisioners",
-      "summary": "Native resources model lifecycle and changes more explicitly.",
+      "summary": "Why prefer native resources over provisioners where practical? Native resources model lifecycle and changes more explicitly.",
       "sections": [
         {
           "heading": "How it works",
@@ -626,7 +626,7 @@
       "id": "terraform-lesson-24",
       "topic": "terraform",
       "title": "Workspace boundaries",
-      "summary": "They separate state instances but do not inherently isolate credentials or permissions.",
+      "summary": "What is a limitation of CLI workspaces as environment isolation? They separate state instances but do not inherently isolate credentials or permissions.",
       "sections": [
         {
           "heading": "How it works",
@@ -653,7 +653,7 @@
       "id": "terraform-lesson-25",
       "topic": "terraform",
       "title": "Saved plans",
-      "summary": "It can contain sensitive configuration and state information.",
+      "summary": "Why protect a saved plan file? It can contain sensitive configuration and state information.",
       "sections": [
         {
           "heading": "How it works",
@@ -680,7 +680,7 @@
       "id": "terraform-lesson-26",
       "topic": "terraform",
       "title": "Drift policy",
-      "summary": "Decide whether to adopt or revert the change based on intent.",
+      "summary": "What should happen after detecting a manual production change? Decide whether to adopt or revert the change based on intent.",
       "sections": [
         {
           "heading": "How it works",
@@ -707,7 +707,7 @@
       "id": "terraform-lesson-27",
       "topic": "terraform",
       "title": "State splitting",
-      "summary": "Reduce coupling access scope and change blast radius.",
+      "summary": "Why split infrastructure into multiple state boundaries? Reduce coupling access scope and change blast radius.",
       "sections": [
         {
           "heading": "How it works",
@@ -734,7 +734,7 @@
       "id": "terraform-lesson-28",
       "topic": "terraform",
       "title": "Partial failure",
-      "summary": "Some resources may have changed successfully before failure.",
+      "summary": "What can a failed apply leave behind? Some resources may have changed successfully before failure.",
       "sections": [
         {
           "heading": "How it works",
@@ -761,7 +761,7 @@
       "id": "terraform-lesson-29",
       "topic": "terraform",
       "title": "Provider upgrades",
-      "summary": "Review migration guidance and plans in a representative environment.",
+      "summary": "How should a major provider upgrade be evaluated? Review migration guidance and plans in a representative environment.",
       "sections": [
         {
           "heading": "How it works",
@@ -788,7 +788,7 @@
       "id": "terraform-lesson-30",
       "topic": "terraform",
       "title": "Policy checks",
-      "summary": "Reject changes that violate defined infrastructure rules.",
+      "summary": "What role can policy checks play in Terraform delivery? Reject changes that violate defined infrastructure rules.",
       "sections": [
         {
           "heading": "How it works",

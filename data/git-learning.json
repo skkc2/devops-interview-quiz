@@ -5,7 +5,7 @@
       "id": "git-lesson-01",
       "topic": "git",
       "title": "Working tree",
-      "summary": "The checked-out files being edited.",
+      "summary": "What is the Git working tree? The checked-out files being edited.",
       "sections": [
         {
           "heading": "How it works",
@@ -32,7 +32,7 @@
       "id": "git-lesson-02",
       "topic": "git",
       "title": "Staging",
-      "summary": "The proposed contents of the next commit.",
+      "summary": "What does the Git index represent? The proposed contents of the next commit.",
       "sections": [
         {
           "heading": "How it works",
@@ -59,7 +59,7 @@
       "id": "git-lesson-03",
       "topic": "git",
       "title": "Commits",
-      "summary": "A snapshot with metadata and parent relationships.",
+      "summary": "What does a Git commit identify? A snapshot with metadata and parent relationships.",
       "sections": [
         {
           "heading": "How it works",
@@ -86,7 +86,7 @@
       "id": "git-lesson-04",
       "topic": "git",
       "title": "Branches",
-      "summary": "A movable reference to a commit.",
+      "summary": "What is a Git branch primarily? A movable reference to a commit.",
       "sections": [
         {
           "heading": "How it works",
@@ -113,7 +113,7 @@
       "id": "git-lesson-05",
       "topic": "git",
       "title": "Fetch",
-      "summary": "Download remote objects and update remote-tracking references.",
+      "summary": "What does git fetch normally do? Download remote objects and update remote-tracking references.",
       "sections": [
         {
           "heading": "How it works",
@@ -140,7 +140,7 @@
       "id": "git-lesson-06",
       "topic": "git",
       "title": "Merge",
-      "summary": "A commit joining multiple lines of history.",
+      "summary": "What does a non-fast-forward merge usually create? A commit joining multiple lines of history.",
       "sections": [
         {
           "heading": "How it works",
@@ -167,7 +167,7 @@
       "id": "git-lesson-07",
       "topic": "git",
       "title": "Ignore rules",
-      "summary": "It does not automatically untrack files already committed.",
+      "summary": "What is a limitation of gitignore? It does not automatically untrack files already committed.",
       "sections": [
         {
           "heading": "How it works",
@@ -194,7 +194,7 @@
       "id": "git-lesson-08",
       "topic": "git",
       "title": "Diffs",
-      "summary": "The exact changes intended for the next commit.",
+      "summary": "What should a staged diff review verify? The exact changes intended for the next commit.",
       "sections": [
         {
           "heading": "How it works",
@@ -221,7 +221,7 @@
       "id": "git-lesson-09",
       "topic": "git",
       "title": "Rebase",
-      "summary": "Replay commits onto a different base with new identities.",
+      "summary": "What does rebase generally do? Replay commits onto a different base with new identities.",
       "sections": [
         {
           "heading": "How it works",
@@ -248,7 +248,7 @@
       "id": "git-lesson-10",
       "topic": "git",
       "title": "Revert",
-      "summary": "A new commit that reverses selected changes.",
+      "summary": "What does git revert normally produce? A new commit that reverses selected changes.",
       "sections": [
         {
           "heading": "How it works",
@@ -275,7 +275,7 @@
       "id": "git-lesson-11",
       "topic": "git",
       "title": "Reset",
-      "summary": "It can discard tracked working-tree and index changes.",
+      "summary": "Why can a hard reset be destructive? It can discard tracked working-tree and index changes.",
       "sections": [
         {
           "heading": "How it works",
@@ -302,7 +302,7 @@
       "id": "git-lesson-12",
       "topic": "git",
       "title": "Cherry-pick",
-      "summary": "Apply selected commit changes onto the current branch.",
+      "summary": "What does cherry-pick typically do? Apply selected commit changes onto the current branch.",
       "sections": [
         {
           "heading": "How it works",
@@ -329,7 +329,7 @@
       "id": "git-lesson-13",
       "topic": "git",
       "title": "Conflict resolution",
-      "summary": "The intended combined behavior of both changes.",
+      "summary": "What should guide resolving a merge conflict? The intended combined behavior of both changes.",
       "sections": [
         {
           "heading": "How it works",
@@ -356,7 +356,7 @@
       "id": "git-lesson-14",
       "topic": "git",
       "title": "Reflog",
-      "summary": "Recent local reference movements and otherwise hard-to-find commits.",
+      "summary": "What can a local reflog help recover? Recent local reference movements and otherwise hard-to-find commits.",
       "sections": [
         {
           "heading": "How it works",
@@ -383,7 +383,7 @@
       "id": "git-lesson-15",
       "topic": "git",
       "title": "Bisect",
-      "summary": "A commit associated with a change between known good and bad revisions.",
+      "summary": "What does git bisect help identify? A commit associated with a change between known good and bad revisions.",
       "sections": [
         {
           "heading": "How it works",
@@ -410,7 +410,7 @@
       "id": "git-lesson-16",
       "topic": "git",
       "title": "Force with lease",
-      "summary": "Reject a rewrite when the remote reference differs from the expected value.",
+      "summary": "What protection does force-with-lease provide? Reject a rewrite when the remote reference differs from the expected value.",
       "sections": [
         {
           "heading": "How it works",
@@ -437,7 +437,7 @@
       "id": "git-lesson-17",
       "topic": "git",
       "title": "Continuous integration",
-      "summary": "Detect integration problems early through repeatable validation.",
+      "summary": "What is the purpose of continuous integration checks? Detect integration problems early through repeatable validation.",
       "sections": [
         {
           "heading": "How it works",
@@ -464,7 +464,7 @@
       "id": "git-lesson-18",
       "topic": "git",
       "title": "Artifacts",
-      "summary": "Reduce differences caused by rebuilding during promotion.",
+      "summary": "Why promote the same built artifact across environments? Reduce differences caused by rebuilding during promotion.",
       "sections": [
         {
           "heading": "How it works",
@@ -491,7 +491,7 @@
       "id": "git-lesson-19",
       "topic": "git",
       "title": "CI secrets",
-      "summary": "It can execute arbitrary code in the runner context.",
+      "summary": "Why should untrusted pull-request code have restricted credentials? It can execute arbitrary code in the runner context.",
       "sections": [
         {
           "heading": "How it works",
@@ -518,7 +518,7 @@
       "id": "git-lesson-20",
       "topic": "git",
       "title": "Dependency pinning",
-      "summary": "Reduce surprise changes in third-party execution inputs.",
+      "summary": "Why pin CI actions or dependencies to reviewed immutable versions? Reduce surprise changes in third-party execution inputs.",
       "sections": [
         {
           "heading": "How it works",
@@ -545,7 +545,7 @@
       "id": "git-lesson-21",
       "topic": "git",
       "title": "Caching",
-      "summary": "Reusing stale or incompatible dependencies or outputs.",
+      "summary": "What is a risk of an overly broad CI cache key? Reusing stale or incompatible dependencies or outputs.",
       "sections": [
         {
           "heading": "How it works",
@@ -572,7 +572,7 @@
       "id": "git-lesson-22",
       "topic": "git",
       "title": "Deployment gates",
-      "summary": "Required validation and authorization conditions are satisfied.",
+      "summary": "What should a production deployment gate establish? Required validation and authorization conditions are satisfied.",
       "sections": [
         {
           "heading": "How it works",
@@ -599,7 +599,7 @@
       "id": "git-lesson-23",
       "topic": "git",
       "title": "Rollback",
-      "summary": "Data or external side effects may be incompatible with the old code.",
+      "summary": "Why is code rollback sometimes insufficient? Data or external side effects may be incompatible with the old code.",
       "sections": [
         {
           "heading": "How it works",
@@ -626,7 +626,7 @@
       "id": "git-lesson-24",
       "topic": "git",
       "title": "Concurrency controls",
-      "summary": "Prevent overlapping changes to the same environment.",
+      "summary": "Why serialize some deployment workflows? Prevent overlapping changes to the same environment.",
       "sections": [
         {
           "heading": "How it works",
@@ -653,7 +653,7 @@
       "id": "git-lesson-25",
       "topic": "git",
       "title": "OIDC federation",
-      "summary": "Obtain short-lived credentials tied to workflow identity.",
+      "summary": "Why use workload federation in CI where supported? Obtain short-lived credentials tied to workflow identity.",
       "sections": [
         {
           "heading": "How it works",
@@ -680,7 +680,7 @@
       "id": "git-lesson-26",
       "topic": "git",
       "title": "Monorepo checks",
-      "summary": "Indirect dependencies can be missed by simplistic file filters.",
+      "summary": "What is a risk of path-filtered CI checks? Indirect dependencies can be missed by simplistic file filters.",
       "sections": [
         {
           "heading": "How it works",
@@ -707,7 +707,7 @@
       "id": "git-lesson-27",
       "topic": "git",
       "title": "Release tags",
-      "summary": "Trace a release to an intended source or artifact identity.",
+      "summary": "What should release tagging support? Trace a release to an intended source or artifact identity.",
       "sections": [
         {
           "heading": "How it works",
@@ -734,7 +734,7 @@
       "id": "git-lesson-28",
       "topic": "git",
       "title": "Flaky tests",
-      "summary": "They weaken confidence that failures indicate real regressions.",
+      "summary": "Why are flaky tests harmful to CI? They weaken confidence that failures indicate real regressions.",
       "sections": [
         {
           "heading": "How it works",
@@ -761,7 +761,7 @@
       "id": "git-lesson-29",
       "topic": "git",
       "title": "Branch protection",
-      "summary": "Defined review and status-check requirements before integration.",
+      "summary": "What do protected-branch rules help enforce? Defined review and status-check requirements before integration.",
       "sections": [
         {
           "heading": "How it works",
@@ -788,7 +788,7 @@
       "id": "git-lesson-30",
       "topic": "git",
       "title": "Supply-chain evidence",
-      "summary": "Which inputs and process produced the artifact.",
+      "summary": "What should release provenance help answer? Which inputs and process produced the artifact.",
       "sections": [
         {
           "heading": "How it works",

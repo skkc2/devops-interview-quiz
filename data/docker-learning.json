@@ -5,7 +5,7 @@
       "id": "docker-lesson-01",
       "topic": "docker",
       "title": "Images and containers",
-      "summary": "A container is a runtime instance created from an image.",
+      "summary": "What is the relationship between an image and a container? A container is a runtime instance created from an image.",
       "sections": [
         {
           "heading": "How it works",
@@ -32,7 +32,7 @@
       "id": "docker-lesson-02",
       "topic": "docker",
       "title": "Layering",
-      "summary": "As filesystem layers plus image configuration.",
+      "summary": "How are container image changes commonly represented? As filesystem layers plus image configuration.",
       "sections": [
         {
           "heading": "How it works",
@@ -59,7 +59,7 @@
       "id": "docker-lesson-03",
       "topic": "docker",
       "title": "Dockerfiles",
-      "summary": "Instructions for building an image.",
+      "summary": "What does a Dockerfile describe? Instructions for building an image.",
       "sections": [
         {
           "heading": "How it works",
@@ -86,7 +86,7 @@
       "id": "docker-lesson-04",
       "topic": "docker",
       "title": "Build context",
-      "summary": "The set of files made available to the build.",
+      "summary": "What is the Docker build context? The set of files made available to the build.",
       "sections": [
         {
           "heading": "How it works",
@@ -113,7 +113,7 @@
       "id": "docker-lesson-05",
       "topic": "docker",
       "title": "Container logs",
-      "summary": "To stdout and stderr for collection by the runtime.",
+      "summary": "Where should a containerized service commonly send operational logs? To stdout and stderr for collection by the runtime.",
       "sections": [
         {
           "heading": "How it works",
@@ -140,7 +140,7 @@
       "id": "docker-lesson-06",
       "topic": "docker",
       "title": "Port publishing",
-      "summary": "Map a host endpoint to a container port.",
+      "summary": "What does Docker port publishing do? Map a host endpoint to a container port.",
       "sections": [
         {
           "heading": "How it works",
@@ -167,7 +167,7 @@
       "id": "docker-lesson-07",
       "topic": "docker",
       "title": "Volumes",
-      "summary": "Its lifecycle can be managed separately from the container writable layer.",
+      "summary": "Why use a volume for persistent container data? Its lifecycle can be managed separately from the container writable layer.",
       "sections": [
         {
           "heading": "How it works",
@@ -194,7 +194,7 @@
       "id": "docker-lesson-08",
       "topic": "docker",
       "title": "Entrypoints",
-      "summary": "The service can run directly as the container's main process.",
+      "summary": "What is a benefit of exec-form ENTRYPOINT for a simple service? The service can run directly as the container's main process.",
       "sections": [
         {
           "heading": "How it works",
@@ -221,7 +221,7 @@
       "id": "docker-lesson-09",
       "topic": "docker",
       "title": "PID one",
-      "summary": "It may need to reap children and handle termination signals.",
+      "summary": "Why does the container's main process need careful child handling? It may need to reap children and handle termination signals.",
       "sections": [
         {
           "heading": "How it works",
@@ -248,7 +248,7 @@
       "id": "docker-lesson-10",
       "topic": "docker",
       "title": "Health checks",
-      "summary": "A health status based on the configured check result.",
+      "summary": "What does a Docker health check report? A health status based on the configured check result.",
       "sections": [
         {
           "heading": "How it works",
@@ -275,7 +275,7 @@
       "id": "docker-lesson-11",
       "topic": "docker",
       "title": "User identity",
-      "summary": "Reduce the privileges available to compromised application code.",
+      "summary": "Why run an application as a non-root user when possible? Reduce the privileges available to compromised application code.",
       "sections": [
         {
           "heading": "How it works",
@@ -302,7 +302,7 @@
       "id": "docker-lesson-12",
       "topic": "docker",
       "title": "Memory limits",
-      "summary": "The workload can encounter cgroup memory pressure or OOM termination.",
+      "summary": "What can a container memory limit cause under excess demand? The workload can encounter cgroup memory pressure or OOM termination.",
       "sections": [
         {
           "heading": "How it works",
@@ -329,7 +329,7 @@
       "id": "docker-lesson-13",
       "topic": "docker",
       "title": "CPU quotas",
-      "summary": "CPU runtime available to the cgroup over scheduling periods.",
+      "summary": "What does a CPU quota constrain? CPU runtime available to the cgroup over scheduling periods.",
       "sections": [
         {
           "heading": "How it works",
@@ -356,7 +356,7 @@
       "id": "docker-lesson-14",
       "topic": "docker",
       "title": "Bind mounts",
-      "summary": "A bind mount exposes a specified host path.",
+      "summary": "What distinguishes a bind mount from a named volume? A bind mount exposes a specified host path.",
       "sections": [
         {
           "heading": "How it works",
@@ -383,7 +383,7 @@
       "id": "docker-lesson-15",
       "topic": "docker",
       "title": "Read-only filesystems",
-      "summary": "Reduce unintended writes to the image-derived filesystem.",
+      "summary": "Why use a read-only container root filesystem? Reduce unintended writes to the image-derived filesystem.",
       "sections": [
         {
           "heading": "How it works",
@@ -410,7 +410,7 @@
       "id": "docker-lesson-16",
       "topic": "docker",
       "title": "Multi-stage builds",
-      "summary": "Separate build tooling from the final runtime image.",
+      "summary": "What is a primary benefit of multi-stage builds? Separate build tooling from the final runtime image.",
       "sections": [
         {
           "heading": "How it works",
@@ -437,7 +437,7 @@
       "id": "docker-lesson-17",
       "topic": "docker",
       "title": "Build cache",
-      "summary": "It can preserve useful cached build steps.",
+      "summary": "Why order stable dependencies before frequently changing source? It can preserve useful cached build steps.",
       "sections": [
         {
           "heading": "How it works",
@@ -464,7 +464,7 @@
       "id": "docker-lesson-18",
       "topic": "docker",
       "title": "Secrets in builds",
-      "summary": "Use a dedicated build secret mechanism.",
+      "summary": "How should build-time credentials be supplied where supported? Use a dedicated build secret mechanism.",
       "sections": [
         {
           "heading": "How it works",
@@ -491,7 +491,7 @@
       "id": "docker-lesson-19",
       "topic": "docker",
       "title": "Image digests",
-      "summary": "Specific content-addressed image data.",
+      "summary": "What does an image digest identify? Specific content-addressed image data.",
       "sections": [
         {
           "heading": "How it works",
@@ -518,7 +518,7 @@
       "id": "docker-lesson-20",
       "topic": "docker",
       "title": "Networks",
-      "summary": "Scoped container connectivity with built-in name resolution.",
+      "summary": "What benefit does a user-defined bridge network provide? Scoped container connectivity with built-in name resolution.",
       "sections": [
         {
           "heading": "How it works",
@@ -545,7 +545,7 @@
       "id": "docker-lesson-21",
       "topic": "docker",
       "title": "Compose dependencies",
-      "summary": "A started dependency may not yet be ready to serve requests.",
+      "summary": "What is a limitation of simple startup ordering? A started dependency may not yet be ready to serve requests.",
       "sections": [
         {
           "heading": "How it works",
@@ -572,7 +572,7 @@
       "id": "docker-lesson-22",
       "topic": "docker",
       "title": "Restart policy",
-      "summary": "Runtime behavior when a container exits under specified conditions.",
+      "summary": "What does a restart policy govern? Runtime behavior when a container exits under specified conditions.",
       "sections": [
         {
           "heading": "How it works",
@@ -599,7 +599,7 @@
       "id": "docker-lesson-23",
       "topic": "docker",
       "title": "Registry access",
-      "summary": "They grant different capabilities at different lifecycle stages.",
+      "summary": "Why separate image pull credentials from application credentials? They grant different capabilities at different lifecycle stages.",
       "sections": [
         {
           "heading": "How it works",
@@ -626,7 +626,7 @@
       "id": "docker-lesson-24",
       "topic": "docker",
       "title": "Resource cleanup",
-      "summary": "Unused from the runtime's perspective may still be operationally valuable.",
+      "summary": "Why inspect Docker objects before pruning? Unused from the runtime's perspective may still be operationally valuable.",
       "sections": [
         {
           "heading": "How it works",
@@ -653,7 +653,7 @@
       "id": "docker-lesson-25",
       "topic": "docker",
       "title": "Socket exposure",
-      "summary": "Daemon access can grant extensive control over the host.",
+      "summary": "Why is mounting the Docker daemon socket high risk? Daemon access can grant extensive control over the host.",
       "sections": [
         {
           "heading": "How it works",
@@ -680,7 +680,7 @@
       "id": "docker-lesson-26",
       "topic": "docker",
       "title": "Rootless mode",
-      "summary": "The need for a root-privileged daemon and containers.",
+      "summary": "What does rootless Docker aim to reduce? The need for a root-privileged daemon and containers.",
       "sections": [
         {
           "heading": "How it works",
@@ -707,7 +707,7 @@
       "id": "docker-lesson-27",
       "topic": "docker",
       "title": "Image scanning",
-      "summary": "Evidence about known issues in the inspected image and metadata.",
+      "summary": "What does a vulnerability scan provide? Evidence about known issues in the inspected image and metadata.",
       "sections": [
         {
           "heading": "How it works",
@@ -734,7 +734,7 @@
       "id": "docker-lesson-28",
       "topic": "docker",
       "title": "Supply chain",
-      "summary": "Establish evidence about artifact origin and integrity.",
+      "summary": "Why verify image provenance or signatures? Establish evidence about artifact origin and integrity.",
       "sections": [
         {
           "heading": "How it works",
@@ -761,7 +761,7 @@
       "id": "docker-lesson-29",
       "topic": "docker",
       "title": "Shared kernel",
-      "summary": "Kernel vulnerabilities can cross container isolation boundaries.",
+      "summary": "What security implication follows from containers sharing a host kernel? Kernel vulnerabilities can cross container isolation boundaries.",
       "sections": [
         {
           "heading": "How it works",
@@ -788,7 +788,7 @@
       "id": "docker-lesson-30",
       "topic": "docker",
       "title": "Stateful migration",
-      "summary": "Persistent data or schema changes may outlive the old image.",
+      "summary": "Why is replacing a database container not always a complete rollback? Persistent data or schema changes may outlive the old image.",
       "sections": [
         {
           "heading": "How it works",

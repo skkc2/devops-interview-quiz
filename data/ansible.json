@@ -88,7 +88,7 @@
       "id": "ansible-01-principles",
       "title": "Inventory \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing inventory, which TWO statements are sound operational principles?",
+      "question": "What does an Ansible inventory describe? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "It is a list of Docker image layers",
         "It automatically grants access to every listed host",
@@ -122,7 +122,7 @@
       "question": "Explain how you verify Ansible target scope.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Managed hosts and their grouping or connection data. Inventory selection determines the potential execution scope. A practical response is: Inspect inventory groups and the resolved host pattern before execution. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that it is a list of Docker image layers.",
+      "sampleAnswer": "Inventory selection determines the potential execution scope. Consider this situation: A production play unexpectedly targets a staging group too. A practical response is: Inspect inventory groups and the resolved host pattern before execution. The relevant concept is: What does an Ansible inventory describe? Managed hosts and their grouping or connection data. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that it is a list of Docker image layers.",
       "answerChecklist": [
         "Managed hosts and their grouping or connection data",
         "Inventory selection determines the potential execution scope",
@@ -212,7 +212,7 @@
       "id": "ansible-02-principles",
       "title": "Playbooks \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing playbooks, which TWO statements are sound operational principles?",
+      "question": "What does a playbook organize? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "It always runs every task on every inventory host",
         "Plays mapping tasks and roles to target hosts",
@@ -246,7 +246,7 @@
       "question": "Explain play structure and host targeting.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Plays mapping tasks and roles to target hosts. Task order and conditions affect execution behavior. A practical response is: Correct the play's host selection and verify the resolved list. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that it is only a database of passwords.",
+      "sampleAnswer": "Task order and conditions affect execution behavior. Consider this situation: A task intended for web servers runs on database hosts. A practical response is: Correct the play's host selection and verify the resolved list. The relevant concept is: What does a playbook organize? Plays mapping tasks and roles to target hosts. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that it is only a database of passwords.",
       "answerChecklist": [
         "Plays mapping tasks and roles to target hosts",
         "Task order and conditions affect execution behavior",
@@ -336,7 +336,7 @@
       "id": "ansible-03-principles",
       "title": "Modules \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing modules, which TWO statements are sound operational principles?",
+      "question": "Why prefer purpose-built modules over shell commands? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "Modules often model desired state and support idempotent behavior",
         "Module documentation defines supported parameters and return values",
@@ -370,7 +370,7 @@
       "question": "Explain module selection for repeatable configuration.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Modules often model desired state and support idempotent behavior. Module documentation defines supported parameters and return values. A practical response is: Use an appropriate declarative file or configuration module. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that every shell command is automatically idempotent.",
+      "sampleAnswer": "Module documentation defines supported parameters and return values. Consider this situation: A shell task appends the same configuration line on every run. A practical response is: Use an appropriate declarative file or configuration module. The relevant concept is: Why prefer purpose-built modules over shell commands? Modules often model desired state and support idempotent behavior. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that every shell command is automatically idempotent.",
       "answerChecklist": [
         "Modules often model desired state and support idempotent behavior",
         "Module documentation defines supported parameters and return values",
@@ -460,7 +460,7 @@
       "id": "ansible-04-principles",
       "title": "Idempotence \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing idempotence, which TWO statements are sound operational principles?",
+      "question": "What does idempotence mean for a configuration task? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "A no-change run is useful evidence but not a complete correctness proof",
         "An idempotent task must execute exactly once forever",
@@ -494,7 +494,7 @@
       "question": "Explain how you test idempotence in automation.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Repeated execution can preserve the already-correct desired state. A no-change run is useful evidence but not a complete correctness proof. A practical response is: Inspect task behavior and use state-aware operations. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that an idempotent task must execute exactly once forever.",
+      "sampleAnswer": "A no-change run is useful evidence but not a complete correctness proof. Consider this situation: A second identical run still recreates an unchanged configuration file. A practical response is: Inspect task behavior and use state-aware operations. The relevant concept is: What does idempotence mean for a configuration task? Repeated execution can preserve the already-correct desired state. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that an idempotent task must execute exactly once forever.",
       "answerChecklist": [
         "Repeated execution can preserve the already-correct desired state",
         "A no-change run is useful evidence but not a complete correctness proof",
@@ -584,7 +584,7 @@
       "id": "ansible-05-principles",
       "title": "Become \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing become, which TWO statements are sound operational principles?",
+      "question": "What does become enable? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "It automatically encrypts all variables",
         "It makes every remote command safe",
@@ -618,7 +618,7 @@
       "question": "Explain least privilege in an Ansible playbook.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Privilege escalation for selected operations. Escalation should be scoped to tasks that need it. A practical response is: Scope privilege escalation and use the package module. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that it automatically encrypts all variables.",
+      "sampleAnswer": "Escalation should be scoped to tasks that need it. Consider this situation: A task needs root only to install one package. A practical response is: Scope privilege escalation and use the package module. The relevant concept is: What does become enable? Privilege escalation for selected operations. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that it automatically encrypts all variables.",
       "answerChecklist": [
         "Privilege escalation for selected operations",
         "Escalation should be scoped to tasks that need it",
@@ -708,7 +708,7 @@
       "id": "ansible-06-principles",
       "title": "Variables \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing variables, which TWO statements are sound operational principles?",
+      "question": "What is an important property of Ansible variables? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "All variable sources have identical precedence",
         "Values can come from multiple sources with precedence rules",
@@ -742,7 +742,7 @@
       "question": "Explain how you troubleshoot an unexpected variable value.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Values can come from multiple sources with precedence rules. Unexpected values should be traced to their actual source. A practical response is: Inspect higher-precedence inventory and runtime overrides. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that the last alphabetic variable name always wins.",
+      "sampleAnswer": "Unexpected values should be traced to their actual source. Consider this situation: A host uses a different port than its role default. A practical response is: Inspect higher-precedence inventory and runtime overrides. The relevant concept is: What is an important property of Ansible variables? Values can come from multiple sources with precedence rules. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that the last alphabetic variable name always wins.",
       "answerChecklist": [
         "Values can come from multiple sources with precedence rules",
         "Unexpected values should be traced to their actual source",
@@ -832,7 +832,7 @@
       "id": "ansible-07-principles",
       "title": "Facts \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing facts, which TWO statements are sound operational principles?",
+      "question": "What are gathered facts typically used for? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "Discover host characteristics for conditional automation",
         "Facts can become stale if cached beyond relevant changes",
@@ -866,7 +866,7 @@
       "question": "Explain useful and risky uses of fact caching.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Discover host characteristics for conditional automation. Facts can become stale if cached beyond relevant changes. A practical response is: Refresh relevant facts and inspect cache policy. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that facts are always a live view of every host property.",
+      "sampleAnswer": "Facts can become stale if cached beyond relevant changes. Consider this situation: A cached operating-system fact no longer matches a rebuilt host. A practical response is: Refresh relevant facts and inspect cache policy. The relevant concept is: What are gathered facts typically used for? Discover host characteristics for conditional automation. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that facts are always a live view of every host property.",
       "answerChecklist": [
         "Discover host characteristics for conditional automation",
         "Facts can become stale if cached beyond relevant changes",
@@ -956,7 +956,7 @@
       "id": "ansible-08-principles",
       "title": "Handlers \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing handlers, which TWO statements are sound operational principles?",
+      "question": "When are notified handlers normally run? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "Multiple notifications can coalesce into one handler execution",
         "Every handler runs after every task unconditionally",
@@ -990,7 +990,7 @@
       "question": "Explain handlers and how they reduce unnecessary restarts.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "At defined handler execution points after notifying changes. Multiple notifications can coalesce into one handler execution. A practical response is: Notify a shared handler and verify the restart timing. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that every handler runs after every task unconditionally.",
+      "sampleAnswer": "Multiple notifications can coalesce into one handler execution. Consider this situation: Three configuration tasks require one service restart. A practical response is: Notify a shared handler and verify the restart timing. The relevant concept is: When are notified handlers normally run? At defined handler execution points after notifying changes. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that every handler runs after every task unconditionally.",
       "answerChecklist": [
         "At defined handler execution points after notifying changes",
         "Multiple notifications can coalesce into one handler execution",
@@ -1080,7 +1080,7 @@
       "id": "ansible-09-principles",
       "title": "Check mode \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing check mode, which TWO statements are sound operational principles?",
+      "question": "What is a limitation of Ansible check mode? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "Check mode guarantees an exact simulation of every shell command",
         "A passing check run replaces all execution testing",
@@ -1114,7 +1114,7 @@
       "question": "Explain how you use check mode without overtrusting it.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Support and predictive accuracy depend on the module and task. A dry run does not prove every runtime side effect is safe. A practical response is: Review check-mode support and test safely in a representative environment. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that check mode guarantees an exact simulation of every shell command.",
+      "sampleAnswer": "A dry run does not prove every runtime side effect is safe. Consider this situation: A task depends on output from a command skipped in check mode. A practical response is: Review check-mode support and test safely in a representative environment. The relevant concept is: What is a limitation of Ansible check mode? Support and predictive accuracy depend on the module and task. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that check mode guarantees an exact simulation of every shell command.",
       "answerChecklist": [
         "Support and predictive accuracy depend on the module and task",
         "A dry run does not prove every runtime side effect is safe",
@@ -1204,7 +1204,7 @@
       "id": "ansible-10-principles",
       "title": "Diff mode \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing diff mode, which TWO statements are sound operational principles?",
+      "question": "Why use diff output carefully? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "Diff mode automatically sanitizes every arbitrary file",
         "It can reveal sensitive configuration content",
@@ -1238,7 +1238,7 @@
       "question": "Explain balancing reviewable diffs with secret protection.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "It can reveal sensitive configuration content. Secret-bearing tasks may need protected output and no_log. A practical response is: Suppress sensitive output and review exposure and credential rotation. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that diff output can never contain secrets.",
+      "sampleAnswer": "Secret-bearing tasks may need protected output and no_log. Consider this situation: A template diff shows credentials in CI logs. A practical response is: Suppress sensitive output and review exposure and credential rotation. The relevant concept is: Why use diff output carefully? It can reveal sensitive configuration content. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that diff output can never contain secrets.",
       "answerChecklist": [
         "It can reveal sensitive configuration content",
         "Secret-bearing tasks may need protected output and no_log",
@@ -1328,7 +1328,7 @@
       "id": "ansible-11-principles",
       "title": "Vault \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing vault, which TWO statements are sound operational principles?",
+      "question": "What does Ansible Vault protect? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "Encrypted content at rest when properly managed",
         "Decrypted values can still leak through task output or external systems",
@@ -1362,7 +1362,7 @@
       "question": "Explain Vault's protection boundary.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Encrypted content at rest when properly managed. Decrypted values can still leak through task output or external systems. A practical response is: Remove the disclosure and protect runtime logging. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that vault prevents every runtime secret exposure.",
+      "sampleAnswer": "Decrypted values can still leak through task output or external systems. Consider this situation: An encrypted secret is printed by a debug task. A practical response is: Remove the disclosure and protect runtime logging. The relevant concept is: What does Ansible Vault protect? Encrypted content at rest when properly managed. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that vault prevents every runtime secret exposure.",
       "answerChecklist": [
         "Encrypted content at rest when properly managed",
         "Decrypted values can still leak through task output or external systems",
@@ -1452,7 +1452,7 @@
       "id": "ansible-12-principles",
       "title": "Templates \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing templates, which TWO statements are sound operational principles?",
+      "question": "What does a Jinja template allow? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "Rendered configuration should be validated before service activation",
         "Templates guarantee valid syntax for every target service",
@@ -1486,7 +1486,7 @@
       "question": "Explain safe template deployment with validation.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Render configuration from variables and expressions. Rendered configuration should be validated before service activation. A practical response is: Validate the candidate configuration before replacing or reloading it. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that templates guarantee valid syntax for every target service.",
+      "sampleAnswer": "Rendered configuration should be validated before service activation. Consider this situation: A rendered web-server configuration has invalid syntax. A practical response is: Validate the candidate configuration before replacing or reloading it. The relevant concept is: What does a Jinja template allow? Render configuration from variables and expressions. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that templates guarantee valid syntax for every target service.",
       "answerChecklist": [
         "Render configuration from variables and expressions",
         "Rendered configuration should be validated before service activation",
@@ -1576,7 +1576,7 @@
       "id": "ansible-13-principles",
       "title": "Roles \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing roles, which TWO statements are sound operational principles?",
+      "question": "What does an Ansible role package? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "A role is necessarily a separate remote user account",
         "Roles automatically isolate all variables from every other role",
@@ -1610,7 +1610,7 @@
       "question": "Explain a maintainable reusable role interface.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Related tasks defaults handlers and supporting files. Roles benefit from explicit interfaces and limited assumptions. A practical response is: Document defaults and required inputs and test representative callers. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that a role is necessarily a separate remote user account.",
+      "sampleAnswer": "Roles benefit from explicit interfaces and limited assumptions. Consider this situation: A shared role requires undocumented variables and breaks callers. A practical response is: Document defaults and required inputs and test representative callers. The relevant concept is: What does an Ansible role package? Related tasks defaults handlers and supporting files. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that a role is necessarily a separate remote user account.",
       "answerChecklist": [
         "Related tasks defaults handlers and supporting files",
         "Roles benefit from explicit interfaces and limited assumptions",
@@ -1700,7 +1700,7 @@
       "id": "ansible-14-principles",
       "title": "Collections \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing collections, which TWO statements are sound operational principles?",
+      "question": "What is an Ansible collection used for? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "Collection upgrades can never change behavior",
         "Distribute related modules plugins and roles",
@@ -1734,7 +1734,7 @@
       "question": "Explain dependency management for Ansible projects.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Distribute related modules plugins and roles. Pinning tested collection versions helps reproducibility. A practical response is: Declare and install versioned collection requirements. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that collections are always included in every ansible-core installation.",
+      "sampleAnswer": "Pinning tested collection versions helps reproducibility. Consider this situation: CI fails because a module collection is absent on a clean runner. A practical response is: Declare and install versioned collection requirements. The relevant concept is: What is an Ansible collection used for? Distribute related modules plugins and roles. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that collections are always included in every ansible-core installation.",
       "answerChecklist": [
         "Distribute related modules plugins and roles",
         "Pinning tested collection versions helps reproducibility",
@@ -1824,7 +1824,7 @@
       "id": "ansible-15-principles",
       "title": "FQCNs \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing fqcns, which TWO statements are sound operational principles?",
+      "question": "Why use fully qualified collection names for modules? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "Make the intended module namespace explicit",
         "Explicit names reduce ambiguity when collections overlap",
@@ -1858,7 +1858,7 @@
       "question": "Explain module naming and collection resolution.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Make the intended module namespace explicit. Explicit names reduce ambiguity when collections overlap. A practical response is: Use the intended collection namespace and verify its documentation. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that a fully qualified name automatically grants more privileges.",
+      "sampleAnswer": "Explicit names reduce ambiguity when collections overlap. Consider this situation: Two collections provide similarly named modules. A practical response is: Use the intended collection namespace and verify its documentation. The relevant concept is: Why use fully qualified collection names for modules? Make the intended module namespace explicit. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that a fully qualified name automatically grants more privileges.",
       "answerChecklist": [
         "Make the intended module namespace explicit",
         "Explicit names reduce ambiguity when collections overlap",
@@ -1948,7 +1948,7 @@
       "id": "ansible-16-principles",
       "title": "Conditionals \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing conditionals, which TWO statements are sound operational principles?",
+      "question": "What does a when expression control? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "Conditions should use correctly typed and available values",
         "It changes inventory membership permanently",
@@ -1982,7 +1982,7 @@
       "question": "Explain robust conditional logic in playbooks.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Whether a task executes for a host based on a condition. Conditions should use correctly typed and available values. A practical response is: Normalize input types and inspect the condition. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that it changes inventory membership permanently.",
+      "sampleAnswer": "Conditions should use correctly typed and available values. Consider this situation: A task unexpectedly runs because a string value was treated as truthy. A practical response is: Normalize input types and inspect the condition. The relevant concept is: What does a when expression control? Whether a task executes for a host based on a condition. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that it changes inventory membership permanently.",
       "answerChecklist": [
         "Whether a task executes for a host based on a condition",
         "Conditions should use correctly typed and available values",
@@ -2072,7 +2072,7 @@
       "id": "ansible-17-principles",
       "title": "Registered results \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing registered results, which TWO statements are sound operational principles?",
+      "question": "What does register capture? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "Register stores a permanent system environment variable",
         "Every result has identical fields even when skipped",
@@ -2106,7 +2106,7 @@
       "question": "Explain defensive handling of task results.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "A task result for later use in the play. Result fields depend on the module and execution outcome. A practical response is: Guard for skipped or missing result fields. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that register stores a permanent system environment variable.",
+      "sampleAnswer": "Result fields depend on the module and execution outcome. Consider this situation: A later task accesses stdout on a skipped result. A practical response is: Guard for skipped or missing result fields. The relevant concept is: What does register capture? A task result for later use in the play. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that register stores a permanent system environment variable.",
       "answerChecklist": [
         "A task result for later use in the play",
         "Result fields depend on the module and execution outcome",
@@ -2196,7 +2196,7 @@
       "id": "ansible-18-principles",
       "title": "Loops \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing loops, which TWO statements are sound operational principles?",
+      "question": "Why choose loop variable names deliberately? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "Every loop result is a single scalar stdout value",
         "Avoid variable collisions in nested or included tasks",
@@ -2230,7 +2230,7 @@
       "question": "Explain nested loops and registered loop results.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Avoid variable collisions in nested or included tasks. Loop results often require handling a collection of per-item results. A practical response is: Use loop_control with distinct variable names. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that a loop always executes on all hosts serially.",
+      "sampleAnswer": "Loop results often require handling a collection of per-item results. Consider this situation: An included task overwrites the outer item variable. A practical response is: Use loop_control with distinct variable names. The relevant concept is: Why choose loop variable names deliberately? Avoid variable collisions in nested or included tasks. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that a loop always executes on all hosts serially.",
       "answerChecklist": [
         "Avoid variable collisions in nested or included tasks",
         "Loop results often require handling a collection of per-item results",
@@ -2320,7 +2320,7 @@
       "id": "ansible-19-principles",
       "title": "Failure conditions \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing failure conditions, which TWO statements are sound operational principles?",
+      "question": "What does failed_when customize? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "The condition under which a task is considered failed",
         "Exit status and output semantics should guide failure criteria",
@@ -2354,7 +2354,7 @@
       "question": "Explain custom failure handling without hiding errors.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "The condition under which a task is considered failed. Exit status and output semantics should guide failure criteria. A practical response is: Define an explicit failure condition matching the command contract. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that it suppresses all future errors automatically.",
+      "sampleAnswer": "Exit status and output semantics should guide failure criteria. Consider this situation: A command returns a documented nonzero code for a harmless state. A practical response is: Define an explicit failure condition matching the command contract. The relevant concept is: What does failed_when customize? The condition under which a task is considered failed. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that it suppresses all future errors automatically.",
       "answerChecklist": [
         "The condition under which a task is considered failed",
         "Exit status and output semantics should guide failure criteria",
@@ -2444,7 +2444,7 @@
       "id": "ansible-20-principles",
       "title": "Change reporting \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing change reporting, which TWO statements are sound operational principles?",
+      "question": "What does changed_when customize? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "Accurate change reporting affects handler notifications",
         "It prevents the command from executing",
@@ -2478,7 +2478,7 @@
       "question": "Explain truthful change reporting and handler behavior.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Whether a task reports that it changed state. Accurate change reporting affects handler notifications. A practical response is: Mark the diagnostic as unchanged when appropriate. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that it prevents the command from executing.",
+      "sampleAnswer": "Accurate change reporting affects handler notifications. Consider this situation: A read-only diagnostic command triggers a restart handler. A practical response is: Mark the diagnostic as unchanged when appropriate. The relevant concept is: What does changed_when customize? Whether a task reports that it changed state. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that it prevents the command from executing.",
       "answerChecklist": [
         "Whether a task reports that it changed state",
         "Accurate change reporting affects handler notifications",
@@ -2568,7 +2568,7 @@
       "id": "ansible-21-principles",
       "title": "Serial rollout \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing serial rollout, which TWO statements are sound operational principles?",
+      "question": "What does serial control in a play? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "It changes the number of CPU cores on each host",
         "It guarantees that every dependency stays available",
@@ -2602,7 +2602,7 @@
       "question": "Explain rolling configuration changes with Ansible.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "The batch size of hosts processed through the play. Batch size should reflect availability and failure-domain constraints. A practical response is: Use bounded batches with health verification and stop criteria. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that it changes the number of CPU cores on each host.",
+      "sampleAnswer": "Batch size should reflect availability and failure-domain constraints. Consider this situation: A fleet-wide restart would remove all serving capacity. A practical response is: Use bounded batches with health verification and stop criteria. The relevant concept is: What does serial control in a play? The batch size of hosts processed through the play. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that it changes the number of CPU cores on each host.",
       "answerChecklist": [
         "The batch size of hosts processed through the play",
         "Batch size should reflect availability and failure-domain constraints",
@@ -2692,7 +2692,7 @@
       "id": "ansible-22-principles",
       "title": "Delegation \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing delegation, which TWO statements are sound operational principles?",
+      "question": "What does delegate_to change? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "It copies every inventory variable to the remote filesystem",
         "The host on which a task executes",
@@ -2726,7 +2726,7 @@
       "question": "Explain delegated tasks and their variable context.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "The host on which a task executes. Variable and connection context need care with delegated tasks. A practical response is: Delegate the specific operation and verify credentials and context. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that it permanently moves every later task to that host.",
+      "sampleAnswer": "Variable and connection context need care with delegated tasks. Consider this situation: A load-balancer update should run through a control endpoint. A practical response is: Delegate the specific operation and verify credentials and context. The relevant concept is: What does delegate_to change? The host on which a task executes. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that it permanently moves every later task to that host.",
       "answerChecklist": [
         "The host on which a task executes",
         "Variable and connection context need care with delegated tasks",
@@ -2816,7 +2816,7 @@
       "id": "ansible-23-principles",
       "title": "Run once \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing run once, which TWO statements are sound operational principles?",
+      "question": "What is a nuance of run_once with serial batches? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "Execution can occur once per batch rather than once for the whole inventory",
         "Global singleton actions need explicit design under batching",
@@ -2850,7 +2850,7 @@
       "question": "Explain how you prevent duplicate singleton actions.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Execution can occur once per batch rather than once for the whole inventory. Global singleton actions need explicit design under batching. A practical response is: Review batch semantics and implement a deliberate singleton migration step. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that run_once always means once across every possible play execution.",
+      "sampleAnswer": "Global singleton actions need explicit design under batching. Consider this situation: A migration unexpectedly repeats during a serial rollout. A practical response is: Review batch semantics and implement a deliberate singleton migration step. The relevant concept is: What is a nuance of run_once with serial batches? Execution can occur once per batch rather than once for the whole inventory. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that run_once always means once across every possible play execution.",
       "answerChecklist": [
         "Execution can occur once per batch rather than once for the whole inventory",
         "Global singleton actions need explicit design under batching",
@@ -2940,7 +2940,7 @@
       "id": "ansible-24-principles",
       "title": "Blocks and rescue \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing blocks and rescue, which TWO statements are sound operational principles?",
+      "question": "What is a rescue block useful for? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "Recovery logic must still account for partial side effects",
         "Rescue automatically rolls back every previous change",
@@ -2974,7 +2974,7 @@
       "question": "Explain structured error handling and its limits.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Handle qualifying task failures with recovery steps. Recovery logic must still account for partial side effects. A practical response is: Use explicit recovery and verify the resulting host state. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that rescue automatically rolls back every previous change.",
+      "sampleAnswer": "Recovery logic must still account for partial side effects. Consider this situation: A deployment task fails after writing part of its configuration. A practical response is: Use explicit recovery and verify the resulting host state. The relevant concept is: What is a rescue block useful for? Handle qualifying task failures with recovery steps. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that rescue automatically rolls back every previous change.",
       "answerChecklist": [
         "Handle qualifying task failures with recovery steps",
         "Recovery logic must still account for partial side effects",
@@ -3064,7 +3064,7 @@
       "id": "ansible-25-principles",
       "title": "Async tasks \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing async tasks, which TWO statements are sound operational principles?",
+      "question": "What can async execution support? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "Async automatically guarantees successful completion",
         "A launched task can never outlive the control connection",
@@ -3098,7 +3098,7 @@
       "question": "Explain asynchronous tasks and reliable completion checks.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Long-running tasks without holding a normal synchronous wait. Polling and completion handling must match operational needs. A practical response is: Use bounded async execution and track the final result. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that async automatically guarantees successful completion.",
+      "sampleAnswer": "Polling and completion handling must match operational needs. Consider this situation: A long maintenance task exceeds the default connection wait. A practical response is: Use bounded async execution and track the final result. The relevant concept is: What can async execution support? Long-running tasks without holding a normal synchronous wait. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that async automatically guarantees successful completion.",
       "answerChecklist": [
         "Long-running tasks without holding a normal synchronous wait",
         "Polling and completion handling must match operational needs",
@@ -3188,7 +3188,7 @@
       "id": "ansible-26-principles",
       "title": "Tags \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing tags, which TWO statements are sound operational principles?",
+      "question": "What is a risk of selective tag execution? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "Tags are an access-control boundary",
         "Required prerequisite tasks may be skipped",
@@ -3222,7 +3222,7 @@
       "question": "Explain safe use of tags in operational workflows.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Required prerequisite tasks may be skipped. Tagged execution needs testing as its own supported path. A practical response is: Test the selected path and encode needed prerequisites deliberately. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that tags always resolve every prerequisite automatically.",
+      "sampleAnswer": "Tagged execution needs testing as its own supported path. Consider this situation: Running only a deployment tag skips required configuration setup. A practical response is: Test the selected path and encode needed prerequisites deliberately. The relevant concept is: What is a risk of selective tag execution? Required prerequisite tasks may be skipped. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that tags always resolve every prerequisite automatically.",
       "answerChecklist": [
         "Required prerequisite tasks may be skipped",
         "Tagged execution needs testing as its own supported path",
@@ -3312,7 +3312,7 @@
       "id": "ansible-27-principles",
       "title": "Dynamic inventory \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing dynamic inventory, which TWO statements are sound operational principles?",
+      "question": "Why use dynamic inventory? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "Discover hosts from an external authoritative source",
         "Discovery filters and credentials determine scope",
@@ -3346,7 +3346,7 @@
       "question": "Explain safe dynamic inventory design.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Discover hosts from an external authoritative source. Discovery filters and credentials determine scope. A practical response is: Narrow discovery filters and inspect the generated inventory. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that dynamic inventory can never become stale.",
+      "sampleAnswer": "Discovery filters and credentials determine scope. Consider this situation: A cloud inventory plugin includes hosts from an unintended environment. A practical response is: Narrow discovery filters and inspect the generated inventory. The relevant concept is: Why use dynamic inventory? Discover hosts from an external authoritative source. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that dynamic inventory can never become stale.",
       "answerChecklist": [
         "Discover hosts from an external authoritative source",
         "Discovery filters and credentials determine scope",
@@ -3436,7 +3436,7 @@
       "id": "ansible-28-principles",
       "title": "Concurrency \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing concurrency, which TWO statements are sound operational principles?",
+      "question": "What can excessive forks cause? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "Concurrency should match workload and service capacity",
         "More forks always reduces risk",
@@ -3470,7 +3470,7 @@
       "question": "Explain tuning Ansible concurrency safely.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Overload of targets controllers or shared dependencies. Concurrency should match workload and service capacity. A practical response is: Bound concurrency and stage work based on dependency capacity. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that more forks always reduces risk.",
+      "sampleAnswer": "Concurrency should match workload and service capacity. Consider this situation: A configuration run overloads a shared package repository. A practical response is: Bound concurrency and stage work based on dependency capacity. The relevant concept is: What can excessive forks cause? Overload of targets controllers or shared dependencies. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that more forks always reduces risk.",
       "answerChecklist": [
         "Overload of targets controllers or shared dependencies",
         "Concurrency should match workload and service capacity",
@@ -3560,7 +3560,7 @@
       "id": "ansible-29-principles",
       "title": "Secret logging \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing secret logging, which TWO statements are sound operational principles?",
+      "question": "What does no_log help protect? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "No_log encrypts every remote file created by a task",
         "No_log makes unsafe secret handling harmless",
@@ -3594,7 +3594,7 @@
       "question": "Explain the limits of log suppression for secrets.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Sensitive task data from normal Ansible output. It does not prevent a command from leaking secrets into external files or services. A practical response is: Fix file handling and permissions in addition to suppressing logs. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that no_log encrypts every remote file created by a task.",
+      "sampleAnswer": "It does not prevent a command from leaking secrets into external files or services. Consider this situation: A task hides output but writes a password into a world-readable file. A practical response is: Fix file handling and permissions in addition to suppressing logs. The relevant concept is: What does no_log help protect? Sensitive task data from normal Ansible output. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that no_log encrypts every remote file created by a task.",
       "answerChecklist": [
         "Sensitive task data from normal Ansible output",
         "It does not prevent a command from leaking secrets into external files or services",
@@ -3684,7 +3684,7 @@
       "id": "ansible-30-principles",
       "title": "Automation validation \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing automation validation, which TWO statements are sound operational principles?",
+      "question": "What should follow successful syntax validation? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "A lint pass proves all remote dependencies exist",
         "Representative execution and checks of the resulting system behavior",
@@ -3718,7 +3718,7 @@
       "question": "Explain a layered validation strategy for configuration automation.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Representative execution and checks of the resulting system behavior. Syntax checks cannot prove target permissions or service readiness. A practical response is: Test in a representative environment with explicit postconditions. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that syntax success guarantees the play is safe for production.",
+      "sampleAnswer": "Syntax checks cannot prove target permissions or service readiness. Consider this situation: A play passes lint but fails during a live service reload. A practical response is: Test in a representative environment with explicit postconditions. The relevant concept is: What should follow successful syntax validation? Representative execution and checks of the resulting system behavior. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that syntax success guarantees the play is safe for production.",
       "answerChecklist": [
         "Representative execution and checks of the resulting system behavior",
         "Syntax checks cannot prove target permissions or service readiness",

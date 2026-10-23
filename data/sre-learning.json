@@ -5,25 +5,22 @@
       "id": "sre-lesson-01",
       "topic": "sre",
       "title": "SLIs",
-      "summary": "What does an SLI measure? An aspect of service behavior experienced by users.",
+      "summary": "A service-level indicator measures a user-relevant aspect of service behavior, such as successful checkouts or response latency.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "A service-level indicator measures a user-relevant aspect of service behavior, such as successful checkouts or response latency."
+        },
+        {
           "heading": "How it works",
-          "body": "Choose a measurement population and a precise definition."
-        },
-        {
-          "heading": "Apply it",
-          "body": "A dashboard tracks CPU but users report failed checkouts. Define a checkout success indicator from eligible requests."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "An SLI is always a contractual penalty. This is not a sound assumption; an aspect of service behavior experienced by users."
+          "body": "Define the eligible population, good-event condition and measurement location. Successful events divided by eligible events gives an availability-style SLI. Excluding difficult requests or measuring only internal components can hide real user failures."
         }
       ],
-      "takeaway": "Choose a measurement population and a precise definition.",
+      "command": "",
+      "takeaway": "Define the eligible population, good-event condition and measurement location. Successful events divided by eligible events gives an availability-style SLI. Excluding difficult requests or measuring only internal components can hide real user failures.",
       "references": [
         {
-          "title": "SLIs \u2014 primary reference",
+          "title": "SLIs \u2014 primary documentation",
           "url": "https://sre.google/workbook/implementing-slos/"
         }
       ]
@@ -32,25 +29,22 @@
       "id": "sre-lesson-02",
       "topic": "sre",
       "title": "SLOs",
-      "summary": "What does an SLO specify? A target for an SLI over a defined window.",
+      "summary": "A service-level objective sets a target for an SLI over an explicit evaluation window.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "A service-level objective sets a target for an SLI over an explicit evaluation window."
+        },
+        {
           "heading": "How it works",
-          "body": "Targets should reflect user needs and business trade-offs."
-        },
-        {
-          "heading": "Apply it",
-          "body": "Teams argue over whether current reliability is sufficient. Agree on a measurable target and evaluation window."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "An SLO guarantees that outages cannot happen. This is not a sound assumption; a target for an SLI over a defined window."
+          "body": "Choose a target from user needs and the cost of reliability. For example, 99.9% successful eligible requests over 30 days leaves 0.1% unsuccessful requests. Specify low-traffic and missing-data behavior before using it for decisions."
         }
       ],
-      "takeaway": "Targets should reflect user needs and business trade-offs.",
+      "command": "",
+      "takeaway": "Choose a target from user needs and the cost of reliability. For example, 99.9% successful eligible requests over 30 days leaves 0.1% unsuccessful requests. Specify low-traffic and missing-data behavior before using it for decisions.",
       "references": [
         {
-          "title": "SLOs \u2014 primary reference",
+          "title": "SLOs \u2014 primary documentation",
           "url": "https://sre.google/workbook/implementing-slos/"
         }
       ]
@@ -59,25 +53,22 @@
       "id": "sre-lesson-03",
       "topic": "sre",
       "title": "Error budgets",
-      "summary": "What is an error budget? The allowed unreliability implied by an SLO.",
+      "summary": "An error budget is the unreliability allowed by an SLO.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "An error budget is the unreliability allowed by an SLO."
+        },
+        {
           "heading": "How it works",
-          "body": "Budget policy connects reliability performance to release decisions."
-        },
-        {
-          "heading": "Apply it",
-          "body": "A service exhausts its error budget during repeated risky releases. Apply the agreed reliability policy and prioritize stabilization."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "It is a budget for buying monitoring software. This is not a sound assumption; the allowed unreliability implied by an SLO."
+          "body": "For an event-based SLO, allowed bad events equal eligible events multiplied by one minus the target. A shared budget policy determines when to prioritize stabilization, slow risky releases or accept experiments. Unused budget is not a reason to ignore incidents."
         }
       ],
-      "takeaway": "Budget policy connects reliability performance to release decisions.",
+      "command": "",
+      "takeaway": "For an event-based SLO, allowed bad events equal eligible events multiplied by one minus the target. A shared budget policy determines when to prioritize stabilization, slow risky releases or accept experiments. Unused budget is not a reason to ignore incidents.",
       "references": [
         {
-          "title": "Error budgets \u2014 primary reference",
+          "title": "Error budgets \u2014 primary documentation",
           "url": "https://sre.google/workbook/implementing-slos/"
         }
       ]
@@ -86,25 +77,22 @@
       "id": "sre-lesson-04",
       "topic": "sre",
       "title": "Incident roles",
-      "summary": "Why assign an incident commander? To coordinate decisions roles and communication.",
+      "summary": "Incident roles separate coordination, technical investigation and communication during an outage.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "Incident roles separate coordination, technical investigation and communication during an outage."
+        },
+        {
           "heading": "How it works",
-          "body": "Coordination can be separate from hands-on diagnosis."
-        },
-        {
-          "heading": "Apply it",
-          "body": "Several responders make conflicting production changes. Establish coordination and track owners of mitigation actions."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "The commander must personally execute every command. This is not a sound assumption; to coordinate decisions roles and communication."
+          "body": "An incident commander prioritizes mitigation and assigns ownership; responders investigate bounded hypotheses; a communicator maintains updates. A shared timeline prevents conflicting changes and preserves decisions. Roles may be combined for small incidents but ownership should stay explicit."
         }
       ],
-      "takeaway": "Coordination can be separate from hands-on diagnosis.",
+      "command": "",
+      "takeaway": "An incident commander prioritizes mitigation and assigns ownership; responders investigate bounded hypotheses; a communicator maintains updates. A shared timeline prevents conflicting changes and preserves decisions. Roles may be combined for small incidents but ownership should stay explicit.",
       "references": [
         {
-          "title": "Incident roles \u2014 primary reference",
+          "title": "Incident roles \u2014 primary documentation",
           "url": "https://sre.google/workbook/incident-response/"
         }
       ]
@@ -113,25 +101,22 @@
       "id": "sre-lesson-05",
       "topic": "sre",
       "title": "Mitigation",
-      "summary": "What is the immediate priority during an active user-impacting outage? Reduce impact while preserving useful evidence.",
+      "summary": "Mitigation reduces current customer impact before the full cause is understood.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "Mitigation reduces current customer impact before the full cause is understood."
+        },
+        {
           "heading": "How it works",
-          "body": "Root-cause investigation can continue after stabilization."
-        },
-        {
-          "heading": "Apply it",
-          "body": "A recent release is strongly correlated with failures and rollback is safe. Evaluate and execute the known rollback while monitoring recovery."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "A full root-cause report must precede every mitigation. This is not a sound assumption; reduce impact while preserving useful evidence."
+          "body": "A known-safe rollback, traffic shift or feature disablement can restore service faster than a code-level diagnosis. Evaluate reversibility, data compatibility and capacity at the destination. Continue collecting evidence without delaying an effective recovery action."
         }
       ],
-      "takeaway": "Root-cause investigation can continue after stabilization.",
+      "command": "",
+      "takeaway": "A known-safe rollback, traffic shift or feature disablement can restore service faster than a code-level diagnosis. Evaluate reversibility, data compatibility and capacity at the destination. Continue collecting evidence without delaying an effective recovery action.",
       "references": [
         {
-          "title": "Mitigation \u2014 primary reference",
+          "title": "Mitigation \u2014 primary documentation",
           "url": "https://sre.google/workbook/incident-response/"
         }
       ]
@@ -140,25 +125,22 @@
       "id": "sre-lesson-06",
       "topic": "sre",
       "title": "Postmortems",
-      "summary": "What is the purpose of a blameless postmortem? Learn how system conditions enabled an incident.",
+      "summary": "A postmortem records impact, timeline, contributing conditions and improvements after an incident.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "A postmortem records impact, timeline, contributing conditions and improvements after an incident."
+        },
+        {
           "heading": "How it works",
-          "body": "Useful actions have owners and verifiable outcomes."
-        },
-        {
-          "heading": "Apply it",
-          "body": "The same outage recurs after a report with vague recommendations. Create specific owned improvements and track completion."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "Blameless means avoiding any discussion of decisions. This is not a sound assumption; learn how system conditions enabled an incident."
+          "body": "Blameless analysis examines why decisions made sense with the available information. Separate evidence from hypotheses, identify detection and recovery gaps, and assign concrete actions with owners and completion checks. A report without follow-through does not reduce recurrence."
         }
       ],
-      "takeaway": "Useful actions have owners and verifiable outcomes.",
+      "command": "",
+      "takeaway": "Blameless analysis examines why decisions made sense with the available information. Separate evidence from hypotheses, identify detection and recovery gaps, and assign concrete actions with owners and completion checks. A report without follow-through does not reduce recurrence.",
       "references": [
         {
-          "title": "Postmortems \u2014 primary reference",
+          "title": "Postmortems \u2014 primary documentation",
           "url": "https://sre.google/workbook/postmortem-culture/"
         }
       ]
@@ -167,25 +149,22 @@
       "id": "sre-lesson-07",
       "topic": "sre",
       "title": "Toil",
-      "summary": "Which work best matches SRE toil? Repetitive operational work that scales with service growth.",
+      "summary": "Toil is repetitive operational work that is automatable, reactive and tends to grow with service scale.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "Toil is repetitive operational work that is automatable, reactive and tends to grow with service scale."
+        },
+        {
           "heading": "How it works",
-          "body": "Not all valuable operational work is toil."
-        },
-        {
-          "heading": "Apply it",
-          "body": "Engineers manually perform the same routine provisioning each day. Measure the repetition and evaluate safe automation."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "Every manual task is necessarily worthless. This is not a sound assumption; repetitive operational work that scales with service growth."
+          "body": "Measure frequency, duration and failure risk before selecting automation. Reducing the underlying need may be better than scripting every step. Valuable manual judgment and learning are not automatically toil."
         }
       ],
-      "takeaway": "Not all valuable operational work is toil.",
+      "command": "",
+      "takeaway": "Measure frequency, duration and failure risk before selecting automation. Reducing the underlying need may be better than scripting every step. Valuable manual judgment and learning are not automatically toil.",
       "references": [
         {
-          "title": "Toil \u2014 primary reference",
+          "title": "Toil \u2014 primary documentation",
           "url": "https://sre.google/workbook/eliminating-toil/"
         }
       ]
@@ -194,25 +173,22 @@
       "id": "sre-lesson-08",
       "topic": "sre",
       "title": "Runbooks",
-      "summary": "What makes a runbook useful during an incident? Clear symptoms evidence actions and escalation criteria.",
+      "summary": "A runbook is a tested operational procedure for a recognizable condition.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "A runbook is a tested operational procedure for a recognizable condition."
+        },
+        {
           "heading": "How it works",
-          "body": "Runbooks need ownership and periodic validation."
-        },
-        {
-          "heading": "Apply it",
-          "body": "A responder follows an old procedure and worsens an outage. Validate the procedure and add bounded steps with stop conditions."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "A long untested command list is sufficient. This is not a sound assumption; clear symptoms evidence actions and escalation criteria."
+          "body": "Include prerequisites, symptoms, evidence, decision branches, bounded actions and escalation criteria. A useful runbook tells responders when to stop as well as what to run. Assign an owner and test it against changed systems."
         }
       ],
-      "takeaway": "Runbooks need ownership and periodic validation.",
+      "command": "",
+      "takeaway": "Include prerequisites, symptoms, evidence, decision branches, bounded actions and escalation criteria. A useful runbook tells responders when to stop as well as what to run. Assign an owner and test it against changed systems.",
       "references": [
         {
-          "title": "Runbooks \u2014 primary reference",
+          "title": "Runbooks \u2014 primary documentation",
           "url": "https://sre.google/sre-book/reliable-product-launches/"
         }
       ]
@@ -221,25 +197,22 @@
       "id": "sre-lesson-09",
       "topic": "sre",
       "title": "Burn rate",
-      "summary": "What does an error-budget burn rate greater than one indicate? Budget is being consumed faster than the sustainable SLO rate.",
+      "summary": "Burn rate compares observed bad-event rate with the rate allowed by the SLO.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "Burn rate compares observed bad-event rate with the rate allowed by the SLO."
+        },
+        {
           "heading": "How it works",
-          "body": "Burn rate must be interpreted with its measurement window."
-        },
-        {
-          "heading": "Apply it",
-          "body": "A brief spike triggers pages despite negligible long-term budget impact. Evaluate multiwindow burn-rate alerts against meaningful budget consumption."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "It always means the entire budget is already exhausted. This is not a sound assumption; budget is being consumed faster than the sustainable SLO rate."
+          "body": "For a 99.9% target, a 1% bad-event rate burns the budget at 10 times the sustainable rate. Combine long and short windows to detect sustained impact promptly without paging on every transient spike."
         }
       ],
-      "takeaway": "Burn rate must be interpreted with its measurement window.",
+      "command": "",
+      "takeaway": "For a 99.9% target, a 1% bad-event rate burns the budget at 10 times the sustainable rate. Combine long and short windows to detect sustained impact promptly without paging on every transient spike.",
       "references": [
         {
-          "title": "Burn rate \u2014 primary reference",
+          "title": "Burn rate \u2014 primary documentation",
           "url": "https://sre.google/workbook/alerting-on-slos/"
         }
       ]
@@ -248,25 +221,22 @@
       "id": "sre-lesson-10",
       "topic": "sre",
       "title": "Latency indicators",
-      "summary": "Why can average latency hide poor user experience? A small slow tail can be masked by many fast requests.",
+      "summary": "Latency indicators describe how long eligible user operations take or how often they meet a threshold.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "Latency indicators describe how long eligible user operations take or how often they meet a threshold."
+        },
+        {
           "heading": "How it works",
-          "body": "Latency targets should define thresholds and relevant populations."
-        },
-        {
-          "heading": "Apply it",
-          "body": "Mean latency is stable but a subset of users sees long delays. Inspect latency distribution and affected cohorts."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "The average always equals the slowest request. This is not a sound assumption; a small slow tail can be masked by many fast requests."
+          "body": "A mean can hide slow tail requests. Use a threshold-based good-event ratio for an SLO and percentiles for diagnosis. Define whether failed, cancelled and timed-out requests contribute so the indicator cannot improve when users fail faster."
         }
       ],
-      "takeaway": "Latency targets should define thresholds and relevant populations.",
+      "command": "",
+      "takeaway": "A mean can hide slow tail requests. Use a threshold-based good-event ratio for an SLO and percentiles for diagnosis. Define whether failed, cancelled and timed-out requests contribute so the indicator cannot improve when users fail faster.",
       "references": [
         {
-          "title": "Latency indicators \u2014 primary reference",
+          "title": "Latency indicators \u2014 primary documentation",
           "url": "https://sre.google/workbook/implementing-slos/"
         }
       ]
@@ -275,25 +245,22 @@
       "id": "sre-lesson-11",
       "topic": "sre",
       "title": "Alert actionability",
-      "summary": "What should a paging alert usually imply? A human action is needed within a relevant response time.",
+      "summary": "An actionable alert identifies a condition requiring a specific, timely human response.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "An actionable alert identifies a condition requiring a specific, timely human response."
+        },
+        {
           "heading": "How it works",
-          "body": "Nonurgent information can often become a ticket or dashboard."
-        },
-        {
-          "heading": "Apply it",
-          "body": "Responders receive hundreds of nonactionable overnight alerts. Review pages for impact urgency and an actionable response."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "Every metric anomaly must page immediately. This is not a sound assumption; a human action is needed within a relevant response time."
+          "body": "Page on user impact or imminent exhaustion with ownership, context and a runbook. Route nonurgent work to tickets. Assess whether a responder could take a useful action; a fluctuating metric alone is not a paging requirement."
         }
       ],
-      "takeaway": "Nonurgent information can often become a ticket or dashboard.",
+      "command": "",
+      "takeaway": "Page on user impact or imminent exhaustion with ownership, context and a runbook. Route nonurgent work to tickets. Assess whether a responder could take a useful action; a fluctuating metric alone is not a paging requirement.",
       "references": [
         {
-          "title": "Alert actionability \u2014 primary reference",
+          "title": "Alert actionability \u2014 primary documentation",
           "url": "https://sre.google/workbook/alerting-on-slos/"
         }
       ]
@@ -302,25 +269,22 @@
       "id": "sre-lesson-12",
       "topic": "sre",
       "title": "Capacity headroom",
-      "summary": "Why maintain capacity headroom? To absorb demand variation failures and recovery work.",
+      "summary": "Capacity headroom is usable spare capacity relative to expected demand and failure conditions.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "Capacity headroom is usable spare capacity relative to expected demand and failure conditions."
+        },
+        {
           "heading": "How it works",
-          "body": "Capacity planning should include loss of a failure domain."
-        },
-        {
-          "heading": "Apply it",
-          "body": "One zone fails and surviving instances immediately saturate. Evaluate remaining capacity under the failure scenario."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "Average demand alone is sufficient for all capacity decisions. This is not a sound assumption; to absorb demand variation failures and recovery work."
+          "body": "Measure the limiting resource under representative workload, including dependencies and scaling delay. Reserve enough for a planned failure domain and forecast growth. Aggregate CPU headroom does not guarantee database or connection-pool headroom."
         }
       ],
-      "takeaway": "Capacity planning should include loss of a failure domain.",
+      "command": "",
+      "takeaway": "Measure the limiting resource under representative workload, including dependencies and scaling delay. Reserve enough for a planned failure domain and forecast growth. Aggregate CPU headroom does not guarantee database or connection-pool headroom.",
       "references": [
         {
-          "title": "Capacity headroom \u2014 primary reference",
+          "title": "Capacity headroom \u2014 primary documentation",
           "url": "https://sre.google/workbook/overload/"
         }
       ]
@@ -329,25 +293,22 @@
       "id": "sre-lesson-13",
       "topic": "sre",
       "title": "Load shedding",
-      "summary": "What is the goal of load shedding? Reject some work to protect useful service under overload.",
+      "summary": "Load shedding intentionally rejects lower-priority or excess work to keep essential work healthy.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "Load shedding intentionally rejects lower-priority or excess work to keep essential work healthy."
+        },
+        {
           "heading": "How it works",
-          "body": "Prioritization and bounded queues can preserve critical traffic."
-        },
-        {
-          "heading": "Apply it",
-          "body": "A backend is overloaded and queues grow without bound. Bound the queue and shed lower-priority work with clear signals."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "Accepting every request always improves availability. This is not a sound assumption; reject some work to protect useful service under overload."
+          "body": "Reject early before expensive processing, use bounded concurrency and communicate retry behavior. Evaluate fairness and business priority. Returning controlled failures can preserve overall usefulness better than allowing every request to time out."
         }
       ],
-      "takeaway": "Prioritization and bounded queues can preserve critical traffic.",
+      "command": "",
+      "takeaway": "Reject early before expensive processing, use bounded concurrency and communicate retry behavior. Evaluate fairness and business priority. Returning controlled failures can preserve overall usefulness better than allowing every request to time out.",
       "references": [
         {
-          "title": "Load shedding \u2014 primary reference",
+          "title": "Load shedding \u2014 primary documentation",
           "url": "https://sre.google/workbook/overload/"
         }
       ]
@@ -356,25 +317,22 @@
       "id": "sre-lesson-14",
       "topic": "sre",
       "title": "Backpressure",
-      "summary": "What does backpressure communicate? Downstream capacity constraints to upstream producers.",
+      "summary": "Backpressure communicates downstream saturation so upstream producers reduce work.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "Backpressure communicates downstream saturation so upstream producers reduce work."
+        },
+        {
           "heading": "How it works",
-          "body": "Producer behavior must respond to the signal to be effective."
-        },
-        {
-          "heading": "Apply it",
-          "body": "A queue grows faster than workers can drain it. Limit producer rate or increase sustainable processing capacity."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "Backpressure creates unlimited downstream capacity. This is not a sound assumption; downstream capacity constraints to upstream producers."
+          "body": "Bounded queues, concurrency limits and explicit rejection can propagate pressure. If upstream ignores the signal or retries aggressively, overload grows. Measure queue depth and oldest-item age to distinguish a short burst from sustained capacity shortage."
         }
       ],
-      "takeaway": "Producer behavior must respond to the signal to be effective.",
+      "command": "",
+      "takeaway": "Bounded queues, concurrency limits and explicit rejection can propagate pressure. If upstream ignores the signal or retries aggressively, overload grows. Measure queue depth and oldest-item age to distinguish a short burst from sustained capacity shortage.",
       "references": [
         {
-          "title": "Backpressure \u2014 primary reference",
+          "title": "Backpressure \u2014 primary documentation",
           "url": "https://sre.google/workbook/overload/"
         }
       ]
@@ -383,25 +341,22 @@
       "id": "sre-lesson-15",
       "topic": "sre",
       "title": "Retry storms",
-      "summary": "Why can layered retries multiply load? Each layer may repeat work already being retried elsewhere.",
+      "summary": "A retry storm occurs when repeated attempts amplify traffic to a failing dependency.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "A retry storm occurs when repeated attempts amplify traffic to a failing dependency."
+        },
+        {
           "heading": "How it works",
-          "body": "Retry policies need an end-to-end budget."
-        },
-        {
-          "heading": "Apply it",
-          "body": "Three service layers each retry failed calls several times. Coordinate retry ownership and bound total attempts."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "Retries at every layer always reduce traffic. This is not a sound assumption; each layer may repeat work already being retried elsewhere."
+          "body": "Retries across several layers multiply, especially when clients synchronize. Limit attempts and concurrent retries, add exponential backoff with jitter, and honor end-to-end deadlines. Recovery may require reducing retry traffic before scaling the dependency."
         }
       ],
-      "takeaway": "Retry policies need an end-to-end budget.",
+      "command": "",
+      "takeaway": "Retries across several layers multiply, especially when clients synchronize. Limit attempts and concurrent retries, add exponential backoff with jitter, and honor end-to-end deadlines. Recovery may require reducing retry traffic before scaling the dependency.",
       "references": [
         {
-          "title": "Retry storms \u2014 primary reference",
+          "title": "Retry storms \u2014 primary documentation",
           "url": "https://sre.google/workbook/overload/"
         }
       ]
@@ -410,25 +365,22 @@
       "id": "sre-lesson-16",
       "topic": "sre",
       "title": "Recovery testing",
-      "summary": "What demonstrates that a backup is operationally useful? A successful verified restore meeting recovery requirements.",
+      "summary": "Recovery testing demonstrates that backups, failover and runbooks can restore a usable service.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "Recovery testing demonstrates that backups, failover and runbooks can restore a usable service."
+        },
+        {
           "heading": "How it works",
-          "body": "Backup completion alone does not prove recoverability."
-        },
-        {
-          "heading": "Apply it",
-          "body": "Backups succeed but no one has restored the current application version. Run an isolated restore exercise and verify data and service behavior."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "A green backup job guarantees any restore will work. This is not a sound assumption; a successful verified restore meeting recovery requirements."
+          "body": "Exercise dependencies, credentials, DNS, data integrity and user transactions in an isolated or controlled environment. Record actual recovery time and recovered data age. A successful backup job is evidence of creation, not proof of restoration."
         }
       ],
-      "takeaway": "Backup completion alone does not prove recoverability.",
+      "command": "",
+      "takeaway": "Exercise dependencies, credentials, DNS, data integrity and user transactions in an isolated or controlled environment. Record actual recovery time and recovered data age. A successful backup job is evidence of creation, not proof of restoration.",
       "references": [
         {
-          "title": "Recovery testing \u2014 primary reference",
+          "title": "Recovery testing \u2014 primary documentation",
           "url": "https://sre.google/sre-book/reliable-product-launches/"
         }
       ]
@@ -437,25 +389,22 @@
       "id": "sre-lesson-17",
       "topic": "sre",
       "title": "RTO",
-      "summary": "What does a recovery time objective describe? The target duration to restore service after disruption.",
+      "summary": "Recovery time objective is the target maximum time to restore the required service capability after disruption.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "Recovery time objective is the target maximum time to restore the required service capability after disruption."
+        },
+        {
           "heading": "How it works",
-          "body": "Recovery dependencies and human steps contribute to elapsed recovery time."
-        },
-        {
-          "heading": "Apply it",
-          "body": "A recovery plan promises one hour but identity recovery takes two hours. Exercise the complete dependency chain and revise the plan."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "It specifies the maximum acceptable data-loss window. This is not a sound assumption; the target duration to restore service after disruption."
+          "body": "Define when the clock starts and what counts as restored. Detection, decision-making, provisioning and validation all consume time. Measure complete recovery exercises against the target rather than timing only a database restore command."
         }
       ],
-      "takeaway": "Recovery dependencies and human steps contribute to elapsed recovery time.",
+      "command": "",
+      "takeaway": "Define when the clock starts and what counts as restored. Detection, decision-making, provisioning and validation all consume time. Measure complete recovery exercises against the target rather than timing only a database restore command.",
       "references": [
         {
-          "title": "RTO \u2014 primary reference",
+          "title": "RTO \u2014 primary documentation",
           "url": "https://sre.google/sre-book/reliable-product-launches/"
         }
       ]
@@ -464,25 +413,22 @@
       "id": "sre-lesson-18",
       "topic": "sre",
       "title": "RPO",
-      "summary": "What does a recovery point objective describe? The acceptable data-loss window after a disruption.",
+      "summary": "Recovery point objective is the target maximum data loss expressed as time.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "Recovery point objective is the target maximum data loss expressed as time."
+        },
+        {
           "heading": "How it works",
-          "body": "Replication lag and backup frequency affect achievable recovery points."
-        },
-        {
-          "heading": "Apply it",
-          "body": "A restore loses six hours of writes despite a one-hour RPO. Compare backup and replication behavior with the required loss window."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "It is the maximum allowed service restart time. This is not a sound assumption; the acceptable data-loss window after a disruption."
+          "body": "Backup interval and replication lag influence the recoverable point, but consistency and accessibility also matter. Verify the actual recovered transactions. Synchronous replication can reduce some loss windows but does not protect against every logical deletion or corruption."
         }
       ],
-      "takeaway": "Replication lag and backup frequency affect achievable recovery points.",
+      "command": "",
+      "takeaway": "Backup interval and replication lag influence the recoverable point, but consistency and accessibility also matter. Verify the actual recovered transactions. Synchronous replication can reduce some loss windows but does not protect against every logical deletion or corruption.",
       "references": [
         {
-          "title": "RPO \u2014 primary reference",
+          "title": "RPO \u2014 primary documentation",
           "url": "https://sre.google/sre-book/reliable-product-launches/"
         }
       ]
@@ -491,25 +437,22 @@
       "id": "sre-lesson-19",
       "topic": "sre",
       "title": "Canary releases",
-      "summary": "Why use a canary rollout? Limit exposure while comparing a new version with a baseline.",
+      "summary": "A canary release exposes a bounded portion of traffic to a new version before wider rollout.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "A canary release exposes a bounded portion of traffic to a new version before wider rollout."
+        },
+        {
           "heading": "How it works",
-          "body": "Canary metrics must represent meaningful user impact."
-        },
-        {
-          "heading": "Apply it",
-          "body": "A new version raises error rates only for one request category. Compare relevant cohorts and stop or roll back the canary."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "A canary proves there can be no production defects. This is not a sound assumption; limit exposure while comparing a new version with a baseline."
+          "body": "Compare representative cohorts with predefined success and abort criteria. Small samples and traffic differences can mislead. Automate stopping or rollback only when the measurement and rollback path are trustworthy."
         }
       ],
-      "takeaway": "Canary metrics must represent meaningful user impact.",
+      "command": "",
+      "takeaway": "Compare representative cohorts with predefined success and abort criteria. Small samples and traffic differences can mislead. Automate stopping or rollback only when the measurement and rollback path are trustworthy.",
       "references": [
         {
-          "title": "Canary releases \u2014 primary reference",
+          "title": "Canary releases \u2014 primary documentation",
           "url": "https://sre.google/workbook/canarying-releases/"
         }
       ]
@@ -518,25 +461,22 @@
       "id": "sre-lesson-20",
       "topic": "sre",
       "title": "Feature flags",
-      "summary": "What operational benefit can a feature flag provide? Disable a behavior independently of redeploying the whole binary.",
+      "summary": "Feature flags change behavior without requiring a new deployment.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "Feature flags change behavior without requiring a new deployment."
+        },
+        {
           "heading": "How it works",
-          "body": "Flags need ownership lifecycle management and tested fallback paths."
-        },
-        {
-          "heading": "Apply it",
-          "body": "A newly enabled feature causes a dependency overload. Disable the flag if its fallback is safe and verify recovery."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "Flags automatically undo irreversible data mutations. This is not a sound assumption; disable a behavior independently of redeploying the whole binary."
+          "body": "They enable gradual exposure and rapid disabling of risky paths. Flag services and defaults become dependencies, so define behavior during their failure. Remove obsolete flags to avoid untested combinations and permanent complexity."
         }
       ],
-      "takeaway": "Flags need ownership lifecycle management and tested fallback paths.",
+      "command": "",
+      "takeaway": "They enable gradual exposure and rapid disabling of risky paths. Flag services and defaults become dependencies, so define behavior during their failure. Remove obsolete flags to avoid untested combinations and permanent complexity.",
       "references": [
         {
-          "title": "Feature flags \u2014 primary reference",
+          "title": "Feature flags \u2014 primary documentation",
           "url": "https://sre.google/workbook/canarying-releases/"
         }
       ]
@@ -545,25 +485,22 @@
       "id": "sre-lesson-21",
       "topic": "sre",
       "title": "Dependencies",
-      "summary": "Why map critical service dependencies? Shared dependencies can create correlated failures.",
+      "summary": "A dependency is a service or resource required for an operation's success.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "A dependency is a service or resource required for an operation's success."
+        },
+        {
           "heading": "How it works",
-          "body": "Dependency health should be understood from the caller's perspective."
-        },
-        {
-          "heading": "Apply it",
-          "body": "Several services fail after a shared identity system outage. Investigate the common dependency and caller failure behavior."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "Independent service names guarantee independent failure modes. This is not a sound assumption; shared dependencies can create correlated failures."
+          "body": "Map critical and optional dependencies, their timeout budgets and failure modes. Protect shared dependencies with isolation, caching or bounded fallback where semantics allow. A healthy frontend cannot compensate for an unavailable mandatory write path."
         }
       ],
-      "takeaway": "Dependency health should be understood from the caller's perspective.",
+      "command": "",
+      "takeaway": "Map critical and optional dependencies, their timeout budgets and failure modes. Protect shared dependencies with isolation, caching or bounded fallback where semantics allow. A healthy frontend cannot compensate for an unavailable mandatory write path.",
       "references": [
         {
-          "title": "Dependencies \u2014 primary reference",
+          "title": "Dependencies \u2014 primary documentation",
           "url": "https://sre.google/sre-book/reliable-product-launches/"
         }
       ]
@@ -572,25 +509,22 @@
       "id": "sre-lesson-22",
       "topic": "sre",
       "title": "Graceful degradation",
-      "summary": "What is graceful degradation? Preserving important functions when some capabilities fail.",
+      "summary": "Graceful degradation preserves essential functions while reducing optional functionality under failure.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "Graceful degradation preserves essential functions while reducing optional functionality under failure."
+        },
+        {
           "heading": "How it works",
-          "body": "Fallback behavior should be explicitly designed and tested."
-        },
-        {
-          "heading": "Apply it",
-          "body": "Recommendations fail but checkout can work without them. Serve checkout with the optional recommendation feature degraded."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "It means reporting success for every failed request. This is not a sound assumption; preserving important functions when some capabilities fail."
+          "body": "For example, checkout may remain available while recommendations are disabled. Fallbacks need explicit correctness, freshness and capacity limits. Returning stale or incomplete data is acceptable only when the product's contract permits it."
         }
       ],
-      "takeaway": "Fallback behavior should be explicitly designed and tested.",
+      "command": "",
+      "takeaway": "For example, checkout may remain available while recommendations are disabled. Fallbacks need explicit correctness, freshness and capacity limits. Returning stale or incomplete data is acceptable only when the product's contract permits it.",
       "references": [
         {
-          "title": "Graceful degradation \u2014 primary reference",
+          "title": "Graceful degradation \u2014 primary documentation",
           "url": "https://sre.google/sre-book/reliable-product-launches/"
         }
       ]
@@ -599,25 +533,22 @@
       "id": "sre-lesson-23",
       "topic": "sre",
       "title": "Chaos experiments",
-      "summary": "What makes a resilience experiment controlled? A hypothesis limited scope and explicit abort conditions.",
+      "summary": "A chaos experiment tests a specific resilience hypothesis by introducing a controlled failure.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "A chaos experiment tests a specific resilience hypothesis by introducing a controlled failure."
+        },
+        {
           "heading": "How it works",
-          "body": "Start with safe scope and measurable steady-state behavior."
-        },
-        {
-          "heading": "Apply it",
-          "body": "A team proposes an unbounded production failure test. Define a hypothesis blast radius and stop conditions first."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "Randomly breaking production is sufficient experiment design. This is not a sound assumption; a hypothesis limited scope and explicit abort conditions."
+          "body": "Define the expected steady state, scope, observability and abort condition before injecting a fault. Start with a small blast radius and a working recovery path. Randomly breaking production without a hypothesis is not a useful experiment."
         }
       ],
-      "takeaway": "Start with safe scope and measurable steady-state behavior.",
+      "command": "",
+      "takeaway": "Define the expected steady state, scope, observability and abort condition before injecting a fault. Start with a small blast radius and a working recovery path. Randomly breaking production without a hypothesis is not a useful experiment.",
       "references": [
         {
-          "title": "Chaos experiments \u2014 primary reference",
+          "title": "Chaos experiments \u2014 primary documentation",
           "url": "https://sre.google/sre-book/reliable-product-launches/"
         }
       ]
@@ -626,25 +557,22 @@
       "id": "sre-lesson-24",
       "topic": "sre",
       "title": "Incident communication",
-      "summary": "Why publish regular incident updates? Stakeholders need consistent impact and recovery information.",
+      "summary": "Incident communication gives stakeholders timely, accurate information about impact and recovery.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "Incident communication gives stakeholders timely, accurate information about impact and recovery."
+        },
+        {
           "heading": "How it works",
-          "body": "Uncertainty should be stated rather than replaced with invented certainty."
-        },
-        {
-          "heading": "Apply it",
-          "body": "Support receives conflicting guesses from different responders. Assign a communication owner and publish evidence-based updates."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "Only a final root cause is worth communicating. This is not a sound assumption; stakeholders need consistent impact and recovery information."
+          "body": "State what is known, what remains uncertain, current mitigation and the next update time. Avoid speculative root causes or unsupported restoration estimates. Keep technical coordination and customer-facing updates consistent without exposing unnecessary sensitive detail."
         }
       ],
-      "takeaway": "Uncertainty should be stated rather than replaced with invented certainty.",
+      "command": "",
+      "takeaway": "State what is known, what remains uncertain, current mitigation and the next update time. Avoid speculative root causes or unsupported restoration estimates. Keep technical coordination and customer-facing updates consistent without exposing unnecessary sensitive detail.",
       "references": [
         {
-          "title": "Incident communication \u2014 primary reference",
+          "title": "Incident communication \u2014 primary documentation",
           "url": "https://sre.google/workbook/incident-response/"
         }
       ]
@@ -653,25 +581,22 @@
       "id": "sre-lesson-25",
       "topic": "sre",
       "title": "SLO aggregation",
-      "summary": "Why can a global success rate hide important failures? High-volume healthy traffic can mask a failing user segment.",
+      "summary": "SLO aggregation combines measurements across populations or services.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "SLO aggregation combines measurements across populations or services."
+        },
+        {
           "heading": "How it works",
-          "body": "Segmented indicators can complement an overall SLO."
-        },
-        {
-          "heading": "Apply it",
-          "body": "One region is down but global availability remains above target. Inspect region and critical-journey indicators alongside the global metric."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "An overall SLO guarantees every region meets the same target. This is not a sound assumption; high-volume healthy traffic can mask a failing user segment."
+          "body": "Weight event-based ratios by their eligible event counts; averaging percentages gives small populations disproportionate influence. Also inspect slices such as region or tenant because a global average can conceal a severe localized failure."
         }
       ],
-      "takeaway": "Segmented indicators can complement an overall SLO.",
+      "command": "",
+      "takeaway": "Weight event-based ratios by their eligible event counts; averaging percentages gives small populations disproportionate influence. Also inspect slices such as region or tenant because a global average can conceal a severe localized failure.",
       "references": [
         {
-          "title": "SLO aggregation \u2014 primary reference",
+          "title": "SLO aggregation \u2014 primary documentation",
           "url": "https://sre.google/workbook/implementing-slos/"
         }
       ]
@@ -680,25 +605,22 @@
       "id": "sre-lesson-26",
       "topic": "sre",
       "title": "Overload recovery",
-      "summary": "Why can recovery traffic worsen an outage? Retries cache warming and reconnects add demand during recovery.",
+      "summary": "Overload recovery restores a system whose demand exceeds its effective capacity.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "Overload recovery restores a system whose demand exceeds its effective capacity."
+        },
+        {
           "heading": "How it works",
-          "body": "Recovery should be staged within available capacity."
-        },
-        {
-          "heading": "Apply it",
-          "body": "A restored service is overwhelmed by reconnecting clients. Ramp traffic and control retries while observing saturation."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "Restarting every instance simultaneously always restores service fastest. This is not a sound assumption; retries cache warming and reconnects add demand during recovery."
+          "body": "First reduce incoming work, retries or backlog processing so recovery has room to succeed. Ramp traffic gradually and watch queues and dependency latency. Restarting every instance simultaneously can destroy caches and make overload worse."
         }
       ],
-      "takeaway": "Recovery should be staged within available capacity.",
+      "command": "",
+      "takeaway": "First reduce incoming work, retries or backlog processing so recovery has room to succeed. Ramp traffic gradually and watch queues and dependency latency. Restarting every instance simultaneously can destroy caches and make overload worse.",
       "references": [
         {
-          "title": "Overload recovery \u2014 primary reference",
+          "title": "Overload recovery \u2014 primary documentation",
           "url": "https://sre.google/workbook/overload/"
         }
       ]
@@ -707,25 +629,22 @@
       "id": "sre-lesson-27",
       "topic": "sre",
       "title": "Consistency trade-offs",
-      "summary": "Why make consistency requirements explicit? Failure behavior depends on which guarantees the application needs.",
+      "summary": "Consistency describes which observations of distributed state clients can rely on.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "Consistency describes which observations of distributed state clients can rely on."
+        },
+        {
           "heading": "How it works",
-          "body": "Different operations can require different consistency guarantees."
-        },
-        {
-          "heading": "Apply it",
-          "body": "A partition forces a decision for account-balance updates. Prioritize the required correctness guarantee and define failure behavior."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "Every distributed operation can always be available and strongly consistent during partitions. This is not a sound assumption; failure behavior depends on which guarantees the application needs."
+          "body": "Replication and failures create choices involving staleness, availability and coordination latency. State the consistency needed for each operation instead of labeling the whole system with one slogan. Money movement and recommendations often have different requirements."
         }
       ],
-      "takeaway": "Different operations can require different consistency guarantees.",
+      "command": "",
+      "takeaway": "Replication and failures create choices involving staleness, availability and coordination latency. State the consistency needed for each operation instead of labeling the whole system with one slogan. Money movement and recommendations often have different requirements.",
       "references": [
         {
-          "title": "Consistency trade-offs \u2014 primary reference",
+          "title": "Consistency trade-offs \u2014 primary documentation",
           "url": "https://sre.google/sre-book/managing-critical-state/"
         }
       ]
@@ -734,25 +653,22 @@
       "id": "sre-lesson-28",
       "topic": "sre",
       "title": "Reliability investment",
-      "summary": "How should reliability work be prioritized? By user impact risk and expected reduction of recurring failure.",
+      "summary": "Reliability investment allocates engineering effort to reduce expected user impact and operational cost.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "Reliability investment allocates engineering effort to reduce expected user impact and operational cost."
+        },
+        {
           "heading": "How it works",
-          "body": "Frequency duration and blast radius all influence value."
-        },
-        {
-          "heading": "Apply it",
-          "body": "A rare failure affects all customers while frequent minor alerts affect none. Compare impact and risk before selecting the next engineering project."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "The newest monitoring tool is always the highest-value investment. This is not a sound assumption; by user impact risk and expected reduction of recurring failure."
+          "body": "Compare incident frequency, severity, recovery difficulty and implementation cost. Use SLO performance and business needs to prioritize work. More redundancy can introduce complexity, so verify that it addresses the actual failure mode."
         }
       ],
-      "takeaway": "Frequency duration and blast radius all influence value.",
+      "command": "",
+      "takeaway": "Compare incident frequency, severity, recovery difficulty and implementation cost. Use SLO performance and business needs to prioritize work. More redundancy can introduce complexity, so verify that it addresses the actual failure mode.",
       "references": [
         {
-          "title": "Reliability investment \u2014 primary reference",
+          "title": "Reliability investment \u2014 primary documentation",
           "url": "https://sre.google/sre-book/reliable-product-launches/"
         }
       ]
@@ -761,25 +677,22 @@
       "id": "sre-lesson-29",
       "topic": "sre",
       "title": "Incident metrics",
-      "summary": "Why is a single average recovery time insufficient? It can hide distribution incident severity and changing classification.",
+      "summary": "Incident metrics describe detection, response, recovery and customer impact across events.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "Incident metrics describe detection, response, recovery and customer impact across events."
+        },
+        {
           "heading": "How it works",
-          "body": "Metrics need stable definitions and contextual interpretation."
-        },
-        {
-          "heading": "Apply it",
-          "body": "A dashboard improves after severe incidents are reclassified away. Audit definitions and inspect distributions by comparable incident class."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "A lower average always proves every incident class improved. This is not a sound assumption; it can hide distribution incident severity and changing classification."
+          "body": "Use consistent start and end definitions and examine distributions, severity and sample size. A lower average recovery time can mask a few catastrophic incidents. Metrics should support learning rather than incentivize reclassification or premature closure."
         }
       ],
-      "takeaway": "Metrics need stable definitions and contextual interpretation.",
+      "command": "",
+      "takeaway": "Use consistent start and end definitions and examine distributions, severity and sample size. A lower average recovery time can mask a few catastrophic incidents. Metrics should support learning rather than incentivize reclassification or premature closure.",
       "references": [
         {
-          "title": "Incident metrics \u2014 primary reference",
+          "title": "Incident metrics \u2014 primary documentation",
           "url": "https://sre.google/workbook/postmortem-culture/"
         }
       ]
@@ -788,30 +701,567 @@
       "id": "sre-lesson-30",
       "topic": "sre",
       "title": "Safe automation",
-      "summary": "What should high-impact remediation automation include? Bounded scope verification and a safe stop or rollback path.",
+      "summary": "Safe automation performs repeatable operations within explicit preconditions and boundaries.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "Safe automation performs repeatable operations within explicit preconditions and boundaries."
+        },
+        {
           "heading": "How it works",
-          "body": "Automation can amplify mistakes as quickly as successful actions."
-        },
-        {
-          "heading": "Apply it",
-          "body": "An automated restart loop repeatedly disrupts healthy instances. Add evidence-based guards cooldowns and post-action checks."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "Automated actions are inherently safer than manual actions. This is not a sound assumption; bounded scope verification and a safe stop or rollback path."
+          "body": "Validate targets, use least privilege, bound concurrency and make retries idempotent. Include dry-run or preview, stop conditions and observable results. Automation should fail clearly when assumptions change instead of continuing across an entire fleet."
         }
       ],
-      "takeaway": "Automation can amplify mistakes as quickly as successful actions.",
+      "command": "",
+      "takeaway": "Validate targets, use least privilege, bound concurrency and make retries idempotent. Include dry-run or preview, stop conditions and observable results. Automation should fail clearly when assumptions change instead of continuing across an entire fleet.",
       "references": [
         {
-          "title": "Safe automation \u2014 primary reference",
+          "title": "Safe automation \u2014 primary documentation",
           "url": "https://sre.google/workbook/eliminating-toil/"
         }
       ]
     }
   ],
-  "commands": [],
-  "debugging": []
+  "commands": [
+    {
+      "id": "sre-command-01",
+      "topic": "sre",
+      "title": "Request success ratio",
+      "command": "sum(rate(http_requests_total{job=\"checkout\",status!~\"5..\"}[5m])) / sum(rate(http_requests_total{job=\"checkout\"}[5m]))",
+      "kind": "PromQL query",
+      "definition": "A PromQL expression computes a short-window request success ratio.",
+      "purpose": "Compare a defined checkout population with its availability objective.",
+      "environment": "Illustrative PromQL, not a shell command. Assumes a counter named http_requests_total and defines only 5xx as bad; adapt to actual user failures.",
+      "expectedOutput": "0.999",
+      "interpretation": "Result 0.999 means 99.9% success under this definition. No traffic can produce no usable ratio; status labels and eligibility must match instrumentation.",
+      "safety": "Illustrative PromQL, not a shell command. Assumes a counter named http_requests_total and defines only 5xx as bad; adapt to actual user failures.",
+      "references": [
+        {
+          "title": "Request success ratio \u2014 primary documentation",
+          "url": "https://prometheus.io/docs/prometheus/latest/querying/functions/"
+        }
+      ]
+    },
+    {
+      "id": "sre-command-02",
+      "topic": "sre",
+      "title": "Error budget burn",
+      "command": "sum(rate(http_requests_total{job=\"checkout\",status=~\"5..\"}[5m])) / sum(rate(http_requests_total{job=\"checkout\"}[5m])) / 0.001",
+      "kind": "PromQL query",
+      "definition": "Computes burn rate for a 99.9% event-based objective.",
+      "purpose": "Translate current failure rate into budget consumption speed.",
+      "environment": "Illustrative PromQL; use the same eligible population as the SLO and pair short and long windows.",
+      "expectedOutput": "10",
+      "interpretation": "1 is the sustainable rate; 10 means ten times that rate. Zero traffic needs explicit handling.",
+      "safety": "Illustrative PromQL; use the same eligible population as the SLO and pair short and long windows.",
+      "references": [
+        {
+          "title": "Error budget burn \u2014 primary documentation",
+          "url": "https://prometheus.io/docs/prometheus/latest/querying/functions/"
+        }
+      ]
+    },
+    {
+      "id": "sre-command-03",
+      "topic": "sre",
+      "title": "Long-window bad ratio",
+      "command": "sum(increase(http_requests_total{job=\"checkout\",status=~\"5..\"}[30d])) / sum(increase(http_requests_total{job=\"checkout\"}[30d]))",
+      "kind": "PromQL query",
+      "definition": "Estimates the bad-event fraction over thirty days.",
+      "purpose": "Review accumulated budget use rather than only current health.",
+      "environment": "Illustrative PromQL; long queries may be expensive and require sufficient retention or recording rules.",
+      "expectedOutput": "0.0008",
+      "interpretation": "Compare with 0.001 for a 99.9% target; telemetry gaps and counter retention limit accuracy.",
+      "safety": "Illustrative PromQL; long queries may be expensive and require sufficient retention or recording rules.",
+      "references": [
+        {
+          "title": "Long-window bad ratio \u2014 primary documentation",
+          "url": "https://prometheus.io/docs/prometheus/latest/querying/functions/"
+        }
+      ]
+    },
+    {
+      "id": "sre-command-04",
+      "topic": "sre",
+      "title": "Tail latency",
+      "command": "histogram_quantile(0.99, sum by (le) (rate(http_request_duration_seconds_bucket{job=\"checkout\"}[5m])))",
+      "kind": "PromQL query",
+      "definition": "Estimates p99 from a classic Prometheus latency histogram.",
+      "purpose": "Check whether slow-tail behavior changed during a rollout.",
+      "environment": "Illustrative PromQL; metric and labels must exist, and sparse traffic makes estimates unstable.",
+      "expectedOutput": "0.42",
+      "interpretation": "The result is seconds; bucket boundaries determine estimation accuracy. It is not an average of instance p99 values.",
+      "safety": "Illustrative PromQL; metric and labels must exist, and sparse traffic makes estimates unstable.",
+      "references": [
+        {
+          "title": "Tail latency \u2014 primary documentation",
+          "url": "https://prometheus.io/docs/prometheus/latest/querying/functions/"
+        }
+      ]
+    },
+    {
+      "id": "sre-command-05",
+      "topic": "sre",
+      "title": "Traffic rate",
+      "command": "sum(rate(http_requests_total{job=\"checkout\"}[5m]))",
+      "kind": "PromQL query",
+      "definition": "Calculates total requests per second for a service.",
+      "purpose": "Distinguish a traffic surge from a capacity regression.",
+      "environment": "Illustrative PromQL; retries may be counted as requests, so define the population clearly.",
+      "expectedOutput": "1250",
+      "interpretation": "rate handles counter resets per series before sum combines instances.",
+      "safety": "Illustrative PromQL; retries may be counted as requests, so define the population clearly.",
+      "references": [
+        {
+          "title": "Traffic rate \u2014 primary documentation",
+          "url": "https://prometheus.io/docs/prometheus/latest/querying/functions/"
+        }
+      ]
+    },
+    {
+      "id": "sre-command-06",
+      "topic": "sre",
+      "title": "Queue age",
+      "command": "max(queue_oldest_message_age_seconds{queue=\"orders\"})",
+      "kind": "PromQL query",
+      "definition": "Selects the largest reported age of pending work.",
+      "purpose": "Detect processing delay that a queue-length graph can conceal.",
+      "environment": "Illustrative application metric; confirm whether empty queues report zero or no series.",
+      "expectedOutput": "180",
+      "interpretation": "Seconds above the delivery objective indicate work waiting too long, not necessarily a failed worker.",
+      "safety": "Illustrative application metric; confirm whether empty queues report zero or no series.",
+      "references": [
+        {
+          "title": "Queue age \u2014 primary documentation",
+          "url": "https://prometheus.io/docs/prometheus/latest/querying/functions/"
+        }
+      ]
+    },
+    {
+      "id": "sre-command-07",
+      "topic": "sre",
+      "title": "Dependency latency probe",
+      "command": "curl -sS -o /dev/null --max-time 5 -w 'status=%{http_code} total=%{time_total}\\n' https://SERVICE/health",
+      "kind": "Shell command",
+      "definition": "Makes one bounded HTTP health request and reports status and total time.",
+      "purpose": "Compare reachability from a specific incident location.",
+      "environment": "Replace SERVICE with an authorized safe endpoint; do not load-test production with an uncontrolled loop.",
+      "expectedOutput": "status=200 total=0.080",
+      "interpretation": "A 200 from a shallow health endpoint does not prove the business transaction works.",
+      "safety": "Replace SERVICE with an authorized safe endpoint; do not load-test production with an uncontrolled loop.",
+      "references": [
+        {
+          "title": "Dependency latency probe \u2014 primary documentation",
+          "url": "https://curl.se/docs/manpage.html"
+        }
+      ]
+    },
+    {
+      "id": "sre-command-08",
+      "topic": "sre",
+      "title": "Deployment progress",
+      "command": "kubectl rollout status deployment/APP -n NAMESPACE --timeout=60s",
+      "kind": "Shell command",
+      "definition": "Observes progress for a Kubernetes deployment.",
+      "purpose": "Check whether a recent change has completed before interpreting its health.",
+      "environment": "Kubernetes-backed example; read-only and requires the intended context.",
+      "expectedOutput": "deployment successfully rolled out",
+      "interpretation": "A success message is controller progress; compare error and latency SLIs before declaring recovery.",
+      "safety": "Kubernetes-backed example; read-only and requires the intended context.",
+      "references": [
+        {
+          "title": "Deployment progress \u2014 primary documentation",
+          "url": "https://kubernetes.io/docs/reference/kubectl/quick-reference/"
+        }
+      ]
+    },
+    {
+      "id": "sre-command-09",
+      "topic": "sre",
+      "title": "Recent service evidence",
+      "command": "journalctl -u APP.service --since '-15 min' --no-pager",
+      "kind": "Shell command",
+      "definition": "Reads recent service logs on a systemd host.",
+      "purpose": "Build a bounded incident timeline without dumping all history.",
+      "environment": "Host-based example; read-only and output may contain sensitive data.",
+      "expectedOutput": "APP: dependency timeout ...",
+      "interpretation": "Correlate timestamps with deployment and alert times; missing logs may reflect retention.",
+      "safety": "Host-based example; read-only and output may contain sensitive data.",
+      "references": [
+        {
+          "title": "Recent service evidence \u2014 primary documentation",
+          "url": "https://www.freedesktop.org/software/systemd/man/latest/journalctl.html"
+        }
+      ]
+    },
+    {
+      "id": "sre-command-10",
+      "topic": "sre",
+      "title": "Host saturation snapshot",
+      "command": "vmstat 1 5",
+      "kind": "Shell command",
+      "definition": "Samples host scheduling, paging, I/O and CPU activity.",
+      "purpose": "Check whether a service slowdown correlates with resource pressure.",
+      "environment": "Linux example; a snapshot cannot establish the full incident history.",
+      "expectedOutput": "r b ... si so ... us sy id wa",
+      "interpretation": "Ignore the first since-boot average when comparing short intervals; inspect runnable tasks, swap and wait together.",
+      "safety": "Linux example; a snapshot cannot establish the full incident history.",
+      "references": [
+        {
+          "title": "Host saturation snapshot \u2014 primary documentation",
+          "url": "https://man7.org/linux/man-pages/"
+        }
+      ]
+    },
+    {
+      "id": "sre-command-11",
+      "topic": "sre",
+      "title": "Replica readiness",
+      "command": "kubectl get deployment APP -n NAMESPACE",
+      "kind": "Shell command",
+      "definition": "Summarizes desired and available application replicas.",
+      "purpose": "Check whether traffic is being served with reduced capacity.",
+      "environment": "Kubernetes-backed example; read-only and dependent on controller observations.",
+      "expectedOutput": "NAME READY UP-TO-DATE AVAILABLE AGE",
+      "interpretation": "READY compares ready with desired replicas; AVAILABLE reflects availability conditions, not end-user success.",
+      "safety": "Kubernetes-backed example; read-only and dependent on controller observations.",
+      "references": [
+        {
+          "title": "Replica readiness \u2014 primary documentation",
+          "url": "https://kubernetes.io/docs/reference/kubectl/quick-reference/"
+        }
+      ]
+    },
+    {
+      "id": "sre-command-12",
+      "topic": "sre",
+      "title": "Recent change history",
+      "command": "git log --since='2 hours ago' --oneline --all",
+      "kind": "Shell command",
+      "definition": "Lists locally available commits in a recent window.",
+      "purpose": "Generate candidate changes to correlate with an incident.",
+      "environment": "Read-only; fetch deployment metadata separately and avoid assuming correlation proves cause.",
+      "expectedOutput": "abc123 Adjust connection pool",
+      "interpretation": "Commit timestamps do not prove deployment time; map revisions to deployment records.",
+      "safety": "Read-only; fetch deployment metadata separately and avoid assuming correlation proves cause.",
+      "references": [
+        {
+          "title": "Recent change history \u2014 primary documentation",
+          "url": "https://git-scm.com/docs"
+        }
+      ]
+    }
+  ],
+  "debugging": [
+    {
+      "id": "sre-scenario-guide-01",
+      "topic": "sre",
+      "title": "Checkout failures with green hosts",
+      "symptom": "CPU and memory look normal while customers cannot complete checkout.",
+      "steps": [
+        {
+          "action": "Inspect and diagnose",
+          "command": "sum(rate(http_requests_total{job=\"checkout\",status=~\"5..\"}[5m]))",
+          "evidence": "Define affected user operations and compare errors by region, version and dependency. Infrastructure utilization alone cannot establish service health."
+        },
+        {
+          "action": "Fix the evidenced cause",
+          "evidence": "Mitigate the failing path through a compatible rollback, traffic shift or feature disablement based on evidence. Establish a checkout SLI for ongoing detection."
+        },
+        {
+          "action": "Verify recovery",
+          "evidence": "Confirm successful end-to-end checkouts across affected cohorts and sustained recovery of the agreed SLI."
+        }
+      ],
+      "references": [
+        {
+          "title": "Checkout failures with green hosts \u2014 primary documentation",
+          "url": "https://sre.google/workbook/table-of-contents/"
+        },
+        {
+          "title": "Diagnostic tool \u2014 primary documentation",
+          "url": "https://prometheus.io/docs/prometheus/latest/querying/functions/"
+        }
+      ]
+    },
+    {
+      "id": "sre-scenario-guide-02",
+      "topic": "sre",
+      "title": "Fast error-budget burn",
+      "symptom": "A service starts consuming its monthly error budget rapidly.",
+      "steps": [
+        {
+          "action": "Inspect and diagnose",
+          "command": "sum(rate(http_requests_total{job=\"api\",status=~\"5..\"}[5m])) / sum(rate(http_requests_total{job=\"api\"}[5m])) / 0.001",
+          "evidence": "For the illustrative 99.9% SLO, compare short and long burn windows and verify traffic is nonzero. Identify the failure cohort and recent changes."
+        },
+        {
+          "action": "Fix the evidenced cause",
+          "evidence": "Apply the agreed incident and budget policy, reduce impact and pause risky rollout expansion. Do not wait for the monthly average to become visibly poor."
+        },
+        {
+          "action": "Verify recovery",
+          "evidence": "Verify both immediate user recovery and declining sustained burn, then assign reliability work from the incident evidence."
+        }
+      ],
+      "references": [
+        {
+          "title": "Fast error-budget burn \u2014 primary documentation",
+          "url": "https://sre.google/workbook/table-of-contents/"
+        },
+        {
+          "title": "Diagnostic tool \u2014 primary documentation",
+          "url": "https://prometheus.io/docs/prometheus/latest/querying/functions/"
+        }
+      ]
+    },
+    {
+      "id": "sre-scenario-guide-03",
+      "topic": "sre",
+      "title": "Retry storm blocks recovery",
+      "symptom": "A dependency remains overloaded after the original fault is repaired.",
+      "steps": [
+        {
+          "action": "Inspect and diagnose",
+          "command": "sum(rate(http_requests_total{job=\"dependency\"}[5m]))",
+          "evidence": "Compare original user requests with downstream attempts, queue age and concurrent work. Multiple retry layers may sustain load beyond normal demand."
+        },
+        {
+          "action": "Fix the evidenced cause",
+          "evidence": "Reduce retry amplification, shed nonessential work and restore headroom before gradually reopening traffic."
+        },
+        {
+          "action": "Verify recovery",
+          "evidence": "Confirm attempts per original request, queue age and success rate stabilize without another synchronized retry surge."
+        }
+      ],
+      "references": [
+        {
+          "title": "Retry storm blocks recovery \u2014 primary documentation",
+          "url": "https://sre.google/workbook/table-of-contents/"
+        },
+        {
+          "title": "Diagnostic tool \u2014 primary documentation",
+          "url": "https://prometheus.io/docs/prometheus/latest/querying/functions/"
+        }
+      ]
+    },
+    {
+      "id": "sre-scenario-guide-04",
+      "topic": "sre",
+      "title": "Canary regression",
+      "symptom": "A new version has slightly worse global metrics but severe errors for one client cohort.",
+      "steps": [
+        {
+          "action": "Inspect and diagnose",
+          "command": "kubectl rollout status deployment/APP -n NAMESPACE --timeout=60s",
+          "evidence": "Compare canary and baseline populations by client, route and region. Check sample size and ensure the canary receives representative traffic."
+        },
+        {
+          "action": "Fix the evidenced cause",
+          "evidence": "Stop rollout and roll back or disable the affected feature if compatible. Correct canary analysis so important cohorts are not hidden by averages."
+        },
+        {
+          "action": "Verify recovery",
+          "evidence": "Verify the impacted cohort recovers and repeat a representative canary test before promotion."
+        }
+      ],
+      "references": [
+        {
+          "title": "Canary regression \u2014 primary documentation",
+          "url": "https://sre.google/workbook/table-of-contents/"
+        },
+        {
+          "title": "Diagnostic tool \u2014 primary documentation",
+          "url": "https://kubernetes.io/docs/reference/kubectl/quick-reference/"
+        }
+      ]
+    },
+    {
+      "id": "sre-scenario-guide-05",
+      "topic": "sre",
+      "title": "Queue backlog threatens deadline",
+      "symptom": "Background work grows older even though workers remain running.",
+      "steps": [
+        {
+          "action": "Inspect and diagnose",
+          "command": "max(queue_oldest_message_age_seconds{queue=\"orders\"})",
+          "evidence": "Compare arrival rate, completion rate, retry rate and dependency saturation. Determine whether additional workers would help or overload the bottleneck."
+        },
+        {
+          "action": "Fix the evidenced cause",
+          "evidence": "Throttle producers, prioritize urgent work or add measured capacity at the limiting stage. Bound retries and preserve duplicate-safe processing."
+        },
+        {
+          "action": "Verify recovery",
+          "evidence": "Confirm oldest-item age declines and representative jobs finish within the objective without downstream saturation."
+        }
+      ],
+      "references": [
+        {
+          "title": "Queue backlog threatens deadline \u2014 primary documentation",
+          "url": "https://sre.google/workbook/table-of-contents/"
+        },
+        {
+          "title": "Diagnostic tool \u2014 primary documentation",
+          "url": "https://prometheus.io/docs/prometheus/latest/querying/functions/"
+        }
+      ]
+    },
+    {
+      "id": "sre-scenario-guide-06",
+      "topic": "sre",
+      "title": "Conflicting incident changes",
+      "symptom": "Several responders are changing production simultaneously with no shared timeline.",
+      "steps": [
+        {
+          "action": "Inspect and diagnose",
+          "command": "journalctl -u APP.service --since '-15 min' --no-pager",
+          "evidence": "Establish current impact and record active changes and owners. Separate uncertain hypotheses from observed evidence."
+        },
+        {
+          "action": "Fix the evidenced cause",
+          "evidence": "Assign incident coordination, pause conflicting changes and select one bounded mitigation at a time with a clear rollback condition."
+        },
+        {
+          "action": "Verify recovery",
+          "evidence": "Confirm responders share a timeline, each action has an owner and user impact is reducing before deeper diagnosis continues."
+        }
+      ],
+      "references": [
+        {
+          "title": "Conflicting incident changes \u2014 primary documentation",
+          "url": "https://sre.google/workbook/table-of-contents/"
+        },
+        {
+          "title": "Diagnostic tool \u2014 primary documentation",
+          "url": "https://www.freedesktop.org/software/systemd/man/latest/journalctl.html"
+        }
+      ]
+    },
+    {
+      "id": "sre-scenario-guide-07",
+      "topic": "sre",
+      "title": "Backup exists but restore fails",
+      "symptom": "A recovery drill discovers that database backups cannot produce a working application.",
+      "steps": [
+        {
+          "action": "Inspect and diagnose",
+          "command": "systemctl --failed --no-pager",
+          "evidence": "Check backup integrity, database consistency, encryption keys, credentials and external dependencies. Measure how old the recoverable data actually is."
+        },
+        {
+          "action": "Fix the evidenced cause",
+          "evidence": "Repair the backup/restore procedure and missing dependencies, then test in isolation. Do not declare protection from backup-job success alone."
+        },
+        {
+          "action": "Verify recovery",
+          "evidence": "Complete representative transactions and document measured RTO/RPO against targets."
+        }
+      ],
+      "references": [
+        {
+          "title": "Backup exists but restore fails \u2014 primary documentation",
+          "url": "https://sre.google/workbook/table-of-contents/"
+        },
+        {
+          "title": "Diagnostic tool \u2014 primary documentation",
+          "url": "https://www.freedesktop.org/software/systemd/man/latest/systemctl.html"
+        }
+      ]
+    },
+    {
+      "id": "sre-scenario-guide-08",
+      "topic": "sre",
+      "title": "Noisy alert fatigue",
+      "symptom": "On-call receives repeated pages that resolve without action.",
+      "steps": [
+        {
+          "action": "Inspect and diagnose",
+          "command": "up{job=\"api\"}",
+          "evidence": "Review incident outcomes, alert ownership and whether each page required a timely human action. Separate collection failures, symptoms and user-impact signals."
+        },
+        {
+          "action": "Fix the evidenced cause",
+          "evidence": "Remove or reroute nonactionable pages, add appropriate duration/grouping and retain actionable SLO or imminent-exhaustion alerts."
+        },
+        {
+          "action": "Verify recovery",
+          "evidence": "Replay historical conditions or rule tests to confirm real incidents still page promptly and benign fluctuations do not."
+        }
+      ],
+      "references": [
+        {
+          "title": "Noisy alert fatigue \u2014 primary documentation",
+          "url": "https://sre.google/workbook/table-of-contents/"
+        },
+        {
+          "title": "Diagnostic tool \u2014 primary documentation",
+          "url": "https://prometheus.io/docs/prometheus/latest/querying/functions/"
+        }
+      ]
+    },
+    {
+      "id": "sre-scenario-guide-09",
+      "topic": "sre",
+      "title": "Capacity lost with one zone",
+      "symptom": "A zone failure overloads the surviving instances.",
+      "steps": [
+        {
+          "action": "Inspect and diagnose",
+          "command": "kubectl get pods -n NAMESPACE -o wide",
+          "evidence": "Compare surviving capacity, traffic distribution and dependency limits with the planned failure reserve. Scaling delay may exceed the impact tolerance."
+        },
+        {
+          "action": "Fix the evidenced cause",
+          "evidence": "Shed nonessential work and restore capacity in healthy zones using tested routing and scaling procedures. Avoid routing all traffic to an already saturated dependency."
+        },
+        {
+          "action": "Verify recovery",
+          "evidence": "Validate user SLIs and headroom under the failed-zone condition, then update capacity assumptions and exercises."
+        }
+      ],
+      "references": [
+        {
+          "title": "Capacity lost with one zone \u2014 primary documentation",
+          "url": "https://sre.google/workbook/table-of-contents/"
+        },
+        {
+          "title": "Diagnostic tool \u2014 primary documentation",
+          "url": "https://kubernetes.io/docs/reference/kubectl/quick-reference/"
+        }
+      ]
+    },
+    {
+      "id": "sre-scenario-guide-10",
+      "topic": "sre",
+      "title": "Automation expands an outage",
+      "symptom": "An automated remediation repeatedly restarts healthy replicas during a dependency incident.",
+      "steps": [
+        {
+          "action": "Inspect and diagnose",
+          "command": "kubectl get events -n NAMESPACE --sort-by=.lastTimestamp",
+          "evidence": "Inspect trigger conditions, scope and whether restarts improve the measured symptom. Dependency failures can make local health heuristics misleading."
+        },
+        {
+          "action": "Fix the evidenced cause",
+          "evidence": "Stop the harmful automation, restore serving capacity and redesign preconditions, concurrency bounds and stop rules."
+        },
+        {
+          "action": "Verify recovery",
+          "evidence": "Test dependency failures in a controlled environment and verify automation preserves capacity, stops on worsening signals and records actions."
+        }
+      ],
+      "references": [
+        {
+          "title": "Automation expands an outage \u2014 primary documentation",
+          "url": "https://sre.google/workbook/table-of-contents/"
+        },
+        {
+          "title": "Diagnostic tool \u2014 primary documentation",
+          "url": "https://kubernetes.io/docs/reference/kubectl/quick-reference/"
+        }
+      ]
+    }
+  ]
 }

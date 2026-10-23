@@ -6,7 +6,7 @@ const curated = JSON.parse(fs.readFileSync(require("node:path").join(__dirname, 
 const levels = ["easy", "medium", "mediumHard", "hard"];
 const types = ["concept", "command", "scenario", "multi-select", "trade-off", "interview"];
 assert.deepEqual(curated.levels, levels, "The curated track must declare all four levels.");
-assert.ok(Array.isArray(curated.questions) && curated.questions.length === 124, "The curated track should have 120 graded questions plus four interview prompts.");
+assert.ok(Array.isArray(curated.questions) && curated.questions.length === 150, "The curated track should have 120 graded questions plus 30 interview prompts.");
 
 const ids = new Set();
 const prompts = new Set();
@@ -58,7 +58,7 @@ for (const level of levels) {
   assert.ok(counts[level] >= 6, level + " needs at least six curated questions including any interview prompt.");
   assert.equal(gradedCounts[level], 30, level + " must have exactly 30 auto-graded questions.");
 }
-assert.equal(typeCounts.interview, 4, "Interview prompts must remain separate and non-auto-graded.");
+assert.equal(typeCounts.interview, 30, "Interview prompts must remain separate and non-auto-graded.");
 for (const type of types) assert.ok(typeCounts[type] >= 1, "Missing curated question type: " + type);
 
 let legacyTotal = 0;
@@ -80,3 +80,4 @@ assert.ok(legacyTotal >= 210, "Expected at least 210 legacy questions.");
 console.log("Kubernetes track: " + curated.questions.length + " curated questions across " + levels.length + " levels.");
 console.log("Question types: " + Object.entries(typeCounts).map(([type, count]) => type + "=" + count).join(", "));
 console.log("Legacy bank: " + legacyTotal + " questions validated.");
+

@@ -1,353 +1,1377 @@
 {
   "subject": "kubernetes",
-  "version": "1.0.0",
   "lessons": [
     {
-      "id": "k8s-concept-pod",
-      "title": "Pod: the smallest deployable unit",
-      "topic": "workloads",
-      "summary": "A Pod groups one or more tightly coupled containers that share network identity and can share mounted storage.",
+      "id": "kubernetes-lesson-01",
+      "topic": "kubernetes",
+      "title": "Control plane and reconciliation",
+      "summary": "Kubernetes is a declarative orchestration system whose controllers reconcile observed state toward desired state stored through the API.",
       "sections": [
         {
-          "heading": "Mental model",
-          "body": "A Pod is a scheduling and lifecycle unit, not usually the thing you scale manually for an application. A Deployment manages replicated Pods for most stateless workloads."
+          "heading": "What it is",
+          "body": "Kubernetes is a declarative orchestration system whose controllers reconcile observed state toward desired state stored through the API."
         },
         {
-          "heading": "What to remember",
-          "body": "Containers in one Pod share the Pod IP and port space. They can communicate over localhost and may share volumes. Containers in different Pods communicate over the network."
-        },
-        {
-          "heading": "Common mistake",
-          "body": "Do not treat a Pod as a durable server. Pods can be replaced, and a replacement normally has a different identity and IP."
+          "heading": "How it works",
+          "body": "The API server validates requests, etcd persists cluster state, controllers manage resource lifecycles, and the scheduler assigns unscheduled Pods. Reconciliation is asynchronous; creating an object does not guarantee its workload is already ready."
         }
       ],
-      "takeaway": "Deploy and scale stateless workloads with a controller such as Deployment; use a Service for a stable network endpoint.",
+      "command": "kubectl get --raw='/readyz?verbose'",
+      "takeaway": "The API server validates requests, etcd persists cluster state, controllers manage resource lifecycles, and the scheduler assigns unscheduled Pods. Reconciliation is asynchronous; creating an object does not guarantee its workload is already ready.",
       "references": [
         {
-          "title": "Pods",
-          "url": "https://kubernetes.io/docs/concepts/workloads/pods/"
+          "title": "Control plane and reconciliation \u2014 primary documentation",
+          "url": "https://kubernetes.io/docs/concepts/"
+        },
+        {
+          "title": "Related command \u2014 primary documentation",
+          "url": "https://kubernetes.io/docs/reference/kubectl/quick-reference/"
         }
       ]
     },
     {
-      "id": "k8s-concept-node",
-      "title": "Node: where workloads run",
-      "topic": "architecture",
-      "summary": "A Node is a worker machine that provides compute capacity for Pods.",
+      "id": "kubernetes-lesson-02",
+      "topic": "kubernetes",
+      "title": "Pods and containers",
+      "summary": "A Pod is Kubernetes' scheduling unit containing one or more cooperating containers.",
       "sections": [
         {
-          "heading": "What runs on a node?",
-          "body": "The kubelet ensures assigned Pods are running, the container runtime runs containers, and networking components provide Pod connectivity."
+          "heading": "What it is",
+          "body": "A Pod is Kubernetes' scheduling unit containing one or more cooperating containers."
         },
         {
-          "heading": "Scheduling relationship",
-          "body": "The scheduler selects a suitable node based on resource requests, constraints, taints/tolerations, affinity and other scheduling rules."
-        },
-        {
-          "heading": "Operational signal",
-          "body": "A Node becoming NotReady can affect many Pods at once. Inspect node conditions and events before assuming each workload has an independent fault."
+          "heading": "How it works",
+          "body": "Containers in a Pod share its network namespace and can share declared volumes. Pods are disposable and normally replaced by controllers rather than repaired in place. A Pod IP is not a stable service address."
         }
       ],
-      "takeaway": "When many unrelated Pods fail together, inspect shared infrastructure such as the Node before debugging every app separately.",
+      "command": "kubectl get pods -n NAMESPACE -o wide",
+      "takeaway": "Containers in a Pod share its network namespace and can share declared volumes. Pods are disposable and normally replaced by controllers rather than repaired in place. A Pod IP is not a stable service address.",
       "references": [
         {
-          "title": "Nodes",
-          "url": "https://kubernetes.io/docs/concepts/architecture/nodes/"
+          "title": "Pods and containers \u2014 primary documentation",
+          "url": "https://kubernetes.io/docs/concepts/"
+        },
+        {
+          "title": "Related command \u2014 primary documentation",
+          "url": "https://kubernetes.io/docs/reference/kubectl/quick-reference/"
         }
       ]
     },
     {
-      "id": "k8s-concept-deployment",
-      "title": "Deployment and ReplicaSet",
-      "topic": "workloads",
-      "summary": "A Deployment declares desired state for a replicated stateless workload and manages rollout history.",
+      "id": "kubernetes-lesson-03",
+      "topic": "kubernetes",
+      "title": "Deployments and ReplicaSets",
+      "summary": "A Deployment manages ReplicaSets to maintain and update replicated stateless Pods.",
       "sections": [
         {
-          "heading": "Control loop",
-          "body": "The Deployment controller creates or updates a ReplicaSet. The ReplicaSet works to maintain the requested number of matching Pods."
+          "heading": "What it is",
+          "body": "A Deployment manages ReplicaSets to maintain and update replicated stateless Pods."
         },
         {
-          "heading": "Rollouts",
-          "body": "A rolling update gradually replaces old Pods with new ones according to rollout strategy settings. Rollout status and history help identify stalled releases."
-        },
-        {
-          "heading": "When not to use it",
-          "body": "Stateful workloads may need stable identities and ordered storage semantics; evaluate StatefulSet or another controller when those properties matter."
+          "heading": "How it works",
+          "body": "Changing the Pod template creates a new rollout. Rolling-update settings control surge and unavailable capacity. A ReplicaSet count does not prove application readiness; inspect conditions, readiness and available replicas."
         }
       ],
-      "takeaway": "Declare desired state and inspect rollout status; avoid hand-managing individual replicas when a controller is appropriate.",
+      "command": "kubectl rollout status deployment/APP -n NAMESPACE --timeout=60s",
+      "takeaway": "Changing the Pod template creates a new rollout. Rolling-update settings control surge and unavailable capacity. A ReplicaSet count does not prove application readiness; inspect conditions, readiness and available replicas.",
       "references": [
         {
-          "title": "Deployments",
-          "url": "https://kubernetes.io/docs/concepts/workloads/controllers/deployment/"
+          "title": "Deployments and ReplicaSets \u2014 primary documentation",
+          "url": "https://kubernetes.io/docs/concepts/"
+        },
+        {
+          "title": "Related command \u2014 primary documentation",
+          "url": "https://kubernetes.io/docs/reference/kubectl/quick-reference/"
         }
       ]
     },
     {
-      "id": "k8s-concept-service",
-      "title": "Service: stable network access",
-      "topic": "networking",
-      "summary": "A Service provides a stable virtual endpoint for a changing set of backend Pods.",
+      "id": "kubernetes-lesson-04",
+      "topic": "kubernetes",
+      "title": "StatefulSets",
+      "summary": "A StatefulSet manages Pods with stable identities and ordered lifecycle behavior appropriate to some stateful applications.",
       "sections": [
         {
-          "heading": "Why it exists",
-          "body": "Pod IPs can change as Pods are replaced. A Service selects matching Pods and provides a stable name and virtual IP for clients."
+          "heading": "What it is",
+          "body": "A StatefulSet manages Pods with stable identities and ordered lifecycle behavior appropriate to some stateful applications."
         },
         {
-          "heading": "Selector and ports",
-          "body": "The selector identifies eligible Pods; port and targetPort determine how traffic reaches the workload. A mismatched selector or port can leave a Service without working backends."
-        },
-        {
-          "heading": "Debugging",
-          "body": "Check the Service selector, EndpointSlices, Pod readiness, and port mapping before changing network policy or application code."
+          "heading": "How it works",
+          "body": "Each ordinal can retain a distinct volume claim and network identity. The application still owns replication and data consistency. Replacing a Pod does not automatically repair corrupted data or guarantee a safe database failover."
         }
       ],
-      "takeaway": "A Service does not create Pods; it routes to eligible backends selected by labels.",
+      "command": "kubectl get statefulsets -n NAMESPACE",
+      "takeaway": "Each ordinal can retain a distinct volume claim and network identity. The application still owns replication and data consistency. Replacing a Pod does not automatically repair corrupted data or guarantee a safe database failover.",
       "references": [
         {
-          "title": "Services",
-          "url": "https://kubernetes.io/docs/concepts/services-networking/service/"
+          "title": "StatefulSets \u2014 primary documentation",
+          "url": "https://kubernetes.io/docs/concepts/"
+        },
+        {
+          "title": "Related command \u2014 primary documentation",
+          "url": "https://kubernetes.io/docs/reference/kubectl/quick-reference/"
         }
       ]
     },
     {
-      "id": "k8s-concept-probes",
-      "title": "Readiness, liveness and startup probes",
-      "topic": "health",
-      "summary": "Different probes answer different health questions and have different effects on traffic and restarts.",
+      "id": "kubernetes-lesson-05",
+      "topic": "kubernetes",
+      "title": "DaemonSets",
+      "summary": "A DaemonSet maintains a Pod on eligible nodes, commonly for networking, logs or host agents.",
       "sections": [
         {
-          "heading": "Readiness",
-          "body": "Readiness determines whether a Pod should receive Service traffic. A not-ready Pod can continue running while it warms up or waits for a dependency."
+          "heading": "What it is",
+          "body": "A DaemonSet maintains a Pod on eligible nodes, commonly for networking, logs or host agents."
         },
         {
-          "heading": "Liveness",
-          "body": "Liveness detects a container that should be restarted when it cannot recover on its own. An overly aggressive liveness probe can create restart loops."
-        },
-        {
-          "heading": "Startup",
-          "body": "Startup probes protect slow-starting applications by delaying liveness and readiness evaluation until startup succeeds."
+          "heading": "How it works",
+          "body": "Node selectors, affinity and tolerations influence eligibility. A daemon rollout can affect every node, so monitor availability and resource use. DaemonSets are not a substitute for ordinary replicated application Deployments."
         }
       ],
-      "takeaway": "Readiness gates traffic; liveness triggers restarts; startup protects slow initialization.",
+      "command": "kubectl get daemonsets -n NAMESPACE",
+      "takeaway": "Node selectors, affinity and tolerations influence eligibility. A daemon rollout can affect every node, so monitor availability and resource use. DaemonSets are not a substitute for ordinary replicated application Deployments.",
       "references": [
         {
-          "title": "Configure liveness, readiness and startup probes",
-          "url": "https://kubernetes.io/docs/concepts/configuration/liveness-readiness-startup-probes/"
+          "title": "DaemonSets \u2014 primary documentation",
+          "url": "https://kubernetes.io/docs/concepts/"
+        },
+        {
+          "title": "Related command \u2014 primary documentation",
+          "url": "https://kubernetes.io/docs/reference/kubectl/quick-reference/"
         }
       ]
     },
     {
-      "id": "k8s-concept-requests-limits",
-      "title": "Resource requests and limits",
-      "topic": "resources",
-      "summary": "Requests inform scheduling; limits constrain resource use according to Kubernetes resource semantics.",
+      "id": "kubernetes-lesson-06",
+      "topic": "kubernetes",
+      "title": "Jobs and CronJobs",
+      "summary": "A Job manages work intended to complete; a CronJob creates Jobs according to a schedule.",
       "sections": [
         {
-          "heading": "Requests",
-          "body": "The scheduler uses CPU and memory requests when deciding whether a Pod fits on a node. Requests are not a reservation of a fixed CPU core."
+          "heading": "What it is",
+          "body": "A Job manages work intended to complete; a CronJob creates Jobs according to a schedule."
         },
         {
-          "heading": "Limits",
-          "body": "CPU limits can throttle CPU use. Exceeding a memory limit can lead to the container being terminated for out-of-memory conditions."
-        },
-        {
-          "heading": "Troubleshooting",
-          "body": "Correlate Pod events, container termination reason, working-set metrics and node pressure rather than changing limits without evidence."
+          "heading": "How it works",
+          "body": "Retries, deadlines and concurrency policy affect execution. Work should tolerate duplicate or retried execution where applicable. Successful Pod completion is not proof that an external business operation occurred exactly once."
         }
       ],
-      "takeaway": "Requests affect placement; limits constrain use. Tune them using workload measurements and observed failure modes.",
+      "command": "kubectl get jobs,cronjobs -n NAMESPACE",
+      "takeaway": "Retries, deadlines and concurrency policy affect execution. Work should tolerate duplicate or retried execution where applicable. Successful Pod completion is not proof that an external business operation occurred exactly once.",
       "references": [
         {
-          "title": "Resource management for Pods and containers",
-          "url": "https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/"
+          "title": "Jobs and CronJobs \u2014 primary documentation",
+          "url": "https://kubernetes.io/docs/concepts/"
+        },
+        {
+          "title": "Related command \u2014 primary documentation",
+          "url": "https://kubernetes.io/docs/reference/kubectl/quick-reference/"
+        }
+      ]
+    },
+    {
+      "id": "kubernetes-lesson-07",
+      "topic": "kubernetes",
+      "title": "Namespaces",
+      "summary": "Namespaces scope names and selected policies for groups of Kubernetes objects.",
+      "sections": [
+        {
+          "heading": "What it is",
+          "body": "Namespaces scope names and selected policies for groups of Kubernetes objects."
+        },
+        {
+          "heading": "How it works",
+          "body": "They help organize workloads and apply quotas or permissions, but are not complete security boundaries by themselves. Some resources are cluster-scoped. Network and identity isolation require additional controls."
+        }
+      ],
+      "command": "kubectl get namespaces",
+      "takeaway": "They help organize workloads and apply quotas or permissions, but are not complete security boundaries by themselves. Some resources are cluster-scoped. Network and identity isolation require additional controls.",
+      "references": [
+        {
+          "title": "Namespaces \u2014 primary documentation",
+          "url": "https://kubernetes.io/docs/concepts/"
+        },
+        {
+          "title": "Related command \u2014 primary documentation",
+          "url": "https://kubernetes.io/docs/reference/kubectl/quick-reference/"
+        }
+      ]
+    },
+    {
+      "id": "kubernetes-lesson-08",
+      "topic": "kubernetes",
+      "title": "Labels and selectors",
+      "summary": "Labels attach identifying attributes to objects; selectors choose objects by those attributes.",
+      "sections": [
+        {
+          "heading": "What it is",
+          "body": "Labels attach identifying attributes to objects; selectors choose objects by those attributes."
+        },
+        {
+          "heading": "How it works",
+          "body": "Services and controllers rely on matching selectors, so accidental label changes can disconnect traffic or change ownership behavior. Use stable labels for identity and separate changing metadata. A matching label does not imply a Pod is ready."
+        }
+      ],
+      "command": "kubectl get pods -n NAMESPACE --show-labels",
+      "takeaway": "Services and controllers rely on matching selectors, so accidental label changes can disconnect traffic or change ownership behavior. Use stable labels for identity and separate changing metadata. A matching label does not imply a Pod is ready.",
+      "references": [
+        {
+          "title": "Labels and selectors \u2014 primary documentation",
+          "url": "https://kubernetes.io/docs/concepts/"
+        },
+        {
+          "title": "Related command \u2014 primary documentation",
+          "url": "https://kubernetes.io/docs/reference/kubectl/quick-reference/"
+        }
+      ]
+    },
+    {
+      "id": "kubernetes-lesson-09",
+      "topic": "kubernetes",
+      "title": "Services and EndpointSlices",
+      "summary": "A Service provides a stable access abstraction for selected backends; EndpointSlices describe backend addresses and readiness information.",
+      "sections": [
+        {
+          "heading": "What it is",
+          "body": "A Service provides a stable access abstraction for selected backends; EndpointSlices describe backend addresses and readiness information."
+        },
+        {
+          "heading": "How it works",
+          "body": "Selectors commonly populate EndpointSlices from Pods. Service port and targetPort serve different roles. When traffic fails, verify selectors, ready endpoints and the application's actual listening port before changing exposure type."
+        }
+      ],
+      "command": "kubectl get endpointslices -n NAMESPACE",
+      "takeaway": "Selectors commonly populate EndpointSlices from Pods. Service port and targetPort serve different roles. When traffic fails, verify selectors, ready endpoints and the application's actual listening port before changing exposure type.",
+      "references": [
+        {
+          "title": "Services and EndpointSlices \u2014 primary documentation",
+          "url": "https://kubernetes.io/docs/concepts/"
+        },
+        {
+          "title": "Related command \u2014 primary documentation",
+          "url": "https://kubernetes.io/docs/reference/kubectl/quick-reference/"
+        }
+      ]
+    },
+    {
+      "id": "kubernetes-lesson-10",
+      "topic": "kubernetes",
+      "title": "Cluster DNS",
+      "summary": "Cluster DNS provides service discovery names within the Kubernetes networking environment.",
+      "sections": [
+        {
+          "heading": "What it is",
+          "body": "Cluster DNS provides service discovery names within the Kubernetes networking environment."
+        },
+        {
+          "heading": "How it works",
+          "body": "Pod resolver configuration and search domains influence name lookup. Service discovery requires DNS health as well as correctly named resources. A successful lookup establishes an address, not application reachability or readiness."
+        }
+      ],
+      "command": "kubectl get service kube-dns -n kube-system",
+      "takeaway": "Pod resolver configuration and search domains influence name lookup. Service discovery requires DNS health as well as correctly named resources. A successful lookup establishes an address, not application reachability or readiness.",
+      "references": [
+        {
+          "title": "Cluster DNS \u2014 primary documentation",
+          "url": "https://kubernetes.io/docs/concepts/"
+        },
+        {
+          "title": "Related command \u2014 primary documentation",
+          "url": "https://kubernetes.io/docs/reference/kubectl/quick-reference/"
+        }
+      ]
+    },
+    {
+      "id": "kubernetes-lesson-11",
+      "topic": "kubernetes",
+      "title": "Ingress and Gateway",
+      "summary": "Ingress and Gateway API resources describe routing from clients toward services through implementing controllers.",
+      "sections": [
+        {
+          "heading": "What it is",
+          "body": "Ingress and Gateway API resources describe routing from clients toward services through implementing controllers."
+        },
+        {
+          "heading": "How it works",
+          "body": "Creating a routing object alone does not install a controller or load balancer. Listener, hostname, route attachment, TLS and backend health all affect delivery. Supported features depend on the chosen implementation."
+        }
+      ],
+      "command": "kubectl get ingress -n NAMESPACE",
+      "takeaway": "Creating a routing object alone does not install a controller or load balancer. Listener, hostname, route attachment, TLS and backend health all affect delivery. Supported features depend on the chosen implementation.",
+      "references": [
+        {
+          "title": "Ingress and Gateway \u2014 primary documentation",
+          "url": "https://kubernetes.io/docs/concepts/"
+        },
+        {
+          "title": "Related command \u2014 primary documentation",
+          "url": "https://kubernetes.io/docs/reference/kubectl/quick-reference/"
+        }
+      ]
+    },
+    {
+      "id": "kubernetes-lesson-12",
+      "topic": "kubernetes",
+      "title": "NetworkPolicy",
+      "summary": "NetworkPolicy declares allowed traffic relationships for Pods when enforced by a supporting network plugin.",
+      "sections": [
+        {
+          "heading": "What it is",
+          "body": "NetworkPolicy declares allowed traffic relationships for Pods when enforced by a supporting network plugin."
+        },
+        {
+          "heading": "How it works",
+          "body": "Ingress and egress isolation are evaluated separately, and allowed policies combine. Include required DNS and dependency paths when restricting egress. A policy object without an enforcing implementation does not block packets."
+        }
+      ],
+      "command": "kubectl get networkpolicy -n NAMESPACE",
+      "takeaway": "Ingress and egress isolation are evaluated separately, and allowed policies combine. Include required DNS and dependency paths when restricting egress. A policy object without an enforcing implementation does not block packets.",
+      "references": [
+        {
+          "title": "NetworkPolicy \u2014 primary documentation",
+          "url": "https://kubernetes.io/docs/concepts/"
+        },
+        {
+          "title": "Related command \u2014 primary documentation",
+          "url": "https://kubernetes.io/docs/reference/kubectl/quick-reference/"
+        }
+      ]
+    },
+    {
+      "id": "kubernetes-lesson-13",
+      "topic": "kubernetes",
+      "title": "ConfigMaps",
+      "summary": "A ConfigMap stores non-secret configuration data separately from container images.",
+      "sections": [
+        {
+          "heading": "What it is",
+          "body": "A ConfigMap stores non-secret configuration data separately from container images."
+        },
+        {
+          "heading": "How it works",
+          "body": "Values can be injected as environment variables or mounted files. Environment variables do not update in an already running container when the ConfigMap changes. Application reload behavior and mount update semantics determine when changes take effect."
+        }
+      ],
+      "command": "kubectl get configmaps -n NAMESPACE",
+      "takeaway": "Values can be injected as environment variables or mounted files. Environment variables do not update in an already running container when the ConfigMap changes. Application reload behavior and mount update semantics determine when changes take effect.",
+      "references": [
+        {
+          "title": "ConfigMaps \u2014 primary documentation",
+          "url": "https://kubernetes.io/docs/concepts/"
+        },
+        {
+          "title": "Related command \u2014 primary documentation",
+          "url": "https://kubernetes.io/docs/reference/kubectl/quick-reference/"
+        }
+      ]
+    },
+    {
+      "id": "kubernetes-lesson-14",
+      "topic": "kubernetes",
+      "title": "Secrets",
+      "summary": "A Secret stores sensitive configuration values for authorized workload access.",
+      "sections": [
+        {
+          "heading": "What it is",
+          "body": "A Secret stores sensitive configuration values for authorized workload access."
+        },
+        {
+          "heading": "How it works",
+          "body": "Base64 representation is encoding, not encryption. Control RBAC, encryption-at-rest configuration, mount exposure and log handling. Updating a Secret does not guarantee every application immediately reloads its credentials."
+        }
+      ],
+      "command": "kubectl get secrets -n NAMESPACE",
+      "takeaway": "Base64 representation is encoding, not encryption. Control RBAC, encryption-at-rest configuration, mount exposure and log handling. Updating a Secret does not guarantee every application immediately reloads its credentials.",
+      "references": [
+        {
+          "title": "Secrets \u2014 primary documentation",
+          "url": "https://kubernetes.io/docs/concepts/"
+        },
+        {
+          "title": "Related command \u2014 primary documentation",
+          "url": "https://kubernetes.io/docs/reference/kubectl/quick-reference/"
+        }
+      ]
+    },
+    {
+      "id": "kubernetes-lesson-15",
+      "topic": "kubernetes",
+      "title": "Service accounts",
+      "summary": "A ServiceAccount identifies a workload for Kubernetes API authentication and related identity integration.",
+      "sections": [
+        {
+          "heading": "What it is",
+          "body": "A ServiceAccount identifies a workload for Kubernetes API authentication and related identity integration."
+        },
+        {
+          "heading": "How it works",
+          "body": "RBAC determines what the identity can do. Avoid mounting credentials where API access is unnecessary, and use appropriately scoped, bounded tokens. A namespace's default service account should not silently become a broad administrative identity."
+        }
+      ],
+      "command": "kubectl get serviceaccounts -n NAMESPACE",
+      "takeaway": "RBAC determines what the identity can do. Avoid mounting credentials where API access is unnecessary, and use appropriately scoped, bounded tokens. A namespace's default service account should not silently become a broad administrative identity.",
+      "references": [
+        {
+          "title": "Service accounts \u2014 primary documentation",
+          "url": "https://kubernetes.io/docs/concepts/"
+        },
+        {
+          "title": "Related command \u2014 primary documentation",
+          "url": "https://kubernetes.io/docs/reference/kubectl/quick-reference/"
+        }
+      ]
+    },
+    {
+      "id": "kubernetes-lesson-16",
+      "topic": "kubernetes",
+      "title": "RBAC",
+      "summary": "Role-based access control authorizes API operations through roles and bindings.",
+      "sections": [
+        {
+          "heading": "What it is",
+          "body": "Role-based access control authorizes API operations through roles and bindings."
+        },
+        {
+          "heading": "How it works",
+          "body": "Roles define verbs on resources, while bindings grant those permissions to subjects. Namespace and cluster scope matter. Check the exact verb, resource and identity rather than treating authentication success as authorization."
+        }
+      ],
+      "command": "kubectl auth can-i get pods -n NAMESPACE",
+      "takeaway": "Roles define verbs on resources, while bindings grant those permissions to subjects. Namespace and cluster scope matter. Check the exact verb, resource and identity rather than treating authentication success as authorization.",
+      "references": [
+        {
+          "title": "RBAC \u2014 primary documentation",
+          "url": "https://kubernetes.io/docs/concepts/"
+        },
+        {
+          "title": "Related command \u2014 primary documentation",
+          "url": "https://kubernetes.io/docs/reference/kubectl/quick-reference/"
+        }
+      ]
+    },
+    {
+      "id": "kubernetes-lesson-17",
+      "topic": "kubernetes",
+      "title": "Requests and limits",
+      "summary": "Resource requests inform scheduling and resource sharing; limits constrain resource use according to the resource type.",
+      "sections": [
+        {
+          "heading": "What it is",
+          "body": "Resource requests inform scheduling and resource sharing; limits constrain resource use according to the resource type."
+        },
+        {
+          "heading": "How it works",
+          "body": "CPU limits may throttle runnable work, while memory pressure against a limit can lead to OOM termination. Current usage is not the scheduler's capacity calculation. Compare workload demand, requests, limits and node conditions."
+        }
+      ],
+      "command": "kubectl top pods -n NAMESPACE",
+      "takeaway": "CPU limits may throttle runnable work, while memory pressure against a limit can lead to OOM termination. Current usage is not the scheduler's capacity calculation. Compare workload demand, requests, limits and node conditions.",
+      "references": [
+        {
+          "title": "Requests and limits \u2014 primary documentation",
+          "url": "https://kubernetes.io/docs/concepts/"
+        },
+        {
+          "title": "Related command \u2014 primary documentation",
+          "url": "https://kubernetes.io/docs/reference/kubectl/quick-reference/"
+        }
+      ]
+    },
+    {
+      "id": "kubernetes-lesson-18",
+      "topic": "kubernetes",
+      "title": "Scheduling and affinity",
+      "summary": "The scheduler selects a feasible node for an unscheduled Pod using resource and placement constraints.",
+      "sections": [
+        {
+          "heading": "What it is",
+          "body": "The scheduler selects a feasible node for an unscheduled Pod using resource and placement constraints."
+        },
+        {
+          "heading": "How it works",
+          "body": "Requests, affinity, topology rules, volumes and other filters affect feasibility. Hard constraints can leave Pods Pending even when aggregate capacity looks sufficient. Inspect scheduling events before relaxing intended placement rules."
+        }
+      ],
+      "command": "kubectl describe pod POD -n NAMESPACE",
+      "takeaway": "Requests, affinity, topology rules, volumes and other filters affect feasibility. Hard constraints can leave Pods Pending even when aggregate capacity looks sufficient. Inspect scheduling events before relaxing intended placement rules.",
+      "references": [
+        {
+          "title": "Scheduling and affinity \u2014 primary documentation",
+          "url": "https://kubernetes.io/docs/concepts/"
+        },
+        {
+          "title": "Related command \u2014 primary documentation",
+          "url": "https://kubernetes.io/docs/reference/kubectl/quick-reference/"
+        }
+      ]
+    },
+    {
+      "id": "kubernetes-lesson-19",
+      "topic": "kubernetes",
+      "title": "Taints and tolerations",
+      "summary": "Taints repel Pods from nodes unless matching tolerations permit the placement.",
+      "sections": [
+        {
+          "heading": "What it is",
+          "body": "Taints repel Pods from nodes unless matching tolerations permit the placement."
+        },
+        {
+          "heading": "How it works",
+          "body": "A toleration permits scheduling but does not attract a Pod to that node. Combine with affinity when dedicated placement is required. Effects such as NoSchedule and NoExecute influence new placement and eviction differently."
+        }
+      ],
+      "command": "kubectl describe node NODE",
+      "takeaway": "A toleration permits scheduling but does not attract a Pod to that node. Combine with affinity when dedicated placement is required. Effects such as NoSchedule and NoExecute influence new placement and eviction differently.",
+      "references": [
+        {
+          "title": "Taints and tolerations \u2014 primary documentation",
+          "url": "https://kubernetes.io/docs/concepts/"
+        },
+        {
+          "title": "Related command \u2014 primary documentation",
+          "url": "https://kubernetes.io/docs/reference/kubectl/quick-reference/"
+        }
+      ]
+    },
+    {
+      "id": "kubernetes-lesson-20",
+      "topic": "kubernetes",
+      "title": "Readiness liveness and startup probes",
+      "summary": "Probes communicate whether a container is ready for traffic, needs restart, or is still starting.",
+      "sections": [
+        {
+          "heading": "What it is",
+          "body": "Probes communicate whether a container is ready for traffic, needs restart, or is still starting."
+        },
+        {
+          "heading": "How it works",
+          "body": "Readiness failures remove a Pod from ordinary ready service backends; liveness failure can restart the container. Startup probes delay other probes until startup succeeds. A dependency outage should not automatically cause a fleet-wide restart loop."
+        }
+      ],
+      "command": "kubectl describe pod POD -n NAMESPACE",
+      "takeaway": "Readiness failures remove a Pod from ordinary ready service backends; liveness failure can restart the container. Startup probes delay other probes until startup succeeds. A dependency outage should not automatically cause a fleet-wide restart loop.",
+      "references": [
+        {
+          "title": "Readiness liveness and startup probes \u2014 primary documentation",
+          "url": "https://kubernetes.io/docs/concepts/"
+        },
+        {
+          "title": "Related command \u2014 primary documentation",
+          "url": "https://kubernetes.io/docs/reference/kubectl/quick-reference/"
+        }
+      ]
+    },
+    {
+      "id": "kubernetes-lesson-21",
+      "topic": "kubernetes",
+      "title": "Persistent volumes and claims",
+      "summary": "A PersistentVolume represents storage capacity; a PersistentVolumeClaim requests storage for a workload.",
+      "sections": [
+        {
+          "heading": "What it is",
+          "body": "A PersistentVolume represents storage capacity; a PersistentVolumeClaim requests storage for a workload."
+        },
+        {
+          "heading": "How it works",
+          "body": "Binding, access modes, topology and reclaim policy affect allocation and lifecycle. A claim can remain Pending because no suitable storage is provisioned. Deleting workload objects and deleting data are separate operations with policy-dependent consequences."
+        }
+      ],
+      "command": "kubectl get pvc -n NAMESPACE",
+      "takeaway": "Binding, access modes, topology and reclaim policy affect allocation and lifecycle. A claim can remain Pending because no suitable storage is provisioned. Deleting workload objects and deleting data are separate operations with policy-dependent consequences.",
+      "references": [
+        {
+          "title": "Persistent volumes and claims \u2014 primary documentation",
+          "url": "https://kubernetes.io/docs/concepts/"
+        },
+        {
+          "title": "Related command \u2014 primary documentation",
+          "url": "https://kubernetes.io/docs/reference/kubectl/quick-reference/"
+        }
+      ]
+    },
+    {
+      "id": "kubernetes-lesson-22",
+      "topic": "kubernetes",
+      "title": "StorageClasses and CSI",
+      "summary": "A StorageClass describes provisioning parameters, while CSI drivers implement storage operations.",
+      "sections": [
+        {
+          "heading": "What it is",
+          "body": "A StorageClass describes provisioning parameters, while CSI drivers implement storage operations."
+        },
+        {
+          "heading": "How it works",
+          "body": "Binding mode can coordinate volume placement with Pod scheduling. Driver health, permissions and zone constraints influence provisioning and attachment. A provisioned volume still needs a valid filesystem and application-consistent data procedures."
+        }
+      ],
+      "command": "kubectl get storageclasses",
+      "takeaway": "Binding mode can coordinate volume placement with Pod scheduling. Driver health, permissions and zone constraints influence provisioning and attachment. A provisioned volume still needs a valid filesystem and application-consistent data procedures.",
+      "references": [
+        {
+          "title": "StorageClasses and CSI \u2014 primary documentation",
+          "url": "https://kubernetes.io/docs/concepts/"
+        },
+        {
+          "title": "Related command \u2014 primary documentation",
+          "url": "https://kubernetes.io/docs/reference/kubectl/quick-reference/"
+        }
+      ]
+    },
+    {
+      "id": "kubernetes-lesson-23",
+      "topic": "kubernetes",
+      "title": "Horizontal Pod Autoscaling",
+      "summary": "An HPA adjusts replica counts from configured metrics and scaling rules.",
+      "sections": [
+        {
+          "heading": "What it is",
+          "body": "An HPA adjusts replica counts from configured metrics and scaling rules."
+        },
+        {
+          "heading": "How it works",
+          "body": "Metrics availability, resource requests, stabilization and replica bounds affect decisions. More replicas only help if the bottleneck can scale horizontally. Inspect HPA conditions and downstream capacity before raising maximum replicas."
+        }
+      ],
+      "command": "kubectl describe hpa APP -n NAMESPACE",
+      "takeaway": "Metrics availability, resource requests, stabilization and replica bounds affect decisions. More replicas only help if the bottleneck can scale horizontally. Inspect HPA conditions and downstream capacity before raising maximum replicas.",
+      "references": [
+        {
+          "title": "Horizontal Pod Autoscaling \u2014 primary documentation",
+          "url": "https://kubernetes.io/docs/concepts/"
+        },
+        {
+          "title": "Related command \u2014 primary documentation",
+          "url": "https://kubernetes.io/docs/reference/kubectl/quick-reference/"
+        }
+      ]
+    },
+    {
+      "id": "kubernetes-lesson-24",
+      "topic": "kubernetes",
+      "title": "Disruption budgets",
+      "summary": "A PodDisruptionBudget limits selected voluntary disruptions according to desired availability.",
+      "sections": [
+        {
+          "heading": "What it is",
+          "body": "A PodDisruptionBudget limits selected voluntary disruptions according to desired availability."
+        },
+        {
+          "heading": "How it works",
+          "body": "It can constrain eviction during maintenance but does not prevent all failures or guarantee application quorum. Too-strict budgets can block drains. Align the selector and availability setting with replica count and application behavior."
+        }
+      ],
+      "command": "kubectl get pdb -n NAMESPACE",
+      "takeaway": "It can constrain eviction during maintenance but does not prevent all failures or guarantee application quorum. Too-strict budgets can block drains. Align the selector and availability setting with replica count and application behavior.",
+      "references": [
+        {
+          "title": "Disruption budgets \u2014 primary documentation",
+          "url": "https://kubernetes.io/docs/concepts/"
+        },
+        {
+          "title": "Related command \u2014 primary documentation",
+          "url": "https://kubernetes.io/docs/reference/kubectl/quick-reference/"
+        }
+      ]
+    },
+    {
+      "id": "kubernetes-lesson-25",
+      "topic": "kubernetes",
+      "title": "Node lifecycle and drain",
+      "summary": "Node lifecycle operations control scheduling and safely remove workloads during maintenance.",
+      "sections": [
+        {
+          "heading": "What it is",
+          "body": "Node lifecycle operations control scheduling and safely remove workloads during maintenance."
+        },
+        {
+          "heading": "How it works",
+          "body": "Cordon prevents new ordinary scheduling; drain uses eviction subject to relevant constraints. DaemonSets, local data and disruption budgets require explicit handling. Confirm replacement capacity before removing a node from service."
+        }
+      ],
+      "command": "kubectl get nodes -o wide",
+      "takeaway": "Cordon prevents new ordinary scheduling; drain uses eviction subject to relevant constraints. DaemonSets, local data and disruption budgets require explicit handling. Confirm replacement capacity before removing a node from service.",
+      "references": [
+        {
+          "title": "Node lifecycle and drain \u2014 primary documentation",
+          "url": "https://kubernetes.io/docs/concepts/"
+        },
+        {
+          "title": "Related command \u2014 primary documentation",
+          "url": "https://kubernetes.io/docs/reference/kubectl/quick-reference/"
+        }
+      ]
+    },
+    {
+      "id": "kubernetes-lesson-26",
+      "topic": "kubernetes",
+      "title": "Security contexts",
+      "summary": "Security contexts configure process identity and privilege-related runtime settings for Pods or containers.",
+      "sections": [
+        {
+          "heading": "What it is",
+          "body": "Security contexts configure process identity and privilege-related runtime settings for Pods or containers."
+        },
+        {
+          "heading": "How it works",
+          "body": "Non-root execution, capability reduction, read-only roots and seccomp profiles restrict different behaviors. Volume ownership and application write paths must remain compatible. Avoid privileged mode as a general fix for permission errors."
+        }
+      ],
+      "command": "kubectl get pod POD -n NAMESPACE -o yaml",
+      "takeaway": "Non-root execution, capability reduction, read-only roots and seccomp profiles restrict different behaviors. Volume ownership and application write paths must remain compatible. Avoid privileged mode as a general fix for permission errors.",
+      "references": [
+        {
+          "title": "Security contexts \u2014 primary documentation",
+          "url": "https://kubernetes.io/docs/concepts/"
+        },
+        {
+          "title": "Related command \u2014 primary documentation",
+          "url": "https://kubernetes.io/docs/reference/kubectl/quick-reference/"
+        }
+      ]
+    },
+    {
+      "id": "kubernetes-lesson-27",
+      "topic": "kubernetes",
+      "title": "Admission and policy",
+      "summary": "Admission evaluates API requests after authentication and authorization and before persistence.",
+      "sections": [
+        {
+          "heading": "What it is",
+          "body": "Admission evaluates API requests after authentication and authorization and before persistence."
+        },
+        {
+          "heading": "How it works",
+          "body": "Built-in controllers and webhooks can validate or mutate objects. A failing webhook can block otherwise authorized changes depending on policy. Diagnose rejection messages and webhook availability rather than broadly disabling safeguards."
+        }
+      ],
+      "command": "",
+      "takeaway": "Built-in controllers and webhooks can validate or mutate objects. A failing webhook can block otherwise authorized changes depending on policy. Diagnose rejection messages and webhook availability rather than broadly disabling safeguards.",
+      "references": [
+        {
+          "title": "Admission and policy \u2014 primary documentation",
+          "url": "https://kubernetes.io/docs/concepts/"
+        }
+      ]
+    },
+    {
+      "id": "kubernetes-lesson-28",
+      "topic": "kubernetes",
+      "title": "Rollouts and rollback",
+      "summary": "A rollout replaces workload revisions; rollback returns the Pod template to an earlier revision when available.",
+      "sections": [
+        {
+          "heading": "What it is",
+          "body": "A rollout replaces workload revisions; rollback returns the Pod template to an earlier revision when available."
+        },
+        {
+          "heading": "How it works",
+          "body": "Deployment success reflects controller progress, not every business transaction. Data migrations and external configuration may not roll back with the template. Compare application health and dependency compatibility before and after recovery."
+        }
+      ],
+      "command": "kubectl rollout history deployment/APP -n NAMESPACE",
+      "takeaway": "Deployment success reflects controller progress, not every business transaction. Data migrations and external configuration may not roll back with the template. Compare application health and dependency compatibility before and after recovery.",
+      "references": [
+        {
+          "title": "Rollouts and rollback \u2014 primary documentation",
+          "url": "https://kubernetes.io/docs/concepts/"
+        },
+        {
+          "title": "Related command \u2014 primary documentation",
+          "url": "https://kubernetes.io/docs/reference/kubectl/quick-reference/"
+        }
+      ]
+    },
+    {
+      "id": "kubernetes-lesson-29",
+      "topic": "kubernetes",
+      "title": "Observability and events",
+      "summary": "Kubernetes events, logs and metrics expose different parts of workload behavior.",
+      "sections": [
+        {
+          "heading": "What it is",
+          "body": "Kubernetes events, logs and metrics expose different parts of workload behavior."
+        },
+        {
+          "heading": "How it works",
+          "body": "Events describe controller and node observations but expire; container logs show application output; metrics reveal trends. Correlate them by object, timestamp and revision. Absence of retained events does not prove an incident never occurred."
+        }
+      ],
+      "command": "kubectl get events -n NAMESPACE --sort-by=.lastTimestamp",
+      "takeaway": "Events describe controller and node observations but expire; container logs show application output; metrics reveal trends. Correlate them by object, timestamp and revision. Absence of retained events does not prove an incident never occurred.",
+      "references": [
+        {
+          "title": "Observability and events \u2014 primary documentation",
+          "url": "https://kubernetes.io/docs/concepts/"
+        },
+        {
+          "title": "Related command \u2014 primary documentation",
+          "url": "https://kubernetes.io/docs/reference/kubectl/quick-reference/"
+        }
+      ]
+    },
+    {
+      "id": "kubernetes-lesson-30",
+      "topic": "kubernetes",
+      "title": "etcd and disaster recovery",
+      "summary": "etcd stores Kubernetes cluster state, while application data usually lives in separate storage systems.",
+      "sections": [
+        {
+          "heading": "What it is",
+          "body": "etcd stores Kubernetes cluster state, while application data usually lives in separate storage systems."
+        },
+        {
+          "heading": "How it works",
+          "body": "Protect and test control-plane backups using the distribution's supported procedures. Restoring etcd does not restore every database volume or external cloud dependency. Recovery plans must cover certificates, identities, networking and application data as well as API objects."
+        }
+      ],
+      "command": "",
+      "takeaway": "Protect and test control-plane backups using the distribution's supported procedures. Restoring etcd does not restore every database volume or external cloud dependency. Recovery plans must cover certificates, identities, networking and application data as well as API objects.",
+      "references": [
+        {
+          "title": "etcd and disaster recovery \u2014 primary documentation",
+          "url": "https://kubernetes.io/docs/concepts/"
         }
       ]
     }
   ],
   "commands": [
     {
-      "id": "k8s-cmd-get-pods",
-      "title": "List Pods with placement and status",
-      "command": "kubectl get pods -o wide",
-      "purpose": "Inspect Pod readiness, restart counts, IP addresses and node placement at a glance.",
-      "environment": "kubectl configured for the intended cluster and namespace.",
-      "expectedOutput": "A table including READY, STATUS, RESTARTS, AGE, IP and NODE columns.",
-      "interpretation": "Use the namespace explicitly when needed; compare affected Pods and node placement to spot a shared failure domain.",
-      "safety": "Read-only command.",
+      "id": "kubernetes-command-01",
+      "topic": "kubernetes",
+      "title": "Current cluster context",
+      "command": "kubectl config current-context",
+      "kind": "Shell command",
+      "definition": "Prints the selected kubeconfig context.",
+      "purpose": "Confirm the cluster identity before interacting with workloads.",
+      "environment": "Read-only local command; a friendly name is not proof of the underlying endpoint.",
+      "expectedOutput": "production-eu",
+      "interpretation": "The context name is local configuration; inspect its cluster and namespace if ambiguous.",
+      "safety": "Read-only local command; a friendly name is not proof of the underlying endpoint.",
       "references": [
         {
-          "title": "kubectl get",
-          "url": "https://kubernetes.io/docs/reference/kubectl/generated/kubectl_get/"
+          "title": "Current cluster context \u2014 primary documentation",
+          "url": "https://kubernetes.io/docs/reference/kubectl/quick-reference/"
         }
       ]
     },
     {
-      "id": "k8s-cmd-describe-pod",
-      "title": "Inspect Pod events and conditions",
-      "command": "kubectl describe pod POD_NAME -n NAMESPACE",
-      "purpose": "Read the Pod's current conditions, container state, probe results and recent events.",
-      "environment": "Replace POD_NAME and NAMESPACE with the real Pod and namespace.",
-      "expectedOutput": "Pod details followed by container state and an Events section when events are available.",
-      "interpretation": "Look for scheduling failures, image pull errors, failed probes, mount errors and repeated restarts. Events expire, so absence of an event is not proof that nothing happened.",
-      "safety": "Read-only command; output may include environment metadata. Avoid sharing sensitive output publicly.",
+      "id": "kubernetes-command-02",
+      "topic": "kubernetes",
+      "title": "List Pods",
+      "command": "kubectl get pods -n NAMESPACE -o wide",
+      "kind": "Shell command",
+      "definition": "Lists Pods with readiness, restarts, IP and node placement.",
+      "purpose": "Compare affected replicas and shared nodes.",
+      "environment": "Read-only; replace NAMESPACE with the intended scope.",
+      "expectedOutput": "NAME READY STATUS RESTARTS AGE IP NODE",
+      "interpretation": "READY is ready containers over total; STATUS is summarized state, and NODE shows placement.",
+      "safety": "Read-only; replace NAMESPACE with the intended scope.",
       "references": [
         {
-          "title": "kubectl describe",
-          "url": "https://kubernetes.io/docs/reference/kubectl/generated/kubectl_describe/"
+          "title": "List Pods \u2014 primary documentation",
+          "url": "https://kubernetes.io/docs/reference/kubectl/quick-reference/"
         }
       ]
     },
     {
-      "id": "k8s-cmd-logs",
-      "title": "Read recent container logs",
-      "command": "kubectl logs POD_NAME -n NAMESPACE --tail=100",
-      "purpose": "Read a bounded tail of the current container logs for a first-pass diagnosis.",
-      "environment": "Replace the Pod and namespace. Add -c CONTAINER_NAME when the Pod has multiple containers.",
-      "expectedOutput": "The last 100 log lines available from the selected container.",
-      "interpretation": "Correlate timestamps with the incident. For a restarted container, consider --previous; logs alone may not explain a scheduling or network issue.",
-      "safety": "Read-only command; redact tokens, credentials and personal data before sharing logs.",
+      "id": "kubernetes-command-03",
+      "topic": "kubernetes",
+      "title": "Describe Pod",
+      "command": "kubectl describe pod POD -n NAMESPACE",
+      "kind": "Shell command",
+      "definition": "Shows Pod configuration, conditions, container state and events.",
+      "purpose": "Distinguish scheduling, image, probe and storage failures.",
+      "environment": "Read-only; output may include sensitive configuration metadata.",
+      "expectedOutput": "Warning FailedScheduling ...",
+      "interpretation": "Read Conditions, Last State and Events together; Warning reasons often point to the next check.",
+      "safety": "Read-only; output may include sensitive configuration metadata.",
       "references": [
         {
-          "title": "kubectl logs",
-          "url": "https://kubernetes.io/docs/reference/kubectl/generated/kubectl_logs/"
+          "title": "Describe Pod \u2014 primary documentation",
+          "url": "https://kubernetes.io/docs/reference/kubectl/quick-reference/"
         }
       ]
     },
     {
-      "id": "k8s-cmd-events",
-      "title": "Sort recent namespace events",
+      "id": "kubernetes-command-04",
+      "topic": "kubernetes",
+      "title": "Current logs",
+      "command": "kubectl logs POD -n NAMESPACE --tail=100 --timestamps",
+      "kind": "Shell command",
+      "definition": "Reads a bounded log tail with timestamps.",
+      "purpose": "Correlate application errors with the incident.",
+      "environment": "Read-only; redact credentials and personal data before sharing.",
+      "expectedOutput": "2026-... startup error ...",
+      "interpretation": "Each line is application output; use -c CONTAINER when selection is ambiguous.",
+      "safety": "Read-only; redact credentials and personal data before sharing.",
+      "references": [
+        {
+          "title": "Current logs \u2014 primary documentation",
+          "url": "https://kubernetes.io/docs/reference/kubectl/quick-reference/"
+        }
+      ]
+    },
+    {
+      "id": "kubernetes-command-05",
+      "topic": "kubernetes",
+      "title": "Previous container logs",
+      "command": "kubectl logs POD -n NAMESPACE --previous --tail=100",
+      "kind": "Shell command",
+      "definition": "Reads the previous terminated container instance's available logs.",
+      "purpose": "Find the error that caused a restart rather than only current startup messages.",
+      "environment": "Read-only; specify -c for multi-container Pods.",
+      "expectedOutput": "fatal: configuration could not be loaded",
+      "interpretation": "A previous instance must exist and logs must still be retained.",
+      "safety": "Read-only; specify -c for multi-container Pods.",
+      "references": [
+        {
+          "title": "Previous container logs \u2014 primary documentation",
+          "url": "https://kubernetes.io/docs/reference/kubectl/quick-reference/"
+        }
+      ]
+    },
+    {
+      "id": "kubernetes-command-06",
+      "topic": "kubernetes",
+      "title": "Recent events",
       "command": "kubectl get events -n NAMESPACE --sort-by=.lastTimestamp",
-      "purpose": "Review recent events in timestamp order to identify scheduling, image, probe and controller signals.",
-      "environment": "Replace NAMESPACE; use cluster-wide access only when you have a reason and permission.",
-      "expectedOutput": "An event list with type, reason, object, message and last timestamp.",
-      "interpretation": "Prioritize Warning events and correlate them with the affected resource and time window. Event retention is limited.",
-      "safety": "Read-only command.",
+      "kind": "Shell command",
+      "definition": "Lists retained namespace events ordered by last timestamp.",
+      "purpose": "Build a controller-level incident timeline.",
+      "environment": "Read-only; event retention is limited, so absence is not proof of no failure.",
+      "expectedOutput": "Warning FailedMount ...",
+      "interpretation": "Reason and Message identify observations; repeated events may be aggregated and timestamps have limitations.",
+      "safety": "Read-only; event retention is limited, so absence is not proof of no failure.",
       "references": [
         {
-          "title": "Debugging applications",
-          "url": "https://kubernetes.io/docs/tasks/debug/"
+          "title": "Recent events \u2014 primary documentation",
+          "url": "https://kubernetes.io/docs/reference/kubectl/quick-reference/"
         }
       ]
     },
     {
-      "id": "k8s-cmd-rollout-status",
-      "title": "Check Deployment rollout progress",
-      "command": "kubectl rollout status deployment/DEPLOYMENT_NAME -n NAMESPACE",
-      "purpose": "Wait for and report whether a Deployment rollout has completed.",
-      "environment": "Replace the Deployment name and namespace.",
-      "expectedOutput": "A success message when rollout completes, or a waiting/timeout message if it is stalled.",
-      "interpretation": "If it stalls, inspect the Deployment, ReplicaSets, Pods and events. This command observes progress; it does not itself repair the rollout.",
-      "safety": "Observational command. It waits until completion unless a timeout is supplied.",
+      "id": "kubernetes-command-07",
+      "topic": "kubernetes",
+      "title": "Service definition",
+      "command": "kubectl describe service SERVICE -n NAMESPACE",
+      "kind": "Shell command",
+      "definition": "Shows selectors, ports and service metadata.",
+      "purpose": "Check whether routing selects the intended Pods and target port.",
+      "environment": "Read-only; service existence does not prove backend readiness.",
+      "expectedOutput": "Selector: app=web ; Port: 80 ; TargetPort: 8080",
+      "interpretation": "Selector must match labels; Port and TargetPort have different roles.",
+      "safety": "Read-only; service existence does not prove backend readiness.",
       "references": [
         {
-          "title": "kubectl rollout status",
-          "url": "https://kubernetes.io/docs/reference/kubectl/generated/kubectl_rollout/kubectl_rollout_status/"
+          "title": "Service definition \u2014 primary documentation",
+          "url": "https://kubernetes.io/docs/reference/kubectl/quick-reference/"
         }
       ]
     },
     {
-      "id": "k8s-cmd-top-pods",
-      "title": "Inspect current Pod resource usage",
+      "id": "kubernetes-command-08",
+      "topic": "kubernetes",
+      "title": "Service endpoints",
+      "command": "kubectl get endpointslices -n NAMESPACE -l kubernetes.io/service-name=SERVICE -o yaml",
+      "kind": "Shell command",
+      "definition": "Shows EndpointSlices associated with one Service.",
+      "purpose": "Verify backend addresses and readiness conditions.",
+      "environment": "Read-only; EndpointSlices may include not-ready or terminating endpoints.",
+      "expectedOutput": "conditions: ready: true",
+      "interpretation": "Inspect addresses, ports and conditions.ready for each endpoint.",
+      "safety": "Read-only; EndpointSlices may include not-ready or terminating endpoints.",
+      "references": [
+        {
+          "title": "Service endpoints \u2014 primary documentation",
+          "url": "https://kubernetes.io/docs/reference/kubectl/quick-reference/"
+        }
+      ]
+    },
+    {
+      "id": "kubernetes-command-09",
+      "topic": "kubernetes",
+      "title": "Rollout status",
+      "command": "kubectl rollout status deployment/APP -n NAMESPACE --timeout=60s",
+      "kind": "Shell command",
+      "definition": "Observes deployment progress with a bounded wait.",
+      "purpose": "Detect a stalled rollout without waiting indefinitely.",
+      "environment": "Read-only observation; still verify user-facing behavior.",
+      "expectedOutput": "deployment \"APP\" successfully rolled out",
+      "interpretation": "Success means controller rollout completion; a timeout requires Pod and Deployment inspection.",
+      "safety": "Read-only observation; still verify user-facing behavior.",
+      "references": [
+        {
+          "title": "Rollout status \u2014 primary documentation",
+          "url": "https://kubernetes.io/docs/reference/kubectl/quick-reference/"
+        }
+      ]
+    },
+    {
+      "id": "kubernetes-command-10",
+      "topic": "kubernetes",
+      "title": "Resource usage",
       "command": "kubectl top pods -n NAMESPACE",
-      "purpose": "View current CPU and memory usage when Metrics Server or a compatible metrics API is available.",
-      "environment": "Requires the metrics API to be installed and reporting data.",
-      "expectedOutput": "A table of Pod names and current CPU/memory usage.",
-      "interpretation": "Compare usage with requests and limits; this is a point-in-time sample, not a historical graph or root-cause explanation.",
-      "safety": "Read-only command.",
+      "kind": "Shell command",
+      "definition": "Shows recent Pod CPU and memory measurements.",
+      "purpose": "Compare consumption across replicas and with configured limits.",
+      "environment": "Read-only; requires a functioning metrics API.",
+      "expectedOutput": "NAME CPU(cores) MEMORY(bytes)",
+      "interpretation": "CPU is commonly shown in millicores and memory in binary units; this is not a historical peak.",
+      "safety": "Read-only; requires a functioning metrics API.",
       "references": [
         {
-          "title": "kubectl top pod",
-          "url": "https://kubernetes.io/docs/reference/kubectl/generated/kubectl_top/kubectl_top_pod/"
+          "title": "Resource usage \u2014 primary documentation",
+          "url": "https://kubernetes.io/docs/reference/kubectl/quick-reference/"
+        }
+      ]
+    },
+    {
+      "id": "kubernetes-command-11",
+      "topic": "kubernetes",
+      "title": "Permission check",
+      "command": "kubectl auth can-i get pods -n NAMESPACE",
+      "kind": "Shell command",
+      "definition": "Asks whether the current identity may perform the specified operation.",
+      "purpose": "Distinguish authorization failures from network or authentication errors.",
+      "environment": "Read-only authorization review; impersonation options require separate privileges.",
+      "expectedOutput": "yes",
+      "interpretation": "yes applies to that verb, resource and scope, not unrestricted cluster access.",
+      "safety": "Read-only authorization review; impersonation options require separate privileges.",
+      "references": [
+        {
+          "title": "Permission check \u2014 primary documentation",
+          "url": "https://kubernetes.io/docs/reference/kubectl/quick-reference/"
+        }
+      ]
+    },
+    {
+      "id": "kubernetes-command-12",
+      "topic": "kubernetes",
+      "title": "Storage claims",
+      "command": "kubectl get pvc -n NAMESPACE",
+      "kind": "Shell command",
+      "definition": "Lists persistent-volume claims and binding status.",
+      "purpose": "Identify unbound storage blocking a workload.",
+      "environment": "Read-only; inspect claim events and storage topology next if Pending.",
+      "expectedOutput": "NAME STATUS VOLUME CAPACITY ACCESS MODES STORAGECLASS",
+      "interpretation": "STATUS Bound means a volume association exists; it does not prove attachment, mount or data health.",
+      "safety": "Read-only; inspect claim events and storage topology next if Pending.",
+      "references": [
+        {
+          "title": "Storage claims \u2014 primary documentation",
+          "url": "https://kubernetes.io/docs/reference/kubectl/quick-reference/"
         }
       ]
     }
   ],
   "debugging": [
     {
-      "id": "k8s-debug-pending",
+      "id": "kubernetes-scenario-guide-01",
+      "topic": "kubernetes",
       "title": "Pod remains Pending",
-      "symptom": "A Pod has stayed Pending longer than expected.",
+      "symptom": "A new Pod never receives a node assignment.",
       "steps": [
         {
-          "action": "Inspect Pod scheduling conditions and events.",
-          "command": "kubectl describe pod POD_NAME -n NAMESPACE",
-          "evidence": "Look for insufficient CPU/memory, unbound PVCs, taints, affinity constraints or missing tolerations."
+          "action": "Inspect and diagnose",
+          "command": "kubectl describe pod POD -n NAMESPACE",
+          "evidence": "Read scheduling conditions and events for requests, taints, affinity, topology or unbound claims. Aggregate idle CPU does not prove a feasible node exists."
         },
         {
-          "action": "Check node capacity and allocatable resources.",
-          "command": "kubectl describe nodes",
-          "evidence": "Compare requested resources and node conditions; do not infer capacity from current CPU utilisation alone."
+          "action": "Fix the evidenced cause",
+          "evidence": "Correct the evidenced request or placement mistake, provision appropriate capacity or resolve storage binding. Preserve intentional isolation constraints."
         },
         {
-          "action": "Check storage claims if events mention volumes.",
-          "command": "kubectl get pvc -n NAMESPACE",
-          "evidence": "A Pending claim can block Pod scheduling when the workload requires that volume."
+          "action": "Verify recovery",
+          "evidence": "Confirm scheduling, readiness and application health, and verify the Pod landed in the intended failure domain."
         }
       ],
-      "avoid": "Do not delete and recreate the Pod repeatedly before understanding the scheduling constraint.",
       "references": [
         {
-          "title": "Debugging Pods",
-          "url": "https://kubernetes.io/docs/tasks/debug/debug-application/debug-pods/"
+          "title": "Pod remains Pending \u2014 primary documentation",
+          "url": "https://kubernetes.io/docs/concepts/"
+        },
+        {
+          "title": "Diagnostic tool \u2014 primary documentation",
+          "url": "https://kubernetes.io/docs/reference/kubectl/quick-reference/"
         }
       ]
     },
     {
-      "id": "k8s-debug-crashloop",
-      "title": "Container repeatedly restarts",
-      "symptom": "A container enters CrashLoopBackOff or its restart count rises quickly.",
+      "id": "kubernetes-scenario-guide-02",
+      "topic": "kubernetes",
+      "title": "CrashLoopBackOff",
+      "symptom": "A container repeatedly starts and exits.",
       "steps": [
         {
-          "action": "Inspect last termination reason and recent events.",
-          "command": "kubectl describe pod POD_NAME -n NAMESPACE",
-          "evidence": "Check exit code, OOMKilled state, failed probes, mount errors and restart backoff."
+          "action": "Inspect and diagnose",
+          "command": "kubectl logs POD -n NAMESPACE --previous --tail=100",
+          "evidence": "Combine previous logs with last termination state and events. Distinguish application exit, OOM, failed liveness and missing configuration."
         },
         {
-          "action": "Read current and previous container logs.",
-          "command": "kubectl logs POD_NAME -n NAMESPACE --tail=100; kubectl logs POD_NAME -n NAMESPACE --previous",
-          "evidence": "Compare startup errors with the prior container attempt; redact secrets before sharing output."
+          "action": "Fix the evidenced cause",
+          "evidence": "Fix or roll back the evidenced application/configuration regression; tune resources or probes only when supported by measurements."
         },
         {
-          "action": "Compare the latest rollout and configuration changes.",
-          "command": "kubectl rollout history deployment/DEPLOYMENT_NAME -n NAMESPACE",
-          "evidence": "A failure aligned with a rollout may point to a bad image, configuration or dependency."
+          "action": "Verify recovery",
+          "evidence": "Verify restart count stabilizes and representative traffic succeeds across the rollout, including startup and shutdown."
         }
       ],
-      "avoid": "Do not blindly increase liveness thresholds or roll back without checking the blast radius and current rollout state.",
       "references": [
         {
-          "title": "Debugging application failures",
-          "url": "https://kubernetes.io/docs/tasks/debug/"
+          "title": "CrashLoopBackOff \u2014 primary documentation",
+          "url": "https://kubernetes.io/docs/concepts/"
+        },
+        {
+          "title": "Diagnostic tool \u2014 primary documentation",
+          "url": "https://kubernetes.io/docs/reference/kubectl/quick-reference/"
         }
       ]
     },
     {
-      "id": "k8s-debug-service-no-endpoints",
-      "title": "Service has no ready endpoints",
-      "symptom": "A Service exists but requests fail or no ready backend endpoints appear.",
+      "id": "kubernetes-scenario-guide-03",
+      "topic": "kubernetes",
+      "title": "ImagePullBackOff",
+      "symptom": "A Pod cannot retrieve its configured image.",
       "steps": [
         {
-          "action": "Check selector and Pod labels.",
-          "command": "kubectl describe service SERVICE_NAME -n NAMESPACE",
-          "evidence": "Verify the selector matches intended Pod labels."
+          "action": "Inspect and diagnose",
+          "command": "kubectl describe pod POD -n NAMESPACE",
+          "evidence": "Read pull error details and confirm image reference, digest/tag, registry authorization and node network path. Different errors require different fixes."
         },
         {
-          "action": "Inspect EndpointSlices and readiness.",
-          "command": "kubectl get endpointslices -n NAMESPACE",
-          "evidence": "No ready endpoints can indicate selector mismatch or Pods failing readiness."
+          "action": "Fix the evidenced cause",
+          "evidence": "Correct the reference or image-pull identity, restore registry reachability or publish the intended image. Avoid embedding registry credentials in manifests."
         },
         {
-          "action": "Verify port mapping and network policy only after confirming backends.",
-          "command": "kubectl get pods -n NAMESPACE -o wide",
-          "evidence": "Confirm targetPort matches the container's listening port and examine applicable policy if routing still fails."
+          "action": "Verify recovery",
+          "evidence": "Confirm the intended image digest runs and all eligible nodes can pull through the approved path."
         }
       ],
-      "avoid": "Do not expose a workload publicly as a shortcut for an internal Service connectivity problem.",
       "references": [
         {
-          "title": "Debug Services",
-          "url": "https://kubernetes.io/docs/tasks/debug/debug-application/debug-service/"
+          "title": "ImagePullBackOff \u2014 primary documentation",
+          "url": "https://kubernetes.io/docs/concepts/"
+        },
+        {
+          "title": "Diagnostic tool \u2014 primary documentation",
+          "url": "https://kubernetes.io/docs/reference/kubectl/quick-reference/"
+        }
+      ]
+    },
+    {
+      "id": "kubernetes-scenario-guide-04",
+      "topic": "kubernetes",
+      "title": "Service has no ready backends",
+      "symptom": "A Service exists but requests have no available backend.",
+      "steps": [
+        {
+          "action": "Inspect and diagnose",
+          "command": "kubectl get endpointslices -n NAMESPACE -l kubernetes.io/service-name=SERVICE -o yaml",
+          "evidence": "Compare Service selectors with Pod labels and endpoint readiness. Inspect readiness-probe failures before assuming a networking defect."
+        },
+        {
+          "action": "Fix the evidenced cause",
+          "evidence": "Correct selector mismatch or restore application readiness. Do not bypass readiness merely to make an endpoint appear."
+        },
+        {
+          "action": "Verify recovery",
+          "evidence": "Verify ready EndpointSlices and a successful request through the Service from an intended client."
+        }
+      ],
+      "references": [
+        {
+          "title": "Service has no ready backends \u2014 primary documentation",
+          "url": "https://kubernetes.io/docs/concepts/"
+        },
+        {
+          "title": "Diagnostic tool \u2014 primary documentation",
+          "url": "https://kubernetes.io/docs/reference/kubectl/quick-reference/"
+        }
+      ]
+    },
+    {
+      "id": "kubernetes-scenario-guide-05",
+      "topic": "kubernetes",
+      "title": "Service port mismatch",
+      "symptom": "Pods are ready but connections through the Service fail.",
+      "steps": [
+        {
+          "action": "Inspect and diagnose",
+          "command": "kubectl describe service SERVICE -n NAMESPACE",
+          "evidence": "Compare port and targetPort with the actual container listener, including named-port resolution. Confirm endpoints before investigating policy."
+        },
+        {
+          "action": "Fix the evidenced cause",
+          "evidence": "Correct the Service mapping or application bind port and roll out the change in source."
+        },
+        {
+          "action": "Verify recovery",
+          "evidence": "Test the Service port and direct backend path from an authorized diagnostic client and confirm only intended exposure."
+        }
+      ],
+      "references": [
+        {
+          "title": "Service port mismatch \u2014 primary documentation",
+          "url": "https://kubernetes.io/docs/concepts/"
+        },
+        {
+          "title": "Diagnostic tool \u2014 primary documentation",
+          "url": "https://kubernetes.io/docs/reference/kubectl/quick-reference/"
+        }
+      ]
+    },
+    {
+      "id": "kubernetes-scenario-guide-06",
+      "topic": "kubernetes",
+      "title": "DNS blocked by egress policy",
+      "symptom": "A workload loses name resolution after a restrictive policy rollout.",
+      "steps": [
+        {
+          "action": "Inspect and diagnose",
+          "command": "kubectl get networkpolicy -n NAMESPACE -o yaml",
+          "evidence": "Inspect policies selecting the Pod and the actual DNS path, including the cluster's DNS implementation. Confirm whether UDP/TCP DNS traffic is allowed as required."
+        },
+        {
+          "action": "Fix the evidenced cause",
+          "evidence": "Add narrowly scoped DNS egress compatible with the cluster design while retaining dependency restrictions."
+        },
+        {
+          "action": "Verify recovery",
+          "evidence": "Resolve required names from the workload and confirm unrelated outbound traffic remains blocked."
+        }
+      ],
+      "references": [
+        {
+          "title": "DNS blocked by egress policy \u2014 primary documentation",
+          "url": "https://kubernetes.io/docs/concepts/"
+        },
+        {
+          "title": "Diagnostic tool \u2014 primary documentation",
+          "url": "https://kubernetes.io/docs/reference/kubectl/quick-reference/"
+        }
+      ]
+    },
+    {
+      "id": "kubernetes-scenario-guide-07",
+      "topic": "kubernetes",
+      "title": "PVC remains Pending",
+      "symptom": "A storage-backed workload cannot start because its claim is unbound.",
+      "steps": [
+        {
+          "action": "Inspect and diagnose",
+          "command": "kubectl describe pvc CLAIM -n NAMESPACE",
+          "evidence": "Inspect StorageClass, access mode, capacity, provisioner events and topology. WaitForFirstConsumer may intentionally defer binding until scheduling context exists."
+        },
+        {
+          "action": "Fix the evidenced cause",
+          "evidence": "Correct an invalid class/request or restore provisioner permissions/capacity. Do not create an arbitrary volume in the wrong zone."
+        },
+        {
+          "action": "Verify recovery",
+          "evidence": "Confirm binding, attachment, mount and an application-level read/write check on the intended durable storage."
+        }
+      ],
+      "references": [
+        {
+          "title": "PVC remains Pending \u2014 primary documentation",
+          "url": "https://kubernetes.io/docs/concepts/"
+        },
+        {
+          "title": "Diagnostic tool \u2014 primary documentation",
+          "url": "https://kubernetes.io/docs/reference/kubectl/quick-reference/"
+        }
+      ]
+    },
+    {
+      "id": "kubernetes-scenario-guide-08",
+      "topic": "kubernetes",
+      "title": "HPA does not scale",
+      "symptom": "An HPA stays at its current replica count during increased demand.",
+      "steps": [
+        {
+          "action": "Inspect and diagnose",
+          "command": "kubectl describe hpa APP -n NAMESPACE",
+          "evidence": "Read conditions and metric status; check resource requests for utilization-based targets, bounds and stabilization. Verify the workload is horizontally scalable."
+        },
+        {
+          "action": "Fix the evidenced cause",
+          "evidence": "Restore missing metrics or requests, correct the target/bounds and address downstream limits. Raising max replicas alone may not help."
+        },
+        {
+          "action": "Verify recovery",
+          "evidence": "Apply representative load and verify replica changes, readiness and user latency while preserving dependency headroom."
+        }
+      ],
+      "references": [
+        {
+          "title": "HPA does not scale \u2014 primary documentation",
+          "url": "https://kubernetes.io/docs/concepts/"
+        },
+        {
+          "title": "Diagnostic tool \u2014 primary documentation",
+          "url": "https://kubernetes.io/docs/reference/kubectl/quick-reference/"
+        }
+      ]
+    },
+    {
+      "id": "kubernetes-scenario-guide-09",
+      "topic": "kubernetes",
+      "title": "Drain blocked by disruption budget",
+      "symptom": "Node maintenance cannot evict a Pod.",
+      "steps": [
+        {
+          "action": "Inspect and diagnose",
+          "command": "kubectl get pdb -n NAMESPACE",
+          "evidence": "Compare budget selector, allowed disruptions, ready replicas and application quorum. An unavailable replica may leave no safe eviction capacity."
+        },
+        {
+          "action": "Fix the evidenced cause",
+          "evidence": "Restore readiness or add justified replicas before drain. Change the budget only when application availability semantics permit it."
+        },
+        {
+          "action": "Verify recovery",
+          "evidence": "Confirm a controlled eviction succeeds while required quorum and user service remain healthy."
+        }
+      ],
+      "references": [
+        {
+          "title": "Drain blocked by disruption budget \u2014 primary documentation",
+          "url": "https://kubernetes.io/docs/concepts/"
+        },
+        {
+          "title": "Diagnostic tool \u2014 primary documentation",
+          "url": "https://kubernetes.io/docs/reference/kubectl/quick-reference/"
+        }
+      ]
+    },
+    {
+      "id": "kubernetes-scenario-guide-10",
+      "topic": "kubernetes",
+      "title": "Rollout stalls on readiness",
+      "symptom": "A Deployment creates new Pods but never becomes fully available.",
+      "steps": [
+        {
+          "action": "Inspect and diagnose",
+          "command": "kubectl rollout status deployment/APP -n NAMESPACE --timeout=60s",
+          "evidence": "Inspect Deployment conditions, new ReplicaSet Pods and readiness logs. Check configuration, dependencies and surge capacity rather than increasing deadlines blindly."
+        },
+        {
+          "action": "Fix the evidenced cause",
+          "evidence": "Fix the failing revision or perform a compatible rollback. Correct probe design if it does not reflect actual readiness."
+        },
+        {
+          "action": "Verify recovery",
+          "evidence": "Verify rollout completion and representative user requests, including all replicas and any affected dependency paths."
+        }
+      ],
+      "references": [
+        {
+          "title": "Rollout stalls on readiness \u2014 primary documentation",
+          "url": "https://kubernetes.io/docs/concepts/"
+        },
+        {
+          "title": "Diagnostic tool \u2014 primary documentation",
+          "url": "https://kubernetes.io/docs/reference/kubectl/quick-reference/"
         }
       ]
     }

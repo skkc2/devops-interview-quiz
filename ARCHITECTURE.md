@@ -214,6 +214,10 @@ The runtime now loads `data/subjects.json`, then independently loads each subjec
 
 The subject catalog and learning-library subject selector use loaded manifest entries. Every learning item is assigned its pack subject at load time; the old Kubernetes topic shortcut is removed so a Kubernetes filter cannot expose other subjects. Search is local to the selected learning module. Partial download failures exclude the failed pack and display a warning; total failure leaves the start action disabled with reload recovery.
 
-The legacy bank remains archived but is not included in runtime pools. Session scoring, option shuffling, review, export and existing Kubernetes identifiers remain intact. All scored modes exclude interview prompts. Dedicated command and debugging content remains Kubernetes-only and is described explicitly in the UI.
+The legacy bank remains archived but is not included in runtime pools. Session scoring, option shuffling, review, export and existing Kubernetes identifiers remain intact. All scored modes exclude interview prompts. All eleven subjects now have authored concept, command and incident content. The UI combines scenarios and debugging; the JSON key `debugging` remains for compatibility and holds the worked scenarios.
 
 `content/` and `scripts/build-subject-packs.py` provide reproducible editorial source for the ten new tracks. CI checks source/output consistency and full catalog invariants. Pages copies every JSON pack and runs browser regressions before deployment.
+
+### Authored library integration
+
+`content/library/<subject>.{concepts,commands,scenarios,interviews}` is compiled before publishing. The compiler preserves the established Kubernetes scored bank and four original interview IDs, adding 26 interview prompts. Lessons use definition/mechanism sections, command guides expose interpretation and prerequisites, and incident steps separate diagnosis, fix and verification. Static inline SVG pictograms require no external image requests. JSON fetches revalidate cache entries to avoid stale content after deployment.

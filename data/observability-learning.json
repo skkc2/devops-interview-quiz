@@ -5,25 +5,22 @@
       "id": "observability-lesson-01",
       "topic": "observability",
       "title": "Metrics",
-      "summary": "What are metrics best suited to represent? Aggregated measurements of system behavior over time.",
+      "summary": "Metrics are numeric measurements aggregated over time with identifying labels or dimensions.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "Metrics are numeric measurements aggregated over time with identifying labels or dimensions."
+        },
+        {
           "heading": "How it works",
-          "body": "Metric dimensions affect both usefulness and storage cost."
-        },
-        {
-          "heading": "Apply it",
-          "body": "A team needs to track request rate and error ratio over time. Instrument suitable counters and derive rates with clear dimensions."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "Every metric is a complete individual request record. This is not a sound assumption; aggregated measurements of system behavior over time."
+          "body": "They efficiently show trends and support alerts, but aggregation discards individual event detail. Choose units, temporality and label cardinality deliberately. A metric name without a definition and population is easy to misinterpret."
         }
       ],
-      "takeaway": "Metric dimensions affect both usefulness and storage cost.",
+      "command": "",
+      "takeaway": "They efficiently show trends and support alerts, but aggregation discards individual event detail. Choose units, temporality and label cardinality deliberately. A metric name without a definition and population is easy to misinterpret.",
       "references": [
         {
-          "title": "Metrics \u2014 primary reference",
+          "title": "Metrics \u2014 primary documentation",
           "url": "https://prometheus.io/docs/concepts/metric_types/"
         }
       ]
@@ -32,25 +29,22 @@
       "id": "observability-lesson-02",
       "topic": "observability",
       "title": "Logs",
-      "summary": "What do logs commonly provide? Discrete event records with contextual detail.",
+      "summary": "Logs record discrete events with contextual fields and timestamps.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "Logs record discrete events with contextual fields and timestamps."
+        },
+        {
           "heading": "How it works",
-          "body": "Structured fields make filtering and correlation more reliable."
-        },
-        {
-          "heading": "Apply it",
-          "body": "Incident diagnosis requires finding failures for one operation. Use structured operation identifiers and relevant error fields."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "Logs always provide an unbiased statistical sample. This is not a sound assumption; discrete event records with contextual detail."
+          "body": "Structured fields make filtering and correlation more reliable than parsing inconsistent text. Include useful identifiers while excluding credentials and unnecessary personal data. Sampling, buffering and retention determine which events remain available."
         }
       ],
-      "takeaway": "Structured fields make filtering and correlation more reliable.",
+      "command": "",
+      "takeaway": "Structured fields make filtering and correlation more reliable than parsing inconsistent text. Include useful identifiers while excluding credentials and unnecessary personal data. Sampling, buffering and retention determine which events remain available.",
       "references": [
         {
-          "title": "Logs \u2014 primary reference",
+          "title": "Logs \u2014 primary documentation",
           "url": "https://opentelemetry.io/docs/concepts/observability-primer/"
         }
       ]
@@ -59,25 +53,22 @@
       "id": "observability-lesson-03",
       "topic": "observability",
       "title": "Traces",
-      "summary": "What does a distributed trace describe? Related spans representing work across a request path.",
+      "summary": "Distributed traces connect spans describing work across a request's path.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "Distributed traces connect spans describing work across a request's path."
+        },
+        {
           "heading": "How it works",
-          "body": "Trace propagation is needed to connect work across boundaries."
-        },
-        {
-          "heading": "Apply it",
-          "body": "A request crosses services but appears as disconnected traces. Verify context propagation across the relevant boundaries."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "Every trace contains all requests ever processed. This is not a sound assumption; related spans representing work across a request path."
+          "body": "Parent-child and causal links reveal where time is spent and which dependencies participate. Instrumentation and sampling may omit parts of the path. A trace is evidence of one observed execution, not a complete population-level latency distribution."
         }
       ],
-      "takeaway": "Trace propagation is needed to connect work across boundaries.",
+      "command": "",
+      "takeaway": "Parent-child and causal links reveal where time is spent and which dependencies participate. Instrumentation and sampling may omit parts of the path. A trace is evidence of one observed execution, not a complete population-level latency distribution.",
       "references": [
         {
-          "title": "Traces \u2014 primary reference",
+          "title": "Traces \u2014 primary documentation",
           "url": "https://opentelemetry.io/docs/concepts/observability-primer/"
         }
       ]
@@ -86,25 +77,22 @@
       "id": "observability-lesson-04",
       "topic": "observability",
       "title": "Counters",
-      "summary": "What is a typical property of a counter? It accumulates events and may reset when its producer restarts.",
+      "summary": "A counter accumulates occurrences or quantities and normally increases until it resets.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "A counter accumulates occurrences or quantities and normally increases until it resets."
+        },
+        {
           "heading": "How it works",
-          "body": "Rate calculations must account for resets."
-        },
-        {
-          "heading": "Apply it",
-          "body": "A service restart makes the raw request counter fall. Use an appropriate reset-aware rate calculation."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "A counter is intended to fluctuate freely with current temperature. This is not a sound assumption; it accumulates events and may reset when its producer restarts."
+          "body": "Use a reset-aware rate or increase calculation for interval behavior. Summing raw counters from restarting instances can produce misleading results. Define exactly which event increments the counter and avoid double counting retries as unique users."
         }
       ],
-      "takeaway": "Rate calculations must account for resets.",
+      "command": "",
+      "takeaway": "Use a reset-aware rate or increase calculation for interval behavior. Summing raw counters from restarting instances can produce misleading results. Define exactly which event increments the counter and avoid double counting retries as unique users.",
       "references": [
         {
-          "title": "Counters \u2014 primary reference",
+          "title": "Counters \u2014 primary documentation",
           "url": "https://prometheus.io/docs/concepts/metric_types/"
         }
       ]
@@ -113,25 +101,22 @@
       "id": "observability-lesson-05",
       "topic": "observability",
       "title": "Gauges",
-      "summary": "What does a gauge commonly represent? A value that can rise or fall such as queue depth.",
+      "summary": "A gauge reports a value that can rise or fall, such as queue depth or current memory usage.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "A gauge reports a value that can rise or fall, such as queue depth or current memory usage."
+        },
+        {
           "heading": "How it works",
-          "body": "A gauge snapshot does not automatically describe all events between samples."
-        },
-        {
-          "heading": "Apply it",
-          "body": "A queue briefly spikes between scrape intervals. Review sampling and complementary event or age measurements."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "Gauges must only increase forever. This is not a sound assumption; a value that can rise or fall such as queue depth."
+          "body": "It represents a sampled state rather than an accumulated event count. A rate calculation intended for counters may not be meaningful on a gauge. Sampling frequency can miss short peaks, so choose collection intervals around the use case."
         }
       ],
-      "takeaway": "A gauge snapshot does not automatically describe all events between samples.",
+      "command": "",
+      "takeaway": "It represents a sampled state rather than an accumulated event count. A rate calculation intended for counters may not be meaningful on a gauge. Sampling frequency can miss short peaks, so choose collection intervals around the use case.",
       "references": [
         {
-          "title": "Gauges \u2014 primary reference",
+          "title": "Gauges \u2014 primary documentation",
           "url": "https://prometheus.io/docs/concepts/metric_types/"
         }
       ]
@@ -140,25 +125,22 @@
       "id": "observability-lesson-06",
       "topic": "observability",
       "title": "Histograms",
-      "summary": "What does a histogram capture? A distribution of observations using buckets or supported histogram structures.",
+      "summary": "Histograms record a distribution using buckets and count or sum information.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "Histograms record a distribution using buckets and count or sum information."
+        },
+        {
           "heading": "How it works",
-          "body": "Bucket design affects useful resolution around important thresholds."
-        },
-        {
-          "heading": "Apply it",
-          "body": "A latency SLO threshold lies inside a very wide bucket. Choose resolution around the operational threshold."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "A histogram is only a single average. This is not a sound assumption; a distribution of observations using buckets or supported histogram structures."
+          "body": "Bucket boundaries determine resolution near important thresholds. Classic Prometheus histogram buckets are cumulative and support aggregation before estimating quantiles. The estimate is limited by bucket design; it is not an exact percentile of retained raw events."
         }
       ],
-      "takeaway": "Bucket design affects useful resolution around important thresholds.",
+      "command": "",
+      "takeaway": "Bucket boundaries determine resolution near important thresholds. Classic Prometheus histogram buckets are cumulative and support aggregation before estimating quantiles. The estimate is limited by bucket design; it is not an exact percentile of retained raw events.",
       "references": [
         {
-          "title": "Histograms \u2014 primary reference",
+          "title": "Histograms \u2014 primary documentation",
           "url": "https://prometheus.io/docs/practices/histograms/"
         }
       ]
@@ -167,25 +149,22 @@
       "id": "observability-lesson-07",
       "topic": "observability",
       "title": "Labels",
-      "summary": "Why limit metric label cardinality? Each unique label combination can create another time series.",
+      "summary": "Labels distinguish metric time series by dimensions such as service, route or status.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "Labels distinguish metric time series by dimensions such as service, route or status."
+        },
+        {
           "heading": "How it works",
-          "body": "Unbounded identifiers can create major cost and reliability problems."
-        },
-        {
-          "heading": "Apply it",
-          "body": "A metric adds a request ID label and series count explodes. Remove unbounded labels and use logs or traces for per-request identity."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "User IDs are always safe low-cardinality metric labels. This is not a sound assumption; each unique label combination can create another time series."
+          "body": "Every distinct label combination creates another series. Unbounded request IDs or user IDs can overwhelm storage and query capacity. Use bounded dimensions for metrics and put high-cardinality event detail in appropriately controlled logs or traces."
         }
       ],
-      "takeaway": "Unbounded identifiers can create major cost and reliability problems.",
+      "command": "",
+      "takeaway": "Every distinct label combination creates another series. Unbounded request IDs or user IDs can overwhelm storage and query capacity. Use bounded dimensions for metrics and put high-cardinality event detail in appropriately controlled logs or traces.",
       "references": [
         {
-          "title": "Labels \u2014 primary reference",
+          "title": "Labels \u2014 primary documentation",
           "url": "https://prometheus.io/docs/practices/naming/"
         }
       ]
@@ -194,25 +173,22 @@
       "id": "observability-lesson-08",
       "topic": "observability",
       "title": "Dashboards",
-      "summary": "What makes a dashboard operationally useful? It supports specific questions about service behavior and impact.",
+      "summary": "Dashboards organize signals to answer operational questions.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "Dashboards organize signals to answer operational questions."
+        },
+        {
           "heading": "How it works",
-          "body": "Clear units windows and aggregation prevent misinterpretation."
-        },
-        {
-          "heading": "Apply it",
-          "body": "Responders cannot tell whether a graph shows totals or rates. Label units and queries and organize around operational questions."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "More panels always mean better incident response. This is not a sound assumption; it supports specific questions about service behavior and impact."
+          "body": "Start with user outcomes, then expose dependency and resource diagnostics. Show units, time windows and missing-data behavior. A visually green dashboard is not meaningful if it omits the failing user path or averages away a regional outage."
         }
       ],
-      "takeaway": "Clear units windows and aggregation prevent misinterpretation.",
+      "command": "",
+      "takeaway": "Start with user outcomes, then expose dependency and resource diagnostics. Show units, time windows and missing-data behavior. A visually green dashboard is not meaningful if it omits the failing user path or averages away a regional outage.",
       "references": [
         {
-          "title": "Dashboards \u2014 primary reference",
+          "title": "Dashboards \u2014 primary documentation",
           "url": "https://sre.google/workbook/monitoring/"
         }
       ]
@@ -221,25 +197,22 @@
       "id": "observability-lesson-09",
       "topic": "observability",
       "title": "Rate before aggregation",
-      "summary": "Why often calculate counter rates before summing series? Per-series reset detection can be lost after combining counters.",
+      "summary": "Reset-aware rate calculation should be applied to individual counter series before they are aggregated.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "Reset-aware rate calculation should be applied to individual counter series before they are aggregated."
+        },
+        {
           "heading": "How it works",
-          "body": "Counter identity matters when instances restart independently."
-        },
-        {
-          "heading": "Apply it",
-          "body": "One instance restarts and an aggregate traffic graph spikes incorrectly. Compute reset-aware rates per counter series before aggregation."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "Summing raw counters always preserves every reset correctly. This is not a sound assumption; per-series reset detection can be lost after combining counters."
+          "body": "Otherwise one instance's reset can be hidden by another instance's increasing value. In PromQL, sum(rate(counter[window])) preserves per-series reset handling. Choose a window long enough to contain useful samples."
         }
       ],
-      "takeaway": "Counter identity matters when instances restart independently.",
+      "command": "",
+      "takeaway": "Otherwise one instance's reset can be hidden by another instance's increasing value. In PromQL, sum(rate(counter[window])) preserves per-series reset handling. Choose a window long enough to contain useful samples.",
       "references": [
         {
-          "title": "Rate before aggregation \u2014 primary reference",
+          "title": "Rate before aggregation \u2014 primary documentation",
           "url": "https://prometheus.io/docs/querying/functions/"
         }
       ]
@@ -248,25 +221,22 @@
       "id": "observability-lesson-10",
       "topic": "observability",
       "title": "Percentiles",
-      "summary": "Why should you avoid averaging instance p99 values? An average of quantiles is not the quantile of the combined distribution.",
+      "summary": "A percentile describes a value below which a specified share of observations falls.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "A percentile describes a value below which a specified share of observations falls."
+        },
+        {
           "heading": "How it works",
-          "body": "Aggregate compatible distributions before estimating fleet quantiles."
-        },
-        {
-          "heading": "Apply it",
-          "body": "Two instances have very different traffic and latency distributions. Aggregate suitable histogram data for the desired population."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "The average of p99 values is always the fleet p99. This is not a sound assumption; an average of quantiles is not the quantile of the combined distribution."
+          "body": "The p99 is not a maximum and cannot generally be combined by averaging instance p99 values. Aggregate suitable distributions first, then estimate the percentile. Sparse samples and different populations can make tail estimates unstable."
         }
       ],
-      "takeaway": "Aggregate compatible distributions before estimating fleet quantiles.",
+      "command": "",
+      "takeaway": "The p99 is not a maximum and cannot generally be combined by averaging instance p99 values. Aggregate suitable distributions first, then estimate the percentile. Sparse samples and different populations can make tail estimates unstable.",
       "references": [
         {
-          "title": "Percentiles \u2014 primary reference",
+          "title": "Percentiles \u2014 primary documentation",
           "url": "https://prometheus.io/docs/practices/histograms/"
         }
       ]
@@ -275,25 +245,22 @@
       "id": "observability-lesson-11",
       "topic": "observability",
       "title": "Missing data",
-      "summary": "Why distinguish missing samples from zero values? Absence can mean collection or service failure rather than zero activity.",
+      "summary": "Missing telemetry means a measurement was not observed, which is different from observing zero.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "Missing telemetry means a measurement was not observed, which is different from observing zero."
+        },
+        {
           "heading": "How it works",
-          "body": "Missing-data policy should match the alert's intended meaning."
-        },
-        {
-          "heading": "Apply it",
-          "body": "An error-rate alert goes quiet when scraping stops. Monitor collection health and define explicit missing-data behavior."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "No samples always prove no errors occurred. This is not a sound assumption; absence can mean collection or service failure rather than zero activity."
+          "body": "Collection failure, discovery changes, label changes or an idle system can cause gaps. Define alert behavior explicitly and monitor the telemetry pipeline itself. Treating absent errors as zero errors can falsely declare an unobserved service healthy."
         }
       ],
-      "takeaway": "Missing-data policy should match the alert's intended meaning.",
+      "command": "",
+      "takeaway": "Collection failure, discovery changes, label changes or an idle system can cause gaps. Define alert behavior explicitly and monitor the telemetry pipeline itself. Treating absent errors as zero errors can falsely declare an unobserved service healthy.",
       "references": [
         {
-          "title": "Missing data \u2014 primary reference",
+          "title": "Missing data \u2014 primary documentation",
           "url": "https://prometheus.io/docs/querying/functions/"
         }
       ]
@@ -302,25 +269,22 @@
       "id": "observability-lesson-12",
       "topic": "observability",
       "title": "Scrape health",
-      "summary": "What does a failed metrics scrape indicate? The collector could not obtain the expected metrics response.",
+      "summary": "Scrape health describes whether a metrics collector can discover and retrieve target data.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "Scrape health describes whether a metrics collector can discover and retrieve target data."
+        },
+        {
           "heading": "How it works",
-          "body": "The cause may be target failure or a collection-path problem."
-        },
-        {
-          "heading": "Apply it",
-          "body": "A target scrape fails while user traffic still succeeds. Inspect scrape errors and distinguish telemetry reachability from service behavior."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "It always proves all user requests failed. This is not a sound assumption; the collector could not obtain the expected metrics response."
+          "body": "A successful scrape indicates collection worked, not that the application is healthy. Inspect target errors, duration and sample volume. A target can disappear from discovery entirely, requiring separate expected-target checks."
         }
       ],
-      "takeaway": "The cause may be target failure or a collection-path problem.",
+      "command": "",
+      "takeaway": "A successful scrape indicates collection worked, not that the application is healthy. Inspect target errors, duration and sample volume. A target can disappear from discovery entirely, requiring separate expected-target checks.",
       "references": [
         {
-          "title": "Scrape health \u2014 primary reference",
+          "title": "Scrape health \u2014 primary documentation",
           "url": "https://sre.google/workbook/monitoring/"
         }
       ]
@@ -329,25 +293,22 @@
       "id": "observability-lesson-13",
       "topic": "observability",
       "title": "Recording rules",
-      "summary": "What is a common use of recording rules? Precompute useful derived time series for repeated queries.",
+      "summary": "Recording rules precompute query results into new time series.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "Recording rules precompute query results into new time series."
+        },
+        {
           "heading": "How it works",
-          "body": "Rule correctness and evaluation cost still need review."
-        },
-        {
-          "heading": "Apply it",
-          "body": "A frequently used expensive dashboard query overloads the backend. Evaluate a suitable precomputed rule and validate its semantics."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "Recording rules automatically make incorrect queries correct. This is not a sound assumption; precompute useful derived time series for repeated queries."
+          "body": "They reduce repeated query cost and standardize shared calculations. Evaluation interval and dependency order influence freshness. Version and test rule changes because a wrong recording rule can spread incorrect results across many dashboards and alerts."
         }
       ],
-      "takeaway": "Rule correctness and evaluation cost still need review.",
+      "command": "",
+      "takeaway": "They reduce repeated query cost and standardize shared calculations. Evaluation interval and dependency order influence freshness. Version and test rule changes because a wrong recording rule can spread incorrect results across many dashboards and alerts.",
       "references": [
         {
-          "title": "Recording rules \u2014 primary reference",
+          "title": "Recording rules \u2014 primary documentation",
           "url": "https://prometheus.io/docs/configuration/recording_rules/"
         }
       ]
@@ -356,25 +317,22 @@
       "id": "observability-lesson-14",
       "topic": "observability",
       "title": "Alert duration",
-      "summary": "What does a sustained-condition alert delay help reduce? Pages caused by brief threshold crossings.",
+      "summary": "An alert duration requires a condition to remain true for a configured period before firing.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "An alert duration requires a condition to remain true for a configured period before firing."
+        },
+        {
           "heading": "How it works",
-          "body": "Long delays can also postpone detection of genuine incidents."
-        },
-        {
-          "heading": "Apply it",
-          "body": "An alert pages repeatedly on harmless short spikes. Tune duration with impact and detection-time requirements."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "Any delay always improves every alert. This is not a sound assumption; pages caused by brief threshold crossings."
+          "body": "It reduces noise from short fluctuations but delays detection. Choose it from the tolerated impact and signal behavior, not as a blanket way to hide unstable alerts. Pending and firing states should be understood during tests."
         }
       ],
-      "takeaway": "Long delays can also postpone detection of genuine incidents.",
+      "command": "",
+      "takeaway": "It reduces noise from short fluctuations but delays detection. Choose it from the tolerated impact and signal behavior, not as a blanket way to hide unstable alerts. Pending and firing states should be understood during tests.",
       "references": [
         {
-          "title": "Alert duration \u2014 primary reference",
+          "title": "Alert duration \u2014 primary documentation",
           "url": "https://prometheus.io/docs/configuration/alerting_rules/"
         }
       ]
@@ -383,25 +341,22 @@
       "id": "observability-lesson-15",
       "topic": "observability",
       "title": "Alert grouping",
-      "summary": "Why group related alerts? Reduce duplicated notifications about the same operational event.",
+      "summary": "Alert grouping combines related alerts into fewer notifications.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "Alert grouping combines related alerts into fewer notifications."
+        },
+        {
           "heading": "How it works",
-          "body": "Grouping must preserve enough context to identify affected services."
-        },
-        {
-          "heading": "Apply it",
-          "body": "One dependency outage causes dozens of similar pages. Group correlated notifications and identify the likely shared incident."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "Grouping means discarding all but one underlying signal forever. This is not a sound assumption; reduce duplicated notifications about the same operational event."
+          "body": "Grouping keys should preserve the information needed to assign ownership and act. Overly broad grouping can hide independent incidents; overly narrow grouping creates floods. Grouping changes notification presentation, not the underlying alert condition."
         }
       ],
-      "takeaway": "Grouping must preserve enough context to identify affected services.",
+      "command": "",
+      "takeaway": "Grouping keys should preserve the information needed to assign ownership and act. Overly broad grouping can hide independent incidents; overly narrow grouping creates floods. Grouping changes notification presentation, not the underlying alert condition.",
       "references": [
         {
-          "title": "Alert grouping \u2014 primary reference",
+          "title": "Alert grouping \u2014 primary documentation",
           "url": "https://prometheus.io/docs/alerting/latest/alertmanager/"
         }
       ]
@@ -410,25 +365,22 @@
       "id": "observability-lesson-16",
       "topic": "observability",
       "title": "Alert inhibition",
-      "summary": "What is alert inhibition used for? Suppress lower-level notifications when a related higher-level condition applies.",
+      "summary": "Inhibition suppresses notifications for selected alerts when a related source alert is active.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "Inhibition suppresses notifications for selected alerts when a related source alert is active."
+        },
+        {
           "heading": "How it works",
-          "body": "Rules must avoid hiding unrelated genuine incidents."
-        },
-        {
-          "heading": "Apply it",
-          "body": "A host-down event triggers many derivative service alerts. Use carefully scoped inhibition while retaining evidence."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "Inhibition deletes the underlying metric data. This is not a sound assumption; suppress lower-level notifications when a related higher-level condition applies."
+          "body": "For example, a cluster outage can suppress many dependent service symptoms. Matching labels must prevent unrelated alerts from being silenced. Test both suppression and release after recovery so important signals do not remain hidden."
         }
       ],
-      "takeaway": "Rules must avoid hiding unrelated genuine incidents.",
+      "command": "",
+      "takeaway": "For example, a cluster outage can suppress many dependent service symptoms. Matching labels must prevent unrelated alerts from being silenced. Test both suppression and release after recovery so important signals do not remain hidden.",
       "references": [
         {
-          "title": "Alert inhibition \u2014 primary reference",
+          "title": "Alert inhibition \u2014 primary documentation",
           "url": "https://prometheus.io/docs/alerting/latest/alertmanager/"
         }
       ]
@@ -437,25 +389,22 @@
       "id": "observability-lesson-17",
       "topic": "observability",
       "title": "Sampling",
-      "summary": "What is a trade-off of trace sampling? Reduce volume at the cost of retaining only part of traffic.",
+      "summary": "Sampling retains a subset of telemetry to control cost and processing overhead.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "Sampling retains a subset of telemetry to control cost and processing overhead."
+        },
+        {
           "heading": "How it works",
-          "body": "Sampling policy affects which questions retained traces can answer."
-        },
-        {
-          "heading": "Apply it",
-          "body": "Rare failures are absent from a low-rate head-sampled dataset. Review sampling policy and error-retention requirements."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "Sampled traces are automatically a complete record of every error. This is not a sound assumption; reduce volume at the cost of retaining only part of traffic."
+          "body": "Head sampling decides near the start of a trace and is inexpensive but may miss rare failures. The sampled population can be biased. Do not infer exact request counts from sampled traces without understanding the sampling method."
         }
       ],
-      "takeaway": "Sampling policy affects which questions retained traces can answer.",
+      "command": "",
+      "takeaway": "Head sampling decides near the start of a trace and is inexpensive but may miss rare failures. The sampled population can be biased. Do not infer exact request counts from sampled traces without understanding the sampling method.",
       "references": [
         {
-          "title": "Sampling \u2014 primary reference",
+          "title": "Sampling \u2014 primary documentation",
           "url": "https://opentelemetry.io/docs/concepts/sampling/"
         }
       ]
@@ -464,25 +413,22 @@
       "id": "observability-lesson-18",
       "topic": "observability",
       "title": "Tail sampling",
-      "summary": "What distinguishes tail-based trace sampling? Decisions can use information collected about a trace after processing.",
+      "summary": "Tail sampling waits for enough trace information to choose traces based on completed behavior.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "Tail sampling waits for enough trace information to choose traces based on completed behavior."
+        },
+        {
           "heading": "How it works",
-          "body": "Buffering completeness and decision latency introduce operational costs."
-        },
-        {
-          "heading": "Apply it",
-          "body": "A team wants to retain slow and failed traces preferentially. Evaluate tail sampling with capacity and completeness constraints."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "Tail sampling requires no memory or coordination. This is not a sound assumption; decisions can use information collected about a trace after processing."
+          "body": "It can favor errors or slow requests but requires buffering and trace-consistent routing. Late spans, memory pressure and incomplete traces affect decisions. Size the collector and define behavior when sampling capacity is exceeded."
         }
       ],
-      "takeaway": "Buffering completeness and decision latency introduce operational costs.",
+      "command": "",
+      "takeaway": "It can favor errors or slow requests but requires buffering and trace-consistent routing. Late spans, memory pressure and incomplete traces affect decisions. Size the collector and define behavior when sampling capacity is exceeded.",
       "references": [
         {
-          "title": "Tail sampling \u2014 primary reference",
+          "title": "Tail sampling \u2014 primary documentation",
           "url": "https://opentelemetry.io/docs/concepts/sampling/"
         }
       ]
@@ -491,25 +437,22 @@
       "id": "observability-lesson-19",
       "topic": "observability",
       "title": "Context propagation",
-      "summary": "Why can asynchronous work break trace continuity? Context may not be carried through queues or task boundaries automatically.",
+      "summary": "Context propagation carries trace and related identifiers across process boundaries.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "Context propagation carries trace and related identifiers across process boundaries."
+        },
+        {
           "heading": "How it works",
-          "body": "Message metadata and instrumentation need deliberate propagation."
-        },
-        {
-          "heading": "Apply it",
-          "body": "A queued worker starts unrelated traces for each job. Propagate the appropriate trace context through supported message metadata."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "Thread-local context automatically crosses every process and queue. This is not a sound assumption; context may not be carried through queues or task boundaries automatically."
+          "body": "HTTP headers or message metadata let downstream spans join the same trace. Instrument both sender and receiver and preserve context through asynchronous work. Trust boundaries must prevent arbitrary inbound context from becoming an authorization signal."
         }
       ],
-      "takeaway": "Message metadata and instrumentation need deliberate propagation.",
+      "command": "",
+      "takeaway": "HTTP headers or message metadata let downstream spans join the same trace. Instrument both sender and receiver and preserve context through asynchronous work. Trust boundaries must prevent arbitrary inbound context from becoming an authorization signal.",
       "references": [
         {
-          "title": "Context propagation \u2014 primary reference",
+          "title": "Context propagation \u2014 primary documentation",
           "url": "https://opentelemetry.io/docs/concepts/context-propagation/"
         }
       ]
@@ -518,25 +461,22 @@
       "id": "observability-lesson-20",
       "topic": "observability",
       "title": "Correlation",
-      "summary": "How can logs and traces complement each other? Shared identifiers connect detailed events to request paths.",
+      "summary": "Correlation connects signals using shared attributes such as trace ID, service identity and time.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "Correlation connects signals using shared attributes such as trace ID, service identity and time."
+        },
+        {
           "heading": "How it works",
-          "body": "Correlation requires consistent identifiers and suitable access controls."
-        },
-        {
-          "heading": "Apply it",
-          "body": "An error log is difficult to connect to a slow request. Include relevant trace or operation identifiers in structured logs."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "A timestamp alone always uniquely identifies a distributed request. This is not a sound assumption; shared identifiers connect detailed events to request paths."
+          "body": "A log linked to a trace can explain a slow span while metrics show prevalence. Correlated timing alone does not establish causation. Check whether populations, clocks and deployment versions align before drawing conclusions."
         }
       ],
-      "takeaway": "Correlation requires consistent identifiers and suitable access controls.",
+      "command": "",
+      "takeaway": "A log linked to a trace can explain a slow span while metrics show prevalence. Correlated timing alone does not establish causation. Check whether populations, clocks and deployment versions align before drawing conclusions.",
       "references": [
         {
-          "title": "Correlation \u2014 primary reference",
+          "title": "Correlation \u2014 primary documentation",
           "url": "https://opentelemetry.io/docs/concepts/context-propagation/"
         }
       ]
@@ -545,25 +485,22 @@
       "id": "observability-lesson-21",
       "topic": "observability",
       "title": "Sensitive telemetry",
-      "summary": "Why minimize sensitive data in telemetry? Logs traces and labels can become secondary stores of private data.",
+      "summary": "Telemetry can contain credentials, personal information and business-sensitive payloads.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "Telemetry can contain credentials, personal information and business-sensitive payloads."
+        },
+        {
           "heading": "How it works",
-          "body": "Collection controls retention and access policy all matter."
-        },
-        {
-          "heading": "Apply it",
-          "body": "Request headers containing credentials are exported in traces. Stop or redact collection and address existing exposure."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "Observability data is automatically exempt from privacy requirements. This is not a sound assumption; logs traces and labels can become secondary stores of private data."
+          "body": "Collect only useful fields, redact at the source where possible and restrict access and retention. A later dashboard mask does not remove data already stored. Review exception messages, URLs and high-cardinality attributes for accidental disclosure."
         }
       ],
-      "takeaway": "Collection controls retention and access policy all matter.",
+      "command": "",
+      "takeaway": "Collect only useful fields, redact at the source where possible and restrict access and retention. A later dashboard mask does not remove data already stored. Review exception messages, URLs and high-cardinality attributes for accidental disclosure.",
       "references": [
         {
-          "title": "Sensitive telemetry \u2014 primary reference",
+          "title": "Sensitive telemetry \u2014 primary documentation",
           "url": "https://opentelemetry.io/docs/security/"
         }
       ]
@@ -572,25 +509,22 @@
       "id": "observability-lesson-22",
       "topic": "observability",
       "title": "Retention",
-      "summary": "How should telemetry retention be chosen? Balance operational investigation requirements cost and data sensitivity.",
+      "summary": "Retention defines how long telemetry is kept and at what resolution.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "Retention defines how long telemetry is kept and at what resolution."
+        },
+        {
           "heading": "How it works",
-          "body": "Different signal types may justify different retention periods."
-        },
-        {
-          "heading": "Apply it",
-          "body": "Incident analysis needs data already removed by an overly short policy. Review investigation windows and set deliberate tiered retention."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "All telemetry should be kept forever regardless of sensitivity. This is not a sound assumption; balance operational investigation requirements cost and data sensitivity."
+          "body": "Longer retention supports historical investigations but costs storage and increases exposure. Downsampling preserves some trends while losing detail. Align retention with incident response needs and ensure deletion policies cover backups and derived datasets where required."
         }
       ],
-      "takeaway": "Different signal types may justify different retention periods.",
+      "command": "",
+      "takeaway": "Longer retention supports historical investigations but costs storage and increases exposure. Downsampling preserves some trends while losing detail. Align retention with incident response needs and ensure deletion policies cover backups and derived datasets where required.",
       "references": [
         {
-          "title": "Retention \u2014 primary reference",
+          "title": "Retention \u2014 primary documentation",
           "url": "https://opentelemetry.io/docs/security/"
         }
       ]
@@ -599,25 +533,22 @@
       "id": "observability-lesson-23",
       "topic": "observability",
       "title": "Telemetry pipelines",
-      "summary": "What can collector backpressure affect? Delivery delay or loss when telemetry production exceeds processing capacity.",
+      "summary": "A telemetry pipeline receives, processes and exports signals between applications and backends.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "A telemetry pipeline receives, processes and exports signals between applications and backends."
+        },
+        {
           "heading": "How it works",
-          "body": "Buffers retries and drop behavior need explicit monitoring."
-        },
-        {
-          "heading": "Apply it",
-          "body": "Telemetry disappears during peak load while applications still run. Inspect collector queues drops and downstream capacity."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "Collectors have infinite buffering by default. This is not a sound assumption; delivery delay or loss when telemetry production exceeds processing capacity."
+          "body": "Queues, batching, retries and memory limits affect reliability under backpressure. A blocked exporter can exhaust collector memory or drop data. Monitor queue age, refused data and export failures independently of application metrics."
         }
       ],
-      "takeaway": "Buffers retries and drop behavior need explicit monitoring.",
+      "command": "",
+      "takeaway": "Queues, batching, retries and memory limits affect reliability under backpressure. A blocked exporter can exhaust collector memory or drop data. Monitor queue age, refused data and export failures independently of application metrics.",
       "references": [
         {
-          "title": "Telemetry pipelines \u2014 primary reference",
+          "title": "Telemetry pipelines \u2014 primary documentation",
           "url": "https://opentelemetry.io/docs/collector/"
         }
       ]
@@ -626,25 +557,22 @@
       "id": "observability-lesson-24",
       "topic": "observability",
       "title": "Resource identity",
-      "summary": "Why use consistent resource attributes? Identify the service environment and instance producing telemetry.",
+      "summary": "Resource attributes identify the entity producing telemetry, such as service, environment and instance.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "Resource attributes identify the entity producing telemetry, such as service, environment and instance."
+        },
+        {
           "heading": "How it works",
-          "body": "Inconsistent identity makes cross-signal queries unreliable."
-        },
-        {
-          "heading": "Apply it",
-          "body": "Production and staging telemetry appear under indistinguishable identities. Standardize service and environment attributes."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "Every exporter automatically knows the correct deployment environment. This is not a sound assumption; identify the service environment and instance producing telemetry."
+          "body": "Consistent identity enables correct grouping across metrics, logs and traces. A changing or missing service name can fragment a dashboard. Avoid using unstable instance identifiers where a stable service-level aggregation is intended."
         }
       ],
-      "takeaway": "Inconsistent identity makes cross-signal queries unreliable.",
+      "command": "",
+      "takeaway": "Consistent identity enables correct grouping across metrics, logs and traces. A changing or missing service name can fragment a dashboard. Avoid using unstable instance identifiers where a stable service-level aggregation is intended.",
       "references": [
         {
-          "title": "Resource identity \u2014 primary reference",
+          "title": "Resource identity \u2014 primary documentation",
           "url": "https://opentelemetry.io/docs/concepts/resources/"
         }
       ]
@@ -653,25 +581,22 @@
       "id": "observability-lesson-25",
       "topic": "observability",
       "title": "Clock skew",
-      "summary": "How can clock skew affect distributed investigation? Timestamps across hosts may imply a misleading event order.",
+      "summary": "Clock skew is disagreement between clocks used to timestamp events.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "Clock skew is disagreement between clocks used to timestamp events."
+        },
+        {
           "heading": "How it works",
-          "body": "Trace relationships and measured durations provide context beyond wall time."
-        },
-        {
-          "heading": "Apply it",
-          "body": "A downstream log appears earlier than the upstream request. Inspect time synchronization and causal identifiers."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "Wall timestamps always establish exact causal order. This is not a sound assumption; timestamps across hosts may imply a misleading event order."
+          "body": "It can make cross-host logs appear out of order and distort apparent span timing. Synchronize wall clocks and use causal IDs and monotonic durations where appropriate. Do not infer a negative processing duration is an application behavior without checking clocks."
         }
       ],
-      "takeaway": "Trace relationships and measured durations provide context beyond wall time.",
+      "command": "",
+      "takeaway": "It can make cross-host logs appear out of order and distort apparent span timing. Synchronize wall clocks and use causal IDs and monotonic durations where appropriate. Do not infer a negative processing duration is an application behavior without checking clocks.",
       "references": [
         {
-          "title": "Clock skew \u2014 primary reference",
+          "title": "Clock skew \u2014 primary documentation",
           "url": "https://sre.google/workbook/monitoring/"
         }
       ]
@@ -680,25 +605,22 @@
       "id": "observability-lesson-26",
       "topic": "observability",
       "title": "RED signals",
-      "summary": "What does RED focus on for request-driven services? Rate errors and duration.",
+      "summary": "RED tracks request rate, errors and duration for request-driven services.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "RED tracks request rate, errors and duration for request-driven services."
+        },
+        {
           "heading": "How it works",
-          "body": "Resource saturation signals can complement request-centric indicators."
-        },
-        {
-          "heading": "Apply it",
-          "body": "A service needs an initial user-impact dashboard. Measure traffic error behavior and latency with clear request definitions."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "RED means only disk capacity and host uptime. This is not a sound assumption; rate errors and duration."
+          "body": "It starts diagnosis from demand, success and user-perceived speed. Define what counts as a request and error for the service. Pair RED with resource and dependency signals when investigating the cause."
         }
       ],
-      "takeaway": "Resource saturation signals can complement request-centric indicators.",
+      "command": "",
+      "takeaway": "It starts diagnosis from demand, success and user-perceived speed. Define what counts as a request and error for the service. Pair RED with resource and dependency signals when investigating the cause.",
       "references": [
         {
-          "title": "RED signals \u2014 primary reference",
+          "title": "RED signals \u2014 primary documentation",
           "url": "https://sre.google/workbook/monitoring/"
         }
       ]
@@ -707,25 +629,22 @@
       "id": "observability-lesson-27",
       "topic": "observability",
       "title": "USE signals",
-      "summary": "What does USE examine for resources? Utilization saturation and errors.",
+      "summary": "USE examines utilization, saturation and errors for each resource.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "USE examines utilization, saturation and errors for each resource."
+        },
+        {
           "heading": "How it works",
-          "body": "Resource analysis complements service-level symptoms."
-        },
-        {
-          "heading": "Apply it",
-          "body": "A device shows moderate utilization but growing queues. Inspect saturation and errors as well as utilization."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "USE is a substitute for every user-facing SLI. This is not a sound assumption; utilization saturation and errors."
+          "body": "CPU busy time, runnable queues and hardware errors answer different questions. High utilization without saturation may be acceptable; a queue can reveal a bottleneck before average utilization looks extreme. Inventory relevant resources rather than checking CPU alone."
         }
       ],
-      "takeaway": "Resource analysis complements service-level symptoms.",
+      "command": "",
+      "takeaway": "CPU busy time, runnable queues and hardware errors answer different questions. High utilization without saturation may be acceptable; a queue can reveal a bottleneck before average utilization looks extreme. Inventory relevant resources rather than checking CPU alone.",
       "references": [
         {
-          "title": "USE signals \u2014 primary reference",
+          "title": "USE signals \u2014 primary documentation",
           "url": "https://sre.google/workbook/monitoring/"
         }
       ]
@@ -734,25 +653,22 @@
       "id": "observability-lesson-28",
       "topic": "observability",
       "title": "Synthetic checks",
-      "summary": "What can synthetic monitoring provide? Active checks of selected user journeys or endpoints.",
+      "summary": "Synthetic checks execute controlled probes of selected user paths.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "Synthetic checks execute controlled probes of selected user paths."
+        },
+        {
           "heading": "How it works",
-          "body": "Synthetic coverage is limited to what the check actually exercises."
-        },
-        {
-          "heading": "Apply it",
-          "body": "A homepage check passes while checkout is broken. Add a representative checkout check with safe test data."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "One successful synthetic proves every user path works. This is not a sound assumption; active checks of selected user journeys or endpoints."
+          "body": "They can detect failures before organic traffic arrives and test outside-in availability. Probe location, credentials and test data determine coverage. A simple health endpoint cannot represent a full checkout or login transaction."
         }
       ],
-      "takeaway": "Synthetic coverage is limited to what the check actually exercises.",
+      "command": "",
+      "takeaway": "They can detect failures before organic traffic arrives and test outside-in availability. Probe location, credentials and test data determine coverage. A simple health endpoint cannot represent a full checkout or login transaction.",
       "references": [
         {
-          "title": "Synthetic checks \u2014 primary reference",
+          "title": "Synthetic checks \u2014 primary documentation",
           "url": "https://sre.google/workbook/monitoring/"
         }
       ]
@@ -761,25 +677,22 @@
       "id": "observability-lesson-29",
       "topic": "observability",
       "title": "Instrumentation cost",
-      "summary": "Why measure instrumentation overhead? Telemetry collection can consume CPU memory network and storage.",
+      "summary": "Instrumentation consumes CPU, memory, network and backend capacity.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "Instrumentation consumes CPU, memory, network and backend capacity."
+        },
+        {
           "heading": "How it works",
-          "body": "Sampling batching and cardinality controls can reduce cost."
-        },
-        {
-          "heading": "Apply it",
-          "body": "Detailed tracing adds material latency under peak load. Measure overhead and tune collection to preserve useful evidence."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "Instrumentation has zero performance impact by definition. This is not a sound assumption; telemetry collection can consume CPU memory network and storage."
+          "body": "High event volume, expensive labels and synchronous export can affect the application being measured. Bound overhead, batch exports and test under load. More telemetry is useful only when it improves decisions at an acceptable cost."
         }
       ],
-      "takeaway": "Sampling batching and cardinality controls can reduce cost.",
+      "command": "",
+      "takeaway": "High event volume, expensive labels and synchronous export can affect the application being measured. Bound overhead, batch exports and test under load. More telemetry is useful only when it improves decisions at an acceptable cost.",
       "references": [
         {
-          "title": "Instrumentation cost \u2014 primary reference",
+          "title": "Instrumentation cost \u2014 primary documentation",
           "url": "https://opentelemetry.io/docs/collector/"
         }
       ]
@@ -788,30 +701,563 @@
       "id": "observability-lesson-30",
       "topic": "observability",
       "title": "Evidence and causality",
-      "summary": "Why distinguish correlation from causation in dashboards? Simultaneous changes do not prove one caused the other.",
+      "summary": "Observability evidence supports hypotheses about why a system behaves as it does.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "Observability evidence supports hypotheses about why a system behaves as it does."
+        },
+        {
           "heading": "How it works",
-          "body": "Hypotheses need supporting evidence and controlled verification where possible."
-        },
-        {
-          "heading": "Apply it",
-          "body": "Latency and CPU rise together after a release. Test a plausible causal hypothesis using traces changes and dependency evidence."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "Two aligned graph spikes prove a causal relationship. This is not a sound assumption; simultaneous changes do not prove one caused the other."
+          "body": "Compare affected and unaffected cohorts, align changes with the timeline and test predictions. A graph moving at the same time as an outage is a clue, not proof. Record uncertainty and seek evidence that could disprove the leading hypothesis."
         }
       ],
-      "takeaway": "Hypotheses need supporting evidence and controlled verification where possible.",
+      "command": "",
+      "takeaway": "Compare affected and unaffected cohorts, align changes with the timeline and test predictions. A graph moving at the same time as an outage is a clue, not proof. Record uncertainty and seek evidence that could disprove the leading hypothesis.",
       "references": [
         {
-          "title": "Evidence and causality \u2014 primary reference",
+          "title": "Evidence and causality \u2014 primary documentation",
           "url": "https://sre.google/workbook/monitoring/"
         }
       ]
     }
   ],
-  "commands": [],
-  "debugging": []
+  "commands": [
+    {
+      "id": "observability-command-01",
+      "topic": "observability",
+      "title": "Scrape availability",
+      "command": "up{job=\"api\"}",
+      "kind": "PromQL query",
+      "definition": "A PromQL selector returns the latest scrape-success signal for matching targets.",
+      "purpose": "Check whether the collector can currently retrieve target metrics.",
+      "environment": "PromQL query, not shell. Scrape health is not application health.",
+      "expectedOutput": "{instance=\"host:9090\",job=\"api\"} 1",
+      "interpretation": "1 means a successful scrape and 0 a failed scrape; missing targets may produce no series.",
+      "safety": "PromQL query, not shell. Scrape health is not application health.",
+      "references": [
+        {
+          "title": "Scrape availability \u2014 primary documentation",
+          "url": "https://prometheus.io/docs/prometheus/latest/querying/functions/"
+        }
+      ]
+    },
+    {
+      "id": "observability-command-02",
+      "topic": "observability",
+      "title": "Counter rate",
+      "command": "rate(http_requests_total{job=\"api\"}[5m])",
+      "kind": "PromQL query",
+      "definition": "Calculates a reset-aware per-second rate for each counter series.",
+      "purpose": "Turn a cumulative request counter into recent throughput.",
+      "environment": "Illustrative metric; use a window with enough samples for the scrape interval.",
+      "expectedOutput": "{instance=\"a\",status=\"200\"} 12.5",
+      "interpretation": "Each result retains source labels; apply rate before aggregating different instances.",
+      "safety": "Illustrative metric; use a window with enough samples for the scrape interval.",
+      "references": [
+        {
+          "title": "Counter rate \u2014 primary documentation",
+          "url": "https://prometheus.io/docs/prometheus/latest/querying/functions/"
+        }
+      ]
+    },
+    {
+      "id": "observability-command-03",
+      "topic": "observability",
+      "title": "Aggregated throughput",
+      "command": "sum by (job) (rate(http_requests_total[5m]))",
+      "kind": "Shell command",
+      "definition": "Aggregates per-series request rates by service job.",
+      "purpose": "Compare service traffic without averaging raw counters.",
+      "environment": "PromQL; label names and counting semantics must match instrumentation.",
+      "expectedOutput": "{job=\"api\"} 125",
+      "interpretation": "One output series per job shows requests per second across instances.",
+      "safety": "PromQL; label names and counting semantics must match instrumentation.",
+      "references": [
+        {
+          "title": "Aggregated throughput \u2014 primary documentation",
+          "url": "https://man7.org/linux/man-pages/"
+        }
+      ]
+    },
+    {
+      "id": "observability-command-04",
+      "topic": "observability",
+      "title": "Error ratio",
+      "command": "sum(rate(http_requests_total{job=\"api\",status=~\"5..\"}[5m])) / sum(rate(http_requests_total{job=\"api\"}[5m]))",
+      "kind": "PromQL query",
+      "definition": "Computes a ratio of server-error requests to total requests.",
+      "purpose": "Monitor a defined failure population alongside traffic.",
+      "environment": "PromQL example; 5xx-only may omit business failures or client-visible timeouts.",
+      "expectedOutput": "0.02",
+      "interpretation": "0.02 means 2% under this definition; absent traffic requires separate interpretation.",
+      "safety": "PromQL example; 5xx-only may omit business failures or client-visible timeouts.",
+      "references": [
+        {
+          "title": "Error ratio \u2014 primary documentation",
+          "url": "https://prometheus.io/docs/prometheus/latest/querying/functions/"
+        }
+      ]
+    },
+    {
+      "id": "observability-command-05",
+      "topic": "observability",
+      "title": "Classic histogram p95",
+      "command": "histogram_quantile(0.95, sum by (le) (rate(http_request_duration_seconds_bucket{job=\"api\"}[5m])))",
+      "kind": "PromQL query",
+      "definition": "Estimates p95 latency from cumulative classic histogram buckets.",
+      "purpose": "Inspect the slow tail across instances.",
+      "environment": "PromQL for classic histograms; native histogram syntax and semantics differ.",
+      "expectedOutput": "0.25",
+      "interpretation": "Result is seconds; le must remain in aggregation and bucket layout limits precision.",
+      "safety": "PromQL for classic histograms; native histogram syntax and semantics differ.",
+      "references": [
+        {
+          "title": "Classic histogram p95 \u2014 primary documentation",
+          "url": "https://prometheus.io/docs/prometheus/latest/querying/functions/"
+        }
+      ]
+    },
+    {
+      "id": "observability-command-06",
+      "topic": "observability",
+      "title": "Mean latency",
+      "command": "sum(rate(http_request_duration_seconds_sum{job=\"api\"}[5m])) / sum(rate(http_request_duration_seconds_count{job=\"api\"}[5m]))",
+      "kind": "PromQL query",
+      "definition": "Divides observed duration accumulation by observation count.",
+      "purpose": "Compare mean latency with tail behavior.",
+      "environment": "PromQL; requires matching sum/count series and a nonempty population.",
+      "expectedOutput": "0.08",
+      "interpretation": "The unit is seconds per observation; a healthy mean can coexist with a bad p99.",
+      "safety": "PromQL; requires matching sum/count series and a nonempty population.",
+      "references": [
+        {
+          "title": "Mean latency \u2014 primary documentation",
+          "url": "https://prometheus.io/docs/prometheus/latest/querying/functions/"
+        }
+      ]
+    },
+    {
+      "id": "observability-command-07",
+      "topic": "observability",
+      "title": "Absent target signal",
+      "command": "absent(up{job=\"api\"})",
+      "kind": "PromQL query",
+      "definition": "Returns a signal when no matching series exists.",
+      "purpose": "Detect disappearance from discovery rather than only failed scrapes.",
+      "environment": "PromQL; use expected-target inventory for per-instance absence rather than this service-wide check alone.",
+      "expectedOutput": "{job=\"api\"} 1",
+      "interpretation": "A returned 1 means the selector has no series; an empty result means at least one match exists.",
+      "safety": "PromQL; use expected-target inventory for per-instance absence rather than this service-wide check alone.",
+      "references": [
+        {
+          "title": "Absent target signal \u2014 primary documentation",
+          "url": "https://prometheus.io/docs/prometheus/latest/querying/functions/"
+        }
+      ]
+    },
+    {
+      "id": "observability-command-08",
+      "topic": "observability",
+      "title": "Counter resets",
+      "command": "resets(http_requests_total{job=\"api\"}[1h])",
+      "kind": "PromQL query",
+      "definition": "Counts observed decreases in a counter over one hour.",
+      "purpose": "Correlate rate changes with restarts or instrumentation resets.",
+      "environment": "PromQL; resets are not automatically application failures.",
+      "expectedOutput": "{instance=\"a\"} 2",
+      "interpretation": "A positive result identifies resets within that series; replacement labels can instead create a new series.",
+      "safety": "PromQL; resets are not automatically application failures.",
+      "references": [
+        {
+          "title": "Counter resets \u2014 primary documentation",
+          "url": "https://prometheus.io/docs/prometheus/latest/querying/functions/"
+        }
+      ]
+    },
+    {
+      "id": "observability-command-09",
+      "topic": "observability",
+      "title": "Configuration validation",
+      "command": "promtool check config prometheus.yml",
+      "kind": "Shell command",
+      "definition": "Validates Prometheus configuration and referenced rule files.",
+      "purpose": "Catch invalid configuration before a controlled reload.",
+      "environment": "Local validation; use a trusted configuration and installed promtool matching deployment expectations.",
+      "expectedOutput": "SUCCESS: prometheus.yml is valid prometheus config file syntax",
+      "interpretation": "SUCCESS indicates accepted syntax and referenced-file checks, not target reachability.",
+      "safety": "Local validation; use a trusted configuration and installed promtool matching deployment expectations.",
+      "references": [
+        {
+          "title": "Configuration validation \u2014 primary documentation",
+          "url": "https://prometheus.io/docs/prometheus/latest/command-line/promtool/"
+        }
+      ]
+    },
+    {
+      "id": "observability-command-10",
+      "topic": "observability",
+      "title": "Rule validation",
+      "command": "promtool check rules alerts.yml",
+      "kind": "Shell command",
+      "definition": "Checks recording and alerting rule syntax.",
+      "purpose": "Find invalid expressions before publishing rules.",
+      "environment": "Local read-only validation; add rule tests for behavioral expectations.",
+      "expectedOutput": "SUCCESS: ... rules found",
+      "interpretation": "Read file and rule errors; a valid expression can still measure the wrong population.",
+      "safety": "Local read-only validation; add rule tests for behavioral expectations.",
+      "references": [
+        {
+          "title": "Rule validation \u2014 primary documentation",
+          "url": "https://prometheus.io/docs/prometheus/latest/command-line/promtool/"
+        }
+      ]
+    },
+    {
+      "id": "observability-command-11",
+      "topic": "observability",
+      "title": "Rule unit tests",
+      "command": "promtool test rules tests.yml",
+      "kind": "Shell command",
+      "definition": "Runs rule tests against supplied input series and expected results.",
+      "purpose": "Verify alert timing and query behavior under resets, gaps and failures.",
+      "environment": "Runs local test definitions; fixtures should include missing data and recovery.",
+      "expectedOutput": "SUCCESS",
+      "interpretation": "PASS means the specified cases matched; untested scenarios remain unknown.",
+      "safety": "Runs local test definitions; fixtures should include missing data and recovery.",
+      "references": [
+        {
+          "title": "Rule unit tests \u2014 primary documentation",
+          "url": "https://prometheus.io/docs/prometheus/latest/command-line/promtool/"
+        }
+      ]
+    },
+    {
+      "id": "observability-command-12",
+      "topic": "observability",
+      "title": "Metrics endpoint sample",
+      "command": "curl -fsS --max-time 5 http://127.0.0.1:9090/metrics",
+      "kind": "Shell command",
+      "definition": "Retrieves a local Prometheus-format metrics endpoint.",
+      "purpose": "Check that exposition exists and inspect metric names and labels.",
+      "environment": "Read-only HTTP request; endpoint and port are examples and output may expose infrastructure metadata.",
+      "expectedOutput": "# TYPE prometheus_build_info gauge",
+      "interpretation": "HELP and TYPE describe metric families; sample labels define individual series.",
+      "safety": "Read-only HTTP request; endpoint and port are examples and output may expose infrastructure metadata.",
+      "references": [
+        {
+          "title": "Metrics endpoint sample \u2014 primary documentation",
+          "url": "https://curl.se/docs/manpage.html"
+        }
+      ]
+    }
+  ],
+  "debugging": [
+    {
+      "id": "observability-scenario-guide-01",
+      "topic": "observability",
+      "title": "Dashboard green during outage",
+      "symptom": "The application is unavailable but the dashboard shows no errors.",
+      "steps": [
+        {
+          "action": "Inspect and diagnose",
+          "command": "up{job=\"api\"}",
+          "evidence": "Check whether telemetry is missing, targets disappeared or the error population excludes timeouts. Compare an outside-in request with scrape health and discovery."
+        },
+        {
+          "action": "Fix the evidenced cause",
+          "evidence": "Repair collection or the SLI definition, and add explicit missing-data detection. Do not turn missing series into zero errors without justification."
+        },
+        {
+          "action": "Verify recovery",
+          "evidence": "Simulate both application failure and telemetry loss; verify each produces the intended distinct signal."
+        }
+      ],
+      "references": [
+        {
+          "title": "Dashboard green during outage \u2014 primary documentation",
+          "url": "https://opentelemetry.io/docs/concepts/observability-primer/"
+        },
+        {
+          "title": "Diagnostic tool \u2014 primary documentation",
+          "url": "https://prometheus.io/docs/prometheus/latest/querying/functions/"
+        }
+      ]
+    },
+    {
+      "id": "observability-scenario-guide-02",
+      "topic": "observability",
+      "title": "Cardinality explosion",
+      "symptom": "Metrics storage memory and ingestion volume spike after a release.",
+      "steps": [
+        {
+          "action": "Inspect and diagnose",
+          "command": "promtool check config prometheus.yml",
+          "evidence": "Inspect newly added labels and series growth. User IDs, request IDs or raw URLs can create unbounded combinations even when metric syntax is valid."
+        },
+        {
+          "action": "Fix the evidenced cause",
+          "evidence": "Remove or bound high-cardinality labels at instrumentation or ingestion, preserving useful aggregates. Control rollout and cleanup according to backend behavior."
+        },
+        {
+          "action": "Verify recovery",
+          "evidence": "Compare series count, ingestion pressure and query latency after the change while confirming important dimensions remain available."
+        }
+      ],
+      "references": [
+        {
+          "title": "Cardinality explosion \u2014 primary documentation",
+          "url": "https://opentelemetry.io/docs/concepts/observability-primer/"
+        },
+        {
+          "title": "Diagnostic tool \u2014 primary documentation",
+          "url": "https://prometheus.io/docs/prometheus/latest/command-line/promtool/"
+        }
+      ]
+    },
+    {
+      "id": "observability-scenario-guide-03",
+      "topic": "observability",
+      "title": "Incorrect aggregate p99",
+      "symptom": "A dashboard averages instance p99 values and reports misleading latency.",
+      "steps": [
+        {
+          "action": "Inspect and diagnose",
+          "command": "histogram_quantile(0.99, sum by (le) (rate(http_request_duration_seconds_bucket{job=\"api\"}[5m])))",
+          "evidence": "Compare traffic weights and bucket populations across instances. Percentiles are not generally composable by arithmetic averaging."
+        },
+        {
+          "action": "Fix the evidenced cause",
+          "evidence": "Aggregate compatible histogram distributions before estimating a service percentile, or use an explicitly defined threshold SLI."
+        },
+        {
+          "action": "Verify recovery",
+          "evidence": "Test with uneven traffic and latency distributions and compare the query with known expected behavior."
+        }
+      ],
+      "references": [
+        {
+          "title": "Incorrect aggregate p99 \u2014 primary documentation",
+          "url": "https://opentelemetry.io/docs/concepts/observability-primer/"
+        },
+        {
+          "title": "Diagnostic tool \u2014 primary documentation",
+          "url": "https://prometheus.io/docs/prometheus/latest/querying/functions/"
+        }
+      ]
+    },
+    {
+      "id": "observability-scenario-guide-04",
+      "topic": "observability",
+      "title": "Rate spike after restart",
+      "symptom": "A counter chart shows a huge spike or negative result after a process restart.",
+      "steps": [
+        {
+          "action": "Inspect and diagnose",
+          "command": "resets(http_requests_total{job=\"api\"}[1h])",
+          "evidence": "Check whether raw differences or aggregation were applied before reset-aware rate calculation. Also inspect changing instance labels."
+        },
+        {
+          "action": "Fix the evidenced cause",
+          "evidence": "Apply rate per counter series before aggregation and use an appropriate sample window. Correct instrumentation if the metric is not actually a counter."
+        },
+        {
+          "action": "Verify recovery",
+          "evidence": "Test restart fixtures and verify the calculated request rate remains consistent with generated traffic."
+        }
+      ],
+      "references": [
+        {
+          "title": "Rate spike after restart \u2014 primary documentation",
+          "url": "https://opentelemetry.io/docs/concepts/observability-primer/"
+        },
+        {
+          "title": "Diagnostic tool \u2014 primary documentation",
+          "url": "https://prometheus.io/docs/prometheus/latest/querying/functions/"
+        }
+      ]
+    },
+    {
+      "id": "observability-scenario-guide-05",
+      "topic": "observability",
+      "title": "Alert never fires",
+      "symptom": "An obvious sustained error does not produce a notification.",
+      "steps": [
+        {
+          "action": "Inspect and diagnose",
+          "command": "promtool check rules alerts.yml",
+          "evidence": "Separate rule loading, expression results, pending duration, routing, silences and inhibition. A valid rule file does not prove the expression matches labels."
+        },
+        {
+          "action": "Fix the evidenced cause",
+          "evidence": "Correct the specific broken stage and add rule and routing tests. Avoid removing all inhibition globally without understanding dependencies."
+        },
+        {
+          "action": "Verify recovery",
+          "evidence": "Inject a controlled test condition and verify firing, recipient routing and resolution notifications within expected timing."
+        }
+      ],
+      "references": [
+        {
+          "title": "Alert never fires \u2014 primary documentation",
+          "url": "https://opentelemetry.io/docs/concepts/observability-primer/"
+        },
+        {
+          "title": "Diagnostic tool \u2014 primary documentation",
+          "url": "https://prometheus.io/docs/prometheus/latest/command-line/promtool/"
+        }
+      ]
+    },
+    {
+      "id": "observability-scenario-guide-06",
+      "topic": "observability",
+      "title": "Alert flood during shared failure",
+      "symptom": "A database incident generates hundreds of dependent-service notifications.",
+      "steps": [
+        {
+          "action": "Inspect and diagnose",
+          "command": "promtool check config prometheus.yml",
+          "evidence": "Identify common dependency and labels used for grouping and inhibition. Confirm independent incidents would remain distinguishable."
+        },
+        {
+          "action": "Fix the evidenced cause",
+          "evidence": "Group related alerts and introduce narrowly matched inhibition for dependency symptoms while keeping the primary actionable alert visible."
+        },
+        {
+          "action": "Verify recovery",
+          "evidence": "Test shared and unrelated failures together, then recovery, to ensure suppression is scoped and released correctly."
+        }
+      ],
+      "references": [
+        {
+          "title": "Alert flood during shared failure \u2014 primary documentation",
+          "url": "https://opentelemetry.io/docs/concepts/observability-primer/"
+        },
+        {
+          "title": "Diagnostic tool \u2014 primary documentation",
+          "url": "https://prometheus.io/docs/prometheus/latest/command-line/promtool/"
+        }
+      ]
+    },
+    {
+      "id": "observability-scenario-guide-07",
+      "topic": "observability",
+      "title": "Broken distributed trace",
+      "symptom": "Frontend spans exist but downstream work appears as unrelated traces.",
+      "steps": [
+        {
+          "action": "Inspect and diagnose",
+          "command": "curl -I https://example.com",
+          "evidence": "Inspect propagation headers or message metadata at each boundary and instrumentation compatibility. Check asynchronous context handling and sampling decisions."
+        },
+        {
+          "action": "Fix the evidenced cause",
+          "evidence": "Propagate supported trace context through clients, servers and queues without using it as authorization. Align resource identity and sampling policy."
+        },
+        {
+          "action": "Verify recovery",
+          "evidence": "Execute a known multi-service request and verify causal span relationships and correlated logs across the full path."
+        }
+      ],
+      "references": [
+        {
+          "title": "Broken distributed trace \u2014 primary documentation",
+          "url": "https://opentelemetry.io/docs/concepts/observability-primer/"
+        },
+        {
+          "title": "Diagnostic tool \u2014 primary documentation",
+          "url": "https://curl.se/docs/manpage.html"
+        }
+      ]
+    },
+    {
+      "id": "observability-scenario-guide-08",
+      "topic": "observability",
+      "title": "Collector drops data",
+      "symptom": "Telemetry gaps appear during peak traffic while applications stay healthy.",
+      "steps": [
+        {
+          "action": "Inspect and diagnose",
+          "command": "up{job=\"otel-collector\"}",
+          "evidence": "Inspect collector queue, export-failure, refused-data and memory signals using the deployed collector's actual metric names. Check backend throttling and network failures."
+        },
+        {
+          "action": "Fix the evidenced cause",
+          "evidence": "Bound queues and memory, tune batching/retries and restore exporter capacity. Reduce low-value volume if necessary rather than allowing unbounded buffering."
+        },
+        {
+          "action": "Verify recovery",
+          "evidence": "Run a controlled peak and confirm bounded memory, acceptable queue age and no unexpected data loss."
+        }
+      ],
+      "references": [
+        {
+          "title": "Collector drops data \u2014 primary documentation",
+          "url": "https://opentelemetry.io/docs/concepts/observability-primer/"
+        },
+        {
+          "title": "Diagnostic tool \u2014 primary documentation",
+          "url": "https://prometheus.io/docs/prometheus/latest/querying/functions/"
+        }
+      ]
+    },
+    {
+      "id": "observability-scenario-guide-09",
+      "topic": "observability",
+      "title": "Sensitive values in traces",
+      "symptom": "Trace attributes contain access tokens or personal payloads.",
+      "steps": [
+        {
+          "action": "Inspect and diagnose",
+          "command": "",
+          "evidence": "Identify the instrumentation field and every downstream storage/export path. Review the trace collector and SDK configuration directly, using restricted access to representative telemetry."
+        },
+        {
+          "action": "Fix the evidenced cause",
+          "evidence": "Stop collection of the sensitive field, rotate exposed credentials where relevant and remove retained data under policy. Prefer source-side minimization."
+        },
+        {
+          "action": "Verify recovery",
+          "evidence": "Use a safe sentinel value in a test request and verify it does not reach spans, logs or exports."
+        }
+      ],
+      "references": [
+        {
+          "title": "Sensitive values in traces \u2014 primary documentation",
+          "url": "https://opentelemetry.io/docs/concepts/observability-primer/"
+        }
+      ]
+    },
+    {
+      "id": "observability-scenario-guide-10",
+      "topic": "observability",
+      "title": "Causal conclusion from coincident graph",
+      "symptom": "A team blames CPU because it rose near the incident.",
+      "steps": [
+        {
+          "action": "Inspect and diagnose",
+          "command": "rate(http_requests_total{job=\"api\"}[5m])",
+          "evidence": "Align populations, time windows and deployments; compare affected and unaffected instances. CPU may be a consequence of retries rather than the initiating cause."
+        },
+        {
+          "action": "Fix the evidenced cause",
+          "evidence": "Test a bounded hypothesis with predicted outcomes and collect disconfirming evidence. Mitigate user impact while preserving uncertainty in the incident record."
+        },
+        {
+          "action": "Verify recovery",
+          "evidence": "Confirm the proposed cause explains the timeline and cohort differences and that the targeted fix changes the predicted signals."
+        }
+      ],
+      "references": [
+        {
+          "title": "Causal conclusion from coincident graph \u2014 primary documentation",
+          "url": "https://opentelemetry.io/docs/concepts/observability-primer/"
+        },
+        {
+          "title": "Diagnostic tool \u2014 primary documentation",
+          "url": "https://prometheus.io/docs/prometheus/latest/querying/functions/"
+        }
+      ]
+    }
+  ]
 }

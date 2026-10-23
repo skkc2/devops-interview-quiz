@@ -1,0 +1,30 @@
+Walk me through what happens after you submit a Deployment manifest, from the API request to a ready application.|Which part would you inspect if the object exists but no Pods appear?
+What is a Pod, and when would you put more than one container in it?|What lifecycle or resource-sharing problems can a sidecar introduce?
+How does a Deployment roll out a new version without taking down all replicas?|How would you choose maxSurge and maxUnavailable with limited cluster capacity?
+When would you choose a StatefulSet instead of a Deployment for a database?|What does StatefulSet identity not guarantee about database consistency?
+How would you deploy a node-level log collector and keep its rollout safe?|Why might a DaemonSet not run on every node?
+How would you run a scheduled reconciliation job that must tolerate retries?|How would you prevent overlapping runs and duplicate external effects?
+How would you separate several teams sharing one cluster?|Which isolation requirements are not solved by namespaces alone?
+A Service suddenly has no backends after a label change. How would you diagnose it?|How would you make label changes safe during a rollout?
+Explain the path from a client connecting to a Service to an application container.|How do port, targetPort and EndpointSlice readiness affect that path?
+A Pod resolves public names but not an internal service name. What would you check?|How would you distinguish DNS failure from a Service with unhealthy backends?
+How would you expose several HTTP applications through one cluster entry point?|What controller and TLS assumptions must hold for your routing objects to work?
+How would you implement default-deny networking without breaking required dependencies?|How would you prove the policy is enforced by the installed network plugin?
+How should an application receive configuration, and how would updates become effective?|How do environment variables differ from mounted configuration files?
+How would you deliver and rotate application credentials in Kubernetes?|Why is base64 encoding in a Secret not sufficient protection?
+How would you give a workload access to one Kubernetes API resource?|When would you disable automatic service-account credential mounting?
+A user can authenticate but receives Forbidden for a Pod operation. How would you investigate?|What is the difference between RoleBinding and ClusterRoleBinding scope?
+How would you choose CPU and memory requests and limits for a latency-sensitive service?|Why can CPU throttling occur on a host with idle cores?
+A Pod is Pending despite apparently free cluster capacity. What evidence would you gather?|How can affinity and volume topology change the feasible-node set?
+How would you reserve a node pool for a specialized workload?|Why is a toleration alone insufficient to guarantee placement there?
+Explain readiness, liveness and startup probes using a slow-starting service.|How can a poorly designed liveness probe amplify a dependency outage?
+How would you investigate a workload blocked by a Pending PVC?|What do access mode and reclaim policy mean for the application's lifecycle?
+What role do StorageClasses and CSI drivers play in dynamic provisioning?|Why might volume binding wait until a Pod is scheduled?
+An HPA does not add replicas under load. How would you diagnose it?|Which bottlenecks will more application replicas fail to solve?
+How would you design disruption budgets for a replicated critical service?|What kinds of failures does a PDB not prevent?
+Describe a safe node-maintenance procedure in a production cluster.|How would you handle blocked eviction and insufficient replacement capacity?
+How would you harden a container without breaking required file access?|How do non-root identity, capabilities and read-only filesystems complement each other?
+A deployment request is rejected by an admission webhook. How would you respond?|How can webhook availability affect the control plane's ability to accept changes?
+A rollout causes errors after a schema migration. Would you roll back?|How would you establish compatibility and choose rollback versus forward recovery?
+How would you investigate intermittent restarts across several replicas?|How would you combine events, previous logs and historical metrics?
+What would your Kubernetes disaster-recovery plan include beyond an etcd snapshot?|How would you test that restored applications can actually serve correct data?

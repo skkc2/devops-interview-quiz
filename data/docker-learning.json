@@ -5,26 +5,27 @@
       "id": "docker-lesson-01",
       "topic": "docker",
       "title": "Images and containers",
-      "summary": "What is the relationship between an image and a container? A container is a runtime instance created from an image.",
+      "summary": "An image is a packaged filesystem and configuration; a container is a running or stopped instance created from it.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "An image is a packaged filesystem and configuration; a container is a running or stopped instance created from it."
+        },
+        {
           "heading": "How it works",
-          "body": "Multiple containers can be created from the same image."
-        },
-        {
-          "heading": "Apply it",
-          "body": "A team edits a running container and expects future instances to include the fix. Rebuild and version the image with the intended change."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "An image is always a running process. This is not a sound assumption; a container is a runtime instance created from an image."
+          "body": "Containers add a writable layer and runtime settings such as mounts, limits and networks. Replacing a container does not change its source image. Persist required data outside the disposable writable layer."
         }
       ],
-      "takeaway": "Multiple containers can be created from the same image.",
+      "command": "docker ps -a",
+      "takeaway": "Containers add a writable layer and runtime settings such as mounts, limits and networks. Replacing a container does not change its source image. Persist required data outside the disposable writable layer.",
       "references": [
         {
-          "title": "Images and containers \u2014 primary reference",
+          "title": "Images and containers \u2014 primary documentation",
           "url": "https://docs.docker.com/engine/"
+        },
+        {
+          "title": "Related command \u2014 primary documentation",
+          "url": "https://docs.docker.com/reference/cli/docker/"
         }
       ]
     },
@@ -32,26 +33,27 @@
       "id": "docker-lesson-02",
       "topic": "docker",
       "title": "Layering",
-      "summary": "How are container image changes commonly represented? As filesystem layers plus image configuration.",
+      "summary": "Image layers record filesystem changes and can be shared between images.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "Image layers record filesystem changes and can be shared between images."
+        },
+        {
           "heading": "How it works",
-          "body": "Later layers can hide earlier files without removing their bytes from older layers."
-        },
-        {
-          "heading": "Apply it",
-          "body": "A secret was copied into an image and deleted in a later step. Rebuild without the secret and rotate any exposed credential."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "Deleting a file in a later layer always removes it from image history. This is not a sound assumption; as filesystem layers plus image configuration."
+          "body": "A later layer can hide a file without removing it from an earlier layer. Copying a secret and deleting it in a later instruction can leave the secret recoverable. Layer reuse reduces transfer and storage when content matches."
         }
       ],
-      "takeaway": "Later layers can hide earlier files without removing their bytes from older layers.",
+      "command": "docker image history IMAGE",
+      "takeaway": "A later layer can hide a file without removing it from an earlier layer. Copying a secret and deleting it in a later instruction can leave the secret recoverable. Layer reuse reduces transfer and storage when content matches.",
       "references": [
         {
-          "title": "Layering \u2014 primary reference",
+          "title": "Layering \u2014 primary documentation",
           "url": "https://docs.docker.com/engine/"
+        },
+        {
+          "title": "Related command \u2014 primary documentation",
+          "url": "https://docs.docker.com/reference/cli/docker/"
         }
       ]
     },
@@ -59,25 +61,22 @@
       "id": "docker-lesson-03",
       "topic": "docker",
       "title": "Dockerfiles",
-      "summary": "What does a Dockerfile describe? Instructions for building an image.",
+      "summary": "A Dockerfile describes build steps and default image metadata.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "A Dockerfile describes build steps and default image metadata."
+        },
+        {
           "heading": "How it works",
-          "body": "Build inputs and base versions affect reproducibility."
-        },
-        {
-          "heading": "Apply it",
-          "body": "A rebuild unexpectedly uses a changed base image tag. Review and pin the intended base version or digest."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "It is a live process supervisor for every host service. This is not a sound assumption; instructions for building an image."
+          "body": "FROM selects a base, RUN executes a build step, COPY adds files, and CMD or ENTRYPOINT defines startup behavior. Build-time and runtime environments differ. Pin dependencies and minimize unnecessary packages to make builds more predictable."
         }
       ],
-      "takeaway": "Build inputs and base versions affect reproducibility.",
+      "command": "",
+      "takeaway": "FROM selects a base, RUN executes a build step, COPY adds files, and CMD or ENTRYPOINT defines startup behavior. Build-time and runtime environments differ. Pin dependencies and minimize unnecessary packages to make builds more predictable.",
       "references": [
         {
-          "title": "Dockerfiles \u2014 primary reference",
+          "title": "Dockerfiles \u2014 primary documentation",
           "url": "https://docs.docker.com/engine/"
         }
       ]
@@ -86,26 +85,27 @@
       "id": "docker-lesson-04",
       "topic": "docker",
       "title": "Build context",
-      "summary": "What is the Docker build context? The set of files made available to the build.",
+      "summary": "The build context is the set of files available to a build.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "The build context is the set of files available to a build."
+        },
+        {
           "heading": "How it works",
-          "body": "A dockerignore file can exclude unnecessary or sensitive inputs."
-        },
-        {
-          "heading": "Apply it",
-          "body": "A build sends a large directory containing private files. Restrict context and add deliberate exclusion rules."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "It is only the Dockerfile text. This is not a sound assumption; the set of files made available to the build."
+          "body": "COPY paths are resolved within that context, and .dockerignore excludes unnecessary or sensitive files. A large context slows transfer and increases accidental disclosure risk. Keep credentials out of it and choose the intended context directory explicitly."
         }
       ],
-      "takeaway": "A dockerignore file can exclude unnecessary or sensitive inputs.",
+      "command": "docker build --check .",
+      "takeaway": "COPY paths are resolved within that context, and .dockerignore excludes unnecessary or sensitive files. A large context slows transfer and increases accidental disclosure risk. Keep credentials out of it and choose the intended context directory explicitly.",
       "references": [
         {
-          "title": "Build context \u2014 primary reference",
+          "title": "Build context \u2014 primary documentation",
           "url": "https://docs.docker.com/engine/"
+        },
+        {
+          "title": "Related command \u2014 primary documentation",
+          "url": "https://docs.docker.com/reference/cli/docker/"
         }
       ]
     },
@@ -113,26 +113,27 @@
       "id": "docker-lesson-05",
       "topic": "docker",
       "title": "Container logs",
-      "summary": "Where should a containerized service commonly send operational logs? To stdout and stderr for collection by the runtime.",
+      "summary": "Container logs expose output captured from the container's configured logging path, commonly stdout and stderr.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "Container logs expose output captured from the container's configured logging path, commonly stdout and stderr."
+        },
+        {
           "heading": "How it works",
-          "body": "Log retention and rotation still need explicit management."
-        },
-        {
-          "heading": "Apply it",
-          "body": "Host disk fills because container logs grow without rotation. Inspect the logging driver and configure bounded retention."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "Logs sent to stdout can never consume host storage. This is not a sound assumption; to stdout and stderr for collection by the runtime."
+          "body": "Application logs written only inside the filesystem may not appear in docker logs. Logging drivers and retention determine availability. Correlate timestamps with restart and deployment history instead of assuming the latest lines describe the failure."
         }
       ],
-      "takeaway": "Log retention and rotation still need explicit management.",
+      "command": "docker logs --tail 100 CONTAINER",
+      "takeaway": "Application logs written only inside the filesystem may not appear in docker logs. Logging drivers and retention determine availability. Correlate timestamps with restart and deployment history instead of assuming the latest lines describe the failure.",
       "references": [
         {
-          "title": "Container logs \u2014 primary reference",
+          "title": "Container logs \u2014 primary documentation",
           "url": "https://docs.docker.com/engine/"
+        },
+        {
+          "title": "Related command \u2014 primary documentation",
+          "url": "https://docs.docker.com/reference/cli/docker/"
         }
       ]
     },
@@ -140,26 +141,27 @@
       "id": "docker-lesson-06",
       "topic": "docker",
       "title": "Port publishing",
-      "summary": "What does Docker port publishing do? Map a host endpoint to a container port.",
+      "summary": "Publishing maps a host address and port to a container port.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "Publishing maps a host address and port to a container port."
+        },
+        {
           "heading": "How it works",
-          "body": "Exposing metadata alone does not publish a host port."
-        },
-        {
-          "heading": "Apply it",
-          "body": "A service listens inside a container but is unreachable on the host port. Check listener binding and the explicit port mapping."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "EXPOSE automatically opens every host firewall. This is not a sound assumption; map a host endpoint to a container port."
+          "body": "The application must still listen on the correct address inside the container. EXPOSE documents a port but does not publish it. Binding a published port to loopback can restrict host-side reachability compared with all interfaces."
         }
       ],
-      "takeaway": "Exposing metadata alone does not publish a host port.",
+      "command": "docker port CONTAINER",
+      "takeaway": "The application must still listen on the correct address inside the container. EXPOSE documents a port but does not publish it. Binding a published port to loopback can restrict host-side reachability compared with all interfaces.",
       "references": [
         {
-          "title": "Port publishing \u2014 primary reference",
+          "title": "Port publishing \u2014 primary documentation",
           "url": "https://docs.docker.com/engine/"
+        },
+        {
+          "title": "Related command \u2014 primary documentation",
+          "url": "https://docs.docker.com/reference/cli/docker/"
         }
       ]
     },
@@ -167,26 +169,27 @@
       "id": "docker-lesson-07",
       "topic": "docker",
       "title": "Volumes",
-      "summary": "Why use a volume for persistent container data? Its lifecycle can be managed separately from the container writable layer.",
+      "summary": "A Docker volume stores data independently of a particular container's writable layer.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "A Docker volume stores data independently of a particular container's writable layer."
+        },
+        {
           "heading": "How it works",
-          "body": "Volumes still require backup and access controls."
-        },
-        {
-          "heading": "Apply it",
-          "body": "A database loses data after its container is replaced. Move persistent data to appropriate managed storage and restore verified backups."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "Deleting any container always preserves its writable-layer data. This is not a sound assumption; its lifecycle can be managed separately from the container writable layer."
+          "body": "Mounting a volume at a path can obscure image content at that location. Container replacement preserves the volume unless it is separately removed. Backup consistency and ownership still depend on the application and filesystem."
         }
       ],
-      "takeaway": "Volumes still require backup and access controls.",
+      "command": "docker volume inspect VOLUME",
+      "takeaway": "Mounting a volume at a path can obscure image content at that location. Container replacement preserves the volume unless it is separately removed. Backup consistency and ownership still depend on the application and filesystem.",
       "references": [
         {
-          "title": "Volumes \u2014 primary reference",
+          "title": "Volumes \u2014 primary documentation",
           "url": "https://docs.docker.com/engine/"
+        },
+        {
+          "title": "Related command \u2014 primary documentation",
+          "url": "https://docs.docker.com/reference/cli/docker/"
         }
       ]
     },
@@ -194,26 +197,27 @@
       "id": "docker-lesson-08",
       "topic": "docker",
       "title": "Entrypoints",
-      "summary": "What is a benefit of exec-form ENTRYPOINT for a simple service? The service can run directly as the container's main process.",
+      "summary": "ENTRYPOINT and CMD define how a container starts and which default arguments it receives.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "ENTRYPOINT and CMD define how a container starts and which default arguments it receives."
+        },
+        {
           "heading": "How it works",
-          "body": "Signal forwarding differs when an intermediate shell is involved."
-        },
-        {
-          "heading": "Apply it",
-          "body": "A service ignores graceful stop because its shell wrapper mishandles signals. Use exec appropriately and verify stop behavior."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "Exec form starts an interactive shell by default. This is not a sound assumption; the service can run directly as the container's main process."
+          "body": "Exec-form startup passes signals more directly than a shell wrapper that does not exec its child. Runtime arguments can replace CMD or interact with ENTRYPOINT. Inspect the effective command when a container exits immediately."
         }
       ],
-      "takeaway": "Signal forwarding differs when an intermediate shell is involved.",
+      "command": "docker inspect CONTAINER",
+      "takeaway": "Exec-form startup passes signals more directly than a shell wrapper that does not exec its child. Runtime arguments can replace CMD or interact with ENTRYPOINT. Inspect the effective command when a container exits immediately.",
       "references": [
         {
-          "title": "Entrypoints \u2014 primary reference",
+          "title": "Entrypoints \u2014 primary documentation",
           "url": "https://docs.docker.com/engine/"
+        },
+        {
+          "title": "Related command \u2014 primary documentation",
+          "url": "https://docs.docker.com/reference/cli/docker/"
         }
       ]
     },
@@ -221,25 +225,22 @@
       "id": "docker-lesson-09",
       "topic": "docker",
       "title": "PID one",
-      "summary": "Why does the container's main process need careful child handling? It may need to reap children and handle termination signals.",
+      "summary": "The first process in a container's PID namespace has init-like responsibilities.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "The first process in a container's PID namespace has init-like responsibilities."
+        },
+        {
           "heading": "How it works",
-          "body": "A small init can help workloads that spawn child processes."
-        },
-        {
-          "heading": "Apply it",
-          "body": "A worker container accumulates zombie child processes. Inspect reaping behavior and use suitable process supervision."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "PID one automatically reaps every child in all applications. This is not a sound assumption; it may need to reap children and handle termination signals."
+          "body": "It must handle termination appropriately and reap exited children it owns. An application or wrapper that ignores signals can delay shutdown until forced termination. A small init process can help with forwarding and reaping where needed."
         }
       ],
-      "takeaway": "A small init can help workloads that spawn child processes.",
+      "command": "",
+      "takeaway": "It must handle termination appropriately and reap exited children it owns. An application or wrapper that ignores signals can delay shutdown until forced termination. A small init process can help with forwarding and reaping where needed.",
       "references": [
         {
-          "title": "PID one \u2014 primary reference",
+          "title": "PID one \u2014 primary documentation",
           "url": "https://docs.docker.com/engine/"
         }
       ]
@@ -248,26 +249,27 @@
       "id": "docker-lesson-10",
       "topic": "docker",
       "title": "Health checks",
-      "summary": "What does a Docker health check report? A health status based on the configured check result.",
+      "summary": "A container health check runs a configured probe to report application health separately from process existence.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "A container health check runs a configured probe to report application health separately from process existence."
+        },
+        {
           "heading": "How it works",
-          "body": "A health status alone does not guarantee automatic container restart."
-        },
-        {
-          "heading": "Apply it",
-          "body": "A container is unhealthy but still running. Inspect health output and configure the intended supervisory response."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "An unhealthy status always restarts the container in standalone Docker. This is not a sound assumption; a health status based on the configured check result."
+          "body": "A process may be alive while its service is unusable. Probe interval, timeout and startup behavior affect detection. A Docker health status alone does not guarantee an automatic restart; the surrounding orchestration policy matters."
         }
       ],
-      "takeaway": "A health status alone does not guarantee automatic container restart.",
+      "command": "docker inspect --format '{{json .State.Health}}' CONTAINER",
+      "takeaway": "A process may be alive while its service is unusable. Probe interval, timeout and startup behavior affect detection. A Docker health status alone does not guarantee an automatic restart; the surrounding orchestration policy matters.",
       "references": [
         {
-          "title": "Health checks \u2014 primary reference",
+          "title": "Health checks \u2014 primary documentation",
           "url": "https://docs.docker.com/engine/"
+        },
+        {
+          "title": "Related command \u2014 primary documentation",
+          "url": "https://docs.docker.com/reference/cli/docker/"
         }
       ]
     },
@@ -275,26 +277,27 @@
       "id": "docker-lesson-11",
       "topic": "docker",
       "title": "User identity",
-      "summary": "Why run an application as a non-root user when possible? Reduce the privileges available to compromised application code.",
+      "summary": "Container processes run with numeric user and group identities that influence file and kernel permissions.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "Container processes run with numeric user and group identities that influence file and kernel permissions."
+        },
+        {
           "heading": "How it works",
-          "body": "Non-root execution complements other isolation controls."
-        },
-        {
-          "heading": "Apply it",
-          "body": "An application needs write access only to one data directory. Set an appropriate user and narrow directory permissions."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "A non-root container has no possible security risks. This is not a sound assumption; reduce the privileges available to compromised application code."
+          "body": "An image USER instruction sets a default, but runtime configuration can override it. Host-mounted files retain host ownership semantics. Running as non-root reduces privilege but does not eliminate kernel or mount-related risks."
         }
       ],
-      "takeaway": "Non-root execution complements other isolation controls.",
+      "command": "docker inspect --format '{{.Config.User}}' CONTAINER",
+      "takeaway": "An image USER instruction sets a default, but runtime configuration can override it. Host-mounted files retain host ownership semantics. Running as non-root reduces privilege but does not eliminate kernel or mount-related risks.",
       "references": [
         {
-          "title": "User identity \u2014 primary reference",
+          "title": "User identity \u2014 primary documentation",
           "url": "https://docs.docker.com/engine/"
+        },
+        {
+          "title": "Related command \u2014 primary documentation",
+          "url": "https://docs.docker.com/reference/cli/docker/"
         }
       ]
     },
@@ -302,26 +305,27 @@
       "id": "docker-lesson-12",
       "topic": "docker",
       "title": "Memory limits",
-      "summary": "What can a container memory limit cause under excess demand? The workload can encounter cgroup memory pressure or OOM termination.",
+      "summary": "A container memory limit constrains memory through kernel resource controls.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "A container memory limit constrains memory through kernel resource controls."
+        },
+        {
           "heading": "How it works",
-          "body": "Host free memory does not negate a container's configured limit."
-        },
-        {
-          "heading": "Apply it",
-          "body": "A container dies while the host reports free RAM. Inspect its limit memory events and working-set demand."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "A memory limit only changes monitoring display. This is not a sound assumption; the workload can encounter cgroup memory pressure or OOM termination."
+          "body": "The application may be killed when its cgroup cannot satisfy demand even if the host has free memory. Compare the limit with peak working set, cache and concurrency. Increasing the limit without understanding growth can move the failure to the host."
         }
       ],
-      "takeaway": "Host free memory does not negate a container's configured limit.",
+      "command": "docker stats --no-stream",
+      "takeaway": "The application may be killed when its cgroup cannot satisfy demand even if the host has free memory. Compare the limit with peak working set, cache and concurrency. Increasing the limit without understanding growth can move the failure to the host.",
       "references": [
         {
-          "title": "Memory limits \u2014 primary reference",
+          "title": "Memory limits \u2014 primary documentation",
           "url": "https://docs.docker.com/engine/"
+        },
+        {
+          "title": "Related command \u2014 primary documentation",
+          "url": "https://docs.docker.com/reference/cli/docker/"
         }
       ]
     },
@@ -329,25 +333,22 @@
       "id": "docker-lesson-13",
       "topic": "docker",
       "title": "CPU quotas",
-      "summary": "What does a CPU quota constrain? CPU runtime available to the cgroup over scheduling periods.",
+      "summary": "CPU quotas limit how much CPU time a container group can consume during a period.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "CPU quotas limit how much CPU time a container group can consume during a period."
+        },
+        {
           "heading": "How it works",
-          "body": "Quota throttling can affect latency."
-        },
-        {
-          "heading": "Apply it",
-          "body": "A low-CPU-limit service has high tail latency with throttling. Compare quota demand and throttling before adjusting limits."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "A CPU quota reserves an exclusive physical core automatically. This is not a sound assumption; cPU runtime available to the cgroup over scheduling periods."
+          "body": "Quota exhaustion can throttle runnable work and increase tail latency. CPU shares instead influence relative scheduling weight under contention. Inspect throttling and demand rather than interpreting an idle host as proof of adequate container CPU."
         }
       ],
-      "takeaway": "Quota throttling can affect latency.",
+      "command": "",
+      "takeaway": "Quota exhaustion can throttle runnable work and increase tail latency. CPU shares instead influence relative scheduling weight under contention. Inspect throttling and demand rather than interpreting an idle host as proof of adequate container CPU.",
       "references": [
         {
-          "title": "CPU quotas \u2014 primary reference",
+          "title": "CPU quotas \u2014 primary documentation",
           "url": "https://docs.docker.com/engine/"
         }
       ]
@@ -356,26 +357,27 @@
       "id": "docker-lesson-14",
       "topic": "docker",
       "title": "Bind mounts",
-      "summary": "What distinguishes a bind mount from a named volume? A bind mount exposes a specified host path.",
+      "summary": "A bind mount exposes a specific host path inside a container.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "A bind mount exposes a specific host path inside a container."
+        },
+        {
           "heading": "How it works",
-          "body": "Host path permissions and contents directly affect the container."
-        },
-        {
-          "heading": "Apply it",
-          "body": "A deployment works on one host but lacks files on another. Verify the host path and avoid hidden host-specific dependencies."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "A bind mount always copies data into the image. This is not a sound assumption; a bind mount exposes a specified host path."
+          "body": "Changes may affect the host directly, and host path availability and ownership become deployment dependencies. A mount can obscure files packaged in the image. Use read-only mounts when writes are unnecessary and verify source paths carefully."
         }
       ],
-      "takeaway": "Host path permissions and contents directly affect the container.",
+      "command": "docker inspect --format '{{json .Mounts}}' CONTAINER",
+      "takeaway": "Changes may affect the host directly, and host path availability and ownership become deployment dependencies. A mount can obscure files packaged in the image. Use read-only mounts when writes are unnecessary and verify source paths carefully.",
       "references": [
         {
-          "title": "Bind mounts \u2014 primary reference",
+          "title": "Bind mounts \u2014 primary documentation",
           "url": "https://docs.docker.com/engine/"
+        },
+        {
+          "title": "Related command \u2014 primary documentation",
+          "url": "https://docs.docker.com/reference/cli/docker/"
         }
       ]
     },
@@ -383,25 +385,22 @@
       "id": "docker-lesson-15",
       "topic": "docker",
       "title": "Read-only filesystems",
-      "summary": "Why use a read-only container root filesystem? Reduce unintended writes to the image-derived filesystem.",
+      "summary": "A read-only root filesystem prevents writes to the container's root filesystem layer.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "A read-only root filesystem prevents writes to the container's root filesystem layer."
+        },
+        {
           "heading": "How it works",
-          "body": "Required writable paths must be provisioned separately."
-        },
-        {
-          "heading": "Apply it",
-          "body": "A hardened container fails when writing temporary files. Provide narrowly scoped writable temporary storage."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "Read-only root prevents every network attack. This is not a sound assumption; reduce unintended writes to the image-derived filesystem."
+          "body": "Applications may still need explicitly writable paths for temporary files, sockets or durable data. Mount only those paths with appropriate storage. Read-only root does not make separately mounted volumes read-only."
         }
       ],
-      "takeaway": "Required writable paths must be provisioned separately.",
+      "command": "",
+      "takeaway": "Applications may still need explicitly writable paths for temporary files, sockets or durable data. Mount only those paths with appropriate storage. Read-only root does not make separately mounted volumes read-only.",
       "references": [
         {
-          "title": "Read-only filesystems \u2014 primary reference",
+          "title": "Read-only filesystems \u2014 primary documentation",
           "url": "https://docs.docker.com/engine/"
         }
       ]
@@ -410,25 +409,22 @@
       "id": "docker-lesson-16",
       "topic": "docker",
       "title": "Multi-stage builds",
-      "summary": "What is a primary benefit of multi-stage builds? Separate build tooling from the final runtime image.",
+      "summary": "Multi-stage builds use several build stages and copy selected outputs into a final image.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "Multi-stage builds use several build stages and copy selected outputs into a final image."
+        },
+        {
           "heading": "How it works",
-          "body": "Only explicitly copied artifacts need enter the final stage."
-        },
-        {
-          "heading": "Apply it",
-          "body": "A production image contains compilers and package caches unnecessarily. Copy required runtime artifacts from a builder into a smaller final stage."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "Every intermediate build tool must remain in the runtime image. This is not a sound assumption; separate build tooling from the final runtime image."
+          "body": "Compilers and build dependencies can remain in earlier stages while runtime artifacts go into a smaller final image. Copy only required files and verify runtime libraries are present. A smaller image is useful but not automatically secure."
         }
       ],
-      "takeaway": "Only explicitly copied artifacts need enter the final stage.",
+      "command": "",
+      "takeaway": "Compilers and build dependencies can remain in earlier stages while runtime artifacts go into a smaller final image. Copy only required files and verify runtime libraries are present. A smaller image is useful but not automatically secure.",
       "references": [
         {
-          "title": "Multi-stage builds \u2014 primary reference",
+          "title": "Multi-stage builds \u2014 primary documentation",
           "url": "https://docs.docker.com/engine/"
         }
       ]
@@ -437,25 +433,22 @@
       "id": "docker-lesson-17",
       "topic": "docker",
       "title": "Build cache",
-      "summary": "Why order stable dependencies before frequently changing source? It can preserve useful cached build steps.",
+      "summary": "The build cache reuses results when relevant build inputs have not changed.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "The build cache reuses results when relevant build inputs have not changed."
+        },
+        {
           "heading": "How it works",
-          "body": "Cache keys and inputs determine whether a step can be reused."
-        },
-        {
-          "heading": "Apply it",
-          "body": "A small source edit causes expensive dependency installation every build. Separate dependency manifests from frequently changing application source."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "Docker caches every step forever regardless of inputs. This is not a sound assumption; it can preserve useful cached build steps."
+          "body": "Instruction ordering affects how much work must be repeated. Copy dependency manifests before frequently changing source where appropriate. A cached step may also preserve old package results, so dependency pinning and intentional refresh policy matter."
         }
       ],
-      "takeaway": "Cache keys and inputs determine whether a step can be reused.",
+      "command": "",
+      "takeaway": "Instruction ordering affects how much work must be repeated. Copy dependency manifests before frequently changing source where appropriate. A cached step may also preserve old package results, so dependency pinning and intentional refresh policy matter.",
       "references": [
         {
-          "title": "Build cache \u2014 primary reference",
+          "title": "Build cache \u2014 primary documentation",
           "url": "https://docs.docker.com/engine/"
         }
       ]
@@ -464,25 +457,22 @@
       "id": "docker-lesson-18",
       "topic": "docker",
       "title": "Secrets in builds",
-      "summary": "How should build-time credentials be supplied where supported? Use a dedicated build secret mechanism.",
+      "summary": "Build secrets provide temporary sensitive inputs without intentionally baking them into image layers.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "Build secrets provide temporary sensitive inputs without intentionally baking them into image layers."
+        },
+        {
           "heading": "How it works",
-          "body": "Secrets should not be baked into layers or ordinary build arguments."
-        },
-        {
-          "heading": "Apply it",
-          "body": "A dependency download requires a private registry credential. Use scoped build secrets and verify the final image contains no credential."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "Build arguments are always encrypted and excluded from history. This is not a sound assumption; use a dedicated build secret mechanism."
+          "body": "Use the builder's secret mechanism rather than ARG, ENV or COPY for credentials. A build command can still leak a secret into output files or logs. Inspect resulting artifacts and keep secret use narrowly scoped."
         }
       ],
-      "takeaway": "Secrets should not be baked into layers or ordinary build arguments.",
+      "command": "",
+      "takeaway": "Use the builder's secret mechanism rather than ARG, ENV or COPY for credentials. A build command can still leak a secret into output files or logs. Inspect resulting artifacts and keep secret use narrowly scoped.",
       "references": [
         {
-          "title": "Secrets in builds \u2014 primary reference",
+          "title": "Secrets in builds \u2014 primary documentation",
           "url": "https://docs.docker.com/engine/"
         }
       ]
@@ -491,26 +481,27 @@
       "id": "docker-lesson-19",
       "topic": "docker",
       "title": "Image digests",
-      "summary": "What does an image digest identify? Specific content-addressed image data.",
+      "summary": "An image digest identifies content, while a tag is a mutable name pointing to an image.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "An image digest identifies content, while a tag is a mutable name pointing to an image."
+        },
+        {
           "heading": "How it works",
-          "body": "Mutable tags can move to different content."
-        },
-        {
-          "heading": "Apply it",
-          "body": "Two deployments of the same tag run different builds. Record and deploy the intended immutable digest."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "A digest is just a friendly mutable alias. This is not a sound assumption; specific content-addressed image data."
+          "body": "Deploying by digest improves reproducibility and supports provenance checks. A multi-platform image index and a platform-specific manifest have different digests. Record what was actually deployed and use an update process for security fixes."
         }
       ],
-      "takeaway": "Mutable tags can move to different content.",
+      "command": "docker image inspect IMAGE",
+      "takeaway": "Deploying by digest improves reproducibility and supports provenance checks. A multi-platform image index and a platform-specific manifest have different digests. Record what was actually deployed and use an update process for security fixes.",
       "references": [
         {
-          "title": "Image digests \u2014 primary reference",
+          "title": "Image digests \u2014 primary documentation",
           "url": "https://docs.docker.com/engine/"
+        },
+        {
+          "title": "Related command \u2014 primary documentation",
+          "url": "https://docs.docker.com/reference/cli/docker/"
         }
       ]
     },
@@ -518,26 +509,27 @@
       "id": "docker-lesson-20",
       "topic": "docker",
       "title": "Networks",
-      "summary": "What benefit does a user-defined bridge network provide? Scoped container connectivity with built-in name resolution.",
+      "summary": "Docker networks connect containers and provide scoped addressing and name resolution according to the network driver.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "Docker networks connect containers and provide scoped addressing and name resolution according to the network driver."
+        },
+        {
           "heading": "How it works",
-          "body": "Network attachment and published host ports are distinct choices."
-        },
-        {
-          "heading": "Apply it",
-          "body": "Two containers expected to communicate are attached to different networks. Inspect network membership and intended service names."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "Every container name resolves globally across unrelated networks. This is not a sound assumption; scoped container connectivity with built-in name resolution."
+          "body": "User-defined bridge networks support container-name resolution. Containers on different networks are not automatically mutually reachable. Host publishing and inter-container communication are separate paths with different controls."
         }
       ],
-      "takeaway": "Network attachment and published host ports are distinct choices.",
+      "command": "docker network inspect NETWORK",
+      "takeaway": "User-defined bridge networks support container-name resolution. Containers on different networks are not automatically mutually reachable. Host publishing and inter-container communication are separate paths with different controls.",
       "references": [
         {
-          "title": "Networks \u2014 primary reference",
+          "title": "Networks \u2014 primary documentation",
           "url": "https://docs.docker.com/engine/"
+        },
+        {
+          "title": "Related command \u2014 primary documentation",
+          "url": "https://docs.docker.com/reference/cli/docker/"
         }
       ]
     },
@@ -545,26 +537,27 @@
       "id": "docker-lesson-21",
       "topic": "docker",
       "title": "Compose dependencies",
-      "summary": "What is a limitation of simple startup ordering? A started dependency may not yet be ready to serve requests.",
+      "summary": "Compose defines related services, networks and volumes for an application.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "Compose defines related services, networks and volumes for an application."
+        },
+        {
           "heading": "How it works",
-          "body": "Readiness checks and application retry behavior remain important."
-        },
-        {
-          "heading": "Apply it",
-          "body": "An application starts before its database becomes usable. Use readiness-aware orchestration and bounded connection retries."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "Starting a database process proves schema initialization is complete. This is not a sound assumption; a started dependency may not yet be ready to serve requests."
+          "body": "Dependency ordering alone does not guarantee application readiness. Health-based dependency conditions can help initial startup, while applications still need runtime retries and failure handling. Inspect the rendered configuration after variable substitution."
         }
       ],
-      "takeaway": "Readiness checks and application retry behavior remain important.",
+      "command": "docker compose config",
+      "takeaway": "Dependency ordering alone does not guarantee application readiness. Health-based dependency conditions can help initial startup, while applications still need runtime retries and failure handling. Inspect the rendered configuration after variable substitution.",
       "references": [
         {
-          "title": "Compose dependencies \u2014 primary reference",
+          "title": "Compose dependencies \u2014 primary documentation",
           "url": "https://docs.docker.com/engine/"
+        },
+        {
+          "title": "Related command \u2014 primary documentation",
+          "url": "https://docs.docker.com/reference/cli/docker/"
         }
       ]
     },
@@ -572,25 +565,22 @@
       "id": "docker-lesson-22",
       "topic": "docker",
       "title": "Restart policy",
-      "summary": "What does a restart policy govern? Runtime behavior when a container exits under specified conditions.",
+      "summary": "A restart policy determines when the runtime restarts a container after it exits.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "A restart policy determines when the runtime restarts a container after it exits."
+        },
+        {
           "heading": "How it works",
-          "body": "Restarting repeatedly does not repair an underlying bad configuration."
-        },
-        {
-          "heading": "Apply it",
-          "body": "A container exits immediately because a required setting is missing. Inspect exit logs and correct configuration before relying on restarts."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "A restart policy fixes every application bug. This is not a sound assumption; runtime behavior when a container exits under specified conditions."
+          "body": "Restarting can recover transient failures but can also create a tight crash loop. It does not repair invalid configuration, missing data or an unhealthy process that never exits. Coordinate restart behavior with graceful shutdown and external orchestration."
         }
       ],
-      "takeaway": "Restarting repeatedly does not repair an underlying bad configuration.",
+      "command": "",
+      "takeaway": "Restarting can recover transient failures but can also create a tight crash loop. It does not repair invalid configuration, missing data or an unhealthy process that never exits. Coordinate restart behavior with graceful shutdown and external orchestration.",
       "references": [
         {
-          "title": "Restart policy \u2014 primary reference",
+          "title": "Restart policy \u2014 primary documentation",
           "url": "https://docs.docker.com/engine/"
         }
       ]
@@ -599,25 +589,22 @@
       "id": "docker-lesson-23",
       "topic": "docker",
       "title": "Registry access",
-      "summary": "Why separate image pull credentials from application credentials? They grant different capabilities at different lifecycle stages.",
+      "summary": "A registry stores and distributes image manifests and layers.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "A registry stores and distributes image manifests and layers."
+        },
+        {
           "heading": "How it works",
-          "body": "Credentials should have the minimum required repository scope."
-        },
-        {
-          "heading": "Apply it",
-          "body": "A runtime workload can overwrite the image it was deployed from. Reduce registry credential scope and separate build from runtime identities."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "A registry password is always safe to embed in an image. This is not a sound assumption; they grant different capabilities at different lifecycle stages."
+          "body": "Pull failures can arise from authentication, authorization, missing tags, network errors or rate limits. Verify the exact image reference and target platform before rebuilding. Keep registry credentials scoped and avoid embedding them in images."
         }
       ],
-      "takeaway": "Credentials should have the minimum required repository scope.",
+      "command": "",
+      "takeaway": "Pull failures can arise from authentication, authorization, missing tags, network errors or rate limits. Verify the exact image reference and target platform before rebuilding. Keep registry credentials scoped and avoid embedding them in images.",
       "references": [
         {
-          "title": "Registry access \u2014 primary reference",
+          "title": "Registry access \u2014 primary documentation",
           "url": "https://docs.docker.com/engine/"
         }
       ]
@@ -626,26 +613,27 @@
       "id": "docker-lesson-24",
       "topic": "docker",
       "title": "Resource cleanup",
-      "summary": "Why inspect Docker objects before pruning? Unused from the runtime's perspective may still be operationally valuable.",
+      "summary": "Cleanup removes unused containers, images, build cache or volumes to reclaim space.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "Cleanup removes unused containers, images, build cache or volumes to reclaim space."
+        },
+        {
           "heading": "How it works",
-          "body": "Volume deletion can remove persistent data."
-        },
-        {
-          "heading": "Apply it",
-          "body": "A host is low on disk and an operator proposes deleting every volume. Identify consumers and backups before scoped cleanup."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "Every prune operation is harmless to recoverability. This is not a sound assumption; unused from the runtime's perspective may still be operationally valuable."
+          "body": "Each resource type has different ownership and data-loss implications. Inspect usage and references before pruning; an unused volume may still hold valuable data. Avoid broad automated pruning without a documented retention policy."
         }
       ],
-      "takeaway": "Volume deletion can remove persistent data.",
+      "command": "docker system df",
+      "takeaway": "Each resource type has different ownership and data-loss implications. Inspect usage and references before pruning; an unused volume may still hold valuable data. Avoid broad automated pruning without a documented retention policy.",
       "references": [
         {
-          "title": "Resource cleanup \u2014 primary reference",
+          "title": "Resource cleanup \u2014 primary documentation",
           "url": "https://docs.docker.com/engine/"
+        },
+        {
+          "title": "Related command \u2014 primary documentation",
+          "url": "https://docs.docker.com/reference/cli/docker/"
         }
       ]
     },
@@ -653,25 +641,22 @@
       "id": "docker-lesson-25",
       "topic": "docker",
       "title": "Socket exposure",
-      "summary": "Why is mounting the Docker daemon socket high risk? Daemon access can grant extensive control over the host.",
+      "summary": "The Docker daemon socket exposes a control API with powerful host-level effects.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "The Docker daemon socket exposes a control API with powerful host-level effects."
+        },
+        {
           "heading": "How it works",
-          "body": "Treat daemon API access as a privileged trust boundary."
-        },
-        {
-          "heading": "Apply it",
-          "body": "A web application mounts the daemon socket for convenience. Remove unnecessary daemon access or isolate a narrowly controlled service."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "The socket grants only read-only log access by default. This is not a sound assumption; daemon access can grant extensive control over the host."
+          "body": "A process with access can often create privileged containers or mount host paths. Mounting the socket into an untrusted workload defeats many container boundaries. Treat daemon API access as privileged infrastructure access."
         }
       ],
-      "takeaway": "Treat daemon API access as a privileged trust boundary.",
+      "command": "",
+      "takeaway": "A process with access can often create privileged containers or mount host paths. Mounting the socket into an untrusted workload defeats many container boundaries. Treat daemon API access as privileged infrastructure access.",
       "references": [
         {
-          "title": "Socket exposure \u2014 primary reference",
+          "title": "Socket exposure \u2014 primary documentation",
           "url": "https://docs.docker.com/engine/"
         }
       ]
@@ -680,26 +665,27 @@
       "id": "docker-lesson-26",
       "topic": "docker",
       "title": "Rootless mode",
-      "summary": "What does rootless Docker aim to reduce? The need for a root-privileged daemon and containers.",
+      "summary": "Rootless Docker runs the daemon and containers without a root-owned daemon using user-namespace mechanisms.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "Rootless Docker runs the daemon and containers without a root-owned daemon using user-namespace mechanisms."
+        },
+        {
           "heading": "How it works",
-          "body": "Rootless operation has compatibility and resource-control considerations."
-        },
-        {
-          "heading": "Apply it",
-          "body": "A team wants to reduce daemon privilege on developer hosts. Evaluate rootless support against networking storage and workload requirements."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "Rootless mode removes all kernel attack surface. This is not a sound assumption; the need for a root-privileged daemon and containers."
+          "body": "It reduces some host privilege exposure but has networking, storage and resource-control requirements. Check supported features for the environment. Rootless operation does not remove the need for image hygiene, least privilege and patching."
         }
       ],
-      "takeaway": "Rootless operation has compatibility and resource-control considerations.",
+      "command": "docker info",
+      "takeaway": "It reduces some host privilege exposure but has networking, storage and resource-control requirements. Check supported features for the environment. Rootless operation does not remove the need for image hygiene, least privilege and patching.",
       "references": [
         {
-          "title": "Rootless mode \u2014 primary reference",
+          "title": "Rootless mode \u2014 primary documentation",
           "url": "https://docs.docker.com/engine/"
+        },
+        {
+          "title": "Related command \u2014 primary documentation",
+          "url": "https://docs.docker.com/reference/cli/docker/"
         }
       ]
     },
@@ -707,25 +693,22 @@
       "id": "docker-lesson-27",
       "topic": "docker",
       "title": "Image scanning",
-      "summary": "What does a vulnerability scan provide? Evidence about known issues in the inspected image and metadata.",
+      "summary": "Image scanning identifies known vulnerabilities or policy findings in image contents.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "Image scanning identifies known vulnerabilities or policy findings in image contents."
+        },
+        {
           "heading": "How it works",
-          "body": "A clean scan is not proof of absence of all vulnerabilities."
-        },
-        {
-          "heading": "Apply it",
-          "body": "A scan finds a critical library issue in a deployed image. Assess reachability and impact then rebuild and redeploy a verified fix."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "Scanning guarantees application logic is secure. This is not a sound assumption; evidence about known issues in the inspected image and metadata."
+          "body": "Results depend on package detection, advisory data and the actual deployed digest. Triage exploitability and exposure while maintaining update discipline. A clean scan does not prove the application is free of unknown vulnerabilities or unsafe configuration."
         }
       ],
-      "takeaway": "A clean scan is not proof of absence of all vulnerabilities.",
+      "command": "",
+      "takeaway": "Results depend on package detection, advisory data and the actual deployed digest. Triage exploitability and exposure while maintaining update discipline. A clean scan does not prove the application is free of unknown vulnerabilities or unsafe configuration.",
       "references": [
         {
-          "title": "Image scanning \u2014 primary reference",
+          "title": "Image scanning \u2014 primary documentation",
           "url": "https://docs.docker.com/engine/"
         }
       ]
@@ -734,25 +717,22 @@
       "id": "docker-lesson-28",
       "topic": "docker",
       "title": "Supply chain",
-      "summary": "Why verify image provenance or signatures? Establish evidence about artifact origin and integrity.",
+      "summary": "Container supply-chain controls establish where an image came from and how it was built.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "Container supply-chain controls establish where an image came from and how it was built."
+        },
+        {
           "heading": "How it works",
-          "body": "Verification policy must define trusted identities and sources."
-        },
-        {
-          "heading": "Apply it",
-          "body": "A registry contains an unexpected image under a trusted-looking tag. Verify digest provenance and the authorized publishing identity."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "Any signed image is automatically safe regardless of signer. This is not a sound assumption; establish evidence about artifact origin and integrity."
+          "body": "Pin inputs, record provenance, verify signatures according to policy and retain an SBOM where useful. Build and deploy identities need constrained permissions. Verification must cover the digest actually deployed, not merely a similarly named tag."
         }
       ],
-      "takeaway": "Verification policy must define trusted identities and sources.",
+      "command": "",
+      "takeaway": "Pin inputs, record provenance, verify signatures according to policy and retain an SBOM where useful. Build and deploy identities need constrained permissions. Verification must cover the digest actually deployed, not merely a similarly named tag.",
       "references": [
         {
-          "title": "Supply chain \u2014 primary reference",
+          "title": "Supply chain \u2014 primary documentation",
           "url": "https://docs.docker.com/engine/"
         }
       ]
@@ -761,25 +741,22 @@
       "id": "docker-lesson-29",
       "topic": "docker",
       "title": "Shared kernel",
-      "summary": "What security implication follows from containers sharing a host kernel? Kernel vulnerabilities can cross container isolation boundaries.",
+      "summary": "Containers typically share the host kernel while isolating selected resource views.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "Containers typically share the host kernel while isolating selected resource views."
+        },
+        {
           "heading": "How it works",
-          "body": "Host patching remains important even with minimal images."
-        },
-        {
-          "heading": "Apply it",
-          "body": "A host kernel vulnerability affects container isolation. Assess host exposure and roll out host remediation safely."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "Each container always has an independent kernel. This is not a sound assumption; kernel vulnerabilities can cross container isolation boundaries."
+          "body": "A kernel defect can affect multiple containers and the host. Namespaces, cgroups, seccomp and privilege restrictions provide different layers of protection. Containers are not equivalent to independent virtual-machine kernels."
         }
       ],
-      "takeaway": "Host patching remains important even with minimal images.",
+      "command": "",
+      "takeaway": "A kernel defect can affect multiple containers and the host. Namespaces, cgroups, seccomp and privilege restrictions provide different layers of protection. Containers are not equivalent to independent virtual-machine kernels.",
       "references": [
         {
-          "title": "Shared kernel \u2014 primary reference",
+          "title": "Shared kernel \u2014 primary documentation",
           "url": "https://docs.docker.com/engine/"
         }
       ]
@@ -788,30 +765,567 @@
       "id": "docker-lesson-30",
       "topic": "docker",
       "title": "Stateful migration",
-      "summary": "Why is replacing a database container not always a complete rollback? Persistent data or schema changes may outlive the old image.",
+      "summary": "Stateful container migration moves an application together with compatible durable data.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "Stateful container migration moves an application together with compatible durable data."
+        },
+        {
           "heading": "How it works",
-          "body": "Application and data compatibility must be considered together."
-        },
-        {
-          "heading": "Apply it",
-          "body": "A new image migrates the database schema incompatibly. Plan compatible migration or verified data recovery before rollback."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "Restoring an old image automatically reverses all schema changes. This is not a sound assumption; persistent data or schema changes may outlive the old image."
+          "body": "Plan data consistency, schema compatibility, ownership and downtime before replacing containers. Copying a live data directory may not yield a valid database backup. Test restore and rollback with the application's supported procedures."
         }
       ],
-      "takeaway": "Application and data compatibility must be considered together.",
+      "command": "",
+      "takeaway": "Plan data consistency, schema compatibility, ownership and downtime before replacing containers. Copying a live data directory may not yield a valid database backup. Test restore and rollback with the application's supported procedures.",
       "references": [
         {
-          "title": "Stateful migration \u2014 primary reference",
+          "title": "Stateful migration \u2014 primary documentation",
           "url": "https://docs.docker.com/engine/"
         }
       ]
     }
   ],
-  "commands": [],
-  "debugging": []
+  "commands": [
+    {
+      "id": "docker-command-01",
+      "topic": "docker",
+      "title": "List containers",
+      "command": "docker ps -a",
+      "kind": "Shell command",
+      "definition": "Lists running and stopped containers.",
+      "purpose": "Find exited workloads and current image/port assignments.",
+      "environment": "Read-only; requires access to the intended daemon, which is privileged.",
+      "expectedOutput": "CONTAINER ID IMAGE COMMAND CREATED STATUS PORTS NAMES",
+      "interpretation": "STATUS shows running, exited or restarting; PORTS shows published mappings.",
+      "safety": "Read-only; requires access to the intended daemon, which is privileged.",
+      "references": [
+        {
+          "title": "List containers \u2014 primary documentation",
+          "url": "https://docs.docker.com/reference/cli/docker/"
+        }
+      ]
+    },
+    {
+      "id": "docker-command-02",
+      "topic": "docker",
+      "title": "Inspect configuration",
+      "command": "docker inspect CONTAINER",
+      "kind": "Shell command",
+      "definition": "Returns detailed runtime configuration and state as JSON.",
+      "purpose": "Compare effective command, mounts, network and exit state with expectations.",
+      "environment": "Read-only but output can reveal environment secrets; replace CONTAINER.",
+      "expectedOutput": "[{\"State\":{\"Status\":\"exited\",\"ExitCode\":1}}]",
+      "interpretation": "State.ExitCode and State.Error describe termination; Mounts and NetworkSettings expose runtime wiring.",
+      "safety": "Read-only but output can reveal environment secrets; replace CONTAINER.",
+      "references": [
+        {
+          "title": "Inspect configuration \u2014 primary documentation",
+          "url": "https://docs.docker.com/reference/cli/docker/"
+        }
+      ]
+    },
+    {
+      "id": "docker-command-03",
+      "topic": "docker",
+      "title": "Bounded logs",
+      "command": "docker logs --since 10m --tail 100 CONTAINER",
+      "kind": "Shell command",
+      "definition": "Reads a bounded recent set of captured container logs.",
+      "purpose": "Find startup and runtime errors near the incident.",
+      "environment": "Read-only; log driver support varies and output may contain secrets.",
+      "expectedOutput": "application startup failed: ...",
+      "interpretation": "--since restricts time and --tail limits lines; use timestamps when correlation is needed.",
+      "safety": "Read-only; log driver support varies and output may contain secrets.",
+      "references": [
+        {
+          "title": "Bounded logs \u2014 primary documentation",
+          "url": "https://docs.docker.com/reference/cli/docker/"
+        }
+      ]
+    },
+    {
+      "id": "docker-command-04",
+      "topic": "docker",
+      "title": "Resource snapshot",
+      "command": "docker stats --no-stream",
+      "kind": "Shell command",
+      "definition": "Prints one resource-usage snapshot for running containers.",
+      "purpose": "Spot memory pressure, CPU usage and I/O differences.",
+      "environment": "Read-only; combine with historical metrics for capacity conclusions.",
+      "expectedOutput": "NAME CPU % MEM USAGE / LIMIT NET I/O BLOCK I/O",
+      "interpretation": "Compare MEM USAGE / LIMIT with configured constraints; a single sample can miss peaks.",
+      "safety": "Read-only; combine with historical metrics for capacity conclusions.",
+      "references": [
+        {
+          "title": "Resource snapshot \u2014 primary documentation",
+          "url": "https://docs.docker.com/reference/cli/docker/"
+        }
+      ]
+    },
+    {
+      "id": "docker-command-05",
+      "topic": "docker",
+      "title": "Published ports",
+      "command": "docker port CONTAINER",
+      "kind": "Shell command",
+      "definition": "Lists container-port to host-address mappings.",
+      "purpose": "Confirm whether and where a service is published.",
+      "environment": "Read-only; publishing does not prove the application is listening.",
+      "expectedOutput": "8080/tcp -> 127.0.0.1:8080",
+      "interpretation": "127.0.0.1 binds locally; 0.0.0.0 exposes all IPv4 host interfaces subject to other controls.",
+      "safety": "Read-only; publishing does not prove the application is listening.",
+      "references": [
+        {
+          "title": "Published ports \u2014 primary documentation",
+          "url": "https://docs.docker.com/reference/cli/docker/"
+        }
+      ]
+    },
+    {
+      "id": "docker-command-06",
+      "topic": "docker",
+      "title": "Network inspection",
+      "command": "docker network inspect NETWORK",
+      "kind": "Shell command",
+      "definition": "Displays a network's driver, addressing and connected endpoints.",
+      "purpose": "Check whether communicating containers share the intended network.",
+      "environment": "Read-only; inspect the intended daemon and network.",
+      "expectedOutput": "\"Driver\": \"bridge\", \"Containers\": {...}",
+      "interpretation": "Containers lists endpoint attachments; IPAM describes configured address pools.",
+      "safety": "Read-only; inspect the intended daemon and network.",
+      "references": [
+        {
+          "title": "Network inspection \u2014 primary documentation",
+          "url": "https://docs.docker.com/reference/cli/docker/"
+        }
+      ]
+    },
+    {
+      "id": "docker-command-07",
+      "topic": "docker",
+      "title": "Volume inspection",
+      "command": "docker volume inspect VOLUME",
+      "kind": "Shell command",
+      "definition": "Displays volume metadata and driver configuration.",
+      "purpose": "Identify durable storage before replacing a container.",
+      "environment": "Read-only; never infer a volume is disposable from lack of a running container.",
+      "expectedOutput": "\"Name\": \"app-data\", \"Driver\": \"local\"",
+      "interpretation": "Mountpoint is daemon-host storage location for relevant drivers; Options may describe external storage.",
+      "safety": "Read-only; never infer a volume is disposable from lack of a running container.",
+      "references": [
+        {
+          "title": "Volume inspection \u2014 primary documentation",
+          "url": "https://docs.docker.com/reference/cli/docker/"
+        }
+      ]
+    },
+    {
+      "id": "docker-command-08",
+      "topic": "docker",
+      "title": "Storage accounting",
+      "command": "docker system df",
+      "kind": "Shell command",
+      "definition": "Summarizes storage used by images, containers, volumes and cache.",
+      "purpose": "Locate the type of space growth before cleanup.",
+      "environment": "Read-only; do not automatically follow with prune, especially for volumes.",
+      "expectedOutput": "TYPE TOTAL ACTIVE SIZE RECLAIMABLE",
+      "interpretation": "RECLAIMABLE estimates unused storage, not whether the data is valuable.",
+      "safety": "Read-only; do not automatically follow with prune, especially for volumes.",
+      "references": [
+        {
+          "title": "Storage accounting \u2014 primary documentation",
+          "url": "https://docs.docker.com/reference/cli/docker/"
+        }
+      ]
+    },
+    {
+      "id": "docker-command-09",
+      "topic": "docker",
+      "title": "Image metadata",
+      "command": "docker image inspect IMAGE",
+      "kind": "Shell command",
+      "definition": "Shows image configuration, identifiers and platform metadata.",
+      "purpose": "Verify the deployed image identity and startup defaults.",
+      "environment": "Read-only; metadata may contain build-time configuration.",
+      "expectedOutput": "\"RepoDigests\": [\"repo@sha256:...\"]",
+      "interpretation": "RepoDigests identifies content references when available; Config contains entrypoint, command and user.",
+      "safety": "Read-only; metadata may contain build-time configuration.",
+      "references": [
+        {
+          "title": "Image metadata \u2014 primary documentation",
+          "url": "https://docs.docker.com/reference/cli/docker/"
+        }
+      ]
+    },
+    {
+      "id": "docker-command-10",
+      "topic": "docker",
+      "title": "Render Compose model",
+      "command": "docker compose config",
+      "kind": "Shell command",
+      "definition": "Renders and validates the effective Compose configuration.",
+      "purpose": "Find variable substitution, merged-file and service-wiring mistakes.",
+      "environment": "Can expose interpolated secrets; requires the Compose plugin and the intended project files.",
+      "expectedOutput": "services: ...",
+      "interpretation": "Read the resolved service settings rather than only source fragments.",
+      "safety": "Can expose interpolated secrets; requires the Compose plugin and the intended project files.",
+      "references": [
+        {
+          "title": "Render Compose model \u2014 primary documentation",
+          "url": "https://docs.docker.com/reference/cli/docker/"
+        }
+      ]
+    },
+    {
+      "id": "docker-command-11",
+      "topic": "docker",
+      "title": "Compose service state",
+      "command": "docker compose ps -a",
+      "kind": "Shell command",
+      "definition": "Lists containers belonging to the current Compose project.",
+      "purpose": "Check missing, exited or unhealthy services together.",
+      "environment": "Read-only; project selection depends on directory and options.",
+      "expectedOutput": "NAME IMAGE SERVICE CREATED STATUS PORTS",
+      "interpretation": "State and Health are separate; absence may indicate the wrong project or uncreated service.",
+      "safety": "Read-only; project selection depends on directory and options.",
+      "references": [
+        {
+          "title": "Compose service state \u2014 primary documentation",
+          "url": "https://docs.docker.com/reference/cli/docker/"
+        }
+      ]
+    },
+    {
+      "id": "docker-command-12",
+      "topic": "docker",
+      "title": "Daemon information",
+      "command": "docker info",
+      "kind": "Shell command",
+      "definition": "Reports daemon configuration, storage driver and runtime environment.",
+      "purpose": "Check rootless mode, platform and daemon-level differences.",
+      "environment": "Read-only; output contains host details and access to the daemon is privileged.",
+      "expectedOutput": "Storage Driver: overlay2",
+      "interpretation": "Compare Security Options, Docker Root Dir and driver fields with the expected host.",
+      "safety": "Read-only; output contains host details and access to the daemon is privileged.",
+      "references": [
+        {
+          "title": "Daemon information \u2014 primary documentation",
+          "url": "https://docs.docker.com/reference/cli/docker/"
+        }
+      ]
+    }
+  ],
+  "debugging": [
+    {
+      "id": "docker-scenario-guide-01",
+      "topic": "docker",
+      "title": "Container exits immediately",
+      "symptom": "A newly started container stops before serving traffic.",
+      "steps": [
+        {
+          "action": "Inspect and diagnose",
+          "command": "docker logs --tail 100 CONTAINER",
+          "evidence": "Inspect exit code, effective entrypoint and logs. Check required environment, executable paths and architecture rather than repeatedly restarting."
+        },
+        {
+          "action": "Fix the evidenced cause",
+          "evidence": "Correct the image command or required runtime configuration and recreate from the reviewed image. If a deployment introduced the failure, use the known-compatible image as mitigation."
+        },
+        {
+          "action": "Verify recovery",
+          "evidence": "Confirm the container remains running, serves a real request and handles graceful stop correctly."
+        }
+      ],
+      "references": [
+        {
+          "title": "Container exits immediately \u2014 primary documentation",
+          "url": "https://docs.docker.com/engine/"
+        },
+        {
+          "title": "Diagnostic tool \u2014 primary documentation",
+          "url": "https://docs.docker.com/reference/cli/docker/"
+        }
+      ]
+    },
+    {
+      "id": "docker-scenario-guide-02",
+      "topic": "docker",
+      "title": "Published port still unreachable",
+      "symptom": "A host port mapping exists but clients cannot connect.",
+      "steps": [
+        {
+          "action": "Inspect and diagnose",
+          "command": "docker port CONTAINER",
+          "evidence": "Compare the host bind address, container port and application's listener inside the container. EXPOSE alone does not publish a port."
+        },
+        {
+          "action": "Fix the evidenced cause",
+          "evidence": "Correct the mapping or application bind address and recreate with the intended limited exposure. Change firewall rules only if path evidence requires it."
+        },
+        {
+          "action": "Verify recovery",
+          "evidence": "Test from the intended client network and verify unintended networks do not gain access."
+        }
+      ],
+      "references": [
+        {
+          "title": "Published port still unreachable \u2014 primary documentation",
+          "url": "https://docs.docker.com/engine/"
+        },
+        {
+          "title": "Diagnostic tool \u2014 primary documentation",
+          "url": "https://docs.docker.com/reference/cli/docker/"
+        }
+      ]
+    },
+    {
+      "id": "docker-scenario-guide-03",
+      "topic": "docker",
+      "title": "Data disappears after replacement",
+      "symptom": "Application data is missing after recreating a container.",
+      "steps": [
+        {
+          "action": "Inspect and diagnose",
+          "command": "docker inspect --format '{{json .Mounts}}' CONTAINER",
+          "evidence": "Determine whether data lived in the old writable layer, a different named volume or an unexpected bind source. Preserve the old container and volumes while investigating."
+        },
+        {
+          "action": "Fix the evidenced cause",
+          "evidence": "Recover from the correct retained data source or backup and mount durable storage explicitly. Correct deployment configuration so replacements reuse the intended data."
+        },
+        {
+          "action": "Verify recovery",
+          "evidence": "Create and read representative data across a controlled replacement and verify backup restoration separately."
+        }
+      ],
+      "references": [
+        {
+          "title": "Data disappears after replacement \u2014 primary documentation",
+          "url": "https://docs.docker.com/engine/"
+        },
+        {
+          "title": "Diagnostic tool \u2014 primary documentation",
+          "url": "https://docs.docker.com/reference/cli/docker/"
+        }
+      ]
+    },
+    {
+      "id": "docker-scenario-guide-04",
+      "topic": "docker",
+      "title": "Bind-mount permission failure",
+      "symptom": "A non-root container cannot write to a mounted host directory.",
+      "steps": [
+        {
+          "action": "Inspect and diagnose",
+          "command": "docker inspect CONTAINER",
+          "evidence": "Compare the container UID/GID with host ownership, ACLs and security labeling. Confirm the mount is writable and points to the intended path."
+        },
+        {
+          "action": "Fix the evidenced cause",
+          "evidence": "Grant the application identity only the required rights or adjust ownership during provisioning. Avoid privileged mode or broad world-write permissions as shortcuts."
+        },
+        {
+          "action": "Verify recovery",
+          "evidence": "Test writes as the runtime identity and verify unrelated host paths remain inaccessible."
+        }
+      ],
+      "references": [
+        {
+          "title": "Bind-mount permission failure \u2014 primary documentation",
+          "url": "https://docs.docker.com/engine/"
+        },
+        {
+          "title": "Diagnostic tool \u2014 primary documentation",
+          "url": "https://docs.docker.com/reference/cli/docker/"
+        }
+      ]
+    },
+    {
+      "id": "docker-scenario-guide-05",
+      "topic": "docker",
+      "title": "Memory-driven restart loop",
+      "symptom": "The container repeatedly exits under peak traffic.",
+      "steps": [
+        {
+          "action": "Inspect and diagnose",
+          "command": "docker stats --no-stream",
+          "evidence": "Correlate memory growth with exit state, OOM evidence and configured limits. Distinguish a leak from a predictable concurrency peak."
+        },
+        {
+          "action": "Fix the evidenced cause",
+          "evidence": "Roll back a memory regression, bound concurrency or adjust justified capacity. A restart policy alone cannot fix insufficient memory."
+        },
+        {
+          "action": "Verify recovery",
+          "evidence": "Run representative load and confirm memory stabilizes and restart counts stop increasing without host pressure."
+        }
+      ],
+      "references": [
+        {
+          "title": "Memory-driven restart loop \u2014 primary documentation",
+          "url": "https://docs.docker.com/engine/"
+        },
+        {
+          "title": "Diagnostic tool \u2014 primary documentation",
+          "url": "https://docs.docker.com/reference/cli/docker/"
+        }
+      ]
+    },
+    {
+      "id": "docker-scenario-guide-06",
+      "topic": "docker",
+      "title": "Compose starts before dependency ready",
+      "symptom": "The web container fails on boot even though the database container was started first.",
+      "steps": [
+        {
+          "action": "Inspect and diagnose",
+          "command": "docker compose ps -a",
+          "evidence": "Inspect dependency health and application connection errors. Start ordering is not proof of database readiness."
+        },
+        {
+          "action": "Fix the evidenced cause",
+          "evidence": "Add appropriate readiness handling and bounded application retries; use supported Compose health conditions for startup where useful."
+        },
+        {
+          "action": "Verify recovery",
+          "evidence": "Recreate in a safe environment and confirm startup succeeds with realistic database warm-up and later dependency restarts."
+        }
+      ],
+      "references": [
+        {
+          "title": "Compose starts before dependency ready \u2014 primary documentation",
+          "url": "https://docs.docker.com/engine/"
+        },
+        {
+          "title": "Diagnostic tool \u2014 primary documentation",
+          "url": "https://docs.docker.com/reference/cli/docker/"
+        }
+      ]
+    },
+    {
+      "id": "docker-scenario-guide-07",
+      "topic": "docker",
+      "title": "Unexpected old image",
+      "symptom": "A deployment appears to use old behavior even after a tag was updated.",
+      "steps": [
+        {
+          "action": "Inspect and diagnose",
+          "command": "docker image inspect IMAGE",
+          "evidence": "Compare the running container's image ID with the expected digest and registry reference. A mutable tag and a locally cached image can diverge."
+        },
+        {
+          "action": "Fix the evidenced cause",
+          "evidence": "Pull and deploy the intended verified digest through the normal release process. Record digest-to-commit mapping instead of relying only on tag names."
+        },
+        {
+          "action": "Verify recovery",
+          "evidence": "Inspect the running container identity and verify the expected feature and rollback artifact."
+        }
+      ],
+      "references": [
+        {
+          "title": "Unexpected old image \u2014 primary documentation",
+          "url": "https://docs.docker.com/engine/"
+        },
+        {
+          "title": "Diagnostic tool \u2014 primary documentation",
+          "url": "https://docs.docker.com/reference/cli/docker/"
+        }
+      ]
+    },
+    {
+      "id": "docker-scenario-guide-08",
+      "topic": "docker",
+      "title": "Container ignores shutdown",
+      "symptom": "Stopping a container waits for the timeout and then forces termination.",
+      "steps": [
+        {
+          "action": "Inspect and diagnose",
+          "command": "docker inspect CONTAINER",
+          "evidence": "Inspect PID-one behavior and shell wrappers; determine whether signals reach the application and whether it drains work."
+        },
+        {
+          "action": "Fix the evidenced cause",
+          "evidence": "Use exec-form startup or a suitable init/wrapper that forwards signals and reaps children. Implement bounded graceful shutdown in the application."
+        },
+        {
+          "action": "Verify recovery",
+          "evidence": "Send a controlled stop during test work and verify graceful exit, completed or safely retried requests and no zombie buildup."
+        }
+      ],
+      "references": [
+        {
+          "title": "Container ignores shutdown \u2014 primary documentation",
+          "url": "https://docs.docker.com/engine/"
+        },
+        {
+          "title": "Diagnostic tool \u2014 primary documentation",
+          "url": "https://docs.docker.com/reference/cli/docker/"
+        }
+      ]
+    },
+    {
+      "id": "docker-scenario-guide-09",
+      "topic": "docker",
+      "title": "Host storage consumed by Docker",
+      "symptom": "The daemon host is running out of disk space.",
+      "steps": [
+        {
+          "action": "Inspect and diagnose",
+          "command": "docker system df",
+          "evidence": "Separate image/cache growth from container logs and durable volumes. Identify owners and retention before deleting any resource."
+        },
+        {
+          "action": "Fix the evidenced cause",
+          "evidence": "Apply scoped cleanup to confirmed disposable resources and configure log/cache retention. Do not prune volumes just because they are currently detached."
+        },
+        {
+          "action": "Verify recovery",
+          "evidence": "Confirm reclaimed space and successful application data access; monitor growth after the next build and log cycle."
+        }
+      ],
+      "references": [
+        {
+          "title": "Host storage consumed by Docker \u2014 primary documentation",
+          "url": "https://docs.docker.com/engine/"
+        },
+        {
+          "title": "Diagnostic tool \u2014 primary documentation",
+          "url": "https://docs.docker.com/reference/cli/docker/"
+        }
+      ]
+    },
+    {
+      "id": "docker-scenario-guide-10",
+      "topic": "docker",
+      "title": "Secret accidentally baked into image",
+      "symptom": "A credential was copied during build and deleted in a later Dockerfile step.",
+      "steps": [
+        {
+          "action": "Inspect and diagnose",
+          "command": "docker image history IMAGE",
+          "evidence": "Inspect the build process and layer history; later deletion does not remove earlier layer contents. Assess registry and artifact access."
+        },
+        {
+          "action": "Fix the evidenced cause",
+          "evidence": "Rotate the exposed credential, rebuild without the secret using a proper secret mechanism and remove affected artifacts under policy."
+        },
+        {
+          "action": "Verify recovery",
+          "evidence": "Verify the replacement image and build logs contain no secret material and consumers use the rotated credential."
+        }
+      ],
+      "references": [
+        {
+          "title": "Secret accidentally baked into image \u2014 primary documentation",
+          "url": "https://docs.docker.com/engine/"
+        },
+        {
+          "title": "Diagnostic tool \u2014 primary documentation",
+          "url": "https://docs.docker.com/reference/cli/docker/"
+        }
+      ]
+    }
+  ]
 }

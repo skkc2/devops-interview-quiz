@@ -1,0 +1,30 @@
+Explain a metric design for service request health.|A team needs to track request rate and error ratio over time. Which observations would distinguish the likely causes, and how would you verify recovery?
+Explain useful structured logging for operational diagnosis.|Incident diagnosis requires finding failures for one operation. Which observations would distinguish the likely causes, and how would you verify recovery?
+Explain distributed trace context propagation.|A request crosses services but appears as disconnected traces. Which observations would distinguish the likely causes, and how would you verify recovery?
+Explain counters and reset-aware rate calculations.|A service restart makes the raw request counter fall. Which observations would distinguish the likely causes, and how would you verify recovery?
+Explain gauge limitations and useful complementary metrics.|A queue briefly spikes between scrape intervals. Which observations would distinguish the likely causes, and how would you verify recovery?
+Explain histogram design for latency SLOs.|A latency SLO threshold lies inside a very wide bucket. Which observations would distinguish the likely causes, and how would you verify recovery?
+Explain where high-cardinality request context belongs.|A metric adds a request ID label and series count explodes. Which observations would distinguish the likely causes, and how would you verify recovery?
+Explain how you design an incident-focused dashboard.|Responders cannot tell whether a graph shows totals or rates. Which observations would distinguish the likely causes, and how would you verify recovery?
+Explain counter reset handling across multiple instances.|One instance restarts and an aggregate traffic graph spikes incorrectly. Which observations would distinguish the likely causes, and how would you verify recovery?
+Explain fleet-level latency percentiles.|Two instances have very different traffic and latency distributions. Which observations would distinguish the likely causes, and how would you verify recovery?
+Explain how monitoring should handle missing telemetry.|An error-rate alert goes quiet when scraping stops. Which observations would distinguish the likely causes, and how would you verify recovery?
+Explain target monitoring versus user-visible availability.|A target scrape fails while user traffic still succeeds. Which observations would distinguish the likely causes, and how would you verify recovery?
+Explain when precomputation helps observability queries.|A frequently used expensive dashboard query overloads the backend. Which observations would distinguish the likely causes, and how would you verify recovery?
+Explain alert persistence windows and detection trade-offs.|An alert pages repeatedly on harmless short spikes. Which observations would distinguish the likely causes, and how would you verify recovery?
+Explain useful alert grouping without losing scope.|One dependency outage causes dozens of similar pages. Which observations would distinguish the likely causes, and how would you verify recovery?
+Explain scoped alert inhibition and its risks.|A host-down event triggers many derivative service alerts. Which observations would distinguish the likely causes, and how would you verify recovery?
+Explain trace sampling bias and operational goals.|Rare failures are absent from a low-rate head-sampled dataset. Which observations would distinguish the likely causes, and how would you verify recovery?
+Explain head versus tail sampling trade-offs.|A team wants to retain slow and failed traces preferentially. Which observations would distinguish the likely causes, and how would you verify recovery?
+Explain tracing asynchronous workflows.|A queued worker starts unrelated traces for each job. Which observations would distinguish the likely causes, and how would you verify recovery?
+Explain useful safe correlation across telemetry signals.|An error log is difficult to connect to a slow request. Which observations would distinguish the likely causes, and how would you verify recovery?
+Explain protecting sensitive data in instrumentation.|Request headers containing credentials are exported in traces. Which observations would distinguish the likely causes, and how would you verify recovery?
+Explain a practical telemetry retention policy.|Incident analysis needs data already removed by an overly short policy. Which observations would distinguish the likely causes, and how would you verify recovery?
+Explain observing the observability pipeline itself.|Telemetry disappears during peak load while applications still run. Which observations would distinguish the likely causes, and how would you verify recovery?
+Explain resource identity conventions for observability.|Production and staging telemetry appear under indistinguishable identities. Which observations would distinguish the likely causes, and how would you verify recovery?
+Explain clock-related pitfalls in distributed traces and logs.|A downstream log appears earlier than the upstream request. Which observations would distinguish the likely causes, and how would you verify recovery?
+Explain RED monitoring and its limits.|A service needs an initial user-impact dashboard. Which observations would distinguish the likely causes, and how would you verify recovery?
+Explain the difference between utilization and saturation.|A device shows moderate utilization but growing queues. Which observations would distinguish the likely causes, and how would you verify recovery?
+Explain useful synthetic coverage and its blind spots.|A homepage check passes while checkout is broken. Which observations would distinguish the likely causes, and how would you verify recovery?
+Explain observability value versus instrumentation cost.|Detailed tracing adds material latency under peak load. Which observations would distinguish the likely causes, and how would you verify recovery?
+Explain how you move from correlated signals to a defensible diagnosis.|Latency and CPU rise together after a release. Which observations would distinguish the likely causes, and how would you verify recovery?

@@ -1,0 +1,30 @@
+Explain working tree index and commit snapshots.|A developer wants to know which local files changed. Which observations would distinguish the likely causes, and how would you verify recovery?
+Explain partial staging and focused commits.|One file contains unrelated fixes that should be separate commits. Which observations would distinguish the likely causes, and how would you verify recovery?
+Explain commit identity and the effects of amendment.|An amended commit has a different hash despite similar files. Which observations would distinguish the likely causes, and how would you verify recovery?
+Explain local branches remote branches and tracking references.|A new local branch is invisible to teammates. Which observations would distinguish the likely causes, and how would you verify recovery?
+Explain fetch versus pull in a collaborative workflow.|A developer wants to inspect remote changes before integration. Which observations would distinguish the likely causes, and how would you verify recovery?
+Explain semantic conflicts that Git cannot detect.|Two branches merge cleanly but their combined behavior breaks tests. Which observations would distinguish the likely causes, and how would you verify recovery?
+Explain why ignore rules are not secret remediation.|A credential was committed before an ignore rule was added. Which observations would distinguish the likely causes, and how would you verify recovery?
+Explain your pre-commit review process.|A commit includes a local debug setting accidentally. Which observations would distinguish the likely causes, and how would you verify recovery?
+Explain when rebase is useful and when shared history makes it risky.|A developer rebases commits others have already based work on. Which observations would distinguish the likely causes, and how would you verify recovery?
+Explain revert versus reset for a published mistake.|A bad change is already on a shared production branch. Which observations would distinguish the likely causes, and how would you verify recovery?
+Explain the risks and modes of git reset.|A developer wants to remove one commit but has valuable uncommitted edits. Which observations would distinguish the likely causes, and how would you verify recovery?
+Explain a safe hotfix cherry-pick workflow.|A hotfix is needed without unrelated feature work. Which observations would distinguish the likely causes, and how would you verify recovery?
+Explain how you resolve a substantive merge conflict.|A conflict affects a security check modified on both branches. Which observations would distinguish the likely causes, and how would you verify recovery?
+Explain reflog recovery and its limitations.|A branch pointer was accidentally moved away from recent work. Which observations would distinguish the likely causes, and how would you verify recovery?
+Explain a practical regression bisect including flaky tests.|A regression appeared somewhere in many recent commits. Which observations would distinguish the likely causes, and how would you verify recovery?
+Explain the protection and limits of force-with-lease.|A rewritten branch must be published without overwriting unseen remote work. Which observations would distinguish the likely causes, and how would you verify recovery?
+Explain a useful CI validation hierarchy.|A change passes lint but breaks a user workflow. Which observations would distinguish the likely causes, and how would you verify recovery?
+Explain build-once artifact promotion.|Production differs from staging after separate rebuilds. Which observations would distinguish the likely causes, and how would you verify recovery?
+Explain trust boundaries for CI pipelines.|A workflow runs contributor code with deployment credentials. Which observations would distinguish the likely causes, and how would you verify recovery?
+Explain reproducible and maintainable CI dependency management.|A third-party action changes behavior unexpectedly. Which observations would distinguish the likely causes, and how would you verify recovery?
+Explain safe CI cache design.|A pipeline passes with cache but fails on a clean runner. Which observations would distinguish the likely causes, and how would you verify recovery?
+Explain evidence-based deployment approval.|A deployment is awaiting approval but the test artifact is missing. Which observations would distinguish the likely causes, and how would you verify recovery?
+Explain release rollback for stateful applications.|A deployment performs an irreversible schema migration. Which observations would distinguish the likely causes, and how would you verify recovery?
+Explain deployment concurrency and cancellation risks.|Two releases concurrently modify the same infrastructure. Which observations would distinguish the likely causes, and how would you verify recovery?
+Explain secure CI-to-cloud identity federation.|A cloud role trusts any repository in an organization. Which observations would distinguish the likely causes, and how would you verify recovery?
+Explain efficient validation without missing cross-component regressions.|A shared library change skips downstream application tests. Which observations would distinguish the likely causes, and how would you verify recovery?
+Explain trustworthy release tagging and traceability.|A release tag is moved after artifacts were published. Which observations would distinguish the likely causes, and how would you verify recovery?
+Explain a strategy for restoring confidence in a flaky test suite.|A team reruns failed tests repeatedly without investigation. Which observations would distinguish the likely causes, and how would you verify recovery?
+Explain repository controls that support reliable delivery.|A required test is accidentally made optional on the release branch. Which observations would distinguish the likely causes, and how would you verify recovery?
+Explain how you would verify a production artifact's origin.|A binary's source revision and build workflow cannot be established. Which observations would distinguish the likely causes, and how would you verify recovery?

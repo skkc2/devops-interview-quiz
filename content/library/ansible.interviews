@@ -1,0 +1,30 @@
+Explain how you verify Ansible target scope.|A production play unexpectedly targets a staging group too. Which observations would distinguish the likely causes, and how would you verify recovery?
+Explain play structure and host targeting.|A task intended for web servers runs on database hosts. Which observations would distinguish the likely causes, and how would you verify recovery?
+Explain module selection for repeatable configuration.|A shell task appends the same configuration line on every run. Which observations would distinguish the likely causes, and how would you verify recovery?
+Explain how you test idempotence in automation.|A second identical run still recreates an unchanged configuration file. Which observations would distinguish the likely causes, and how would you verify recovery?
+Explain least privilege in an Ansible playbook.|A task needs root only to install one package. Which observations would distinguish the likely causes, and how would you verify recovery?
+Explain how you troubleshoot an unexpected variable value.|A host uses a different port than its role default. Which observations would distinguish the likely causes, and how would you verify recovery?
+Explain useful and risky uses of fact caching.|A cached operating-system fact no longer matches a rebuilt host. Which observations would distinguish the likely causes, and how would you verify recovery?
+Explain handlers and how they reduce unnecessary restarts.|Three configuration tasks require one service restart. Which observations would distinguish the likely causes, and how would you verify recovery?
+Explain how you use check mode without overtrusting it.|A task depends on output from a command skipped in check mode. Which observations would distinguish the likely causes, and how would you verify recovery?
+Explain balancing reviewable diffs with secret protection.|A template diff shows credentials in CI logs. Which observations would distinguish the likely causes, and how would you verify recovery?
+Explain Vault's protection boundary.|An encrypted secret is printed by a debug task. Which observations would distinguish the likely causes, and how would you verify recovery?
+Explain safe template deployment with validation.|A rendered web-server configuration has invalid syntax. Which observations would distinguish the likely causes, and how would you verify recovery?
+Explain a maintainable reusable role interface.|A shared role requires undocumented variables and breaks callers. Which observations would distinguish the likely causes, and how would you verify recovery?
+Explain dependency management for Ansible projects.|CI fails because a module collection is absent on a clean runner. Which observations would distinguish the likely causes, and how would you verify recovery?
+Explain module naming and collection resolution.|Two collections provide similarly named modules. Which observations would distinguish the likely causes, and how would you verify recovery?
+Explain robust conditional logic in playbooks.|A task unexpectedly runs because a string value was treated as truthy. Which observations would distinguish the likely causes, and how would you verify recovery?
+Explain defensive handling of task results.|A later task accesses stdout on a skipped result. Which observations would distinguish the likely causes, and how would you verify recovery?
+Explain nested loops and registered loop results.|An included task overwrites the outer item variable. Which observations would distinguish the likely causes, and how would you verify recovery?
+Explain custom failure handling without hiding errors.|A command returns a documented nonzero code for a harmless state. Which observations would distinguish the likely causes, and how would you verify recovery?
+Explain truthful change reporting and handler behavior.|A read-only diagnostic command triggers a restart handler. Which observations would distinguish the likely causes, and how would you verify recovery?
+Explain rolling configuration changes with Ansible.|A fleet-wide restart would remove all serving capacity. Which observations would distinguish the likely causes, and how would you verify recovery?
+Explain delegated tasks and their variable context.|A load-balancer update should run through a control endpoint. Which observations would distinguish the likely causes, and how would you verify recovery?
+Explain how you prevent duplicate singleton actions.|A migration unexpectedly repeats during a serial rollout. Which observations would distinguish the likely causes, and how would you verify recovery?
+Explain structured error handling and its limits.|A deployment task fails after writing part of its configuration. Which observations would distinguish the likely causes, and how would you verify recovery?
+Explain asynchronous tasks and reliable completion checks.|A long maintenance task exceeds the default connection wait. Which observations would distinguish the likely causes, and how would you verify recovery?
+Explain safe use of tags in operational workflows.|Running only a deployment tag skips required configuration setup. Which observations would distinguish the likely causes, and how would you verify recovery?
+Explain safe dynamic inventory design.|A cloud inventory plugin includes hosts from an unintended environment. Which observations would distinguish the likely causes, and how would you verify recovery?
+Explain tuning Ansible concurrency safely.|A configuration run overloads a shared package repository. Which observations would distinguish the likely causes, and how would you verify recovery?
+Explain the limits of log suppression for secrets.|A task hides output but writes a password into a world-readable file. Which observations would distinguish the likely causes, and how would you verify recovery?
+Explain a layered validation strategy for configuration automation.|A play passes lint but fails during a live service reload. Which observations would distinguish the likely causes, and how would you verify recovery?

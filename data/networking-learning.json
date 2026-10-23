@@ -5,26 +5,27 @@
       "id": "networking-lesson-01",
       "topic": "networking",
       "title": "TCP delivery",
-      "summary": "What does TCP provide to an application byte stream? Reliable ordered delivery within a connection.",
+      "summary": "TCP provides an ordered byte stream between endpoints, with retransmission and flow control.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "TCP provides an ordered byte stream between endpoints, with retransmission and flow control."
+        },
+        {
           "heading": "How it works",
-          "body": "TCP does not preserve application message boundaries."
-        },
-        {
-          "heading": "Apply it",
-          "body": "A receiver assumes one read contains one complete application message. Implement explicit message framing and handle partial reads."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "Every send corresponds to exactly one receive. This is not a sound assumption; reliable ordered delivery within a connection."
+          "body": "Sequence numbers identify bytes and acknowledgments indicate progress. Lost segments are retransmitted; congestion control adjusts sending rate. A successful send does not prove the remote application committed a transaction."
         }
       ],
-      "takeaway": "TCP does not preserve application message boundaries.",
+      "command": "ss -ti",
+      "takeaway": "Sequence numbers identify bytes and acknowledgments indicate progress. Lost segments are retransmitted; congestion control adjusts sending rate. A successful send does not prove the remote application committed a transaction.",
       "references": [
         {
-          "title": "TCP delivery \u2014 primary reference",
+          "title": "TCP delivery \u2014 primary documentation",
           "url": "https://www.rfc-editor.org/rfc/rfc9293.html"
+        },
+        {
+          "title": "Related command \u2014 primary documentation",
+          "url": "https://man7.org/linux/man-pages/"
         }
       ]
     },
@@ -32,25 +33,22 @@
       "id": "networking-lesson-02",
       "topic": "networking",
       "title": "UDP semantics",
-      "summary": "Which property distinguishes UDP from TCP? UDP preserves datagram boundaries without built-in reliable delivery.",
+      "summary": "UDP sends independent datagrams without transport-level delivery or ordering guarantees.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "UDP sends independent datagrams without transport-level delivery or ordering guarantees."
+        },
+        {
           "heading": "How it works",
-          "body": "Applications must handle loss or duplication when their protocol requires it."
-        },
-        {
-          "heading": "Apply it",
-          "body": "A telemetry collector sees gaps in UDP sequence numbers. Measure loss and decide whether application reliability is required."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "UDP retransmits every lost datagram automatically. This is not a sound assumption; uDP preserves datagram boundaries without built-in reliable delivery."
+          "body": "Applications choose whether to add retries, ordering or congestion control. A missing reply may reflect loss, filtering or an application timeout. UDP's small transport overhead does not make reliability and capacity concerns disappear."
         }
       ],
-      "takeaway": "Applications must handle loss or duplication when their protocol requires it.",
+      "command": "",
+      "takeaway": "Applications choose whether to add retries, ordering or congestion control. A missing reply may reflect loss, filtering or an application timeout. UDP's small transport overhead does not make reliability and capacity concerns disappear.",
       "references": [
         {
-          "title": "UDP semantics \u2014 primary reference",
+          "title": "UDP semantics \u2014 primary documentation",
           "url": "https://www.rfc-editor.org/rfc/rfc768.html"
         }
       ]
@@ -59,26 +57,27 @@
       "id": "networking-lesson-03",
       "topic": "networking",
       "title": "DNS records",
-      "summary": "What does an A record normally contain? An IPv4 address for a DNS name.",
+      "summary": "DNS stores typed records under hierarchical names, including A, AAAA, CNAME, MX and TXT.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "DNS stores typed records under hierarchical names, including A, AAAA, CNAME, MX and TXT."
+        },
+        {
           "heading": "How it works",
-          "body": "AAAA records carry IPv6 addresses."
-        },
-        {
-          "heading": "Apply it",
-          "body": "A client resolves only IPv4 while the intended endpoint is IPv6-only. Check the AAAA record and client IPv6 connectivity."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "An A record contains a TCP port. This is not a sound assumption; an IPv4 address for a DNS name."
+          "body": "Resolvers ask authoritative servers or caches for a specific record type. A CNAME points to another name rather than an IP address. Query the requested type and inspect the answer and authority sections before assuming a name is absent."
         }
       ],
-      "takeaway": "AAAA records carry IPv6 addresses.",
+      "command": "dig example.com A",
+      "takeaway": "Resolvers ask authoritative servers or caches for a specific record type. A CNAME points to another name rather than an IP address. Query the requested type and inspect the answer and authority sections before assuming a name is absent.",
       "references": [
         {
-          "title": "DNS records \u2014 primary reference",
+          "title": "DNS records \u2014 primary documentation",
           "url": "https://www.rfc-editor.org/rfc/rfc1035.html"
+        },
+        {
+          "title": "Related command \u2014 primary documentation",
+          "url": "https://man7.org/linux/man-pages/"
         }
       ]
     },
@@ -86,26 +85,27 @@
       "id": "networking-lesson-04",
       "topic": "networking",
       "title": "DNS caching",
-      "summary": "What does a DNS record TTL influence? How long a resolver may cache that record.",
+      "summary": "DNS resolvers cache answers according to record TTLs and local policy.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "DNS resolvers cache answers according to record TTLs and local policy."
+        },
+        {
           "heading": "How it works",
-          "body": "Lowering TTL before a change does not retroactively expire existing caches."
-        },
-        {
-          "heading": "Apply it",
-          "body": "Some clients still reach the old address just after a DNS change. Check prior TTLs and resolver caches before declaring the update failed."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "Changing a record instantly flushes every resolver cache. This is not a sound assumption; how long a resolver may cache that record."
+          "body": "A changed authoritative answer may coexist with older cached answers until their lifetime expires. Lower TTLs help future changes only after previously cached longer TTLs expire. Applications may also maintain their own caches."
         }
       ],
-      "takeaway": "Lowering TTL before a change does not retroactively expire existing caches.",
+      "command": "dig example.com",
+      "takeaway": "A changed authoritative answer may coexist with older cached answers until their lifetime expires. Lower TTLs help future changes only after previously cached longer TTLs expire. Applications may also maintain their own caches.",
       "references": [
         {
-          "title": "DNS caching \u2014 primary reference",
+          "title": "DNS caching \u2014 primary documentation",
           "url": "https://www.rfc-editor.org/rfc/rfc1035.html"
+        },
+        {
+          "title": "Related command \u2014 primary documentation",
+          "url": "https://man7.org/linux/man-pages/"
         }
       ]
     },
@@ -113,26 +113,27 @@
       "id": "networking-lesson-05",
       "topic": "networking",
       "title": "Subnets",
-      "summary": "What does an IPv4 prefix length describe? The number of network-prefix bits in the address.",
+      "summary": "A subnet groups IP addresses sharing a network prefix and determines which destinations are considered on-link.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "A subnet groups IP addresses sharing a network prefix and determines which destinations are considered on-link."
+        },
+        {
           "heading": "How it works",
-          "body": "Longer prefixes describe smaller address ranges."
-        },
-        {
-          "heading": "Apply it",
-          "body": "Two hosts believed to share a subnet cannot communicate directly. Compare their addresses prefix lengths and interface configuration."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "A larger prefix length always means more host addresses. This is not a sound assumption; the number of network-prefix bits in the address."
+          "body": "CIDR notation expresses prefix length; more prefix bits mean fewer addresses. Hosts use routes to decide whether to reach a neighbor directly or send packets through a gateway. Address overlap can make private-network connectivity ambiguous."
         }
       ],
-      "takeaway": "Longer prefixes describe smaller address ranges.",
+      "command": "ip address show",
+      "takeaway": "CIDR notation expresses prefix length; more prefix bits mean fewer addresses. Hosts use routes to decide whether to reach a neighbor directly or send packets through a gateway. Address overlap can make private-network connectivity ambiguous.",
       "references": [
         {
-          "title": "Subnets \u2014 primary reference",
+          "title": "Subnets \u2014 primary documentation",
           "url": "https://www.rfc-editor.org/rfc/rfc4632.html"
+        },
+        {
+          "title": "Related command \u2014 primary documentation",
+          "url": "https://man7.org/linux/man-pages/"
         }
       ]
     },
@@ -140,26 +141,27 @@
       "id": "networking-lesson-06",
       "topic": "networking",
       "title": "Default routes",
-      "summary": "When is a default route typically used? When no more specific matching route is selected.",
+      "summary": "A default route is the fallback route used when no more-specific destination route matches.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "A default route is the fallback route used when no more-specific destination route matches."
+        },
+        {
           "heading": "How it works",
-          "body": "Longest-prefix matching favors a more specific matching route."
-        },
-        {
-          "heading": "Apply it",
-          "body": "A host reaches its local subnet but cannot reach external networks. Inspect the selected route and default gateway reachability."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "The default route overrides every more specific route. This is not a sound assumption; when no more specific matching route is selected."
+          "body": "Routing uses longest-prefix matching before metrics among equivalent candidates. The selected route determines next hop, interface and often source address. Check the actual route to the failing destination rather than only the configured gateway."
         }
       ],
-      "takeaway": "Longest-prefix matching favors a more specific matching route.",
+      "command": "ip route get 192.0.2.10",
+      "takeaway": "Routing uses longest-prefix matching before metrics among equivalent candidates. The selected route determines next hop, interface and often source address. Check the actual route to the failing destination rather than only the configured gateway.",
       "references": [
         {
-          "title": "Default routes \u2014 primary reference",
+          "title": "Default routes \u2014 primary documentation",
           "url": "https://www.rfc-editor.org/rfc/rfc4632.html"
+        },
+        {
+          "title": "Related command \u2014 primary documentation",
+          "url": "https://man7.org/linux/man-pages/"
         }
       ]
     },
@@ -167,26 +169,27 @@
       "id": "networking-lesson-07",
       "topic": "networking",
       "title": "ARP",
-      "summary": "What does ARP resolve on an IPv4 local link? An IPv4 address to a link-layer address.",
+      "summary": "ARP maps an on-link IPv4 address to a link-layer address such as an Ethernet MAC address.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "ARP maps an on-link IPv4 address to a link-layer address such as an Ethernet MAC address."
+        },
+        {
           "heading": "How it works",
-          "body": "ARP is scoped to the local broadcast domain."
-        },
-        {
-          "heading": "Apply it",
-          "body": "A host cannot reach a same-subnet peer and its neighbor entry stays incomplete. Check local-link connectivity addressing and neighbor discovery evidence."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "ARP resolves domain names through recursive DNS. This is not a sound assumption; an IPv4 address to a link-layer address."
+          "body": "A host broadcasts a request and caches the reply in its neighbor table. It resolves the gateway's MAC for off-link traffic, not the remote server's MAC. Failed or stale neighbor entries can prevent otherwise correct routing."
         }
       ],
-      "takeaway": "ARP is scoped to the local broadcast domain.",
+      "command": "ip neigh show",
+      "takeaway": "A host broadcasts a request and caches the reply in its neighbor table. It resolves the gateway's MAC for off-link traffic, not the remote server's MAC. Failed or stale neighbor entries can prevent otherwise correct routing.",
       "references": [
         {
-          "title": "ARP \u2014 primary reference",
+          "title": "ARP \u2014 primary documentation",
           "url": "https://www.rfc-editor.org/rfc/rfc826.html"
+        },
+        {
+          "title": "Related command \u2014 primary documentation",
+          "url": "https://man7.org/linux/man-pages/"
         }
       ]
     },
@@ -194,26 +197,27 @@
       "id": "networking-lesson-08",
       "topic": "networking",
       "title": "Ports",
-      "summary": "What identifies a TCP connection together with protocol context? Source and destination addresses and ports.",
+      "summary": "A transport port identifies an application endpoint within a host's transport protocol.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "A transport port identifies an application endpoint within a host's transport protocol."
+        },
+        {
           "heading": "How it works",
-          "body": "A listening port alone does not prove application health."
-        },
-        {
-          "heading": "Apply it",
-          "body": "A port accepts connections but requests fail immediately. Check application behavior after connection establishment."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "A destination port uniquely identifies every connection globally. This is not a sound assumption; source and destination addresses and ports."
+          "body": "TCP and UDP have separate port spaces. Connections are distinguished by protocol and endpoint addresses/ports; ephemeral source ports let clients create many connections. A bound listener, firewall allowance and application health are separate requirements."
         }
       ],
-      "takeaway": "A listening port alone does not prove application health.",
+      "command": "ss -lntu",
+      "takeaway": "TCP and UDP have separate port spaces. Connections are distinguished by protocol and endpoint addresses/ports; ephemeral source ports let clients create many connections. A bound listener, firewall allowance and application health are separate requirements.",
       "references": [
         {
-          "title": "Ports \u2014 primary reference",
+          "title": "Ports \u2014 primary documentation",
           "url": "https://www.rfc-editor.org/rfc/rfc9293.html"
+        },
+        {
+          "title": "Related command \u2014 primary documentation",
+          "url": "https://man7.org/linux/man-pages/"
         }
       ]
     },
@@ -221,25 +225,22 @@
       "id": "networking-lesson-09",
       "topic": "networking",
       "title": "TCP handshake",
-      "summary": "What does a successful TCP handshake establish? Transport-level connection state between endpoints.",
+      "summary": "The TCP handshake establishes connection state through SYN, SYN-ACK and ACK messages.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "The TCP handshake establishes connection state through SYN, SYN-ACK and ACK messages."
+        },
+        {
           "heading": "How it works",
-          "body": "It does not prove that a later TLS or application exchange will succeed."
-        },
-        {
-          "heading": "Apply it",
-          "body": "TCP connects quickly but HTTPS fails afterward. Inspect the TLS handshake and application-layer error separately."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "It proves the server certificate is trusted. This is not a sound assumption; transport-level connection state between endpoints."
+          "body": "A repeated SYN without a reply suggests loss, filtering or unreachable service; a reset often indicates an explicit rejection. Capturing both ends distinguishes whether requests arrive and replies return. A completed handshake does not establish HTTP or TLS success."
         }
       ],
-      "takeaway": "It does not prove that a later TLS or application exchange will succeed.",
+      "command": "",
+      "takeaway": "A repeated SYN without a reply suggests loss, filtering or unreachable service; a reset often indicates an explicit rejection. Capturing both ends distinguishes whether requests arrive and replies return. A completed handshake does not establish HTTP or TLS success.",
       "references": [
         {
-          "title": "TCP handshake \u2014 primary reference",
+          "title": "TCP handshake \u2014 primary documentation",
           "url": "https://www.rfc-editor.org/rfc/rfc9293.html"
         }
       ]
@@ -248,26 +249,27 @@
       "id": "networking-lesson-10",
       "topic": "networking",
       "title": "TLS identity",
-      "summary": "What does hostname verification protect against? Accepting a certificate for a different service identity.",
+      "summary": "TLS encrypts a connection and can authenticate peers using certificates and a trust chain.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "TLS encrypts a connection and can authenticate peers using certificates and a trust chain."
+        },
+        {
           "heading": "How it works",
-          "body": "A trusted issuer alone is insufficient if the hostname does not match."
-        },
-        {
-          "heading": "Apply it",
-          "body": "A client reports a certificate hostname mismatch. Check the requested hostname certificate names and server selection."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "Any certificate from a trusted issuer matches every hostname. This is not a sound assumption; accepting a certificate for a different service identity."
+          "body": "The client validates trust, validity dates and the requested hostname. SNI tells the server which name is requested, while hostname verification checks the certificate identity. Encryption alone is not enough if certificate verification is disabled."
         }
       ],
-      "takeaway": "A trusted issuer alone is insufficient if the hostname does not match.",
+      "command": "openssl s_client -connect example.com:443 -servername example.com -verify_return_error -verify_hostname example.com",
+      "takeaway": "The client validates trust, validity dates and the requested hostname. SNI tells the server which name is requested, while hostname verification checks the certificate identity. Encryption alone is not enough if certificate verification is disabled.",
       "references": [
         {
-          "title": "TLS identity \u2014 primary reference",
+          "title": "TLS identity \u2014 primary documentation",
           "url": "https://www.rfc-editor.org/rfc/rfc8446.html"
+        },
+        {
+          "title": "Related command \u2014 primary documentation",
+          "url": "https://docs.openssl.org/master/man1/openssl-s_client/"
         }
       ]
     },
@@ -275,26 +277,27 @@
       "id": "networking-lesson-11",
       "topic": "networking",
       "title": "HTTP status",
-      "summary": "What does an HTTP 503 response normally indicate? The server is currently unable to handle the request.",
+      "summary": "HTTP status codes classify a server's response to an application-layer request.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "HTTP status codes classify a server's response to an application-layer request."
+        },
+        {
           "heading": "How it works",
-          "body": "An HTTP response means communication reached an HTTP-speaking component."
-        },
-        {
-          "heading": "Apply it",
-          "body": "A load balancer returns 503 while targets are marked unhealthy. Inspect target health and the reason each backend fails checks."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "It proves DNS resolution failed. This is not a sound assumption; the server is currently unable to handle the request."
+          "body": "2xx indicates success at the HTTP layer, 4xx usually concerns the request or authorization, and 5xx indicates a server-side failure. Proxies and backends may generate different codes. Correlate response headers, body and request IDs to locate the source."
         }
       ],
-      "takeaway": "An HTTP response means communication reached an HTTP-speaking component.",
+      "command": "curl -I https://example.com",
+      "takeaway": "2xx indicates success at the HTTP layer, 4xx usually concerns the request or authorization, and 5xx indicates a server-side failure. Proxies and backends may generate different codes. Correlate response headers, body and request IDs to locate the source.",
       "references": [
         {
-          "title": "HTTP status \u2014 primary reference",
+          "title": "HTTP status \u2014 primary documentation",
           "url": "https://www.rfc-editor.org/rfc/rfc9110.html"
+        },
+        {
+          "title": "Related command \u2014 primary documentation",
+          "url": "https://curl.se/docs/manpage.html"
         }
       ]
     },
@@ -302,25 +305,22 @@
       "id": "networking-lesson-12",
       "topic": "networking",
       "title": "NAT state",
-      "summary": "Why can outbound NAT capacity limit new connections? Translation devices have finite state and port resources.",
+      "summary": "Network address translation rewrites addresses or ports and often keeps connection-tracking state.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "Network address translation rewrites addresses or ports and often keeps connection-tracking state."
+        },
+        {
           "heading": "How it works",
-          "body": "Existing successful connections do not prove capacity for unlimited new ones."
-        },
-        {
-          "heading": "Apply it",
-          "body": "New outbound connections fail during a connection-rate spike. Inspect translation state port allocation and connection reuse."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "NAT creates infinitely many source ports. This is not a sound assumption; translation devices have finite state and port resources."
+          "body": "Return packets must match a live mapping. Idle expiration or exhausted translation ports can break connections without changing application code. Compare timeout policies and connection reuse across clients, gateways and load balancers."
         }
       ],
-      "takeaway": "Existing successful connections do not prove capacity for unlimited new ones.",
+      "command": "",
+      "takeaway": "Return packets must match a live mapping. Idle expiration or exhausted translation ports can break connections without changing application code. Compare timeout policies and connection reuse across clients, gateways and load balancers.",
       "references": [
         {
-          "title": "NAT state \u2014 primary reference",
+          "title": "NAT state \u2014 primary documentation",
           "url": "https://www.rfc-editor.org/rfc/rfc3022.html"
         }
       ]
@@ -329,25 +329,22 @@
       "id": "networking-lesson-13",
       "topic": "networking",
       "title": "Firewall direction",
-      "summary": "What distinguishes stateful filtering from stateless filtering? Stateful filtering can track established flow state.",
+      "summary": "Firewall rules constrain traffic based on fields such as source, destination, protocol and connection state.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "Firewall rules constrain traffic based on fields such as source, destination, protocol and connection state."
+        },
+        {
           "heading": "How it works",
-          "body": "Stateless rules may require explicit rules for return traffic."
-        },
-        {
-          "heading": "Apply it",
-          "body": "Requests leave a subnet but stateless rules reject the replies. Check return-path rules including ephemeral destination ports."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "Stateless filtering always remembers connection state. This is not a sound assumption; stateful filtering can track established flow state."
+          "body": "Stateful filtering usually tracks return traffic; stateless rules must allow both directions explicitly. Routing and filtering are separate checks. Evaluate the path and actual source address after translation before broadening access."
         }
       ],
-      "takeaway": "Stateless rules may require explicit rules for return traffic.",
+      "command": "",
+      "takeaway": "Stateful filtering usually tracks return traffic; stateless rules must allow both directions explicitly. Routing and filtering are separate checks. Evaluate the path and actual source address after translation before broadening access.",
       "references": [
         {
-          "title": "Firewall direction \u2014 primary reference",
+          "title": "Firewall direction \u2014 primary documentation",
           "url": "https://docs.aws.amazon.com/vpc/latest/userguide/vpc-network-acls.html"
         }
       ]
@@ -356,26 +353,27 @@
       "id": "networking-lesson-14",
       "topic": "networking",
       "title": "MTU",
-      "summary": "What can an MTU mismatch cause? Large packets may fail while small exchanges succeed.",
+      "summary": "The maximum transmission unit limits packet size over a link.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "The maximum transmission unit limits packet size over a link."
+        },
+        {
           "heading": "How it works",
-          "body": "Blocked path-MTU feedback can create difficult size-dependent failures."
-        },
-        {
-          "heading": "Apply it",
-          "body": "Small requests work but larger responses stall on a tunneled path. Investigate path MTU fragmentation behavior and necessary ICMP feedback."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "MTU sets the maximum number of concurrent TCP connections. This is not a sound assumption; large packets may fail while small exchanges succeed."
+          "body": "Path MTU discovery learns a usable size across links, often through ICMP feedback. Blocking that feedback can allow small requests while larger transfers stall. Overlay headers reduce effective payload capacity; avoid assuming every path supports the same MTU."
         }
       ],
-      "takeaway": "Blocked path-MTU feedback can create difficult size-dependent failures.",
+      "command": "ip link show",
+      "takeaway": "Path MTU discovery learns a usable size across links, often through ICMP feedback. Blocking that feedback can allow small requests while larger transfers stall. Overlay headers reduce effective payload capacity; avoid assuming every path supports the same MTU.",
       "references": [
         {
-          "title": "MTU \u2014 primary reference",
+          "title": "MTU \u2014 primary documentation",
           "url": "https://www.rfc-editor.org/rfc/rfc1191.html"
+        },
+        {
+          "title": "Related command \u2014 primary documentation",
+          "url": "https://man7.org/linux/man-pages/"
         }
       ]
     },
@@ -383,25 +381,22 @@
       "id": "networking-lesson-15",
       "topic": "networking",
       "title": "Packet loss",
-      "summary": "Why correlate packet loss with TCP retransmissions and latency? Retransmission recovery can increase request completion time.",
+      "summary": "Packet loss occurs when packets are discarded in transit or at an endpoint.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "Packet loss occurs when packets are discarded in transit or at an endpoint."
+        },
+        {
           "heading": "How it works",
-          "body": "Loss location and timing matter more than one isolated counter."
-        },
-        {
-          "heading": "Apply it",
-          "body": "Latency worsens during bursts and retransmissions rise. Measure loss and congestion along the actual affected path."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "Any lost packet proves the destination application crashed. This is not a sound assumption; retransmission recovery can increase request completion time."
+          "body": "Loss may arise from congestion, faulty links, policing or overloaded receivers. TCP retransmissions can mask loss while increasing latency. Intermediate devices may deprioritize diagnostic replies, so a single traceroute hop's loss is not proof of end-to-end loss."
         }
       ],
-      "takeaway": "Loss location and timing matter more than one isolated counter.",
+      "command": "",
+      "takeaway": "Loss may arise from congestion, faulty links, policing or overloaded receivers. TCP retransmissions can mask loss while increasing latency. Intermediate devices may deprioritize diagnostic replies, so a single traceroute hop's loss is not proof of end-to-end loss.",
       "references": [
         {
-          "title": "Packet loss \u2014 primary reference",
+          "title": "Packet loss \u2014 primary documentation",
           "url": "https://www.rfc-editor.org/rfc/rfc5681.html"
         }
       ]
@@ -410,25 +405,22 @@
       "id": "networking-lesson-16",
       "topic": "networking",
       "title": "DNS negative caching",
-      "summary": "Why can a newly created DNS name still appear nonexistent? Resolvers may cache a prior negative response.",
+      "summary": "DNS caches can retain negative answers such as a name or record type not existing.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "DNS caches can retain negative answers such as a name or record type not existing."
+        },
+        {
           "heading": "How it works",
-          "body": "Negative-cache lifetime can differ from the new record's TTL."
-        },
-        {
-          "heading": "Apply it",
-          "body": "A hostname was queried before it existed and still fails at one resolver. Inspect the cached negative response and authoritative answer."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "NXDOMAIN responses can never be cached. This is not a sound assumption; resolvers may cache a prior negative response."
+          "body": "The authoritative response supplies information used to determine the negative caching lifetime. A newly created record can remain invisible to clients using a cached negative result. Compare authoritative and recursive answers before repeatedly changing the record."
         }
       ],
-      "takeaway": "Negative-cache lifetime can differ from the new record's TTL.",
+      "command": "",
+      "takeaway": "The authoritative response supplies information used to determine the negative caching lifetime. A newly created record can remain invisible to clients using a cached negative result. Compare authoritative and recursive answers before repeatedly changing the record.",
       "references": [
         {
-          "title": "DNS negative caching \u2014 primary reference",
+          "title": "DNS negative caching \u2014 primary documentation",
           "url": "https://www.rfc-editor.org/rfc/rfc9520.html"
         }
       ]
@@ -437,26 +429,27 @@
       "id": "networking-lesson-17",
       "topic": "networking",
       "title": "Keepalive",
-      "summary": "What is a limitation of TCP keepalive for service monitoring? It does not prove that the application can process a request.",
+      "summary": "Keepalive mechanisms periodically test or preserve idle connections at a chosen protocol layer.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "Keepalive mechanisms periodically test or preserve idle connections at a chosen protocol layer."
+        },
+        {
           "heading": "How it works",
-          "body": "Application-level health checks test behavior beyond transport state."
-        },
-        {
-          "heading": "Apply it",
-          "body": "A connection stays established while the application worker is deadlocked. Use a meaningful application check and bounded request deadlines."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "A keepalive response guarantees every database query will succeed. This is not a sound assumption; it does not prove that the application can process a request."
+          "body": "TCP keepalive, HTTP reuse and application heartbeats have different semantics. Their intervals must be considered alongside intermediaries' idle timeouts. A live socket does not prove the application is healthy or making progress."
         }
       ],
-      "takeaway": "Application-level health checks test behavior beyond transport state.",
+      "command": "ss -o state established",
+      "takeaway": "TCP keepalive, HTTP reuse and application heartbeats have different semantics. Their intervals must be considered alongside intermediaries' idle timeouts. A live socket does not prove the application is healthy or making progress.",
       "references": [
         {
-          "title": "Keepalive \u2014 primary reference",
+          "title": "Keepalive \u2014 primary documentation",
           "url": "https://www.rfc-editor.org/rfc/rfc9293.html"
+        },
+        {
+          "title": "Related command \u2014 primary documentation",
+          "url": "https://man7.org/linux/man-pages/"
         }
       ]
     },
@@ -464,25 +457,22 @@
       "id": "networking-lesson-18",
       "topic": "networking",
       "title": "Connection pooling",
-      "summary": "What benefit can connection pooling provide? It reduces repeated connection setup overhead.",
+      "summary": "A connection pool reuses established connections to reduce handshake cost and limit concurrency.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "A connection pool reuses established connections to reduce handshake cost and limit concurrency."
+        },
+        {
           "heading": "How it works",
-          "body": "Pools need bounded size idle handling and timeout policy."
-        },
-        {
-          "heading": "Apply it",
-          "body": "A service creates a new TLS connection for every short request. Measure setup cost and evaluate a bounded reusable connection pool."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "A pool eliminates every network failure. This is not a sound assumption; it reduces repeated connection setup overhead."
+          "body": "A bounded pool can protect a dependency, but requests may wait for a free connection. Stale idle connections, leaked leases and oversized pools cause different symptoms. Measure pool wait time separately from network and server execution time."
         }
       ],
-      "takeaway": "Pools need bounded size idle handling and timeout policy.",
+      "command": "",
+      "takeaway": "A bounded pool can protect a dependency, but requests may wait for a free connection. Stale idle connections, leaked leases and oversized pools cause different symptoms. Measure pool wait time separately from network and server execution time.",
       "references": [
         {
-          "title": "Connection pooling \u2014 primary reference",
+          "title": "Connection pooling \u2014 primary documentation",
           "url": "https://www.rfc-editor.org/rfc/rfc7230.html"
         }
       ]
@@ -491,25 +481,22 @@
       "id": "networking-lesson-19",
       "topic": "networking",
       "title": "Load balancing",
-      "summary": "What can an L7 HTTP load balancer inspect for routing? HTTP-level fields such as host and path.",
+      "summary": "A load balancer distributes requests or connections among backends according to policy and health.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "A load balancer distributes requests or connections among backends according to policy and health."
+        },
+        {
           "heading": "How it works",
-          "body": "TLS termination placement affects which component can inspect HTTP content."
-        },
-        {
-          "heading": "Apply it",
-          "body": "Two applications share an address but require routing by URL path. Use appropriate HTTP-aware routing at a component that can inspect the request."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "An L4 balancer always parses every HTTP path. This is not a sound assumption; hTTP-level fields such as host and path."
+          "body": "Layer-4 balancing handles transport flows; layer-7 balancing can inspect HTTP routes and headers. Health checks need to reflect readiness without amplifying failures. Session affinity can improve locality but may cause uneven load."
         }
       ],
-      "takeaway": "TLS termination placement affects which component can inspect HTTP content.",
+      "command": "",
+      "takeaway": "Layer-4 balancing handles transport flows; layer-7 balancing can inspect HTTP routes and headers. Health checks need to reflect readiness without amplifying failures. Session affinity can improve locality but may cause uneven load.",
       "references": [
         {
-          "title": "Load balancing \u2014 primary reference",
+          "title": "Load balancing \u2014 primary documentation",
           "url": "https://www.rfc-editor.org/rfc/rfc9110.html"
         }
       ]
@@ -518,25 +505,22 @@
       "id": "networking-lesson-20",
       "topic": "networking",
       "title": "Proxy headers",
-      "summary": "Why should forwarded client-address headers be trusted selectively? Clients can forge headers unless a trusted proxy controls them.",
+      "summary": "Forwarding headers carry information about the original request across proxies.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "Forwarding headers carry information about the original request across proxies."
+        },
+        {
           "heading": "How it works",
-          "body": "The trusted proxy boundary must be configured explicitly."
-        },
-        {
-          "heading": "Apply it",
-          "body": "An access rule accepts a forged forwarding header from a direct client. Restrict trusted proxies and sanitize forwarding metadata."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "Any X-Forwarded-For value proves the original client identity. This is not a sound assumption; clients can forge headers unless a trusted proxy controls them."
+          "body": "Headers such as Forwarded or X-Forwarded-For can preserve client address and scheme. Clients can spoof them unless a trusted proxy removes or validates incoming values. Applications should trust only the configured proxy chain."
         }
       ],
-      "takeaway": "The trusted proxy boundary must be configured explicitly.",
+      "command": "",
+      "takeaway": "Headers such as Forwarded or X-Forwarded-For can preserve client address and scheme. Clients can spoof them unless a trusted proxy removes or validates incoming values. Applications should trust only the configured proxy chain.",
       "references": [
         {
-          "title": "Proxy headers \u2014 primary reference",
+          "title": "Proxy headers \u2014 primary documentation",
           "url": "https://www.rfc-editor.org/rfc/rfc9110.html"
         }
       ]
@@ -545,25 +529,22 @@
       "id": "networking-lesson-21",
       "topic": "networking",
       "title": "Retries",
-      "summary": "How can network retries amplify an outage? They increase offered load while capacity may already be impaired.",
+      "summary": "A retry repeats an operation after a failure or uncertain outcome.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "A retry repeats an operation after a failure or uncertain outcome."
+        },
+        {
           "heading": "How it works",
-          "body": "Retry budgets backoff and jitter help control amplification."
-        },
-        {
-          "heading": "Apply it",
-          "body": "A dependency slows and callers launch synchronized repeated requests. Bound retries and use backoff with jitter while measuring load."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "Every failed request should be retried immediately forever. This is not a sound assumption; they increase offered load while capacity may already be impaired."
+          "body": "Bound retries by a deadline and use backoff with jitter to avoid synchronized overload. A timeout may occur after a server committed a write, so replay safety depends on idempotency or deduplication. Retrying at multiple layers can multiply traffic."
         }
       ],
-      "takeaway": "Retry budgets backoff and jitter help control amplification.",
+      "command": "",
+      "takeaway": "Bound retries by a deadline and use backoff with jitter to avoid synchronized overload. A timeout may occur after a server committed a write, so replay safety depends on idempotency or deduplication. Retrying at multiple layers can multiply traffic.",
       "references": [
         {
-          "title": "Retries \u2014 primary reference",
+          "title": "Retries \u2014 primary documentation",
           "url": "https://sre.google/sre-book/handling-overload/"
         }
       ]
@@ -572,25 +553,22 @@
       "id": "networking-lesson-22",
       "topic": "networking",
       "title": "Timeout budgets",
-      "summary": "Why coordinate deadlines across a request chain? Downstream work should fit within the caller's remaining budget.",
+      "summary": "A timeout budget limits how long an end-to-end operation may consume across its stages.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "A timeout budget limits how long an end-to-end operation may consume across its stages."
+        },
+        {
           "heading": "How it works",
-          "body": "A timeout does not prove the server performed no side effect."
-        },
-        {
-          "heading": "Apply it",
-          "body": "A payment request times out and the client is about to repeat it. Check idempotency and operation status before repeating a write."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "Every layer should wait longer than its caller indefinitely. This is not a sound assumption; downstream work should fit within the caller's remaining budget."
+          "body": "Connection, TLS, request, queue and dependency timeouts should fit within the caller's deadline. Cancel work when the deadline expires so abandoned requests do not keep consuming capacity. Longer timeouts can increase concurrent load during an outage."
         }
       ],
-      "takeaway": "A timeout does not prove the server performed no side effect.",
+      "command": "",
+      "takeaway": "Connection, TLS, request, queue and dependency timeouts should fit within the caller's deadline. Cancel work when the deadline expires so abandoned requests do not keep consuming capacity. Longer timeouts can increase concurrent load during an outage.",
       "references": [
         {
-          "title": "Timeout budgets \u2014 primary reference",
+          "title": "Timeout budgets \u2014 primary documentation",
           "url": "https://sre.google/sre-book/handling-overload/"
         }
       ]
@@ -599,25 +577,22 @@
       "id": "networking-lesson-23",
       "topic": "networking",
       "title": "Asymmetric routing",
-      "summary": "Why can asymmetric routing break a stateful firewall path? Return traffic may bypass the device holding the connection state.",
+      "summary": "Asymmetric routing means forward and return traffic take different paths.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "Asymmetric routing means forward and return traffic take different paths."
+        },
+        {
           "heading": "How it works",
-          "body": "Both forward and reverse paths matter when stateful devices are involved."
-        },
-        {
-          "heading": "Apply it",
-          "body": "Packets reach the server but replies take a different firewall path and disappear. Trace both directions and inspect stateful-device routing."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "Only the forward route matters for TCP connectivity. This is not a sound assumption; return traffic may bypass the device holding the connection state."
+          "body": "This can be legitimate, but stateful firewalls or reverse-path filtering may reject traffic when they cannot associate both directions. Inspect routes and captures at both ends before changing filters. The client-side route alone describes only half the conversation."
         }
       ],
-      "takeaway": "Both forward and reverse paths matter when stateful devices are involved.",
+      "command": "",
+      "takeaway": "This can be legitimate, but stateful firewalls or reverse-path filtering may reject traffic when they cannot associate both directions. Inspect routes and captures at both ends before changing filters. The client-side route alone describes only half the conversation.",
       "references": [
         {
-          "title": "Asymmetric routing \u2014 primary reference",
+          "title": "Asymmetric routing \u2014 primary documentation",
           "url": "https://docs.aws.amazon.com/vpc/latest/userguide/vpc-network-acls.html"
         }
       ]
@@ -626,25 +601,22 @@
       "id": "networking-lesson-24",
       "topic": "networking",
       "title": "Anycast",
-      "summary": "What is the core idea of IP anycast? Multiple locations advertise reachability for the same address.",
+      "summary": "Anycast advertises the same service address from multiple locations.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "Anycast advertises the same service address from multiple locations."
+        },
+        {
           "heading": "How it works",
-          "body": "Routing chooses a path rather than an application-level session scheduler."
-        },
-        {
-          "heading": "Apply it",
-          "body": "A route change moves traffic to another anycast location. Check route convergence and whether session state tolerates location changes."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "Anycast guarantees all requests from a user reach one process forever. This is not a sound assumption; multiple locations advertise reachability for the same address."
+          "body": "Routing policy selects a reachable path; it does not directly measure application health or geographic distance. Route changes can move clients to another location. Connection state and failure withdrawal behavior must be considered for stateful services."
         }
       ],
-      "takeaway": "Routing chooses a path rather than an application-level session scheduler.",
+      "command": "",
+      "takeaway": "Routing policy selects a reachable path; it does not directly measure application health or geographic distance. Route changes can move clients to another location. Connection state and failure withdrawal behavior must be considered for stateful services.",
       "references": [
         {
-          "title": "Anycast \u2014 primary reference",
+          "title": "Anycast \u2014 primary documentation",
           "url": "https://www.rfc-editor.org/rfc/rfc4786.html"
         }
       ]
@@ -653,25 +625,22 @@
       "id": "networking-lesson-25",
       "topic": "networking",
       "title": "BGP policy",
-      "summary": "What primarily distinguishes BGP path selection from a pure latency optimizer? Policy and path attributes guide route selection.",
+      "summary": "BGP exchanges reachability information between routing domains and selects paths according to policy.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "BGP exchanges reachability information between routing domains and selects paths according to policy."
+        },
+        {
           "heading": "How it works",
-          "body": "The selected route need not be the path with lowest measured latency."
-        },
-        {
-          "heading": "Apply it",
-          "body": "Traffic follows an unexpected provider path despite a nearby alternative. Inspect route advertisements and policy attributes."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "BGP continuously measures application response time for every route. This is not a sound assumption; policy and path attributes guide route selection."
+          "body": "Attributes and local policy influence selection rather than a simple shortest physical route. Prefix filters and route validation constrain accidental or unauthorized announcements. A valid advertised route does not guarantee a healthy application behind it."
         }
       ],
-      "takeaway": "The selected route need not be the path with lowest measured latency.",
+      "command": "",
+      "takeaway": "Attributes and local policy influence selection rather than a simple shortest physical route. Prefix filters and route validation constrain accidental or unauthorized announcements. A valid advertised route does not guarantee a healthy application behind it.",
       "references": [
         {
-          "title": "BGP policy \u2014 primary reference",
+          "title": "BGP policy \u2014 primary documentation",
           "url": "https://www.rfc-editor.org/rfc/rfc4271.html"
         }
       ]
@@ -680,26 +649,27 @@
       "id": "networking-lesson-26",
       "topic": "networking",
       "title": "IPv6 neighbor discovery",
-      "summary": "What replaces ARP's local-neighbor role in IPv6? ICMPv6 Neighbor Discovery.",
+      "summary": "IPv6 Neighbor Discovery uses ICMPv6 to find neighbors, routers and link information.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "IPv6 Neighbor Discovery uses ICMPv6 to find neighbors, routers and link information."
+        },
+        {
           "heading": "How it works",
-          "body": "Blocking all ICMPv6 can break essential IPv6 operation."
-        },
-        {
-          "heading": "Apply it",
-          "body": "IPv6 communication breaks after a blanket ICMPv6 deny rule. Review required Neighbor Discovery and path-MTU control traffic."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "IPv6 uses IPv4 ARP broadcasts unchanged. This is not a sound assumption; iCMPv6 Neighbor Discovery."
+          "body": "It replaces IPv4 ARP and supports functions including router discovery and duplicate address detection. Blocking all ICMPv6 can break normal connectivity and path MTU discovery. Link-local addressing is important for local routing communication."
         }
       ],
-      "takeaway": "Blocking all ICMPv6 can break essential IPv6 operation.",
+      "command": "ip -6 neigh show",
+      "takeaway": "It replaces IPv4 ARP and supports functions including router discovery and duplicate address detection. Blocking all ICMPv6 can break normal connectivity and path MTU discovery. Link-local addressing is important for local routing communication.",
       "references": [
         {
-          "title": "IPv6 neighbor discovery \u2014 primary reference",
+          "title": "IPv6 neighbor discovery \u2014 primary documentation",
           "url": "https://www.rfc-editor.org/rfc/rfc4861.html"
+        },
+        {
+          "title": "Related command \u2014 primary documentation",
+          "url": "https://man7.org/linux/man-pages/"
         }
       ]
     },
@@ -707,26 +677,27 @@
       "id": "networking-lesson-27",
       "topic": "networking",
       "title": "TCP TIME_WAIT",
-      "summary": "Why does TCP keep some closed connections in TIME_WAIT? It helps handle delayed segments and the final close exchange.",
+      "summary": "TIME_WAIT retains state after active TCP close so delayed segments cannot be confused with a new connection.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "TIME_WAIT retains state after active TCP close so delayed segments cannot be confused with a new connection."
+        },
+        {
           "heading": "How it works",
-          "body": "Large TIME_WAIT counts need context rather than automatic deletion."
-        },
-        {
-          "heading": "Apply it",
-          "body": "A busy client creates many short connections and accumulates TIME_WAIT sockets. Inspect connection churn port capacity and reuse patterns."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "TIME_WAIT means every socket is actively processing requests. This is not a sound assumption; it helps handle delayed segments and the final close exchange."
+          "body": "Many entries can be normal with high connection churn. Investigate reuse, ephemeral-port availability and workload before changing kernel timeouts. Removing this protection indiscriminately can introduce subtle connection failures."
         }
       ],
-      "takeaway": "Large TIME_WAIT counts need context rather than automatic deletion.",
+      "command": "ss -tan state time-wait",
+      "takeaway": "Many entries can be normal with high connection churn. Investigate reuse, ephemeral-port availability and workload before changing kernel timeouts. Removing this protection indiscriminately can introduce subtle connection failures.",
       "references": [
         {
-          "title": "TCP TIME_WAIT \u2014 primary reference",
+          "title": "TCP TIME_WAIT \u2014 primary documentation",
           "url": "https://www.rfc-editor.org/rfc/rfc9293.html"
+        },
+        {
+          "title": "Related command \u2014 primary documentation",
+          "url": "https://man7.org/linux/man-pages/"
         }
       ]
     },
@@ -734,25 +705,22 @@
       "id": "networking-lesson-28",
       "topic": "networking",
       "title": "Queueing",
-      "summary": "Why can a large network queue worsen interactive latency? Packets wait longer before transmission under sustained congestion.",
+      "summary": "Queues buffer bursts when work arrives faster than it can immediately be processed.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "Queues buffer bursts when work arrives faster than it can immediately be processed."
+        },
+        {
           "heading": "How it works",
-          "body": "More buffering can trade packet loss for queueing delay."
-        },
-        {
-          "heading": "Apply it",
-          "body": "Throughput looks stable but interactive latency climbs during bulk transfers. Measure queueing delay and evaluate traffic management."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "Increasing every buffer always lowers latency. This is not a sound assumption; packets wait longer before transmission under sustained congestion."
+          "body": "As utilization approaches capacity, waiting time can grow sharply. Larger queues delay rejection but do not add service capacity. Bound queues, measure wait time and apply backpressure or shedding when deadlines can no longer be met."
         }
       ],
-      "takeaway": "More buffering can trade packet loss for queueing delay.",
+      "command": "",
+      "takeaway": "As utilization approaches capacity, waiting time can grow sharply. Larger queues delay rejection but do not add service capacity. Bound queues, measure wait time and apply backpressure or shedding when deadlines can no longer be met.",
       "references": [
         {
-          "title": "Queueing \u2014 primary reference",
+          "title": "Queueing \u2014 primary documentation",
           "url": "https://www.rfc-editor.org/rfc/rfc5681.html"
         }
       ]
@@ -761,25 +729,22 @@
       "id": "networking-lesson-29",
       "topic": "networking",
       "title": "TLS termination",
-      "summary": "What changes when TLS is terminated at a proxy? The proxy can access plaintext application traffic.",
+      "summary": "TLS termination decrypts a connection at an intermediary such as a load balancer or proxy.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "TLS termination decrypts a connection at an intermediary such as a load balancer or proxy."
+        },
+        {
           "heading": "How it works",
-          "body": "Encryption to the backend is a separate connection policy."
-        },
-        {
-          "heading": "Apply it",
-          "body": "A compliance requirement covers traffic between the proxy and backend. Verify and configure encryption on the backend connection too."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "Terminating TLS automatically encrypts the backend hop. This is not a sound assumption; the proxy can access plaintext application traffic."
+          "body": "The next hop may be plaintext or a separately authenticated encrypted connection. Termination boundaries determine certificate ownership and where sensitive data becomes visible. Document both hops; external HTTPS alone does not prove backend encryption."
         }
       ],
-      "takeaway": "Encryption to the backend is a separate connection policy.",
+      "command": "",
+      "takeaway": "The next hop may be plaintext or a separately authenticated encrypted connection. Termination boundaries determine certificate ownership and where sensitive data becomes visible. Document both hops; external HTTPS alone does not prove backend encryption.",
       "references": [
         {
-          "title": "TLS termination \u2014 primary reference",
+          "title": "TLS termination \u2014 primary documentation",
           "url": "https://www.rfc-editor.org/rfc/rfc8446.html"
         }
       ]
@@ -788,30 +753,567 @@
       "id": "networking-lesson-30",
       "topic": "networking",
       "title": "Idempotency",
-      "summary": "Why is idempotency useful for retried network writes? Repeated requests can avoid duplicating the intended effect.",
+      "summary": "An idempotent operation has the same intended effect when repeated as when performed once.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "An idempotent operation has the same intended effect when repeated as when performed once."
+        },
+        {
           "heading": "How it works",
-          "body": "Idempotency keys need scoped storage and a retention policy."
-        },
-        {
-          "heading": "Apply it",
-          "body": "A client may retry an order after losing the response. Reuse an operation identifier and check recorded outcomes."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "Every HTTP POST is automatically idempotent. This is not a sound assumption; repeated requests can avoid duplicating the intended effect."
+          "body": "A server can use an idempotency key to recognize retries and return the original outcome. Keys need a defined scope, retention policy and conflict behavior. Transport reliability cannot by itself prevent duplicate business operations."
         }
       ],
-      "takeaway": "Idempotency keys need scoped storage and a retention policy.",
+      "command": "",
+      "takeaway": "A server can use an idempotency key to recognize retries and return the original outcome. Keys need a defined scope, retention policy and conflict behavior. Transport reliability cannot by itself prevent duplicate business operations.",
       "references": [
         {
-          "title": "Idempotency \u2014 primary reference",
+          "title": "Idempotency \u2014 primary documentation",
           "url": "https://www.rfc-editor.org/rfc/rfc9110.html"
         }
       ]
     }
   ],
-  "commands": [],
-  "debugging": []
+  "commands": [
+    {
+      "id": "networking-command-01",
+      "topic": "networking",
+      "title": "Interface addresses",
+      "command": "ip -br address",
+      "kind": "Shell command",
+      "definition": "Shows concise interface states and assigned addresses.",
+      "purpose": "Confirm the source interface and address before tracing a path.",
+      "environment": "Read-only Linux command; example values are documentation addresses.",
+      "expectedOutput": "eth0 UP 192.0.2.20/24",
+      "interpretation": "UP is link state; address suffixes show prefix length. An address alone does not prove a usable route.",
+      "safety": "Read-only Linux command; example values are documentation addresses.",
+      "references": [
+        {
+          "title": "Interface addresses \u2014 primary documentation",
+          "url": "https://man7.org/linux/man-pages/"
+        }
+      ]
+    },
+    {
+      "id": "networking-command-02",
+      "topic": "networking",
+      "title": "Route selection",
+      "command": "ip route get 192.0.2.10",
+      "kind": "Shell command",
+      "definition": "Asks the kernel which route it would use for one destination.",
+      "purpose": "Check next hop, output interface and selected source address.",
+      "environment": "Read-only; substitute the actual destination and consider policy routing.",
+      "expectedOutput": "192.0.2.10 via 192.0.2.1 dev eth0 src 192.0.2.20",
+      "interpretation": "via is next hop, dev is interface and src is chosen local source.",
+      "safety": "Read-only; substitute the actual destination and consider policy routing.",
+      "references": [
+        {
+          "title": "Route selection \u2014 primary documentation",
+          "url": "https://man7.org/linux/man-pages/"
+        }
+      ]
+    },
+    {
+      "id": "networking-command-03",
+      "topic": "networking",
+      "title": "Neighbor state",
+      "command": "ip neigh show",
+      "kind": "Shell command",
+      "definition": "Displays the kernel neighbor table.",
+      "purpose": "Find failed local next-hop resolution.",
+      "environment": "Read-only; use ip -6 neigh for IPv6-specific inspection.",
+      "expectedOutput": "192.0.2.1 dev eth0 lladdr 00:11:22:33:44:55 REACHABLE",
+      "interpretation": "REACHABLE is recently confirmed; STALE can be normal; FAILED indicates unsuccessful resolution.",
+      "safety": "Read-only; use ip -6 neigh for IPv6-specific inspection.",
+      "references": [
+        {
+          "title": "Neighbor state \u2014 primary documentation",
+          "url": "https://man7.org/linux/man-pages/"
+        }
+      ]
+    },
+    {
+      "id": "networking-command-04",
+      "topic": "networking",
+      "title": "DNS answer",
+      "command": "dig example.com A",
+      "kind": "Shell command",
+      "definition": "Queries DNS for IPv4 address records.",
+      "purpose": "Inspect response code, returned records and TTLs.",
+      "environment": "Read-only network query; DNS results are illustrative.",
+      "expectedOutput": "example.com. 300 IN A 192.0.2.10",
+      "interpretation": "status NXDOMAIN means the name does not exist in that response; ANSWER records include remaining TTL.",
+      "safety": "Read-only network query; DNS results are illustrative.",
+      "references": [
+        {
+          "title": "DNS answer \u2014 primary documentation",
+          "url": "https://man7.org/linux/man-pages/"
+        }
+      ]
+    },
+    {
+      "id": "networking-command-05",
+      "topic": "networking",
+      "title": "Specific resolver",
+      "command": "dig @192.0.2.53 example.com A",
+      "kind": "Shell command",
+      "definition": "Directs a DNS query to a chosen resolver.",
+      "purpose": "Compare two resolvers during inconsistent resolution.",
+      "environment": "Replace the documentation address with an authorized resolver; a timeout does not prove the record is absent.",
+      "expectedOutput": "SERVER: 192.0.2.53#53",
+      "interpretation": "The SERVER field confirms the queried resolver; compare status, answer and TTL, not only the final address.",
+      "safety": "Replace the documentation address with an authorized resolver; a timeout does not prove the record is absent.",
+      "references": [
+        {
+          "title": "Specific resolver \u2014 primary documentation",
+          "url": "https://man7.org/linux/man-pages/"
+        }
+      ]
+    },
+    {
+      "id": "networking-command-06",
+      "topic": "networking",
+      "title": "DNS authority chain",
+      "command": "dig +trace example.com",
+      "kind": "Shell command",
+      "definition": "Walks DNS delegation from root toward authoritative servers.",
+      "purpose": "Locate a delegation or authority discrepancy.",
+      "environment": "Generates multiple DNS queries; does not test every application's resolver cache.",
+      "expectedOutput": "NS referrals followed by an authoritative answer",
+      "interpretation": "Each referral identifies the next authoritative servers. Failure can also reflect blocked outbound DNS from the test host.",
+      "safety": "Generates multiple DNS queries; does not test every application's resolver cache.",
+      "references": [
+        {
+          "title": "DNS authority chain \u2014 primary documentation",
+          "url": "https://man7.org/linux/man-pages/"
+        }
+      ]
+    },
+    {
+      "id": "networking-command-07",
+      "topic": "networking",
+      "title": "HTTP response",
+      "command": "curl -I --max-time 10 https://example.com",
+      "kind": "Shell command",
+      "definition": "Requests HTTP headers using HEAD with a total time limit.",
+      "purpose": "Inspect status, redirects and cache headers without downloading the body.",
+      "environment": "Read-only request but still reaches the service; use a known safe endpoint.",
+      "expectedOutput": "HTTP/2 200",
+      "interpretation": "The status line identifies response class; Location identifies redirect destination. Some services treat HEAD differently from GET.",
+      "safety": "Read-only request but still reaches the service; use a known safe endpoint.",
+      "references": [
+        {
+          "title": "HTTP response \u2014 primary documentation",
+          "url": "https://curl.se/docs/manpage.html"
+        }
+      ]
+    },
+    {
+      "id": "networking-command-08",
+      "topic": "networking",
+      "title": "HTTP timing",
+      "command": "curl -sS -o /dev/null --max-time 10 -w 'dns=%{time_namelookup} connect=%{time_connect} tls=%{time_appconnect} total=%{time_total}\\n' https://example.com",
+      "kind": "Shell command",
+      "definition": "Measures cumulative milestones for one HTTP request.",
+      "purpose": "Distinguish name resolution, connection, TLS and total duration.",
+      "environment": "Use an authorized read endpoint; one sample is not a latency distribution.",
+      "expectedOutput": "dns=0.010 connect=0.030 tls=0.070 total=0.120",
+      "interpretation": "Times are cumulative seconds from request start; subtract adjacent milestones for stage estimates.",
+      "safety": "Use an authorized read endpoint; one sample is not a latency distribution.",
+      "references": [
+        {
+          "title": "HTTP timing \u2014 primary documentation",
+          "url": "https://curl.se/docs/manpage.html"
+        }
+      ]
+    },
+    {
+      "id": "networking-command-09",
+      "topic": "networking",
+      "title": "TLS verification",
+      "command": "openssl s_client -connect example.com:443 -servername example.com -verify_return_error -verify_hostname example.com",
+      "kind": "Shell command",
+      "definition": "Connects with TLS, supplies SNI and validates certificate identity.",
+      "purpose": "Inspect chain, negotiated protocol and verification errors.",
+      "environment": "Uses the system trust configuration; never interpret disabling verification as a production fix.",
+      "expectedOutput": "Verification: OK",
+      "interpretation": "Check verification result and hostname; a completed encrypted handshake without verification is insufficient.",
+      "safety": "Uses the system trust configuration; never interpret disabling verification as a production fix.",
+      "references": [
+        {
+          "title": "TLS verification \u2014 primary documentation",
+          "url": "https://docs.openssl.org/master/man1/openssl-s_client/"
+        }
+      ]
+    },
+    {
+      "id": "networking-command-10",
+      "topic": "networking",
+      "title": "TCP socket detail",
+      "command": "ss -ti state established",
+      "kind": "Shell command",
+      "definition": "Shows established TCP connections with internal transport information.",
+      "purpose": "Investigate retransmission, congestion and round-trip behavior.",
+      "environment": "Read-only; field availability depends on kernel and iproute2 version.",
+      "expectedOutput": "ESTAB ... rtt:12.1/2.0 ...",
+      "interpretation": "rtt estimates round-trip time; retrans fields and congestion information provide transport clues, not application health.",
+      "safety": "Read-only; field availability depends on kernel and iproute2 version.",
+      "references": [
+        {
+          "title": "TCP socket detail \u2014 primary documentation",
+          "url": "https://man7.org/linux/man-pages/"
+        }
+      ]
+    },
+    {
+      "id": "networking-command-11",
+      "topic": "networking",
+      "title": "Bounded packet capture",
+      "command": "tcpdump -ni eth0 -c 50 'host 192.0.2.10 and tcp port 443'",
+      "kind": "Shell command",
+      "definition": "Captures up to fifty matching packets on one interface.",
+      "purpose": "Check whether SYNs, replies and resets traverse the observed point.",
+      "environment": "Requires capture privileges; use a scoped filter and protect captured metadata or payloads.",
+      "expectedOutput": "IP client.port > server.443: Flags [S]",
+      "interpretation": "S is SYN, S. is SYN-ACK, R is reset; compare direction and timing.",
+      "safety": "Requires capture privileges; use a scoped filter and protect captured metadata or payloads.",
+      "references": [
+        {
+          "title": "Bounded packet capture \u2014 primary documentation",
+          "url": "https://man7.org/linux/man-pages/"
+        }
+      ]
+    },
+    {
+      "id": "networking-command-12",
+      "topic": "networking",
+      "title": "Path probe",
+      "command": "traceroute -n -m 15 example.com",
+      "kind": "Shell command",
+      "definition": "Probes a path with increasing hop limits, bounded to fifteen hops.",
+      "purpose": "Locate routing changes and broad failure boundaries.",
+      "environment": "Generates diagnostic traffic; confirm tool availability and authorized target.",
+      "expectedOutput": "1 192.0.2.1 1.2 ms ...",
+      "interpretation": "Asterisks mean no probe reply, not necessarily forwarded traffic loss. Routers may suppress or deprioritize replies.",
+      "safety": "Generates diagnostic traffic; confirm tool availability and authorized target.",
+      "references": [
+        {
+          "title": "Path probe \u2014 primary documentation",
+          "url": "https://man7.org/linux/man-pages/"
+        }
+      ]
+    }
+  ],
+  "debugging": [
+    {
+      "id": "networking-scenario-guide-01",
+      "topic": "networking",
+      "title": "DNS differs between clients",
+      "symptom": "Some clients reach an old address after a DNS change.",
+      "steps": [
+        {
+          "action": "Inspect and diagnose",
+          "command": "dig example.com A",
+          "evidence": "Compare authoritative answers, recursive answers and TTLs from affected and unaffected clients. Check local hosts entries and application caches separately."
+        },
+        {
+          "action": "Fix the evidenced cause",
+          "evidence": "Correct an authoritative mistake if present; otherwise allow documented cache lifetimes or refresh a specific managed cache. Do not keep changing the record while valid old answers remain cached."
+        },
+        {
+          "action": "Verify recovery",
+          "evidence": "Confirm affected clients obtain the intended address and successful requests after the old TTL window."
+        }
+      ],
+      "references": [
+        {
+          "title": "DNS differs between clients \u2014 primary documentation",
+          "url": "https://www.rfc-editor.org/rfc/rfc9293.html"
+        },
+        {
+          "title": "Diagnostic tool \u2014 primary documentation",
+          "url": "https://man7.org/linux/man-pages/"
+        }
+      ]
+    },
+    {
+      "id": "networking-scenario-guide-02",
+      "topic": "networking",
+      "title": "TCP connection times out",
+      "symptom": "A client repeatedly sends connection attempts without receiving a response.",
+      "steps": [
+        {
+          "action": "Inspect and diagnose",
+          "command": "tcpdump -ni eth0 -c 50 'host 192.0.2.10 and tcp port 443'",
+          "evidence": "Capture at appropriate authorized points on both ends. Determine whether SYN arrives, a SYN-ACK leaves and the return path reaches the client."
+        },
+        {
+          "action": "Fix the evidenced cause",
+          "evidence": "Correct the evidenced route, listener or narrow firewall rule. If replies take another path, examine stateful filtering and source selection."
+        },
+        {
+          "action": "Verify recovery",
+          "evidence": "Observe a completed handshake and a successful application request, not merely a passing ping."
+        }
+      ],
+      "references": [
+        {
+          "title": "TCP connection times out \u2014 primary documentation",
+          "url": "https://www.rfc-editor.org/rfc/rfc9293.html"
+        },
+        {
+          "title": "Diagnostic tool \u2014 primary documentation",
+          "url": "https://man7.org/linux/man-pages/"
+        }
+      ]
+    },
+    {
+      "id": "networking-scenario-guide-03",
+      "topic": "networking",
+      "title": "Connection refused",
+      "symptom": "A service address responds with an immediate TCP reset.",
+      "steps": [
+        {
+          "action": "Inspect and diagnose",
+          "command": "ss -lntp",
+          "evidence": "Check the destination host's listener, port and bind address; confirm the client reaches the intended host. A reset suggests active rejection rather than silent packet loss."
+        },
+        {
+          "action": "Fix the evidenced cause",
+          "evidence": "Start or correct the intended service, fix port mapping or correct an explicit rejection policy after confirming ownership."
+        },
+        {
+          "action": "Verify recovery",
+          "evidence": "Connect from the original client and verify the expected application identity and response."
+        }
+      ],
+      "references": [
+        {
+          "title": "Connection refused \u2014 primary documentation",
+          "url": "https://www.rfc-editor.org/rfc/rfc9293.html"
+        },
+        {
+          "title": "Diagnostic tool \u2014 primary documentation",
+          "url": "https://man7.org/linux/man-pages/"
+        }
+      ]
+    },
+    {
+      "id": "networking-scenario-guide-04",
+      "topic": "networking",
+      "title": "TLS hostname failure",
+      "symptom": "HTTPS connects but certificate verification reports a name mismatch.",
+      "steps": [
+        {
+          "action": "Inspect and diagnose",
+          "command": "openssl s_client -connect example.com:443 -servername example.com -verify_return_error -verify_hostname example.com",
+          "evidence": "Inspect the certificate names, chain and selected virtual host. Confirm DNS points to the intended endpoint and SNI uses the requested hostname."
+        },
+        {
+          "action": "Fix the evidenced cause",
+          "evidence": "Install the correct certificate or fix routing/SNI configuration. Keep verification enabled; bypassing it does not repair identity."
+        },
+        {
+          "action": "Verify recovery",
+          "evidence": "Repeat verification with the real client trust store and hostname, then test application traffic."
+        }
+      ],
+      "references": [
+        {
+          "title": "TLS hostname failure \u2014 primary documentation",
+          "url": "https://www.rfc-editor.org/rfc/rfc9293.html"
+        },
+        {
+          "title": "Diagnostic tool \u2014 primary documentation",
+          "url": "https://docs.openssl.org/master/man1/openssl-s_client/"
+        }
+      ]
+    },
+    {
+      "id": "networking-scenario-guide-05",
+      "topic": "networking",
+      "title": "Large transfers stall",
+      "symptom": "Small health checks pass but larger HTTPS responses repeatedly hang.",
+      "steps": [
+        {
+          "action": "Inspect and diagnose",
+          "command": "ip link show",
+          "evidence": "Compare effective MTU along tunnels and inspect retransmissions and ICMP packet-too-big feedback. Distinguish a path-MTU black hole from server-side buffering."
+        },
+        {
+          "action": "Fix the evidenced cause",
+          "evidence": "Correct tunnel MTU or permit required ICMP feedback using the network's policy. Apply MSS adjustment only when justified by the path design."
+        },
+        {
+          "action": "Verify recovery",
+          "evidence": "Test representative payload sizes in both directions and confirm retransmissions and stalls disappear."
+        }
+      ],
+      "references": [
+        {
+          "title": "Large transfers stall \u2014 primary documentation",
+          "url": "https://www.rfc-editor.org/rfc/rfc9293.html"
+        },
+        {
+          "title": "Diagnostic tool \u2014 primary documentation",
+          "url": "https://man7.org/linux/man-pages/"
+        }
+      ]
+    },
+    {
+      "id": "networking-scenario-guide-06",
+      "topic": "networking",
+      "title": "Idle pooled connections fail",
+      "symptom": "The first request after idle time fails, while an immediate retry succeeds.",
+      "steps": [
+        {
+          "action": "Inspect and diagnose",
+          "command": "ss -o state established",
+          "evidence": "Compare application pool idle lifetime with proxy, load-balancer and NAT idle timeouts. Check whether the client reuses a connection already expired by an intermediary."
+        },
+        {
+          "action": "Fix the evidenced cause",
+          "evidence": "Expire or validate pooled connections before the shortest relevant idle timeout and bound retry behavior for safe operations."
+        },
+        {
+          "action": "Verify recovery",
+          "evidence": "Repeat a controlled idle interval and confirm the first request succeeds without a retry burst."
+        }
+      ],
+      "references": [
+        {
+          "title": "Idle pooled connections fail \u2014 primary documentation",
+          "url": "https://www.rfc-editor.org/rfc/rfc9293.html"
+        },
+        {
+          "title": "Diagnostic tool \u2014 primary documentation",
+          "url": "https://man7.org/linux/man-pages/"
+        }
+      ]
+    },
+    {
+      "id": "networking-scenario-guide-07",
+      "topic": "networking",
+      "title": "Retry-amplified outage",
+      "symptom": "A dependency slows and incoming requests multiply despite steady user traffic.",
+      "steps": [
+        {
+          "action": "Inspect and diagnose",
+          "command": "ss -s",
+          "evidence": "Compare attempt counts at each layer with original request volume and dependency saturation. Identify synchronized retries and missing overall deadlines."
+        },
+        {
+          "action": "Fix the evidenced cause",
+          "evidence": "Cap retries, add backoff with jitter and shed excess work. Restore dependency headroom before gradually returning normal traffic."
+        },
+        {
+          "action": "Verify recovery",
+          "evidence": "Confirm attempts per user request, queue age and error rate return to expected levels."
+        }
+      ],
+      "references": [
+        {
+          "title": "Retry-amplified outage \u2014 primary documentation",
+          "url": "https://www.rfc-editor.org/rfc/rfc9293.html"
+        },
+        {
+          "title": "Diagnostic tool \u2014 primary documentation",
+          "url": "https://man7.org/linux/man-pages/"
+        }
+      ]
+    },
+    {
+      "id": "networking-scenario-guide-08",
+      "topic": "networking",
+      "title": "Wrong client address in logs",
+      "symptom": "Every request appears to come from a proxy, or clients can spoof recorded IP addresses.",
+      "steps": [
+        {
+          "action": "Inspect and diagnose",
+          "command": "curl -I https://example.com",
+          "evidence": "Inspect the trusted proxy chain and how forwarding headers are stripped, added and consumed. Do not trust arbitrary incoming X-Forwarded-For values."
+        },
+        {
+          "action": "Fix the evidenced cause",
+          "evidence": "Configure edge proxies to sanitize headers and applications to trust only known proxy hops. Preserve the actual transport peer for audit."
+        },
+        {
+          "action": "Verify recovery",
+          "evidence": "Test normal and deliberately supplied forwarding headers and confirm the recorded identity follows the trusted chain."
+        }
+      ],
+      "references": [
+        {
+          "title": "Wrong client address in logs \u2014 primary documentation",
+          "url": "https://www.rfc-editor.org/rfc/rfc9293.html"
+        },
+        {
+          "title": "Diagnostic tool \u2014 primary documentation",
+          "url": "https://curl.se/docs/manpage.html"
+        }
+      ]
+    },
+    {
+      "id": "networking-scenario-guide-09",
+      "topic": "networking",
+      "title": "Intermittent backend failures",
+      "symptom": "Only some requests through a load balancer fail.",
+      "steps": [
+        {
+          "action": "Inspect and diagnose",
+          "command": "curl -I --max-time 10 https://example.com",
+          "evidence": "Correlate failures with backend identity, zone and version. Compare health-check paths with the failing business operation and inspect session affinity."
+        },
+        {
+          "action": "Fix the evidenced cause",
+          "evidence": "Remove or repair the evidenced unhealthy cohort while retaining capacity. Correct health checks if they pass on broken serving paths."
+        },
+        {
+          "action": "Verify recovery",
+          "evidence": "Verify every intended backend passes representative requests and aggregate errors recover across zones."
+        }
+      ],
+      "references": [
+        {
+          "title": "Intermittent backend failures \u2014 primary documentation",
+          "url": "https://www.rfc-editor.org/rfc/rfc9293.html"
+        },
+        {
+          "title": "Diagnostic tool \u2014 primary documentation",
+          "url": "https://curl.se/docs/manpage.html"
+        }
+      ]
+    },
+    {
+      "id": "networking-scenario-guide-10",
+      "topic": "networking",
+      "title": "Outbound connections exhausted",
+      "symptom": "New outbound connections fail during traffic spikes while established ones continue.",
+      "steps": [
+        {
+          "action": "Inspect and diagnose",
+          "command": "ss -tan state time-wait",
+          "evidence": "Compare connection churn, source-port usage and NAT allocation metrics. Many TIME_WAIT entries alone are not proof of exhaustion; confirm allocation failures."
+        },
+        {
+          "action": "Fix the evidenced cause",
+          "evidence": "Reuse connections appropriately, bound concurrency and expand the constrained egress capacity if justified. Avoid arbitrary TCP timeout reductions."
+        },
+        {
+          "action": "Verify recovery",
+          "evidence": "Load-test within approved limits and verify new connections succeed with stable port and NAT headroom."
+        }
+      ],
+      "references": [
+        {
+          "title": "Outbound connections exhausted \u2014 primary documentation",
+          "url": "https://www.rfc-editor.org/rfc/rfc9293.html"
+        },
+        {
+          "title": "Diagnostic tool \u2014 primary documentation",
+          "url": "https://man7.org/linux/man-pages/"
+        }
+      ]
+    }
+  ]
 }

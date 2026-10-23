@@ -5,26 +5,27 @@
       "id": "git-lesson-01",
       "topic": "git",
       "title": "Working tree",
-      "summary": "What is the Git working tree? The checked-out files being edited.",
+      "summary": "The working tree contains the checked-out files you edit.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "The working tree contains the checked-out files you edit."
+        },
+        {
           "heading": "How it works",
-          "body": "Uncommitted changes are distinct from committed history."
-        },
-        {
-          "heading": "Apply it",
-          "body": "A developer wants to know which local files changed. Inspect git status and the relevant diff."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "It is always identical to the latest commit. This is not a sound assumption; the checked-out files being edited."
+          "body": "It can differ from both the index and the current commit. Git status separates tracked modifications, staged changes and untracked files. Inspect these states before switching branches or running operations that replace local content."
         }
       ],
-      "takeaway": "Uncommitted changes are distinct from committed history.",
+      "command": "git status --short",
+      "takeaway": "It can differ from both the index and the current commit. Git status separates tracked modifications, staged changes and untracked files. Inspect these states before switching branches or running operations that replace local content.",
       "references": [
         {
-          "title": "Working tree \u2014 primary reference",
+          "title": "Working tree \u2014 primary documentation",
           "url": "https://git-scm.com/docs/git-status"
+        },
+        {
+          "title": "Related command \u2014 primary documentation",
+          "url": "https://git-scm.com/docs"
         }
       ]
     },
@@ -32,26 +33,27 @@
       "id": "git-lesson-02",
       "topic": "git",
       "title": "Staging",
-      "summary": "What does the Git index represent? The proposed contents of the next commit.",
+      "summary": "The index, or staging area, records the exact content intended for the next commit.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "The index, or staging area, records the exact content intended for the next commit."
+        },
+        {
           "heading": "How it works",
-          "body": "Staging selected changes supports focused commits."
-        },
-        {
-          "heading": "Apply it",
-          "body": "One file contains unrelated fixes that should be separate commits. Stage relevant hunks and review the staged diff."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "Staging automatically pushes changes to the remote. This is not a sound assumption; the proposed contents of the next commit."
+          "body": "git add copies selected content into the index; later working-tree edits are not automatically staged. Review the staged diff before committing. This allows a coherent commit without including every local change."
         }
       ],
-      "takeaway": "Staging selected changes supports focused commits.",
+      "command": "git diff --staged",
+      "takeaway": "git add copies selected content into the index; later working-tree edits are not automatically staged. Review the staged diff before committing. This allows a coherent commit without including every local change.",
       "references": [
         {
-          "title": "Staging \u2014 primary reference",
+          "title": "Staging \u2014 primary documentation",
           "url": "https://git-scm.com/docs/git-add"
+        },
+        {
+          "title": "Related command \u2014 primary documentation",
+          "url": "https://git-scm.com/docs"
         }
       ]
     },
@@ -59,26 +61,27 @@
       "id": "git-lesson-03",
       "topic": "git",
       "title": "Commits",
-      "summary": "What does a Git commit identify? A snapshot with metadata and parent relationships.",
+      "summary": "A commit records a tree snapshot, parent relationships and metadata.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "A commit records a tree snapshot, parent relationships and metadata."
+        },
+        {
           "heading": "How it works",
-          "body": "Commit identifiers change when commit contents or metadata change."
-        },
-        {
-          "heading": "Apply it",
-          "body": "An amended commit has a different hash despite similar files. Recognize that amended metadata creates a new commit object."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "A commit is only a mutable branch name. This is not a sound assumption; a snapshot with metadata and parent relationships."
+          "body": "Commits form a directed history rather than storing only textual patches. A commit's identity changes if its content or metadata changes. Keep commits focused enough that review, rollback and bisection remain useful."
         }
       ],
-      "takeaway": "Commit identifiers change when commit contents or metadata change.",
+      "command": "git show --stat HEAD",
+      "takeaway": "Commits form a directed history rather than storing only textual patches. A commit's identity changes if its content or metadata changes. Keep commits focused enough that review, rollback and bisection remain useful.",
       "references": [
         {
-          "title": "Commits \u2014 primary reference",
+          "title": "Commits \u2014 primary documentation",
           "url": "https://git-scm.com/docs/git-commit"
+        },
+        {
+          "title": "Related command \u2014 primary documentation",
+          "url": "https://git-scm.com/docs"
         }
       ]
     },
@@ -86,26 +89,27 @@
       "id": "git-lesson-04",
       "topic": "git",
       "title": "Branches",
-      "summary": "What is a Git branch primarily? A movable reference to a commit.",
+      "summary": "A branch is a movable reference to a commit.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "A branch is a movable reference to a commit."
+        },
+        {
           "heading": "How it works",
-          "body": "Creating a branch does not copy an entire independent repository."
-        },
-        {
-          "heading": "Apply it",
-          "body": "A new local branch is invisible to teammates. Push the intended branch reference when ready to share."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "A branch is a separate physical copy of every historical file. This is not a sound assumption; a movable reference to a commit."
+          "body": "New commits advance the current branch while other branch references remain where they were. Branches do not provide separate remote permissions by themselves. Worktrees can provide separate checked-out directories for concurrent local work."
         }
       ],
-      "takeaway": "Creating a branch does not copy an entire independent repository.",
+      "command": "git branch -vv",
+      "takeaway": "New commits advance the current branch while other branch references remain where they were. Branches do not provide separate remote permissions by themselves. Worktrees can provide separate checked-out directories for concurrent local work.",
       "references": [
         {
-          "title": "Branches \u2014 primary reference",
+          "title": "Branches \u2014 primary documentation",
           "url": "https://git-scm.com/docs/git-branch"
+        },
+        {
+          "title": "Related command \u2014 primary documentation",
+          "url": "https://git-scm.com/docs"
         }
       ]
     },
@@ -113,26 +117,27 @@
       "id": "git-lesson-05",
       "topic": "git",
       "title": "Fetch",
-      "summary": "What does git fetch normally do? Download remote objects and update remote-tracking references.",
+      "summary": "Fetch downloads objects and updates remote-tracking references without merging them into the current branch.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "Fetch downloads objects and updates remote-tracking references without merging them into the current branch."
+        },
+        {
           "heading": "How it works",
-          "body": "Fetching does not itself merge changes into the current branch."
-        },
-        {
-          "heading": "Apply it",
-          "body": "A developer wants to inspect remote changes before integration. Fetch and compare the relevant references."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "Fetch automatically discards every local modification. This is not a sound assumption; download remote objects and update remote-tracking references."
+          "body": "It lets you inspect upstream changes before choosing merge, rebase or another integration strategy. Remote-tracking references describe the last fetched state, not guaranteed real-time remote state."
         }
       ],
-      "takeaway": "Fetching does not itself merge changes into the current branch.",
+      "command": "git fetch origin",
+      "takeaway": "It lets you inspect upstream changes before choosing merge, rebase or another integration strategy. Remote-tracking references describe the last fetched state, not guaranteed real-time remote state.",
       "references": [
         {
-          "title": "Fetch \u2014 primary reference",
+          "title": "Fetch \u2014 primary documentation",
           "url": "https://git-scm.com/docs/git-fetch"
+        },
+        {
+          "title": "Related command \u2014 primary documentation",
+          "url": "https://git-scm.com/docs"
         }
       ]
     },
@@ -140,26 +145,27 @@
       "id": "git-lesson-06",
       "topic": "git",
       "title": "Merge",
-      "summary": "What does a non-fast-forward merge usually create? A commit joining multiple lines of history.",
+      "summary": "Merge integrates histories and may create a commit with multiple parents.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "Merge integrates histories and may create a commit with multiple parents."
+        },
+        {
           "heading": "How it works",
-          "body": "Merge conflict resolution must preserve intended behavior."
-        },
-        {
-          "heading": "Apply it",
-          "body": "Two branches merge cleanly but their combined behavior breaks tests. Run integration checks and inspect the interacting changes."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "Every merge rewrites all existing commits. This is not a sound assumption; a commit joining multiple lines of history."
+          "body": "Git finds a common ancestor and combines changes, requiring human resolution when changes conflict. A clean textual merge can still be semantically wrong. Run relevant tests and inspect the combined behavior."
         }
       ],
-      "takeaway": "Merge conflict resolution must preserve intended behavior.",
+      "command": "git log --graph --oneline --all -20",
+      "takeaway": "Git finds a common ancestor and combines changes, requiring human resolution when changes conflict. A clean textual merge can still be semantically wrong. Run relevant tests and inspect the combined behavior.",
       "references": [
         {
-          "title": "Merge \u2014 primary reference",
+          "title": "Merge \u2014 primary documentation",
           "url": "https://git-scm.com/docs/git-merge"
+        },
+        {
+          "title": "Related command \u2014 primary documentation",
+          "url": "https://git-scm.com/docs"
         }
       ]
     },
@@ -167,26 +173,27 @@
       "id": "git-lesson-07",
       "topic": "git",
       "title": "Ignore rules",
-      "summary": "What is a limitation of gitignore? It does not automatically untrack files already committed.",
+      "summary": "Ignore rules keep matching untracked files out of routine Git status and add operations.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "Ignore rules keep matching untracked files out of routine Git status and add operations."
+        },
+        {
           "heading": "How it works",
-          "body": "Sensitive files should be excluded before entering history."
-        },
-        {
-          "heading": "Apply it",
-          "body": "A credential was committed before an ignore rule was added. Rotate the credential and handle repository exposure deliberately."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "Adding a secret to gitignore removes it from all past commits. This is not a sound assumption; it does not automatically untrack files already committed."
+          "body": "They do not remove files already tracked or erase secrets from history. Use them for generated output and local configuration, while handling credential exposure through revocation and an appropriate cleanup process."
         }
       ],
-      "takeaway": "Sensitive files should be excluded before entering history.",
+      "command": "git check-ignore -v PATH",
+      "takeaway": "They do not remove files already tracked or erase secrets from history. Use them for generated output and local configuration, while handling credential exposure through revocation and an appropriate cleanup process.",
       "references": [
         {
-          "title": "Ignore rules \u2014 primary reference",
+          "title": "Ignore rules \u2014 primary documentation",
           "url": "https://git-scm.com/docs/gitignore"
+        },
+        {
+          "title": "Related command \u2014 primary documentation",
+          "url": "https://git-scm.com/docs"
         }
       ]
     },
@@ -194,26 +201,27 @@
       "id": "git-lesson-08",
       "topic": "git",
       "title": "Diffs",
-      "summary": "What should a staged diff review verify? The exact changes intended for the next commit.",
+      "summary": "A diff compares selected snapshots or file states.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "A diff compares selected snapshots or file states."
+        },
+        {
           "heading": "How it works",
-          "body": "Generated or unrelated changes deserve deliberate review."
-        },
-        {
-          "heading": "Apply it",
-          "body": "A commit includes a local debug setting accidentally. Inspect and unstage the unintended change."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "Only filenames matter when reviewing a commit. This is not a sound assumption; the exact changes intended for the next commit."
+          "body": "Plain git diff compares working tree with index; --staged compares index with HEAD. Commit ranges and merge-base comparisons answer different review questions. Choose the comparison explicitly to avoid overlooking staged or upstream changes."
         }
       ],
-      "takeaway": "Generated or unrelated changes deserve deliberate review.",
+      "command": "git diff --check",
+      "takeaway": "Plain git diff compares working tree with index; --staged compares index with HEAD. Commit ranges and merge-base comparisons answer different review questions. Choose the comparison explicitly to avoid overlooking staged or upstream changes.",
       "references": [
         {
-          "title": "Diffs \u2014 primary reference",
+          "title": "Diffs \u2014 primary documentation",
           "url": "https://git-scm.com/docs/git-diff"
+        },
+        {
+          "title": "Related command \u2014 primary documentation",
+          "url": "https://git-scm.com/docs"
         }
       ]
     },
@@ -221,26 +229,27 @@
       "id": "git-lesson-09",
       "topic": "git",
       "title": "Rebase",
-      "summary": "What does rebase generally do? Replay commits onto a different base with new identities.",
+      "summary": "Rebase recreates commits on a different base to change history shape.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "Rebase recreates commits on a different base to change history shape."
+        },
+        {
           "heading": "How it works",
-          "body": "Rewriting shared history requires coordination."
-        },
-        {
-          "heading": "Apply it",
-          "body": "A developer rebases commits others have already based work on. Coordinate the rewrite and recovery expectations before publishing."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "Rebase preserves every replayed commit hash unchanged. This is not a sound assumption; replay commits onto a different base with new identities."
+          "body": "New commit identities result, and conflicts may need resolution per replayed commit. Avoid rewriting shared history without coordination. Test the final tree because conflict resolutions can alter behavior even when the history looks cleaner."
         }
       ],
-      "takeaway": "Rewriting shared history requires coordination.",
+      "command": "git log --oneline --decorate -10",
+      "takeaway": "New commit identities result, and conflicts may need resolution per replayed commit. Avoid rewriting shared history without coordination. Test the final tree because conflict resolutions can alter behavior even when the history looks cleaner.",
       "references": [
         {
-          "title": "Rebase \u2014 primary reference",
+          "title": "Rebase \u2014 primary documentation",
           "url": "https://git-scm.com/docs/git-rebase"
+        },
+        {
+          "title": "Related command \u2014 primary documentation",
+          "url": "https://git-scm.com/docs"
         }
       ]
     },
@@ -248,25 +257,22 @@
       "id": "git-lesson-10",
       "topic": "git",
       "title": "Revert",
-      "summary": "What does git revert normally produce? A new commit that reverses selected changes.",
+      "summary": "Revert creates a new commit that applies the inverse of an earlier change.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "Revert creates a new commit that applies the inverse of an earlier change."
+        },
+        {
           "heading": "How it works",
-          "body": "Reverting can preserve published history."
-        },
-        {
-          "heading": "Apply it",
-          "body": "A bad change is already on a shared production branch. Create and verify a reversal appropriate to the deployed change."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "Revert erases the original commit from every clone. This is not a sound assumption; a new commit that reverses selected changes."
+          "body": "It preserves published history and is often suitable for shared branches. Later changes and merge commits complicate reversal, so review the resulting diff and run tests. Reverting application code does not reverse external database or infrastructure effects."
         }
       ],
-      "takeaway": "Reverting can preserve published history.",
+      "command": "",
+      "takeaway": "It preserves published history and is often suitable for shared branches. Later changes and merge commits complicate reversal, so review the resulting diff and run tests. Reverting application code does not reverse external database or infrastructure effects.",
       "references": [
         {
-          "title": "Revert \u2014 primary reference",
+          "title": "Revert \u2014 primary documentation",
           "url": "https://git-scm.com/docs/git-revert"
         }
       ]
@@ -275,25 +281,22 @@
       "id": "git-lesson-11",
       "topic": "git",
       "title": "Reset",
-      "summary": "Why can a hard reset be destructive? It can discard tracked working-tree and index changes.",
+      "summary": "Reset moves a reference and, depending on mode, changes the index and working tree.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "Reset moves a reference and, depending on mode, changes the index and working tree."
+        },
+        {
           "heading": "How it works",
-          "body": "Inspect and preserve needed work before destructive local operations."
-        },
-        {
-          "heading": "Apply it",
-          "body": "A developer wants to remove one commit but has valuable uncommitted edits. Preserve the edits and choose the appropriate history operation."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "A hard reset always saves every uncommitted edit. This is not a sound assumption; it can discard tracked working-tree and index changes."
+          "body": "Soft reset preserves index and files; mixed reset updates the index; hard reset also replaces tracked working-tree content. Understand which states contain valuable work before choosing a mode. Reflog recovery does not guarantee recovery of uncommitted file content."
         }
       ],
-      "takeaway": "Inspect and preserve needed work before destructive local operations.",
+      "command": "",
+      "takeaway": "Soft reset preserves index and files; mixed reset updates the index; hard reset also replaces tracked working-tree content. Understand which states contain valuable work before choosing a mode. Reflog recovery does not guarantee recovery of uncommitted file content.",
       "references": [
         {
-          "title": "Reset \u2014 primary reference",
+          "title": "Reset \u2014 primary documentation",
           "url": "https://git-scm.com/docs/git-reset"
         }
       ]
@@ -302,25 +305,22 @@
       "id": "git-lesson-12",
       "topic": "git",
       "title": "Cherry-pick",
-      "summary": "What does cherry-pick typically do? Apply selected commit changes onto the current branch.",
+      "summary": "Cherry-pick applies the change introduced by a selected commit onto the current branch.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "Cherry-pick applies the change introduced by a selected commit onto the current branch."
+        },
+        {
           "heading": "How it works",
-          "body": "Dependencies of the selected change may need separate consideration."
-        },
-        {
-          "heading": "Apply it",
-          "body": "A hotfix is needed without unrelated feature work. Check dependencies and apply only the verified fix."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "Cherry-pick always imports the entire source branch. This is not a sound assumption; apply selected commit changes onto the current branch."
+          "body": "It creates a new commit identity and may conflict if context differs. Confirm prerequisite changes exist, especially for backports. Copying a single fix without its dependency can compile incorrectly or change behavior unexpectedly."
         }
       ],
-      "takeaway": "Dependencies of the selected change may need separate consideration.",
+      "command": "",
+      "takeaway": "It creates a new commit identity and may conflict if context differs. Confirm prerequisite changes exist, especially for backports. Copying a single fix without its dependency can compile incorrectly or change behavior unexpectedly.",
       "references": [
         {
-          "title": "Cherry-pick \u2014 primary reference",
+          "title": "Cherry-pick \u2014 primary documentation",
           "url": "https://git-scm.com/docs/git-cherry-pick"
         }
       ]
@@ -329,26 +329,27 @@
       "id": "git-lesson-13",
       "topic": "git",
       "title": "Conflict resolution",
-      "summary": "What should guide resolving a merge conflict? The intended combined behavior of both changes.",
+      "summary": "A conflict requires a deliberate choice about how competing changes should combine.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "A conflict requires a deliberate choice about how competing changes should combine."
+        },
+        {
           "heading": "How it works",
-          "body": "Tests and domain understanding matter beyond removing markers."
-        },
-        {
-          "heading": "Apply it",
-          "body": "A conflict affects a security check modified on both branches. Understand both changes and test the merged behavior."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "Choosing one side everywhere always preserves intent. This is not a sound assumption; the intended combined behavior of both changes."
+          "body": "Read both sides and surrounding intent, resolve the file, stage it and continue the interrupted operation. Removing markers is only a syntactic step. Verify the resulting behavior and ensure no required change was lost."
         }
       ],
-      "takeaway": "Tests and domain understanding matter beyond removing markers.",
+      "command": "git status",
+      "takeaway": "Read both sides and surrounding intent, resolve the file, stage it and continue the interrupted operation. Removing markers is only a syntactic step. Verify the resulting behavior and ensure no required change was lost.",
       "references": [
         {
-          "title": "Conflict resolution \u2014 primary reference",
+          "title": "Conflict resolution \u2014 primary documentation",
           "url": "https://git-scm.com/docs/git-merge"
+        },
+        {
+          "title": "Related command \u2014 primary documentation",
+          "url": "https://git-scm.com/docs"
         }
       ]
     },
@@ -356,26 +357,27 @@
       "id": "git-lesson-14",
       "topic": "git",
       "title": "Reflog",
-      "summary": "What can a local reflog help recover? Recent local reference movements and otherwise hard-to-find commits.",
+      "summary": "The reflog records recent movements of local references.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "The reflog records recent movements of local references."
+        },
+        {
           "heading": "How it works",
-          "body": "Reflog availability is local and subject to retention."
-        },
-        {
-          "heading": "Apply it",
-          "body": "A branch pointer was accidentally moved away from recent work. Inspect the local reflog and recover the intended commit reference."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "Reflog is a permanent shared backup of all repository data. This is not a sound assumption; recent local reference movements and otherwise hard-to-find commits."
+          "body": "It can help locate commits after reset, rebase or accidental branch movement. Entries are local and expire under retention and garbage-collection rules. Find the intended commit and preserve it with a new reference before further cleanup."
         }
       ],
-      "takeaway": "Reflog availability is local and subject to retention.",
+      "command": "git reflog --date=iso -10",
+      "takeaway": "It can help locate commits after reset, rebase or accidental branch movement. Entries are local and expire under retention and garbage-collection rules. Find the intended commit and preserve it with a new reference before further cleanup.",
       "references": [
         {
-          "title": "Reflog \u2014 primary reference",
+          "title": "Reflog \u2014 primary documentation",
           "url": "https://git-scm.com/docs/git-reflog"
+        },
+        {
+          "title": "Related command \u2014 primary documentation",
+          "url": "https://git-scm.com/docs"
         }
       ]
     },
@@ -383,25 +385,22 @@
       "id": "git-lesson-15",
       "topic": "git",
       "title": "Bisect",
-      "summary": "What does git bisect help identify? A commit associated with a change between known good and bad revisions.",
+      "summary": "Bisection narrows a regression by testing commits between known-good and known-bad points.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "Bisection narrows a regression by testing commits between known-good and known-bad points."
+        },
+        {
           "heading": "How it works",
-          "body": "A reliable reproducible test is essential."
-        },
-        {
-          "heading": "Apply it",
-          "body": "A regression appeared somewhere in many recent commits. Define a reliable test and narrow the introducing revision."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "Bisect proves a single commit is the complete root cause in every case. This is not a sound assumption; a commit associated with a change between known good and bad revisions."
+          "body": "A deterministic test lets Git choose intermediate commits efficiently. Skip revisions that cannot be tested for unrelated reasons and restore the original checkout afterward. Flaky tests can point bisection at the wrong change."
         }
       ],
-      "takeaway": "A reliable reproducible test is essential.",
+      "command": "",
+      "takeaway": "A deterministic test lets Git choose intermediate commits efficiently. Skip revisions that cannot be tested for unrelated reasons and restore the original checkout afterward. Flaky tests can point bisection at the wrong change.",
       "references": [
         {
-          "title": "Bisect \u2014 primary reference",
+          "title": "Bisect \u2014 primary documentation",
           "url": "https://git-scm.com/docs/git-bisect"
         }
       ]
@@ -410,25 +409,22 @@
       "id": "git-lesson-16",
       "topic": "git",
       "title": "Force with lease",
-      "summary": "What protection does force-with-lease provide? Reject a rewrite when the remote reference differs from the expected value.",
+      "summary": "A force push with a lease updates rewritten history only if the remote reference matches an expected value.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "A force push with a lease updates rewritten history only if the remote reference matches an expected value."
+        },
+        {
           "heading": "How it works",
-          "body": "It still rewrites history and requires deliberate coordination."
-        },
-        {
-          "heading": "Apply it",
-          "body": "A rewritten branch must be published without overwriting unseen remote work. Check the expected remote state and use a controlled lease."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "It guarantees no collaborator can ever be affected. This is not a sound assumption; reject a rewrite when the remote reference differs from the expected value."
+          "body": "An explicit expected commit protects against overwriting an unexpected collaborator update. It remains a history rewrite and requires coordination. Inspect the remote head after a rejected lease instead of retrying blindly."
         }
       ],
-      "takeaway": "It still rewrites history and requires deliberate coordination.",
+      "command": "",
+      "takeaway": "An explicit expected commit protects against overwriting an unexpected collaborator update. It remains a history rewrite and requires coordination. Inspect the remote head after a rejected lease instead of retrying blindly.",
       "references": [
         {
-          "title": "Force with lease \u2014 primary reference",
+          "title": "Force with lease \u2014 primary documentation",
           "url": "https://git-scm.com/docs/git-push"
         }
       ]
@@ -437,25 +433,22 @@
       "id": "git-lesson-17",
       "topic": "git",
       "title": "Continuous integration",
-      "summary": "What is the purpose of continuous integration checks? Detect integration problems early through repeatable validation.",
+      "summary": "CI runs automated checks when changes are proposed or integrated.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "CI runs automated checks when changes are proposed or integrated."
+        },
+        {
           "heading": "How it works",
-          "body": "Checks should exercise meaningful behavior not just syntax."
-        },
-        {
-          "heading": "Apply it",
-          "body": "A change passes lint but breaks a user workflow. Add a meaningful behavioral regression check."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "A green build proves the software has no defects. This is not a sound assumption; detect integration problems early through repeatable validation."
+          "body": "Fast, reliable checks catch integration problems near the change. Required checks should validate the actual revision intended for merge. A passing pipeline is limited by its coverage and environment; it is not proof of every production behavior."
         }
       ],
-      "takeaway": "Checks should exercise meaningful behavior not just syntax.",
+      "command": "",
+      "takeaway": "Fast, reliable checks catch integration problems near the change. Required checks should validate the actual revision intended for merge. A passing pipeline is limited by its coverage and environment; it is not proof of every production behavior.",
       "references": [
         {
-          "title": "Continuous integration \u2014 primary reference",
+          "title": "Continuous integration \u2014 primary documentation",
           "url": "https://docs.github.com/en/actions"
         }
       ]
@@ -464,25 +457,22 @@
       "id": "git-lesson-18",
       "topic": "git",
       "title": "Artifacts",
-      "summary": "Why promote the same built artifact across environments? Reduce differences caused by rebuilding during promotion.",
+      "summary": "A build artifact is a versioned output produced by a build and consumed by testing or deployment.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "A build artifact is a versioned output produced by a build and consumed by testing or deployment."
+        },
+        {
           "heading": "How it works",
-          "body": "Artifact identity and provenance should be recorded."
-        },
-        {
-          "heading": "Apply it",
-          "body": "Production differs from staging after separate rebuilds. Promote the verified immutable artifact with traceable metadata."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "Rebuilding the same source always produces identical bytes. This is not a sound assumption; reduce differences caused by rebuilding during promotion."
+          "body": "Build once and promote the same immutable artifact where possible. Record its source revision and digest so deployments are traceable. Retention and access policy matter because artifacts can contain proprietary code or sensitive data."
         }
       ],
-      "takeaway": "Artifact identity and provenance should be recorded.",
+      "command": "",
+      "takeaway": "Build once and promote the same immutable artifact where possible. Record its source revision and digest so deployments are traceable. Retention and access policy matter because artifacts can contain proprietary code or sensitive data.",
       "references": [
         {
-          "title": "Artifacts \u2014 primary reference",
+          "title": "Artifacts \u2014 primary documentation",
           "url": "https://docs.github.com/en/actions"
         }
       ]
@@ -491,25 +481,22 @@
       "id": "git-lesson-19",
       "topic": "git",
       "title": "CI secrets",
-      "summary": "Why should untrusted pull-request code have restricted credentials? It can execute arbitrary code in the runner context.",
+      "summary": "CI secrets provide credentials to authorized jobs without storing them in source.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "CI secrets provide credentials to authorized jobs without storing them in source."
+        },
+        {
           "heading": "How it works",
-          "body": "Secret access should follow the trust level of the workflow trigger."
-        },
-        {
-          "heading": "Apply it",
-          "body": "A workflow runs contributor code with deployment credentials. Separate untrusted validation from privileged deployment."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "Any pull request from a public fork is inherently trusted. This is not a sound assumption; it can execute arbitrary code in the runner context."
+          "body": "Workflow trust boundaries determine which code can read them. Untrusted pull-request code, logs and uploaded artifacts can leak secrets if privileges are mixed. Prefer short-lived scoped credentials and avoid granting deployment access to arbitrary test code."
         }
       ],
-      "takeaway": "Secret access should follow the trust level of the workflow trigger.",
+      "command": "",
+      "takeaway": "Workflow trust boundaries determine which code can read them. Untrusted pull-request code, logs and uploaded artifacts can leak secrets if privileges are mixed. Prefer short-lived scoped credentials and avoid granting deployment access to arbitrary test code.",
       "references": [
         {
-          "title": "CI secrets \u2014 primary reference",
+          "title": "CI secrets \u2014 primary documentation",
           "url": "https://docs.github.com/en/actions"
         }
       ]
@@ -518,25 +505,22 @@
       "id": "git-lesson-20",
       "topic": "git",
       "title": "Dependency pinning",
-      "summary": "Why pin CI actions or dependencies to reviewed immutable versions? Reduce surprise changes in third-party execution inputs.",
+      "summary": "Dependency pinning constrains the versions or identities used by a build.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "Dependency pinning constrains the versions or identities used by a build."
+        },
+        {
           "heading": "How it works",
-          "body": "Pinned versions still need a deliberate update process."
-        },
-        {
-          "heading": "Apply it",
-          "body": "A third-party action changes behavior unexpectedly. Review and pin the intended immutable revision then manage updates."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "Pinning guarantees absence of vulnerabilities forever. This is not a sound assumption; reduce surprise changes in third-party execution inputs."
+          "body": "Lock files and immutable action or image references improve reproducibility. A pinned vulnerable dependency still needs updates. Review dependency changes and maintain an intentional refresh process rather than choosing between unrestricted updates and permanent freezing."
         }
       ],
-      "takeaway": "Pinned versions still need a deliberate update process.",
+      "command": "",
+      "takeaway": "Lock files and immutable action or image references improve reproducibility. A pinned vulnerable dependency still needs updates. Review dependency changes and maintain an intentional refresh process rather than choosing between unrestricted updates and permanent freezing.",
       "references": [
         {
-          "title": "Dependency pinning \u2014 primary reference",
+          "title": "Dependency pinning \u2014 primary documentation",
           "url": "https://docs.github.com/en/actions"
         }
       ]
@@ -545,25 +529,22 @@
       "id": "git-lesson-21",
       "topic": "git",
       "title": "Caching",
-      "summary": "What is a risk of an overly broad CI cache key? Reusing stale or incompatible dependencies or outputs.",
+      "summary": "CI caches reuse intermediate data to reduce build time.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "CI caches reuse intermediate data to reduce build time."
+        },
+        {
           "heading": "How it works",
-          "body": "Cache keys should reflect relevant inputs and trust boundaries."
-        },
-        {
-          "heading": "Apply it",
-          "body": "A pipeline passes with cache but fails on a clean runner. Inspect cached assumptions and test clean reproducibility."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "A cache hit proves the build output is correct. This is not a sound assumption; reusing stale or incompatible dependencies or outputs."
+          "body": "Keys should include inputs that determine validity, such as lock files and platform. Cache contents are an optimization, not a trusted release artifact. Prevent untrusted jobs from poisoning caches consumed by privileged release jobs."
         }
       ],
-      "takeaway": "Cache keys should reflect relevant inputs and trust boundaries.",
+      "command": "",
+      "takeaway": "Keys should include inputs that determine validity, such as lock files and platform. Cache contents are an optimization, not a trusted release artifact. Prevent untrusted jobs from poisoning caches consumed by privileged release jobs.",
       "references": [
         {
-          "title": "Caching \u2014 primary reference",
+          "title": "Caching \u2014 primary documentation",
           "url": "https://docs.github.com/en/actions"
         }
       ]
@@ -572,25 +553,22 @@
       "id": "git-lesson-22",
       "topic": "git",
       "title": "Deployment gates",
-      "summary": "What should a production deployment gate establish? Required validation and authorization conditions are satisfied.",
+      "summary": "Deployment gates require defined checks or decisions before promotion.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "Deployment gates require defined checks or decisions before promotion."
+        },
+        {
           "heading": "How it works",
-          "body": "Gates need clear ownership and useful evidence."
-        },
-        {
-          "heading": "Apply it",
-          "body": "A deployment is awaiting approval but the test artifact is missing. Require the relevant verified artifact and checks before release."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "A manual click alone proves a release is safe. This is not a sound assumption; required validation and authorization conditions are satisfied."
+          "body": "Examples include tests, artifact verification, environment approval and health checks. Bind the gate to the actual artifact and destination. An approval for one revision should not silently authorize a different artifact built afterward."
         }
       ],
-      "takeaway": "Gates need clear ownership and useful evidence.",
+      "command": "",
+      "takeaway": "Examples include tests, artifact verification, environment approval and health checks. Bind the gate to the actual artifact and destination. An approval for one revision should not silently authorize a different artifact built afterward.",
       "references": [
         {
-          "title": "Deployment gates \u2014 primary reference",
+          "title": "Deployment gates \u2014 primary documentation",
           "url": "https://docs.github.com/en/actions"
         }
       ]
@@ -599,25 +577,22 @@
       "id": "git-lesson-23",
       "topic": "git",
       "title": "Rollback",
-      "summary": "Why is code rollback sometimes insufficient? Data or external side effects may be incompatible with the old code.",
+      "summary": "Rollback returns a deployment to a known compatible version or configuration.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "Rollback returns a deployment to a known compatible version or configuration."
+        },
+        {
           "heading": "How it works",
-          "body": "Rollback plans must include state and schema compatibility."
-        },
-        {
-          "heading": "Apply it",
-          "body": "A deployment performs an irreversible schema migration. Use a planned compatible migration or verified recovery path."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "Reverting a commit reverses all database writes automatically. This is not a sound assumption; data or external side effects may be incompatible with the old code."
+          "body": "It requires an available artifact and compatibility with current data and dependencies. Schema or irreversible side effects may require forward recovery instead. Test rollback procedures and measure health after restoration rather than stopping at a successful deployment command."
         }
       ],
-      "takeaway": "Rollback plans must include state and schema compatibility.",
+      "command": "",
+      "takeaway": "It requires an available artifact and compatibility with current data and dependencies. Schema or irreversible side effects may require forward recovery instead. Test rollback procedures and measure health after restoration rather than stopping at a successful deployment command.",
       "references": [
         {
-          "title": "Rollback \u2014 primary reference",
+          "title": "Rollback \u2014 primary documentation",
           "url": "https://sre.google/workbook/canarying-releases/"
         }
       ]
@@ -626,25 +601,22 @@
       "id": "git-lesson-24",
       "topic": "git",
       "title": "Concurrency controls",
-      "summary": "Why serialize some deployment workflows? Prevent overlapping changes to the same environment.",
+      "summary": "Concurrency controls prevent conflicting jobs from changing shared deployment state simultaneously.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "Concurrency controls prevent conflicting jobs from changing shared deployment state simultaneously."
+        },
+        {
           "heading": "How it works",
-          "body": "Cancellation policy should consider partially applied operations."
-        },
-        {
-          "heading": "Apply it",
-          "body": "Two releases concurrently modify the same infrastructure. Coordinate deployment ownership and inspect any partial changes."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "Parallel deployment always improves safety. This is not a sound assumption; prevent overlapping changes to the same environment."
+          "body": "A deployment lock or queue can serialize updates to one environment while allowing independent work elsewhere. Cancelling a running job may leave partial changes, so define cleanup and recovery. A branch name alone is not a sufficient environment lock."
         }
       ],
-      "takeaway": "Cancellation policy should consider partially applied operations.",
+      "command": "",
+      "takeaway": "A deployment lock or queue can serialize updates to one environment while allowing independent work elsewhere. Cancelling a running job may leave partial changes, so define cleanup and recovery. A branch name alone is not a sufficient environment lock.",
       "references": [
         {
-          "title": "Concurrency controls \u2014 primary reference",
+          "title": "Concurrency controls \u2014 primary documentation",
           "url": "https://docs.github.com/en/actions"
         }
       ]
@@ -653,25 +625,22 @@
       "id": "git-lesson-25",
       "topic": "git",
       "title": "OIDC federation",
-      "summary": "Why use workload federation in CI where supported? Obtain short-lived credentials tied to workflow identity.",
+      "summary": "OIDC federation lets a CI workload exchange a signed identity token for short-lived service credentials.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "OIDC federation lets a CI workload exchange a signed identity token for short-lived service credentials."
+        },
+        {
           "heading": "How it works",
-          "body": "Trust conditions should constrain repository branch and environment."
-        },
-        {
-          "heading": "Apply it",
-          "body": "A cloud role trusts any repository in an organization. Narrow the federated identity conditions to intended workloads."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "Federation means every workflow should get administrator access. This is not a sound assumption; obtain short-lived credentials tied to workflow identity."
+          "body": "The receiving trust policy should constrain repository, workflow context and environment as appropriate. Audience and subject validation prevent unintended callers. Short-lived credentials reduce persistence risk but do not make an overprivileged job safe."
         }
       ],
-      "takeaway": "Trust conditions should constrain repository branch and environment.",
+      "command": "",
+      "takeaway": "The receiving trust policy should constrain repository, workflow context and environment as appropriate. Audience and subject validation prevent unintended callers. Short-lived credentials reduce persistence risk but do not make an overprivileged job safe.",
       "references": [
         {
-          "title": "OIDC federation \u2014 primary reference",
+          "title": "OIDC federation \u2014 primary documentation",
           "url": "https://docs.github.com/en/actions"
         }
       ]
@@ -680,25 +649,22 @@
       "id": "git-lesson-26",
       "topic": "git",
       "title": "Monorepo checks",
-      "summary": "What is a risk of path-filtered CI checks? Indirect dependencies can be missed by simplistic file filters.",
+      "summary": "Monorepo checks select validation for several projects stored in one repository.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "Monorepo checks select validation for several projects stored in one repository."
+        },
+        {
           "heading": "How it works",
-          "body": "Check selection should model relevant dependency relationships."
-        },
-        {
-          "heading": "Apply it",
-          "body": "A shared library change skips downstream application tests. Include dependent components in the validation selection."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "A change outside one directory can never affect that component. This is not a sound assumption; indirect dependencies can be missed by simplistic file filters."
+          "body": "Dependency-aware selection is more reliable than checking only directly changed files. Shared libraries, build configuration and tooling can affect many packages. Preserve a full validation path for changes whose impact is uncertain."
         }
       ],
-      "takeaway": "Check selection should model relevant dependency relationships.",
+      "command": "",
+      "takeaway": "Dependency-aware selection is more reliable than checking only directly changed files. Shared libraries, build configuration and tooling can affect many packages. Preserve a full validation path for changes whose impact is uncertain.",
       "references": [
         {
-          "title": "Monorepo checks \u2014 primary reference",
+          "title": "Monorepo checks \u2014 primary documentation",
           "url": "https://docs.github.com/en/actions"
         }
       ]
@@ -707,26 +673,27 @@
       "id": "git-lesson-27",
       "topic": "git",
       "title": "Release tags",
-      "summary": "What should release tagging support? Trace a release to an intended source or artifact identity.",
+      "summary": "A release tag names a chosen commit as a versioned release point.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "A release tag names a chosen commit as a versioned release point."
+        },
+        {
           "heading": "How it works",
-          "body": "Tag protection and verification help preserve release meaning."
-        },
-        {
-          "heading": "Apply it",
-          "body": "A release tag is moved after artifacts were published. Investigate the identity mismatch and preserve an auditable release trail."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "Every tag is intrinsically immutable and unforgeable. This is not a sound assumption; trace a release to an intended source or artifact identity."
+          "body": "Annotated or signed tags can add metadata and verification, but policies must define trust and immutability. Match the tag, source commit and released artifact digest. Moving a published tag undermines reproducibility for consumers."
         }
       ],
-      "takeaway": "Tag protection and verification help preserve release meaning.",
+      "command": "git tag --list",
+      "takeaway": "Annotated or signed tags can add metadata and verification, but policies must define trust and immutability. Match the tag, source commit and released artifact digest. Moving a published tag undermines reproducibility for consumers.",
       "references": [
         {
-          "title": "Release tags \u2014 primary reference",
+          "title": "Release tags \u2014 primary documentation",
           "url": "https://git-scm.com/docs/git-tag"
+        },
+        {
+          "title": "Related command \u2014 primary documentation",
+          "url": "https://git-scm.com/docs"
         }
       ]
     },
@@ -734,25 +701,22 @@
       "id": "git-lesson-28",
       "topic": "git",
       "title": "Flaky tests",
-      "summary": "Why are flaky tests harmful to CI? They weaken confidence that failures indicate real regressions.",
+      "summary": "A flaky test produces inconsistent outcomes without a relevant product change.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "A flaky test produces inconsistent outcomes without a relevant product change."
+        },
+        {
           "heading": "How it works",
-          "body": "Track and fix nondeterminism rather than normalizing blind retries."
-        },
-        {
-          "heading": "Apply it",
-          "body": "A team reruns failed tests repeatedly without investigation. Record failure patterns and isolate the nondeterministic cause."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "Retrying until green proves correctness. This is not a sound assumption; they weaken confidence that failures indicate real regressions."
+          "body": "Timing, shared state and environmental assumptions are common causes. Track and fix the cause; unlimited retries can hide real regressions. Quarantine needs ownership and a deadline so missing coverage does not become permanent."
         }
       ],
-      "takeaway": "Track and fix nondeterminism rather than normalizing blind retries.",
+      "command": "",
+      "takeaway": "Timing, shared state and environmental assumptions are common causes. Track and fix the cause; unlimited retries can hide real regressions. Quarantine needs ownership and a deadline so missing coverage does not become permanent.",
       "references": [
         {
-          "title": "Flaky tests \u2014 primary reference",
+          "title": "Flaky tests \u2014 primary documentation",
           "url": "https://sre.google/workbook/canarying-releases/"
         }
       ]
@@ -761,25 +725,22 @@
       "id": "git-lesson-29",
       "topic": "git",
       "title": "Branch protection",
-      "summary": "What do protected-branch rules help enforce? Defined review and status-check requirements before integration.",
+      "summary": "Branch protection and rulesets constrain changes to important branches.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "Branch protection and rulesets constrain changes to important branches."
+        },
+        {
           "heading": "How it works",
-          "body": "Rules should match the actual delivery risk and trusted actors."
-        },
-        {
-          "heading": "Apply it",
-          "body": "A required test is accidentally made optional on the release branch. Restore the intended gate and verify the effective rule behavior."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "Branch protection proves all merged code is bug-free. This is not a sound assumption; defined review and status-check requirements before integration."
+          "body": "Required reviews, status checks and restricted updates support a controlled integration process. Configure bypass rights deliberately and ensure check names refer to trusted workflows. Repository rules complement, rather than replace, application testing."
         }
       ],
-      "takeaway": "Rules should match the actual delivery risk and trusted actors.",
+      "command": "",
+      "takeaway": "Required reviews, status checks and restricted updates support a controlled integration process. Configure bypass rights deliberately and ensure check names refer to trusted workflows. Repository rules complement, rather than replace, application testing.",
       "references": [
         {
-          "title": "Branch protection \u2014 primary reference",
+          "title": "Branch protection \u2014 primary documentation",
           "url": "https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/about-protected-branches"
         }
       ]
@@ -788,30 +749,567 @@
       "id": "git-lesson-30",
       "topic": "git",
       "title": "Supply-chain evidence",
-      "summary": "What should release provenance help answer? Which inputs and process produced the artifact.",
+      "summary": "Supply-chain evidence links source, build process and released artifacts.",
       "sections": [
         {
+          "heading": "What it is",
+          "body": "Supply-chain evidence links source, build process and released artifacts."
+        },
+        {
           "heading": "How it works",
-          "body": "Provenance is evidence to verify against a trust policy."
-        },
-        {
-          "heading": "Apply it",
-          "body": "A binary's source revision and build workflow cannot be established. Require traceable build evidence and verify artifact identity."
-        },
-        {
-          "heading": "Misconception to challenge",
-          "body": "Provenance replaces all vulnerability assessment. This is not a sound assumption; which inputs and process produced the artifact."
+          "body": "Provenance, signatures and dependency inventories support verification and investigation. Verify identity and digest at the deployment boundary. Evidence is only useful when the builder and signing permissions are themselves controlled."
         }
       ],
-      "takeaway": "Provenance is evidence to verify against a trust policy.",
+      "command": "",
+      "takeaway": "Provenance, signatures and dependency inventories support verification and investigation. Verify identity and digest at the deployment boundary. Evidence is only useful when the builder and signing permissions are themselves controlled.",
       "references": [
         {
-          "title": "Supply-chain evidence \u2014 primary reference",
+          "title": "Supply-chain evidence \u2014 primary documentation",
           "url": "https://docs.github.com/en/actions"
         }
       ]
     }
   ],
-  "commands": [],
-  "debugging": []
+  "commands": [
+    {
+      "id": "git-command-01",
+      "topic": "git",
+      "title": "Working state",
+      "command": "git status --short --branch",
+      "kind": "Shell command",
+      "definition": "Summarizes branch and file changes.",
+      "purpose": "Check for local work before switching or rewriting history.",
+      "environment": "Read-only; does not show ignored files by default.",
+      "expectedOutput": "## feature...origin/feature ; M app.js",
+      "interpretation": "The two status columns describe index and working-tree changes; ?? means untracked.",
+      "safety": "Read-only; does not show ignored files by default.",
+      "references": [
+        {
+          "title": "Working state \u2014 primary documentation",
+          "url": "https://git-scm.com/docs"
+        }
+      ]
+    },
+    {
+      "id": "git-command-02",
+      "topic": "git",
+      "title": "Unstaged diff",
+      "command": "git diff",
+      "kind": "Shell command",
+      "definition": "Compares working-tree content with the index.",
+      "purpose": "Review edits not yet staged.",
+      "environment": "Read-only; output may contain secrets introduced locally.",
+      "expectedOutput": "diff --git a/app.js b/app.js",
+      "interpretation": "Minus lines are removed and plus lines added relative to the index; staged-only changes are absent.",
+      "safety": "Read-only; output may contain secrets introduced locally.",
+      "references": [
+        {
+          "title": "Unstaged diff \u2014 primary documentation",
+          "url": "https://git-scm.com/docs"
+        }
+      ]
+    },
+    {
+      "id": "git-command-03",
+      "topic": "git",
+      "title": "Staged diff",
+      "command": "git diff --staged",
+      "kind": "Shell command",
+      "definition": "Compares the index with HEAD.",
+      "purpose": "Review exactly what a normal commit would include.",
+      "environment": "Read-only; inspect before committing.",
+      "expectedOutput": "--- a/file ; +++ b/file",
+      "interpretation": "Only staged changes appear; later unstaged edits may differ.",
+      "safety": "Read-only; inspect before committing.",
+      "references": [
+        {
+          "title": "Staged diff \u2014 primary documentation",
+          "url": "https://git-scm.com/docs"
+        }
+      ]
+    },
+    {
+      "id": "git-command-04",
+      "topic": "git",
+      "title": "Whitespace validation",
+      "command": "git diff --check",
+      "kind": "Shell command",
+      "definition": "Checks the selected diff for whitespace errors and conflict-marker problems.",
+      "purpose": "Catch accidental formatting damage before review.",
+      "environment": "Read-only; this is not a syntax or semantic test.",
+      "expectedOutput": "file:12: trailing whitespace",
+      "interpretation": "Output names files and lines with issues; no output usually means no detected issue.",
+      "safety": "Read-only; this is not a syntax or semantic test.",
+      "references": [
+        {
+          "title": "Whitespace validation \u2014 primary documentation",
+          "url": "https://git-scm.com/docs"
+        }
+      ]
+    },
+    {
+      "id": "git-command-05",
+      "topic": "git",
+      "title": "Fetch remote state",
+      "command": "git fetch origin",
+      "kind": "Shell command",
+      "definition": "Downloads objects and updates origin remote-tracking references.",
+      "purpose": "Inspect upstream changes without integrating them into the current branch.",
+      "environment": "Changes local remote-tracking refs and contacts the remote; does not merge.",
+      "expectedOutput": "abc123..def456 main -> origin/main",
+      "interpretation": "Updated reference ranges show what changed; the working tree stays unchanged.",
+      "safety": "Changes local remote-tracking refs and contacts the remote; does not merge.",
+      "references": [
+        {
+          "title": "Fetch remote state \u2014 primary documentation",
+          "url": "https://git-scm.com/docs"
+        }
+      ]
+    },
+    {
+      "id": "git-command-06",
+      "topic": "git",
+      "title": "History graph",
+      "command": "git log --graph --oneline --decorate -20",
+      "kind": "Shell command",
+      "definition": "Shows a compact recent commit graph with reference names.",
+      "purpose": "Understand branching, merges and the current base.",
+      "environment": "Read-only; the graph is limited to the selected history and count.",
+      "expectedOutput": "* abc123 (HEAD -> feature) Fix validation",
+      "interpretation": "Stars are commits; connecting lines show parent relationships; labels identify refs.",
+      "safety": "Read-only; the graph is limited to the selected history and count.",
+      "references": [
+        {
+          "title": "History graph \u2014 primary documentation",
+          "url": "https://git-scm.com/docs"
+        }
+      ]
+    },
+    {
+      "id": "git-command-07",
+      "topic": "git",
+      "title": "Commit details",
+      "command": "git show --stat HEAD",
+      "kind": "Shell command",
+      "definition": "Displays the current commit summary and file-change statistics.",
+      "purpose": "Review the scope of the latest commit.",
+      "environment": "Read-only; statistics do not establish correctness.",
+      "expectedOutput": "3 files changed, 20 insertions(+), 4 deletions(-)",
+      "interpretation": "The stat counts changed lines by file; use a full diff for actual content.",
+      "safety": "Read-only; statistics do not establish correctness.",
+      "references": [
+        {
+          "title": "Commit details \u2014 primary documentation",
+          "url": "https://git-scm.com/docs"
+        }
+      ]
+    },
+    {
+      "id": "git-command-08",
+      "topic": "git",
+      "title": "Branch tracking",
+      "command": "git branch -vv",
+      "kind": "Shell command",
+      "definition": "Lists local branches with tips and upstream information.",
+      "purpose": "Find a branch tracking the wrong remote or lacking an upstream.",
+      "environment": "Read-only; fetch first when current remote state matters.",
+      "expectedOutput": "* main abc123 [origin/main] ...",
+      "interpretation": "Brackets show upstream and ahead/behind relative to last fetched state.",
+      "safety": "Read-only; fetch first when current remote state matters.",
+      "references": [
+        {
+          "title": "Branch tracking \u2014 primary documentation",
+          "url": "https://git-scm.com/docs"
+        }
+      ]
+    },
+    {
+      "id": "git-command-09",
+      "topic": "git",
+      "title": "Ignore diagnosis",
+      "command": "git check-ignore -v PATH",
+      "kind": "Shell command",
+      "definition": "Explains which ignore pattern matches a path.",
+      "purpose": "Find why a generated or source file does not appear as expected.",
+      "environment": "Read-only; replace PATH and remember tracked files are not untracked ignore candidates.",
+      "expectedOutput": ".gitignore:12:dist/ dist/app.js",
+      "interpretation": "Output identifies rule file, line number and pattern.",
+      "safety": "Read-only; replace PATH and remember tracked files are not untracked ignore candidates.",
+      "references": [
+        {
+          "title": "Ignore diagnosis \u2014 primary documentation",
+          "url": "https://git-scm.com/docs"
+        }
+      ]
+    },
+    {
+      "id": "git-command-10",
+      "topic": "git",
+      "title": "Local recovery history",
+      "command": "git reflog --date=iso -10",
+      "kind": "Shell command",
+      "definition": "Shows recent local reference movements.",
+      "purpose": "Locate a commit lost after reset or rebase.",
+      "environment": "Read-only; entries expire and do not guarantee recovery of uncommitted changes.",
+      "expectedOutput": "HEAD@{...}: rebase (finish): ...",
+      "interpretation": "Each entry includes a reachable historical tip and the operation that moved it.",
+      "safety": "Read-only; entries expire and do not guarantee recovery of uncommitted changes.",
+      "references": [
+        {
+          "title": "Local recovery history \u2014 primary documentation",
+          "url": "https://git-scm.com/docs"
+        }
+      ]
+    },
+    {
+      "id": "git-command-11",
+      "topic": "git",
+      "title": "Changed filenames",
+      "command": "git diff --name-status origin/main...HEAD",
+      "kind": "Shell command",
+      "definition": "Lists changes introduced since the merge base with origin/main.",
+      "purpose": "Review branch scope relative to its base.",
+      "environment": "Read-only; ensure origin/main is freshly fetched and is the intended comparison branch.",
+      "expectedOutput": "M app.js",
+      "interpretation": "A, M and D indicate added, modified and deleted paths; three dots use the merge base.",
+      "safety": "Read-only; ensure origin/main is freshly fetched and is the intended comparison branch.",
+      "references": [
+        {
+          "title": "Changed filenames \u2014 primary documentation",
+          "url": "https://git-scm.com/docs"
+        }
+      ]
+    },
+    {
+      "id": "git-command-12",
+      "topic": "git",
+      "title": "Release tags",
+      "command": "git tag --list 'v*' --sort=-version:refname",
+      "kind": "Shell command",
+      "definition": "Lists version-like tags in version-aware descending order.",
+      "purpose": "Inspect available release references.",
+      "environment": "Read-only; verify tag identity and release artifact separately.",
+      "expectedOutput": "v2.1.0 ; v2.0.0",
+      "interpretation": "Names are tags, not proof that an artifact exists or was verified.",
+      "safety": "Read-only; verify tag identity and release artifact separately.",
+      "references": [
+        {
+          "title": "Release tags \u2014 primary documentation",
+          "url": "https://git-scm.com/docs"
+        }
+      ]
+    }
+  ],
+  "debugging": [
+    {
+      "id": "git-scenario-guide-01",
+      "topic": "git",
+      "title": "Accidental local reset",
+      "symptom": "A developer moved the branch tip and cannot find a committed change.",
+      "steps": [
+        {
+          "action": "Inspect and diagnose",
+          "command": "git reflog --date=iso -20",
+          "evidence": "Locate the prior tip and inspect the commit before changing refs. Distinguish committed work from uncommitted content, which reflog may not recover."
+        },
+        {
+          "action": "Fix the evidenced cause",
+          "evidence": "Create a recovery branch at the verified commit, then integrate deliberately. Avoid more destructive cleanup until useful work is preserved."
+        },
+        {
+          "action": "Verify recovery",
+          "evidence": "Compare recovered files and run relevant tests; confirm no collaborator history was overwritten."
+        }
+      ],
+      "references": [
+        {
+          "title": "Accidental local reset \u2014 primary documentation",
+          "url": "https://git-scm.com/docs"
+        },
+        {
+          "title": "Diagnostic tool \u2014 primary documentation",
+          "url": "https://git-scm.com/docs"
+        }
+      ]
+    },
+    {
+      "id": "git-scenario-guide-02",
+      "topic": "git",
+      "title": "Published bad commit",
+      "symptom": "A merged commit introduces a production regression.",
+      "steps": [
+        {
+          "action": "Inspect and diagnose",
+          "command": "git show --stat BAD_COMMIT",
+          "evidence": "Identify the change and later dependencies; compare code rollback with current schema and external effects."
+        },
+        {
+          "action": "Fix the evidenced cause",
+          "evidence": "Create a reviewed revert when compatible, or a forward fix when reversal would damage data. Preserve shared history rather than force-resetting main."
+        },
+        {
+          "action": "Verify recovery",
+          "evidence": "Run regression tests and verify production behavior after deploying the chosen recovery artifact."
+        }
+      ],
+      "references": [
+        {
+          "title": "Published bad commit \u2014 primary documentation",
+          "url": "https://git-scm.com/docs"
+        },
+        {
+          "title": "Diagnostic tool \u2014 primary documentation",
+          "url": "https://git-scm.com/docs"
+        }
+      ]
+    },
+    {
+      "id": "git-scenario-guide-03",
+      "topic": "git",
+      "title": "Merge conflict hides logic loss",
+      "symptom": "Conflict markers are removed but one branch's behavior is missing.",
+      "steps": [
+        {
+          "action": "Inspect and diagnose",
+          "command": "git diff --staged",
+          "evidence": "Review the common intent of both changes and inspect surrounding code, not only the marked lines."
+        },
+        {
+          "action": "Fix the evidenced cause",
+          "evidence": "Resolve the semantic combination explicitly and add or run a test covering both requirements. Abort and restart the integration if the resolution is unclear."
+        },
+        {
+          "action": "Verify recovery",
+          "evidence": "Verify both original behaviors and the combined path before committing the merge result."
+        }
+      ],
+      "references": [
+        {
+          "title": "Merge conflict hides logic loss \u2014 primary documentation",
+          "url": "https://git-scm.com/docs"
+        },
+        {
+          "title": "Diagnostic tool \u2014 primary documentation",
+          "url": "https://git-scm.com/docs"
+        }
+      ]
+    },
+    {
+      "id": "git-scenario-guide-04",
+      "topic": "git",
+      "title": "CI passes but deployment differs",
+      "symptom": "The deployed application does not match the revision that passed tests.",
+      "steps": [
+        {
+          "action": "Inspect and diagnose",
+          "command": "git log --oneline -10",
+          "evidence": "Trace source commit, build artifact digest and deployment record. Check whether a later rebuild or mutable tag substituted different bytes."
+        },
+        {
+          "action": "Fix the evidenced cause",
+          "evidence": "Promote the tested immutable artifact and bind deployment gates to its digest. Correct the pipeline's source-to-artifact evidence."
+        },
+        {
+          "action": "Verify recovery",
+          "evidence": "Verify the running artifact digest and expected behavior, then test that a changed artifact cannot bypass the gate."
+        }
+      ],
+      "references": [
+        {
+          "title": "CI passes but deployment differs \u2014 primary documentation",
+          "url": "https://git-scm.com/docs"
+        },
+        {
+          "title": "Diagnostic tool \u2014 primary documentation",
+          "url": "https://git-scm.com/docs"
+        }
+      ]
+    },
+    {
+      "id": "git-scenario-guide-05",
+      "topic": "git",
+      "title": "Secret committed to repository",
+      "symptom": "A credential appears in a commit and CI logs.",
+      "steps": [
+        {
+          "action": "Inspect and diagnose",
+          "command": "git show --stat AFFECTED_COMMIT",
+          "evidence": "Identify the credential's exposure, readers, artifacts and active uses without printing it again. Removing the latest file does not invalidate prior copies."
+        },
+        {
+          "action": "Fix the evidenced cause",
+          "evidence": "Revoke or rotate the credential first, repair consumers and follow the repository's history/artifact cleanup procedure. Add appropriate secret prevention checks."
+        },
+        {
+          "action": "Verify recovery",
+          "evidence": "Confirm the old credential is unusable, consumers use the replacement and future test commits are detected before publication."
+        }
+      ],
+      "references": [
+        {
+          "title": "Secret committed to repository \u2014 primary documentation",
+          "url": "https://git-scm.com/docs"
+        },
+        {
+          "title": "Diagnostic tool \u2014 primary documentation",
+          "url": "https://git-scm.com/docs"
+        }
+      ]
+    },
+    {
+      "id": "git-scenario-guide-06",
+      "topic": "git",
+      "title": "Flaky test blocks releases",
+      "symptom": "The same revision alternates between pass and failure.",
+      "steps": [
+        {
+          "action": "Inspect and diagnose",
+          "command": "git log --oneline -- PATH_TO_TEST",
+          "evidence": "Compare failure signatures, timing, shared resources and test order. Determine whether the flake masks an actual product race."
+        },
+        {
+          "action": "Fix the evidenced cause",
+          "evidence": "Fix isolation or synchronization; if temporary quarantine is necessary, assign an owner and expiry while preserving critical coverage elsewhere."
+        },
+        {
+          "action": "Verify recovery",
+          "evidence": "Run the meaningful reproduction repeatedly under varied order/load and confirm stable results without unlimited retries."
+        }
+      ],
+      "references": [
+        {
+          "title": "Flaky test blocks releases \u2014 primary documentation",
+          "url": "https://git-scm.com/docs"
+        },
+        {
+          "title": "Diagnostic tool \u2014 primary documentation",
+          "url": "https://git-scm.com/docs"
+        }
+      ]
+    },
+    {
+      "id": "git-scenario-guide-07",
+      "topic": "git",
+      "title": "Concurrent deployments collide",
+      "symptom": "Two CI jobs update the same environment and leave mixed versions.",
+      "steps": [
+        {
+          "action": "Inspect and diagnose",
+          "command": "git log --oneline -10",
+          "evidence": "Compare deployment timestamps, artifact identities and shared-state changes. Check whether cancellation left a partially applied operation."
+        },
+        {
+          "action": "Fix the evidenced cause",
+          "evidence": "Serialize per-environment deployments and reconcile to one known-good artifact. Define safe cancellation and recovery for partial updates."
+        },
+        {
+          "action": "Verify recovery",
+          "evidence": "Run overlapping test deployments and verify only one writer operates while final environment state matches a single recorded release."
+        }
+      ],
+      "references": [
+        {
+          "title": "Concurrent deployments collide \u2014 primary documentation",
+          "url": "https://git-scm.com/docs"
+        },
+        {
+          "title": "Diagnostic tool \u2014 primary documentation",
+          "url": "https://git-scm.com/docs"
+        }
+      ]
+    },
+    {
+      "id": "git-scenario-guide-08",
+      "topic": "git",
+      "title": "Dependency update breaks builds",
+      "symptom": "A build fails without application-source changes.",
+      "steps": [
+        {
+          "action": "Inspect and diagnose",
+          "command": "git diff BASE_COMMIT HEAD -- package-lock.json",
+          "evidence": "Inspect lock-file changes, toolchain versions, mutable references and cache keys. A stale cache can also obscure the actual dependency set."
+        },
+        {
+          "action": "Fix the evidenced cause",
+          "evidence": "Pin reproducible inputs, invalidate the affected cache appropriately and test the dependency update separately. Do not broadly downgrade unrelated packages."
+        },
+        {
+          "action": "Verify recovery",
+          "evidence": "Build from a clean environment and verify the same inputs produce the intended tested artifact."
+        }
+      ],
+      "references": [
+        {
+          "title": "Dependency update breaks builds \u2014 primary documentation",
+          "url": "https://git-scm.com/docs"
+        },
+        {
+          "title": "Diagnostic tool \u2014 primary documentation",
+          "url": "https://git-scm.com/docs"
+        }
+      ]
+    },
+    {
+      "id": "git-scenario-guide-09",
+      "topic": "git",
+      "title": "OIDC credential exchange denied",
+      "symptom": "A deployment job cannot obtain its cloud role credentials.",
+      "steps": [
+        {
+          "action": "Inspect and diagnose",
+          "command": "git show HEAD:.github/workflows/deploy.yml",
+          "evidence": "Inspect the job identity-token permission, audience and trust-policy subject conditions. Repository, branch or environment identity may differ from the allowed context."
+        },
+        {
+          "action": "Fix the evidenced cause",
+          "evidence": "Correct the narrow workflow permission or trust condition for the intended release path. Do not allow every repository or pull request to assume the deployment role."
+        },
+        {
+          "action": "Verify recovery",
+          "evidence": "Test the authorized job and confirm an untrusted branch or repository remains denied."
+        }
+      ],
+      "references": [
+        {
+          "title": "OIDC credential exchange denied \u2014 primary documentation",
+          "url": "https://git-scm.com/docs"
+        },
+        {
+          "title": "Diagnostic tool \u2014 primary documentation",
+          "url": "https://git-scm.com/docs"
+        }
+      ]
+    },
+    {
+      "id": "git-scenario-guide-10",
+      "topic": "git",
+      "title": "Regression origin unclear",
+      "symptom": "A bug exists on main but the introducing commit is unknown.",
+      "steps": [
+        {
+          "action": "Inspect and diagnose",
+          "command": "git log --oneline -- PATH",
+          "evidence": "Choose verified good and bad revisions and a deterministic reproduction. Confirm unrelated build failures can be distinguished from the bug."
+        },
+        {
+          "action": "Fix the evidenced cause",
+          "evidence": "Use controlled bisection with the reproduction, inspect the identified change and create a focused fix. Preserve local work before changing checkouts."
+        },
+        {
+          "action": "Verify recovery",
+          "evidence": "Run the reproduction against the parent, culprit and fix and verify neighboring behavior remains correct."
+        }
+      ],
+      "references": [
+        {
+          "title": "Regression origin unclear \u2014 primary documentation",
+          "url": "https://git-scm.com/docs"
+        },
+        {
+          "title": "Diagnostic tool \u2014 primary documentation",
+          "url": "https://git-scm.com/docs"
+        }
+      ]
+    }
+  ]
 }

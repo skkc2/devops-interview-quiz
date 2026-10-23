@@ -19,7 +19,7 @@
       </a>
       <nav class="top-nav" aria-label="Main navigation">
         <a href="#learning-path">Learning path</a>
-        <a href="README.md">About the project <span aria-hidden="true">↗</span></a>
+        <a href="https://github.com/skkc2/devops-interview-quiz#readme" target="_blank" rel="noopener noreferrer">About the project <span aria-hidden="true">↗</span></a>
       </nav>
     </header>
 
@@ -56,7 +56,7 @@
           <div class="section-heading"><div><span class="section-kicker">YOUR INFRASTRUCTURE TOOLKIT</span><h2 id="catalog-title">Choose your next skill</h2><p id="catalog-count" aria-live="polite">Loading subject tracks…</p></div><div class="field catalog-search"><label for="subject-search">Find a subject</label><input id="subject-search" type="search" placeholder="Linux, AWS, networking…" autocomplete="off"></div></div>
           <p id="catalog-warning" class="availability-note" role="status" hidden></p>
           <div id="subject-grid" class="subject-grid"></div>
-          <p class="catalog-note">New tracks use 30 competency sets, each with concept, scenario, multi-select and interview practice. Interview prompts are self-reviewed, never auto-scored.</p>
+          <p class="catalog-note">Choose a subject to build your session. Every library includes 30 concepts, 12 command guides, 10 worked scenarios and 30 interview prompts. Interview answers are self-reviewed.</p>
         </section>
 
         <section class="progress-overview" aria-label="Your learning progress">
@@ -115,11 +115,11 @@
           <div class="section-heading path-heading"><div><span class="section-kicker">A PROGRESSION, NOT A RACE</span><h2 id="path-heading">Build the skill stack</h2><p>Learn the basics, then practise diagnosing messy real-world symptoms.</p></div><button id="toggle-roadmap-secondary" class="text-button" type="button" aria-expanded="false" aria-controls="roadmap-panel">View full roadmap <span aria-hidden="true">↗</span></button></div>
           <div class="path-grid">
             <article class="path-card"><span class="path-number">01</span><div class="path-icon" aria-hidden="true">⌘</div><h3>Foundation</h3><p>Understand the objects, tools, and language you use every day.</p><div class="path-tags"><button type="button" data-module="concepts">Concepts</button><button type="button" data-module="commands">Commands</button></div></article>
-            <article class="path-card"><span class="path-number">02</span><div class="path-icon" aria-hidden="true">⌁</div><h3>Hands-on reasoning</h3><p>Use symptoms, logs, events, and configuration to narrow down causes.</p><div class="path-tags"><button type="button" data-module="scenarios">Scenarios</button><button type="button" data-module="debugging">Debugging</button></div></article>
+            <article class="path-card"><span class="path-number">02</span><div class="path-icon" aria-hidden="true">⌁</div><h3>Hands-on reasoning</h3><p>Use symptoms, logs, events, and configuration to narrow down causes.</p><div class="path-tags"><button type="button" data-module="scenarios">Scenarios &amp; debugging</button></div></article>
             <article class="path-card"><span class="path-number">03</span><div class="path-icon" aria-hidden="true">◷</div><h3>Exam readiness</h3><p>Practise pacing, accuracy, and judgement without in-question hints.</p><div class="path-tags"><button type="button" data-module="timed">Timed drills</button><button type="button" data-module="review">Review queue</button></div></article>
             <article class="path-card"><span class="path-number">04</span><div class="path-icon" aria-hidden="true">↗</div><h3>Interview confidence</h3><p>Communicate trade-offs, structured diagnosis, and safe recovery.</p><div class="path-tags"><button type="button" data-module="interviews">Interview prompts</button><button type="button" data-module="followups">Follow-ups</button></div></article>
           </div>
-          <section id="roadmap-panel" class="roadmap-panel" hidden>
+          <section id="roadmap-panel" class="roadmap-panel" tabindex="-1" hidden>
             <div><span class="section-kicker">CURATED ROADMAP</span><h3>From fundamentals to production judgement</h3></div>
             <ol>
               <li><strong>Foundations:</strong> Linux and networking basics, processes and permissions, containers, Kubernetes objects, Git, and cloud primitives.</li>
@@ -147,18 +147,17 @@
         <nav id="learning-module-nav" class="learning-module-nav" aria-label="Learning modules">
           <button type="button" data-module="concepts">Concepts</button>
           <button type="button" data-module="commands">Commands</button>
-          <button type="button" data-module="scenarios">Scenarios</button>
-          <button type="button" data-module="debugging">Debugging</button>
+          <button type="button" data-module="scenarios">Scenarios &amp; debugging</button>
           <button type="button" data-module="timed">Timed drills</button>
           <button type="button" data-module="review">Review queue</button>
           <button type="button" data-module="interviews">Interview prompts</button>
           <button type="button" data-module="followups">Follow-ups</button>
         </nav>
-        <div class="library-filters"><div class="field"><label for="learning-topic">Subject</label><select id="learning-topic"></select></div><div class="field"><label for="learning-search">Search this module</label><input id="learning-search" type="search" placeholder="Find a concept or scenario…" autocomplete="off"></div></div>
+        <div class="library-filters"><div class="field"><label for="learning-topic">Subject</label><select id="learning-topic"></select></div><div class="field"><label for="learning-search">Search this module</label><input id="learning-search" type="search" placeholder="Find a concept, command or scenario…" autocomplete="off"></div></div>
         <div id="learning-content-count" class="availability-note" aria-live="polite"></div>
         <div class="learning-browser">
           <div id="learning-content-list" class="learning-content-list" aria-label="Available learning content"></div>
-          <article id="learning-content-detail" class="learning-content-detail"><p>Select an item to view its content.</p></article>
+          <article id="learning-content-detail" class="learning-content-detail" tabindex="-1"><p>Select an item to view its content.</p></article>
         </div>
         <div class="learning-footer"><button id="learning-start-practice" class="button button-primary" type="button">Practise this topic →</button><button id="learning-back-setup" class="button button-secondary" type="button">Change session settings</button></div>
       </section>

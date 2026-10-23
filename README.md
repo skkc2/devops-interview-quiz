@@ -8,7 +8,7 @@ A free static learning and interview-practice app for DevOps, platform engineeri
 
 | Subject | Scored questions | Self-reviewed interviews | Total |
 | --- | ---: | ---: | ---: |
-| Kubernetes | 120 | 4 | 124 |
+| Kubernetes | 120 | 30 | 150 |
 | Linux | 90 | 30 | 120 |
 | Networking | 90 | 30 | 120 |
 | SRE & incident response | 90 | 30 | 120 |
@@ -19,7 +19,7 @@ A free static learning and interview-practice app for DevOps, platform engineeri
 | Ansible | 90 | 30 | 120 |
 | Git & CI/CD | 90 | 30 | 120 |
 | Observability | 90 | 30 | 120 |
-| **Total** | **1,020** | **304** | **1,324** |
+| **Total** | **1,020** | **330** | **1,350** |
 
 Each new subject contains **30 competency sets**. A set deliberately reinforces a topic through a concept question, a troubleshooting scenario, a two-answer multi-select check and an open-ended interview prompt. These are related exercises, not 120 independent competencies. Each has an explanation, takeaway and primary reference. Interview prompts include an answer outline, checklist and follow-up; they are never automatically scored.
 
@@ -27,16 +27,18 @@ The four difficulty bands progress from foundations to operational trade-offs. N
 
 ## Learning experience
 
-- Searchable subject catalog with separate scored/interview counts and saved-question counts.
-- **Learn:** 306 short lessons across all subjects, with search and in-library subject switching.
+- Compact circular subject icons with accessible labels, keyboard focus and direct subject selection. The catalog shows total scored/interview counts; session setup shows the selected subject counts.
+- **Learn:** every subject has 30 core concepts, 12 command/query guides, 10 worked scenarios and 30 interview prompts. Search the library and switch subjects without returning to setup.
 - **Practice:** randomized questions and answer ordering, immediate explanations, keyboard shortcuts and saved review.
 - **Exam:** scored items only; optional timer and explanations withheld until review.
 - **Interview:** written notes, answer outlines, checklists and self-ratings without a fabricated score.
-- Learning destinations include concepts, scenarios, interview prompts, follow-ups and saved review across subjects. Dedicated command guides (6) and debugging playbooks (3) currently cover Kubernetes; empty modules explain the available alternatives.
+- Concepts explain **what it is** and **how it works**, with related commands where useful. Command guides explain **what**, **why**, flags/output interpretation and execution context. **Scenarios & debugging** is one module with diagnosis, fix and recovery verification. Interview prompts include answer guidance and follow-ups; they are original practice material, not attributed employer questions.
 - Progress and bookmarks stay in local browser storage. No cross-device synchronization.
-- A failed subject download produces a visible warning while other subjects remain usable.
+- A failed subject download produces a visible warning while other subjects remain usable. Content requests revalidate cached JSON so a new Pages release can refresh existing clients.
 
 The original `questions.js` bank is retained as an archive and validated for compatibility, but is no longer loaded into active sessions. Existing curated Kubernetes question IDs remain unchanged. Old legacy bookmarks are not migrated into the new packs.
+
+The library totals **330 concepts, 132 command/query guides and 110 worked troubleshooting cases**. These cover a core curriculum, not every possible command or product feature. Command output is illustrative; replace placeholders and check the documented environment before use.
 
 ## Run locally
 
@@ -56,9 +58,11 @@ styles.css                         Responsive layout and interaction states
 app.js                             Catalog, learning, session and review engine
 data/subjects.json                 Subject manifest used by the app and validation
 data/<subject>.json               Questions, explanations and interview outlines
-data/<subject>-learning.json      Lessons and available command/debugging guides
+data/<subject>-learning.json      Authored concepts, command guides and incident walkthroughs
 content/<subject>.txt              Authored competency source for the ten new packs
 content/references.json            Competency-specific primary-reference overrides
+content/library/                   Authored learning and interview sources for all subjects
+content/kubernetes-bank.json       Preserved Kubernetes scored bank and original interview items
 scripts/build-subject-packs.py     Deterministic editorial compiler (not a site build)
 scripts/validate-subjects.js       Whole-catalog schema, count and reference-host checks
 tests/test_app.py                  Chromium interaction and failure-path regressions
@@ -84,7 +88,7 @@ python -m playwright install chromium
 python -m unittest discover -s tests -v
 ```
 
-After editing authored content, run `python3 scripts/build-subject-packs.py` and commit both source and generated JSON. `--check` verifies that committed JSON exactly matches its source without writing files. Kubernetes content is maintained directly in its existing JSON packs.
+After editing authored content, run `python3 scripts/build-subject-packs.py` and commit both source and generated JSON. `--check` verifies that committed JSON exactly matches its source without writing files. All learning content is authored in `content/library/`; the preserved Kubernetes question source is `content/kubernetes-bank.json`. See [the library content guide](content/library/README.md).
 
 Schema checks verify structure, counts, answer indexes, duplicate prompts within each subject, difficulty coverage and approved reference hosts. They do not establish editorial correctness or guarantee every linked page remains available. Review meaning, distractors and version-specific behavior against the primary references when changing content.
 

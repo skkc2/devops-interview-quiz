@@ -22,9 +22,8 @@
   let selectedContentId = null;
   const MODULE_META = {
     concepts:{title:"Concepts",description:"Build mental models across your selected subject and connect them to operational decisions."},
-    commands:{title:"Commands",description:"Browse available command guides. Dedicated command guides currently cover Kubernetes; other subjects include operational reasoning in Concepts and Scenarios."},
-    scenarios:{title:"Scenarios",description:"Work through realistic symptoms and choose evidence-based next steps."},
-    debugging:{title:"Debugging",description:"Follow diagnostic steps from symptom to evidence, likely cause and safe next action."},
+    commands:{title:"Commands",description:"Understand what each command or query does, when to use it, and how to read its flags and output."},
+    scenarios:{title:"Scenarios & debugging",description:"Work through an incident: inspect evidence, diagnose the cause, apply a scoped fix and verify recovery."},
     timed:{title:"Timed drills",description:"Configure an exam-style session with a real eligible question count and timer."},
     review:{title:"Review queue",description:"Revisit questions you saved for review."},
     interviews:{title:"Interview prompts",description:"Practise structured answers and compare them with a sample answer and checklist."},
@@ -66,15 +65,27 @@
     document.querySelectorAll(".screen").forEach(el=>{const active=el.id===name+"-screen";el.classList.toggle("is-active",active);el.hidden=!active;});
     window.scrollTo({top:0,behavior:window.matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth"});
   }
+  const SUBJECT_ICONS = {
+    kubernetes:'<path d="M24 5l15 7 4 16-11 13H16L5 28l4-16z"/><circle cx="24" cy="24" r="9"/><path d="M24 10v28M10 24h28M14 14l20 20M14 34l20-20"/>',
+    linux:'<path d="M16 34c-4-6-3-13 0-16 0-10 16-10 16 0 3 3 4 10 0 16"/><ellipse cx="24" cy="28" rx="9" ry="11"/><path d="M20 19l4 3 4-3-4-3zM16 35l-6 5h12M32 35l6 5H26"/><circle cx="21" cy="14" r="1"/><circle cx="27" cy="14" r="1"/>',
+    networking:'<circle cx="24" cy="12" r="6"/><circle cx="12" cy="35" r="6"/><circle cx="36" cy="35" r="6"/><path d="M21 18l-6 11M27 18l6 11M18 35h12"/>',
+    sre:'<path d="M24 5l16 6v12c0 10-16 19-16 19S8 33 8 23V11z"/><path d="M12 24h7l4-9 5 18 4-9h5"/>',
+    systems:'<rect x="8" y="7" width="32" height="14" rx="3"/><rect x="8" y="27" width="32" height="14" rx="3"/><path d="M22 14h11M22 34h11"/><circle cx="15" cy="14" r="1"/><circle cx="15" cy="34" r="1"/>',
+    aws:'<path d="M13 30a9 9 0 010-18 12 12 0 0123 4 7 7 0 010 14H13zM12 37c8 6 18 6 26-1M32 35l7 1-2 7"/>',
+    terraform:'<path d="M8 8l13 7v14L8 22zM25 17l13-7v14l-13 7zM25 34l13-7v14l-13 7z"/>',
+    docker:'<path d="M5 25h31c4 0 6-3 7-6 2 8-3 20-20 20C12 39 7 34 5 25zM11 24v-7h7v7M20 24v-7h7v7M29 24V10h7v14M20 17v-7h7v7"/><circle cx="14" cy="30" r="1"/>',
+    ansible:'<path d="M10 39L24 8l14 31-20-12M17 29h14"/>',
+    git:'<circle cx="14" cy="10" r="5"/><circle cx="14" cy="38" r="5"/><circle cx="35" cy="12" r="5"/><path d="M14 15v18M35 17v3c0 10-21 4-21 13"/>',
+    observability:'<path d="M4 24s7-13 20-13 20 13 20 13-7 13-20 13S4 24 4 24z"/><circle cx="24" cy="24" r="7"/><path d="M24 3v4M24 41v4"/>'
+  };
   function renderCatalog(){
     const query=$("subject-search").value.trim().toLowerCase();
     const visible=subjects.filter(s=>s.label.toLowerCase().includes(query));
     $("catalog-count").textContent=subjects.length+" subjects · "+curated.filter(q=>!isInterview(q)).length.toLocaleString()+" scored questions · "+curated.filter(isInterview).length+" interview prompts";
     $("subject-grid").innerHTML=visible.length?visible.map(subject=>{
-      const rows=curated.filter(q=>q.topic===subject.id), scored=rows.filter(q=>!isInterview(q)).length;
       const selected=state.topic===subject.id;
-      const saved=rows.filter(q=>state.flags.has(q.id)).length;
-      return '<button type="button" class="subject-card '+(selected?'selected':'')+'" data-subject="'+esc(subject.id)+'" aria-pressed="'+selected+'"><span class="subject-card-top"><span class="subject-symbol" aria-hidden="true">'+esc(subject.label.slice(0,2).toUpperCase())+'</span><span>'+rows.length+' items</span></span><strong>'+esc(subject.label)+'</strong><span>'+scored+' scored · '+(rows.length-scored)+' interview</span><small>'+saved+' saved for review · 4 difficulties</small></button>';
+      const label={systems:"Systems",sre:"SRE",git:"Git & CI/CD"}[subject.id]||subject.label;
+      return '<button type="button" class="subject-card '+(selected?'selected':'')+'" data-subject="'+esc(subject.id)+'" aria-label="'+esc(subject.label)+'" aria-pressed="'+selected+'"><span class="subject-symbol" aria-hidden="true"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" focusable="false">'+SUBJECT_ICONS[subject.id]+'</svg></span><strong>'+esc(label)+'</strong></button>';
     }).join(""):'<p class="empty-state">No matching subjects. Try Linux, AWS, SRE or networking.</p>';
   }
   function poolForSetup(){
@@ -156,8 +167,7 @@
     const topicOK=item=>state.topic==="all"||item.topic===state.topic;
     if(module==="concepts")return (learning?.lessons||[]).filter(topicOK);
     if(module==="commands")return (learning?.commands||[]).filter(topicOK);
-    if(module==="scenarios")return curated.filter(q=>q.type==="scenario"&&topicOK(q));
-    if(module==="debugging")return (learning?.debugging||[]).filter(topicOK);
+    if(module==="scenarios")return (learning?.debugging||[]).filter(topicOK);
     if(module==="review"){
       const all=curated;
       return all.filter(q=>state.flags.has(q.id)&&topicOK(q));
@@ -182,13 +192,13 @@
     $("learning-topic").innerHTML='<option value="all">All available subjects</option>'+subjects.map(s=>'<option value="'+esc(s.id)+'">'+esc(s.label)+'</option>').join("");
     $("learning-topic").value=state.topic;
     const query=learningSearch.trim().toLowerCase();
-    const items=learningItemsForModule(activeModule).filter(item=>!query||[item.title,item.question,item.summary,item.objective,item.symptom,item.command].filter(Boolean).join(" ").toLowerCase().includes(query));
-    $("learning-content-count").textContent=items.length+" "+(activeModule==="concepts"?"lessons":activeModule==="commands"?"command guides":activeModule==="debugging"?"playbooks":activeModule==="review"?"saved questions":activeModule==="interviews"?"interview prompts":activeModule==="scenarios"?"scenarios":"available action")+" available";
-    $("learning-content-list").innerHTML=items.length?items.map(item=>'<button type="button" class="learning-item '+(item.id===selectedContentId?"selected":"")+'" data-content-id="'+esc(item.id)+'"><strong>'+esc(item.title||item.question||"Learning item")+'</strong><small>'+esc(item.summary||item.objective||item.symptom||topicLabel(item.topic||"kubernetes"))+'</small></button>').join(""):'<div class="empty-state"><strong>No items here yet.</strong><p>Clear your search or choose another module. Concepts, Scenarios and Interview prompts are available for every subject. Dedicated command guides and debugging playbooks currently cover Kubernetes.</p></div>';
+    const items=learningItemsForModule(activeModule).filter(item=>!query||[item.title,item.question,item.summary,item.objective,item.symptom,item.command,item.definition,item.purpose,...(item.sections||[]).map(s=>s.body)].filter(Boolean).join(" ").toLowerCase().includes(query));
+    $("learning-content-count").textContent=items.length+" "+(activeModule==="concepts"?"lessons":activeModule==="commands"?"command guides":activeModule==="review"?"saved questions":activeModule==="interviews"?"interview prompts":activeModule==="scenarios"?"scenarios":"available action")+" available";
+    $("learning-content-list").innerHTML=items.length?items.map(item=>'<button type="button" class="learning-item '+(item.id===selectedContentId?"selected":"")+'" data-content-id="'+esc(item.id)+'"><strong>'+esc(item.title||item.question||"Learning item")+'</strong><small>'+esc(item.summary||item.objective||item.symptom||topicLabel(item.topic||"kubernetes"))+'</small></button>').join(""):'<div class="empty-state"><strong>No items here yet.</strong><p>Clear your search or choose another subject. Every subject has concepts, command guides, worked scenarios and interview prompts. Save practice questions to populate your review queue.</p></div>';
     if(!items.length){$("learning-content-detail").innerHTML='<p class="empty-state">No content matches this module and subject selection yet.</p>';selectedContentId=null;return;}
     let item=items.find(x=>x.id===selectedContentId)||items[0];
     selectedContentId=item.id;
-    document.querySelectorAll("[data-content-id]").forEach(btn=>btn.classList.toggle("selected",btn.dataset.contentId===selectedContentId));
+    document.querySelectorAll("[data-content-id]").forEach(btn=>{const selected=btn.dataset.contentId===selectedContentId;btn.classList.toggle("selected",selected);btn.setAttribute("aria-current",selected?"true":"false");});
     renderLearningDetail(activeModule,item);
   }
   function renderLearningDetail(module,item){
@@ -196,13 +206,11 @@
     const refs=(item.references||[]).map(ref=>{const url=safeUrl(ref.url);return url?'<li><a href="'+esc(url)+'" target="_blank" rel="noopener noreferrer">'+esc(ref.title||"Documentation")+' ↗</a></li>':"";}).join("");
     let body="";
     if(module==="concepts"){
-      body='<p class="learning-summary">'+esc(item.summary)+'</p>'+(item.sections||[]).map(section=>'<section class="lesson-section"><h3>'+esc(section.heading)+'</h3><p>'+esc(section.body)+'</p></section>').join("")+'<div class="takeaway-box"><div><strong>Remember this</strong><p>'+esc(item.takeaway||"Connect the concept to an observable system behaviour.")+'</p></div></div>';
+      body=(item.sections||[]).map(section=>'<section class="lesson-section"><h3>'+esc(section.heading)+'</h3><p>'+esc(section.body)+'</p></section>').join("")+(item.command?'<section class="lesson-section"><h3>Related command</h3><pre class="question-code"><code>'+esc(item.command)+'</code></pre><p>Replace uppercase placeholders before use. The Commands module explains common tools and their output.</p></section>':'');
     }else if(module==="commands"){
-      body='<p class="learning-summary">'+esc(item.purpose)+'</p><div class="command-example"><span>COMMAND</span><code>'+esc(item.command)+'</code><button type="button" class="button button-secondary" id="copy-learning-command">Copy command</button></div><section class="lesson-section"><h3>Environment and prerequisites</h3><p>'+esc(item.environment)+'</p></section><section class="lesson-section"><h3>Expected output</h3><p>'+esc(item.expectedOutput)+'</p></section><section class="lesson-section"><h3>How to interpret it</h3><p>'+esc(item.interpretation)+'</p></section><section class="lesson-section"><h3>Safety</h3><p>'+esc(item.safety)+'</p></section>';
-    }else if(module==="debugging"){
-      body='<p class="learning-summary">'+esc(item.symptom)+'</p>'+(item.steps||[]).map((step,i)=>'<section class="lesson-section"><h3>Step '+(i+1)+': '+esc(step.action)+'</h3>'+(step.command?'<pre class="question-code"><code>'+esc(step.command)+'</code></pre>':'')+'<p>'+esc(step.evidence)+'</p></section>').join("")+'<div class="takeaway-box"><div><strong>What to avoid</strong><p>'+esc(item.avoid||"Make changes only after gathering evidence.")+'</p></div></div>';
+      body='<section class="lesson-section"><h3>What it is</h3><p>'+esc(item.definition)+'</p></section><div class="command-example"><span>'+esc(item.kind||"Command")+'</span><code>'+esc(item.command)+'</code><button type="button" class="button button-secondary" id="copy-learning-command">Copy command</button></div><section class="lesson-section"><h3>Why use it</h3><p>'+esc(item.purpose)+'</p></section><section class="lesson-section"><h3>How to read it</h3><p>'+esc(item.interpretation)+'</p></section><section class="lesson-section"><h3>Illustrative output</h3><pre class="question-code"><code>'+esc(item.expectedOutput)+'</code></pre></section><section class="lesson-section"><h3>Before you run it</h3><p>'+esc(item.environment)+'</p></section>';
     }else if(module==="scenarios"){
-      body='<p class="learning-summary">'+esc(item.question)+'</p><section class="lesson-section"><h3>What this tests</h3><p>'+esc(item.objective)+'</p></section><section class="lesson-section"><h3>Reasoning and solution</h3><p>'+esc(item.explanation)+'</p></section><div class="takeaway-box"><div><strong>Practical takeaway</strong><p>'+esc(item.takeaway)+'</p></div></div><button type="button" class="button button-primary" id="practice-this-scenario">Practise scenarios at this difficulty →</button>';
+      body='<section class="lesson-section"><h3>The issue</h3><p>'+esc(item.symptom)+'</p></section>'+(item.steps||[]).map((step,i)=>'<section class="lesson-section"><h3>'+ (i+1)+'. '+esc(step.action)+'</h3>'+(step.command?'<pre class="question-code"><code>'+esc(step.command)+'</code></pre>':'')+'<p>'+esc(step.evidence)+'</p></section>').join("");
     }else if(module==="interviews"){
       body='<p class="learning-summary">'+esc(item.question)+'</p><section class="lesson-section"><h3>Sample answer</h3><p>'+esc(item.sampleAnswer||item.explanation||"Use a structured answer: context, evidence, action, verification.")+'</p></section><section class="lesson-section"><h3>Self-review checklist</h3><ul>'+(item.answerChecklist||[]).map(x=>'<li>'+esc(x)+'</li>').join("")+'</ul></section><section class="lesson-section"><h3>Follow-up prompts</h3><ul>'+(item.followUps||[]).map(x=>'<li>'+esc(x)+'</li>').join("")+'</ul></section><button type="button" class="button button-primary" id="practise-interview-prompt">Practise an interview prompt →</button>';
     }else if(module==="review"){
@@ -233,8 +241,7 @@
     if(module==="review"){state.forcedQuestionIds=[...state.flags];state.mode="practice";state.topic="all";state.type="all";state.count="all";}
     else state.forcedQuestionIds=null;
     if(module==="concepts"){state.mode="practice";state.type="concept";state.count="all";}
-    else if(module==="commands"){state.mode="practice";state.type="command";state.count="all";}
-    else if(module==="debugging"){state.mode="practice";state.type="scenario";state.count="all";}
+    else if(module==="commands"){state.mode="practice";state.type=curated.some(q=>q.topic===state.topic&&q.type==="command"&&q.level===state.level)?"command":"all";state.count="all";}
     else if(module==="timed"){state.mode="exam";state.timed=true;state.type="all";state.count="all";}
     else if(module==="review"){state.mode="practice";state.type="all";state.count="all";}
     else if(module==="interviews"||module==="followups"){state.mode="interview";state.type="interview";state.count="all";}
@@ -449,19 +456,22 @@
   function resetSetup(){
     clearInterval(state.timer);state.timer=null;state.finished=false;state.mode="learn";state.type="all";state.topic="kubernetes";state.count="all";state.timed=false;state.reviewSavedOnly=false;state.forcedQuestionIds=null;renderSetup();setScreen("home");
   }
+  const motion=()=>window.matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth";
   function wire(){
     $("subject-search").addEventListener("input",renderCatalog);
     $("subject-grid").addEventListener("click",e=>{const card=e.target.closest("[data-subject]");if(!card)return;state.topic=card.dataset.subject;state.forcedQuestionIds=null;renderSetup();$("setup-panel").scrollIntoView({behavior:window.matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth"});$("topic-select").focus({preventScroll:true});});
     $("learning-topic").addEventListener("change",e=>{state.topic=e.target.value;selectedContentId=null;renderLearningModule(activeModule);});
     $("learning-search").addEventListener("input",e=>{learningSearch=e.target.value;selectedContentId=null;renderLearningModule(activeModule);});
-    $("jump-to-setup").addEventListener("click",()=>$("setup-panel").scrollIntoView({behavior:"smooth"}));
+    $("jump-to-setup").addEventListener("click",()=>{state.mode="learn";state.forcedQuestionIds=null;renderSetup();$("setup-panel").scrollIntoView({behavior:motion()});$("topic-select").focus({preventScroll:true});});
     document.querySelectorAll("[data-module]").forEach(btn=>btn.addEventListener("click",()=>openLearningModule(btn.dataset.module)));
-    $("learning-content-list").addEventListener("click",e=>{const btn=e.target.closest("[data-content-id]");if(!btn)return;selectedContentId=btn.dataset.contentId;renderLearningModule(activeModule);});
+    $("learning-content-list").addEventListener("click",e=>{const btn=e.target.closest("[data-content-id]");if(!btn)return;selectedContentId=btn.dataset.contentId;renderLearningModule(activeModule);if(window.matchMedia("(max-width:760px)").matches){$("learning-content-detail").scrollIntoView({behavior:motion(),block:"start"});$("learning-content-detail").focus({preventScroll:true});}});
     $("back-from-learning").addEventListener("click",()=>{setScreen("home");renderSetup();$("learning-path").scrollIntoView({behavior:"smooth"});});
     $("learning-back-setup").addEventListener("click",()=>{setScreen("home");renderSetup();$("setup-panel").scrollIntoView({behavior:"smooth"});});
     $("learning-start-practice").addEventListener("click",()=>returnToSetupForModule(activeModule));
-    const toggleRoadmap=()=>{const panel=$("roadmap-panel"),open=panel.hidden;panel.hidden=!open;$("toggle-roadmap").setAttribute("aria-expanded",String(open));$("toggle-roadmap-secondary").setAttribute("aria-expanded",String(open));};
-    $("toggle-roadmap").addEventListener("click",toggleRoadmap);$("toggle-roadmap-secondary").addEventListener("click",toggleRoadmap);
+    const showRoadmap=(open)=>{const panel=$("roadmap-panel");panel.hidden=!open;$("toggle-roadmap").setAttribute("aria-expanded",String(open));$("toggle-roadmap-secondary").setAttribute("aria-expanded",String(open));if(open){panel.scrollIntoView({behavior:motion(),block:"center"});panel.focus({preventScroll:true});}};
+    $("toggle-roadmap").addEventListener("click",()=>showRoadmap(true));
+    $("toggle-roadmap-secondary").addEventListener("click",()=>showRoadmap($("roadmap-panel").hidden));
+    document.querySelector('.top-nav a[href="#learning-path"]').addEventListener("click",e=>{e.preventDefault();setScreen("home");$("learning-path").scrollIntoView({behavior:motion()});});
     document.querySelectorAll("[data-mode]").forEach(btn=>btn.addEventListener("click",()=>{state.forcedQuestionIds=null;state.mode=btn.dataset.mode;if(state.mode==="exam")state.timed=true;if(state.mode==="learn"||state.mode==="interview")state.timed=false;renderSetup();}));
     $("level-select").addEventListener("change",e=>{state.forcedQuestionIds=null;state.level=e.target.value;renderSetup();});
     $("topic-select").addEventListener("change",e=>{state.forcedQuestionIds=null;state.topic=e.target.value;renderSetup();});
@@ -493,7 +503,7 @@
     loadHistory();wire();
     try{
       async function readJSON(path){
-        const response=await fetch(path);
+        const response=await fetch(path,{cache:"no-cache"});
         if(!response.ok)throw new Error(path+" returned HTTP "+response.status);
         return response.json();
       }

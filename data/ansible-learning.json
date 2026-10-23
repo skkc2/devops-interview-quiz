@@ -1,0 +1,817 @@
+{
+  "subject": "ansible",
+  "lessons": [
+    {
+      "id": "ansible-lesson-01",
+      "topic": "ansible",
+      "title": "Inventory",
+      "summary": "Managed hosts and their grouping or connection data.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Inventory selection determines the potential execution scope."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A production play unexpectedly targets a staging group too. Inspect inventory groups and the resolved host pattern before execution."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "It is a list of Docker image layers. This is not a sound assumption; managed hosts and their grouping or connection data."
+        }
+      ],
+      "takeaway": "Inventory selection determines the potential execution scope.",
+      "references": [
+        {
+          "title": "Inventory \u2014 primary reference",
+          "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
+        }
+      ]
+    },
+    {
+      "id": "ansible-lesson-02",
+      "topic": "ansible",
+      "title": "Playbooks",
+      "summary": "Plays mapping tasks and roles to target hosts.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Task order and conditions affect execution behavior."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A task intended for web servers runs on database hosts. Correct the play's host selection and verify the resolved list."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "It is only a database of passwords. This is not a sound assumption; plays mapping tasks and roles to target hosts."
+        }
+      ],
+      "takeaway": "Task order and conditions affect execution behavior.",
+      "references": [
+        {
+          "title": "Playbooks \u2014 primary reference",
+          "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
+        }
+      ]
+    },
+    {
+      "id": "ansible-lesson-03",
+      "topic": "ansible",
+      "title": "Modules",
+      "summary": "Modules often model desired state and support idempotent behavior.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Module documentation defines supported parameters and return values."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A shell task appends the same configuration line on every run. Use an appropriate declarative file or configuration module."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "Every shell command is automatically idempotent. This is not a sound assumption; modules often model desired state and support idempotent behavior."
+        }
+      ],
+      "takeaway": "Module documentation defines supported parameters and return values.",
+      "references": [
+        {
+          "title": "Modules \u2014 primary reference",
+          "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
+        }
+      ]
+    },
+    {
+      "id": "ansible-lesson-04",
+      "topic": "ansible",
+      "title": "Idempotence",
+      "summary": "Repeated execution can preserve the already-correct desired state.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "A no-change run is useful evidence but not a complete correctness proof."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A second identical run still recreates an unchanged configuration file. Inspect task behavior and use state-aware operations."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "An idempotent task must execute exactly once forever. This is not a sound assumption; repeated execution can preserve the already-correct desired state."
+        }
+      ],
+      "takeaway": "A no-change run is useful evidence but not a complete correctness proof.",
+      "references": [
+        {
+          "title": "Idempotence \u2014 primary reference",
+          "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
+        }
+      ]
+    },
+    {
+      "id": "ansible-lesson-05",
+      "topic": "ansible",
+      "title": "Become",
+      "summary": "Privilege escalation for selected operations.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Escalation should be scoped to tasks that need it."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A task needs root only to install one package. Scope privilege escalation and use the package module."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "It automatically encrypts all variables. This is not a sound assumption; privilege escalation for selected operations."
+        }
+      ],
+      "takeaway": "Escalation should be scoped to tasks that need it.",
+      "references": [
+        {
+          "title": "Become \u2014 primary reference",
+          "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
+        }
+      ]
+    },
+    {
+      "id": "ansible-lesson-06",
+      "topic": "ansible",
+      "title": "Variables",
+      "summary": "Values can come from multiple sources with precedence rules.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Unexpected values should be traced to their actual source."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A host uses a different port than its role default. Inspect higher-precedence inventory and runtime overrides."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "The last alphabetic variable name always wins. This is not a sound assumption; values can come from multiple sources with precedence rules."
+        }
+      ],
+      "takeaway": "Unexpected values should be traced to their actual source.",
+      "references": [
+        {
+          "title": "Variables \u2014 primary reference",
+          "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
+        }
+      ]
+    },
+    {
+      "id": "ansible-lesson-07",
+      "topic": "ansible",
+      "title": "Facts",
+      "summary": "Discover host characteristics for conditional automation.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Facts can become stale if cached beyond relevant changes."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A cached operating-system fact no longer matches a rebuilt host. Refresh relevant facts and inspect cache policy."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "Facts are always a live view of every host property. This is not a sound assumption; discover host characteristics for conditional automation."
+        }
+      ],
+      "takeaway": "Facts can become stale if cached beyond relevant changes.",
+      "references": [
+        {
+          "title": "Facts \u2014 primary reference",
+          "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
+        }
+      ]
+    },
+    {
+      "id": "ansible-lesson-08",
+      "topic": "ansible",
+      "title": "Handlers",
+      "summary": "At defined handler execution points after notifying changes.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Multiple notifications can coalesce into one handler execution."
+        },
+        {
+          "heading": "Apply it",
+          "body": "Three configuration tasks require one service restart. Notify a shared handler and verify the restart timing."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "Every handler runs after every task unconditionally. This is not a sound assumption; at defined handler execution points after notifying changes."
+        }
+      ],
+      "takeaway": "Multiple notifications can coalesce into one handler execution.",
+      "references": [
+        {
+          "title": "Handlers \u2014 primary reference",
+          "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
+        }
+      ]
+    },
+    {
+      "id": "ansible-lesson-09",
+      "topic": "ansible",
+      "title": "Check mode",
+      "summary": "Support and predictive accuracy depend on the module and task.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "A dry run does not prove every runtime side effect is safe."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A task depends on output from a command skipped in check mode. Review check-mode support and test safely in a representative environment."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "Check mode guarantees an exact simulation of every shell command. This is not a sound assumption; support and predictive accuracy depend on the module and task."
+        }
+      ],
+      "takeaway": "A dry run does not prove every runtime side effect is safe.",
+      "references": [
+        {
+          "title": "Check mode \u2014 primary reference",
+          "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
+        }
+      ]
+    },
+    {
+      "id": "ansible-lesson-10",
+      "topic": "ansible",
+      "title": "Diff mode",
+      "summary": "It can reveal sensitive configuration content.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Secret-bearing tasks may need protected output and no_log."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A template diff shows credentials in CI logs. Suppress sensitive output and review exposure and credential rotation."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "Diff output can never contain secrets. This is not a sound assumption; it can reveal sensitive configuration content."
+        }
+      ],
+      "takeaway": "Secret-bearing tasks may need protected output and no_log.",
+      "references": [
+        {
+          "title": "Diff mode \u2014 primary reference",
+          "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
+        }
+      ]
+    },
+    {
+      "id": "ansible-lesson-11",
+      "topic": "ansible",
+      "title": "Vault",
+      "summary": "Encrypted content at rest when properly managed.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Decrypted values can still leak through task output or external systems."
+        },
+        {
+          "heading": "Apply it",
+          "body": "An encrypted secret is printed by a debug task. Remove the disclosure and protect runtime logging."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "Vault prevents every runtime secret exposure. This is not a sound assumption; encrypted content at rest when properly managed."
+        }
+      ],
+      "takeaway": "Decrypted values can still leak through task output or external systems.",
+      "references": [
+        {
+          "title": "Vault \u2014 primary reference",
+          "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
+        }
+      ]
+    },
+    {
+      "id": "ansible-lesson-12",
+      "topic": "ansible",
+      "title": "Templates",
+      "summary": "Render configuration from variables and expressions.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Rendered configuration should be validated before service activation."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A rendered web-server configuration has invalid syntax. Validate the candidate configuration before replacing or reloading it."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "Templates guarantee valid syntax for every target service. This is not a sound assumption; render configuration from variables and expressions."
+        }
+      ],
+      "takeaway": "Rendered configuration should be validated before service activation.",
+      "references": [
+        {
+          "title": "Templates \u2014 primary reference",
+          "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
+        }
+      ]
+    },
+    {
+      "id": "ansible-lesson-13",
+      "topic": "ansible",
+      "title": "Roles",
+      "summary": "Related tasks defaults handlers and supporting files.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Roles benefit from explicit interfaces and limited assumptions."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A shared role requires undocumented variables and breaks callers. Document defaults and required inputs and test representative callers."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "A role is necessarily a separate remote user account. This is not a sound assumption; related tasks defaults handlers and supporting files."
+        }
+      ],
+      "takeaway": "Roles benefit from explicit interfaces and limited assumptions.",
+      "references": [
+        {
+          "title": "Roles \u2014 primary reference",
+          "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
+        }
+      ]
+    },
+    {
+      "id": "ansible-lesson-14",
+      "topic": "ansible",
+      "title": "Collections",
+      "summary": "Distribute related modules plugins and roles.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Pinning tested collection versions helps reproducibility."
+        },
+        {
+          "heading": "Apply it",
+          "body": "CI fails because a module collection is absent on a clean runner. Declare and install versioned collection requirements."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "Collections are always included in every ansible-core installation. This is not a sound assumption; distribute related modules plugins and roles."
+        }
+      ],
+      "takeaway": "Pinning tested collection versions helps reproducibility.",
+      "references": [
+        {
+          "title": "Collections \u2014 primary reference",
+          "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
+        }
+      ]
+    },
+    {
+      "id": "ansible-lesson-15",
+      "topic": "ansible",
+      "title": "FQCNs",
+      "summary": "Make the intended module namespace explicit.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Explicit names reduce ambiguity when collections overlap."
+        },
+        {
+          "heading": "Apply it",
+          "body": "Two collections provide similarly named modules. Use the intended collection namespace and verify its documentation."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "A fully qualified name automatically grants more privileges. This is not a sound assumption; make the intended module namespace explicit."
+        }
+      ],
+      "takeaway": "Explicit names reduce ambiguity when collections overlap.",
+      "references": [
+        {
+          "title": "FQCNs \u2014 primary reference",
+          "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
+        }
+      ]
+    },
+    {
+      "id": "ansible-lesson-16",
+      "topic": "ansible",
+      "title": "Conditionals",
+      "summary": "Whether a task executes for a host based on a condition.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Conditions should use correctly typed and available values."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A task unexpectedly runs because a string value was treated as truthy. Normalize input types and inspect the condition."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "It changes inventory membership permanently. This is not a sound assumption; whether a task executes for a host based on a condition."
+        }
+      ],
+      "takeaway": "Conditions should use correctly typed and available values.",
+      "references": [
+        {
+          "title": "Conditionals \u2014 primary reference",
+          "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
+        }
+      ]
+    },
+    {
+      "id": "ansible-lesson-17",
+      "topic": "ansible",
+      "title": "Registered results",
+      "summary": "A task result for later use in the play.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Result fields depend on the module and execution outcome."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A later task accesses stdout on a skipped result. Guard for skipped or missing result fields."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "Register stores a permanent system environment variable. This is not a sound assumption; a task result for later use in the play."
+        }
+      ],
+      "takeaway": "Result fields depend on the module and execution outcome.",
+      "references": [
+        {
+          "title": "Registered results \u2014 primary reference",
+          "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
+        }
+      ]
+    },
+    {
+      "id": "ansible-lesson-18",
+      "topic": "ansible",
+      "title": "Loops",
+      "summary": "Avoid variable collisions in nested or included tasks.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Loop results often require handling a collection of per-item results."
+        },
+        {
+          "heading": "Apply it",
+          "body": "An included task overwrites the outer item variable. Use loop_control with distinct variable names."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "A loop always executes on all hosts serially. This is not a sound assumption; avoid variable collisions in nested or included tasks."
+        }
+      ],
+      "takeaway": "Loop results often require handling a collection of per-item results.",
+      "references": [
+        {
+          "title": "Loops \u2014 primary reference",
+          "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
+        }
+      ]
+    },
+    {
+      "id": "ansible-lesson-19",
+      "topic": "ansible",
+      "title": "Failure conditions",
+      "summary": "The condition under which a task is considered failed.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Exit status and output semantics should guide failure criteria."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A command returns a documented nonzero code for a harmless state. Define an explicit failure condition matching the command contract."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "It suppresses all future errors automatically. This is not a sound assumption; the condition under which a task is considered failed."
+        }
+      ],
+      "takeaway": "Exit status and output semantics should guide failure criteria.",
+      "references": [
+        {
+          "title": "Failure conditions \u2014 primary reference",
+          "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
+        }
+      ]
+    },
+    {
+      "id": "ansible-lesson-20",
+      "topic": "ansible",
+      "title": "Change reporting",
+      "summary": "Whether a task reports that it changed state.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Accurate change reporting affects handler notifications."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A read-only diagnostic command triggers a restart handler. Mark the diagnostic as unchanged when appropriate."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "It prevents the command from executing. This is not a sound assumption; whether a task reports that it changed state."
+        }
+      ],
+      "takeaway": "Accurate change reporting affects handler notifications.",
+      "references": [
+        {
+          "title": "Change reporting \u2014 primary reference",
+          "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
+        }
+      ]
+    },
+    {
+      "id": "ansible-lesson-21",
+      "topic": "ansible",
+      "title": "Serial rollout",
+      "summary": "The batch size of hosts processed through the play.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Batch size should reflect availability and failure-domain constraints."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A fleet-wide restart would remove all serving capacity. Use bounded batches with health verification and stop criteria."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "It changes the number of CPU cores on each host. This is not a sound assumption; the batch size of hosts processed through the play."
+        }
+      ],
+      "takeaway": "Batch size should reflect availability and failure-domain constraints.",
+      "references": [
+        {
+          "title": "Serial rollout \u2014 primary reference",
+          "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
+        }
+      ]
+    },
+    {
+      "id": "ansible-lesson-22",
+      "topic": "ansible",
+      "title": "Delegation",
+      "summary": "The host on which a task executes.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Variable and connection context need care with delegated tasks."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A load-balancer update should run through a control endpoint. Delegate the specific operation and verify credentials and context."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "It permanently moves every later task to that host. This is not a sound assumption; the host on which a task executes."
+        }
+      ],
+      "takeaway": "Variable and connection context need care with delegated tasks.",
+      "references": [
+        {
+          "title": "Delegation \u2014 primary reference",
+          "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
+        }
+      ]
+    },
+    {
+      "id": "ansible-lesson-23",
+      "topic": "ansible",
+      "title": "Run once",
+      "summary": "Execution can occur once per batch rather than once for the whole inventory.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Global singleton actions need explicit design under batching."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A migration unexpectedly repeats during a serial rollout. Review batch semantics and implement a deliberate singleton migration step."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "Run_once always means once across every possible play execution. This is not a sound assumption; execution can occur once per batch rather than once for the whole inventory."
+        }
+      ],
+      "takeaway": "Global singleton actions need explicit design under batching.",
+      "references": [
+        {
+          "title": "Run once \u2014 primary reference",
+          "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
+        }
+      ]
+    },
+    {
+      "id": "ansible-lesson-24",
+      "topic": "ansible",
+      "title": "Blocks and rescue",
+      "summary": "Handle qualifying task failures with recovery steps.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Recovery logic must still account for partial side effects."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A deployment task fails after writing part of its configuration. Use explicit recovery and verify the resulting host state."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "Rescue automatically rolls back every previous change. This is not a sound assumption; handle qualifying task failures with recovery steps."
+        }
+      ],
+      "takeaway": "Recovery logic must still account for partial side effects.",
+      "references": [
+        {
+          "title": "Blocks and rescue \u2014 primary reference",
+          "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
+        }
+      ]
+    },
+    {
+      "id": "ansible-lesson-25",
+      "topic": "ansible",
+      "title": "Async tasks",
+      "summary": "Long-running tasks without holding a normal synchronous wait.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Polling and completion handling must match operational needs."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A long maintenance task exceeds the default connection wait. Use bounded async execution and track the final result."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "Async automatically guarantees successful completion. This is not a sound assumption; long-running tasks without holding a normal synchronous wait."
+        }
+      ],
+      "takeaway": "Polling and completion handling must match operational needs.",
+      "references": [
+        {
+          "title": "Async tasks \u2014 primary reference",
+          "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
+        }
+      ]
+    },
+    {
+      "id": "ansible-lesson-26",
+      "topic": "ansible",
+      "title": "Tags",
+      "summary": "Required prerequisite tasks may be skipped.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Tagged execution needs testing as its own supported path."
+        },
+        {
+          "heading": "Apply it",
+          "body": "Running only a deployment tag skips required configuration setup. Test the selected path and encode needed prerequisites deliberately."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "Tags always resolve every prerequisite automatically. This is not a sound assumption; required prerequisite tasks may be skipped."
+        }
+      ],
+      "takeaway": "Tagged execution needs testing as its own supported path.",
+      "references": [
+        {
+          "title": "Tags \u2014 primary reference",
+          "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
+        }
+      ]
+    },
+    {
+      "id": "ansible-lesson-27",
+      "topic": "ansible",
+      "title": "Dynamic inventory",
+      "summary": "Discover hosts from an external authoritative source.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Discovery filters and credentials determine scope."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A cloud inventory plugin includes hosts from an unintended environment. Narrow discovery filters and inspect the generated inventory."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "Dynamic inventory can never become stale. This is not a sound assumption; discover hosts from an external authoritative source."
+        }
+      ],
+      "takeaway": "Discovery filters and credentials determine scope.",
+      "references": [
+        {
+          "title": "Dynamic inventory \u2014 primary reference",
+          "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
+        }
+      ]
+    },
+    {
+      "id": "ansible-lesson-28",
+      "topic": "ansible",
+      "title": "Concurrency",
+      "summary": "Overload of targets controllers or shared dependencies.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Concurrency should match workload and service capacity."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A configuration run overloads a shared package repository. Bound concurrency and stage work based on dependency capacity."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "More forks always reduces risk. This is not a sound assumption; overload of targets controllers or shared dependencies."
+        }
+      ],
+      "takeaway": "Concurrency should match workload and service capacity.",
+      "references": [
+        {
+          "title": "Concurrency \u2014 primary reference",
+          "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
+        }
+      ]
+    },
+    {
+      "id": "ansible-lesson-29",
+      "topic": "ansible",
+      "title": "Secret logging",
+      "summary": "Sensitive task data from normal Ansible output.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "It does not prevent a command from leaking secrets into external files or services."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A task hides output but writes a password into a world-readable file. Fix file handling and permissions in addition to suppressing logs."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "No_log encrypts every remote file created by a task. This is not a sound assumption; sensitive task data from normal Ansible output."
+        }
+      ],
+      "takeaway": "It does not prevent a command from leaking secrets into external files or services.",
+      "references": [
+        {
+          "title": "Secret logging \u2014 primary reference",
+          "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
+        }
+      ]
+    },
+    {
+      "id": "ansible-lesson-30",
+      "topic": "ansible",
+      "title": "Automation validation",
+      "summary": "Representative execution and checks of the resulting system behavior.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Syntax checks cannot prove target permissions or service readiness."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A play passes lint but fails during a live service reload. Test in a representative environment with explicit postconditions."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "Syntax success guarantees the play is safe for production. This is not a sound assumption; representative execution and checks of the resulting system behavior."
+        }
+      ],
+      "takeaway": "Syntax checks cannot prove target permissions or service readiness.",
+      "references": [
+        {
+          "title": "Automation validation \u2014 primary reference",
+          "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
+        }
+      ]
+    }
+  ],
+  "commands": [],
+  "debugging": []
+}

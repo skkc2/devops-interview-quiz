@@ -55,3 +55,10 @@ Each subject should arrive in its own focused PR. Do not expand a topic just to 
 - No duplicate questions in one session; interview prompts are not auto-scored.
 - Every completed subject meets the 120-question minimum and passes content and browser validation.
 - GitHub Pages publishes only intended site files.
+
+
+## Delivered: multi-subject expansion
+
+Eleven active subjects now have a searchable catalog and subject-aware learning library. Each of the ten added tracks includes 90 scored exercises, 30 self-reviewed interviews and 30 short lessons. The original Kubernetes track remains available. All packs are included in Pages packaging and catalog validation.
+
+Remaining content work: deeper independent scenarios, more demanding subject-specific senior-level exercises, and dedicated command guides/debugging playbooks beyond Kubernetes. Existing competency variants intentionally reinforce the same material and should not be mistaken for independent coverage. Continue editorial review and reference maintenance rather than optimizing only for item count.

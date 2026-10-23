@@ -1,0 +1,3733 @@
+{
+  "schemaVersion": 1,
+  "subject": "Ansible",
+  "levels": [
+    "easy",
+    "medium",
+    "mediumHard",
+    "hard"
+  ],
+  "description": "30 competency sets: 90 scored questions and 30 self-reviewed interview prompts. Related questions intentionally reinforce a competency from different angles.",
+  "questions": [
+    {
+      "level": "easy",
+      "topic": "ansible",
+      "objective": "Explain inventory and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Inventory \u2014 primary reference",
+          "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
+        }
+      ],
+      "tags": [
+        "ansible",
+        "inventory"
+      ],
+      "takeaway": "Inventory selection determines the potential execution scope.",
+      "explanation": "Managed hosts and their grouping or connection data. Inventory selection determines the potential execution scope. In the scenario, inspect inventory groups and the resolved host pattern before execution. The alternative \u2018Assume the playbook filename limits the hosts\u2019 does not address the stated evidence or constraint.",
+      "id": "ansible-01-concept",
+      "title": "Inventory \u00b7 concept",
+      "type": "concept",
+      "question": "What does an Ansible inventory describe?",
+      "options": [
+        "Managed hosts and their grouping or connection data",
+        "It is a list of Docker image layers",
+        "It automatically grants access to every listed host",
+        "Assume the playbook filename limits the hosts"
+      ],
+      "correct": [
+        0
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "ansible",
+      "objective": "Explain inventory and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Inventory \u2014 primary reference",
+          "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
+        }
+      ],
+      "tags": [
+        "ansible",
+        "inventory"
+      ],
+      "takeaway": "Inventory selection determines the potential execution scope.",
+      "explanation": "Managed hosts and their grouping or connection data. Inventory selection determines the potential execution scope. In the scenario, inspect inventory groups and the resolved host pattern before execution. The alternative \u2018Assume the playbook filename limits the hosts\u2019 does not address the stated evidence or constraint.",
+      "id": "ansible-01-scenario",
+      "title": "Inventory \u00b7 scenario",
+      "type": "scenario",
+      "question": "A production play unexpectedly targets a staging group too. What is the best next step?",
+      "options": [
+        "Assume the playbook filename limits the hosts",
+        "It is a list of Docker image layers",
+        "It automatically grants access to every listed host",
+        "Inspect inventory groups and the resolved host pattern before execution"
+      ],
+      "correct": [
+        3
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "ansible",
+      "objective": "Explain inventory and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Inventory \u2014 primary reference",
+          "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
+        }
+      ],
+      "tags": [
+        "ansible",
+        "inventory"
+      ],
+      "takeaway": "Inventory selection determines the potential execution scope.",
+      "explanation": "Managed hosts and their grouping or connection data. Inventory selection determines the potential execution scope. In the scenario, inspect inventory groups and the resolved host pattern before execution. The alternative \u2018Assume the playbook filename limits the hosts\u2019 does not address the stated evidence or constraint.",
+      "id": "ansible-01-principles",
+      "title": "Inventory \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing inventory, which TWO statements are sound operational principles?",
+      "options": [
+        "It is a list of Docker image layers",
+        "It automatically grants access to every listed host",
+        "Managed hosts and their grouping or connection data",
+        "Inventory selection determines the potential execution scope"
+      ],
+      "correct": [
+        2,
+        3
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "ansible",
+      "objective": "Explain inventory and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Inventory \u2014 primary reference",
+          "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
+        }
+      ],
+      "tags": [
+        "ansible",
+        "inventory"
+      ],
+      "takeaway": "Inventory selection determines the potential execution scope.",
+      "explanation": "Managed hosts and their grouping or connection data. Inventory selection determines the potential execution scope. In the scenario, inspect inventory groups and the resolved host pattern before execution. The alternative \u2018Assume the playbook filename limits the hosts\u2019 does not address the stated evidence or constraint.",
+      "id": "ansible-01-interview",
+      "title": "Inventory \u00b7 interview",
+      "type": "interview",
+      "question": "Explain how you verify Ansible target scope.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "Managed hosts and their grouping or connection data. Inventory selection determines the potential execution scope. A practical response is: Inspect inventory groups and the resolved host pattern before execution. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that it is a list of Docker image layers.",
+      "answerChecklist": [
+        "Managed hosts and their grouping or connection data",
+        "Inventory selection determines the potential execution scope",
+        "Inspect inventory groups and the resolved host pattern before execution",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "A production play unexpectedly targets a staging group too. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "ansible",
+      "objective": "Explain playbooks and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Playbooks \u2014 primary reference",
+          "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
+        }
+      ],
+      "tags": [
+        "ansible",
+        "playbooks"
+      ],
+      "takeaway": "Task order and conditions affect execution behavior.",
+      "explanation": "Plays mapping tasks and roles to target hosts. Task order and conditions affect execution behavior. In the scenario, correct the play's host selection and verify the resolved list. The alternative \u2018Rename the playbook without changing target selection\u2019 does not address the stated evidence or constraint.",
+      "id": "ansible-02-concept",
+      "title": "Playbooks \u00b7 concept",
+      "type": "concept",
+      "question": "What does a playbook organize?",
+      "options": [
+        "It is only a database of passwords",
+        "It always runs every task on every inventory host",
+        "Rename the playbook without changing target selection",
+        "Plays mapping tasks and roles to target hosts"
+      ],
+      "correct": [
+        3
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "ansible",
+      "objective": "Explain playbooks and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Playbooks \u2014 primary reference",
+          "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
+        }
+      ],
+      "tags": [
+        "ansible",
+        "playbooks"
+      ],
+      "takeaway": "Task order and conditions affect execution behavior.",
+      "explanation": "Plays mapping tasks and roles to target hosts. Task order and conditions affect execution behavior. In the scenario, correct the play's host selection and verify the resolved list. The alternative \u2018Rename the playbook without changing target selection\u2019 does not address the stated evidence or constraint.",
+      "id": "ansible-02-scenario",
+      "title": "Playbooks \u00b7 scenario",
+      "type": "scenario",
+      "question": "A task intended for web servers runs on database hosts. What is the best next step?",
+      "options": [
+        "It is only a database of passwords",
+        "It always runs every task on every inventory host",
+        "Correct the play's host selection and verify the resolved list",
+        "Rename the playbook without changing target selection"
+      ],
+      "correct": [
+        2
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "ansible",
+      "objective": "Explain playbooks and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Playbooks \u2014 primary reference",
+          "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
+        }
+      ],
+      "tags": [
+        "ansible",
+        "playbooks"
+      ],
+      "takeaway": "Task order and conditions affect execution behavior.",
+      "explanation": "Plays mapping tasks and roles to target hosts. Task order and conditions affect execution behavior. In the scenario, correct the play's host selection and verify the resolved list. The alternative \u2018Rename the playbook without changing target selection\u2019 does not address the stated evidence or constraint.",
+      "id": "ansible-02-principles",
+      "title": "Playbooks \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing playbooks, which TWO statements are sound operational principles?",
+      "options": [
+        "It always runs every task on every inventory host",
+        "Plays mapping tasks and roles to target hosts",
+        "Task order and conditions affect execution behavior",
+        "It is only a database of passwords"
+      ],
+      "correct": [
+        1,
+        2
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "ansible",
+      "objective": "Explain playbooks and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Playbooks \u2014 primary reference",
+          "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
+        }
+      ],
+      "tags": [
+        "ansible",
+        "playbooks"
+      ],
+      "takeaway": "Task order and conditions affect execution behavior.",
+      "explanation": "Plays mapping tasks and roles to target hosts. Task order and conditions affect execution behavior. In the scenario, correct the play's host selection and verify the resolved list. The alternative \u2018Rename the playbook without changing target selection\u2019 does not address the stated evidence or constraint.",
+      "id": "ansible-02-interview",
+      "title": "Playbooks \u00b7 interview",
+      "type": "interview",
+      "question": "Explain play structure and host targeting.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "Plays mapping tasks and roles to target hosts. Task order and conditions affect execution behavior. A practical response is: Correct the play's host selection and verify the resolved list. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that it is only a database of passwords.",
+      "answerChecklist": [
+        "Plays mapping tasks and roles to target hosts",
+        "Task order and conditions affect execution behavior",
+        "Correct the play's host selection and verify the resolved list",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "A task intended for web servers runs on database hosts. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "ansible",
+      "objective": "Explain modules and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Modules \u2014 primary reference",
+          "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
+        }
+      ],
+      "tags": [
+        "ansible",
+        "modules"
+      ],
+      "takeaway": "Module documentation defines supported parameters and return values.",
+      "explanation": "Modules often model desired state and support idempotent behavior. Module documentation defines supported parameters and return values. In the scenario, use an appropriate declarative file or configuration module. The alternative \u2018Suppress the repeated output while continuing duplicate writes\u2019 does not address the stated evidence or constraint.",
+      "id": "ansible-03-concept",
+      "title": "Modules \u00b7 concept",
+      "type": "concept",
+      "question": "Why prefer purpose-built modules over shell commands?",
+      "options": [
+        "Modules never require privileges or remote dependencies",
+        "Suppress the repeated output while continuing duplicate writes",
+        "Modules often model desired state and support idempotent behavior",
+        "Every shell command is automatically idempotent"
+      ],
+      "correct": [
+        2
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "ansible",
+      "objective": "Explain modules and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Modules \u2014 primary reference",
+          "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
+        }
+      ],
+      "tags": [
+        "ansible",
+        "modules"
+      ],
+      "takeaway": "Module documentation defines supported parameters and return values.",
+      "explanation": "Modules often model desired state and support idempotent behavior. Module documentation defines supported parameters and return values. In the scenario, use an appropriate declarative file or configuration module. The alternative \u2018Suppress the repeated output while continuing duplicate writes\u2019 does not address the stated evidence or constraint.",
+      "id": "ansible-03-scenario",
+      "title": "Modules \u00b7 scenario",
+      "type": "scenario",
+      "question": "A shell task appends the same configuration line on every run. What is the best next step?",
+      "options": [
+        "Modules never require privileges or remote dependencies",
+        "Use an appropriate declarative file or configuration module",
+        "Suppress the repeated output while continuing duplicate writes",
+        "Every shell command is automatically idempotent"
+      ],
+      "correct": [
+        1
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "ansible",
+      "objective": "Explain modules and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Modules \u2014 primary reference",
+          "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
+        }
+      ],
+      "tags": [
+        "ansible",
+        "modules"
+      ],
+      "takeaway": "Module documentation defines supported parameters and return values.",
+      "explanation": "Modules often model desired state and support idempotent behavior. Module documentation defines supported parameters and return values. In the scenario, use an appropriate declarative file or configuration module. The alternative \u2018Suppress the repeated output while continuing duplicate writes\u2019 does not address the stated evidence or constraint.",
+      "id": "ansible-03-principles",
+      "title": "Modules \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing modules, which TWO statements are sound operational principles?",
+      "options": [
+        "Modules often model desired state and support idempotent behavior",
+        "Module documentation defines supported parameters and return values",
+        "Every shell command is automatically idempotent",
+        "Modules never require privileges or remote dependencies"
+      ],
+      "correct": [
+        0,
+        1
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "ansible",
+      "objective": "Explain modules and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Modules \u2014 primary reference",
+          "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
+        }
+      ],
+      "tags": [
+        "ansible",
+        "modules"
+      ],
+      "takeaway": "Module documentation defines supported parameters and return values.",
+      "explanation": "Modules often model desired state and support idempotent behavior. Module documentation defines supported parameters and return values. In the scenario, use an appropriate declarative file or configuration module. The alternative \u2018Suppress the repeated output while continuing duplicate writes\u2019 does not address the stated evidence or constraint.",
+      "id": "ansible-03-interview",
+      "title": "Modules \u00b7 interview",
+      "type": "interview",
+      "question": "Explain module selection for repeatable configuration.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "Modules often model desired state and support idempotent behavior. Module documentation defines supported parameters and return values. A practical response is: Use an appropriate declarative file or configuration module. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that every shell command is automatically idempotent.",
+      "answerChecklist": [
+        "Modules often model desired state and support idempotent behavior",
+        "Module documentation defines supported parameters and return values",
+        "Use an appropriate declarative file or configuration module",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "A shell task appends the same configuration line on every run. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "ansible",
+      "objective": "Explain idempotence and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Idempotence \u2014 primary reference",
+          "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
+        }
+      ],
+      "tags": [
+        "ansible",
+        "idempotence"
+      ],
+      "takeaway": "A no-change run is useful evidence but not a complete correctness proof.",
+      "explanation": "Repeated execution can preserve the already-correct desired state. A no-change run is useful evidence but not a complete correctness proof. In the scenario, inspect task behavior and use state-aware operations. The alternative \u2018Ignore change reporting because repeated restarts are harmless\u2019 does not address the stated evidence or constraint.",
+      "id": "ansible-04-concept",
+      "title": "Idempotence \u00b7 concept",
+      "type": "concept",
+      "question": "What does idempotence mean for a configuration task?",
+      "options": [
+        "Ignore change reporting because repeated restarts are harmless",
+        "Repeated execution can preserve the already-correct desired state",
+        "An idempotent task must execute exactly once forever",
+        "Idempotence means every task reports changed"
+      ],
+      "correct": [
+        1
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "ansible",
+      "objective": "Explain idempotence and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Idempotence \u2014 primary reference",
+          "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
+        }
+      ],
+      "tags": [
+        "ansible",
+        "idempotence"
+      ],
+      "takeaway": "A no-change run is useful evidence but not a complete correctness proof.",
+      "explanation": "Repeated execution can preserve the already-correct desired state. A no-change run is useful evidence but not a complete correctness proof. In the scenario, inspect task behavior and use state-aware operations. The alternative \u2018Ignore change reporting because repeated restarts are harmless\u2019 does not address the stated evidence or constraint.",
+      "id": "ansible-04-scenario",
+      "title": "Idempotence \u00b7 scenario",
+      "type": "scenario",
+      "question": "A second identical run still recreates an unchanged configuration file. What is the best next step?",
+      "options": [
+        "Inspect task behavior and use state-aware operations",
+        "Ignore change reporting because repeated restarts are harmless",
+        "An idempotent task must execute exactly once forever",
+        "Idempotence means every task reports changed"
+      ],
+      "correct": [
+        0
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "ansible",
+      "objective": "Explain idempotence and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Idempotence \u2014 primary reference",
+          "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
+        }
+      ],
+      "tags": [
+        "ansible",
+        "idempotence"
+      ],
+      "takeaway": "A no-change run is useful evidence but not a complete correctness proof.",
+      "explanation": "Repeated execution can preserve the already-correct desired state. A no-change run is useful evidence but not a complete correctness proof. In the scenario, inspect task behavior and use state-aware operations. The alternative \u2018Ignore change reporting because repeated restarts are harmless\u2019 does not address the stated evidence or constraint.",
+      "id": "ansible-04-principles",
+      "title": "Idempotence \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing idempotence, which TWO statements are sound operational principles?",
+      "options": [
+        "A no-change run is useful evidence but not a complete correctness proof",
+        "An idempotent task must execute exactly once forever",
+        "Idempotence means every task reports changed",
+        "Repeated execution can preserve the already-correct desired state"
+      ],
+      "correct": [
+        0,
+        3
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "ansible",
+      "objective": "Explain idempotence and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Idempotence \u2014 primary reference",
+          "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
+        }
+      ],
+      "tags": [
+        "ansible",
+        "idempotence"
+      ],
+      "takeaway": "A no-change run is useful evidence but not a complete correctness proof.",
+      "explanation": "Repeated execution can preserve the already-correct desired state. A no-change run is useful evidence but not a complete correctness proof. In the scenario, inspect task behavior and use state-aware operations. The alternative \u2018Ignore change reporting because repeated restarts are harmless\u2019 does not address the stated evidence or constraint.",
+      "id": "ansible-04-interview",
+      "title": "Idempotence \u00b7 interview",
+      "type": "interview",
+      "question": "Explain how you test idempotence in automation.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "Repeated execution can preserve the already-correct desired state. A no-change run is useful evidence but not a complete correctness proof. A practical response is: Inspect task behavior and use state-aware operations. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that an idempotent task must execute exactly once forever.",
+      "answerChecklist": [
+        "Repeated execution can preserve the already-correct desired state",
+        "A no-change run is useful evidence but not a complete correctness proof",
+        "Inspect task behavior and use state-aware operations",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "A second identical run still recreates an unchanged configuration file. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "ansible",
+      "objective": "Explain become and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Become \u2014 primary reference",
+          "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
+        }
+      ],
+      "tags": [
+        "ansible",
+        "become"
+      ],
+      "takeaway": "Escalation should be scoped to tasks that need it.",
+      "explanation": "Privilege escalation for selected operations. Escalation should be scoped to tasks that need it. In the scenario, scope privilege escalation and use the package module. The alternative \u2018Run every unrelated task with unrestricted root privileges\u2019 does not address the stated evidence or constraint.",
+      "id": "ansible-05-concept",
+      "title": "Become \u00b7 concept",
+      "type": "concept",
+      "question": "What does become enable?",
+      "options": [
+        "Privilege escalation for selected operations",
+        "It automatically encrypts all variables",
+        "It makes every remote command safe",
+        "Run every unrelated task with unrestricted root privileges"
+      ],
+      "correct": [
+        0
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "ansible",
+      "objective": "Explain become and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Become \u2014 primary reference",
+          "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
+        }
+      ],
+      "tags": [
+        "ansible",
+        "become"
+      ],
+      "takeaway": "Escalation should be scoped to tasks that need it.",
+      "explanation": "Privilege escalation for selected operations. Escalation should be scoped to tasks that need it. In the scenario, scope privilege escalation and use the package module. The alternative \u2018Run every unrelated task with unrestricted root privileges\u2019 does not address the stated evidence or constraint.",
+      "id": "ansible-05-scenario",
+      "title": "Become \u00b7 scenario",
+      "type": "scenario",
+      "question": "A task needs root only to install one package. What is the best next step?",
+      "options": [
+        "Run every unrelated task with unrestricted root privileges",
+        "It automatically encrypts all variables",
+        "It makes every remote command safe",
+        "Scope privilege escalation and use the package module"
+      ],
+      "correct": [
+        3
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "ansible",
+      "objective": "Explain become and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Become \u2014 primary reference",
+          "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
+        }
+      ],
+      "tags": [
+        "ansible",
+        "become"
+      ],
+      "takeaway": "Escalation should be scoped to tasks that need it.",
+      "explanation": "Privilege escalation for selected operations. Escalation should be scoped to tasks that need it. In the scenario, scope privilege escalation and use the package module. The alternative \u2018Run every unrelated task with unrestricted root privileges\u2019 does not address the stated evidence or constraint.",
+      "id": "ansible-05-principles",
+      "title": "Become \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing become, which TWO statements are sound operational principles?",
+      "options": [
+        "It automatically encrypts all variables",
+        "It makes every remote command safe",
+        "Privilege escalation for selected operations",
+        "Escalation should be scoped to tasks that need it"
+      ],
+      "correct": [
+        2,
+        3
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "ansible",
+      "objective": "Explain become and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Become \u2014 primary reference",
+          "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
+        }
+      ],
+      "tags": [
+        "ansible",
+        "become"
+      ],
+      "takeaway": "Escalation should be scoped to tasks that need it.",
+      "explanation": "Privilege escalation for selected operations. Escalation should be scoped to tasks that need it. In the scenario, scope privilege escalation and use the package module. The alternative \u2018Run every unrelated task with unrestricted root privileges\u2019 does not address the stated evidence or constraint.",
+      "id": "ansible-05-interview",
+      "title": "Become \u00b7 interview",
+      "type": "interview",
+      "question": "Explain least privilege in an Ansible playbook.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "Privilege escalation for selected operations. Escalation should be scoped to tasks that need it. A practical response is: Scope privilege escalation and use the package module. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that it automatically encrypts all variables.",
+      "answerChecklist": [
+        "Privilege escalation for selected operations",
+        "Escalation should be scoped to tasks that need it",
+        "Scope privilege escalation and use the package module",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "A task needs root only to install one package. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "ansible",
+      "objective": "Explain variables and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Variables \u2014 primary reference",
+          "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
+        }
+      ],
+      "tags": [
+        "ansible",
+        "variables"
+      ],
+      "takeaway": "Unexpected values should be traced to their actual source.",
+      "explanation": "Values can come from multiple sources with precedence rules. Unexpected values should be traced to their actual source. In the scenario, inspect higher-precedence inventory and runtime overrides. The alternative \u2018Edit defaults repeatedly without checking overrides\u2019 does not address the stated evidence or constraint.",
+      "id": "ansible-06-concept",
+      "title": "Variables \u00b7 concept",
+      "type": "concept",
+      "question": "What is an important property of Ansible variables?",
+      "options": [
+        "The last alphabetic variable name always wins",
+        "All variable sources have identical precedence",
+        "Edit defaults repeatedly without checking overrides",
+        "Values can come from multiple sources with precedence rules"
+      ],
+      "correct": [
+        3
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "ansible",
+      "objective": "Explain variables and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Variables \u2014 primary reference",
+          "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
+        }
+      ],
+      "tags": [
+        "ansible",
+        "variables"
+      ],
+      "takeaway": "Unexpected values should be traced to their actual source.",
+      "explanation": "Values can come from multiple sources with precedence rules. Unexpected values should be traced to their actual source. In the scenario, inspect higher-precedence inventory and runtime overrides. The alternative \u2018Edit defaults repeatedly without checking overrides\u2019 does not address the stated evidence or constraint.",
+      "id": "ansible-06-scenario",
+      "title": "Variables \u00b7 scenario",
+      "type": "scenario",
+      "question": "A host uses a different port than its role default. What is the best next step?",
+      "options": [
+        "The last alphabetic variable name always wins",
+        "All variable sources have identical precedence",
+        "Inspect higher-precedence inventory and runtime overrides",
+        "Edit defaults repeatedly without checking overrides"
+      ],
+      "correct": [
+        2
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "ansible",
+      "objective": "Explain variables and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Variables \u2014 primary reference",
+          "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
+        }
+      ],
+      "tags": [
+        "ansible",
+        "variables"
+      ],
+      "takeaway": "Unexpected values should be traced to their actual source.",
+      "explanation": "Values can come from multiple sources with precedence rules. Unexpected values should be traced to their actual source. In the scenario, inspect higher-precedence inventory and runtime overrides. The alternative \u2018Edit defaults repeatedly without checking overrides\u2019 does not address the stated evidence or constraint.",
+      "id": "ansible-06-principles",
+      "title": "Variables \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing variables, which TWO statements are sound operational principles?",
+      "options": [
+        "All variable sources have identical precedence",
+        "Values can come from multiple sources with precedence rules",
+        "Unexpected values should be traced to their actual source",
+        "The last alphabetic variable name always wins"
+      ],
+      "correct": [
+        1,
+        2
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "ansible",
+      "objective": "Explain variables and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Variables \u2014 primary reference",
+          "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
+        }
+      ],
+      "tags": [
+        "ansible",
+        "variables"
+      ],
+      "takeaway": "Unexpected values should be traced to their actual source.",
+      "explanation": "Values can come from multiple sources with precedence rules. Unexpected values should be traced to their actual source. In the scenario, inspect higher-precedence inventory and runtime overrides. The alternative \u2018Edit defaults repeatedly without checking overrides\u2019 does not address the stated evidence or constraint.",
+      "id": "ansible-06-interview",
+      "title": "Variables \u00b7 interview",
+      "type": "interview",
+      "question": "Explain how you troubleshoot an unexpected variable value.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "Values can come from multiple sources with precedence rules. Unexpected values should be traced to their actual source. A practical response is: Inspect higher-precedence inventory and runtime overrides. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that the last alphabetic variable name always wins.",
+      "answerChecklist": [
+        "Values can come from multiple sources with precedence rules",
+        "Unexpected values should be traced to their actual source",
+        "Inspect higher-precedence inventory and runtime overrides",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "A host uses a different port than its role default. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "ansible",
+      "objective": "Explain facts and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Facts \u2014 primary reference",
+          "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
+        }
+      ],
+      "tags": [
+        "ansible",
+        "facts"
+      ],
+      "takeaway": "Facts can become stale if cached beyond relevant changes.",
+      "explanation": "Discover host characteristics for conditional automation. Facts can become stale if cached beyond relevant changes. In the scenario, refresh relevant facts and inspect cache policy. The alternative \u2018Assume cached facts are permanently authoritative\u2019 does not address the stated evidence or constraint.",
+      "id": "ansible-07-concept",
+      "title": "Facts \u00b7 concept",
+      "type": "concept",
+      "question": "What are gathered facts typically used for?",
+      "options": [
+        "Facts automatically fix an unhealthy host",
+        "Assume cached facts are permanently authoritative",
+        "Discover host characteristics for conditional automation",
+        "Facts are always a live view of every host property"
+      ],
+      "correct": [
+        2
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "ansible",
+      "objective": "Explain facts and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Facts \u2014 primary reference",
+          "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
+        }
+      ],
+      "tags": [
+        "ansible",
+        "facts"
+      ],
+      "takeaway": "Facts can become stale if cached beyond relevant changes.",
+      "explanation": "Discover host characteristics for conditional automation. Facts can become stale if cached beyond relevant changes. In the scenario, refresh relevant facts and inspect cache policy. The alternative \u2018Assume cached facts are permanently authoritative\u2019 does not address the stated evidence or constraint.",
+      "id": "ansible-07-scenario",
+      "title": "Facts \u00b7 scenario",
+      "type": "scenario",
+      "question": "A cached operating-system fact no longer matches a rebuilt host. What is the best next step?",
+      "options": [
+        "Facts automatically fix an unhealthy host",
+        "Refresh relevant facts and inspect cache policy",
+        "Assume cached facts are permanently authoritative",
+        "Facts are always a live view of every host property"
+      ],
+      "correct": [
+        1
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "ansible",
+      "objective": "Explain facts and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Facts \u2014 primary reference",
+          "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
+        }
+      ],
+      "tags": [
+        "ansible",
+        "facts"
+      ],
+      "takeaway": "Facts can become stale if cached beyond relevant changes.",
+      "explanation": "Discover host characteristics for conditional automation. Facts can become stale if cached beyond relevant changes. In the scenario, refresh relevant facts and inspect cache policy. The alternative \u2018Assume cached facts are permanently authoritative\u2019 does not address the stated evidence or constraint.",
+      "id": "ansible-07-principles",
+      "title": "Facts \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing facts, which TWO statements are sound operational principles?",
+      "options": [
+        "Discover host characteristics for conditional automation",
+        "Facts can become stale if cached beyond relevant changes",
+        "Facts are always a live view of every host property",
+        "Facts automatically fix an unhealthy host"
+      ],
+      "correct": [
+        0,
+        1
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "ansible",
+      "objective": "Explain facts and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Facts \u2014 primary reference",
+          "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
+        }
+      ],
+      "tags": [
+        "ansible",
+        "facts"
+      ],
+      "takeaway": "Facts can become stale if cached beyond relevant changes.",
+      "explanation": "Discover host characteristics for conditional automation. Facts can become stale if cached beyond relevant changes. In the scenario, refresh relevant facts and inspect cache policy. The alternative \u2018Assume cached facts are permanently authoritative\u2019 does not address the stated evidence or constraint.",
+      "id": "ansible-07-interview",
+      "title": "Facts \u00b7 interview",
+      "type": "interview",
+      "question": "Explain useful and risky uses of fact caching.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "Discover host characteristics for conditional automation. Facts can become stale if cached beyond relevant changes. A practical response is: Refresh relevant facts and inspect cache policy. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that facts are always a live view of every host property.",
+      "answerChecklist": [
+        "Discover host characteristics for conditional automation",
+        "Facts can become stale if cached beyond relevant changes",
+        "Refresh relevant facts and inspect cache policy",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "A cached operating-system fact no longer matches a rebuilt host. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "ansible",
+      "objective": "Explain handlers and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Handlers \u2014 primary reference",
+          "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
+        }
+      ],
+      "tags": [
+        "ansible",
+        "handlers"
+      ],
+      "takeaway": "Multiple notifications can coalesce into one handler execution.",
+      "explanation": "At defined handler execution points after notifying changes. Multiple notifications can coalesce into one handler execution. In the scenario, notify a shared handler and verify the restart timing. The alternative \u2018Restart the service unconditionally after every task\u2019 does not address the stated evidence or constraint.",
+      "id": "ansible-08-concept",
+      "title": "Handlers \u00b7 concept",
+      "type": "concept",
+      "question": "When are notified handlers normally run?",
+      "options": [
+        "Restart the service unconditionally after every task",
+        "At defined handler execution points after notifying changes",
+        "Every handler runs after every task unconditionally",
+        "A handler name is just a task comment"
+      ],
+      "correct": [
+        1
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "ansible",
+      "objective": "Explain handlers and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Handlers \u2014 primary reference",
+          "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
+        }
+      ],
+      "tags": [
+        "ansible",
+        "handlers"
+      ],
+      "takeaway": "Multiple notifications can coalesce into one handler execution.",
+      "explanation": "At defined handler execution points after notifying changes. Multiple notifications can coalesce into one handler execution. In the scenario, notify a shared handler and verify the restart timing. The alternative \u2018Restart the service unconditionally after every task\u2019 does not address the stated evidence or constraint.",
+      "id": "ansible-08-scenario",
+      "title": "Handlers \u00b7 scenario",
+      "type": "scenario",
+      "question": "Three configuration tasks require one service restart. What is the best next step?",
+      "options": [
+        "Notify a shared handler and verify the restart timing",
+        "Restart the service unconditionally after every task",
+        "Every handler runs after every task unconditionally",
+        "A handler name is just a task comment"
+      ],
+      "correct": [
+        0
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "ansible",
+      "objective": "Explain handlers and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Handlers \u2014 primary reference",
+          "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
+        }
+      ],
+      "tags": [
+        "ansible",
+        "handlers"
+      ],
+      "takeaway": "Multiple notifications can coalesce into one handler execution.",
+      "explanation": "At defined handler execution points after notifying changes. Multiple notifications can coalesce into one handler execution. In the scenario, notify a shared handler and verify the restart timing. The alternative \u2018Restart the service unconditionally after every task\u2019 does not address the stated evidence or constraint.",
+      "id": "ansible-08-principles",
+      "title": "Handlers \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing handlers, which TWO statements are sound operational principles?",
+      "options": [
+        "Multiple notifications can coalesce into one handler execution",
+        "Every handler runs after every task unconditionally",
+        "A handler name is just a task comment",
+        "At defined handler execution points after notifying changes"
+      ],
+      "correct": [
+        0,
+        3
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "ansible",
+      "objective": "Explain handlers and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Handlers \u2014 primary reference",
+          "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
+        }
+      ],
+      "tags": [
+        "ansible",
+        "handlers"
+      ],
+      "takeaway": "Multiple notifications can coalesce into one handler execution.",
+      "explanation": "At defined handler execution points after notifying changes. Multiple notifications can coalesce into one handler execution. In the scenario, notify a shared handler and verify the restart timing. The alternative \u2018Restart the service unconditionally after every task\u2019 does not address the stated evidence or constraint.",
+      "id": "ansible-08-interview",
+      "title": "Handlers \u00b7 interview",
+      "type": "interview",
+      "question": "Explain handlers and how they reduce unnecessary restarts.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "At defined handler execution points after notifying changes. Multiple notifications can coalesce into one handler execution. A practical response is: Notify a shared handler and verify the restart timing. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that every handler runs after every task unconditionally.",
+      "answerChecklist": [
+        "At defined handler execution points after notifying changes",
+        "Multiple notifications can coalesce into one handler execution",
+        "Notify a shared handler and verify the restart timing",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "Three configuration tasks require one service restart. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "ansible",
+      "objective": "Explain check mode and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Check mode \u2014 primary reference",
+          "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
+        }
+      ],
+      "tags": [
+        "ansible",
+        "check-mode"
+      ],
+      "takeaway": "A dry run does not prove every runtime side effect is safe.",
+      "explanation": "Support and predictive accuracy depend on the module and task. A dry run does not prove every runtime side effect is safe. In the scenario, review check-mode support and test safely in a representative environment. The alternative \u2018Treat the incomplete dry run as proof of production success\u2019 does not address the stated evidence or constraint.",
+      "id": "ansible-09-concept",
+      "title": "Check mode \u00b7 concept",
+      "type": "concept",
+      "question": "What is a limitation of Ansible check mode?",
+      "options": [
+        "Support and predictive accuracy depend on the module and task",
+        "Check mode guarantees an exact simulation of every shell command",
+        "A passing check run replaces all execution testing",
+        "Treat the incomplete dry run as proof of production success"
+      ],
+      "correct": [
+        0
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "ansible",
+      "objective": "Explain check mode and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Check mode \u2014 primary reference",
+          "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
+        }
+      ],
+      "tags": [
+        "ansible",
+        "check-mode"
+      ],
+      "takeaway": "A dry run does not prove every runtime side effect is safe.",
+      "explanation": "Support and predictive accuracy depend on the module and task. A dry run does not prove every runtime side effect is safe. In the scenario, review check-mode support and test safely in a representative environment. The alternative \u2018Treat the incomplete dry run as proof of production success\u2019 does not address the stated evidence or constraint.",
+      "id": "ansible-09-scenario",
+      "title": "Check mode \u00b7 scenario",
+      "type": "scenario",
+      "question": "A task depends on output from a command skipped in check mode. What is the best next step?",
+      "options": [
+        "Treat the incomplete dry run as proof of production success",
+        "Check mode guarantees an exact simulation of every shell command",
+        "A passing check run replaces all execution testing",
+        "Review check-mode support and test safely in a representative environment"
+      ],
+      "correct": [
+        3
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "ansible",
+      "objective": "Explain check mode and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Check mode \u2014 primary reference",
+          "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
+        }
+      ],
+      "tags": [
+        "ansible",
+        "check-mode"
+      ],
+      "takeaway": "A dry run does not prove every runtime side effect is safe.",
+      "explanation": "Support and predictive accuracy depend on the module and task. A dry run does not prove every runtime side effect is safe. In the scenario, review check-mode support and test safely in a representative environment. The alternative \u2018Treat the incomplete dry run as proof of production success\u2019 does not address the stated evidence or constraint.",
+      "id": "ansible-09-principles",
+      "title": "Check mode \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing check mode, which TWO statements are sound operational principles?",
+      "options": [
+        "Check mode guarantees an exact simulation of every shell command",
+        "A passing check run replaces all execution testing",
+        "Support and predictive accuracy depend on the module and task",
+        "A dry run does not prove every runtime side effect is safe"
+      ],
+      "correct": [
+        2,
+        3
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "ansible",
+      "objective": "Explain check mode and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Check mode \u2014 primary reference",
+          "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
+        }
+      ],
+      "tags": [
+        "ansible",
+        "check-mode"
+      ],
+      "takeaway": "A dry run does not prove every runtime side effect is safe.",
+      "explanation": "Support and predictive accuracy depend on the module and task. A dry run does not prove every runtime side effect is safe. In the scenario, review check-mode support and test safely in a representative environment. The alternative \u2018Treat the incomplete dry run as proof of production success\u2019 does not address the stated evidence or constraint.",
+      "id": "ansible-09-interview",
+      "title": "Check mode \u00b7 interview",
+      "type": "interview",
+      "question": "Explain how you use check mode without overtrusting it.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "Support and predictive accuracy depend on the module and task. A dry run does not prove every runtime side effect is safe. A practical response is: Review check-mode support and test safely in a representative environment. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that check mode guarantees an exact simulation of every shell command.",
+      "answerChecklist": [
+        "Support and predictive accuracy depend on the module and task",
+        "A dry run does not prove every runtime side effect is safe",
+        "Review check-mode support and test safely in a representative environment",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "A task depends on output from a command skipped in check mode. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "ansible",
+      "objective": "Explain diff mode and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Diff mode \u2014 primary reference",
+          "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
+        }
+      ],
+      "tags": [
+        "ansible",
+        "diff-mode"
+      ],
+      "takeaway": "Secret-bearing tasks may need protected output and no_log.",
+      "explanation": "It can reveal sensitive configuration content. Secret-bearing tasks may need protected output and no_log. In the scenario, suppress sensitive output and review exposure and credential rotation. The alternative \u2018Publish the diff because it came from an automation tool\u2019 does not address the stated evidence or constraint.",
+      "id": "ansible-10-concept",
+      "title": "Diff mode \u00b7 concept",
+      "type": "concept",
+      "question": "Why use diff output carefully?",
+      "options": [
+        "Diff output can never contain secrets",
+        "Diff mode automatically sanitizes every arbitrary file",
+        "Publish the diff because it came from an automation tool",
+        "It can reveal sensitive configuration content"
+      ],
+      "correct": [
+        3
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "ansible",
+      "objective": "Explain diff mode and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Diff mode \u2014 primary reference",
+          "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
+        }
+      ],
+      "tags": [
+        "ansible",
+        "diff-mode"
+      ],
+      "takeaway": "Secret-bearing tasks may need protected output and no_log.",
+      "explanation": "It can reveal sensitive configuration content. Secret-bearing tasks may need protected output and no_log. In the scenario, suppress sensitive output and review exposure and credential rotation. The alternative \u2018Publish the diff because it came from an automation tool\u2019 does not address the stated evidence or constraint.",
+      "id": "ansible-10-scenario",
+      "title": "Diff mode \u00b7 scenario",
+      "type": "scenario",
+      "question": "A template diff shows credentials in CI logs. What is the best next step?",
+      "options": [
+        "Diff output can never contain secrets",
+        "Diff mode automatically sanitizes every arbitrary file",
+        "Suppress sensitive output and review exposure and credential rotation",
+        "Publish the diff because it came from an automation tool"
+      ],
+      "correct": [
+        2
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "ansible",
+      "objective": "Explain diff mode and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Diff mode \u2014 primary reference",
+          "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
+        }
+      ],
+      "tags": [
+        "ansible",
+        "diff-mode"
+      ],
+      "takeaway": "Secret-bearing tasks may need protected output and no_log.",
+      "explanation": "It can reveal sensitive configuration content. Secret-bearing tasks may need protected output and no_log. In the scenario, suppress sensitive output and review exposure and credential rotation. The alternative \u2018Publish the diff because it came from an automation tool\u2019 does not address the stated evidence or constraint.",
+      "id": "ansible-10-principles",
+      "title": "Diff mode \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing diff mode, which TWO statements are sound operational principles?",
+      "options": [
+        "Diff mode automatically sanitizes every arbitrary file",
+        "It can reveal sensitive configuration content",
+        "Secret-bearing tasks may need protected output and no_log",
+        "Diff output can never contain secrets"
+      ],
+      "correct": [
+        1,
+        2
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "ansible",
+      "objective": "Explain diff mode and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Diff mode \u2014 primary reference",
+          "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
+        }
+      ],
+      "tags": [
+        "ansible",
+        "diff-mode"
+      ],
+      "takeaway": "Secret-bearing tasks may need protected output and no_log.",
+      "explanation": "It can reveal sensitive configuration content. Secret-bearing tasks may need protected output and no_log. In the scenario, suppress sensitive output and review exposure and credential rotation. The alternative \u2018Publish the diff because it came from an automation tool\u2019 does not address the stated evidence or constraint.",
+      "id": "ansible-10-interview",
+      "title": "Diff mode \u00b7 interview",
+      "type": "interview",
+      "question": "Explain balancing reviewable diffs with secret protection.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "It can reveal sensitive configuration content. Secret-bearing tasks may need protected output and no_log. A practical response is: Suppress sensitive output and review exposure and credential rotation. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that diff output can never contain secrets.",
+      "answerChecklist": [
+        "It can reveal sensitive configuration content",
+        "Secret-bearing tasks may need protected output and no_log",
+        "Suppress sensitive output and review exposure and credential rotation",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "A template diff shows credentials in CI logs. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "ansible",
+      "objective": "Explain vault and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Vault \u2014 primary reference",
+          "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
+        }
+      ],
+      "tags": [
+        "ansible",
+        "vault"
+      ],
+      "takeaway": "Decrypted values can still leak through task output or external systems.",
+      "explanation": "Encrypted content at rest when properly managed. Decrypted values can still leak through task output or external systems. In the scenario, remove the disclosure and protect runtime logging. The alternative \u2018Assume the value remains encrypted after decryption for use\u2019 does not address the stated evidence or constraint.",
+      "id": "ansible-11-concept",
+      "title": "Vault \u00b7 concept",
+      "type": "concept",
+      "question": "What does Ansible Vault protect?",
+      "options": [
+        "Vault removes the need to protect decryption credentials",
+        "Assume the value remains encrypted after decryption for use",
+        "Encrypted content at rest when properly managed",
+        "Vault prevents every runtime secret exposure"
+      ],
+      "correct": [
+        2
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "ansible",
+      "objective": "Explain vault and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Vault \u2014 primary reference",
+          "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
+        }
+      ],
+      "tags": [
+        "ansible",
+        "vault"
+      ],
+      "takeaway": "Decrypted values can still leak through task output or external systems.",
+      "explanation": "Encrypted content at rest when properly managed. Decrypted values can still leak through task output or external systems. In the scenario, remove the disclosure and protect runtime logging. The alternative \u2018Assume the value remains encrypted after decryption for use\u2019 does not address the stated evidence or constraint.",
+      "id": "ansible-11-scenario",
+      "title": "Vault \u00b7 scenario",
+      "type": "scenario",
+      "question": "An encrypted secret is printed by a debug task. What is the best next step?",
+      "options": [
+        "Vault removes the need to protect decryption credentials",
+        "Remove the disclosure and protect runtime logging",
+        "Assume the value remains encrypted after decryption for use",
+        "Vault prevents every runtime secret exposure"
+      ],
+      "correct": [
+        1
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "ansible",
+      "objective": "Explain vault and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Vault \u2014 primary reference",
+          "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
+        }
+      ],
+      "tags": [
+        "ansible",
+        "vault"
+      ],
+      "takeaway": "Decrypted values can still leak through task output or external systems.",
+      "explanation": "Encrypted content at rest when properly managed. Decrypted values can still leak through task output or external systems. In the scenario, remove the disclosure and protect runtime logging. The alternative \u2018Assume the value remains encrypted after decryption for use\u2019 does not address the stated evidence or constraint.",
+      "id": "ansible-11-principles",
+      "title": "Vault \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing vault, which TWO statements are sound operational principles?",
+      "options": [
+        "Encrypted content at rest when properly managed",
+        "Decrypted values can still leak through task output or external systems",
+        "Vault prevents every runtime secret exposure",
+        "Vault removes the need to protect decryption credentials"
+      ],
+      "correct": [
+        0,
+        1
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "ansible",
+      "objective": "Explain vault and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Vault \u2014 primary reference",
+          "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
+        }
+      ],
+      "tags": [
+        "ansible",
+        "vault"
+      ],
+      "takeaway": "Decrypted values can still leak through task output or external systems.",
+      "explanation": "Encrypted content at rest when properly managed. Decrypted values can still leak through task output or external systems. In the scenario, remove the disclosure and protect runtime logging. The alternative \u2018Assume the value remains encrypted after decryption for use\u2019 does not address the stated evidence or constraint.",
+      "id": "ansible-11-interview",
+      "title": "Vault \u00b7 interview",
+      "type": "interview",
+      "question": "Explain Vault's protection boundary.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "Encrypted content at rest when properly managed. Decrypted values can still leak through task output or external systems. A practical response is: Remove the disclosure and protect runtime logging. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that vault prevents every runtime secret exposure.",
+      "answerChecklist": [
+        "Encrypted content at rest when properly managed",
+        "Decrypted values can still leak through task output or external systems",
+        "Remove the disclosure and protect runtime logging",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "An encrypted secret is printed by a debug task. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "ansible",
+      "objective": "Explain templates and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Templates \u2014 primary reference",
+          "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
+        }
+      ],
+      "tags": [
+        "ansible",
+        "templates"
+      ],
+      "takeaway": "Rendered configuration should be validated before service activation.",
+      "explanation": "Render configuration from variables and expressions. Rendered configuration should be validated before service activation. In the scenario, validate the candidate configuration before replacing or reloading it. The alternative \u2018Restart the service first and inspect syntax afterward\u2019 does not address the stated evidence or constraint.",
+      "id": "ansible-12-concept",
+      "title": "Templates \u00b7 concept",
+      "type": "concept",
+      "question": "What does a Jinja template allow?",
+      "options": [
+        "Restart the service first and inspect syntax afterward",
+        "Render configuration from variables and expressions",
+        "Templates guarantee valid syntax for every target service",
+        "Every template render must restart the service"
+      ],
+      "correct": [
+        1
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "ansible",
+      "objective": "Explain templates and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Templates \u2014 primary reference",
+          "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
+        }
+      ],
+      "tags": [
+        "ansible",
+        "templates"
+      ],
+      "takeaway": "Rendered configuration should be validated before service activation.",
+      "explanation": "Render configuration from variables and expressions. Rendered configuration should be validated before service activation. In the scenario, validate the candidate configuration before replacing or reloading it. The alternative \u2018Restart the service first and inspect syntax afterward\u2019 does not address the stated evidence or constraint.",
+      "id": "ansible-12-scenario",
+      "title": "Templates \u00b7 scenario",
+      "type": "scenario",
+      "question": "A rendered web-server configuration has invalid syntax. What is the best next step?",
+      "options": [
+        "Validate the candidate configuration before replacing or reloading it",
+        "Restart the service first and inspect syntax afterward",
+        "Templates guarantee valid syntax for every target service",
+        "Every template render must restart the service"
+      ],
+      "correct": [
+        0
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "ansible",
+      "objective": "Explain templates and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Templates \u2014 primary reference",
+          "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
+        }
+      ],
+      "tags": [
+        "ansible",
+        "templates"
+      ],
+      "takeaway": "Rendered configuration should be validated before service activation.",
+      "explanation": "Render configuration from variables and expressions. Rendered configuration should be validated before service activation. In the scenario, validate the candidate configuration before replacing or reloading it. The alternative \u2018Restart the service first and inspect syntax afterward\u2019 does not address the stated evidence or constraint.",
+      "id": "ansible-12-principles",
+      "title": "Templates \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing templates, which TWO statements are sound operational principles?",
+      "options": [
+        "Rendered configuration should be validated before service activation",
+        "Templates guarantee valid syntax for every target service",
+        "Every template render must restart the service",
+        "Render configuration from variables and expressions"
+      ],
+      "correct": [
+        0,
+        3
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "ansible",
+      "objective": "Explain templates and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Templates \u2014 primary reference",
+          "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
+        }
+      ],
+      "tags": [
+        "ansible",
+        "templates"
+      ],
+      "takeaway": "Rendered configuration should be validated before service activation.",
+      "explanation": "Render configuration from variables and expressions. Rendered configuration should be validated before service activation. In the scenario, validate the candidate configuration before replacing or reloading it. The alternative \u2018Restart the service first and inspect syntax afterward\u2019 does not address the stated evidence or constraint.",
+      "id": "ansible-12-interview",
+      "title": "Templates \u00b7 interview",
+      "type": "interview",
+      "question": "Explain safe template deployment with validation.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "Render configuration from variables and expressions. Rendered configuration should be validated before service activation. A practical response is: Validate the candidate configuration before replacing or reloading it. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that templates guarantee valid syntax for every target service.",
+      "answerChecklist": [
+        "Render configuration from variables and expressions",
+        "Rendered configuration should be validated before service activation",
+        "Validate the candidate configuration before replacing or reloading it",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "A rendered web-server configuration has invalid syntax. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "ansible",
+      "objective": "Explain roles and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Roles \u2014 primary reference",
+          "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
+        }
+      ],
+      "tags": [
+        "ansible",
+        "roles"
+      ],
+      "takeaway": "Roles benefit from explicit interfaces and limited assumptions.",
+      "explanation": "Related tasks defaults handlers and supporting files. Roles benefit from explicit interfaces and limited assumptions. In the scenario, document defaults and required inputs and test representative callers. The alternative \u2018Add more hidden inventory assumptions\u2019 does not address the stated evidence or constraint.",
+      "id": "ansible-13-concept",
+      "title": "Roles \u00b7 concept",
+      "type": "concept",
+      "question": "What does an Ansible role package?",
+      "options": [
+        "Related tasks defaults handlers and supporting files",
+        "A role is necessarily a separate remote user account",
+        "Roles automatically isolate all variables from every other role",
+        "Add more hidden inventory assumptions"
+      ],
+      "correct": [
+        0
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "ansible",
+      "objective": "Explain roles and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Roles \u2014 primary reference",
+          "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
+        }
+      ],
+      "tags": [
+        "ansible",
+        "roles"
+      ],
+      "takeaway": "Roles benefit from explicit interfaces and limited assumptions.",
+      "explanation": "Related tasks defaults handlers and supporting files. Roles benefit from explicit interfaces and limited assumptions. In the scenario, document defaults and required inputs and test representative callers. The alternative \u2018Add more hidden inventory assumptions\u2019 does not address the stated evidence or constraint.",
+      "id": "ansible-13-scenario",
+      "title": "Roles \u00b7 scenario",
+      "type": "scenario",
+      "question": "A shared role requires undocumented variables and breaks callers. What is the best next step?",
+      "options": [
+        "Add more hidden inventory assumptions",
+        "A role is necessarily a separate remote user account",
+        "Roles automatically isolate all variables from every other role",
+        "Document defaults and required inputs and test representative callers"
+      ],
+      "correct": [
+        3
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "ansible",
+      "objective": "Explain roles and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Roles \u2014 primary reference",
+          "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
+        }
+      ],
+      "tags": [
+        "ansible",
+        "roles"
+      ],
+      "takeaway": "Roles benefit from explicit interfaces and limited assumptions.",
+      "explanation": "Related tasks defaults handlers and supporting files. Roles benefit from explicit interfaces and limited assumptions. In the scenario, document defaults and required inputs and test representative callers. The alternative \u2018Add more hidden inventory assumptions\u2019 does not address the stated evidence or constraint.",
+      "id": "ansible-13-principles",
+      "title": "Roles \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing roles, which TWO statements are sound operational principles?",
+      "options": [
+        "A role is necessarily a separate remote user account",
+        "Roles automatically isolate all variables from every other role",
+        "Related tasks defaults handlers and supporting files",
+        "Roles benefit from explicit interfaces and limited assumptions"
+      ],
+      "correct": [
+        2,
+        3
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "ansible",
+      "objective": "Explain roles and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Roles \u2014 primary reference",
+          "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
+        }
+      ],
+      "tags": [
+        "ansible",
+        "roles"
+      ],
+      "takeaway": "Roles benefit from explicit interfaces and limited assumptions.",
+      "explanation": "Related tasks defaults handlers and supporting files. Roles benefit from explicit interfaces and limited assumptions. In the scenario, document defaults and required inputs and test representative callers. The alternative \u2018Add more hidden inventory assumptions\u2019 does not address the stated evidence or constraint.",
+      "id": "ansible-13-interview",
+      "title": "Roles \u00b7 interview",
+      "type": "interview",
+      "question": "Explain a maintainable reusable role interface.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "Related tasks defaults handlers and supporting files. Roles benefit from explicit interfaces and limited assumptions. A practical response is: Document defaults and required inputs and test representative callers. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that a role is necessarily a separate remote user account.",
+      "answerChecklist": [
+        "Related tasks defaults handlers and supporting files",
+        "Roles benefit from explicit interfaces and limited assumptions",
+        "Document defaults and required inputs and test representative callers",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "A shared role requires undocumented variables and breaks callers. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "ansible",
+      "objective": "Explain collections and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Collections \u2014 primary reference",
+          "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
+        }
+      ],
+      "tags": [
+        "ansible",
+        "collections"
+      ],
+      "takeaway": "Pinning tested collection versions helps reproducibility.",
+      "explanation": "Distribute related modules plugins and roles. Pinning tested collection versions helps reproducibility. In the scenario, declare and install versioned collection requirements. The alternative \u2018Rely on packages installed manually on one developer machine\u2019 does not address the stated evidence or constraint.",
+      "id": "ansible-14-concept",
+      "title": "Collections \u00b7 concept",
+      "type": "concept",
+      "question": "What is an Ansible collection used for?",
+      "options": [
+        "Collections are always included in every ansible-core installation",
+        "Collection upgrades can never change behavior",
+        "Rely on packages installed manually on one developer machine",
+        "Distribute related modules plugins and roles"
+      ],
+      "correct": [
+        3
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "ansible",
+      "objective": "Explain collections and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Collections \u2014 primary reference",
+          "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
+        }
+      ],
+      "tags": [
+        "ansible",
+        "collections"
+      ],
+      "takeaway": "Pinning tested collection versions helps reproducibility.",
+      "explanation": "Distribute related modules plugins and roles. Pinning tested collection versions helps reproducibility. In the scenario, declare and install versioned collection requirements. The alternative \u2018Rely on packages installed manually on one developer machine\u2019 does not address the stated evidence or constraint.",
+      "id": "ansible-14-scenario",
+      "title": "Collections \u00b7 scenario",
+      "type": "scenario",
+      "question": "CI fails because a module collection is absent on a clean runner. What is the best next step?",
+      "options": [
+        "Collections are always included in every ansible-core installation",
+        "Collection upgrades can never change behavior",
+        "Declare and install versioned collection requirements",
+        "Rely on packages installed manually on one developer machine"
+      ],
+      "correct": [
+        2
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "ansible",
+      "objective": "Explain collections and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Collections \u2014 primary reference",
+          "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
+        }
+      ],
+      "tags": [
+        "ansible",
+        "collections"
+      ],
+      "takeaway": "Pinning tested collection versions helps reproducibility.",
+      "explanation": "Distribute related modules plugins and roles. Pinning tested collection versions helps reproducibility. In the scenario, declare and install versioned collection requirements. The alternative \u2018Rely on packages installed manually on one developer machine\u2019 does not address the stated evidence or constraint.",
+      "id": "ansible-14-principles",
+      "title": "Collections \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing collections, which TWO statements are sound operational principles?",
+      "options": [
+        "Collection upgrades can never change behavior",
+        "Distribute related modules plugins and roles",
+        "Pinning tested collection versions helps reproducibility",
+        "Collections are always included in every ansible-core installation"
+      ],
+      "correct": [
+        1,
+        2
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "ansible",
+      "objective": "Explain collections and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Collections \u2014 primary reference",
+          "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
+        }
+      ],
+      "tags": [
+        "ansible",
+        "collections"
+      ],
+      "takeaway": "Pinning tested collection versions helps reproducibility.",
+      "explanation": "Distribute related modules plugins and roles. Pinning tested collection versions helps reproducibility. In the scenario, declare and install versioned collection requirements. The alternative \u2018Rely on packages installed manually on one developer machine\u2019 does not address the stated evidence or constraint.",
+      "id": "ansible-14-interview",
+      "title": "Collections \u00b7 interview",
+      "type": "interview",
+      "question": "Explain dependency management for Ansible projects.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "Distribute related modules plugins and roles. Pinning tested collection versions helps reproducibility. A practical response is: Declare and install versioned collection requirements. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that collections are always included in every ansible-core installation.",
+      "answerChecklist": [
+        "Distribute related modules plugins and roles",
+        "Pinning tested collection versions helps reproducibility",
+        "Declare and install versioned collection requirements",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "CI fails because a module collection is absent on a clean runner. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "ansible",
+      "objective": "Explain fqcns and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "FQCNs \u2014 primary reference",
+          "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
+        }
+      ],
+      "tags": [
+        "ansible",
+        "fqcns"
+      ],
+      "takeaway": "Explicit names reduce ambiguity when collections overlap.",
+      "explanation": "Make the intended module namespace explicit. Explicit names reduce ambiguity when collections overlap. In the scenario, use the intended collection namespace and verify its documentation. The alternative \u2018Assume the first short-name match is always correct\u2019 does not address the stated evidence or constraint.",
+      "id": "ansible-15-concept",
+      "title": "FQCNs \u00b7 concept",
+      "type": "concept",
+      "question": "Why use fully qualified collection names for modules?",
+      "options": [
+        "Short names are always globally unique across all collections",
+        "Assume the first short-name match is always correct",
+        "Make the intended module namespace explicit",
+        "A fully qualified name automatically grants more privileges"
+      ],
+      "correct": [
+        2
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "ansible",
+      "objective": "Explain fqcns and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "FQCNs \u2014 primary reference",
+          "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
+        }
+      ],
+      "tags": [
+        "ansible",
+        "fqcns"
+      ],
+      "takeaway": "Explicit names reduce ambiguity when collections overlap.",
+      "explanation": "Make the intended module namespace explicit. Explicit names reduce ambiguity when collections overlap. In the scenario, use the intended collection namespace and verify its documentation. The alternative \u2018Assume the first short-name match is always correct\u2019 does not address the stated evidence or constraint.",
+      "id": "ansible-15-scenario",
+      "title": "FQCNs \u00b7 scenario",
+      "type": "scenario",
+      "question": "Two collections provide similarly named modules. What is the best next step?",
+      "options": [
+        "Short names are always globally unique across all collections",
+        "Use the intended collection namespace and verify its documentation",
+        "Assume the first short-name match is always correct",
+        "A fully qualified name automatically grants more privileges"
+      ],
+      "correct": [
+        1
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "ansible",
+      "objective": "Explain fqcns and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "FQCNs \u2014 primary reference",
+          "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
+        }
+      ],
+      "tags": [
+        "ansible",
+        "fqcns"
+      ],
+      "takeaway": "Explicit names reduce ambiguity when collections overlap.",
+      "explanation": "Make the intended module namespace explicit. Explicit names reduce ambiguity when collections overlap. In the scenario, use the intended collection namespace and verify its documentation. The alternative \u2018Assume the first short-name match is always correct\u2019 does not address the stated evidence or constraint.",
+      "id": "ansible-15-principles",
+      "title": "FQCNs \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing fqcns, which TWO statements are sound operational principles?",
+      "options": [
+        "Make the intended module namespace explicit",
+        "Explicit names reduce ambiguity when collections overlap",
+        "A fully qualified name automatically grants more privileges",
+        "Short names are always globally unique across all collections"
+      ],
+      "correct": [
+        0,
+        1
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "ansible",
+      "objective": "Explain fqcns and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "FQCNs \u2014 primary reference",
+          "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
+        }
+      ],
+      "tags": [
+        "ansible",
+        "fqcns"
+      ],
+      "takeaway": "Explicit names reduce ambiguity when collections overlap.",
+      "explanation": "Make the intended module namespace explicit. Explicit names reduce ambiguity when collections overlap. In the scenario, use the intended collection namespace and verify its documentation. The alternative \u2018Assume the first short-name match is always correct\u2019 does not address the stated evidence or constraint.",
+      "id": "ansible-15-interview",
+      "title": "FQCNs \u00b7 interview",
+      "type": "interview",
+      "question": "Explain module naming and collection resolution.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "Make the intended module namespace explicit. Explicit names reduce ambiguity when collections overlap. A practical response is: Use the intended collection namespace and verify its documentation. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that a fully qualified name automatically grants more privileges.",
+      "answerChecklist": [
+        "Make the intended module namespace explicit",
+        "Explicit names reduce ambiguity when collections overlap",
+        "Use the intended collection namespace and verify its documentation",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "Two collections provide similarly named modules. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "ansible",
+      "objective": "Explain conditionals and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Conditionals \u2014 primary reference",
+          "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
+        }
+      ],
+      "tags": [
+        "ansible",
+        "conditionals"
+      ],
+      "takeaway": "Conditions should use correctly typed and available values.",
+      "explanation": "Whether a task executes for a host based on a condition. Conditions should use correctly typed and available values. In the scenario, normalize input types and inspect the condition. The alternative \u2018Assume the text false is always a boolean in every context\u2019 does not address the stated evidence or constraint.",
+      "id": "ansible-16-concept",
+      "title": "Conditionals \u00b7 concept",
+      "type": "concept",
+      "question": "What does a when expression control?",
+      "options": [
+        "Assume the text false is always a boolean in every context",
+        "Whether a task executes for a host based on a condition",
+        "It changes inventory membership permanently",
+        "It forces every task to execute at least once"
+      ],
+      "correct": [
+        1
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "ansible",
+      "objective": "Explain conditionals and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Conditionals \u2014 primary reference",
+          "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
+        }
+      ],
+      "tags": [
+        "ansible",
+        "conditionals"
+      ],
+      "takeaway": "Conditions should use correctly typed and available values.",
+      "explanation": "Whether a task executes for a host based on a condition. Conditions should use correctly typed and available values. In the scenario, normalize input types and inspect the condition. The alternative \u2018Assume the text false is always a boolean in every context\u2019 does not address the stated evidence or constraint.",
+      "id": "ansible-16-scenario",
+      "title": "Conditionals \u00b7 scenario",
+      "type": "scenario",
+      "question": "A task unexpectedly runs because a string value was treated as truthy. What is the best next step?",
+      "options": [
+        "Normalize input types and inspect the condition",
+        "Assume the text false is always a boolean in every context",
+        "It changes inventory membership permanently",
+        "It forces every task to execute at least once"
+      ],
+      "correct": [
+        0
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "ansible",
+      "objective": "Explain conditionals and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Conditionals \u2014 primary reference",
+          "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
+        }
+      ],
+      "tags": [
+        "ansible",
+        "conditionals"
+      ],
+      "takeaway": "Conditions should use correctly typed and available values.",
+      "explanation": "Whether a task executes for a host based on a condition. Conditions should use correctly typed and available values. In the scenario, normalize input types and inspect the condition. The alternative \u2018Assume the text false is always a boolean in every context\u2019 does not address the stated evidence or constraint.",
+      "id": "ansible-16-principles",
+      "title": "Conditionals \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing conditionals, which TWO statements are sound operational principles?",
+      "options": [
+        "Conditions should use correctly typed and available values",
+        "It changes inventory membership permanently",
+        "It forces every task to execute at least once",
+        "Whether a task executes for a host based on a condition"
+      ],
+      "correct": [
+        0,
+        3
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "ansible",
+      "objective": "Explain conditionals and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Conditionals \u2014 primary reference",
+          "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
+        }
+      ],
+      "tags": [
+        "ansible",
+        "conditionals"
+      ],
+      "takeaway": "Conditions should use correctly typed and available values.",
+      "explanation": "Whether a task executes for a host based on a condition. Conditions should use correctly typed and available values. In the scenario, normalize input types and inspect the condition. The alternative \u2018Assume the text false is always a boolean in every context\u2019 does not address the stated evidence or constraint.",
+      "id": "ansible-16-interview",
+      "title": "Conditionals \u00b7 interview",
+      "type": "interview",
+      "question": "Explain robust conditional logic in playbooks.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "Whether a task executes for a host based on a condition. Conditions should use correctly typed and available values. A practical response is: Normalize input types and inspect the condition. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that it changes inventory membership permanently.",
+      "answerChecklist": [
+        "Whether a task executes for a host based on a condition",
+        "Conditions should use correctly typed and available values",
+        "Normalize input types and inspect the condition",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "A task unexpectedly runs because a string value was treated as truthy. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "ansible",
+      "objective": "Explain registered results and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Registered results \u2014 primary reference",
+          "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
+        }
+      ],
+      "tags": [
+        "ansible",
+        "registered-results"
+      ],
+      "takeaway": "Result fields depend on the module and execution outcome.",
+      "explanation": "A task result for later use in the play. Result fields depend on the module and execution outcome. In the scenario, guard for skipped or missing result fields. The alternative \u2018Assume every prior task produced stdout\u2019 does not address the stated evidence or constraint.",
+      "id": "ansible-17-concept",
+      "title": "Registered results \u00b7 concept",
+      "type": "concept",
+      "question": "What does register capture?",
+      "options": [
+        "A task result for later use in the play",
+        "Register stores a permanent system environment variable",
+        "Every result has identical fields even when skipped",
+        "Assume every prior task produced stdout"
+      ],
+      "correct": [
+        0
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "ansible",
+      "objective": "Explain registered results and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Registered results \u2014 primary reference",
+          "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
+        }
+      ],
+      "tags": [
+        "ansible",
+        "registered-results"
+      ],
+      "takeaway": "Result fields depend on the module and execution outcome.",
+      "explanation": "A task result for later use in the play. Result fields depend on the module and execution outcome. In the scenario, guard for skipped or missing result fields. The alternative \u2018Assume every prior task produced stdout\u2019 does not address the stated evidence or constraint.",
+      "id": "ansible-17-scenario",
+      "title": "Registered results \u00b7 scenario",
+      "type": "scenario",
+      "question": "A later task accesses stdout on a skipped result. What is the best next step?",
+      "options": [
+        "Assume every prior task produced stdout",
+        "Register stores a permanent system environment variable",
+        "Every result has identical fields even when skipped",
+        "Guard for skipped or missing result fields"
+      ],
+      "correct": [
+        3
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "ansible",
+      "objective": "Explain registered results and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Registered results \u2014 primary reference",
+          "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
+        }
+      ],
+      "tags": [
+        "ansible",
+        "registered-results"
+      ],
+      "takeaway": "Result fields depend on the module and execution outcome.",
+      "explanation": "A task result for later use in the play. Result fields depend on the module and execution outcome. In the scenario, guard for skipped or missing result fields. The alternative \u2018Assume every prior task produced stdout\u2019 does not address the stated evidence or constraint.",
+      "id": "ansible-17-principles",
+      "title": "Registered results \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing registered results, which TWO statements are sound operational principles?",
+      "options": [
+        "Register stores a permanent system environment variable",
+        "Every result has identical fields even when skipped",
+        "A task result for later use in the play",
+        "Result fields depend on the module and execution outcome"
+      ],
+      "correct": [
+        2,
+        3
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "ansible",
+      "objective": "Explain registered results and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Registered results \u2014 primary reference",
+          "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
+        }
+      ],
+      "tags": [
+        "ansible",
+        "registered-results"
+      ],
+      "takeaway": "Result fields depend on the module and execution outcome.",
+      "explanation": "A task result for later use in the play. Result fields depend on the module and execution outcome. In the scenario, guard for skipped or missing result fields. The alternative \u2018Assume every prior task produced stdout\u2019 does not address the stated evidence or constraint.",
+      "id": "ansible-17-interview",
+      "title": "Registered results \u00b7 interview",
+      "type": "interview",
+      "question": "Explain defensive handling of task results.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "A task result for later use in the play. Result fields depend on the module and execution outcome. A practical response is: Guard for skipped or missing result fields. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that register stores a permanent system environment variable.",
+      "answerChecklist": [
+        "A task result for later use in the play",
+        "Result fields depend on the module and execution outcome",
+        "Guard for skipped or missing result fields",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "A later task accesses stdout on a skipped result. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "ansible",
+      "objective": "Explain loops and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Loops \u2014 primary reference",
+          "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
+        }
+      ],
+      "tags": [
+        "ansible",
+        "loops"
+      ],
+      "takeaway": "Loop results often require handling a collection of per-item results.",
+      "explanation": "Avoid variable collisions in nested or included tasks. Loop results often require handling a collection of per-item results. In the scenario, use loop_control with distinct variable names. The alternative \u2018Reuse item at every nesting level without checking\u2019 does not address the stated evidence or constraint.",
+      "id": "ansible-18-concept",
+      "title": "Loops \u00b7 concept",
+      "type": "concept",
+      "question": "Why choose loop variable names deliberately?",
+      "options": [
+        "A loop always executes on all hosts serially",
+        "Every loop result is a single scalar stdout value",
+        "Reuse item at every nesting level without checking",
+        "Avoid variable collisions in nested or included tasks"
+      ],
+      "correct": [
+        3
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "ansible",
+      "objective": "Explain loops and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Loops \u2014 primary reference",
+          "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
+        }
+      ],
+      "tags": [
+        "ansible",
+        "loops"
+      ],
+      "takeaway": "Loop results often require handling a collection of per-item results.",
+      "explanation": "Avoid variable collisions in nested or included tasks. Loop results often require handling a collection of per-item results. In the scenario, use loop_control with distinct variable names. The alternative \u2018Reuse item at every nesting level without checking\u2019 does not address the stated evidence or constraint.",
+      "id": "ansible-18-scenario",
+      "title": "Loops \u00b7 scenario",
+      "type": "scenario",
+      "question": "An included task overwrites the outer item variable. What is the best next step?",
+      "options": [
+        "A loop always executes on all hosts serially",
+        "Every loop result is a single scalar stdout value",
+        "Use loop_control with distinct variable names",
+        "Reuse item at every nesting level without checking"
+      ],
+      "correct": [
+        2
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "ansible",
+      "objective": "Explain loops and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Loops \u2014 primary reference",
+          "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
+        }
+      ],
+      "tags": [
+        "ansible",
+        "loops"
+      ],
+      "takeaway": "Loop results often require handling a collection of per-item results.",
+      "explanation": "Avoid variable collisions in nested or included tasks. Loop results often require handling a collection of per-item results. In the scenario, use loop_control with distinct variable names. The alternative \u2018Reuse item at every nesting level without checking\u2019 does not address the stated evidence or constraint.",
+      "id": "ansible-18-principles",
+      "title": "Loops \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing loops, which TWO statements are sound operational principles?",
+      "options": [
+        "Every loop result is a single scalar stdout value",
+        "Avoid variable collisions in nested or included tasks",
+        "Loop results often require handling a collection of per-item results",
+        "A loop always executes on all hosts serially"
+      ],
+      "correct": [
+        1,
+        2
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "ansible",
+      "objective": "Explain loops and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Loops \u2014 primary reference",
+          "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
+        }
+      ],
+      "tags": [
+        "ansible",
+        "loops"
+      ],
+      "takeaway": "Loop results often require handling a collection of per-item results.",
+      "explanation": "Avoid variable collisions in nested or included tasks. Loop results often require handling a collection of per-item results. In the scenario, use loop_control with distinct variable names. The alternative \u2018Reuse item at every nesting level without checking\u2019 does not address the stated evidence or constraint.",
+      "id": "ansible-18-interview",
+      "title": "Loops \u00b7 interview",
+      "type": "interview",
+      "question": "Explain nested loops and registered loop results.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "Avoid variable collisions in nested or included tasks. Loop results often require handling a collection of per-item results. A practical response is: Use loop_control with distinct variable names. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that a loop always executes on all hosts serially.",
+      "answerChecklist": [
+        "Avoid variable collisions in nested or included tasks",
+        "Loop results often require handling a collection of per-item results",
+        "Use loop_control with distinct variable names",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "An included task overwrites the outer item variable. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "ansible",
+      "objective": "Explain failure conditions and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Failure conditions \u2014 primary reference",
+          "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
+        }
+      ],
+      "tags": [
+        "ansible",
+        "failure-conditions"
+      ],
+      "takeaway": "Exit status and output semantics should guide failure criteria.",
+      "explanation": "The condition under which a task is considered failed. Exit status and output semantics should guide failure criteria. In the scenario, define an explicit failure condition matching the command contract. The alternative \u2018Ignore all nonzero returns without distinguishing real failures\u2019 does not address the stated evidence or constraint.",
+      "id": "ansible-19-concept",
+      "title": "Failure conditions \u00b7 concept",
+      "type": "concept",
+      "question": "What does failed_when customize?",
+      "options": [
+        "It changes the remote command's actual side effects",
+        "Ignore all nonzero returns without distinguishing real failures",
+        "The condition under which a task is considered failed",
+        "It suppresses all future errors automatically"
+      ],
+      "correct": [
+        2
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "ansible",
+      "objective": "Explain failure conditions and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Failure conditions \u2014 primary reference",
+          "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
+        }
+      ],
+      "tags": [
+        "ansible",
+        "failure-conditions"
+      ],
+      "takeaway": "Exit status and output semantics should guide failure criteria.",
+      "explanation": "The condition under which a task is considered failed. Exit status and output semantics should guide failure criteria. In the scenario, define an explicit failure condition matching the command contract. The alternative \u2018Ignore all nonzero returns without distinguishing real failures\u2019 does not address the stated evidence or constraint.",
+      "id": "ansible-19-scenario",
+      "title": "Failure conditions \u00b7 scenario",
+      "type": "scenario",
+      "question": "A command returns a documented nonzero code for a harmless state. What is the best next step?",
+      "options": [
+        "It changes the remote command's actual side effects",
+        "Define an explicit failure condition matching the command contract",
+        "Ignore all nonzero returns without distinguishing real failures",
+        "It suppresses all future errors automatically"
+      ],
+      "correct": [
+        1
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "ansible",
+      "objective": "Explain failure conditions and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Failure conditions \u2014 primary reference",
+          "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
+        }
+      ],
+      "tags": [
+        "ansible",
+        "failure-conditions"
+      ],
+      "takeaway": "Exit status and output semantics should guide failure criteria.",
+      "explanation": "The condition under which a task is considered failed. Exit status and output semantics should guide failure criteria. In the scenario, define an explicit failure condition matching the command contract. The alternative \u2018Ignore all nonzero returns without distinguishing real failures\u2019 does not address the stated evidence or constraint.",
+      "id": "ansible-19-principles",
+      "title": "Failure conditions \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing failure conditions, which TWO statements are sound operational principles?",
+      "options": [
+        "The condition under which a task is considered failed",
+        "Exit status and output semantics should guide failure criteria",
+        "It suppresses all future errors automatically",
+        "It changes the remote command's actual side effects"
+      ],
+      "correct": [
+        0,
+        1
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "ansible",
+      "objective": "Explain failure conditions and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Failure conditions \u2014 primary reference",
+          "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
+        }
+      ],
+      "tags": [
+        "ansible",
+        "failure-conditions"
+      ],
+      "takeaway": "Exit status and output semantics should guide failure criteria.",
+      "explanation": "The condition under which a task is considered failed. Exit status and output semantics should guide failure criteria. In the scenario, define an explicit failure condition matching the command contract. The alternative \u2018Ignore all nonzero returns without distinguishing real failures\u2019 does not address the stated evidence or constraint.",
+      "id": "ansible-19-interview",
+      "title": "Failure conditions \u00b7 interview",
+      "type": "interview",
+      "question": "Explain custom failure handling without hiding errors.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "The condition under which a task is considered failed. Exit status and output semantics should guide failure criteria. A practical response is: Define an explicit failure condition matching the command contract. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that it suppresses all future errors automatically.",
+      "answerChecklist": [
+        "The condition under which a task is considered failed",
+        "Exit status and output semantics should guide failure criteria",
+        "Define an explicit failure condition matching the command contract",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "A command returns a documented nonzero code for a harmless state. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "ansible",
+      "objective": "Explain change reporting and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Change reporting \u2014 primary reference",
+          "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
+        }
+      ],
+      "tags": [
+        "ansible",
+        "change-reporting"
+      ],
+      "takeaway": "Accurate change reporting affects handler notifications.",
+      "explanation": "Whether a task reports that it changed state. Accurate change reporting affects handler notifications. In the scenario, mark the diagnostic as unchanged when appropriate. The alternative \u2018Assume changed_when stops the underlying command from running\u2019 does not address the stated evidence or constraint.",
+      "id": "ansible-20-concept",
+      "title": "Change reporting \u00b7 concept",
+      "type": "concept",
+      "question": "What does changed_when customize?",
+      "options": [
+        "Assume changed_when stops the underlying command from running",
+        "Whether a task reports that it changed state",
+        "It prevents the command from executing",
+        "It automatically makes a non-idempotent command idempotent"
+      ],
+      "correct": [
+        1
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "ansible",
+      "objective": "Explain change reporting and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Change reporting \u2014 primary reference",
+          "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
+        }
+      ],
+      "tags": [
+        "ansible",
+        "change-reporting"
+      ],
+      "takeaway": "Accurate change reporting affects handler notifications.",
+      "explanation": "Whether a task reports that it changed state. Accurate change reporting affects handler notifications. In the scenario, mark the diagnostic as unchanged when appropriate. The alternative \u2018Assume changed_when stops the underlying command from running\u2019 does not address the stated evidence or constraint.",
+      "id": "ansible-20-scenario",
+      "title": "Change reporting \u00b7 scenario",
+      "type": "scenario",
+      "question": "A read-only diagnostic command triggers a restart handler. What is the best next step?",
+      "options": [
+        "Mark the diagnostic as unchanged when appropriate",
+        "Assume changed_when stops the underlying command from running",
+        "It prevents the command from executing",
+        "It automatically makes a non-idempotent command idempotent"
+      ],
+      "correct": [
+        0
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "ansible",
+      "objective": "Explain change reporting and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Change reporting \u2014 primary reference",
+          "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
+        }
+      ],
+      "tags": [
+        "ansible",
+        "change-reporting"
+      ],
+      "takeaway": "Accurate change reporting affects handler notifications.",
+      "explanation": "Whether a task reports that it changed state. Accurate change reporting affects handler notifications. In the scenario, mark the diagnostic as unchanged when appropriate. The alternative \u2018Assume changed_when stops the underlying command from running\u2019 does not address the stated evidence or constraint.",
+      "id": "ansible-20-principles",
+      "title": "Change reporting \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing change reporting, which TWO statements are sound operational principles?",
+      "options": [
+        "Accurate change reporting affects handler notifications",
+        "It prevents the command from executing",
+        "It automatically makes a non-idempotent command idempotent",
+        "Whether a task reports that it changed state"
+      ],
+      "correct": [
+        0,
+        3
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "ansible",
+      "objective": "Explain change reporting and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Change reporting \u2014 primary reference",
+          "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
+        }
+      ],
+      "tags": [
+        "ansible",
+        "change-reporting"
+      ],
+      "takeaway": "Accurate change reporting affects handler notifications.",
+      "explanation": "Whether a task reports that it changed state. Accurate change reporting affects handler notifications. In the scenario, mark the diagnostic as unchanged when appropriate. The alternative \u2018Assume changed_when stops the underlying command from running\u2019 does not address the stated evidence or constraint.",
+      "id": "ansible-20-interview",
+      "title": "Change reporting \u00b7 interview",
+      "type": "interview",
+      "question": "Explain truthful change reporting and handler behavior.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "Whether a task reports that it changed state. Accurate change reporting affects handler notifications. A practical response is: Mark the diagnostic as unchanged when appropriate. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that it prevents the command from executing.",
+      "answerChecklist": [
+        "Whether a task reports that it changed state",
+        "Accurate change reporting affects handler notifications",
+        "Mark the diagnostic as unchanged when appropriate",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "A read-only diagnostic command triggers a restart handler. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "ansible",
+      "objective": "Explain serial rollout and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Serial rollout \u2014 primary reference",
+          "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
+        }
+      ],
+      "tags": [
+        "ansible",
+        "serial-rollout"
+      ],
+      "takeaway": "Batch size should reflect availability and failure-domain constraints.",
+      "explanation": "The batch size of hosts processed through the play. Batch size should reflect availability and failure-domain constraints. In the scenario, use bounded batches with health verification and stop criteria. The alternative \u2018Restart the entire fleet simultaneously\u2019 does not address the stated evidence or constraint.",
+      "id": "ansible-21-concept",
+      "title": "Serial rollout \u00b7 concept",
+      "type": "concept",
+      "question": "What does serial control in a play?",
+      "options": [
+        "The batch size of hosts processed through the play",
+        "It changes the number of CPU cores on each host",
+        "It guarantees that every dependency stays available",
+        "Restart the entire fleet simultaneously"
+      ],
+      "correct": [
+        0
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "ansible",
+      "objective": "Explain serial rollout and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Serial rollout \u2014 primary reference",
+          "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
+        }
+      ],
+      "tags": [
+        "ansible",
+        "serial-rollout"
+      ],
+      "takeaway": "Batch size should reflect availability and failure-domain constraints.",
+      "explanation": "The batch size of hosts processed through the play. Batch size should reflect availability and failure-domain constraints. In the scenario, use bounded batches with health verification and stop criteria. The alternative \u2018Restart the entire fleet simultaneously\u2019 does not address the stated evidence or constraint.",
+      "id": "ansible-21-scenario",
+      "title": "Serial rollout \u00b7 scenario",
+      "type": "scenario",
+      "question": "A fleet-wide restart would remove all serving capacity. What is the best next step?",
+      "options": [
+        "Restart the entire fleet simultaneously",
+        "It changes the number of CPU cores on each host",
+        "It guarantees that every dependency stays available",
+        "Use bounded batches with health verification and stop criteria"
+      ],
+      "correct": [
+        3
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "ansible",
+      "objective": "Explain serial rollout and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Serial rollout \u2014 primary reference",
+          "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
+        }
+      ],
+      "tags": [
+        "ansible",
+        "serial-rollout"
+      ],
+      "takeaway": "Batch size should reflect availability and failure-domain constraints.",
+      "explanation": "The batch size of hosts processed through the play. Batch size should reflect availability and failure-domain constraints. In the scenario, use bounded batches with health verification and stop criteria. The alternative \u2018Restart the entire fleet simultaneously\u2019 does not address the stated evidence or constraint.",
+      "id": "ansible-21-principles",
+      "title": "Serial rollout \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing serial rollout, which TWO statements are sound operational principles?",
+      "options": [
+        "It changes the number of CPU cores on each host",
+        "It guarantees that every dependency stays available",
+        "The batch size of hosts processed through the play",
+        "Batch size should reflect availability and failure-domain constraints"
+      ],
+      "correct": [
+        2,
+        3
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "ansible",
+      "objective": "Explain serial rollout and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Serial rollout \u2014 primary reference",
+          "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
+        }
+      ],
+      "tags": [
+        "ansible",
+        "serial-rollout"
+      ],
+      "takeaway": "Batch size should reflect availability and failure-domain constraints.",
+      "explanation": "The batch size of hosts processed through the play. Batch size should reflect availability and failure-domain constraints. In the scenario, use bounded batches with health verification and stop criteria. The alternative \u2018Restart the entire fleet simultaneously\u2019 does not address the stated evidence or constraint.",
+      "id": "ansible-21-interview",
+      "title": "Serial rollout \u00b7 interview",
+      "type": "interview",
+      "question": "Explain rolling configuration changes with Ansible.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "The batch size of hosts processed through the play. Batch size should reflect availability and failure-domain constraints. A practical response is: Use bounded batches with health verification and stop criteria. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that it changes the number of CPU cores on each host.",
+      "answerChecklist": [
+        "The batch size of hosts processed through the play",
+        "Batch size should reflect availability and failure-domain constraints",
+        "Use bounded batches with health verification and stop criteria",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "A fleet-wide restart would remove all serving capacity. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "ansible",
+      "objective": "Explain delegation and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Delegation \u2014 primary reference",
+          "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
+        }
+      ],
+      "tags": [
+        "ansible",
+        "delegation"
+      ],
+      "takeaway": "Variable and connection context need care with delegated tasks.",
+      "explanation": "The host on which a task executes. Variable and connection context need care with delegated tasks. In the scenario, delegate the specific operation and verify credentials and context. The alternative \u2018Assume delegation changes the whole play's target scope\u2019 does not address the stated evidence or constraint.",
+      "id": "ansible-22-concept",
+      "title": "Delegation \u00b7 concept",
+      "type": "concept",
+      "question": "What does delegate_to change?",
+      "options": [
+        "It permanently moves every later task to that host",
+        "It copies every inventory variable to the remote filesystem",
+        "Assume delegation changes the whole play's target scope",
+        "The host on which a task executes"
+      ],
+      "correct": [
+        3
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "ansible",
+      "objective": "Explain delegation and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Delegation \u2014 primary reference",
+          "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
+        }
+      ],
+      "tags": [
+        "ansible",
+        "delegation"
+      ],
+      "takeaway": "Variable and connection context need care with delegated tasks.",
+      "explanation": "The host on which a task executes. Variable and connection context need care with delegated tasks. In the scenario, delegate the specific operation and verify credentials and context. The alternative \u2018Assume delegation changes the whole play's target scope\u2019 does not address the stated evidence or constraint.",
+      "id": "ansible-22-scenario",
+      "title": "Delegation \u00b7 scenario",
+      "type": "scenario",
+      "question": "A load-balancer update should run through a control endpoint. What is the best next step?",
+      "options": [
+        "It permanently moves every later task to that host",
+        "It copies every inventory variable to the remote filesystem",
+        "Delegate the specific operation and verify credentials and context",
+        "Assume delegation changes the whole play's target scope"
+      ],
+      "correct": [
+        2
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "ansible",
+      "objective": "Explain delegation and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Delegation \u2014 primary reference",
+          "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
+        }
+      ],
+      "tags": [
+        "ansible",
+        "delegation"
+      ],
+      "takeaway": "Variable and connection context need care with delegated tasks.",
+      "explanation": "The host on which a task executes. Variable and connection context need care with delegated tasks. In the scenario, delegate the specific operation and verify credentials and context. The alternative \u2018Assume delegation changes the whole play's target scope\u2019 does not address the stated evidence or constraint.",
+      "id": "ansible-22-principles",
+      "title": "Delegation \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing delegation, which TWO statements are sound operational principles?",
+      "options": [
+        "It copies every inventory variable to the remote filesystem",
+        "The host on which a task executes",
+        "Variable and connection context need care with delegated tasks",
+        "It permanently moves every later task to that host"
+      ],
+      "correct": [
+        1,
+        2
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "ansible",
+      "objective": "Explain delegation and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Delegation \u2014 primary reference",
+          "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
+        }
+      ],
+      "tags": [
+        "ansible",
+        "delegation"
+      ],
+      "takeaway": "Variable and connection context need care with delegated tasks.",
+      "explanation": "The host on which a task executes. Variable and connection context need care with delegated tasks. In the scenario, delegate the specific operation and verify credentials and context. The alternative \u2018Assume delegation changes the whole play's target scope\u2019 does not address the stated evidence or constraint.",
+      "id": "ansible-22-interview",
+      "title": "Delegation \u00b7 interview",
+      "type": "interview",
+      "question": "Explain delegated tasks and their variable context.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "The host on which a task executes. Variable and connection context need care with delegated tasks. A practical response is: Delegate the specific operation and verify credentials and context. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that it permanently moves every later task to that host.",
+      "answerChecklist": [
+        "The host on which a task executes",
+        "Variable and connection context need care with delegated tasks",
+        "Delegate the specific operation and verify credentials and context",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "A load-balancer update should run through a control endpoint. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "ansible",
+      "objective": "Explain run once and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Run once \u2014 primary reference",
+          "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
+        }
+      ],
+      "tags": [
+        "ansible",
+        "run-once"
+      ],
+      "takeaway": "Global singleton actions need explicit design under batching.",
+      "explanation": "Execution can occur once per batch rather than once for the whole inventory. Global singleton actions need explicit design under batching. In the scenario, review batch semantics and implement a deliberate singleton migration step. The alternative \u2018Assume run_once is a global concurrency lock\u2019 does not address the stated evidence or constraint.",
+      "id": "ansible-23-concept",
+      "title": "Run once \u00b7 concept",
+      "type": "concept",
+      "question": "What is a nuance of run_once with serial batches?",
+      "options": [
+        "Run_once implies a distributed lock across concurrent playbook runs",
+        "Assume run_once is a global concurrency lock",
+        "Execution can occur once per batch rather than once for the whole inventory",
+        "Run_once always means once across every possible play execution"
+      ],
+      "correct": [
+        2
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "ansible",
+      "objective": "Explain run once and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Run once \u2014 primary reference",
+          "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
+        }
+      ],
+      "tags": [
+        "ansible",
+        "run-once"
+      ],
+      "takeaway": "Global singleton actions need explicit design under batching.",
+      "explanation": "Execution can occur once per batch rather than once for the whole inventory. Global singleton actions need explicit design under batching. In the scenario, review batch semantics and implement a deliberate singleton migration step. The alternative \u2018Assume run_once is a global concurrency lock\u2019 does not address the stated evidence or constraint.",
+      "id": "ansible-23-scenario",
+      "title": "Run once \u00b7 scenario",
+      "type": "scenario",
+      "question": "A migration unexpectedly repeats during a serial rollout. What is the best next step?",
+      "options": [
+        "Run_once implies a distributed lock across concurrent playbook runs",
+        "Review batch semantics and implement a deliberate singleton migration step",
+        "Assume run_once is a global concurrency lock",
+        "Run_once always means once across every possible play execution"
+      ],
+      "correct": [
+        1
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "ansible",
+      "objective": "Explain run once and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Run once \u2014 primary reference",
+          "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
+        }
+      ],
+      "tags": [
+        "ansible",
+        "run-once"
+      ],
+      "takeaway": "Global singleton actions need explicit design under batching.",
+      "explanation": "Execution can occur once per batch rather than once for the whole inventory. Global singleton actions need explicit design under batching. In the scenario, review batch semantics and implement a deliberate singleton migration step. The alternative \u2018Assume run_once is a global concurrency lock\u2019 does not address the stated evidence or constraint.",
+      "id": "ansible-23-principles",
+      "title": "Run once \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing run once, which TWO statements are sound operational principles?",
+      "options": [
+        "Execution can occur once per batch rather than once for the whole inventory",
+        "Global singleton actions need explicit design under batching",
+        "Run_once always means once across every possible play execution",
+        "Run_once implies a distributed lock across concurrent playbook runs"
+      ],
+      "correct": [
+        0,
+        1
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "ansible",
+      "objective": "Explain run once and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Run once \u2014 primary reference",
+          "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
+        }
+      ],
+      "tags": [
+        "ansible",
+        "run-once"
+      ],
+      "takeaway": "Global singleton actions need explicit design under batching.",
+      "explanation": "Execution can occur once per batch rather than once for the whole inventory. Global singleton actions need explicit design under batching. In the scenario, review batch semantics and implement a deliberate singleton migration step. The alternative \u2018Assume run_once is a global concurrency lock\u2019 does not address the stated evidence or constraint.",
+      "id": "ansible-23-interview",
+      "title": "Run once \u00b7 interview",
+      "type": "interview",
+      "question": "Explain how you prevent duplicate singleton actions.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "Execution can occur once per batch rather than once for the whole inventory. Global singleton actions need explicit design under batching. A practical response is: Review batch semantics and implement a deliberate singleton migration step. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that run_once always means once across every possible play execution.",
+      "answerChecklist": [
+        "Execution can occur once per batch rather than once for the whole inventory",
+        "Global singleton actions need explicit design under batching",
+        "Review batch semantics and implement a deliberate singleton migration step",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "A migration unexpectedly repeats during a serial rollout. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "ansible",
+      "objective": "Explain blocks and rescue and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Blocks and rescue \u2014 primary reference",
+          "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
+        }
+      ],
+      "tags": [
+        "ansible",
+        "blocks-and-rescue"
+      ],
+      "takeaway": "Recovery logic must still account for partial side effects.",
+      "explanation": "Handle qualifying task failures with recovery steps. Recovery logic must still account for partial side effects. In the scenario, use explicit recovery and verify the resulting host state. The alternative \u2018Assume block syntax provides automatic transaction rollback\u2019 does not address the stated evidence or constraint.",
+      "id": "ansible-24-concept",
+      "title": "Blocks and rescue \u00b7 concept",
+      "type": "concept",
+      "question": "What is a rescue block useful for?",
+      "options": [
+        "Assume block syntax provides automatic transaction rollback",
+        "Handle qualifying task failures with recovery steps",
+        "Rescue automatically rolls back every previous change",
+        "Every unreachable-host condition is handled exactly like an ordinary task failure"
+      ],
+      "correct": [
+        1
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "ansible",
+      "objective": "Explain blocks and rescue and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Blocks and rescue \u2014 primary reference",
+          "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
+        }
+      ],
+      "tags": [
+        "ansible",
+        "blocks-and-rescue"
+      ],
+      "takeaway": "Recovery logic must still account for partial side effects.",
+      "explanation": "Handle qualifying task failures with recovery steps. Recovery logic must still account for partial side effects. In the scenario, use explicit recovery and verify the resulting host state. The alternative \u2018Assume block syntax provides automatic transaction rollback\u2019 does not address the stated evidence or constraint.",
+      "id": "ansible-24-scenario",
+      "title": "Blocks and rescue \u00b7 scenario",
+      "type": "scenario",
+      "question": "A deployment task fails after writing part of its configuration. What is the best next step?",
+      "options": [
+        "Use explicit recovery and verify the resulting host state",
+        "Assume block syntax provides automatic transaction rollback",
+        "Rescue automatically rolls back every previous change",
+        "Every unreachable-host condition is handled exactly like an ordinary task failure"
+      ],
+      "correct": [
+        0
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "ansible",
+      "objective": "Explain blocks and rescue and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Blocks and rescue \u2014 primary reference",
+          "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
+        }
+      ],
+      "tags": [
+        "ansible",
+        "blocks-and-rescue"
+      ],
+      "takeaway": "Recovery logic must still account for partial side effects.",
+      "explanation": "Handle qualifying task failures with recovery steps. Recovery logic must still account for partial side effects. In the scenario, use explicit recovery and verify the resulting host state. The alternative \u2018Assume block syntax provides automatic transaction rollback\u2019 does not address the stated evidence or constraint.",
+      "id": "ansible-24-principles",
+      "title": "Blocks and rescue \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing blocks and rescue, which TWO statements are sound operational principles?",
+      "options": [
+        "Recovery logic must still account for partial side effects",
+        "Rescue automatically rolls back every previous change",
+        "Every unreachable-host condition is handled exactly like an ordinary task failure",
+        "Handle qualifying task failures with recovery steps"
+      ],
+      "correct": [
+        0,
+        3
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "ansible",
+      "objective": "Explain blocks and rescue and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Blocks and rescue \u2014 primary reference",
+          "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
+        }
+      ],
+      "tags": [
+        "ansible",
+        "blocks-and-rescue"
+      ],
+      "takeaway": "Recovery logic must still account for partial side effects.",
+      "explanation": "Handle qualifying task failures with recovery steps. Recovery logic must still account for partial side effects. In the scenario, use explicit recovery and verify the resulting host state. The alternative \u2018Assume block syntax provides automatic transaction rollback\u2019 does not address the stated evidence or constraint.",
+      "id": "ansible-24-interview",
+      "title": "Blocks and rescue \u00b7 interview",
+      "type": "interview",
+      "question": "Explain structured error handling and its limits.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "Handle qualifying task failures with recovery steps. Recovery logic must still account for partial side effects. A practical response is: Use explicit recovery and verify the resulting host state. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that rescue automatically rolls back every previous change.",
+      "answerChecklist": [
+        "Handle qualifying task failures with recovery steps",
+        "Recovery logic must still account for partial side effects",
+        "Use explicit recovery and verify the resulting host state",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "A deployment task fails after writing part of its configuration. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "ansible",
+      "objective": "Explain async tasks and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Async tasks \u2014 primary reference",
+          "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
+        }
+      ],
+      "tags": [
+        "ansible",
+        "async-tasks"
+      ],
+      "takeaway": "Polling and completion handling must match operational needs.",
+      "explanation": "Long-running tasks without holding a normal synchronous wait. Polling and completion handling must match operational needs. In the scenario, use bounded async execution and track the final result. The alternative \u2018Treat successful launch as proof that maintenance completed\u2019 does not address the stated evidence or constraint.",
+      "id": "ansible-25-concept",
+      "title": "Async tasks \u00b7 concept",
+      "type": "concept",
+      "question": "What can async execution support?",
+      "options": [
+        "Long-running tasks without holding a normal synchronous wait",
+        "Async automatically guarantees successful completion",
+        "A launched task can never outlive the control connection",
+        "Treat successful launch as proof that maintenance completed"
+      ],
+      "correct": [
+        0
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "ansible",
+      "objective": "Explain async tasks and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Async tasks \u2014 primary reference",
+          "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
+        }
+      ],
+      "tags": [
+        "ansible",
+        "async-tasks"
+      ],
+      "takeaway": "Polling and completion handling must match operational needs.",
+      "explanation": "Long-running tasks without holding a normal synchronous wait. Polling and completion handling must match operational needs. In the scenario, use bounded async execution and track the final result. The alternative \u2018Treat successful launch as proof that maintenance completed\u2019 does not address the stated evidence or constraint.",
+      "id": "ansible-25-scenario",
+      "title": "Async tasks \u00b7 scenario",
+      "type": "scenario",
+      "question": "A long maintenance task exceeds the default connection wait. What is the best next step?",
+      "options": [
+        "Treat successful launch as proof that maintenance completed",
+        "Async automatically guarantees successful completion",
+        "A launched task can never outlive the control connection",
+        "Use bounded async execution and track the final result"
+      ],
+      "correct": [
+        3
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "ansible",
+      "objective": "Explain async tasks and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Async tasks \u2014 primary reference",
+          "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
+        }
+      ],
+      "tags": [
+        "ansible",
+        "async-tasks"
+      ],
+      "takeaway": "Polling and completion handling must match operational needs.",
+      "explanation": "Long-running tasks without holding a normal synchronous wait. Polling and completion handling must match operational needs. In the scenario, use bounded async execution and track the final result. The alternative \u2018Treat successful launch as proof that maintenance completed\u2019 does not address the stated evidence or constraint.",
+      "id": "ansible-25-principles",
+      "title": "Async tasks \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing async tasks, which TWO statements are sound operational principles?",
+      "options": [
+        "Async automatically guarantees successful completion",
+        "A launched task can never outlive the control connection",
+        "Long-running tasks without holding a normal synchronous wait",
+        "Polling and completion handling must match operational needs"
+      ],
+      "correct": [
+        2,
+        3
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "ansible",
+      "objective": "Explain async tasks and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Async tasks \u2014 primary reference",
+          "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
+        }
+      ],
+      "tags": [
+        "ansible",
+        "async-tasks"
+      ],
+      "takeaway": "Polling and completion handling must match operational needs.",
+      "explanation": "Long-running tasks without holding a normal synchronous wait. Polling and completion handling must match operational needs. In the scenario, use bounded async execution and track the final result. The alternative \u2018Treat successful launch as proof that maintenance completed\u2019 does not address the stated evidence or constraint.",
+      "id": "ansible-25-interview",
+      "title": "Async tasks \u00b7 interview",
+      "type": "interview",
+      "question": "Explain asynchronous tasks and reliable completion checks.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "Long-running tasks without holding a normal synchronous wait. Polling and completion handling must match operational needs. A practical response is: Use bounded async execution and track the final result. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that async automatically guarantees successful completion.",
+      "answerChecklist": [
+        "Long-running tasks without holding a normal synchronous wait",
+        "Polling and completion handling must match operational needs",
+        "Use bounded async execution and track the final result",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "A long maintenance task exceeds the default connection wait. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "ansible",
+      "objective": "Explain tags and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Tags \u2014 primary reference",
+          "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
+        }
+      ],
+      "tags": [
+        "ansible",
+        "tags"
+      ],
+      "takeaway": "Tagged execution needs testing as its own supported path.",
+      "explanation": "Required prerequisite tasks may be skipped. Tagged execution needs testing as its own supported path. In the scenario, test the selected path and encode needed prerequisites deliberately. The alternative \u2018Assume a partial tagged run is equivalent to the full play\u2019 does not address the stated evidence or constraint.",
+      "id": "ansible-26-concept",
+      "title": "Tags \u00b7 concept",
+      "type": "concept",
+      "question": "What is a risk of selective tag execution?",
+      "options": [
+        "Tags always resolve every prerequisite automatically",
+        "Tags are an access-control boundary",
+        "Assume a partial tagged run is equivalent to the full play",
+        "Required prerequisite tasks may be skipped"
+      ],
+      "correct": [
+        3
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "ansible",
+      "objective": "Explain tags and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Tags \u2014 primary reference",
+          "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
+        }
+      ],
+      "tags": [
+        "ansible",
+        "tags"
+      ],
+      "takeaway": "Tagged execution needs testing as its own supported path.",
+      "explanation": "Required prerequisite tasks may be skipped. Tagged execution needs testing as its own supported path. In the scenario, test the selected path and encode needed prerequisites deliberately. The alternative \u2018Assume a partial tagged run is equivalent to the full play\u2019 does not address the stated evidence or constraint.",
+      "id": "ansible-26-scenario",
+      "title": "Tags \u00b7 scenario",
+      "type": "scenario",
+      "question": "Running only a deployment tag skips required configuration setup. What is the best next step?",
+      "options": [
+        "Tags always resolve every prerequisite automatically",
+        "Tags are an access-control boundary",
+        "Test the selected path and encode needed prerequisites deliberately",
+        "Assume a partial tagged run is equivalent to the full play"
+      ],
+      "correct": [
+        2
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "ansible",
+      "objective": "Explain tags and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Tags \u2014 primary reference",
+          "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
+        }
+      ],
+      "tags": [
+        "ansible",
+        "tags"
+      ],
+      "takeaway": "Tagged execution needs testing as its own supported path.",
+      "explanation": "Required prerequisite tasks may be skipped. Tagged execution needs testing as its own supported path. In the scenario, test the selected path and encode needed prerequisites deliberately. The alternative \u2018Assume a partial tagged run is equivalent to the full play\u2019 does not address the stated evidence or constraint.",
+      "id": "ansible-26-principles",
+      "title": "Tags \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing tags, which TWO statements are sound operational principles?",
+      "options": [
+        "Tags are an access-control boundary",
+        "Required prerequisite tasks may be skipped",
+        "Tagged execution needs testing as its own supported path",
+        "Tags always resolve every prerequisite automatically"
+      ],
+      "correct": [
+        1,
+        2
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "ansible",
+      "objective": "Explain tags and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Tags \u2014 primary reference",
+          "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
+        }
+      ],
+      "tags": [
+        "ansible",
+        "tags"
+      ],
+      "takeaway": "Tagged execution needs testing as its own supported path.",
+      "explanation": "Required prerequisite tasks may be skipped. Tagged execution needs testing as its own supported path. In the scenario, test the selected path and encode needed prerequisites deliberately. The alternative \u2018Assume a partial tagged run is equivalent to the full play\u2019 does not address the stated evidence or constraint.",
+      "id": "ansible-26-interview",
+      "title": "Tags \u00b7 interview",
+      "type": "interview",
+      "question": "Explain safe use of tags in operational workflows.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "Required prerequisite tasks may be skipped. Tagged execution needs testing as its own supported path. A practical response is: Test the selected path and encode needed prerequisites deliberately. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that tags always resolve every prerequisite automatically.",
+      "answerChecklist": [
+        "Required prerequisite tasks may be skipped",
+        "Tagged execution needs testing as its own supported path",
+        "Test the selected path and encode needed prerequisites deliberately",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "Running only a deployment tag skips required configuration setup. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "ansible",
+      "objective": "Explain dynamic inventory and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Dynamic inventory \u2014 primary reference",
+          "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
+        }
+      ],
+      "tags": [
+        "ansible",
+        "dynamic-inventory"
+      ],
+      "takeaway": "Discovery filters and credentials determine scope.",
+      "explanation": "Discover hosts from an external authoritative source. Discovery filters and credentials determine scope. In the scenario, narrow discovery filters and inspect the generated inventory. The alternative \u2018Trust discovery output without checking environment boundaries\u2019 does not address the stated evidence or constraint.",
+      "id": "ansible-27-concept",
+      "title": "Dynamic inventory \u00b7 concept",
+      "type": "concept",
+      "question": "Why use dynamic inventory?",
+      "options": [
+        "Every discovered cloud resource should always be targeted",
+        "Trust discovery output without checking environment boundaries",
+        "Discover hosts from an external authoritative source",
+        "Dynamic inventory can never become stale"
+      ],
+      "correct": [
+        2
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "ansible",
+      "objective": "Explain dynamic inventory and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Dynamic inventory \u2014 primary reference",
+          "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
+        }
+      ],
+      "tags": [
+        "ansible",
+        "dynamic-inventory"
+      ],
+      "takeaway": "Discovery filters and credentials determine scope.",
+      "explanation": "Discover hosts from an external authoritative source. Discovery filters and credentials determine scope. In the scenario, narrow discovery filters and inspect the generated inventory. The alternative \u2018Trust discovery output without checking environment boundaries\u2019 does not address the stated evidence or constraint.",
+      "id": "ansible-27-scenario",
+      "title": "Dynamic inventory \u00b7 scenario",
+      "type": "scenario",
+      "question": "A cloud inventory plugin includes hosts from an unintended environment. What is the best next step?",
+      "options": [
+        "Every discovered cloud resource should always be targeted",
+        "Narrow discovery filters and inspect the generated inventory",
+        "Trust discovery output without checking environment boundaries",
+        "Dynamic inventory can never become stale"
+      ],
+      "correct": [
+        1
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "ansible",
+      "objective": "Explain dynamic inventory and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Dynamic inventory \u2014 primary reference",
+          "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
+        }
+      ],
+      "tags": [
+        "ansible",
+        "dynamic-inventory"
+      ],
+      "takeaway": "Discovery filters and credentials determine scope.",
+      "explanation": "Discover hosts from an external authoritative source. Discovery filters and credentials determine scope. In the scenario, narrow discovery filters and inspect the generated inventory. The alternative \u2018Trust discovery output without checking environment boundaries\u2019 does not address the stated evidence or constraint.",
+      "id": "ansible-27-principles",
+      "title": "Dynamic inventory \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing dynamic inventory, which TWO statements are sound operational principles?",
+      "options": [
+        "Discover hosts from an external authoritative source",
+        "Discovery filters and credentials determine scope",
+        "Dynamic inventory can never become stale",
+        "Every discovered cloud resource should always be targeted"
+      ],
+      "correct": [
+        0,
+        1
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "ansible",
+      "objective": "Explain dynamic inventory and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Dynamic inventory \u2014 primary reference",
+          "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
+        }
+      ],
+      "tags": [
+        "ansible",
+        "dynamic-inventory"
+      ],
+      "takeaway": "Discovery filters and credentials determine scope.",
+      "explanation": "Discover hosts from an external authoritative source. Discovery filters and credentials determine scope. In the scenario, narrow discovery filters and inspect the generated inventory. The alternative \u2018Trust discovery output without checking environment boundaries\u2019 does not address the stated evidence or constraint.",
+      "id": "ansible-27-interview",
+      "title": "Dynamic inventory \u00b7 interview",
+      "type": "interview",
+      "question": "Explain safe dynamic inventory design.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "Discover hosts from an external authoritative source. Discovery filters and credentials determine scope. A practical response is: Narrow discovery filters and inspect the generated inventory. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that dynamic inventory can never become stale.",
+      "answerChecklist": [
+        "Discover hosts from an external authoritative source",
+        "Discovery filters and credentials determine scope",
+        "Narrow discovery filters and inspect the generated inventory",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "A cloud inventory plugin includes hosts from an unintended environment. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "ansible",
+      "objective": "Explain concurrency and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Concurrency \u2014 primary reference",
+          "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
+        }
+      ],
+      "tags": [
+        "ansible",
+        "concurrency"
+      ],
+      "takeaway": "Concurrency should match workload and service capacity.",
+      "explanation": "Overload of targets controllers or shared dependencies. Concurrency should match workload and service capacity. In the scenario, bound concurrency and stage work based on dependency capacity. The alternative \u2018Increase forks to finish before the repository recovers\u2019 does not address the stated evidence or constraint.",
+      "id": "ansible-28-concept",
+      "title": "Concurrency \u00b7 concept",
+      "type": "concept",
+      "question": "What can excessive forks cause?",
+      "options": [
+        "Increase forks to finish before the repository recovers",
+        "Overload of targets controllers or shared dependencies",
+        "More forks always reduces risk",
+        "Forks is a substitute for application health checks"
+      ],
+      "correct": [
+        1
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "ansible",
+      "objective": "Explain concurrency and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Concurrency \u2014 primary reference",
+          "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
+        }
+      ],
+      "tags": [
+        "ansible",
+        "concurrency"
+      ],
+      "takeaway": "Concurrency should match workload and service capacity.",
+      "explanation": "Overload of targets controllers or shared dependencies. Concurrency should match workload and service capacity. In the scenario, bound concurrency and stage work based on dependency capacity. The alternative \u2018Increase forks to finish before the repository recovers\u2019 does not address the stated evidence or constraint.",
+      "id": "ansible-28-scenario",
+      "title": "Concurrency \u00b7 scenario",
+      "type": "scenario",
+      "question": "A configuration run overloads a shared package repository. What is the best next step?",
+      "options": [
+        "Bound concurrency and stage work based on dependency capacity",
+        "Increase forks to finish before the repository recovers",
+        "More forks always reduces risk",
+        "Forks is a substitute for application health checks"
+      ],
+      "correct": [
+        0
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "ansible",
+      "objective": "Explain concurrency and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Concurrency \u2014 primary reference",
+          "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
+        }
+      ],
+      "tags": [
+        "ansible",
+        "concurrency"
+      ],
+      "takeaway": "Concurrency should match workload and service capacity.",
+      "explanation": "Overload of targets controllers or shared dependencies. Concurrency should match workload and service capacity. In the scenario, bound concurrency and stage work based on dependency capacity. The alternative \u2018Increase forks to finish before the repository recovers\u2019 does not address the stated evidence or constraint.",
+      "id": "ansible-28-principles",
+      "title": "Concurrency \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing concurrency, which TWO statements are sound operational principles?",
+      "options": [
+        "Concurrency should match workload and service capacity",
+        "More forks always reduces risk",
+        "Forks is a substitute for application health checks",
+        "Overload of targets controllers or shared dependencies"
+      ],
+      "correct": [
+        0,
+        3
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "ansible",
+      "objective": "Explain concurrency and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Concurrency \u2014 primary reference",
+          "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
+        }
+      ],
+      "tags": [
+        "ansible",
+        "concurrency"
+      ],
+      "takeaway": "Concurrency should match workload and service capacity.",
+      "explanation": "Overload of targets controllers or shared dependencies. Concurrency should match workload and service capacity. In the scenario, bound concurrency and stage work based on dependency capacity. The alternative \u2018Increase forks to finish before the repository recovers\u2019 does not address the stated evidence or constraint.",
+      "id": "ansible-28-interview",
+      "title": "Concurrency \u00b7 interview",
+      "type": "interview",
+      "question": "Explain tuning Ansible concurrency safely.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "Overload of targets controllers or shared dependencies. Concurrency should match workload and service capacity. A practical response is: Bound concurrency and stage work based on dependency capacity. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that more forks always reduces risk.",
+      "answerChecklist": [
+        "Overload of targets controllers or shared dependencies",
+        "Concurrency should match workload and service capacity",
+        "Bound concurrency and stage work based on dependency capacity",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "A configuration run overloads a shared package repository. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "ansible",
+      "objective": "Explain secret logging and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Secret logging \u2014 primary reference",
+          "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
+        }
+      ],
+      "tags": [
+        "ansible",
+        "secret-logging"
+      ],
+      "takeaway": "It does not prevent a command from leaking secrets into external files or services.",
+      "explanation": "Sensitive task data from normal Ansible output. It does not prevent a command from leaking secrets into external files or services. In the scenario, fix file handling and permissions in addition to suppressing logs. The alternative \u2018Treat no_log as a complete secret-management solution\u2019 does not address the stated evidence or constraint.",
+      "id": "ansible-29-concept",
+      "title": "Secret logging \u00b7 concept",
+      "type": "concept",
+      "question": "What does no_log help protect?",
+      "options": [
+        "Sensitive task data from normal Ansible output",
+        "No_log encrypts every remote file created by a task",
+        "No_log makes unsafe secret handling harmless",
+        "Treat no_log as a complete secret-management solution"
+      ],
+      "correct": [
+        0
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "ansible",
+      "objective": "Explain secret logging and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Secret logging \u2014 primary reference",
+          "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
+        }
+      ],
+      "tags": [
+        "ansible",
+        "secret-logging"
+      ],
+      "takeaway": "It does not prevent a command from leaking secrets into external files or services.",
+      "explanation": "Sensitive task data from normal Ansible output. It does not prevent a command from leaking secrets into external files or services. In the scenario, fix file handling and permissions in addition to suppressing logs. The alternative \u2018Treat no_log as a complete secret-management solution\u2019 does not address the stated evidence or constraint.",
+      "id": "ansible-29-scenario",
+      "title": "Secret logging \u00b7 scenario",
+      "type": "scenario",
+      "question": "A task hides output but writes a password into a world-readable file. What is the best next step?",
+      "options": [
+        "Treat no_log as a complete secret-management solution",
+        "No_log encrypts every remote file created by a task",
+        "No_log makes unsafe secret handling harmless",
+        "Fix file handling and permissions in addition to suppressing logs"
+      ],
+      "correct": [
+        3
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "ansible",
+      "objective": "Explain secret logging and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Secret logging \u2014 primary reference",
+          "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
+        }
+      ],
+      "tags": [
+        "ansible",
+        "secret-logging"
+      ],
+      "takeaway": "It does not prevent a command from leaking secrets into external files or services.",
+      "explanation": "Sensitive task data from normal Ansible output. It does not prevent a command from leaking secrets into external files or services. In the scenario, fix file handling and permissions in addition to suppressing logs. The alternative \u2018Treat no_log as a complete secret-management solution\u2019 does not address the stated evidence or constraint.",
+      "id": "ansible-29-principles",
+      "title": "Secret logging \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing secret logging, which TWO statements are sound operational principles?",
+      "options": [
+        "No_log encrypts every remote file created by a task",
+        "No_log makes unsafe secret handling harmless",
+        "Sensitive task data from normal Ansible output",
+        "It does not prevent a command from leaking secrets into external files or services"
+      ],
+      "correct": [
+        2,
+        3
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "ansible",
+      "objective": "Explain secret logging and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Secret logging \u2014 primary reference",
+          "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
+        }
+      ],
+      "tags": [
+        "ansible",
+        "secret-logging"
+      ],
+      "takeaway": "It does not prevent a command from leaking secrets into external files or services.",
+      "explanation": "Sensitive task data from normal Ansible output. It does not prevent a command from leaking secrets into external files or services. In the scenario, fix file handling and permissions in addition to suppressing logs. The alternative \u2018Treat no_log as a complete secret-management solution\u2019 does not address the stated evidence or constraint.",
+      "id": "ansible-29-interview",
+      "title": "Secret logging \u00b7 interview",
+      "type": "interview",
+      "question": "Explain the limits of log suppression for secrets.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "Sensitive task data from normal Ansible output. It does not prevent a command from leaking secrets into external files or services. A practical response is: Fix file handling and permissions in addition to suppressing logs. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that no_log encrypts every remote file created by a task.",
+      "answerChecklist": [
+        "Sensitive task data from normal Ansible output",
+        "It does not prevent a command from leaking secrets into external files or services",
+        "Fix file handling and permissions in addition to suppressing logs",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "A task hides output but writes a password into a world-readable file. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "ansible",
+      "objective": "Explain automation validation and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Automation validation \u2014 primary reference",
+          "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
+        }
+      ],
+      "tags": [
+        "ansible",
+        "automation-validation"
+      ],
+      "takeaway": "Syntax checks cannot prove target permissions or service readiness.",
+      "explanation": "Representative execution and checks of the resulting system behavior. Syntax checks cannot prove target permissions or service readiness. In the scenario, test in a representative environment with explicit postconditions. The alternative \u2018Remove runtime verification because static checks passed\u2019 does not address the stated evidence or constraint.",
+      "id": "ansible-30-concept",
+      "title": "Automation validation \u00b7 concept",
+      "type": "concept",
+      "question": "What should follow successful syntax validation?",
+      "options": [
+        "Syntax success guarantees the play is safe for production",
+        "A lint pass proves all remote dependencies exist",
+        "Remove runtime verification because static checks passed",
+        "Representative execution and checks of the resulting system behavior"
+      ],
+      "correct": [
+        3
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "ansible",
+      "objective": "Explain automation validation and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Automation validation \u2014 primary reference",
+          "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
+        }
+      ],
+      "tags": [
+        "ansible",
+        "automation-validation"
+      ],
+      "takeaway": "Syntax checks cannot prove target permissions or service readiness.",
+      "explanation": "Representative execution and checks of the resulting system behavior. Syntax checks cannot prove target permissions or service readiness. In the scenario, test in a representative environment with explicit postconditions. The alternative \u2018Remove runtime verification because static checks passed\u2019 does not address the stated evidence or constraint.",
+      "id": "ansible-30-scenario",
+      "title": "Automation validation \u00b7 scenario",
+      "type": "scenario",
+      "question": "A play passes lint but fails during a live service reload. What is the best next step?",
+      "options": [
+        "Syntax success guarantees the play is safe for production",
+        "A lint pass proves all remote dependencies exist",
+        "Test in a representative environment with explicit postconditions",
+        "Remove runtime verification because static checks passed"
+      ],
+      "correct": [
+        2
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "ansible",
+      "objective": "Explain automation validation and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Automation validation \u2014 primary reference",
+          "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
+        }
+      ],
+      "tags": [
+        "ansible",
+        "automation-validation"
+      ],
+      "takeaway": "Syntax checks cannot prove target permissions or service readiness.",
+      "explanation": "Representative execution and checks of the resulting system behavior. Syntax checks cannot prove target permissions or service readiness. In the scenario, test in a representative environment with explicit postconditions. The alternative \u2018Remove runtime verification because static checks passed\u2019 does not address the stated evidence or constraint.",
+      "id": "ansible-30-principles",
+      "title": "Automation validation \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing automation validation, which TWO statements are sound operational principles?",
+      "options": [
+        "A lint pass proves all remote dependencies exist",
+        "Representative execution and checks of the resulting system behavior",
+        "Syntax checks cannot prove target permissions or service readiness",
+        "Syntax success guarantees the play is safe for production"
+      ],
+      "correct": [
+        1,
+        2
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "ansible",
+      "objective": "Explain automation validation and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Automation validation \u2014 primary reference",
+          "url": "https://docs.ansible.com/ansible/latest/playbook_guide/index.html"
+        }
+      ],
+      "tags": [
+        "ansible",
+        "automation-validation"
+      ],
+      "takeaway": "Syntax checks cannot prove target permissions or service readiness.",
+      "explanation": "Representative execution and checks of the resulting system behavior. Syntax checks cannot prove target permissions or service readiness. In the scenario, test in a representative environment with explicit postconditions. The alternative \u2018Remove runtime verification because static checks passed\u2019 does not address the stated evidence or constraint.",
+      "id": "ansible-30-interview",
+      "title": "Automation validation \u00b7 interview",
+      "type": "interview",
+      "question": "Explain a layered validation strategy for configuration automation.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "Representative execution and checks of the resulting system behavior. Syntax checks cannot prove target permissions or service readiness. A practical response is: Test in a representative environment with explicit postconditions. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that syntax success guarantees the play is safe for production.",
+      "answerChecklist": [
+        "Representative execution and checks of the resulting system behavior",
+        "Syntax checks cannot prove target permissions or service readiness",
+        "Test in a representative environment with explicit postconditions",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "A play passes lint but fails during a live service reload. Explain the evidence that would change your decision."
+      ]
+    }
+  ]
+}

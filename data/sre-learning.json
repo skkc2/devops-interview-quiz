@@ -1,0 +1,817 @@
+{
+  "subject": "sre",
+  "lessons": [
+    {
+      "id": "sre-lesson-01",
+      "topic": "sre",
+      "title": "SLIs",
+      "summary": "An aspect of service behavior experienced by users.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Choose a measurement population and a precise definition."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A dashboard tracks CPU but users report failed checkouts. Define a checkout success indicator from eligible requests."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "An SLI is always a contractual penalty. This is not a sound assumption; an aspect of service behavior experienced by users."
+        }
+      ],
+      "takeaway": "Choose a measurement population and a precise definition.",
+      "references": [
+        {
+          "title": "SLIs \u2014 primary reference",
+          "url": "https://sre.google/workbook/implementing-slos/"
+        }
+      ]
+    },
+    {
+      "id": "sre-lesson-02",
+      "topic": "sre",
+      "title": "SLOs",
+      "summary": "A target for an SLI over a defined window.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Targets should reflect user needs and business trade-offs."
+        },
+        {
+          "heading": "Apply it",
+          "body": "Teams argue over whether current reliability is sufficient. Agree on a measurable target and evaluation window."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "An SLO guarantees that outages cannot happen. This is not a sound assumption; a target for an SLI over a defined window."
+        }
+      ],
+      "takeaway": "Targets should reflect user needs and business trade-offs.",
+      "references": [
+        {
+          "title": "SLOs \u2014 primary reference",
+          "url": "https://sre.google/workbook/implementing-slos/"
+        }
+      ]
+    },
+    {
+      "id": "sre-lesson-03",
+      "topic": "sre",
+      "title": "Error budgets",
+      "summary": "The allowed unreliability implied by an SLO.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Budget policy connects reliability performance to release decisions."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A service exhausts its error budget during repeated risky releases. Apply the agreed reliability policy and prioritize stabilization."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "It is a budget for buying monitoring software. This is not a sound assumption; the allowed unreliability implied by an SLO."
+        }
+      ],
+      "takeaway": "Budget policy connects reliability performance to release decisions.",
+      "references": [
+        {
+          "title": "Error budgets \u2014 primary reference",
+          "url": "https://sre.google/workbook/implementing-slos/"
+        }
+      ]
+    },
+    {
+      "id": "sre-lesson-04",
+      "topic": "sre",
+      "title": "Incident roles",
+      "summary": "To coordinate decisions roles and communication.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Coordination can be separate from hands-on diagnosis."
+        },
+        {
+          "heading": "Apply it",
+          "body": "Several responders make conflicting production changes. Establish coordination and track owners of mitigation actions."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "The commander must personally execute every command. This is not a sound assumption; to coordinate decisions roles and communication."
+        }
+      ],
+      "takeaway": "Coordination can be separate from hands-on diagnosis.",
+      "references": [
+        {
+          "title": "Incident roles \u2014 primary reference",
+          "url": "https://sre.google/workbook/incident-response/"
+        }
+      ]
+    },
+    {
+      "id": "sre-lesson-05",
+      "topic": "sre",
+      "title": "Mitigation",
+      "summary": "Reduce impact while preserving useful evidence.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Root-cause investigation can continue after stabilization."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A recent release is strongly correlated with failures and rollback is safe. Evaluate and execute the known rollback while monitoring recovery."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "A full root-cause report must precede every mitigation. This is not a sound assumption; reduce impact while preserving useful evidence."
+        }
+      ],
+      "takeaway": "Root-cause investigation can continue after stabilization.",
+      "references": [
+        {
+          "title": "Mitigation \u2014 primary reference",
+          "url": "https://sre.google/workbook/incident-response/"
+        }
+      ]
+    },
+    {
+      "id": "sre-lesson-06",
+      "topic": "sre",
+      "title": "Postmortems",
+      "summary": "Learn how system conditions enabled an incident.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Useful actions have owners and verifiable outcomes."
+        },
+        {
+          "heading": "Apply it",
+          "body": "The same outage recurs after a report with vague recommendations. Create specific owned improvements and track completion."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "Blameless means avoiding any discussion of decisions. This is not a sound assumption; learn how system conditions enabled an incident."
+        }
+      ],
+      "takeaway": "Useful actions have owners and verifiable outcomes.",
+      "references": [
+        {
+          "title": "Postmortems \u2014 primary reference",
+          "url": "https://sre.google/workbook/postmortem-culture/"
+        }
+      ]
+    },
+    {
+      "id": "sre-lesson-07",
+      "topic": "sre",
+      "title": "Toil",
+      "summary": "Repetitive operational work that scales with service growth.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Not all valuable operational work is toil."
+        },
+        {
+          "heading": "Apply it",
+          "body": "Engineers manually perform the same routine provisioning each day. Measure the repetition and evaluate safe automation."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "Every manual task is necessarily worthless. This is not a sound assumption; repetitive operational work that scales with service growth."
+        }
+      ],
+      "takeaway": "Not all valuable operational work is toil.",
+      "references": [
+        {
+          "title": "Toil \u2014 primary reference",
+          "url": "https://sre.google/workbook/eliminating-toil/"
+        }
+      ]
+    },
+    {
+      "id": "sre-lesson-08",
+      "topic": "sre",
+      "title": "Runbooks",
+      "summary": "Clear symptoms evidence actions and escalation criteria.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Runbooks need ownership and periodic validation."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A responder follows an old procedure and worsens an outage. Validate the procedure and add bounded steps with stop conditions."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "A long untested command list is sufficient. This is not a sound assumption; clear symptoms evidence actions and escalation criteria."
+        }
+      ],
+      "takeaway": "Runbooks need ownership and periodic validation.",
+      "references": [
+        {
+          "title": "Runbooks \u2014 primary reference",
+          "url": "https://sre.google/sre-book/reliable-product-launches/"
+        }
+      ]
+    },
+    {
+      "id": "sre-lesson-09",
+      "topic": "sre",
+      "title": "Burn rate",
+      "summary": "Budget is being consumed faster than the sustainable SLO rate.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Burn rate must be interpreted with its measurement window."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A brief spike triggers pages despite negligible long-term budget impact. Evaluate multiwindow burn-rate alerts against meaningful budget consumption."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "It always means the entire budget is already exhausted. This is not a sound assumption; budget is being consumed faster than the sustainable SLO rate."
+        }
+      ],
+      "takeaway": "Burn rate must be interpreted with its measurement window.",
+      "references": [
+        {
+          "title": "Burn rate \u2014 primary reference",
+          "url": "https://sre.google/workbook/alerting-on-slos/"
+        }
+      ]
+    },
+    {
+      "id": "sre-lesson-10",
+      "topic": "sre",
+      "title": "Latency indicators",
+      "summary": "A small slow tail can be masked by many fast requests.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Latency targets should define thresholds and relevant populations."
+        },
+        {
+          "heading": "Apply it",
+          "body": "Mean latency is stable but a subset of users sees long delays. Inspect latency distribution and affected cohorts."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "The average always equals the slowest request. This is not a sound assumption; a small slow tail can be masked by many fast requests."
+        }
+      ],
+      "takeaway": "Latency targets should define thresholds and relevant populations.",
+      "references": [
+        {
+          "title": "Latency indicators \u2014 primary reference",
+          "url": "https://sre.google/workbook/implementing-slos/"
+        }
+      ]
+    },
+    {
+      "id": "sre-lesson-11",
+      "topic": "sre",
+      "title": "Alert actionability",
+      "summary": "A human action is needed within a relevant response time.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Nonurgent information can often become a ticket or dashboard."
+        },
+        {
+          "heading": "Apply it",
+          "body": "Responders receive hundreds of nonactionable overnight alerts. Review pages for impact urgency and an actionable response."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "Every metric anomaly must page immediately. This is not a sound assumption; a human action is needed within a relevant response time."
+        }
+      ],
+      "takeaway": "Nonurgent information can often become a ticket or dashboard.",
+      "references": [
+        {
+          "title": "Alert actionability \u2014 primary reference",
+          "url": "https://sre.google/workbook/alerting-on-slos/"
+        }
+      ]
+    },
+    {
+      "id": "sre-lesson-12",
+      "topic": "sre",
+      "title": "Capacity headroom",
+      "summary": "To absorb demand variation failures and recovery work.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Capacity planning should include loss of a failure domain."
+        },
+        {
+          "heading": "Apply it",
+          "body": "One zone fails and surviving instances immediately saturate. Evaluate remaining capacity under the failure scenario."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "Average demand alone is sufficient for all capacity decisions. This is not a sound assumption; to absorb demand variation failures and recovery work."
+        }
+      ],
+      "takeaway": "Capacity planning should include loss of a failure domain.",
+      "references": [
+        {
+          "title": "Capacity headroom \u2014 primary reference",
+          "url": "https://sre.google/workbook/overload/"
+        }
+      ]
+    },
+    {
+      "id": "sre-lesson-13",
+      "topic": "sre",
+      "title": "Load shedding",
+      "summary": "Reject some work to protect useful service under overload.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Prioritization and bounded queues can preserve critical traffic."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A backend is overloaded and queues grow without bound. Bound the queue and shed lower-priority work with clear signals."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "Accepting every request always improves availability. This is not a sound assumption; reject some work to protect useful service under overload."
+        }
+      ],
+      "takeaway": "Prioritization and bounded queues can preserve critical traffic.",
+      "references": [
+        {
+          "title": "Load shedding \u2014 primary reference",
+          "url": "https://sre.google/workbook/overload/"
+        }
+      ]
+    },
+    {
+      "id": "sre-lesson-14",
+      "topic": "sre",
+      "title": "Backpressure",
+      "summary": "Downstream capacity constraints to upstream producers.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Producer behavior must respond to the signal to be effective."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A queue grows faster than workers can drain it. Limit producer rate or increase sustainable processing capacity."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "Backpressure creates unlimited downstream capacity. This is not a sound assumption; downstream capacity constraints to upstream producers."
+        }
+      ],
+      "takeaway": "Producer behavior must respond to the signal to be effective.",
+      "references": [
+        {
+          "title": "Backpressure \u2014 primary reference",
+          "url": "https://sre.google/workbook/overload/"
+        }
+      ]
+    },
+    {
+      "id": "sre-lesson-15",
+      "topic": "sre",
+      "title": "Retry storms",
+      "summary": "Each layer may repeat work already being retried elsewhere.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Retry policies need an end-to-end budget."
+        },
+        {
+          "heading": "Apply it",
+          "body": "Three service layers each retry failed calls several times. Coordinate retry ownership and bound total attempts."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "Retries at every layer always reduce traffic. This is not a sound assumption; each layer may repeat work already being retried elsewhere."
+        }
+      ],
+      "takeaway": "Retry policies need an end-to-end budget.",
+      "references": [
+        {
+          "title": "Retry storms \u2014 primary reference",
+          "url": "https://sre.google/workbook/overload/"
+        }
+      ]
+    },
+    {
+      "id": "sre-lesson-16",
+      "topic": "sre",
+      "title": "Recovery testing",
+      "summary": "A successful verified restore meeting recovery requirements.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Backup completion alone does not prove recoverability."
+        },
+        {
+          "heading": "Apply it",
+          "body": "Backups succeed but no one has restored the current application version. Run an isolated restore exercise and verify data and service behavior."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "A green backup job guarantees any restore will work. This is not a sound assumption; a successful verified restore meeting recovery requirements."
+        }
+      ],
+      "takeaway": "Backup completion alone does not prove recoverability.",
+      "references": [
+        {
+          "title": "Recovery testing \u2014 primary reference",
+          "url": "https://sre.google/sre-book/reliable-product-launches/"
+        }
+      ]
+    },
+    {
+      "id": "sre-lesson-17",
+      "topic": "sre",
+      "title": "RTO",
+      "summary": "The target duration to restore service after disruption.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Recovery dependencies and human steps contribute to elapsed recovery time."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A recovery plan promises one hour but identity recovery takes two hours. Exercise the complete dependency chain and revise the plan."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "It specifies the maximum acceptable data-loss window. This is not a sound assumption; the target duration to restore service after disruption."
+        }
+      ],
+      "takeaway": "Recovery dependencies and human steps contribute to elapsed recovery time.",
+      "references": [
+        {
+          "title": "RTO \u2014 primary reference",
+          "url": "https://sre.google/sre-book/reliable-product-launches/"
+        }
+      ]
+    },
+    {
+      "id": "sre-lesson-18",
+      "topic": "sre",
+      "title": "RPO",
+      "summary": "The acceptable data-loss window after a disruption.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Replication lag and backup frequency affect achievable recovery points."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A restore loses six hours of writes despite a one-hour RPO. Compare backup and replication behavior with the required loss window."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "It is the maximum allowed service restart time. This is not a sound assumption; the acceptable data-loss window after a disruption."
+        }
+      ],
+      "takeaway": "Replication lag and backup frequency affect achievable recovery points.",
+      "references": [
+        {
+          "title": "RPO \u2014 primary reference",
+          "url": "https://sre.google/sre-book/reliable-product-launches/"
+        }
+      ]
+    },
+    {
+      "id": "sre-lesson-19",
+      "topic": "sre",
+      "title": "Canary releases",
+      "summary": "Limit exposure while comparing a new version with a baseline.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Canary metrics must represent meaningful user impact."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A new version raises error rates only for one request category. Compare relevant cohorts and stop or roll back the canary."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "A canary proves there can be no production defects. This is not a sound assumption; limit exposure while comparing a new version with a baseline."
+        }
+      ],
+      "takeaway": "Canary metrics must represent meaningful user impact.",
+      "references": [
+        {
+          "title": "Canary releases \u2014 primary reference",
+          "url": "https://sre.google/workbook/canarying-releases/"
+        }
+      ]
+    },
+    {
+      "id": "sre-lesson-20",
+      "topic": "sre",
+      "title": "Feature flags",
+      "summary": "Disable a behavior independently of redeploying the whole binary.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Flags need ownership lifecycle management and tested fallback paths."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A newly enabled feature causes a dependency overload. Disable the flag if its fallback is safe and verify recovery."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "Flags automatically undo irreversible data mutations. This is not a sound assumption; disable a behavior independently of redeploying the whole binary."
+        }
+      ],
+      "takeaway": "Flags need ownership lifecycle management and tested fallback paths.",
+      "references": [
+        {
+          "title": "Feature flags \u2014 primary reference",
+          "url": "https://sre.google/workbook/canarying-releases/"
+        }
+      ]
+    },
+    {
+      "id": "sre-lesson-21",
+      "topic": "sre",
+      "title": "Dependencies",
+      "summary": "Shared dependencies can create correlated failures.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Dependency health should be understood from the caller's perspective."
+        },
+        {
+          "heading": "Apply it",
+          "body": "Several services fail after a shared identity system outage. Investigate the common dependency and caller failure behavior."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "Independent service names guarantee independent failure modes. This is not a sound assumption; shared dependencies can create correlated failures."
+        }
+      ],
+      "takeaway": "Dependency health should be understood from the caller's perspective.",
+      "references": [
+        {
+          "title": "Dependencies \u2014 primary reference",
+          "url": "https://sre.google/sre-book/reliable-product-launches/"
+        }
+      ]
+    },
+    {
+      "id": "sre-lesson-22",
+      "topic": "sre",
+      "title": "Graceful degradation",
+      "summary": "Preserving important functions when some capabilities fail.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Fallback behavior should be explicitly designed and tested."
+        },
+        {
+          "heading": "Apply it",
+          "body": "Recommendations fail but checkout can work without them. Serve checkout with the optional recommendation feature degraded."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "It means reporting success for every failed request. This is not a sound assumption; preserving important functions when some capabilities fail."
+        }
+      ],
+      "takeaway": "Fallback behavior should be explicitly designed and tested.",
+      "references": [
+        {
+          "title": "Graceful degradation \u2014 primary reference",
+          "url": "https://sre.google/sre-book/reliable-product-launches/"
+        }
+      ]
+    },
+    {
+      "id": "sre-lesson-23",
+      "topic": "sre",
+      "title": "Chaos experiments",
+      "summary": "A hypothesis limited scope and explicit abort conditions.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Start with safe scope and measurable steady-state behavior."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A team proposes an unbounded production failure test. Define a hypothesis blast radius and stop conditions first."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "Randomly breaking production is sufficient experiment design. This is not a sound assumption; a hypothesis limited scope and explicit abort conditions."
+        }
+      ],
+      "takeaway": "Start with safe scope and measurable steady-state behavior.",
+      "references": [
+        {
+          "title": "Chaos experiments \u2014 primary reference",
+          "url": "https://sre.google/sre-book/reliable-product-launches/"
+        }
+      ]
+    },
+    {
+      "id": "sre-lesson-24",
+      "topic": "sre",
+      "title": "Incident communication",
+      "summary": "Stakeholders need consistent impact and recovery information.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Uncertainty should be stated rather than replaced with invented certainty."
+        },
+        {
+          "heading": "Apply it",
+          "body": "Support receives conflicting guesses from different responders. Assign a communication owner and publish evidence-based updates."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "Only a final root cause is worth communicating. This is not a sound assumption; stakeholders need consistent impact and recovery information."
+        }
+      ],
+      "takeaway": "Uncertainty should be stated rather than replaced with invented certainty.",
+      "references": [
+        {
+          "title": "Incident communication \u2014 primary reference",
+          "url": "https://sre.google/workbook/incident-response/"
+        }
+      ]
+    },
+    {
+      "id": "sre-lesson-25",
+      "topic": "sre",
+      "title": "SLO aggregation",
+      "summary": "High-volume healthy traffic can mask a failing user segment.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Segmented indicators can complement an overall SLO."
+        },
+        {
+          "heading": "Apply it",
+          "body": "One region is down but global availability remains above target. Inspect region and critical-journey indicators alongside the global metric."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "An overall SLO guarantees every region meets the same target. This is not a sound assumption; high-volume healthy traffic can mask a failing user segment."
+        }
+      ],
+      "takeaway": "Segmented indicators can complement an overall SLO.",
+      "references": [
+        {
+          "title": "SLO aggregation \u2014 primary reference",
+          "url": "https://sre.google/workbook/implementing-slos/"
+        }
+      ]
+    },
+    {
+      "id": "sre-lesson-26",
+      "topic": "sre",
+      "title": "Overload recovery",
+      "summary": "Retries cache warming and reconnects add demand during recovery.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Recovery should be staged within available capacity."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A restored service is overwhelmed by reconnecting clients. Ramp traffic and control retries while observing saturation."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "Restarting every instance simultaneously always restores service fastest. This is not a sound assumption; retries cache warming and reconnects add demand during recovery."
+        }
+      ],
+      "takeaway": "Recovery should be staged within available capacity.",
+      "references": [
+        {
+          "title": "Overload recovery \u2014 primary reference",
+          "url": "https://sre.google/workbook/overload/"
+        }
+      ]
+    },
+    {
+      "id": "sre-lesson-27",
+      "topic": "sre",
+      "title": "Consistency trade-offs",
+      "summary": "Failure behavior depends on which guarantees the application needs.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Different operations can require different consistency guarantees."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A partition forces a decision for account-balance updates. Prioritize the required correctness guarantee and define failure behavior."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "Every distributed operation can always be available and strongly consistent during partitions. This is not a sound assumption; failure behavior depends on which guarantees the application needs."
+        }
+      ],
+      "takeaway": "Different operations can require different consistency guarantees.",
+      "references": [
+        {
+          "title": "Consistency trade-offs \u2014 primary reference",
+          "url": "https://sre.google/sre-book/managing-critical-state/"
+        }
+      ]
+    },
+    {
+      "id": "sre-lesson-28",
+      "topic": "sre",
+      "title": "Reliability investment",
+      "summary": "By user impact risk and expected reduction of recurring failure.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Frequency duration and blast radius all influence value."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A rare failure affects all customers while frequent minor alerts affect none. Compare impact and risk before selecting the next engineering project."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "The newest monitoring tool is always the highest-value investment. This is not a sound assumption; by user impact risk and expected reduction of recurring failure."
+        }
+      ],
+      "takeaway": "Frequency duration and blast radius all influence value.",
+      "references": [
+        {
+          "title": "Reliability investment \u2014 primary reference",
+          "url": "https://sre.google/sre-book/reliable-product-launches/"
+        }
+      ]
+    },
+    {
+      "id": "sre-lesson-29",
+      "topic": "sre",
+      "title": "Incident metrics",
+      "summary": "It can hide distribution incident severity and changing classification.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Metrics need stable definitions and contextual interpretation."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A dashboard improves after severe incidents are reclassified away. Audit definitions and inspect distributions by comparable incident class."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "A lower average always proves every incident class improved. This is not a sound assumption; it can hide distribution incident severity and changing classification."
+        }
+      ],
+      "takeaway": "Metrics need stable definitions and contextual interpretation.",
+      "references": [
+        {
+          "title": "Incident metrics \u2014 primary reference",
+          "url": "https://sre.google/workbook/postmortem-culture/"
+        }
+      ]
+    },
+    {
+      "id": "sre-lesson-30",
+      "topic": "sre",
+      "title": "Safe automation",
+      "summary": "Bounded scope verification and a safe stop or rollback path.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Automation can amplify mistakes as quickly as successful actions."
+        },
+        {
+          "heading": "Apply it",
+          "body": "An automated restart loop repeatedly disrupts healthy instances. Add evidence-based guards cooldowns and post-action checks."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "Automated actions are inherently safer than manual actions. This is not a sound assumption; bounded scope verification and a safe stop or rollback path."
+        }
+      ],
+      "takeaway": "Automation can amplify mistakes as quickly as successful actions.",
+      "references": [
+        {
+          "title": "Safe automation \u2014 primary reference",
+          "url": "https://sre.google/workbook/eliminating-toil/"
+        }
+      ]
+    }
+  ],
+  "commands": [],
+  "debugging": []
+}

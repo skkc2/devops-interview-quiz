@@ -1,0 +1,817 @@
+{
+  "subject": "terraform",
+  "lessons": [
+    {
+      "id": "terraform-lesson-01",
+      "topic": "terraform",
+      "title": "Desired state",
+      "summary": "The desired state of managed infrastructure.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Providers translate resource operations into service API calls."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A resource was edited manually and differs from configuration. Review the plan for drift before applying changes."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "It is only a sequential shell script. This is not a sound assumption; the desired state of managed infrastructure."
+        }
+      ],
+      "takeaway": "Providers translate resource operations into service API calls.",
+      "references": [
+        {
+          "title": "Desired state \u2014 primary reference",
+          "url": "https://developer.hashicorp.com/terraform/language"
+        }
+      ]
+    },
+    {
+      "id": "terraform-lesson-02",
+      "topic": "terraform",
+      "title": "Initialization",
+      "summary": "Initialize the working directory and required dependencies.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Backend changes may require explicit migration decisions."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A fresh checkout cannot load its provider dependencies. Run initialization with the intended backend configuration."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "It applies every planned infrastructure change. This is not a sound assumption; initialize the working directory and required dependencies."
+        }
+      ],
+      "takeaway": "Backend changes may require explicit migration decisions.",
+      "references": [
+        {
+          "title": "Initialization \u2014 primary reference",
+          "url": "https://developer.hashicorp.com/terraform/language"
+        }
+      ]
+    },
+    {
+      "id": "terraform-lesson-03",
+      "topic": "terraform",
+      "title": "Planning",
+      "summary": "A proposed set of changes based on configuration and observed state.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "A plan is a review opportunity rather than a guarantee against future drift."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A plan unexpectedly proposes replacing a database. Inspect the replacement cause and data-protection strategy."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "It necessarily performs every proposed change. This is not a sound assumption; a proposed set of changes based on configuration and observed state."
+        }
+      ],
+      "takeaway": "A plan is a review opportunity rather than a guarantee against future drift.",
+      "references": [
+        {
+          "title": "Planning \u2014 primary reference",
+          "url": "https://developer.hashicorp.com/terraform/language"
+        }
+      ]
+    },
+    {
+      "id": "terraform-lesson-04",
+      "topic": "terraform",
+      "title": "State mapping",
+      "summary": "To map configuration addresses to managed remote objects.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "State is operational data that requires protection and recovery planning."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A resource exists remotely but its state mapping is missing. Investigate the mapping and consider a controlled import."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "State is merely optional console formatting. This is not a sound assumption; to map configuration addresses to managed remote objects."
+        }
+      ],
+      "takeaway": "State is operational data that requires protection and recovery planning.",
+      "references": [
+        {
+          "title": "State mapping \u2014 primary reference",
+          "url": "https://developer.hashicorp.com/terraform/language"
+        }
+      ]
+    },
+    {
+      "id": "terraform-lesson-05",
+      "topic": "terraform",
+      "title": "Variables",
+      "summary": "Parameters for a Terraform module.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Types and validation can catch invalid inputs early."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A module receives an invalid environment name. Add explicit input validation and clear accepted values."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "Variables automatically encrypt every value. This is not a sound assumption; parameters for a Terraform module."
+        }
+      ],
+      "takeaway": "Types and validation can catch invalid inputs early.",
+      "references": [
+        {
+          "title": "Variables \u2014 primary reference",
+          "url": "https://developer.hashicorp.com/terraform/language"
+        }
+      ]
+    },
+    {
+      "id": "terraform-lesson-06",
+      "topic": "terraform",
+      "title": "Outputs",
+      "summary": "Expose selected values from a module.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Outputs can contain sensitive data and need appropriate handling."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A pipeline prints a credential-bearing output into shared logs. Mark and handle sensitive values appropriately and restrict log exposure."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "Outputs are never stored with state. This is not a sound assumption; expose selected values from a module."
+        }
+      ],
+      "takeaway": "Outputs can contain sensitive data and need appropriate handling.",
+      "references": [
+        {
+          "title": "Outputs \u2014 primary reference",
+          "url": "https://developer.hashicorp.com/terraform/language"
+        }
+      ]
+    },
+    {
+      "id": "terraform-lesson-07",
+      "topic": "terraform",
+      "title": "Providers",
+      "summary": "A plugin implementing interactions with a service or platform.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Provider versions affect resource behavior and schema."
+        },
+        {
+          "heading": "Apply it",
+          "body": "An upgrade changes a resource's planned behavior. Review provider version changes and test the plan."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "A provider is the same thing as a variable file. This is not a sound assumption; a plugin implementing interactions with a service or platform."
+        }
+      ],
+      "takeaway": "Provider versions affect resource behavior and schema.",
+      "references": [
+        {
+          "title": "Providers \u2014 primary reference",
+          "url": "https://developer.hashicorp.com/terraform/language"
+        }
+      ]
+    },
+    {
+      "id": "terraform-lesson-08",
+      "topic": "terraform",
+      "title": "Modules",
+      "summary": "A reusable group of Terraform configuration.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "A clear module interface reduces coupling to implementation details."
+        },
+        {
+          "heading": "Apply it",
+          "body": "Teams duplicate similar infrastructure with inconsistent defaults. Create a versioned module with deliberate inputs and outputs."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "A module is a separate cloud account by definition. This is not a sound assumption; a reusable group of Terraform configuration."
+        }
+      ],
+      "takeaway": "A clear module interface reduces coupling to implementation details.",
+      "references": [
+        {
+          "title": "Modules \u2014 primary reference",
+          "url": "https://developer.hashicorp.com/terraform/language"
+        }
+      ]
+    },
+    {
+      "id": "terraform-lesson-09",
+      "topic": "terraform",
+      "title": "Lock files",
+      "summary": "Selected provider versions and checksums.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Commit the lock file to support consistent provider selection."
+        },
+        {
+          "heading": "Apply it",
+          "body": "Two CI runs install different provider builds after initialization. Review constraints and commit the intended provider lock selections."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "It locks all remote infrastructure against edits. This is not a sound assumption; selected provider versions and checksums."
+        }
+      ],
+      "takeaway": "Commit the lock file to support consistent provider selection.",
+      "references": [
+        {
+          "title": "Lock files \u2014 primary reference",
+          "url": "https://developer.hashicorp.com/terraform/language"
+        }
+      ]
+    },
+    {
+      "id": "terraform-lesson-10",
+      "topic": "terraform",
+      "title": "Remote state",
+      "summary": "It centralizes state access and can support collaboration controls.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Backend locking capability depends on the chosen backend."
+        },
+        {
+          "heading": "Apply it",
+          "body": "Two engineers apply against separate local state copies. Move to a coordinated backend with appropriate access and locking."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "Remote storage makes all state contents non-sensitive. This is not a sound assumption; it centralizes state access and can support collaboration controls."
+        }
+      ],
+      "takeaway": "Backend locking capability depends on the chosen backend.",
+      "references": [
+        {
+          "title": "Remote state \u2014 primary reference",
+          "url": "https://developer.hashicorp.com/terraform/language"
+        }
+      ]
+    },
+    {
+      "id": "terraform-lesson-11",
+      "topic": "terraform",
+      "title": "State locking",
+      "summary": "Concurrent writers corrupting the same state workflow.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "A lock should be cleared only after verifying its owner is inactive."
+        },
+        {
+          "heading": "Apply it",
+          "body": "An apply is blocked by a lock after a runner interruption. Verify the original operation stopped before a controlled unlock."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "Locking prevents every manual cloud-console edit. This is not a sound assumption; concurrent writers corrupting the same state workflow."
+        }
+      ],
+      "takeaway": "A lock should be cleared only after verifying its owner is inactive.",
+      "references": [
+        {
+          "title": "State locking \u2014 primary reference",
+          "url": "https://developer.hashicorp.com/terraform/language"
+        }
+      ]
+    },
+    {
+      "id": "terraform-lesson-12",
+      "topic": "terraform",
+      "title": "Sensitive values",
+      "summary": "Redact it from ordinary user-facing output.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Sensitive marking alone does not encrypt stored state."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A team commits state believing sensitive values were removed. Restrict and remediate exposure and secure the state storage."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "It removes every occurrence from state automatically. This is not a sound assumption; redact it from ordinary user-facing output."
+        }
+      ],
+      "takeaway": "Sensitive marking alone does not encrypt stored state.",
+      "references": [
+        {
+          "title": "Sensitive values \u2014 primary reference",
+          "url": "https://developer.hashicorp.com/terraform/language"
+        }
+      ]
+    },
+    {
+      "id": "terraform-lesson-13",
+      "topic": "terraform",
+      "title": "Resource addresses",
+      "summary": "Keys form part of resource instance identity.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Changing a key can appear as removal and creation."
+        },
+        {
+          "heading": "Apply it",
+          "body": "Renaming a map key proposes destroying a live object. Review address migration and use an appropriate moved mapping."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "Keys only affect display order. This is not a sound assumption; keys form part of resource instance identity."
+        }
+      ],
+      "takeaway": "Changing a key can appear as removal and creation.",
+      "references": [
+        {
+          "title": "Resource addresses \u2014 primary reference",
+          "url": "https://developer.hashicorp.com/terraform/language"
+        }
+      ]
+    },
+    {
+      "id": "terraform-lesson-14",
+      "topic": "terraform",
+      "title": "Count indexing",
+      "summary": "Later numeric indices can shift their resource associations.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Stable semantic keys can reduce unintended identity changes."
+        },
+        {
+          "heading": "Apply it",
+          "body": "Removing the first subnet name causes several unexpected changes. Review index shifts and migrate toward stable keys where appropriate."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "Count indices are permanently tied to object names. This is not a sound assumption; later numeric indices can shift their resource associations."
+        }
+      ],
+      "takeaway": "Stable semantic keys can reduce unintended identity changes.",
+      "references": [
+        {
+          "title": "Count indexing \u2014 primary reference",
+          "url": "https://developer.hashicorp.com/terraform/language"
+        }
+      ]
+    },
+    {
+      "id": "terraform-lesson-15",
+      "topic": "terraform",
+      "title": "Dependencies",
+      "summary": "References between resource values form graph edges.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Explicit depends_on is for dependencies not represented by normal references."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A resource requires a hidden prerequisite not expressed by an input reference. Represent the dependency explicitly and explain why it is needed."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "File ordering determines every resource execution order. This is not a sound assumption; references between resource values form graph edges."
+        }
+      ],
+      "takeaway": "Explicit depends_on is for dependencies not represented by normal references.",
+      "references": [
+        {
+          "title": "Dependencies \u2014 primary reference",
+          "url": "https://developer.hashicorp.com/terraform/language"
+        }
+      ]
+    },
+    {
+      "id": "terraform-lesson-16",
+      "topic": "terraform",
+      "title": "Data sources",
+      "summary": "Read information about objects or service data.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Reading an object is different from declaring ownership of its lifecycle."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A module needs an existing network identifier without managing that network. Use an appropriate data lookup or explicit input."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "Every data source creates the referenced object. This is not a sound assumption; read information about objects or service data."
+        }
+      ],
+      "takeaway": "Reading an object is different from declaring ownership of its lifecycle.",
+      "references": [
+        {
+          "title": "Data sources \u2014 primary reference",
+          "url": "https://developer.hashicorp.com/terraform/language"
+        }
+      ]
+    },
+    {
+      "id": "terraform-lesson-17",
+      "topic": "terraform",
+      "title": "Import",
+      "summary": "A mapping from an existing remote object to a resource address.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Configuration still needs to match intended management behavior."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A manually created database must become managed infrastructure. Prepare configuration import the object and review the resulting plan."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "Import guarantees a subsequent plan has no changes. This is not a sound assumption; a mapping from an existing remote object to a resource address."
+        }
+      ],
+      "takeaway": "Configuration still needs to match intended management behavior.",
+      "references": [
+        {
+          "title": "Import \u2014 primary reference",
+          "url": "https://developer.hashicorp.com/terraform/language"
+        }
+      ]
+    },
+    {
+      "id": "terraform-lesson-18",
+      "topic": "terraform",
+      "title": "Moved blocks",
+      "summary": "An intentional resource address change.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Address migration can preserve an existing object's identity."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A refactor moves a resource into a child module. Describe the address move and verify the plan avoids unintended replacement."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "It automatically copies data between unrelated databases. This is not a sound assumption; an intentional resource address change."
+        }
+      ],
+      "takeaway": "Address migration can preserve an existing object's identity.",
+      "references": [
+        {
+          "title": "Moved blocks \u2014 primary reference",
+          "url": "https://developer.hashicorp.com/terraform/language"
+        }
+      ]
+    },
+    {
+      "id": "terraform-lesson-19",
+      "topic": "terraform",
+      "title": "Lifecycle protection",
+      "summary": "It is a configuration safeguard rather than universal deletion protection.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Remote authorization and backups remain necessary."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A critical database has prevent_destroy but administrators can delete it externally. Add appropriate service-level protection and recovery controls."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "It prevents deletion through every external API. This is not a sound assumption; it is a configuration safeguard rather than universal deletion protection."
+        }
+      ],
+      "takeaway": "Remote authorization and backups remain necessary.",
+      "references": [
+        {
+          "title": "Lifecycle protection \u2014 primary reference",
+          "url": "https://developer.hashicorp.com/terraform/language"
+        }
+      ]
+    },
+    {
+      "id": "terraform-lesson-20",
+      "topic": "terraform",
+      "title": "Ignored changes",
+      "summary": "It delegates selected differences away from normal reconciliation.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Broad ignores can hide meaningful configuration drift."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A broad lifecycle ignore hides an unexpected security setting change. Narrow the ignored attributes and review ownership boundaries."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "It makes ignored attributes immutable in the remote service. This is not a sound assumption; it delegates selected differences away from normal reconciliation."
+        }
+      ],
+      "takeaway": "Broad ignores can hide meaningful configuration drift.",
+      "references": [
+        {
+          "title": "Ignored changes \u2014 primary reference",
+          "url": "https://developer.hashicorp.com/terraform/language"
+        }
+      ]
+    },
+    {
+      "id": "terraform-lesson-21",
+      "topic": "terraform",
+      "title": "Replacement order",
+      "summary": "Create a replacement before destroying the old object.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Name uniqueness quotas and dependency behavior can limit this approach."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A replacement cannot coexist because the service requires a unique fixed name. Review naming capacity and migration constraints."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "It guarantees zero downtime for every resource. This is not a sound assumption; create a replacement before destroying the old object."
+        }
+      ],
+      "takeaway": "Name uniqueness quotas and dependency behavior can limit this approach.",
+      "references": [
+        {
+          "title": "Replacement order \u2014 primary reference",
+          "url": "https://developer.hashicorp.com/terraform/language"
+        }
+      ]
+    },
+    {
+      "id": "terraform-lesson-22",
+      "topic": "terraform",
+      "title": "Targeted applies",
+      "summary": "Targeting can leave the overall configuration only partially reconciled.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Exceptional targeted work should be followed by a full plan review."
+        },
+        {
+          "heading": "Apply it",
+          "body": "An emergency targeted apply completes. Run a full plan to inspect remaining differences."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "Targeting always applies every dependent change in the whole configuration. This is not a sound assumption; targeting can leave the overall configuration only partially reconciled."
+        }
+      ],
+      "takeaway": "Exceptional targeted work should be followed by a full plan review.",
+      "references": [
+        {
+          "title": "Targeted applies \u2014 primary reference",
+          "url": "https://developer.hashicorp.com/terraform/language"
+        }
+      ]
+    },
+    {
+      "id": "terraform-lesson-23",
+      "topic": "terraform",
+      "title": "Provisioners",
+      "summary": "Native resources model lifecycle and changes more explicitly.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Provisioners can introduce imperative side effects that are harder to track."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A shell provisioner leaves partially configured hosts on failure. Use image or configuration tooling and explicit lifecycle ownership."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "Provisioners make every shell command idempotent. This is not a sound assumption; native resources model lifecycle and changes more explicitly."
+        }
+      ],
+      "takeaway": "Provisioners can introduce imperative side effects that are harder to track.",
+      "references": [
+        {
+          "title": "Provisioners \u2014 primary reference",
+          "url": "https://developer.hashicorp.com/terraform/language"
+        }
+      ]
+    },
+    {
+      "id": "terraform-lesson-24",
+      "topic": "terraform",
+      "title": "Workspace boundaries",
+      "summary": "They separate state instances but do not inherently isolate credentials or permissions.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Strong environment isolation may need separate backends and access boundaries."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A developer workspace can still authenticate with production-wide credentials. Separate access controls and backend boundaries according to risk."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "Each workspace automatically creates a new cloud account. This is not a sound assumption; they separate state instances but do not inherently isolate credentials or permissions."
+        }
+      ],
+      "takeaway": "Strong environment isolation may need separate backends and access boundaries.",
+      "references": [
+        {
+          "title": "Workspace boundaries \u2014 primary reference",
+          "url": "https://developer.hashicorp.com/terraform/language"
+        }
+      ]
+    },
+    {
+      "id": "terraform-lesson-25",
+      "topic": "terraform",
+      "title": "Saved plans",
+      "summary": "It can contain sensitive configuration and state information.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Apply should use the reviewed artifact under controlled conditions."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A pipeline uploads a plan artifact to a public location. Restrict artifact access and handle potential secret exposure."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "Plan files contain no secrets by design. This is not a sound assumption; it can contain sensitive configuration and state information."
+        }
+      ],
+      "takeaway": "Apply should use the reviewed artifact under controlled conditions.",
+      "references": [
+        {
+          "title": "Saved plans \u2014 primary reference",
+          "url": "https://developer.hashicorp.com/terraform/language"
+        }
+      ]
+    },
+    {
+      "id": "terraform-lesson-26",
+      "topic": "terraform",
+      "title": "Drift policy",
+      "summary": "Decide whether to adopt or revert the change based on intent.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Blind reconciliation can undo an emergency fix."
+        },
+        {
+          "heading": "Apply it",
+          "body": "An emergency firewall rule differs from versioned configuration. Review the reason and reconcile configuration deliberately."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "All manual changes must be reverted without investigation. This is not a sound assumption; decide whether to adopt or revert the change based on intent."
+        }
+      ],
+      "takeaway": "Blind reconciliation can undo an emergency fix.",
+      "references": [
+        {
+          "title": "Drift policy \u2014 primary reference",
+          "url": "https://developer.hashicorp.com/terraform/language"
+        }
+      ]
+    },
+    {
+      "id": "terraform-lesson-27",
+      "topic": "terraform",
+      "title": "State splitting",
+      "summary": "Reduce coupling access scope and change blast radius.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Cross-state dependencies need explicit interface and sequencing decisions."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A small application change routinely locks a huge shared stack. Evaluate boundaries by lifecycle ownership and risk."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "More state files automatically remove all dependencies. This is not a sound assumption; reduce coupling access scope and change blast radius."
+        }
+      ],
+      "takeaway": "Cross-state dependencies need explicit interface and sequencing decisions.",
+      "references": [
+        {
+          "title": "State splitting \u2014 primary reference",
+          "url": "https://developer.hashicorp.com/terraform/language"
+        }
+      ]
+    },
+    {
+      "id": "terraform-lesson-28",
+      "topic": "terraform",
+      "title": "Partial failure",
+      "summary": "Some resources may have changed successfully before failure.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "The next step is to inspect state and actual resources before retrying."
+        },
+        {
+          "heading": "Apply it",
+          "body": "An apply fails halfway through a network rollout. Inspect completed changes and review a fresh plan."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "Every failed apply automatically rolls back all changes. This is not a sound assumption; some resources may have changed successfully before failure."
+        }
+      ],
+      "takeaway": "The next step is to inspect state and actual resources before retrying.",
+      "references": [
+        {
+          "title": "Partial failure \u2014 primary reference",
+          "url": "https://developer.hashicorp.com/terraform/language"
+        }
+      ]
+    },
+    {
+      "id": "terraform-lesson-29",
+      "topic": "terraform",
+      "title": "Provider upgrades",
+      "summary": "Review migration guidance and plans in a representative environment.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Schema changes may affect existing resources without configuration edits."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A new provider version proposes unexpected replacements. Investigate release changes and test a controlled migration."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "A major version change can never affect resource behavior. This is not a sound assumption; review migration guidance and plans in a representative environment."
+        }
+      ],
+      "takeaway": "Schema changes may affect existing resources without configuration edits.",
+      "references": [
+        {
+          "title": "Provider upgrades \u2014 primary reference",
+          "url": "https://developer.hashicorp.com/terraform/language"
+        }
+      ]
+    },
+    {
+      "id": "terraform-lesson-30",
+      "topic": "terraform",
+      "title": "Policy checks",
+      "summary": "Reject changes that violate defined infrastructure rules.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Policy checks complement plan review rather than proving all runtime behavior."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A plan opens a sensitive service to the Internet. Block the unsafe exposure and explain the required exception process."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "Passing policy guarantees no outage can occur. This is not a sound assumption; reject changes that violate defined infrastructure rules."
+        }
+      ],
+      "takeaway": "Policy checks complement plan review rather than proving all runtime behavior.",
+      "references": [
+        {
+          "title": "Policy checks \u2014 primary reference",
+          "url": "https://developer.hashicorp.com/terraform/language"
+        }
+      ]
+    }
+  ],
+  "commands": [],
+  "debugging": []
+}

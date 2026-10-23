@@ -1,103 +1,101 @@
 # OpsLab — DevOps & SRE Learning Studio
 
-A free, browser-based learning and interview-practice app for DevOps, platform engineering, cloud infrastructure, systems administration and Site Reliability Engineering.
+A free static learning and interview-practice app for DevOps, platform engineering, cloud infrastructure, systems administration and SRE. Runs on GitHub Pages with no account, backend, API key, framework or build step.
 
-The first curated learning track is **Kubernetes**. The app is intentionally static: HTML, CSS, JavaScript and JSON, hosted on GitHub Pages. No framework, build step, account, backend or API key is required.
+**[Open OpsLab](https://skkc2.github.io/devops-interview-quiz/)**
 
-## Start locally
+## Subjects and question counts
 
-Because the app loads its curated question bank as JSON with fetch, serve the repository over HTTP instead of opening index.html as a file URL.
+| Subject | Scored questions | Self-reviewed interviews | Total |
+| --- | ---: | ---: | ---: |
+| Kubernetes | 120 | 4 | 124 |
+| Linux | 90 | 30 | 120 |
+| Networking | 90 | 30 | 120 |
+| SRE & incident response | 90 | 30 | 120 |
+| Systems administration | 90 | 30 | 120 |
+| AWS | 90 | 30 | 120 |
+| Terraform | 90 | 30 | 120 |
+| Docker | 90 | 30 | 120 |
+| Ansible | 90 | 30 | 120 |
+| Git & CI/CD | 90 | 30 | 120 |
+| Observability | 90 | 30 | 120 |
+| **Total** | **1,020** | **304** | **1,324** |
 
-    python3 -m http.server 8000
+Each new subject contains **30 competency sets**. A set deliberately reinforces a topic through a concept question, a troubleshooting scenario, a two-answer multi-select check and an open-ended interview prompt. These are related exercises, not 120 independent competencies. Each has an explanation, takeaway and primary reference. Interview prompts include an answer outline, checklist and follow-up; they are never automatically scored.
 
-Open http://localhost:8000.
+The four difficulty bands progress from foundations to operational trade-offs. New packs contain 32 easy, 32 medium, 32 medium-hard and 24 hard items, including interviews. Difficulty is pedagogical, not an official certification level.
 
-## Learning modes
+## Learning experience
 
-- **Learn** — guided questions with explanations, a key takeaway and official references.
-- **Practice** — immediate answer feedback and a chance to correct misconceptions.
-- **Exam simulation** — optional timer and no in-question explanations; review answers at the end.
-- **Interview** — open-ended prompts, an example answer, a self-review checklist and follow-up questions. These prompts are not automatically scored.
+- Searchable subject catalog with separate scored/interview counts and saved-question counts.
+- **Learn:** 306 short lessons across all subjects, with search and in-library subject switching.
+- **Practice:** randomized questions and answer ordering, immediate explanations, keyboard shortcuts and saved review.
+- **Exam:** scored items only; optional timer and explanations withheld until review.
+- **Interview:** written notes, answer outlines, checklists and self-ratings without a fabricated score.
+- Learning destinations include concepts, scenarios, interview prompts, follow-ups and saved review across subjects. Dedicated command guides (6) and debugging playbooks (3) currently cover Kubernetes; empty modules explain the available alternatives.
+- Progress and bookmarks stay in local browser storage. No cross-device synchronization.
+- A failed subject download produces a visible warning while other subjects remain usable.
 
-## Question design
+The original `questions.js` bank is retained as an archive and validated for compatibility, but is no longer loaded into active sessions. Existing curated Kubernetes question IDs remain unchanged. Old legacy bookmarks are not migrated into the new packs.
 
-The Kubernetes track starts with 28 curated questions, seven per difficulty:
+## Run locally
 
-- **Easy** — foundational objects, commands, probes and configuration.
-- **Medium** — operational diagnosis, logs, resource semantics and rollbacks.
-- **Medium hard** — rollout decisions, scheduling, disruption budgets and autoscaling.
-- **Hard** — node pressure, network policy, availability trade-offs and production incident leadership.
+Serve over HTTP because content is loaded with `fetch`:
 
-Question types are **concept**, **command interpretation**, **troubleshooting scenario**, **multi-select**, **trade-off/design**, and **open-ended interview**. Every curated item includes a learning objective, explanation, takeaway and at least one link to official Kubernetes documentation. Interview prompts also include a sample answer, answer checklist and follow-up questions.
+```sh
+python3 -m http.server 8000
+```
 
-The older question bank is retained for breadth across Linux, AWS, Terraform, Docker, Ansible, Git, networking, systems administration, observability and SRE. Legacy questions have lighter explanations; they should be curated subject-by-subject rather than bulk-expanded without review.
+Open http://localhost:8000. Project-relative asset paths also work under the GitHub Pages repository prefix.
 
-## Architecture
+## Content and architecture
 
-The content model, eight learning modules, subject-pack layout, session rules and acceptance criteria are documented in [ARCHITECTURE.md](ARCHITECTURE.md). The current app implements the learning destinations and session foundations; the curated question bank and broader subject content are still being expanded.
+```text
+index.html                         Accessible app shell and subject catalog
+styles.css                         Responsive layout and interaction states
+app.js                             Catalog, learning, session and review engine
+data/subjects.json                 Subject manifest used by the app and validation
+data/<subject>.json               Questions, explanations and interview outlines
+data/<subject>-learning.json      Lessons and available command/debugging guides
+content/<subject>.txt              Authored competency source for the ten new packs
+content/references.json            Competency-specific primary-reference overrides
+scripts/build-subject-packs.py     Deterministic editorial compiler (not a site build)
+scripts/validate-subjects.js       Whole-catalog schema, count and reference-host checks
+tests/test_app.py                  Chromium interaction and failure-path regressions
+.github/workflows/validate.yml     Validation and browser tests
+.github/workflows/deploy-pages.yml Validated GitHub Pages publishing from main
+```
 
+See [content/README.md](content/README.md) for the source format and [TESTING.md](TESTING.md) for validation. [ARCHITECTURE.md](ARCHITECTURE.md) contains the original architecture and a current implementation addendum.
 
-    index.html                         App shell and accessible UI
-    styles.css                         Responsive design and interaction states
-    app.js                             Session engine, filters, feedback and local progress
-    questions.js                       Legacy multi-subject question bank
-    data/kubernetes.json               Curated Kubernetes graded questions
-    data/kubernetes-learning.json      Kubernetes lessons, commands and debugging guides
-    scripts/validate-question-bank.js  Graded question schema and editorial checks
-    scripts/validate-learning-content.js Learning content schema and reference checks
-    tests/test_app.py                 Chromium browser interaction tests
-    TESTING.md                        How to run tests and coverage notes
-    .github/workflows/validate.yml     CI validation and browser tests
-    .github/workflows/deploy-pages.yml GitHub Pages deployment
+## Validate and edit
 
-- **Static hosting:** GitHub Pages serves the files directly; no server-side runtime.
-- **Question content:** subject-specific JSON, separate from the quiz engine.
-- **Progress:** localStorage in the current browser only. It is not synced across devices or accounts.
-- **Validation:** Node.js checks JavaScript syntax, question schema, answer indexes, duplicate prompts, level coverage and official reference URLs.
-- **Deployment:** the Pages workflow deploys from main after validation succeeds.
+Node.js 20+ and Python 3.12 are used by CI:
 
-## GitHub Pages setup
+```sh
+node --check app.js
+node --check questions.js
+node scripts/validate-question-bank.js
+node scripts/validate-learning-content.js
+node scripts/validate-subjects.js
+python3 scripts/build-subject-packs.py --check
+python -m pip install playwright
+python -m playwright install chromium
+python -m unittest discover -s tests -v
+```
 
-1. Merge the reviewed pull request into main.
-2. Open **Settings → Pages** in the repository.
-3. Under **Build and deployment → Source**, select **GitHub Actions**.
-4. Check the **Actions** tab for the Deploy OpsLab to GitHub Pages workflow.
-5. Once deployment succeeds, use the site URL shown in the github-pages environment.
+After editing authored content, run `python3 scripts/build-subject-packs.py` and commit both source and generated JSON. `--check` verifies that committed JSON exactly matches its source without writing files. Kubernetes content is maintained directly in its existing JSON packs.
 
-The expected project-site URL is https://skkc2.github.io/devops-interview-quiz/. GitHub Pages may take a few minutes to publish after the first deployment.
+Schema checks verify structure, counts, answer indexes, duplicate prompts within each subject, difficulty coverage and approved reference hosts. They do not establish editorial correctness or guarantee every linked page remains available. Review meaning, distractors and version-specific behavior against the primary references when changing content.
 
-## Validate locally
+## GitHub Pages
 
-Install Node.js 20 or later, then run:
+Keep **Settings → Pages → Source** set to **GitHub Actions**. The deployment workflow runs content validation, source consistency checks and the Chromium suite before publishing. It copies every `data/*.json` pack so additions are not silently omitted. No server-side runtime is required.
 
-    node --check app.js
-    node --check questions.js
-    node scripts/validate-question-bank.js
-    node scripts/validate-learning-content.js
-    python -m pip install playwright
-    python -m playwright install chromium
-    python -m unittest discover -s tests -v
+The expected site is https://skkc2.github.io/devops-interview-quiz/. Use the deployment environment and Actions result to confirm publishing, rather than assuming a pushed commit is already live.
 
-The CI workflow runs the syntax and content checks plus the Chromium interaction suite on pushes and pull requests. A passing schema check does not replace editorial review or a live Pages smoke test.
+## Scope
 
-## Contributing high-quality questions
+This is a study aid, not an official certification simulator. Pair exercises with hands-on labs and version-appropriate documentation. Clearing browser storage removes local progress. Do not enter production secrets or sensitive incident data into notes.
 
-Prefer small, reviewable PRs focused on one subject.
-
-1. Define the competency being tested and its intended difficulty.
-2. Use plausible distractors based on real misconceptions, not joke answers.
-3. Include a concise explanation of why the answer is correct and why the tempting alternatives fail.
-4. Link primary documentation, and note version-specific behaviour where it matters.
-5. For scenarios, ask for the next useful diagnostic step and explain the evidence it provides.
-6. For interview prompts, provide a strong example answer, a checklist and follow-up prompts. Do not pretend open-ended answers have an objective numeric score.
-7. Run validation and manually test desktop, mobile, keyboard navigation, feedback and review.
-
-## Scope and limitations
-
-This is a study aid, not an official certification simulator or a guarantee of passing an exam. Difficulty labels are pedagogical, not official exam levels. Pair practice with hands-on labs, the current exam objectives and primary documentation.
-
-Progress remains in local browser storage. Clearing browser data removes it. Do not enter production secrets or sensitive incident data into answer notes.
-
-## License
-
-No license file was present in the original repository. Add an explicit license if you want to grant users clear reuse and contribution permissions.
+No license was present in the original repository; this change does not invent a licensing grant.

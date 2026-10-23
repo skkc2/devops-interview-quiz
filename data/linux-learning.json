@@ -1,0 +1,817 @@
+{
+  "subject": "linux",
+  "lessons": [
+    {
+      "id": "linux-lesson-01",
+      "topic": "linux",
+      "title": "File permissions",
+      "summary": "The group can read but not write the file.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Directory search permission is needed to traverse a path."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A teammate belongs to the file group but cannot open a file under a private parent directory. Inspect permissions on every parent directory."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "The group can execute the file. This is not a sound assumption; the group can read but not write the file."
+        }
+      ],
+      "takeaway": "Directory search permission is needed to traverse a path.",
+      "references": [
+        {
+          "title": "File permissions \u2014 primary reference",
+          "url": "https://man7.org/linux/man-pages/man7/path_resolution.7.html"
+        }
+      ]
+    },
+    {
+      "id": "linux-lesson-02",
+      "topic": "linux",
+      "title": "Ownership",
+      "summary": "It changes the owning user or group.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Ownership and permission bits are separate controls."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A service running as app cannot read a root-owned configuration with mode 600. Check the service identity and grant narrowly scoped read access."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "It changes the file content encoding. This is not a sound assumption; it changes the owning user or group."
+        }
+      ],
+      "takeaway": "Ownership and permission bits are separate controls.",
+      "references": [
+        {
+          "title": "Ownership \u2014 primary reference",
+          "url": "https://man7.org/linux/man-pages/man7/credentials.7.html"
+        }
+      ]
+    },
+    {
+      "id": "linux-lesson-03",
+      "topic": "linux",
+      "title": "Symbolic links",
+      "summary": "It stores a path to another filesystem object.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "A symlink can become dangling when its target is removed."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A deployment symlink points to a release directory that was removed. Inspect the link target and restore or repoint it to a valid release."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "It must share the target inode. This is not a sound assumption; it stores a path to another filesystem object."
+        }
+      ],
+      "takeaway": "A symlink can become dangling when its target is removed.",
+      "references": [
+        {
+          "title": "Symbolic links \u2014 primary reference",
+          "url": "https://man7.org/linux/man-pages/man7/symlink.7.html"
+        }
+      ]
+    },
+    {
+      "id": "linux-lesson-04",
+      "topic": "linux",
+      "title": "Hard links",
+      "summary": "Both directory entries reference the same inode.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Removing one hard link does not delete data while another link remains."
+        },
+        {
+          "heading": "Apply it",
+          "body": "Removing a filename does not reclaim the expected space and another hard link exists. Inspect the inode link count and remaining directory entries."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "Each link contains an independent data copy. This is not a sound assumption; both directory entries reference the same inode."
+        }
+      ],
+      "takeaway": "Removing one hard link does not delete data while another link remains.",
+      "references": [
+        {
+          "title": "Hard links \u2014 primary reference",
+          "url": "https://man7.org/linux/man-pages/man2/link.2.html"
+        }
+      ]
+    },
+    {
+      "id": "linux-lesson-05",
+      "topic": "linux",
+      "title": "Pipelines",
+      "summary": "The first command's standard output to the next command's standard input.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Standard error is not included unless redirected."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A command reports errors on the terminal but the downstream parser receives none. Check which output stream carries the messages."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "It automatically merges all standard error streams. This is not a sound assumption; the first command's standard output to the next command's standard input."
+        }
+      ],
+      "takeaway": "Standard error is not included unless redirected.",
+      "references": [
+        {
+          "title": "Pipelines \u2014 primary reference",
+          "url": "https://www.gnu.org/software/bash/manual/bash.html"
+        }
+      ]
+    },
+    {
+      "id": "linux-lesson-06",
+      "topic": "linux",
+      "title": "Quoting",
+      "summary": "Quoting prevents word splitting and pathname expansion on that value.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Untrusted values should be passed as data rather than evaluated as shell code."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A cleanup script fails on filenames containing spaces. Quote expansions and test with representative filenames in a safe directory."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "Quoting executes the variable as a command. This is not a sound assumption; quoting prevents word splitting and pathname expansion on that value."
+        }
+      ],
+      "takeaway": "Untrusted values should be passed as data rather than evaluated as shell code.",
+      "references": [
+        {
+          "title": "Quoting \u2014 primary reference",
+          "url": "https://www.gnu.org/software/bash/manual/bash.html"
+        }
+      ]
+    },
+    {
+      "id": "linux-lesson-07",
+      "topic": "linux",
+      "title": "Processes",
+      "summary": "A currently running process within a PID namespace.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "PIDs may be reused after processes exit."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A saved PID now belongs to a different process than yesterday. Verify process identity and start time before sending a signal."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "A PID is a globally permanent machine identifier. This is not a sound assumption; a currently running process within a PID namespace."
+        }
+      ],
+      "takeaway": "PIDs may be reused after processes exit.",
+      "references": [
+        {
+          "title": "Processes \u2014 primary reference",
+          "url": "https://man7.org/linux/man-pages/man7/credentials.7.html"
+        }
+      ]
+    },
+    {
+      "id": "linux-lesson-08",
+      "topic": "linux",
+      "title": "Signals",
+      "summary": "SIGTERM asks a process to terminate and may be handled.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "SIGKILL cannot be caught for application cleanup."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A service needs time to flush buffered work during shutdown. Send a graceful stop and wait for a bounded shutdown period."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "SIGKILL guarantees application cleanup completes. This is not a sound assumption; sIGTERM asks a process to terminate and may be handled."
+        }
+      ],
+      "takeaway": "SIGKILL cannot be caught for application cleanup.",
+      "references": [
+        {
+          "title": "Signals \u2014 primary reference",
+          "url": "https://man7.org/linux/man-pages/man7/signal.7.html"
+        }
+      ]
+    },
+    {
+      "id": "linux-lesson-09",
+      "topic": "linux",
+      "title": "Disk blocks",
+      "summary": "Space allocation for mounted filesystems.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Filesystem usage and directory usage can differ for open deleted files."
+        },
+        {
+          "heading": "Apply it",
+          "body": "df shows a full filesystem but du finds much less visible file data. Look for deleted files still held open by processes."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "It reports only the sizes of visible files in one directory. This is not a sound assumption; space allocation for mounted filesystems."
+        }
+      ],
+      "takeaway": "Filesystem usage and directory usage can differ for open deleted files.",
+      "references": [
+        {
+          "title": "Disk blocks \u2014 primary reference",
+          "url": "https://man7.org/linux/man-pages/man2/unlink.2.html"
+        }
+      ]
+    },
+    {
+      "id": "linux-lesson-10",
+      "topic": "linux",
+      "title": "Inodes",
+      "summary": "Creation of new filesystem objects.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Many tiny files can exhaust inodes before byte capacity."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A filesystem has free gigabytes but creating a new file fails with no space. Check inode usage and locate excessive small-file growth."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "It only prevents existing files from being read. This is not a sound assumption; creation of new filesystem objects."
+        }
+      ],
+      "takeaway": "Many tiny files can exhaust inodes before byte capacity.",
+      "references": [
+        {
+          "title": "Inodes \u2014 primary reference",
+          "url": "https://man7.org/linux/man-pages/man7/inode.7.html"
+        }
+      ]
+    },
+    {
+      "id": "linux-lesson-11",
+      "topic": "linux",
+      "title": "Open file limits",
+      "summary": "The number of file descriptors a process can hold open.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Sockets also consume file descriptors."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A service logs too many open files while disk space remains healthy. Inspect descriptor usage and the service limit for leaks or legitimate demand."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "It limits only the number of directory entries on disk. This is not a sound assumption; the number of file descriptors a process can hold open."
+        }
+      ],
+      "takeaway": "Sockets also consume file descriptors.",
+      "references": [
+        {
+          "title": "Open file limits \u2014 primary reference",
+          "url": "https://man7.org/linux/man-pages/man2/getrlimit.2.html"
+        }
+      ]
+    },
+    {
+      "id": "linux-lesson-12",
+      "topic": "linux",
+      "title": "Load average",
+      "summary": "Tasks in uninterruptible sleep can contribute.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "High load does not by itself prove CPU saturation."
+        },
+        {
+          "heading": "Apply it",
+          "body": "Load rises sharply while CPU utilization remains low and storage is slow. Inspect task states and storage latency alongside CPU metrics."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "Load average measures only CPU percentage. This is not a sound assumption; tasks in uninterruptible sleep can contribute."
+        }
+      ],
+      "takeaway": "High load does not by itself prove CPU saturation.",
+      "references": [
+        {
+          "title": "Load average \u2014 primary reference",
+          "url": "https://man7.org/linux/man-pages/man5/proc_loadavg.5.html"
+        }
+      ]
+    },
+    {
+      "id": "linux-lesson-13",
+      "topic": "linux",
+      "title": "Memory cache",
+      "summary": "Unused RAM is often used for reclaimable filesystem cache.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Available memory is more useful than free memory alone for capacity triage."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A host shows low free RAM but high available RAM and no memory pressure. Check available memory and pressure before declaring a leak."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "All cached memory is permanently unavailable to applications. This is not a sound assumption; unused RAM is often used for reclaimable filesystem cache."
+        }
+      ],
+      "takeaway": "Available memory is more useful than free memory alone for capacity triage.",
+      "references": [
+        {
+          "title": "Memory cache \u2014 primary reference",
+          "url": "https://man7.org/linux/man-pages/man5/proc_meminfo.5.html"
+        }
+      ]
+    },
+    {
+      "id": "linux-lesson-14",
+      "topic": "linux",
+      "title": "OOM evidence",
+      "summary": "Kernel logs and the relevant cgroup memory events.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "A container memory limit can be reached while the host still has free RAM."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A container exits with 137 after a deployment. Correlate termination details with memory events and resource limits."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "Every exit code 137 proves a kernel OOM kill. This is not a sound assumption; kernel logs and the relevant cgroup memory events."
+        }
+      ],
+      "takeaway": "A container memory limit can be reached while the host still has free RAM.",
+      "references": [
+        {
+          "title": "OOM evidence \u2014 primary reference",
+          "url": "https://man7.org/linux/man-pages/man7/cgroups.7.html"
+        }
+      ]
+    },
+    {
+      "id": "linux-lesson-15",
+      "topic": "linux",
+      "title": "Socket inspection",
+      "summary": "Listening TCP sockets using numeric addresses.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "A listener bound to loopback is not directly reachable through the host's external address."
+        },
+        {
+          "heading": "Apply it",
+          "body": "An application responds locally but not from another host. Check the listener address and port before investigating the network path."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "It proves every firewall permits the port. This is not a sound assumption; listening TCP sockets using numeric addresses."
+        }
+      ],
+      "takeaway": "A listener bound to loopback is not directly reachable through the host's external address.",
+      "references": [
+        {
+          "title": "Socket inspection \u2014 primary reference",
+          "url": "https://man7.org/linux/man-pages/man7/ip.7.html"
+        }
+      ]
+    },
+    {
+      "id": "linux-lesson-16",
+      "topic": "linux",
+      "title": "Name resolution",
+      "summary": "getent follows the configured name service lookup path.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Local host entries and resolver configuration can affect application resolution."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A name resolves with a DNS tool but the application gets a different address. Compare the application's resolution path with NSS and local host configuration."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "getent always bypasses local host entries. This is not a sound assumption; getent follows the configured name service lookup path."
+        }
+      ],
+      "takeaway": "Local host entries and resolver configuration can affect application resolution.",
+      "references": [
+        {
+          "title": "Name resolution \u2014 primary reference",
+          "url": "https://man7.org/linux/man-pages/man5/nsswitch.conf.5.html"
+        }
+      ]
+    },
+    {
+      "id": "linux-lesson-17",
+      "topic": "linux",
+      "title": "Mount options",
+      "summary": "Writes through that mounted filesystem view.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Mount flags can deny writes even when file mode bits allow them."
+        },
+        {
+          "heading": "Apply it",
+          "body": "Writes fail with read-only filesystem after storage errors. Inspect mount state and kernel storage errors before attempting recovery."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "Root can always write through a read-only mount. This is not a sound assumption; writes through that mounted filesystem view."
+        }
+      ],
+      "takeaway": "Mount flags can deny writes even when file mode bits allow them.",
+      "references": [
+        {
+          "title": "Mount options \u2014 primary reference",
+          "url": "https://man7.org/linux/man-pages/man2/mount.2.html"
+        }
+      ]
+    },
+    {
+      "id": "linux-lesson-18",
+      "topic": "linux",
+      "title": "Deleted executables",
+      "summary": "The process retains references to the mapped executable data.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Updating an executable on disk does not automatically restart every running process."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A security update replaces a binary but an old process is still running. Identify affected processes and schedule controlled restarts."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "Removing the pathname immediately terminates every process using it. This is not a sound assumption; the process retains references to the mapped executable data."
+        }
+      ],
+      "takeaway": "Updating an executable on disk does not automatically restart every running process.",
+      "references": [
+        {
+          "title": "Deleted executables \u2014 primary reference",
+          "url": "https://man7.org/linux/man-pages/man5/proc_pid_exe.5.html"
+        }
+      ]
+    },
+    {
+      "id": "linux-lesson-19",
+      "topic": "linux",
+      "title": "Zombies",
+      "summary": "An exited child whose termination status has not been reaped.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "The parent normally reaps child status with a wait operation."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A service parent accumulates many zombie children. Inspect the parent and correct its child reaping behavior."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "It is a process using all available CPU. This is not a sound assumption; an exited child whose termination status has not been reaped."
+        }
+      ],
+      "takeaway": "The parent normally reaps child status with a wait operation.",
+      "references": [
+        {
+          "title": "Zombies \u2014 primary reference",
+          "url": "https://man7.org/linux/man-pages/man2/wait.2.html"
+        }
+      ]
+    },
+    {
+      "id": "linux-lesson-20",
+      "topic": "linux",
+      "title": "System calls",
+      "summary": "System calls and signals observed for a traced process.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Tracing can add overhead and expose sensitive argument data."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A process hangs while opening a path and logs provide little detail. Use a scoped trace with appropriate permissions and inspect blocking calls."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "It always reconstructs high-level application source code. This is not a sound assumption; system calls and signals observed for a traced process."
+        }
+      ],
+      "takeaway": "Tracing can add overhead and expose sensitive argument data.",
+      "references": [
+        {
+          "title": "System calls \u2014 primary reference",
+          "url": "https://strace.io/"
+        }
+      ]
+    },
+    {
+      "id": "linux-lesson-21",
+      "topic": "linux",
+      "title": "Scheduling priority",
+      "summary": "Lower scheduling priority relative to competing normal tasks.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Nice values do not impose a hard CPU usage ceiling."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A batch job interferes with latency-sensitive work on a shared host. Evaluate scheduling priority and resource controls for the batch workload."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "A higher nice value guarantees more CPU time. This is not a sound assumption; lower scheduling priority relative to competing normal tasks."
+        }
+      ],
+      "takeaway": "Nice values do not impose a hard CPU usage ceiling.",
+      "references": [
+        {
+          "title": "Scheduling priority \u2014 primary reference",
+          "url": "https://man7.org/linux/man-pages/man7/sched.7.html"
+        }
+      ]
+    },
+    {
+      "id": "linux-lesson-22",
+      "topic": "linux",
+      "title": "Swap pressure",
+      "summary": "Memory pressure requiring closer investigation.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Swap activity should be correlated with latency and working-set demand."
+        },
+        {
+          "heading": "Apply it",
+          "body": "Latency spikes coincide with sustained swap-in and swap-out activity. Inspect memory demand and reduce pressure before changing swap policy."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "Any configured swap proves the host is unhealthy. This is not a sound assumption; memory pressure requiring closer investigation."
+        }
+      ],
+      "takeaway": "Swap activity should be correlated with latency and working-set demand.",
+      "references": [
+        {
+          "title": "Swap pressure \u2014 primary reference",
+          "url": "https://man7.org/linux/man-pages/man5/proc_vmstat.5.html"
+        }
+      ]
+    },
+    {
+      "id": "linux-lesson-23",
+      "topic": "linux",
+      "title": "Capabilities",
+      "summary": "A way to split traditionally root-associated privileges.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Granting only required capabilities can reduce privilege scope."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A service only needs to bind a privileged port. Evaluate granting the narrow required capability instead of full root."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "Any single capability is equivalent to no privilege. This is not a sound assumption; a way to split traditionally root-associated privileges."
+        }
+      ],
+      "takeaway": "Granting only required capabilities can reduce privilege scope.",
+      "references": [
+        {
+          "title": "Capabilities \u2014 primary reference",
+          "url": "https://man7.org/linux/man-pages/man7/capabilities.7.html"
+        }
+      ]
+    },
+    {
+      "id": "linux-lesson-24",
+      "topic": "linux",
+      "title": "ACL masks",
+      "summary": "It limits effective permissions for named users and the group class.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "The effective ACL must be considered together with the visible entry."
+        },
+        {
+          "heading": "Apply it",
+          "body": "An ACL entry grants write but effective permissions show read-only. Inspect the ACL mask and intended access policy."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "The mask always grants permissions absent from the entry. This is not a sound assumption; it limits effective permissions for named users and the group class."
+        }
+      ],
+      "takeaway": "The effective ACL must be considered together with the visible entry.",
+      "references": [
+        {
+          "title": "ACL masks \u2014 primary reference",
+          "url": "https://man7.org/linux/man-pages/man5/acl.5.html"
+        }
+      ]
+    },
+    {
+      "id": "linux-lesson-25",
+      "topic": "linux",
+      "title": "Atomic replacement",
+      "summary": "Rename can atomically replace the directory entry.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Atomic visibility does not by itself guarantee durability after power loss."
+        },
+        {
+          "heading": "Apply it",
+          "body": "Readers sometimes see partially written configuration files. Use a validated temporary file and atomic replacement with appropriate durability handling."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "Rename across arbitrary filesystems is always atomic. This is not a sound assumption; rename can atomically replace the directory entry."
+        }
+      ],
+      "takeaway": "Atomic visibility does not by itself guarantee durability after power loss.",
+      "references": [
+        {
+          "title": "Atomic replacement \u2014 primary reference",
+          "url": "https://man7.org/linux/man-pages/man2/rename.2.html"
+        }
+      ]
+    },
+    {
+      "id": "linux-lesson-26",
+      "topic": "linux",
+      "title": "Namespaces",
+      "summary": "Views of resources such as processes mounts and network stacks.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Namespaces are isolation mechanisms rather than resource usage budgets."
+        },
+        {
+          "heading": "Apply it",
+          "body": "Two containers have different interfaces but contend for host CPU. Inspect namespace isolation separately from cgroup resource controls."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "A network namespace imposes a CPU limit. This is not a sound assumption; views of resources such as processes mounts and network stacks."
+        }
+      ],
+      "takeaway": "Namespaces are isolation mechanisms rather than resource usage budgets.",
+      "references": [
+        {
+          "title": "Namespaces \u2014 primary reference",
+          "url": "https://man7.org/linux/man-pages/man7/namespaces.7.html"
+        }
+      ]
+    },
+    {
+      "id": "linux-lesson-27",
+      "topic": "linux",
+      "title": "Cgroup throttling",
+      "summary": "Runnable tasks can be throttled until budget becomes available.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "CPU throttling can increase latency even without host-wide CPU saturation."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A service is slow despite idle host cores and rising throttling counters. Compare CPU quota throttling and workload demand."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "Quota exhaustion necessarily kills all processes immediately. This is not a sound assumption; runnable tasks can be throttled until budget becomes available."
+        }
+      ],
+      "takeaway": "CPU throttling can increase latency even without host-wide CPU saturation.",
+      "references": [
+        {
+          "title": "Cgroup throttling \u2014 primary reference",
+          "url": "https://man7.org/linux/man-pages/man7/cgroups.7.html"
+        }
+      ]
+    },
+    {
+      "id": "linux-lesson-28",
+      "topic": "linux",
+      "title": "Filesystem recovery",
+      "summary": "Concurrent writes can undermine repair assumptions and risk corruption.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Recovery should follow filesystem-specific procedures and preserve evidence."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A volume reports metadata errors while applications continue writing. Protect data and arrange a controlled filesystem-specific recovery process."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "Repair tools are always safe on live writable filesystems. This is not a sound assumption; concurrent writes can undermine repair assumptions and risk corruption."
+        }
+      ],
+      "takeaway": "Recovery should follow filesystem-specific procedures and preserve evidence.",
+      "references": [
+        {
+          "title": "Filesystem recovery \u2014 primary reference",
+          "url": "https://www.kernel.org/doc/html/latest/filesystems/ext4/index.html"
+        }
+      ]
+    },
+    {
+      "id": "linux-lesson-29",
+      "topic": "linux",
+      "title": "Clock selection",
+      "summary": "It is not subject to wall-clock time adjustments in the same way.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Wall-clock timestamps and elapsed durations serve different purposes."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A timeout calculation behaves strangely after a clock correction. Measure elapsed durations with the appropriate monotonic clock."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "Wall-clock time can never move backward. This is not a sound assumption; it is not subject to wall-clock time adjustments in the same way."
+        }
+      ],
+      "takeaway": "Wall-clock timestamps and elapsed durations serve different purposes.",
+      "references": [
+        {
+          "title": "Clock selection \u2014 primary reference",
+          "url": "https://man7.org/linux/man-pages/man2/clock_gettime.2.html"
+        }
+      ]
+    },
+    {
+      "id": "linux-lesson-30",
+      "topic": "linux",
+      "title": "Kernel versus user space",
+      "summary": "A controlled transition from user space into kernel services.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Kernel-level faults can affect more than one application."
+        },
+        {
+          "heading": "Apply it",
+          "body": "Several applications experience I/O failures after a kernel update. Correlate kernel and device evidence with the shared failure timeline."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "Every library function requires a system call. This is not a sound assumption; a controlled transition from user space into kernel services."
+        }
+      ],
+      "takeaway": "Kernel-level faults can affect more than one application.",
+      "references": [
+        {
+          "title": "Kernel versus user space \u2014 primary reference",
+          "url": "https://man7.org/linux/man-pages/man2/syscalls.2.html"
+        }
+      ]
+    }
+  ],
+  "commands": [],
+  "debugging": []
+}

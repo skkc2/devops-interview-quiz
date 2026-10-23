@@ -1,0 +1,817 @@
+{
+  "subject": "docker",
+  "lessons": [
+    {
+      "id": "docker-lesson-01",
+      "topic": "docker",
+      "title": "Images and containers",
+      "summary": "A container is a runtime instance created from an image.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Multiple containers can be created from the same image."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A team edits a running container and expects future instances to include the fix. Rebuild and version the image with the intended change."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "An image is always a running process. This is not a sound assumption; a container is a runtime instance created from an image."
+        }
+      ],
+      "takeaway": "Multiple containers can be created from the same image.",
+      "references": [
+        {
+          "title": "Images and containers \u2014 primary reference",
+          "url": "https://docs.docker.com/engine/"
+        }
+      ]
+    },
+    {
+      "id": "docker-lesson-02",
+      "topic": "docker",
+      "title": "Layering",
+      "summary": "As filesystem layers plus image configuration.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Later layers can hide earlier files without removing their bytes from older layers."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A secret was copied into an image and deleted in a later step. Rebuild without the secret and rotate any exposed credential."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "Deleting a file in a later layer always removes it from image history. This is not a sound assumption; as filesystem layers plus image configuration."
+        }
+      ],
+      "takeaway": "Later layers can hide earlier files without removing their bytes from older layers.",
+      "references": [
+        {
+          "title": "Layering \u2014 primary reference",
+          "url": "https://docs.docker.com/engine/"
+        }
+      ]
+    },
+    {
+      "id": "docker-lesson-03",
+      "topic": "docker",
+      "title": "Dockerfiles",
+      "summary": "Instructions for building an image.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Build inputs and base versions affect reproducibility."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A rebuild unexpectedly uses a changed base image tag. Review and pin the intended base version or digest."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "It is a live process supervisor for every host service. This is not a sound assumption; instructions for building an image."
+        }
+      ],
+      "takeaway": "Build inputs and base versions affect reproducibility.",
+      "references": [
+        {
+          "title": "Dockerfiles \u2014 primary reference",
+          "url": "https://docs.docker.com/engine/"
+        }
+      ]
+    },
+    {
+      "id": "docker-lesson-04",
+      "topic": "docker",
+      "title": "Build context",
+      "summary": "The set of files made available to the build.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "A dockerignore file can exclude unnecessary or sensitive inputs."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A build sends a large directory containing private files. Restrict context and add deliberate exclusion rules."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "It is only the Dockerfile text. This is not a sound assumption; the set of files made available to the build."
+        }
+      ],
+      "takeaway": "A dockerignore file can exclude unnecessary or sensitive inputs.",
+      "references": [
+        {
+          "title": "Build context \u2014 primary reference",
+          "url": "https://docs.docker.com/engine/"
+        }
+      ]
+    },
+    {
+      "id": "docker-lesson-05",
+      "topic": "docker",
+      "title": "Container logs",
+      "summary": "To stdout and stderr for collection by the runtime.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Log retention and rotation still need explicit management."
+        },
+        {
+          "heading": "Apply it",
+          "body": "Host disk fills because container logs grow without rotation. Inspect the logging driver and configure bounded retention."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "Logs sent to stdout can never consume host storage. This is not a sound assumption; to stdout and stderr for collection by the runtime."
+        }
+      ],
+      "takeaway": "Log retention and rotation still need explicit management.",
+      "references": [
+        {
+          "title": "Container logs \u2014 primary reference",
+          "url": "https://docs.docker.com/engine/"
+        }
+      ]
+    },
+    {
+      "id": "docker-lesson-06",
+      "topic": "docker",
+      "title": "Port publishing",
+      "summary": "Map a host endpoint to a container port.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Exposing metadata alone does not publish a host port."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A service listens inside a container but is unreachable on the host port. Check listener binding and the explicit port mapping."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "EXPOSE automatically opens every host firewall. This is not a sound assumption; map a host endpoint to a container port."
+        }
+      ],
+      "takeaway": "Exposing metadata alone does not publish a host port.",
+      "references": [
+        {
+          "title": "Port publishing \u2014 primary reference",
+          "url": "https://docs.docker.com/engine/"
+        }
+      ]
+    },
+    {
+      "id": "docker-lesson-07",
+      "topic": "docker",
+      "title": "Volumes",
+      "summary": "Its lifecycle can be managed separately from the container writable layer.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Volumes still require backup and access controls."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A database loses data after its container is replaced. Move persistent data to appropriate managed storage and restore verified backups."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "Deleting any container always preserves its writable-layer data. This is not a sound assumption; its lifecycle can be managed separately from the container writable layer."
+        }
+      ],
+      "takeaway": "Volumes still require backup and access controls.",
+      "references": [
+        {
+          "title": "Volumes \u2014 primary reference",
+          "url": "https://docs.docker.com/engine/"
+        }
+      ]
+    },
+    {
+      "id": "docker-lesson-08",
+      "topic": "docker",
+      "title": "Entrypoints",
+      "summary": "The service can run directly as the container's main process.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Signal forwarding differs when an intermediate shell is involved."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A service ignores graceful stop because its shell wrapper mishandles signals. Use exec appropriately and verify stop behavior."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "Exec form starts an interactive shell by default. This is not a sound assumption; the service can run directly as the container's main process."
+        }
+      ],
+      "takeaway": "Signal forwarding differs when an intermediate shell is involved.",
+      "references": [
+        {
+          "title": "Entrypoints \u2014 primary reference",
+          "url": "https://docs.docker.com/engine/"
+        }
+      ]
+    },
+    {
+      "id": "docker-lesson-09",
+      "topic": "docker",
+      "title": "PID one",
+      "summary": "It may need to reap children and handle termination signals.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "A small init can help workloads that spawn child processes."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A worker container accumulates zombie child processes. Inspect reaping behavior and use suitable process supervision."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "PID one automatically reaps every child in all applications. This is not a sound assumption; it may need to reap children and handle termination signals."
+        }
+      ],
+      "takeaway": "A small init can help workloads that spawn child processes.",
+      "references": [
+        {
+          "title": "PID one \u2014 primary reference",
+          "url": "https://docs.docker.com/engine/"
+        }
+      ]
+    },
+    {
+      "id": "docker-lesson-10",
+      "topic": "docker",
+      "title": "Health checks",
+      "summary": "A health status based on the configured check result.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "A health status alone does not guarantee automatic container restart."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A container is unhealthy but still running. Inspect health output and configure the intended supervisory response."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "An unhealthy status always restarts the container in standalone Docker. This is not a sound assumption; a health status based on the configured check result."
+        }
+      ],
+      "takeaway": "A health status alone does not guarantee automatic container restart.",
+      "references": [
+        {
+          "title": "Health checks \u2014 primary reference",
+          "url": "https://docs.docker.com/engine/"
+        }
+      ]
+    },
+    {
+      "id": "docker-lesson-11",
+      "topic": "docker",
+      "title": "User identity",
+      "summary": "Reduce the privileges available to compromised application code.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Non-root execution complements other isolation controls."
+        },
+        {
+          "heading": "Apply it",
+          "body": "An application needs write access only to one data directory. Set an appropriate user and narrow directory permissions."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "A non-root container has no possible security risks. This is not a sound assumption; reduce the privileges available to compromised application code."
+        }
+      ],
+      "takeaway": "Non-root execution complements other isolation controls.",
+      "references": [
+        {
+          "title": "User identity \u2014 primary reference",
+          "url": "https://docs.docker.com/engine/"
+        }
+      ]
+    },
+    {
+      "id": "docker-lesson-12",
+      "topic": "docker",
+      "title": "Memory limits",
+      "summary": "The workload can encounter cgroup memory pressure or OOM termination.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Host free memory does not negate a container's configured limit."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A container dies while the host reports free RAM. Inspect its limit memory events and working-set demand."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "A memory limit only changes monitoring display. This is not a sound assumption; the workload can encounter cgroup memory pressure or OOM termination."
+        }
+      ],
+      "takeaway": "Host free memory does not negate a container's configured limit.",
+      "references": [
+        {
+          "title": "Memory limits \u2014 primary reference",
+          "url": "https://docs.docker.com/engine/"
+        }
+      ]
+    },
+    {
+      "id": "docker-lesson-13",
+      "topic": "docker",
+      "title": "CPU quotas",
+      "summary": "CPU runtime available to the cgroup over scheduling periods.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Quota throttling can affect latency."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A low-CPU-limit service has high tail latency with throttling. Compare quota demand and throttling before adjusting limits."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "A CPU quota reserves an exclusive physical core automatically. This is not a sound assumption; cPU runtime available to the cgroup over scheduling periods."
+        }
+      ],
+      "takeaway": "Quota throttling can affect latency.",
+      "references": [
+        {
+          "title": "CPU quotas \u2014 primary reference",
+          "url": "https://docs.docker.com/engine/"
+        }
+      ]
+    },
+    {
+      "id": "docker-lesson-14",
+      "topic": "docker",
+      "title": "Bind mounts",
+      "summary": "A bind mount exposes a specified host path.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Host path permissions and contents directly affect the container."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A deployment works on one host but lacks files on another. Verify the host path and avoid hidden host-specific dependencies."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "A bind mount always copies data into the image. This is not a sound assumption; a bind mount exposes a specified host path."
+        }
+      ],
+      "takeaway": "Host path permissions and contents directly affect the container.",
+      "references": [
+        {
+          "title": "Bind mounts \u2014 primary reference",
+          "url": "https://docs.docker.com/engine/"
+        }
+      ]
+    },
+    {
+      "id": "docker-lesson-15",
+      "topic": "docker",
+      "title": "Read-only filesystems",
+      "summary": "Reduce unintended writes to the image-derived filesystem.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Required writable paths must be provisioned separately."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A hardened container fails when writing temporary files. Provide narrowly scoped writable temporary storage."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "Read-only root prevents every network attack. This is not a sound assumption; reduce unintended writes to the image-derived filesystem."
+        }
+      ],
+      "takeaway": "Required writable paths must be provisioned separately.",
+      "references": [
+        {
+          "title": "Read-only filesystems \u2014 primary reference",
+          "url": "https://docs.docker.com/engine/"
+        }
+      ]
+    },
+    {
+      "id": "docker-lesson-16",
+      "topic": "docker",
+      "title": "Multi-stage builds",
+      "summary": "Separate build tooling from the final runtime image.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Only explicitly copied artifacts need enter the final stage."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A production image contains compilers and package caches unnecessarily. Copy required runtime artifacts from a builder into a smaller final stage."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "Every intermediate build tool must remain in the runtime image. This is not a sound assumption; separate build tooling from the final runtime image."
+        }
+      ],
+      "takeaway": "Only explicitly copied artifacts need enter the final stage.",
+      "references": [
+        {
+          "title": "Multi-stage builds \u2014 primary reference",
+          "url": "https://docs.docker.com/engine/"
+        }
+      ]
+    },
+    {
+      "id": "docker-lesson-17",
+      "topic": "docker",
+      "title": "Build cache",
+      "summary": "It can preserve useful cached build steps.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Cache keys and inputs determine whether a step can be reused."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A small source edit causes expensive dependency installation every build. Separate dependency manifests from frequently changing application source."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "Docker caches every step forever regardless of inputs. This is not a sound assumption; it can preserve useful cached build steps."
+        }
+      ],
+      "takeaway": "Cache keys and inputs determine whether a step can be reused.",
+      "references": [
+        {
+          "title": "Build cache \u2014 primary reference",
+          "url": "https://docs.docker.com/engine/"
+        }
+      ]
+    },
+    {
+      "id": "docker-lesson-18",
+      "topic": "docker",
+      "title": "Secrets in builds",
+      "summary": "Use a dedicated build secret mechanism.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Secrets should not be baked into layers or ordinary build arguments."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A dependency download requires a private registry credential. Use scoped build secrets and verify the final image contains no credential."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "Build arguments are always encrypted and excluded from history. This is not a sound assumption; use a dedicated build secret mechanism."
+        }
+      ],
+      "takeaway": "Secrets should not be baked into layers or ordinary build arguments.",
+      "references": [
+        {
+          "title": "Secrets in builds \u2014 primary reference",
+          "url": "https://docs.docker.com/engine/"
+        }
+      ]
+    },
+    {
+      "id": "docker-lesson-19",
+      "topic": "docker",
+      "title": "Image digests",
+      "summary": "Specific content-addressed image data.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Mutable tags can move to different content."
+        },
+        {
+          "heading": "Apply it",
+          "body": "Two deployments of the same tag run different builds. Record and deploy the intended immutable digest."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "A digest is just a friendly mutable alias. This is not a sound assumption; specific content-addressed image data."
+        }
+      ],
+      "takeaway": "Mutable tags can move to different content.",
+      "references": [
+        {
+          "title": "Image digests \u2014 primary reference",
+          "url": "https://docs.docker.com/engine/"
+        }
+      ]
+    },
+    {
+      "id": "docker-lesson-20",
+      "topic": "docker",
+      "title": "Networks",
+      "summary": "Scoped container connectivity with built-in name resolution.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Network attachment and published host ports are distinct choices."
+        },
+        {
+          "heading": "Apply it",
+          "body": "Two containers expected to communicate are attached to different networks. Inspect network membership and intended service names."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "Every container name resolves globally across unrelated networks. This is not a sound assumption; scoped container connectivity with built-in name resolution."
+        }
+      ],
+      "takeaway": "Network attachment and published host ports are distinct choices.",
+      "references": [
+        {
+          "title": "Networks \u2014 primary reference",
+          "url": "https://docs.docker.com/engine/"
+        }
+      ]
+    },
+    {
+      "id": "docker-lesson-21",
+      "topic": "docker",
+      "title": "Compose dependencies",
+      "summary": "A started dependency may not yet be ready to serve requests.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Readiness checks and application retry behavior remain important."
+        },
+        {
+          "heading": "Apply it",
+          "body": "An application starts before its database becomes usable. Use readiness-aware orchestration and bounded connection retries."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "Starting a database process proves schema initialization is complete. This is not a sound assumption; a started dependency may not yet be ready to serve requests."
+        }
+      ],
+      "takeaway": "Readiness checks and application retry behavior remain important.",
+      "references": [
+        {
+          "title": "Compose dependencies \u2014 primary reference",
+          "url": "https://docs.docker.com/engine/"
+        }
+      ]
+    },
+    {
+      "id": "docker-lesson-22",
+      "topic": "docker",
+      "title": "Restart policy",
+      "summary": "Runtime behavior when a container exits under specified conditions.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Restarting repeatedly does not repair an underlying bad configuration."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A container exits immediately because a required setting is missing. Inspect exit logs and correct configuration before relying on restarts."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "A restart policy fixes every application bug. This is not a sound assumption; runtime behavior when a container exits under specified conditions."
+        }
+      ],
+      "takeaway": "Restarting repeatedly does not repair an underlying bad configuration.",
+      "references": [
+        {
+          "title": "Restart policy \u2014 primary reference",
+          "url": "https://docs.docker.com/engine/"
+        }
+      ]
+    },
+    {
+      "id": "docker-lesson-23",
+      "topic": "docker",
+      "title": "Registry access",
+      "summary": "They grant different capabilities at different lifecycle stages.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Credentials should have the minimum required repository scope."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A runtime workload can overwrite the image it was deployed from. Reduce registry credential scope and separate build from runtime identities."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "A registry password is always safe to embed in an image. This is not a sound assumption; they grant different capabilities at different lifecycle stages."
+        }
+      ],
+      "takeaway": "Credentials should have the minimum required repository scope.",
+      "references": [
+        {
+          "title": "Registry access \u2014 primary reference",
+          "url": "https://docs.docker.com/engine/"
+        }
+      ]
+    },
+    {
+      "id": "docker-lesson-24",
+      "topic": "docker",
+      "title": "Resource cleanup",
+      "summary": "Unused from the runtime's perspective may still be operationally valuable.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Volume deletion can remove persistent data."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A host is low on disk and an operator proposes deleting every volume. Identify consumers and backups before scoped cleanup."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "Every prune operation is harmless to recoverability. This is not a sound assumption; unused from the runtime's perspective may still be operationally valuable."
+        }
+      ],
+      "takeaway": "Volume deletion can remove persistent data.",
+      "references": [
+        {
+          "title": "Resource cleanup \u2014 primary reference",
+          "url": "https://docs.docker.com/engine/"
+        }
+      ]
+    },
+    {
+      "id": "docker-lesson-25",
+      "topic": "docker",
+      "title": "Socket exposure",
+      "summary": "Daemon access can grant extensive control over the host.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Treat daemon API access as a privileged trust boundary."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A web application mounts the daemon socket for convenience. Remove unnecessary daemon access or isolate a narrowly controlled service."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "The socket grants only read-only log access by default. This is not a sound assumption; daemon access can grant extensive control over the host."
+        }
+      ],
+      "takeaway": "Treat daemon API access as a privileged trust boundary.",
+      "references": [
+        {
+          "title": "Socket exposure \u2014 primary reference",
+          "url": "https://docs.docker.com/engine/"
+        }
+      ]
+    },
+    {
+      "id": "docker-lesson-26",
+      "topic": "docker",
+      "title": "Rootless mode",
+      "summary": "The need for a root-privileged daemon and containers.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Rootless operation has compatibility and resource-control considerations."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A team wants to reduce daemon privilege on developer hosts. Evaluate rootless support against networking storage and workload requirements."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "Rootless mode removes all kernel attack surface. This is not a sound assumption; the need for a root-privileged daemon and containers."
+        }
+      ],
+      "takeaway": "Rootless operation has compatibility and resource-control considerations.",
+      "references": [
+        {
+          "title": "Rootless mode \u2014 primary reference",
+          "url": "https://docs.docker.com/engine/"
+        }
+      ]
+    },
+    {
+      "id": "docker-lesson-27",
+      "topic": "docker",
+      "title": "Image scanning",
+      "summary": "Evidence about known issues in the inspected image and metadata.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "A clean scan is not proof of absence of all vulnerabilities."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A scan finds a critical library issue in a deployed image. Assess reachability and impact then rebuild and redeploy a verified fix."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "Scanning guarantees application logic is secure. This is not a sound assumption; evidence about known issues in the inspected image and metadata."
+        }
+      ],
+      "takeaway": "A clean scan is not proof of absence of all vulnerabilities.",
+      "references": [
+        {
+          "title": "Image scanning \u2014 primary reference",
+          "url": "https://docs.docker.com/engine/"
+        }
+      ]
+    },
+    {
+      "id": "docker-lesson-28",
+      "topic": "docker",
+      "title": "Supply chain",
+      "summary": "Establish evidence about artifact origin and integrity.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Verification policy must define trusted identities and sources."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A registry contains an unexpected image under a trusted-looking tag. Verify digest provenance and the authorized publishing identity."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "Any signed image is automatically safe regardless of signer. This is not a sound assumption; establish evidence about artifact origin and integrity."
+        }
+      ],
+      "takeaway": "Verification policy must define trusted identities and sources.",
+      "references": [
+        {
+          "title": "Supply chain \u2014 primary reference",
+          "url": "https://docs.docker.com/engine/"
+        }
+      ]
+    },
+    {
+      "id": "docker-lesson-29",
+      "topic": "docker",
+      "title": "Shared kernel",
+      "summary": "Kernel vulnerabilities can cross container isolation boundaries.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Host patching remains important even with minimal images."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A host kernel vulnerability affects container isolation. Assess host exposure and roll out host remediation safely."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "Each container always has an independent kernel. This is not a sound assumption; kernel vulnerabilities can cross container isolation boundaries."
+        }
+      ],
+      "takeaway": "Host patching remains important even with minimal images.",
+      "references": [
+        {
+          "title": "Shared kernel \u2014 primary reference",
+          "url": "https://docs.docker.com/engine/"
+        }
+      ]
+    },
+    {
+      "id": "docker-lesson-30",
+      "topic": "docker",
+      "title": "Stateful migration",
+      "summary": "Persistent data or schema changes may outlive the old image.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Application and data compatibility must be considered together."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A new image migrates the database schema incompatibly. Plan compatible migration or verified data recovery before rollback."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "Restoring an old image automatically reverses all schema changes. This is not a sound assumption; persistent data or schema changes may outlive the old image."
+        }
+      ],
+      "takeaway": "Application and data compatibility must be considered together.",
+      "references": [
+        {
+          "title": "Stateful migration \u2014 primary reference",
+          "url": "https://docs.docker.com/engine/"
+        }
+      ]
+    }
+  ],
+  "commands": [],
+  "debugging": []
+}

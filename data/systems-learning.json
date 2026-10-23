@@ -1,0 +1,817 @@
+{
+  "subject": "systems",
+  "lessons": [
+    {
+      "id": "systems-lesson-01",
+      "topic": "systems",
+      "title": "Service managers",
+      "summary": "Managing configured service lifecycle and supervision.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "A running process and a healthy service are different observations."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A service is active but its endpoint returns errors. Inspect application health and logs alongside unit status."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "Starting a service proves all business operations succeed. This is not a sound assumption; managing configured service lifecycle and supervision."
+        }
+      ],
+      "takeaway": "A running process and a healthy service are different observations.",
+      "references": [
+        {
+          "title": "Service managers \u2014 primary reference",
+          "url": "https://www.freedesktop.org/software/systemd/man/latest/"
+        }
+      ]
+    },
+    {
+      "id": "systems-lesson-02",
+      "topic": "systems",
+      "title": "Enable versus start",
+      "summary": "Activation through configured unit installation relationships such as boot targets.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Enabling and starting are separate operations unless explicitly combined."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A service works now but does not return after reboot. Inspect enablement and the intended boot activation path."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "Enable always starts the process immediately. This is not a sound assumption; activation through configured unit installation relationships such as boot targets."
+        }
+      ],
+      "takeaway": "Enabling and starting are separate operations unless explicitly combined.",
+      "references": [
+        {
+          "title": "Enable versus start \u2014 primary reference",
+          "url": "https://www.freedesktop.org/software/systemd/man/latest/"
+        }
+      ]
+    },
+    {
+      "id": "systems-lesson-03",
+      "topic": "systems",
+      "title": "Unit overrides",
+      "summary": "Customize a unit without directly editing a vendor-supplied unit file.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Configuration changes may require daemon reload and service action."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A package upgrade replaces local service tuning. Use a managed drop-in and verify the effective unit configuration."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "Drop-ins are ignored whenever packages update. This is not a sound assumption; customize a unit without directly editing a vendor-supplied unit file."
+        }
+      ],
+      "takeaway": "Configuration changes may require daemon reload and service action.",
+      "references": [
+        {
+          "title": "Unit overrides \u2014 primary reference",
+          "url": "https://www.freedesktop.org/software/systemd/man/latest/"
+        }
+      ]
+    },
+    {
+      "id": "systems-lesson-04",
+      "topic": "systems",
+      "title": "Journals",
+      "summary": "Querying journal records with filters such as unit and time.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Retention and persistence settings determine available history."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A restart failure needs investigation around a known time. Query the relevant unit and time window."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "The journal always retains all logs forever. This is not a sound assumption; querying journal records with filters such as unit and time."
+        }
+      ],
+      "takeaway": "Retention and persistence settings determine available history.",
+      "references": [
+        {
+          "title": "Journals \u2014 primary reference",
+          "url": "https://www.freedesktop.org/software/systemd/man/latest/"
+        }
+      ]
+    },
+    {
+      "id": "systems-lesson-05",
+      "topic": "systems",
+      "title": "Accounts",
+      "summary": "Limit access and attribute activity to distinct workloads.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Account separation must be paired with appropriate permissions."
+        },
+        {
+          "heading": "Apply it",
+          "body": "One service account can read unrelated applications' secrets. Separate identities and narrow file and service access."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "Separate usernames automatically isolate all files and networks. This is not a sound assumption; limit access and attribute activity to distinct workloads."
+        }
+      ],
+      "takeaway": "Account separation must be paired with appropriate permissions.",
+      "references": [
+        {
+          "title": "Accounts \u2014 primary reference",
+          "url": "https://man7.org/linux/man-pages/man7/credentials.7.html"
+        }
+      ]
+    },
+    {
+      "id": "systems-lesson-06",
+      "topic": "systems",
+      "title": "SSH keys",
+      "summary": "Possession can enable authentication wherever the key is trusted.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Key removal and rotation require reviewing authorized locations."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A private deployment key appears in a shared log. Revoke or rotate the key and review affected access."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "A private key is safe to publish if the username is hidden. This is not a sound assumption; possession can enable authentication wherever the key is trusted."
+        }
+      ],
+      "takeaway": "Key removal and rotation require reviewing authorized locations.",
+      "references": [
+        {
+          "title": "SSH keys \u2014 primary reference",
+          "url": "https://www.openssh.com/manual.html"
+        }
+      ]
+    },
+    {
+      "id": "systems-lesson-07",
+      "topic": "systems",
+      "title": "Package management",
+      "summary": "It tracks package ownership dependencies and updates.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Third-party sources still require trust and version review."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A critical library was installed manually outside package tracking. Inventory the installation and establish a supported update path."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "A package manager proves every package is vulnerability-free. This is not a sound assumption; it tracks package ownership dependencies and updates."
+        }
+      ],
+      "takeaway": "Third-party sources still require trust and version review.",
+      "references": [
+        {
+          "title": "Package management \u2014 primary reference",
+          "url": "https://www.debian.org/doc/manuals/debian-reference/ch02.en.html"
+        }
+      ]
+    },
+    {
+      "id": "systems-lesson-08",
+      "topic": "systems",
+      "title": "Scheduled jobs",
+      "summary": "They may run with different PATH working directory and credentials.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Use explicit paths and controlled output handling."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A script works interactively but fails under the scheduler. Compare identity environment paths and working directory."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "Cron always inherits an interactive shell's full environment. This is not a sound assumption; they may run with different PATH working directory and credentials."
+        }
+      ],
+      "takeaway": "Use explicit paths and controlled output handling.",
+      "references": [
+        {
+          "title": "Scheduled jobs \u2014 primary reference",
+          "url": "https://man7.org/linux/man-pages/man5/crontab.5.html"
+        }
+      ]
+    },
+    {
+      "id": "systems-lesson-09",
+      "topic": "systems",
+      "title": "Time synchronization",
+      "summary": "Authentication log correlation and distributed behavior can depend on it.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Elapsed-time measurement may need monotonic clocks separately."
+        },
+        {
+          "heading": "Apply it",
+          "body": "Authentication failures coincide with clock drift. Inspect synchronization state and correct the time source safely."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "Clock synchronization makes all machines perfectly simultaneous forever. This is not a sound assumption; authentication log correlation and distributed behavior can depend on it."
+        }
+      ],
+      "takeaway": "Elapsed-time measurement may need monotonic clocks separately.",
+      "references": [
+        {
+          "title": "Time synchronization \u2014 primary reference",
+          "url": "https://www.freedesktop.org/software/systemd/man/latest/"
+        }
+      ]
+    },
+    {
+      "id": "systems-lesson-10",
+      "topic": "systems",
+      "title": "Disk layout",
+      "summary": "Reduce the chance one workload exhausts space needed for core operation.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Capacity limits and monitoring still matter after separation."
+        },
+        {
+          "heading": "Apply it",
+          "body": "Application logs fill the root filesystem and disrupt system services. Bound log growth and evaluate storage isolation."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "Separate directories alone always mean separate capacity. This is not a sound assumption; reduce the chance one workload exhausts space needed for core operation."
+        }
+      ],
+      "takeaway": "Capacity limits and monitoring still matter after separation.",
+      "references": [
+        {
+          "title": "Disk layout \u2014 primary reference",
+          "url": "https://man7.org/linux/man-pages/man8/mount.8.html"
+        }
+      ]
+    },
+    {
+      "id": "systems-lesson-11",
+      "topic": "systems",
+      "title": "Log rotation",
+      "summary": "A retention policy and appropriate application file-handle behavior.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "A process may keep writing to a renamed or deleted open file."
+        },
+        {
+          "heading": "Apply it",
+          "body": "Disk usage remains high after a log file was deleted. Inspect open handles and use the application's supported reopen mechanism."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "Renaming a log guarantees the process reopens a new file. This is not a sound assumption; a retention policy and appropriate application file-handle behavior."
+        }
+      ],
+      "takeaway": "A process may keep writing to a renamed or deleted open file.",
+      "references": [
+        {
+          "title": "Log rotation \u2014 primary reference",
+          "url": "https://man7.org/linux/man-pages/man8/logrotate.8.html"
+        }
+      ]
+    },
+    {
+      "id": "systems-lesson-12",
+      "topic": "systems",
+      "title": "Backups",
+      "summary": "Recoverable retained data protected from relevant failure modes.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Replication can propagate accidental deletion or corruption."
+        },
+        {
+          "heading": "Apply it",
+          "body": "An operator deletes data and replication mirrors the deletion. Restore from a verified retained recovery point."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "Replication always replaces historical backups. This is not a sound assumption; recoverable retained data protected from relevant failure modes."
+        }
+      ],
+      "takeaway": "Replication can propagate accidental deletion or corruption.",
+      "references": [
+        {
+          "title": "Backups \u2014 primary reference",
+          "url": "https://sre.google/sre-book/data-integrity/"
+        }
+      ]
+    },
+    {
+      "id": "systems-lesson-13",
+      "topic": "systems",
+      "title": "Restore verification",
+      "summary": "Data integrity and usable application behavior after recovery.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Recovery time and required credentials belong in the test."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A restored database starts but required records are missing. Validate business-relevant data and recovery-point expectations."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "A completed file copy proves the application can recover. This is not a sound assumption; data integrity and usable application behavior after recovery."
+        }
+      ],
+      "takeaway": "Recovery time and required credentials belong in the test.",
+      "references": [
+        {
+          "title": "Restore verification \u2014 primary reference",
+          "url": "https://sre.google/sre-book/data-integrity/"
+        }
+      ]
+    },
+    {
+      "id": "systems-lesson-14",
+      "topic": "systems",
+      "title": "RAID",
+      "summary": "It does not protect against every logical deletion or corruption event.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Redundancy and independent backups solve different problems."
+        },
+        {
+          "heading": "Apply it",
+          "body": "An administrator deletes a directory on a redundant array. Recover from appropriate backups rather than expecting redundancy to undo deletion."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "RAID makes backups unnecessary. This is not a sound assumption; it does not protect against every logical deletion or corruption event."
+        }
+      ],
+      "takeaway": "Redundancy and independent backups solve different problems.",
+      "references": [
+        {
+          "title": "RAID \u2014 primary reference",
+          "url": "https://sre.google/sre-book/data-integrity/"
+        }
+      ]
+    },
+    {
+      "id": "systems-lesson-15",
+      "topic": "systems",
+      "title": "LVM",
+      "summary": "An abstraction for allocating logical storage from physical capacity.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Filesystem resizing requirements are separate from volume resizing."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A logical volume was extended but df shows unchanged capacity. Check and perform the filesystem-specific growth step safely."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "Growing a logical volume always grows every filesystem automatically. This is not a sound assumption; an abstraction for allocating logical storage from physical capacity."
+        }
+      ],
+      "takeaway": "Filesystem resizing requirements are separate from volume resizing.",
+      "references": [
+        {
+          "title": "LVM \u2014 primary reference",
+          "url": "https://man7.org/linux/man-pages/man8/lvm.8.html"
+        }
+      ]
+    },
+    {
+      "id": "systems-lesson-16",
+      "topic": "systems",
+      "title": "Filesystem mounts",
+      "summary": "Device enumeration names can change across boots.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Mount configuration should be tested before a critical reboot."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A host mounts the wrong volume after device ordering changes. Use stable identifiers and verify mount dependencies."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "A disk always keeps the same enumeration name forever. This is not a sound assumption; device enumeration names can change across boots."
+        }
+      ],
+      "takeaway": "Mount configuration should be tested before a critical reboot.",
+      "references": [
+        {
+          "title": "Filesystem mounts \u2014 primary reference",
+          "url": "https://man7.org/linux/man-pages/man8/mount.8.html"
+        }
+      ]
+    },
+    {
+      "id": "systems-lesson-17",
+      "topic": "systems",
+      "title": "Boot recovery",
+      "summary": "Use an authorized recovery path and inspect the specific boot failure.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Keep a known recovery route before making risky boot changes."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A modified mount entry prevents normal boot. Use recovery access to inspect and correct the faulty entry."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "Repeated blind rebooting repairs every configuration error. This is not a sound assumption; use an authorized recovery path and inspect the specific boot failure."
+        }
+      ],
+      "takeaway": "Keep a known recovery route before making risky boot changes.",
+      "references": [
+        {
+          "title": "Boot recovery \u2014 primary reference",
+          "url": "https://www.freedesktop.org/software/systemd/man/latest/"
+        }
+      ]
+    },
+    {
+      "id": "systems-lesson-18",
+      "topic": "systems",
+      "title": "Patching",
+      "summary": "Representative validation staged deployment and recovery planning.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Some updates require service restart or reboot to take effect."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A kernel update is installed but the old kernel remains running. Plan and verify the required reboot within availability constraints."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "Installing a package proves all running processes use the new code. This is not a sound assumption; representative validation staged deployment and recovery planning."
+        }
+      ],
+      "takeaway": "Some updates require service restart or reboot to take effect.",
+      "references": [
+        {
+          "title": "Patching \u2014 primary reference",
+          "url": "https://sre.google/workbook/canarying-releases/"
+        }
+      ]
+    },
+    {
+      "id": "systems-lesson-19",
+      "topic": "systems",
+      "title": "Configuration drift",
+      "summary": "Untracked changes can undermine reproducibility and policy.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Intentional emergency changes need reconciliation into the managed baseline."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A host differs from its declared baseline after incident mitigation. Review the change and adopt or revert it deliberately."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "Every manual change is malicious. This is not a sound assumption; untracked changes can undermine reproducibility and policy."
+        }
+      ],
+      "takeaway": "Intentional emergency changes need reconciliation into the managed baseline.",
+      "references": [
+        {
+          "title": "Configuration drift \u2014 primary reference",
+          "url": "https://sre.google/workbook/canarying-releases/"
+        }
+      ]
+    },
+    {
+      "id": "systems-lesson-20",
+      "topic": "systems",
+      "title": "Access reviews",
+      "summary": "Roles and operational needs change over time.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Removal should account for service dependencies and emergency access."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A departed team member retains production administrative access. Revoke access through the managed identity path and audit related credentials."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "Once granted privileged access should never expire. This is not a sound assumption; roles and operational needs change over time."
+        }
+      ],
+      "takeaway": "Removal should account for service dependencies and emergency access.",
+      "references": [
+        {
+          "title": "Access reviews \u2014 primary reference",
+          "url": "https://man7.org/linux/man-pages/man7/credentials.7.html"
+        }
+      ]
+    },
+    {
+      "id": "systems-lesson-21",
+      "topic": "systems",
+      "title": "Sudo policy",
+      "summary": "Privileged commands can expose more capability than their names suggest.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Editors shells and writable command paths can enable escalation."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A restricted sudo rule permits a tool that can launch arbitrary shells. Review effective capabilities and narrow the allowed operation."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "Allowing any editor as root is always harmless. This is not a sound assumption; privileged commands can expose more capability than their names suggest."
+        }
+      ],
+      "takeaway": "Editors shells and writable command paths can enable escalation.",
+      "references": [
+        {
+          "title": "Sudo policy \u2014 primary reference",
+          "url": "https://www.sudo.ws/docs/man/sudoers.man/"
+        }
+      ]
+    },
+    {
+      "id": "systems-lesson-22",
+      "topic": "systems",
+      "title": "Resource limits",
+      "summary": "Contain resource consumption and protect shared capacity.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Limits must be tested against legitimate workload needs."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A service fails under load after an aggressive descriptor limit. Compare legitimate demand with observed usage and tune deliberately."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "Any low limit improves reliability without trade-offs. This is not a sound assumption; contain resource consumption and protect shared capacity."
+        }
+      ],
+      "takeaway": "Limits must be tested against legitimate workload needs.",
+      "references": [
+        {
+          "title": "Resource limits \u2014 primary reference",
+          "url": "https://www.freedesktop.org/software/systemd/man/latest/"
+        }
+      ]
+    },
+    {
+      "id": "systems-lesson-23",
+      "topic": "systems",
+      "title": "System monitoring",
+      "summary": "Resource pressure and user-visible behavior provide complementary evidence.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "A healthy host metric alone does not prove application success."
+        },
+        {
+          "heading": "Apply it",
+          "body": "Users see errors while host resources look normal. Inspect application and dependency indicators alongside host health."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "Low CPU guarantees healthy service behavior. This is not a sound assumption; resource pressure and user-visible behavior provide complementary evidence."
+        }
+      ],
+      "takeaway": "A healthy host metric alone does not prove application success.",
+      "references": [
+        {
+          "title": "System monitoring \u2014 primary reference",
+          "url": "https://sre.google/workbook/monitoring/"
+        }
+      ]
+    },
+    {
+      "id": "systems-lesson-24",
+      "topic": "systems",
+      "title": "Immutable hosts",
+      "summary": "Reduce divergence caused by accumulated manual changes.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Persistent data and identity must survive through explicit design."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A manually repaired host cannot be reproduced elsewhere. Capture the intended configuration and rebuild a tested image."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "Replacing a host automatically preserves all local mutable data. This is not a sound assumption; reduce divergence caused by accumulated manual changes."
+        }
+      ],
+      "takeaway": "Persistent data and identity must survive through explicit design.",
+      "references": [
+        {
+          "title": "Immutable hosts \u2014 primary reference",
+          "url": "https://sre.google/workbook/canarying-releases/"
+        }
+      ]
+    },
+    {
+      "id": "systems-lesson-25",
+      "topic": "systems",
+      "title": "Capacity forecasts",
+      "summary": "Normal averages can underestimate future or degraded-mode demand.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Forecasts should be checked against observed trends and load tests."
+        },
+        {
+          "heading": "Apply it",
+          "body": "Storage growth will exhaust capacity before the procurement lead time. Project the trend and act before the required lead time is consumed."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "Current free space guarantees next month's capacity. This is not a sound assumption; normal averages can underestimate future or degraded-mode demand."
+        }
+      ],
+      "takeaway": "Forecasts should be checked against observed trends and load tests.",
+      "references": [
+        {
+          "title": "Capacity forecasts \u2014 primary reference",
+          "url": "https://sre.google/workbook/monitoring/"
+        }
+      ]
+    },
+    {
+      "id": "systems-lesson-26",
+      "topic": "systems",
+      "title": "Remote administration",
+      "summary": "A faulty change can cut off the primary management connection.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Test and stage changes with a rollback path."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A firewall change risks removing management access. Use staged rules and verified console or rollback access."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "An SSH session guarantees permanent recovery access. This is not a sound assumption; a faulty change can cut off the primary management connection."
+        }
+      ],
+      "takeaway": "Test and stage changes with a rollback path.",
+      "references": [
+        {
+          "title": "Remote administration \u2014 primary reference",
+          "url": "https://www.openssh.com/manual.html"
+        }
+      ]
+    },
+    {
+      "id": "systems-lesson-27",
+      "topic": "systems",
+      "title": "Data sanitization",
+      "summary": "Deleted data may remain recoverable depending on storage and controls.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Disposal procedures must match media technology and sensitivity."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A retired disk contains sensitive production data. Follow an approved media-specific sanitization or destruction process."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "Deleting a filename always overwrites every physical copy. This is not a sound assumption; deleted data may remain recoverable depending on storage and controls."
+        }
+      ],
+      "takeaway": "Disposal procedures must match media technology and sensitivity.",
+      "references": [
+        {
+          "title": "Data sanitization \u2014 primary reference",
+          "url": "https://www.gnu.org/software/coreutils/manual/html_node/shred-invocation.html"
+        }
+      ]
+    },
+    {
+      "id": "systems-lesson-28",
+      "topic": "systems",
+      "title": "Fleet changes",
+      "summary": "Limit impact and observe behavior before wider deployment.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Canaries should represent important workload variations."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A kernel setting works on one host but harms busy database hosts. Test representative groups and expand with monitored stop criteria."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "A successful change on one idle host proves fleet-wide safety. This is not a sound assumption; limit impact and observe behavior before wider deployment."
+        }
+      ],
+      "takeaway": "Canaries should represent important workload variations.",
+      "references": [
+        {
+          "title": "Fleet changes \u2014 primary reference",
+          "url": "https://sre.google/workbook/canarying-releases/"
+        }
+      ]
+    },
+    {
+      "id": "systems-lesson-29",
+      "topic": "systems",
+      "title": "Disaster documentation",
+      "summary": "Dependencies access requirements verification and responsible owners.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Recovery instructions should be accessible during the failure they address."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A recovery team cannot access the instructions because identity services are down. Provide an authorized resilient documentation and access path."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "Documentation stored only on the failed system is sufficient. This is not a sound assumption; dependencies access requirements verification and responsible owners."
+        }
+      ],
+      "takeaway": "Recovery instructions should be accessible during the failure they address.",
+      "references": [
+        {
+          "title": "Disaster documentation \u2014 primary reference",
+          "url": "https://sre.google/sre-book/data-integrity/"
+        }
+      ]
+    },
+    {
+      "id": "systems-lesson-30",
+      "topic": "systems",
+      "title": "Change verification",
+      "summary": "Verify the intended system outcome and relevant side effects.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Exit status is evidence about the command rather than complete service health."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A reload command succeeds but requests still fail. Check service behavior logs and the actual loaded configuration."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "Exit code zero proves every user workflow is healthy. This is not a sound assumption; verify the intended system outcome and relevant side effects."
+        }
+      ],
+      "takeaway": "Exit status is evidence about the command rather than complete service health.",
+      "references": [
+        {
+          "title": "Change verification \u2014 primary reference",
+          "url": "https://sre.google/workbook/canarying-releases/"
+        }
+      ]
+    }
+  ],
+  "commands": [],
+  "debugging": []
+}

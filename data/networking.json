@@ -1,0 +1,3733 @@
+{
+  "schemaVersion": 1,
+  "subject": "Networking",
+  "levels": [
+    "easy",
+    "medium",
+    "mediumHard",
+    "hard"
+  ],
+  "description": "30 competency sets: 90 scored questions and 30 self-reviewed interview prompts. Related questions intentionally reinforce a competency from different angles.",
+  "questions": [
+    {
+      "level": "easy",
+      "topic": "networking",
+      "objective": "Explain tcp delivery and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "TCP delivery \u2014 primary reference",
+          "url": "https://www.rfc-editor.org/rfc/rfc9293.html"
+        }
+      ],
+      "tags": [
+        "networking",
+        "tcp-delivery"
+      ],
+      "takeaway": "TCP does not preserve application message boundaries.",
+      "explanation": "Reliable ordered delivery within a connection. TCP does not preserve application message boundaries. In the scenario, implement explicit message framing and handle partial reads. The alternative \u2018Increase packet size and keep assuming read boundaries match messages\u2019 does not address the stated evidence or constraint.",
+      "id": "networking-01-concept",
+      "title": "TCP delivery \u00b7 concept",
+      "type": "concept",
+      "question": "What does TCP provide to an application byte stream?",
+      "options": [
+        "Reliable ordered delivery within a connection",
+        "Every send corresponds to exactly one receive",
+        "TCP guarantees a fixed delivery latency",
+        "Increase packet size and keep assuming read boundaries match messages"
+      ],
+      "correct": [
+        0
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "networking",
+      "objective": "Explain tcp delivery and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "TCP delivery \u2014 primary reference",
+          "url": "https://www.rfc-editor.org/rfc/rfc9293.html"
+        }
+      ],
+      "tags": [
+        "networking",
+        "tcp-delivery"
+      ],
+      "takeaway": "TCP does not preserve application message boundaries.",
+      "explanation": "Reliable ordered delivery within a connection. TCP does not preserve application message boundaries. In the scenario, implement explicit message framing and handle partial reads. The alternative \u2018Increase packet size and keep assuming read boundaries match messages\u2019 does not address the stated evidence or constraint.",
+      "id": "networking-01-scenario",
+      "title": "TCP delivery \u00b7 scenario",
+      "type": "scenario",
+      "question": "A receiver assumes one read contains one complete application message. What is the best next step?",
+      "options": [
+        "Increase packet size and keep assuming read boundaries match messages",
+        "Every send corresponds to exactly one receive",
+        "TCP guarantees a fixed delivery latency",
+        "Implement explicit message framing and handle partial reads"
+      ],
+      "correct": [
+        3
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "networking",
+      "objective": "Explain tcp delivery and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "TCP delivery \u2014 primary reference",
+          "url": "https://www.rfc-editor.org/rfc/rfc9293.html"
+        }
+      ],
+      "tags": [
+        "networking",
+        "tcp-delivery"
+      ],
+      "takeaway": "TCP does not preserve application message boundaries.",
+      "explanation": "Reliable ordered delivery within a connection. TCP does not preserve application message boundaries. In the scenario, implement explicit message framing and handle partial reads. The alternative \u2018Increase packet size and keep assuming read boundaries match messages\u2019 does not address the stated evidence or constraint.",
+      "id": "networking-01-principles",
+      "title": "TCP delivery \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing tcp delivery, which TWO statements are sound operational principles?",
+      "options": [
+        "Every send corresponds to exactly one receive",
+        "TCP guarantees a fixed delivery latency",
+        "Reliable ordered delivery within a connection",
+        "TCP does not preserve application message boundaries"
+      ],
+      "correct": [
+        2,
+        3
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "networking",
+      "objective": "Explain tcp delivery and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "TCP delivery \u2014 primary reference",
+          "url": "https://www.rfc-editor.org/rfc/rfc9293.html"
+        }
+      ],
+      "tags": [
+        "networking",
+        "tcp-delivery"
+      ],
+      "takeaway": "TCP does not preserve application message boundaries.",
+      "explanation": "Reliable ordered delivery within a connection. TCP does not preserve application message boundaries. In the scenario, implement explicit message framing and handle partial reads. The alternative \u2018Increase packet size and keep assuming read boundaries match messages\u2019 does not address the stated evidence or constraint.",
+      "id": "networking-01-interview",
+      "title": "TCP delivery \u00b7 interview",
+      "type": "interview",
+      "question": "Explain framing and partial reads in a TCP application protocol.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "Reliable ordered delivery within a connection. TCP does not preserve application message boundaries. A practical response is: Implement explicit message framing and handle partial reads. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that every send corresponds to exactly one receive.",
+      "answerChecklist": [
+        "Reliable ordered delivery within a connection",
+        "TCP does not preserve application message boundaries",
+        "Implement explicit message framing and handle partial reads",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "A receiver assumes one read contains one complete application message. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "networking",
+      "objective": "Explain udp semantics and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "UDP semantics \u2014 primary reference",
+          "url": "https://www.rfc-editor.org/rfc/rfc768.html"
+        }
+      ],
+      "tags": [
+        "networking",
+        "udp-semantics"
+      ],
+      "takeaway": "Applications must handle loss or duplication when their protocol requires it.",
+      "explanation": "UDP preserves datagram boundaries without built-in reliable delivery. Applications must handle loss or duplication when their protocol requires it. In the scenario, measure loss and decide whether application reliability is required. The alternative \u2018Assume the operating system will retransmit missing datagrams\u2019 does not address the stated evidence or constraint.",
+      "id": "networking-02-concept",
+      "title": "UDP semantics \u00b7 concept",
+      "type": "concept",
+      "question": "Which property distinguishes UDP from TCP?",
+      "options": [
+        "UDP retransmits every lost datagram automatically",
+        "UDP establishes a reliable ordered byte stream",
+        "Assume the operating system will retransmit missing datagrams",
+        "UDP preserves datagram boundaries without built-in reliable delivery"
+      ],
+      "correct": [
+        3
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "networking",
+      "objective": "Explain udp semantics and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "UDP semantics \u2014 primary reference",
+          "url": "https://www.rfc-editor.org/rfc/rfc768.html"
+        }
+      ],
+      "tags": [
+        "networking",
+        "udp-semantics"
+      ],
+      "takeaway": "Applications must handle loss or duplication when their protocol requires it.",
+      "explanation": "UDP preserves datagram boundaries without built-in reliable delivery. Applications must handle loss or duplication when their protocol requires it. In the scenario, measure loss and decide whether application reliability is required. The alternative \u2018Assume the operating system will retransmit missing datagrams\u2019 does not address the stated evidence or constraint.",
+      "id": "networking-02-scenario",
+      "title": "UDP semantics \u00b7 scenario",
+      "type": "scenario",
+      "question": "A telemetry collector sees gaps in UDP sequence numbers. What is the best next step?",
+      "options": [
+        "UDP retransmits every lost datagram automatically",
+        "UDP establishes a reliable ordered byte stream",
+        "Measure loss and decide whether application reliability is required",
+        "Assume the operating system will retransmit missing datagrams"
+      ],
+      "correct": [
+        2
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "networking",
+      "objective": "Explain udp semantics and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "UDP semantics \u2014 primary reference",
+          "url": "https://www.rfc-editor.org/rfc/rfc768.html"
+        }
+      ],
+      "tags": [
+        "networking",
+        "udp-semantics"
+      ],
+      "takeaway": "Applications must handle loss or duplication when their protocol requires it.",
+      "explanation": "UDP preserves datagram boundaries without built-in reliable delivery. Applications must handle loss or duplication when their protocol requires it. In the scenario, measure loss and decide whether application reliability is required. The alternative \u2018Assume the operating system will retransmit missing datagrams\u2019 does not address the stated evidence or constraint.",
+      "id": "networking-02-principles",
+      "title": "UDP semantics \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing udp semantics, which TWO statements are sound operational principles?",
+      "options": [
+        "UDP establishes a reliable ordered byte stream",
+        "UDP preserves datagram boundaries without built-in reliable delivery",
+        "Applications must handle loss or duplication when their protocol requires it",
+        "UDP retransmits every lost datagram automatically"
+      ],
+      "correct": [
+        1,
+        2
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "networking",
+      "objective": "Explain udp semantics and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "UDP semantics \u2014 primary reference",
+          "url": "https://www.rfc-editor.org/rfc/rfc768.html"
+        }
+      ],
+      "tags": [
+        "networking",
+        "udp-semantics"
+      ],
+      "takeaway": "Applications must handle loss or duplication when their protocol requires it.",
+      "explanation": "UDP preserves datagram boundaries without built-in reliable delivery. Applications must handle loss or duplication when their protocol requires it. In the scenario, measure loss and decide whether application reliability is required. The alternative \u2018Assume the operating system will retransmit missing datagrams\u2019 does not address the stated evidence or constraint.",
+      "id": "networking-02-interview",
+      "title": "UDP semantics \u00b7 interview",
+      "type": "interview",
+      "question": "Explain when UDP is appropriate and what the application must provide.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "UDP preserves datagram boundaries without built-in reliable delivery. Applications must handle loss or duplication when their protocol requires it. A practical response is: Measure loss and decide whether application reliability is required. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that uDP retransmits every lost datagram automatically.",
+      "answerChecklist": [
+        "UDP preserves datagram boundaries without built-in reliable delivery",
+        "Applications must handle loss or duplication when their protocol requires it",
+        "Measure loss and decide whether application reliability is required",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "A telemetry collector sees gaps in UDP sequence numbers. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "networking",
+      "objective": "Explain dns records and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "DNS records \u2014 primary reference",
+          "url": "https://www.rfc-editor.org/rfc/rfc1035.html"
+        }
+      ],
+      "tags": [
+        "networking",
+        "dns-records"
+      ],
+      "takeaway": "AAAA records carry IPv6 addresses.",
+      "explanation": "An IPv4 address for a DNS name. AAAA records carry IPv6 addresses. In the scenario, check the AAAA record and client IPv6 connectivity. The alternative \u2018Add a TCP port to the A record value\u2019 does not address the stated evidence or constraint.",
+      "id": "networking-03-concept",
+      "title": "DNS records \u00b7 concept",
+      "type": "concept",
+      "question": "What does an A record normally contain?",
+      "options": [
+        "An A record always names the authoritative server",
+        "Add a TCP port to the A record value",
+        "An IPv4 address for a DNS name",
+        "An A record contains a TCP port"
+      ],
+      "correct": [
+        2
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "networking",
+      "objective": "Explain dns records and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "DNS records \u2014 primary reference",
+          "url": "https://www.rfc-editor.org/rfc/rfc1035.html"
+        }
+      ],
+      "tags": [
+        "networking",
+        "dns-records"
+      ],
+      "takeaway": "AAAA records carry IPv6 addresses.",
+      "explanation": "An IPv4 address for a DNS name. AAAA records carry IPv6 addresses. In the scenario, check the AAAA record and client IPv6 connectivity. The alternative \u2018Add a TCP port to the A record value\u2019 does not address the stated evidence or constraint.",
+      "id": "networking-03-scenario",
+      "title": "DNS records \u00b7 scenario",
+      "type": "scenario",
+      "question": "A client resolves only IPv4 while the intended endpoint is IPv6-only. What is the best next step?",
+      "options": [
+        "An A record always names the authoritative server",
+        "Check the AAAA record and client IPv6 connectivity",
+        "Add a TCP port to the A record value",
+        "An A record contains a TCP port"
+      ],
+      "correct": [
+        1
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "networking",
+      "objective": "Explain dns records and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "DNS records \u2014 primary reference",
+          "url": "https://www.rfc-editor.org/rfc/rfc1035.html"
+        }
+      ],
+      "tags": [
+        "networking",
+        "dns-records"
+      ],
+      "takeaway": "AAAA records carry IPv6 addresses.",
+      "explanation": "An IPv4 address for a DNS name. AAAA records carry IPv6 addresses. In the scenario, check the AAAA record and client IPv6 connectivity. The alternative \u2018Add a TCP port to the A record value\u2019 does not address the stated evidence or constraint.",
+      "id": "networking-03-principles",
+      "title": "DNS records \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing dns records, which TWO statements are sound operational principles?",
+      "options": [
+        "An IPv4 address for a DNS name",
+        "AAAA records carry IPv6 addresses",
+        "An A record contains a TCP port",
+        "An A record always names the authoritative server"
+      ],
+      "correct": [
+        0,
+        1
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "networking",
+      "objective": "Explain dns records and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "DNS records \u2014 primary reference",
+          "url": "https://www.rfc-editor.org/rfc/rfc1035.html"
+        }
+      ],
+      "tags": [
+        "networking",
+        "dns-records"
+      ],
+      "takeaway": "AAAA records carry IPv6 addresses.",
+      "explanation": "An IPv4 address for a DNS name. AAAA records carry IPv6 addresses. In the scenario, check the AAAA record and client IPv6 connectivity. The alternative \u2018Add a TCP port to the A record value\u2019 does not address the stated evidence or constraint.",
+      "id": "networking-03-interview",
+      "title": "DNS records \u00b7 interview",
+      "type": "interview",
+      "question": "Explain the difference between A AAAA and service discovery records.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "An IPv4 address for a DNS name. AAAA records carry IPv6 addresses. A practical response is: Check the AAAA record and client IPv6 connectivity. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that an A record contains a TCP port.",
+      "answerChecklist": [
+        "An IPv4 address for a DNS name",
+        "AAAA records carry IPv6 addresses",
+        "Check the AAAA record and client IPv6 connectivity",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "A client resolves only IPv4 while the intended endpoint is IPv6-only. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "networking",
+      "objective": "Explain dns caching and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "DNS caching \u2014 primary reference",
+          "url": "https://www.rfc-editor.org/rfc/rfc1035.html"
+        }
+      ],
+      "tags": [
+        "networking",
+        "dns-caching"
+      ],
+      "takeaway": "Lowering TTL before a change does not retroactively expire existing caches.",
+      "explanation": "How long a resolver may cache that record. Lowering TTL before a change does not retroactively expire existing caches. In the scenario, check prior TTLs and resolver caches before declaring the update failed. The alternative \u2018Repeatedly change the DNS record to force global propagation\u2019 does not address the stated evidence or constraint.",
+      "id": "networking-04-concept",
+      "title": "DNS caching \u00b7 concept",
+      "type": "concept",
+      "question": "What does a DNS record TTL influence?",
+      "options": [
+        "Repeatedly change the DNS record to force global propagation",
+        "How long a resolver may cache that record",
+        "Changing a record instantly flushes every resolver cache",
+        "A TTL determines how long a TCP connection stays open"
+      ],
+      "correct": [
+        1
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "networking",
+      "objective": "Explain dns caching and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "DNS caching \u2014 primary reference",
+          "url": "https://www.rfc-editor.org/rfc/rfc1035.html"
+        }
+      ],
+      "tags": [
+        "networking",
+        "dns-caching"
+      ],
+      "takeaway": "Lowering TTL before a change does not retroactively expire existing caches.",
+      "explanation": "How long a resolver may cache that record. Lowering TTL before a change does not retroactively expire existing caches. In the scenario, check prior TTLs and resolver caches before declaring the update failed. The alternative \u2018Repeatedly change the DNS record to force global propagation\u2019 does not address the stated evidence or constraint.",
+      "id": "networking-04-scenario",
+      "title": "DNS caching \u00b7 scenario",
+      "type": "scenario",
+      "question": "Some clients still reach the old address just after a DNS change. What is the best next step?",
+      "options": [
+        "Check prior TTLs and resolver caches before declaring the update failed",
+        "Repeatedly change the DNS record to force global propagation",
+        "Changing a record instantly flushes every resolver cache",
+        "A TTL determines how long a TCP connection stays open"
+      ],
+      "correct": [
+        0
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "networking",
+      "objective": "Explain dns caching and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "DNS caching \u2014 primary reference",
+          "url": "https://www.rfc-editor.org/rfc/rfc1035.html"
+        }
+      ],
+      "tags": [
+        "networking",
+        "dns-caching"
+      ],
+      "takeaway": "Lowering TTL before a change does not retroactively expire existing caches.",
+      "explanation": "How long a resolver may cache that record. Lowering TTL before a change does not retroactively expire existing caches. In the scenario, check prior TTLs and resolver caches before declaring the update failed. The alternative \u2018Repeatedly change the DNS record to force global propagation\u2019 does not address the stated evidence or constraint.",
+      "id": "networking-04-principles",
+      "title": "DNS caching \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing dns caching, which TWO statements are sound operational principles?",
+      "options": [
+        "Lowering TTL before a change does not retroactively expire existing caches",
+        "Changing a record instantly flushes every resolver cache",
+        "A TTL determines how long a TCP connection stays open",
+        "How long a resolver may cache that record"
+      ],
+      "correct": [
+        0,
+        3
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "networking",
+      "objective": "Explain dns caching and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "DNS caching \u2014 primary reference",
+          "url": "https://www.rfc-editor.org/rfc/rfc1035.html"
+        }
+      ],
+      "tags": [
+        "networking",
+        "dns-caching"
+      ],
+      "takeaway": "Lowering TTL before a change does not retroactively expire existing caches.",
+      "explanation": "How long a resolver may cache that record. Lowering TTL before a change does not retroactively expire existing caches. In the scenario, check prior TTLs and resolver caches before declaring the update failed. The alternative \u2018Repeatedly change the DNS record to force global propagation\u2019 does not address the stated evidence or constraint.",
+      "id": "networking-04-interview",
+      "title": "DNS caching \u00b7 interview",
+      "type": "interview",
+      "question": "Explain a low-risk DNS migration and rollback plan.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "How long a resolver may cache that record. Lowering TTL before a change does not retroactively expire existing caches. A practical response is: Check prior TTLs and resolver caches before declaring the update failed. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that changing a record instantly flushes every resolver cache.",
+      "answerChecklist": [
+        "How long a resolver may cache that record",
+        "Lowering TTL before a change does not retroactively expire existing caches",
+        "Check prior TTLs and resolver caches before declaring the update failed",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "Some clients still reach the old address just after a DNS change. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "networking",
+      "objective": "Explain subnets and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Subnets \u2014 primary reference",
+          "url": "https://www.rfc-editor.org/rfc/rfc4632.html"
+        }
+      ],
+      "tags": [
+        "networking",
+        "subnets"
+      ],
+      "takeaway": "Longer prefixes describe smaller address ranges.",
+      "explanation": "The number of network-prefix bits in the address. Longer prefixes describe smaller address ranges. In the scenario, compare their addresses prefix lengths and interface configuration. The alternative \u2018Change DNS records before checking the subnet configuration\u2019 does not address the stated evidence or constraint.",
+      "id": "networking-05-concept",
+      "title": "Subnets \u00b7 concept",
+      "type": "concept",
+      "question": "What does an IPv4 prefix length describe?",
+      "options": [
+        "The number of network-prefix bits in the address",
+        "A larger prefix length always means more host addresses",
+        "The prefix length is the default TCP port",
+        "Change DNS records before checking the subnet configuration"
+      ],
+      "correct": [
+        0
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "networking",
+      "objective": "Explain subnets and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Subnets \u2014 primary reference",
+          "url": "https://www.rfc-editor.org/rfc/rfc4632.html"
+        }
+      ],
+      "tags": [
+        "networking",
+        "subnets"
+      ],
+      "takeaway": "Longer prefixes describe smaller address ranges.",
+      "explanation": "The number of network-prefix bits in the address. Longer prefixes describe smaller address ranges. In the scenario, compare their addresses prefix lengths and interface configuration. The alternative \u2018Change DNS records before checking the subnet configuration\u2019 does not address the stated evidence or constraint.",
+      "id": "networking-05-scenario",
+      "title": "Subnets \u00b7 scenario",
+      "type": "scenario",
+      "question": "Two hosts believed to share a subnet cannot communicate directly. What is the best next step?",
+      "options": [
+        "Change DNS records before checking the subnet configuration",
+        "A larger prefix length always means more host addresses",
+        "The prefix length is the default TCP port",
+        "Compare their addresses prefix lengths and interface configuration"
+      ],
+      "correct": [
+        3
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "networking",
+      "objective": "Explain subnets and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Subnets \u2014 primary reference",
+          "url": "https://www.rfc-editor.org/rfc/rfc4632.html"
+        }
+      ],
+      "tags": [
+        "networking",
+        "subnets"
+      ],
+      "takeaway": "Longer prefixes describe smaller address ranges.",
+      "explanation": "The number of network-prefix bits in the address. Longer prefixes describe smaller address ranges. In the scenario, compare their addresses prefix lengths and interface configuration. The alternative \u2018Change DNS records before checking the subnet configuration\u2019 does not address the stated evidence or constraint.",
+      "id": "networking-05-principles",
+      "title": "Subnets \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing subnets, which TWO statements are sound operational principles?",
+      "options": [
+        "A larger prefix length always means more host addresses",
+        "The prefix length is the default TCP port",
+        "The number of network-prefix bits in the address",
+        "Longer prefixes describe smaller address ranges"
+      ],
+      "correct": [
+        2,
+        3
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "networking",
+      "objective": "Explain subnets and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Subnets \u2014 primary reference",
+          "url": "https://www.rfc-editor.org/rfc/rfc4632.html"
+        }
+      ],
+      "tags": [
+        "networking",
+        "subnets"
+      ],
+      "takeaway": "Longer prefixes describe smaller address ranges.",
+      "explanation": "The number of network-prefix bits in the address. Longer prefixes describe smaller address ranges. In the scenario, compare their addresses prefix lengths and interface configuration. The alternative \u2018Change DNS records before checking the subnet configuration\u2019 does not address the stated evidence or constraint.",
+      "id": "networking-05-interview",
+      "title": "Subnets \u00b7 interview",
+      "type": "interview",
+      "question": "Explain how subnet masks affect direct versus routed delivery.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "The number of network-prefix bits in the address. Longer prefixes describe smaller address ranges. A practical response is: Compare their addresses prefix lengths and interface configuration. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that a larger prefix length always means more host addresses.",
+      "answerChecklist": [
+        "The number of network-prefix bits in the address",
+        "Longer prefixes describe smaller address ranges",
+        "Compare their addresses prefix lengths and interface configuration",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "Two hosts believed to share a subnet cannot communicate directly. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "networking",
+      "objective": "Explain default routes and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Default routes \u2014 primary reference",
+          "url": "https://www.rfc-editor.org/rfc/rfc4632.html"
+        }
+      ],
+      "tags": [
+        "networking",
+        "default-routes"
+      ],
+      "takeaway": "Longest-prefix matching favors a more specific matching route.",
+      "explanation": "When no more specific matching route is selected. Longest-prefix matching favors a more specific matching route. In the scenario, inspect the selected route and default gateway reachability. The alternative \u2018Replace the local DNS search suffix first\u2019 does not address the stated evidence or constraint.",
+      "id": "networking-06-concept",
+      "title": "Default routes \u00b7 concept",
+      "type": "concept",
+      "question": "When is a default route typically used?",
+      "options": [
+        "The default route overrides every more specific route",
+        "A default route is required for same-subnet communication",
+        "Replace the local DNS search suffix first",
+        "When no more specific matching route is selected"
+      ],
+      "correct": [
+        3
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "networking",
+      "objective": "Explain default routes and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Default routes \u2014 primary reference",
+          "url": "https://www.rfc-editor.org/rfc/rfc4632.html"
+        }
+      ],
+      "tags": [
+        "networking",
+        "default-routes"
+      ],
+      "takeaway": "Longest-prefix matching favors a more specific matching route.",
+      "explanation": "When no more specific matching route is selected. Longest-prefix matching favors a more specific matching route. In the scenario, inspect the selected route and default gateway reachability. The alternative \u2018Replace the local DNS search suffix first\u2019 does not address the stated evidence or constraint.",
+      "id": "networking-06-scenario",
+      "title": "Default routes \u00b7 scenario",
+      "type": "scenario",
+      "question": "A host reaches its local subnet but cannot reach external networks. What is the best next step?",
+      "options": [
+        "The default route overrides every more specific route",
+        "A default route is required for same-subnet communication",
+        "Inspect the selected route and default gateway reachability",
+        "Replace the local DNS search suffix first"
+      ],
+      "correct": [
+        2
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "networking",
+      "objective": "Explain default routes and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Default routes \u2014 primary reference",
+          "url": "https://www.rfc-editor.org/rfc/rfc4632.html"
+        }
+      ],
+      "tags": [
+        "networking",
+        "default-routes"
+      ],
+      "takeaway": "Longest-prefix matching favors a more specific matching route.",
+      "explanation": "When no more specific matching route is selected. Longest-prefix matching favors a more specific matching route. In the scenario, inspect the selected route and default gateway reachability. The alternative \u2018Replace the local DNS search suffix first\u2019 does not address the stated evidence or constraint.",
+      "id": "networking-06-principles",
+      "title": "Default routes \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing default routes, which TWO statements are sound operational principles?",
+      "options": [
+        "A default route is required for same-subnet communication",
+        "When no more specific matching route is selected",
+        "Longest-prefix matching favors a more specific matching route",
+        "The default route overrides every more specific route"
+      ],
+      "correct": [
+        1,
+        2
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "networking",
+      "objective": "Explain default routes and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Default routes \u2014 primary reference",
+          "url": "https://www.rfc-editor.org/rfc/rfc4632.html"
+        }
+      ],
+      "tags": [
+        "networking",
+        "default-routes"
+      ],
+      "takeaway": "Longest-prefix matching favors a more specific matching route.",
+      "explanation": "When no more specific matching route is selected. Longest-prefix matching favors a more specific matching route. In the scenario, inspect the selected route and default gateway reachability. The alternative \u2018Replace the local DNS search suffix first\u2019 does not address the stated evidence or constraint.",
+      "id": "networking-06-interview",
+      "title": "Default routes \u00b7 interview",
+      "type": "interview",
+      "question": "Explain route selection and how you would troubleshoot a missing default route.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "When no more specific matching route is selected. Longest-prefix matching favors a more specific matching route. A practical response is: Inspect the selected route and default gateway reachability. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that the default route overrides every more specific route.",
+      "answerChecklist": [
+        "When no more specific matching route is selected",
+        "Longest-prefix matching favors a more specific matching route",
+        "Inspect the selected route and default gateway reachability",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "A host reaches its local subnet but cannot reach external networks. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "networking",
+      "objective": "Explain arp and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "ARP \u2014 primary reference",
+          "url": "https://www.rfc-editor.org/rfc/rfc826.html"
+        }
+      ],
+      "tags": [
+        "networking",
+        "arp"
+      ],
+      "takeaway": "ARP is scoped to the local broadcast domain.",
+      "explanation": "An IPv4 address to a link-layer address. ARP is scoped to the local broadcast domain. In the scenario, check local-link connectivity addressing and neighbor discovery evidence. The alternative \u2018Change the upstream Internet route first\u2019 does not address the stated evidence or constraint.",
+      "id": "networking-07-concept",
+      "title": "ARP \u00b7 concept",
+      "type": "concept",
+      "question": "What does ARP resolve on an IPv4 local link?",
+      "options": [
+        "ARP discovers routes across the whole Internet",
+        "Change the upstream Internet route first",
+        "An IPv4 address to a link-layer address",
+        "ARP resolves domain names through recursive DNS"
+      ],
+      "correct": [
+        2
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "networking",
+      "objective": "Explain arp and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "ARP \u2014 primary reference",
+          "url": "https://www.rfc-editor.org/rfc/rfc826.html"
+        }
+      ],
+      "tags": [
+        "networking",
+        "arp"
+      ],
+      "takeaway": "ARP is scoped to the local broadcast domain.",
+      "explanation": "An IPv4 address to a link-layer address. ARP is scoped to the local broadcast domain. In the scenario, check local-link connectivity addressing and neighbor discovery evidence. The alternative \u2018Change the upstream Internet route first\u2019 does not address the stated evidence or constraint.",
+      "id": "networking-07-scenario",
+      "title": "ARP \u00b7 scenario",
+      "type": "scenario",
+      "question": "A host cannot reach a same-subnet peer and its neighbor entry stays incomplete. What is the best next step?",
+      "options": [
+        "ARP discovers routes across the whole Internet",
+        "Check local-link connectivity addressing and neighbor discovery evidence",
+        "Change the upstream Internet route first",
+        "ARP resolves domain names through recursive DNS"
+      ],
+      "correct": [
+        1
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "networking",
+      "objective": "Explain arp and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "ARP \u2014 primary reference",
+          "url": "https://www.rfc-editor.org/rfc/rfc826.html"
+        }
+      ],
+      "tags": [
+        "networking",
+        "arp"
+      ],
+      "takeaway": "ARP is scoped to the local broadcast domain.",
+      "explanation": "An IPv4 address to a link-layer address. ARP is scoped to the local broadcast domain. In the scenario, check local-link connectivity addressing and neighbor discovery evidence. The alternative \u2018Change the upstream Internet route first\u2019 does not address the stated evidence or constraint.",
+      "id": "networking-07-principles",
+      "title": "ARP \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing arp, which TWO statements are sound operational principles?",
+      "options": [
+        "An IPv4 address to a link-layer address",
+        "ARP is scoped to the local broadcast domain",
+        "ARP resolves domain names through recursive DNS",
+        "ARP discovers routes across the whole Internet"
+      ],
+      "correct": [
+        0,
+        1
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "networking",
+      "objective": "Explain arp and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "ARP \u2014 primary reference",
+          "url": "https://www.rfc-editor.org/rfc/rfc826.html"
+        }
+      ],
+      "tags": [
+        "networking",
+        "arp"
+      ],
+      "takeaway": "ARP is scoped to the local broadcast domain.",
+      "explanation": "An IPv4 address to a link-layer address. ARP is scoped to the local broadcast domain. In the scenario, check local-link connectivity addressing and neighbor discovery evidence. The alternative \u2018Change the upstream Internet route first\u2019 does not address the stated evidence or constraint.",
+      "id": "networking-07-interview",
+      "title": "ARP \u00b7 interview",
+      "type": "interview",
+      "question": "Explain how you distinguish a local neighbor problem from a routing problem.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "An IPv4 address to a link-layer address. ARP is scoped to the local broadcast domain. A practical response is: Check local-link connectivity addressing and neighbor discovery evidence. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that aRP resolves domain names through recursive DNS.",
+      "answerChecklist": [
+        "An IPv4 address to a link-layer address",
+        "ARP is scoped to the local broadcast domain",
+        "Check local-link connectivity addressing and neighbor discovery evidence",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "A host cannot reach a same-subnet peer and its neighbor entry stays incomplete. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "networking",
+      "objective": "Explain ports and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Ports \u2014 primary reference",
+          "url": "https://www.rfc-editor.org/rfc/rfc9293.html"
+        }
+      ],
+      "tags": [
+        "networking",
+        "ports"
+      ],
+      "takeaway": "A listening port alone does not prove application health.",
+      "explanation": "Source and destination addresses and ports. A listening port alone does not prove application health. In the scenario, check application behavior after connection establishment. The alternative \u2018Treat an open port as proof that every request will succeed\u2019 does not address the stated evidence or constraint.",
+      "id": "networking-08-concept",
+      "title": "Ports \u00b7 concept",
+      "type": "concept",
+      "question": "What identifies a TCP connection together with protocol context?",
+      "options": [
+        "Treat an open port as proof that every request will succeed",
+        "Source and destination addresses and ports",
+        "A destination port uniquely identifies every connection globally",
+        "Two clients cannot connect to the same server port"
+      ],
+      "correct": [
+        1
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "networking",
+      "objective": "Explain ports and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Ports \u2014 primary reference",
+          "url": "https://www.rfc-editor.org/rfc/rfc9293.html"
+        }
+      ],
+      "tags": [
+        "networking",
+        "ports"
+      ],
+      "takeaway": "A listening port alone does not prove application health.",
+      "explanation": "Source and destination addresses and ports. A listening port alone does not prove application health. In the scenario, check application behavior after connection establishment. The alternative \u2018Treat an open port as proof that every request will succeed\u2019 does not address the stated evidence or constraint.",
+      "id": "networking-08-scenario",
+      "title": "Ports \u00b7 scenario",
+      "type": "scenario",
+      "question": "A port accepts connections but requests fail immediately. What is the best next step?",
+      "options": [
+        "Check application behavior after connection establishment",
+        "Treat an open port as proof that every request will succeed",
+        "A destination port uniquely identifies every connection globally",
+        "Two clients cannot connect to the same server port"
+      ],
+      "correct": [
+        0
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "networking",
+      "objective": "Explain ports and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Ports \u2014 primary reference",
+          "url": "https://www.rfc-editor.org/rfc/rfc9293.html"
+        }
+      ],
+      "tags": [
+        "networking",
+        "ports"
+      ],
+      "takeaway": "A listening port alone does not prove application health.",
+      "explanation": "Source and destination addresses and ports. A listening port alone does not prove application health. In the scenario, check application behavior after connection establishment. The alternative \u2018Treat an open port as proof that every request will succeed\u2019 does not address the stated evidence or constraint.",
+      "id": "networking-08-principles",
+      "title": "Ports \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing ports, which TWO statements are sound operational principles?",
+      "options": [
+        "A listening port alone does not prove application health",
+        "A destination port uniquely identifies every connection globally",
+        "Two clients cannot connect to the same server port",
+        "Source and destination addresses and ports"
+      ],
+      "correct": [
+        0,
+        3
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "networking",
+      "objective": "Explain ports and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Ports \u2014 primary reference",
+          "url": "https://www.rfc-editor.org/rfc/rfc9293.html"
+        }
+      ],
+      "tags": [
+        "networking",
+        "ports"
+      ],
+      "takeaway": "A listening port alone does not prove application health.",
+      "explanation": "Source and destination addresses and ports. A listening port alone does not prove application health. In the scenario, check application behavior after connection establishment. The alternative \u2018Treat an open port as proof that every request will succeed\u2019 does not address the stated evidence or constraint.",
+      "id": "networking-08-interview",
+      "title": "Ports \u00b7 interview",
+      "type": "interview",
+      "question": "Explain the difference between port reachability and service readiness.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "Source and destination addresses and ports. A listening port alone does not prove application health. A practical response is: Check application behavior after connection establishment. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that a destination port uniquely identifies every connection globally.",
+      "answerChecklist": [
+        "Source and destination addresses and ports",
+        "A listening port alone does not prove application health",
+        "Check application behavior after connection establishment",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "A port accepts connections but requests fail immediately. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "networking",
+      "objective": "Explain tcp handshake and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "TCP handshake \u2014 primary reference",
+          "url": "https://www.rfc-editor.org/rfc/rfc9293.html"
+        }
+      ],
+      "tags": [
+        "networking",
+        "tcp-handshake"
+      ],
+      "takeaway": "It does not prove that a later TLS or application exchange will succeed.",
+      "explanation": "Transport-level connection state between endpoints. It does not prove that a later TLS or application exchange will succeed. In the scenario, inspect the TLS handshake and application-layer error separately. The alternative \u2018Keep changing TCP retransmission settings without TLS evidence\u2019 does not address the stated evidence or constraint.",
+      "id": "networking-09-concept",
+      "title": "TCP handshake \u00b7 concept",
+      "type": "concept",
+      "question": "What does a successful TCP handshake establish?",
+      "options": [
+        "Transport-level connection state between endpoints",
+        "It proves the server certificate is trusted",
+        "It proves every backend dependency is healthy",
+        "Keep changing TCP retransmission settings without TLS evidence"
+      ],
+      "correct": [
+        0
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "networking",
+      "objective": "Explain tcp handshake and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "TCP handshake \u2014 primary reference",
+          "url": "https://www.rfc-editor.org/rfc/rfc9293.html"
+        }
+      ],
+      "tags": [
+        "networking",
+        "tcp-handshake"
+      ],
+      "takeaway": "It does not prove that a later TLS or application exchange will succeed.",
+      "explanation": "Transport-level connection state between endpoints. It does not prove that a later TLS or application exchange will succeed. In the scenario, inspect the TLS handshake and application-layer error separately. The alternative \u2018Keep changing TCP retransmission settings without TLS evidence\u2019 does not address the stated evidence or constraint.",
+      "id": "networking-09-scenario",
+      "title": "TCP handshake \u00b7 scenario",
+      "type": "scenario",
+      "question": "TCP connects quickly but HTTPS fails afterward. What is the best next step?",
+      "options": [
+        "Keep changing TCP retransmission settings without TLS evidence",
+        "It proves the server certificate is trusted",
+        "It proves every backend dependency is healthy",
+        "Inspect the TLS handshake and application-layer error separately"
+      ],
+      "correct": [
+        3
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "networking",
+      "objective": "Explain tcp handshake and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "TCP handshake \u2014 primary reference",
+          "url": "https://www.rfc-editor.org/rfc/rfc9293.html"
+        }
+      ],
+      "tags": [
+        "networking",
+        "tcp-handshake"
+      ],
+      "takeaway": "It does not prove that a later TLS or application exchange will succeed.",
+      "explanation": "Transport-level connection state between endpoints. It does not prove that a later TLS or application exchange will succeed. In the scenario, inspect the TLS handshake and application-layer error separately. The alternative \u2018Keep changing TCP retransmission settings without TLS evidence\u2019 does not address the stated evidence or constraint.",
+      "id": "networking-09-principles",
+      "title": "TCP handshake \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing tcp handshake, which TWO statements are sound operational principles?",
+      "options": [
+        "It proves the server certificate is trusted",
+        "It proves every backend dependency is healthy",
+        "Transport-level connection state between endpoints",
+        "It does not prove that a later TLS or application exchange will succeed"
+      ],
+      "correct": [
+        2,
+        3
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "networking",
+      "objective": "Explain tcp handshake and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "TCP handshake \u2014 primary reference",
+          "url": "https://www.rfc-editor.org/rfc/rfc9293.html"
+        }
+      ],
+      "tags": [
+        "networking",
+        "tcp-handshake"
+      ],
+      "takeaway": "It does not prove that a later TLS or application exchange will succeed.",
+      "explanation": "Transport-level connection state between endpoints. It does not prove that a later TLS or application exchange will succeed. In the scenario, inspect the TLS handshake and application-layer error separately. The alternative \u2018Keep changing TCP retransmission settings without TLS evidence\u2019 does not address the stated evidence or constraint.",
+      "id": "networking-09-interview",
+      "title": "TCP handshake \u00b7 interview",
+      "type": "interview",
+      "question": "Explain how to separate TCP TLS and HTTP failures.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "Transport-level connection state between endpoints. It does not prove that a later TLS or application exchange will succeed. A practical response is: Inspect the TLS handshake and application-layer error separately. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that it proves the server certificate is trusted.",
+      "answerChecklist": [
+        "Transport-level connection state between endpoints",
+        "It does not prove that a later TLS or application exchange will succeed",
+        "Inspect the TLS handshake and application-layer error separately",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "TCP connects quickly but HTTPS fails afterward. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "networking",
+      "objective": "Explain tls identity and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "TLS identity \u2014 primary reference",
+          "url": "https://www.rfc-editor.org/rfc/rfc8446.html"
+        }
+      ],
+      "tags": [
+        "networking",
+        "tls-identity"
+      ],
+      "takeaway": "A trusted issuer alone is insufficient if the hostname does not match.",
+      "explanation": "Accepting a certificate for a different service identity. A trusted issuer alone is insufficient if the hostname does not match. In the scenario, check the requested hostname certificate names and server selection. The alternative \u2018Disable certificate verification permanently\u2019 does not address the stated evidence or constraint.",
+      "id": "networking-10-concept",
+      "title": "TLS identity \u00b7 concept",
+      "type": "concept",
+      "question": "What does hostname verification protect against?",
+      "options": [
+        "Any certificate from a trusted issuer matches every hostname",
+        "Encrypting traffic removes the need to verify peer identity",
+        "Disable certificate verification permanently",
+        "Accepting a certificate for a different service identity"
+      ],
+      "correct": [
+        3
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "networking",
+      "objective": "Explain tls identity and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "TLS identity \u2014 primary reference",
+          "url": "https://www.rfc-editor.org/rfc/rfc8446.html"
+        }
+      ],
+      "tags": [
+        "networking",
+        "tls-identity"
+      ],
+      "takeaway": "A trusted issuer alone is insufficient if the hostname does not match.",
+      "explanation": "Accepting a certificate for a different service identity. A trusted issuer alone is insufficient if the hostname does not match. In the scenario, check the requested hostname certificate names and server selection. The alternative \u2018Disable certificate verification permanently\u2019 does not address the stated evidence or constraint.",
+      "id": "networking-10-scenario",
+      "title": "TLS identity \u00b7 scenario",
+      "type": "scenario",
+      "question": "A client reports a certificate hostname mismatch. What is the best next step?",
+      "options": [
+        "Any certificate from a trusted issuer matches every hostname",
+        "Encrypting traffic removes the need to verify peer identity",
+        "Check the requested hostname certificate names and server selection",
+        "Disable certificate verification permanently"
+      ],
+      "correct": [
+        2
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "networking",
+      "objective": "Explain tls identity and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "TLS identity \u2014 primary reference",
+          "url": "https://www.rfc-editor.org/rfc/rfc8446.html"
+        }
+      ],
+      "tags": [
+        "networking",
+        "tls-identity"
+      ],
+      "takeaway": "A trusted issuer alone is insufficient if the hostname does not match.",
+      "explanation": "Accepting a certificate for a different service identity. A trusted issuer alone is insufficient if the hostname does not match. In the scenario, check the requested hostname certificate names and server selection. The alternative \u2018Disable certificate verification permanently\u2019 does not address the stated evidence or constraint.",
+      "id": "networking-10-principles",
+      "title": "TLS identity \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing tls identity, which TWO statements are sound operational principles?",
+      "options": [
+        "Encrypting traffic removes the need to verify peer identity",
+        "Accepting a certificate for a different service identity",
+        "A trusted issuer alone is insufficient if the hostname does not match",
+        "Any certificate from a trusted issuer matches every hostname"
+      ],
+      "correct": [
+        1,
+        2
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "networking",
+      "objective": "Explain tls identity and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "TLS identity \u2014 primary reference",
+          "url": "https://www.rfc-editor.org/rfc/rfc8446.html"
+        }
+      ],
+      "tags": [
+        "networking",
+        "tls-identity"
+      ],
+      "takeaway": "A trusted issuer alone is insufficient if the hostname does not match.",
+      "explanation": "Accepting a certificate for a different service identity. A trusted issuer alone is insufficient if the hostname does not match. In the scenario, check the requested hostname certificate names and server selection. The alternative \u2018Disable certificate verification permanently\u2019 does not address the stated evidence or constraint.",
+      "id": "networking-10-interview",
+      "title": "TLS identity \u00b7 interview",
+      "type": "interview",
+      "question": "Explain TLS identity validation and safe certificate troubleshooting.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "Accepting a certificate for a different service identity. A trusted issuer alone is insufficient if the hostname does not match. A practical response is: Check the requested hostname certificate names and server selection. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that any certificate from a trusted issuer matches every hostname.",
+      "answerChecklist": [
+        "Accepting a certificate for a different service identity",
+        "A trusted issuer alone is insufficient if the hostname does not match",
+        "Check the requested hostname certificate names and server selection",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "A client reports a certificate hostname mismatch. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "networking",
+      "objective": "Explain http status and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "HTTP status \u2014 primary reference",
+          "url": "https://www.rfc-editor.org/rfc/rfc9110.html"
+        }
+      ],
+      "tags": [
+        "networking",
+        "http-status"
+      ],
+      "takeaway": "An HTTP response means communication reached an HTTP-speaking component.",
+      "explanation": "The server is currently unable to handle the request. An HTTP response means communication reached an HTTP-speaking component. In the scenario, inspect target health and the reason each backend fails checks. The alternative \u2018Change the client's DNS server without examining target health\u2019 does not address the stated evidence or constraint.",
+      "id": "networking-11-concept",
+      "title": "HTTP status \u00b7 concept",
+      "type": "concept",
+      "question": "What does an HTTP 503 response normally indicate?",
+      "options": [
+        "It proves the client never established any connection",
+        "Change the client's DNS server without examining target health",
+        "The server is currently unable to handle the request",
+        "It proves DNS resolution failed"
+      ],
+      "correct": [
+        2
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "networking",
+      "objective": "Explain http status and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "HTTP status \u2014 primary reference",
+          "url": "https://www.rfc-editor.org/rfc/rfc9110.html"
+        }
+      ],
+      "tags": [
+        "networking",
+        "http-status"
+      ],
+      "takeaway": "An HTTP response means communication reached an HTTP-speaking component.",
+      "explanation": "The server is currently unable to handle the request. An HTTP response means communication reached an HTTP-speaking component. In the scenario, inspect target health and the reason each backend fails checks. The alternative \u2018Change the client's DNS server without examining target health\u2019 does not address the stated evidence or constraint.",
+      "id": "networking-11-scenario",
+      "title": "HTTP status \u00b7 scenario",
+      "type": "scenario",
+      "question": "A load balancer returns 503 while targets are marked unhealthy. What is the best next step?",
+      "options": [
+        "It proves the client never established any connection",
+        "Inspect target health and the reason each backend fails checks",
+        "Change the client's DNS server without examining target health",
+        "It proves DNS resolution failed"
+      ],
+      "correct": [
+        1
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "networking",
+      "objective": "Explain http status and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "HTTP status \u2014 primary reference",
+          "url": "https://www.rfc-editor.org/rfc/rfc9110.html"
+        }
+      ],
+      "tags": [
+        "networking",
+        "http-status"
+      ],
+      "takeaway": "An HTTP response means communication reached an HTTP-speaking component.",
+      "explanation": "The server is currently unable to handle the request. An HTTP response means communication reached an HTTP-speaking component. In the scenario, inspect target health and the reason each backend fails checks. The alternative \u2018Change the client's DNS server without examining target health\u2019 does not address the stated evidence or constraint.",
+      "id": "networking-11-principles",
+      "title": "HTTP status \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing http status, which TWO statements are sound operational principles?",
+      "options": [
+        "The server is currently unable to handle the request",
+        "An HTTP response means communication reached an HTTP-speaking component",
+        "It proves DNS resolution failed",
+        "It proves the client never established any connection"
+      ],
+      "correct": [
+        0,
+        1
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "networking",
+      "objective": "Explain http status and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "HTTP status \u2014 primary reference",
+          "url": "https://www.rfc-editor.org/rfc/rfc9110.html"
+        }
+      ],
+      "tags": [
+        "networking",
+        "http-status"
+      ],
+      "takeaway": "An HTTP response means communication reached an HTTP-speaking component.",
+      "explanation": "The server is currently unable to handle the request. An HTTP response means communication reached an HTTP-speaking component. In the scenario, inspect target health and the reason each backend fails checks. The alternative \u2018Change the client's DNS server without examining target health\u2019 does not address the stated evidence or constraint.",
+      "id": "networking-11-interview",
+      "title": "HTTP status \u00b7 interview",
+      "type": "interview",
+      "question": "Explain how status codes narrow a troubleshooting investigation.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "The server is currently unable to handle the request. An HTTP response means communication reached an HTTP-speaking component. A practical response is: Inspect target health and the reason each backend fails checks. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that it proves DNS resolution failed.",
+      "answerChecklist": [
+        "The server is currently unable to handle the request",
+        "An HTTP response means communication reached an HTTP-speaking component",
+        "Inspect target health and the reason each backend fails checks",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "A load balancer returns 503 while targets are marked unhealthy. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "networking",
+      "objective": "Explain nat state and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "NAT state \u2014 primary reference",
+          "url": "https://www.rfc-editor.org/rfc/rfc3022.html"
+        }
+      ],
+      "tags": [
+        "networking",
+        "nat-state"
+      ],
+      "takeaway": "Existing successful connections do not prove capacity for unlimited new ones.",
+      "explanation": "Translation devices have finite state and port resources. Existing successful connections do not prove capacity for unlimited new ones. In the scenario, inspect translation state port allocation and connection reuse. The alternative \u2018Increase DNS TTL as the only fix\u2019 does not address the stated evidence or constraint.",
+      "id": "networking-12-concept",
+      "title": "NAT state \u00b7 concept",
+      "type": "concept",
+      "question": "Why can outbound NAT capacity limit new connections?",
+      "options": [
+        "Increase DNS TTL as the only fix",
+        "Translation devices have finite state and port resources",
+        "NAT creates infinitely many source ports",
+        "NAT encrypts every translated packet"
+      ],
+      "correct": [
+        1
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "networking",
+      "objective": "Explain nat state and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "NAT state \u2014 primary reference",
+          "url": "https://www.rfc-editor.org/rfc/rfc3022.html"
+        }
+      ],
+      "tags": [
+        "networking",
+        "nat-state"
+      ],
+      "takeaway": "Existing successful connections do not prove capacity for unlimited new ones.",
+      "explanation": "Translation devices have finite state and port resources. Existing successful connections do not prove capacity for unlimited new ones. In the scenario, inspect translation state port allocation and connection reuse. The alternative \u2018Increase DNS TTL as the only fix\u2019 does not address the stated evidence or constraint.",
+      "id": "networking-12-scenario",
+      "title": "NAT state \u00b7 scenario",
+      "type": "scenario",
+      "question": "New outbound connections fail during a connection-rate spike. What is the best next step?",
+      "options": [
+        "Inspect translation state port allocation and connection reuse",
+        "Increase DNS TTL as the only fix",
+        "NAT creates infinitely many source ports",
+        "NAT encrypts every translated packet"
+      ],
+      "correct": [
+        0
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "networking",
+      "objective": "Explain nat state and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "NAT state \u2014 primary reference",
+          "url": "https://www.rfc-editor.org/rfc/rfc3022.html"
+        }
+      ],
+      "tags": [
+        "networking",
+        "nat-state"
+      ],
+      "takeaway": "Existing successful connections do not prove capacity for unlimited new ones.",
+      "explanation": "Translation devices have finite state and port resources. Existing successful connections do not prove capacity for unlimited new ones. In the scenario, inspect translation state port allocation and connection reuse. The alternative \u2018Increase DNS TTL as the only fix\u2019 does not address the stated evidence or constraint.",
+      "id": "networking-12-principles",
+      "title": "NAT state \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing nat state, which TWO statements are sound operational principles?",
+      "options": [
+        "Existing successful connections do not prove capacity for unlimited new ones",
+        "NAT creates infinitely many source ports",
+        "NAT encrypts every translated packet",
+        "Translation devices have finite state and port resources"
+      ],
+      "correct": [
+        0,
+        3
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "networking",
+      "objective": "Explain nat state and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "NAT state \u2014 primary reference",
+          "url": "https://www.rfc-editor.org/rfc/rfc3022.html"
+        }
+      ],
+      "tags": [
+        "networking",
+        "nat-state"
+      ],
+      "takeaway": "Existing successful connections do not prove capacity for unlimited new ones.",
+      "explanation": "Translation devices have finite state and port resources. Existing successful connections do not prove capacity for unlimited new ones. In the scenario, inspect translation state port allocation and connection reuse. The alternative \u2018Increase DNS TTL as the only fix\u2019 does not address the stated evidence or constraint.",
+      "id": "networking-12-interview",
+      "title": "NAT state \u00b7 interview",
+      "type": "interview",
+      "question": "Explain NAT exhaustion and how connection pooling changes the demand.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "Translation devices have finite state and port resources. Existing successful connections do not prove capacity for unlimited new ones. A practical response is: Inspect translation state port allocation and connection reuse. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that nAT creates infinitely many source ports.",
+      "answerChecklist": [
+        "Translation devices have finite state and port resources",
+        "Existing successful connections do not prove capacity for unlimited new ones",
+        "Inspect translation state port allocation and connection reuse",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "New outbound connections fail during a connection-rate spike. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "networking",
+      "objective": "Explain firewall direction and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Firewall direction \u2014 primary reference",
+          "url": "https://docs.aws.amazon.com/vpc/latest/userguide/vpc-network-acls.html"
+        }
+      ],
+      "tags": [
+        "networking",
+        "firewall-direction"
+      ],
+      "takeaway": "Stateless rules may require explicit rules for return traffic.",
+      "explanation": "Stateful filtering can track established flow state. Stateless rules may require explicit rules for return traffic. In the scenario, check return-path rules including ephemeral destination ports. The alternative \u2018Permit only the service port in both directions without checking tuples\u2019 does not address the stated evidence or constraint.",
+      "id": "networking-13-concept",
+      "title": "Firewall direction \u00b7 concept",
+      "type": "concept",
+      "question": "What distinguishes stateful filtering from stateless filtering?",
+      "options": [
+        "Stateful filtering can track established flow state",
+        "Stateless filtering always remembers connection state",
+        "Stateful filtering eliminates routing requirements",
+        "Permit only the service port in both directions without checking tuples"
+      ],
+      "correct": [
+        0
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "networking",
+      "objective": "Explain firewall direction and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Firewall direction \u2014 primary reference",
+          "url": "https://docs.aws.amazon.com/vpc/latest/userguide/vpc-network-acls.html"
+        }
+      ],
+      "tags": [
+        "networking",
+        "firewall-direction"
+      ],
+      "takeaway": "Stateless rules may require explicit rules for return traffic.",
+      "explanation": "Stateful filtering can track established flow state. Stateless rules may require explicit rules for return traffic. In the scenario, check return-path rules including ephemeral destination ports. The alternative \u2018Permit only the service port in both directions without checking tuples\u2019 does not address the stated evidence or constraint.",
+      "id": "networking-13-scenario",
+      "title": "Firewall direction \u00b7 scenario",
+      "type": "scenario",
+      "question": "Requests leave a subnet but stateless rules reject the replies. What is the best next step?",
+      "options": [
+        "Permit only the service port in both directions without checking tuples",
+        "Stateless filtering always remembers connection state",
+        "Stateful filtering eliminates routing requirements",
+        "Check return-path rules including ephemeral destination ports"
+      ],
+      "correct": [
+        3
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "networking",
+      "objective": "Explain firewall direction and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Firewall direction \u2014 primary reference",
+          "url": "https://docs.aws.amazon.com/vpc/latest/userguide/vpc-network-acls.html"
+        }
+      ],
+      "tags": [
+        "networking",
+        "firewall-direction"
+      ],
+      "takeaway": "Stateless rules may require explicit rules for return traffic.",
+      "explanation": "Stateful filtering can track established flow state. Stateless rules may require explicit rules for return traffic. In the scenario, check return-path rules including ephemeral destination ports. The alternative \u2018Permit only the service port in both directions without checking tuples\u2019 does not address the stated evidence or constraint.",
+      "id": "networking-13-principles",
+      "title": "Firewall direction \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing firewall direction, which TWO statements are sound operational principles?",
+      "options": [
+        "Stateless filtering always remembers connection state",
+        "Stateful filtering eliminates routing requirements",
+        "Stateful filtering can track established flow state",
+        "Stateless rules may require explicit rules for return traffic"
+      ],
+      "correct": [
+        2,
+        3
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "networking",
+      "objective": "Explain firewall direction and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Firewall direction \u2014 primary reference",
+          "url": "https://docs.aws.amazon.com/vpc/latest/userguide/vpc-network-acls.html"
+        }
+      ],
+      "tags": [
+        "networking",
+        "firewall-direction"
+      ],
+      "takeaway": "Stateless rules may require explicit rules for return traffic.",
+      "explanation": "Stateful filtering can track established flow state. Stateless rules may require explicit rules for return traffic. In the scenario, check return-path rules including ephemeral destination ports. The alternative \u2018Permit only the service port in both directions without checking tuples\u2019 does not address the stated evidence or constraint.",
+      "id": "networking-13-interview",
+      "title": "Firewall direction \u00b7 interview",
+      "type": "interview",
+      "question": "Explain request and response rules for a stateless packet filter.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "Stateful filtering can track established flow state. Stateless rules may require explicit rules for return traffic. A practical response is: Check return-path rules including ephemeral destination ports. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that stateless filtering always remembers connection state.",
+      "answerChecklist": [
+        "Stateful filtering can track established flow state",
+        "Stateless rules may require explicit rules for return traffic",
+        "Check return-path rules including ephemeral destination ports",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "Requests leave a subnet but stateless rules reject the replies. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "networking",
+      "objective": "Explain mtu and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "MTU \u2014 primary reference",
+          "url": "https://www.rfc-editor.org/rfc/rfc1191.html"
+        }
+      ],
+      "tags": [
+        "networking",
+        "mtu"
+      ],
+      "takeaway": "Blocked path-MTU feedback can create difficult size-dependent failures.",
+      "explanation": "Large packets may fail while small exchanges succeed. Blocked path-MTU feedback can create difficult size-dependent failures. In the scenario, investigate path MTU fragmentation behavior and necessary ICMP feedback. The alternative \u2018Increase application retries without checking packet sizes\u2019 does not address the stated evidence or constraint.",
+      "id": "networking-14-concept",
+      "title": "MTU \u00b7 concept",
+      "type": "concept",
+      "question": "What can an MTU mismatch cause?",
+      "options": [
+        "MTU sets the maximum number of concurrent TCP connections",
+        "A successful small ping proves all packet sizes work",
+        "Increase application retries without checking packet sizes",
+        "Large packets may fail while small exchanges succeed"
+      ],
+      "correct": [
+        3
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "networking",
+      "objective": "Explain mtu and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "MTU \u2014 primary reference",
+          "url": "https://www.rfc-editor.org/rfc/rfc1191.html"
+        }
+      ],
+      "tags": [
+        "networking",
+        "mtu"
+      ],
+      "takeaway": "Blocked path-MTU feedback can create difficult size-dependent failures.",
+      "explanation": "Large packets may fail while small exchanges succeed. Blocked path-MTU feedback can create difficult size-dependent failures. In the scenario, investigate path MTU fragmentation behavior and necessary ICMP feedback. The alternative \u2018Increase application retries without checking packet sizes\u2019 does not address the stated evidence or constraint.",
+      "id": "networking-14-scenario",
+      "title": "MTU \u00b7 scenario",
+      "type": "scenario",
+      "question": "Small requests work but larger responses stall on a tunneled path. What is the best next step?",
+      "options": [
+        "MTU sets the maximum number of concurrent TCP connections",
+        "A successful small ping proves all packet sizes work",
+        "Investigate path MTU fragmentation behavior and necessary ICMP feedback",
+        "Increase application retries without checking packet sizes"
+      ],
+      "correct": [
+        2
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "networking",
+      "objective": "Explain mtu and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "MTU \u2014 primary reference",
+          "url": "https://www.rfc-editor.org/rfc/rfc1191.html"
+        }
+      ],
+      "tags": [
+        "networking",
+        "mtu"
+      ],
+      "takeaway": "Blocked path-MTU feedback can create difficult size-dependent failures.",
+      "explanation": "Large packets may fail while small exchanges succeed. Blocked path-MTU feedback can create difficult size-dependent failures. In the scenario, investigate path MTU fragmentation behavior and necessary ICMP feedback. The alternative \u2018Increase application retries without checking packet sizes\u2019 does not address the stated evidence or constraint.",
+      "id": "networking-14-principles",
+      "title": "MTU \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing mtu, which TWO statements are sound operational principles?",
+      "options": [
+        "A successful small ping proves all packet sizes work",
+        "Large packets may fail while small exchanges succeed",
+        "Blocked path-MTU feedback can create difficult size-dependent failures",
+        "MTU sets the maximum number of concurrent TCP connections"
+      ],
+      "correct": [
+        1,
+        2
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "networking",
+      "objective": "Explain mtu and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "MTU \u2014 primary reference",
+          "url": "https://www.rfc-editor.org/rfc/rfc1191.html"
+        }
+      ],
+      "tags": [
+        "networking",
+        "mtu"
+      ],
+      "takeaway": "Blocked path-MTU feedback can create difficult size-dependent failures.",
+      "explanation": "Large packets may fail while small exchanges succeed. Blocked path-MTU feedback can create difficult size-dependent failures. In the scenario, investigate path MTU fragmentation behavior and necessary ICMP feedback. The alternative \u2018Increase application retries without checking packet sizes\u2019 does not address the stated evidence or constraint.",
+      "id": "networking-14-interview",
+      "title": "MTU \u00b7 interview",
+      "type": "interview",
+      "question": "Explain a path MTU black hole and the evidence you would collect.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "Large packets may fail while small exchanges succeed. Blocked path-MTU feedback can create difficult size-dependent failures. A practical response is: Investigate path MTU fragmentation behavior and necessary ICMP feedback. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that mTU sets the maximum number of concurrent TCP connections.",
+      "answerChecklist": [
+        "Large packets may fail while small exchanges succeed",
+        "Blocked path-MTU feedback can create difficult size-dependent failures",
+        "Investigate path MTU fragmentation behavior and necessary ICMP feedback",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "Small requests work but larger responses stall on a tunneled path. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "networking",
+      "objective": "Explain packet loss and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Packet loss \u2014 primary reference",
+          "url": "https://www.rfc-editor.org/rfc/rfc5681.html"
+        }
+      ],
+      "tags": [
+        "networking",
+        "packet-loss"
+      ],
+      "takeaway": "Loss location and timing matter more than one isolated counter.",
+      "explanation": "Retransmission recovery can increase request completion time. Loss location and timing matter more than one isolated counter. In the scenario, measure loss and congestion along the actual affected path. The alternative \u2018Restart the application based only on a single ping timeout\u2019 does not address the stated evidence or constraint.",
+      "id": "networking-15-concept",
+      "title": "Packet loss \u00b7 concept",
+      "type": "concept",
+      "question": "Why correlate packet loss with TCP retransmissions and latency?",
+      "options": [
+        "Retransmissions always mean the sender has insufficient disk space",
+        "Restart the application based only on a single ping timeout",
+        "Retransmission recovery can increase request completion time",
+        "Any lost packet proves the destination application crashed"
+      ],
+      "correct": [
+        2
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "networking",
+      "objective": "Explain packet loss and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Packet loss \u2014 primary reference",
+          "url": "https://www.rfc-editor.org/rfc/rfc5681.html"
+        }
+      ],
+      "tags": [
+        "networking",
+        "packet-loss"
+      ],
+      "takeaway": "Loss location and timing matter more than one isolated counter.",
+      "explanation": "Retransmission recovery can increase request completion time. Loss location and timing matter more than one isolated counter. In the scenario, measure loss and congestion along the actual affected path. The alternative \u2018Restart the application based only on a single ping timeout\u2019 does not address the stated evidence or constraint.",
+      "id": "networking-15-scenario",
+      "title": "Packet loss \u00b7 scenario",
+      "type": "scenario",
+      "question": "Latency worsens during bursts and retransmissions rise. What is the best next step?",
+      "options": [
+        "Retransmissions always mean the sender has insufficient disk space",
+        "Measure loss and congestion along the actual affected path",
+        "Restart the application based only on a single ping timeout",
+        "Any lost packet proves the destination application crashed"
+      ],
+      "correct": [
+        1
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "networking",
+      "objective": "Explain packet loss and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Packet loss \u2014 primary reference",
+          "url": "https://www.rfc-editor.org/rfc/rfc5681.html"
+        }
+      ],
+      "tags": [
+        "networking",
+        "packet-loss"
+      ],
+      "takeaway": "Loss location and timing matter more than one isolated counter.",
+      "explanation": "Retransmission recovery can increase request completion time. Loss location and timing matter more than one isolated counter. In the scenario, measure loss and congestion along the actual affected path. The alternative \u2018Restart the application based only on a single ping timeout\u2019 does not address the stated evidence or constraint.",
+      "id": "networking-15-principles",
+      "title": "Packet loss \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing packet loss, which TWO statements are sound operational principles?",
+      "options": [
+        "Retransmission recovery can increase request completion time",
+        "Loss location and timing matter more than one isolated counter",
+        "Any lost packet proves the destination application crashed",
+        "Retransmissions always mean the sender has insufficient disk space"
+      ],
+      "correct": [
+        0,
+        1
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "networking",
+      "objective": "Explain packet loss and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Packet loss \u2014 primary reference",
+          "url": "https://www.rfc-editor.org/rfc/rfc5681.html"
+        }
+      ],
+      "tags": [
+        "networking",
+        "packet-loss"
+      ],
+      "takeaway": "Loss location and timing matter more than one isolated counter.",
+      "explanation": "Retransmission recovery can increase request completion time. Loss location and timing matter more than one isolated counter. In the scenario, measure loss and congestion along the actual affected path. The alternative \u2018Restart the application based only on a single ping timeout\u2019 does not address the stated evidence or constraint.",
+      "id": "networking-15-interview",
+      "title": "Packet loss \u00b7 interview",
+      "type": "interview",
+      "question": "Explain how you would determine whether packet loss is causing user-visible latency.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "Retransmission recovery can increase request completion time. Loss location and timing matter more than one isolated counter. A practical response is: Measure loss and congestion along the actual affected path. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that any lost packet proves the destination application crashed.",
+      "answerChecklist": [
+        "Retransmission recovery can increase request completion time",
+        "Loss location and timing matter more than one isolated counter",
+        "Measure loss and congestion along the actual affected path",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "Latency worsens during bursts and retransmissions rise. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "networking",
+      "objective": "Explain dns negative caching and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "DNS negative caching \u2014 primary reference",
+          "url": "https://www.rfc-editor.org/rfc/rfc9520.html"
+        }
+      ],
+      "tags": [
+        "networking",
+        "dns-negative-caching"
+      ],
+      "takeaway": "Negative-cache lifetime can differ from the new record's TTL.",
+      "explanation": "Resolvers may cache a prior negative response. Negative-cache lifetime can differ from the new record's TTL. In the scenario, inspect the cached negative response and authoritative answer. The alternative \u2018Keep deleting and recreating the new record\u2019 does not address the stated evidence or constraint.",
+      "id": "networking-16-concept",
+      "title": "DNS negative caching \u00b7 concept",
+      "type": "concept",
+      "question": "Why can a newly created DNS name still appear nonexistent?",
+      "options": [
+        "Keep deleting and recreating the new record",
+        "Resolvers may cache a prior negative response",
+        "NXDOMAIN responses can never be cached",
+        "Creating a record clears every client cache immediately"
+      ],
+      "correct": [
+        1
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "networking",
+      "objective": "Explain dns negative caching and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "DNS negative caching \u2014 primary reference",
+          "url": "https://www.rfc-editor.org/rfc/rfc9520.html"
+        }
+      ],
+      "tags": [
+        "networking",
+        "dns-negative-caching"
+      ],
+      "takeaway": "Negative-cache lifetime can differ from the new record's TTL.",
+      "explanation": "Resolvers may cache a prior negative response. Negative-cache lifetime can differ from the new record's TTL. In the scenario, inspect the cached negative response and authoritative answer. The alternative \u2018Keep deleting and recreating the new record\u2019 does not address the stated evidence or constraint.",
+      "id": "networking-16-scenario",
+      "title": "DNS negative caching \u00b7 scenario",
+      "type": "scenario",
+      "question": "A hostname was queried before it existed and still fails at one resolver. What is the best next step?",
+      "options": [
+        "Inspect the cached negative response and authoritative answer",
+        "Keep deleting and recreating the new record",
+        "NXDOMAIN responses can never be cached",
+        "Creating a record clears every client cache immediately"
+      ],
+      "correct": [
+        0
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "networking",
+      "objective": "Explain dns negative caching and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "DNS negative caching \u2014 primary reference",
+          "url": "https://www.rfc-editor.org/rfc/rfc9520.html"
+        }
+      ],
+      "tags": [
+        "networking",
+        "dns-negative-caching"
+      ],
+      "takeaway": "Negative-cache lifetime can differ from the new record's TTL.",
+      "explanation": "Resolvers may cache a prior negative response. Negative-cache lifetime can differ from the new record's TTL. In the scenario, inspect the cached negative response and authoritative answer. The alternative \u2018Keep deleting and recreating the new record\u2019 does not address the stated evidence or constraint.",
+      "id": "networking-16-principles",
+      "title": "DNS negative caching \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing dns negative caching, which TWO statements are sound operational principles?",
+      "options": [
+        "Negative-cache lifetime can differ from the new record's TTL",
+        "NXDOMAIN responses can never be cached",
+        "Creating a record clears every client cache immediately",
+        "Resolvers may cache a prior negative response"
+      ],
+      "correct": [
+        0,
+        3
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "networking",
+      "objective": "Explain dns negative caching and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "DNS negative caching \u2014 primary reference",
+          "url": "https://www.rfc-editor.org/rfc/rfc9520.html"
+        }
+      ],
+      "tags": [
+        "networking",
+        "dns-negative-caching"
+      ],
+      "takeaway": "Negative-cache lifetime can differ from the new record's TTL.",
+      "explanation": "Resolvers may cache a prior negative response. Negative-cache lifetime can differ from the new record's TTL. In the scenario, inspect the cached negative response and authoritative answer. The alternative \u2018Keep deleting and recreating the new record\u2019 does not address the stated evidence or constraint.",
+      "id": "networking-16-interview",
+      "title": "DNS negative caching \u00b7 interview",
+      "type": "interview",
+      "question": "Explain negative DNS caching during a service launch.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "Resolvers may cache a prior negative response. Negative-cache lifetime can differ from the new record's TTL. A practical response is: Inspect the cached negative response and authoritative answer. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that nXDOMAIN responses can never be cached.",
+      "answerChecklist": [
+        "Resolvers may cache a prior negative response",
+        "Negative-cache lifetime can differ from the new record's TTL",
+        "Inspect the cached negative response and authoritative answer",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "A hostname was queried before it existed and still fails at one resolver. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "networking",
+      "objective": "Explain keepalive and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Keepalive \u2014 primary reference",
+          "url": "https://www.rfc-editor.org/rfc/rfc9293.html"
+        }
+      ],
+      "tags": [
+        "networking",
+        "keepalive"
+      ],
+      "takeaway": "Application-level health checks test behavior beyond transport state.",
+      "explanation": "It does not prove that the application can process a request. Application-level health checks test behavior beyond transport state. In the scenario, use a meaningful application check and bounded request deadlines. The alternative \u2018Rely only on the established socket state\u2019 does not address the stated evidence or constraint.",
+      "id": "networking-17-concept",
+      "title": "Keepalive \u00b7 concept",
+      "type": "concept",
+      "question": "What is a limitation of TCP keepalive for service monitoring?",
+      "options": [
+        "It does not prove that the application can process a request",
+        "A keepalive response guarantees every database query will succeed",
+        "Keepalive is equivalent to an end-to-end synthetic transaction",
+        "Rely only on the established socket state"
+      ],
+      "correct": [
+        0
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "networking",
+      "objective": "Explain keepalive and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Keepalive \u2014 primary reference",
+          "url": "https://www.rfc-editor.org/rfc/rfc9293.html"
+        }
+      ],
+      "tags": [
+        "networking",
+        "keepalive"
+      ],
+      "takeaway": "Application-level health checks test behavior beyond transport state.",
+      "explanation": "It does not prove that the application can process a request. Application-level health checks test behavior beyond transport state. In the scenario, use a meaningful application check and bounded request deadlines. The alternative \u2018Rely only on the established socket state\u2019 does not address the stated evidence or constraint.",
+      "id": "networking-17-scenario",
+      "title": "Keepalive \u00b7 scenario",
+      "type": "scenario",
+      "question": "A connection stays established while the application worker is deadlocked. What is the best next step?",
+      "options": [
+        "Rely only on the established socket state",
+        "A keepalive response guarantees every database query will succeed",
+        "Keepalive is equivalent to an end-to-end synthetic transaction",
+        "Use a meaningful application check and bounded request deadlines"
+      ],
+      "correct": [
+        3
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "networking",
+      "objective": "Explain keepalive and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Keepalive \u2014 primary reference",
+          "url": "https://www.rfc-editor.org/rfc/rfc9293.html"
+        }
+      ],
+      "tags": [
+        "networking",
+        "keepalive"
+      ],
+      "takeaway": "Application-level health checks test behavior beyond transport state.",
+      "explanation": "It does not prove that the application can process a request. Application-level health checks test behavior beyond transport state. In the scenario, use a meaningful application check and bounded request deadlines. The alternative \u2018Rely only on the established socket state\u2019 does not address the stated evidence or constraint.",
+      "id": "networking-17-principles",
+      "title": "Keepalive \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing keepalive, which TWO statements are sound operational principles?",
+      "options": [
+        "A keepalive response guarantees every database query will succeed",
+        "Keepalive is equivalent to an end-to-end synthetic transaction",
+        "It does not prove that the application can process a request",
+        "Application-level health checks test behavior beyond transport state"
+      ],
+      "correct": [
+        2,
+        3
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "networking",
+      "objective": "Explain keepalive and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Keepalive \u2014 primary reference",
+          "url": "https://www.rfc-editor.org/rfc/rfc9293.html"
+        }
+      ],
+      "tags": [
+        "networking",
+        "keepalive"
+      ],
+      "takeaway": "Application-level health checks test behavior beyond transport state.",
+      "explanation": "It does not prove that the application can process a request. Application-level health checks test behavior beyond transport state. In the scenario, use a meaningful application check and bounded request deadlines. The alternative \u2018Rely only on the established socket state\u2019 does not address the stated evidence or constraint.",
+      "id": "networking-17-interview",
+      "title": "Keepalive \u00b7 interview",
+      "type": "interview",
+      "question": "Explain transport liveness versus application health.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "It does not prove that the application can process a request. Application-level health checks test behavior beyond transport state. A practical response is: Use a meaningful application check and bounded request deadlines. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that a keepalive response guarantees every database query will succeed.",
+      "answerChecklist": [
+        "It does not prove that the application can process a request",
+        "Application-level health checks test behavior beyond transport state",
+        "Use a meaningful application check and bounded request deadlines",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "A connection stays established while the application worker is deadlocked. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "networking",
+      "objective": "Explain connection pooling and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Connection pooling \u2014 primary reference",
+          "url": "https://www.rfc-editor.org/rfc/rfc7230.html"
+        }
+      ],
+      "tags": [
+        "networking",
+        "connection-pooling"
+      ],
+      "takeaway": "Pools need bounded size idle handling and timeout policy.",
+      "explanation": "It reduces repeated connection setup overhead. Pools need bounded size idle handling and timeout policy. In the scenario, measure setup cost and evaluate a bounded reusable connection pool. The alternative \u2018Raise the pool limit without considering backend capacity\u2019 does not address the stated evidence or constraint.",
+      "id": "networking-18-concept",
+      "title": "Connection pooling \u00b7 concept",
+      "type": "concept",
+      "question": "What benefit can connection pooling provide?",
+      "options": [
+        "A pool eliminates every network failure",
+        "An unbounded pool is always the safest setting",
+        "Raise the pool limit without considering backend capacity",
+        "It reduces repeated connection setup overhead"
+      ],
+      "correct": [
+        3
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "networking",
+      "objective": "Explain connection pooling and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Connection pooling \u2014 primary reference",
+          "url": "https://www.rfc-editor.org/rfc/rfc7230.html"
+        }
+      ],
+      "tags": [
+        "networking",
+        "connection-pooling"
+      ],
+      "takeaway": "Pools need bounded size idle handling and timeout policy.",
+      "explanation": "It reduces repeated connection setup overhead. Pools need bounded size idle handling and timeout policy. In the scenario, measure setup cost and evaluate a bounded reusable connection pool. The alternative \u2018Raise the pool limit without considering backend capacity\u2019 does not address the stated evidence or constraint.",
+      "id": "networking-18-scenario",
+      "title": "Connection pooling \u00b7 scenario",
+      "type": "scenario",
+      "question": "A service creates a new TLS connection for every short request. What is the best next step?",
+      "options": [
+        "A pool eliminates every network failure",
+        "An unbounded pool is always the safest setting",
+        "Measure setup cost and evaluate a bounded reusable connection pool",
+        "Raise the pool limit without considering backend capacity"
+      ],
+      "correct": [
+        2
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "networking",
+      "objective": "Explain connection pooling and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Connection pooling \u2014 primary reference",
+          "url": "https://www.rfc-editor.org/rfc/rfc7230.html"
+        }
+      ],
+      "tags": [
+        "networking",
+        "connection-pooling"
+      ],
+      "takeaway": "Pools need bounded size idle handling and timeout policy.",
+      "explanation": "It reduces repeated connection setup overhead. Pools need bounded size idle handling and timeout policy. In the scenario, measure setup cost and evaluate a bounded reusable connection pool. The alternative \u2018Raise the pool limit without considering backend capacity\u2019 does not address the stated evidence or constraint.",
+      "id": "networking-18-principles",
+      "title": "Connection pooling \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing connection pooling, which TWO statements are sound operational principles?",
+      "options": [
+        "An unbounded pool is always the safest setting",
+        "It reduces repeated connection setup overhead",
+        "Pools need bounded size idle handling and timeout policy",
+        "A pool eliminates every network failure"
+      ],
+      "correct": [
+        1,
+        2
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "networking",
+      "objective": "Explain connection pooling and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Connection pooling \u2014 primary reference",
+          "url": "https://www.rfc-editor.org/rfc/rfc7230.html"
+        }
+      ],
+      "tags": [
+        "networking",
+        "connection-pooling"
+      ],
+      "takeaway": "Pools need bounded size idle handling and timeout policy.",
+      "explanation": "It reduces repeated connection setup overhead. Pools need bounded size idle handling and timeout policy. In the scenario, measure setup cost and evaluate a bounded reusable connection pool. The alternative \u2018Raise the pool limit without considering backend capacity\u2019 does not address the stated evidence or constraint.",
+      "id": "networking-18-interview",
+      "title": "Connection pooling \u00b7 interview",
+      "type": "interview",
+      "question": "Explain connection pooling trade-offs under bursty load.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "It reduces repeated connection setup overhead. Pools need bounded size idle handling and timeout policy. A practical response is: Measure setup cost and evaluate a bounded reusable connection pool. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that a pool eliminates every network failure.",
+      "answerChecklist": [
+        "It reduces repeated connection setup overhead",
+        "Pools need bounded size idle handling and timeout policy",
+        "Measure setup cost and evaluate a bounded reusable connection pool",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "A service creates a new TLS connection for every short request. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "networking",
+      "objective": "Explain load balancing and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Load balancing \u2014 primary reference",
+          "url": "https://www.rfc-editor.org/rfc/rfc9110.html"
+        }
+      ],
+      "tags": [
+        "networking",
+        "load-balancing"
+      ],
+      "takeaway": "TLS termination placement affects which component can inspect HTTP content.",
+      "explanation": "HTTP-level fields such as host and path. TLS termination placement affects which component can inspect HTTP content. In the scenario, use appropriate HTTP-aware routing at a component that can inspect the request. The alternative \u2018Configure routing solely by destination IP when both apps share it\u2019 does not address the stated evidence or constraint.",
+      "id": "networking-19-concept",
+      "title": "Load balancing \u00b7 concept",
+      "type": "concept",
+      "question": "What can an L7 HTTP load balancer inspect for routing?",
+      "options": [
+        "An encrypted payload is readable without termination or decryption",
+        "Configure routing solely by destination IP when both apps share it",
+        "HTTP-level fields such as host and path",
+        "An L4 balancer always parses every HTTP path"
+      ],
+      "correct": [
+        2
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "networking",
+      "objective": "Explain load balancing and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Load balancing \u2014 primary reference",
+          "url": "https://www.rfc-editor.org/rfc/rfc9110.html"
+        }
+      ],
+      "tags": [
+        "networking",
+        "load-balancing"
+      ],
+      "takeaway": "TLS termination placement affects which component can inspect HTTP content.",
+      "explanation": "HTTP-level fields such as host and path. TLS termination placement affects which component can inspect HTTP content. In the scenario, use appropriate HTTP-aware routing at a component that can inspect the request. The alternative \u2018Configure routing solely by destination IP when both apps share it\u2019 does not address the stated evidence or constraint.",
+      "id": "networking-19-scenario",
+      "title": "Load balancing \u00b7 scenario",
+      "type": "scenario",
+      "question": "Two applications share an address but require routing by URL path. What is the best next step?",
+      "options": [
+        "An encrypted payload is readable without termination or decryption",
+        "Use appropriate HTTP-aware routing at a component that can inspect the request",
+        "Configure routing solely by destination IP when both apps share it",
+        "An L4 balancer always parses every HTTP path"
+      ],
+      "correct": [
+        1
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "networking",
+      "objective": "Explain load balancing and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Load balancing \u2014 primary reference",
+          "url": "https://www.rfc-editor.org/rfc/rfc9110.html"
+        }
+      ],
+      "tags": [
+        "networking",
+        "load-balancing"
+      ],
+      "takeaway": "TLS termination placement affects which component can inspect HTTP content.",
+      "explanation": "HTTP-level fields such as host and path. TLS termination placement affects which component can inspect HTTP content. In the scenario, use appropriate HTTP-aware routing at a component that can inspect the request. The alternative \u2018Configure routing solely by destination IP when both apps share it\u2019 does not address the stated evidence or constraint.",
+      "id": "networking-19-principles",
+      "title": "Load balancing \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing load balancing, which TWO statements are sound operational principles?",
+      "options": [
+        "HTTP-level fields such as host and path",
+        "TLS termination placement affects which component can inspect HTTP content",
+        "An L4 balancer always parses every HTTP path",
+        "An encrypted payload is readable without termination or decryption"
+      ],
+      "correct": [
+        0,
+        1
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "networking",
+      "objective": "Explain load balancing and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Load balancing \u2014 primary reference",
+          "url": "https://www.rfc-editor.org/rfc/rfc9110.html"
+        }
+      ],
+      "tags": [
+        "networking",
+        "load-balancing"
+      ],
+      "takeaway": "TLS termination placement affects which component can inspect HTTP content.",
+      "explanation": "HTTP-level fields such as host and path. TLS termination placement affects which component can inspect HTTP content. In the scenario, use appropriate HTTP-aware routing at a component that can inspect the request. The alternative \u2018Configure routing solely by destination IP when both apps share it\u2019 does not address the stated evidence or constraint.",
+      "id": "networking-19-interview",
+      "title": "Load balancing \u00b7 interview",
+      "type": "interview",
+      "question": "Explain the difference between L4 and L7 load balancing.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "HTTP-level fields such as host and path. TLS termination placement affects which component can inspect HTTP content. A practical response is: Use appropriate HTTP-aware routing at a component that can inspect the request. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that an L4 balancer always parses every HTTP path.",
+      "answerChecklist": [
+        "HTTP-level fields such as host and path",
+        "TLS termination placement affects which component can inspect HTTP content",
+        "Use appropriate HTTP-aware routing at a component that can inspect the request",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "Two applications share an address but require routing by URL path. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "networking",
+      "objective": "Explain proxy headers and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Proxy headers \u2014 primary reference",
+          "url": "https://www.rfc-editor.org/rfc/rfc9110.html"
+        }
+      ],
+      "tags": [
+        "networking",
+        "proxy-headers"
+      ],
+      "takeaway": "The trusted proxy boundary must be configured explicitly.",
+      "explanation": "Clients can forge headers unless a trusted proxy controls them. The trusted proxy boundary must be configured explicitly. In the scenario, restrict trusted proxies and sanitize forwarding metadata. The alternative \u2018Trust the leftmost client-supplied header without validation\u2019 does not address the stated evidence or constraint.",
+      "id": "networking-20-concept",
+      "title": "Proxy headers \u00b7 concept",
+      "type": "concept",
+      "question": "Why should forwarded client-address headers be trusted selectively?",
+      "options": [
+        "Trust the leftmost client-supplied header without validation",
+        "Clients can forge headers unless a trusted proxy controls them",
+        "Any X-Forwarded-For value proves the original client identity",
+        "TLS automatically authenticates all forwarding headers"
+      ],
+      "correct": [
+        1
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "networking",
+      "objective": "Explain proxy headers and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Proxy headers \u2014 primary reference",
+          "url": "https://www.rfc-editor.org/rfc/rfc9110.html"
+        }
+      ],
+      "tags": [
+        "networking",
+        "proxy-headers"
+      ],
+      "takeaway": "The trusted proxy boundary must be configured explicitly.",
+      "explanation": "Clients can forge headers unless a trusted proxy controls them. The trusted proxy boundary must be configured explicitly. In the scenario, restrict trusted proxies and sanitize forwarding metadata. The alternative \u2018Trust the leftmost client-supplied header without validation\u2019 does not address the stated evidence or constraint.",
+      "id": "networking-20-scenario",
+      "title": "Proxy headers \u00b7 scenario",
+      "type": "scenario",
+      "question": "An access rule accepts a forged forwarding header from a direct client. What is the best next step?",
+      "options": [
+        "Restrict trusted proxies and sanitize forwarding metadata",
+        "Trust the leftmost client-supplied header without validation",
+        "Any X-Forwarded-For value proves the original client identity",
+        "TLS automatically authenticates all forwarding headers"
+      ],
+      "correct": [
+        0
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "networking",
+      "objective": "Explain proxy headers and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Proxy headers \u2014 primary reference",
+          "url": "https://www.rfc-editor.org/rfc/rfc9110.html"
+        }
+      ],
+      "tags": [
+        "networking",
+        "proxy-headers"
+      ],
+      "takeaway": "The trusted proxy boundary must be configured explicitly.",
+      "explanation": "Clients can forge headers unless a trusted proxy controls them. The trusted proxy boundary must be configured explicitly. In the scenario, restrict trusted proxies and sanitize forwarding metadata. The alternative \u2018Trust the leftmost client-supplied header without validation\u2019 does not address the stated evidence or constraint.",
+      "id": "networking-20-principles",
+      "title": "Proxy headers \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing proxy headers, which TWO statements are sound operational principles?",
+      "options": [
+        "The trusted proxy boundary must be configured explicitly",
+        "Any X-Forwarded-For value proves the original client identity",
+        "TLS automatically authenticates all forwarding headers",
+        "Clients can forge headers unless a trusted proxy controls them"
+      ],
+      "correct": [
+        0,
+        3
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "networking",
+      "objective": "Explain proxy headers and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Proxy headers \u2014 primary reference",
+          "url": "https://www.rfc-editor.org/rfc/rfc9110.html"
+        }
+      ],
+      "tags": [
+        "networking",
+        "proxy-headers"
+      ],
+      "takeaway": "The trusted proxy boundary must be configured explicitly.",
+      "explanation": "Clients can forge headers unless a trusted proxy controls them. The trusted proxy boundary must be configured explicitly. In the scenario, restrict trusted proxies and sanitize forwarding metadata. The alternative \u2018Trust the leftmost client-supplied header without validation\u2019 does not address the stated evidence or constraint.",
+      "id": "networking-20-interview",
+      "title": "Proxy headers \u00b7 interview",
+      "type": "interview",
+      "question": "Explain secure handling of client identity behind reverse proxies.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "Clients can forge headers unless a trusted proxy controls them. The trusted proxy boundary must be configured explicitly. A practical response is: Restrict trusted proxies and sanitize forwarding metadata. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that any X-Forwarded-For value proves the original client identity.",
+      "answerChecklist": [
+        "Clients can forge headers unless a trusted proxy controls them",
+        "The trusted proxy boundary must be configured explicitly",
+        "Restrict trusted proxies and sanitize forwarding metadata",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "An access rule accepts a forged forwarding header from a direct client. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "networking",
+      "objective": "Explain retries and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Retries \u2014 primary reference",
+          "url": "https://sre.google/sre-book/handling-overload/"
+        }
+      ],
+      "tags": [
+        "networking",
+        "retries"
+      ],
+      "takeaway": "Retry budgets backoff and jitter help control amplification.",
+      "explanation": "They increase offered load while capacity may already be impaired. Retry budgets backoff and jitter help control amplification. In the scenario, bound retries and use backoff with jitter while measuring load. The alternative \u2018Remove all retry delays to recover faster\u2019 does not address the stated evidence or constraint.",
+      "id": "networking-21-concept",
+      "title": "Retries \u00b7 concept",
+      "type": "concept",
+      "question": "How can network retries amplify an outage?",
+      "options": [
+        "They increase offered load while capacity may already be impaired",
+        "Every failed request should be retried immediately forever",
+        "Retries always reduce total server load",
+        "Remove all retry delays to recover faster"
+      ],
+      "correct": [
+        0
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "networking",
+      "objective": "Explain retries and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Retries \u2014 primary reference",
+          "url": "https://sre.google/sre-book/handling-overload/"
+        }
+      ],
+      "tags": [
+        "networking",
+        "retries"
+      ],
+      "takeaway": "Retry budgets backoff and jitter help control amplification.",
+      "explanation": "They increase offered load while capacity may already be impaired. Retry budgets backoff and jitter help control amplification. In the scenario, bound retries and use backoff with jitter while measuring load. The alternative \u2018Remove all retry delays to recover faster\u2019 does not address the stated evidence or constraint.",
+      "id": "networking-21-scenario",
+      "title": "Retries \u00b7 scenario",
+      "type": "scenario",
+      "question": "A dependency slows and callers launch synchronized repeated requests. What is the best next step?",
+      "options": [
+        "Remove all retry delays to recover faster",
+        "Every failed request should be retried immediately forever",
+        "Retries always reduce total server load",
+        "Bound retries and use backoff with jitter while measuring load"
+      ],
+      "correct": [
+        3
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "networking",
+      "objective": "Explain retries and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Retries \u2014 primary reference",
+          "url": "https://sre.google/sre-book/handling-overload/"
+        }
+      ],
+      "tags": [
+        "networking",
+        "retries"
+      ],
+      "takeaway": "Retry budgets backoff and jitter help control amplification.",
+      "explanation": "They increase offered load while capacity may already be impaired. Retry budgets backoff and jitter help control amplification. In the scenario, bound retries and use backoff with jitter while measuring load. The alternative \u2018Remove all retry delays to recover faster\u2019 does not address the stated evidence or constraint.",
+      "id": "networking-21-principles",
+      "title": "Retries \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing retries, which TWO statements are sound operational principles?",
+      "options": [
+        "Every failed request should be retried immediately forever",
+        "Retries always reduce total server load",
+        "They increase offered load while capacity may already be impaired",
+        "Retry budgets backoff and jitter help control amplification"
+      ],
+      "correct": [
+        2,
+        3
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "networking",
+      "objective": "Explain retries and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Retries \u2014 primary reference",
+          "url": "https://sre.google/sre-book/handling-overload/"
+        }
+      ],
+      "tags": [
+        "networking",
+        "retries"
+      ],
+      "takeaway": "Retry budgets backoff and jitter help control amplification.",
+      "explanation": "They increase offered load while capacity may already be impaired. Retry budgets backoff and jitter help control amplification. In the scenario, bound retries and use backoff with jitter while measuring load. The alternative \u2018Remove all retry delays to recover faster\u2019 does not address the stated evidence or constraint.",
+      "id": "networking-21-interview",
+      "title": "Retries \u00b7 interview",
+      "type": "interview",
+      "question": "Explain how retry behavior can turn a partial failure into a larger outage.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "They increase offered load while capacity may already be impaired. Retry budgets backoff and jitter help control amplification. A practical response is: Bound retries and use backoff with jitter while measuring load. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that every failed request should be retried immediately forever.",
+      "answerChecklist": [
+        "They increase offered load while capacity may already be impaired",
+        "Retry budgets backoff and jitter help control amplification",
+        "Bound retries and use backoff with jitter while measuring load",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "A dependency slows and callers launch synchronized repeated requests. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "networking",
+      "objective": "Explain timeout budgets and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Timeout budgets \u2014 primary reference",
+          "url": "https://sre.google/sre-book/handling-overload/"
+        }
+      ],
+      "tags": [
+        "networking",
+        "timeout-budgets"
+      ],
+      "takeaway": "A timeout does not prove the server performed no side effect.",
+      "explanation": "Downstream work should fit within the caller's remaining budget. A timeout does not prove the server performed no side effect. In the scenario, check idempotency and operation status before repeating a write. The alternative \u2018Assume timeout means the first payment definitely did not happen\u2019 does not address the stated evidence or constraint.",
+      "id": "networking-22-concept",
+      "title": "Timeout budgets \u00b7 concept",
+      "type": "concept",
+      "question": "Why coordinate deadlines across a request chain?",
+      "options": [
+        "Every layer should wait longer than its caller indefinitely",
+        "A client timeout guarantees that no write occurred",
+        "Assume timeout means the first payment definitely did not happen",
+        "Downstream work should fit within the caller's remaining budget"
+      ],
+      "correct": [
+        3
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "networking",
+      "objective": "Explain timeout budgets and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Timeout budgets \u2014 primary reference",
+          "url": "https://sre.google/sre-book/handling-overload/"
+        }
+      ],
+      "tags": [
+        "networking",
+        "timeout-budgets"
+      ],
+      "takeaway": "A timeout does not prove the server performed no side effect.",
+      "explanation": "Downstream work should fit within the caller's remaining budget. A timeout does not prove the server performed no side effect. In the scenario, check idempotency and operation status before repeating a write. The alternative \u2018Assume timeout means the first payment definitely did not happen\u2019 does not address the stated evidence or constraint.",
+      "id": "networking-22-scenario",
+      "title": "Timeout budgets \u00b7 scenario",
+      "type": "scenario",
+      "question": "A payment request times out and the client is about to repeat it. What is the best next step?",
+      "options": [
+        "Every layer should wait longer than its caller indefinitely",
+        "A client timeout guarantees that no write occurred",
+        "Check idempotency and operation status before repeating a write",
+        "Assume timeout means the first payment definitely did not happen"
+      ],
+      "correct": [
+        2
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "networking",
+      "objective": "Explain timeout budgets and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Timeout budgets \u2014 primary reference",
+          "url": "https://sre.google/sre-book/handling-overload/"
+        }
+      ],
+      "tags": [
+        "networking",
+        "timeout-budgets"
+      ],
+      "takeaway": "A timeout does not prove the server performed no side effect.",
+      "explanation": "Downstream work should fit within the caller's remaining budget. A timeout does not prove the server performed no side effect. In the scenario, check idempotency and operation status before repeating a write. The alternative \u2018Assume timeout means the first payment definitely did not happen\u2019 does not address the stated evidence or constraint.",
+      "id": "networking-22-principles",
+      "title": "Timeout budgets \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing timeout budgets, which TWO statements are sound operational principles?",
+      "options": [
+        "A client timeout guarantees that no write occurred",
+        "Downstream work should fit within the caller's remaining budget",
+        "A timeout does not prove the server performed no side effect",
+        "Every layer should wait longer than its caller indefinitely"
+      ],
+      "correct": [
+        1,
+        2
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "networking",
+      "objective": "Explain timeout budgets and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Timeout budgets \u2014 primary reference",
+          "url": "https://sre.google/sre-book/handling-overload/"
+        }
+      ],
+      "tags": [
+        "networking",
+        "timeout-budgets"
+      ],
+      "takeaway": "A timeout does not prove the server performed no side effect.",
+      "explanation": "Downstream work should fit within the caller's remaining budget. A timeout does not prove the server performed no side effect. In the scenario, check idempotency and operation status before repeating a write. The alternative \u2018Assume timeout means the first payment definitely did not happen\u2019 does not address the stated evidence or constraint.",
+      "id": "networking-22-interview",
+      "title": "Timeout budgets \u00b7 interview",
+      "type": "interview",
+      "question": "Explain deadlines cancellation and ambiguous outcomes in network calls.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "Downstream work should fit within the caller's remaining budget. A timeout does not prove the server performed no side effect. A practical response is: Check idempotency and operation status before repeating a write. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that every layer should wait longer than its caller indefinitely.",
+      "answerChecklist": [
+        "Downstream work should fit within the caller's remaining budget",
+        "A timeout does not prove the server performed no side effect",
+        "Check idempotency and operation status before repeating a write",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "A payment request times out and the client is about to repeat it. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "networking",
+      "objective": "Explain asymmetric routing and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Asymmetric routing \u2014 primary reference",
+          "url": "https://docs.aws.amazon.com/vpc/latest/userguide/vpc-network-acls.html"
+        }
+      ],
+      "tags": [
+        "networking",
+        "asymmetric-routing"
+      ],
+      "takeaway": "Both forward and reverse paths matter when stateful devices are involved.",
+      "explanation": "Return traffic may bypass the device holding the connection state. Both forward and reverse paths matter when stateful devices are involved. In the scenario, trace both directions and inspect stateful-device routing. The alternative \u2018Keep changing the listening port without examining reply traffic\u2019 does not address the stated evidence or constraint.",
+      "id": "networking-23-concept",
+      "title": "Asymmetric routing \u00b7 concept",
+      "type": "concept",
+      "question": "Why can asymmetric routing break a stateful firewall path?",
+      "options": [
+        "Every asymmetric route is necessarily invalid without firewalls",
+        "Keep changing the listening port without examining reply traffic",
+        "Return traffic may bypass the device holding the connection state",
+        "Only the forward route matters for TCP connectivity"
+      ],
+      "correct": [
+        2
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "networking",
+      "objective": "Explain asymmetric routing and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Asymmetric routing \u2014 primary reference",
+          "url": "https://docs.aws.amazon.com/vpc/latest/userguide/vpc-network-acls.html"
+        }
+      ],
+      "tags": [
+        "networking",
+        "asymmetric-routing"
+      ],
+      "takeaway": "Both forward and reverse paths matter when stateful devices are involved.",
+      "explanation": "Return traffic may bypass the device holding the connection state. Both forward and reverse paths matter when stateful devices are involved. In the scenario, trace both directions and inspect stateful-device routing. The alternative \u2018Keep changing the listening port without examining reply traffic\u2019 does not address the stated evidence or constraint.",
+      "id": "networking-23-scenario",
+      "title": "Asymmetric routing \u00b7 scenario",
+      "type": "scenario",
+      "question": "Packets reach the server but replies take a different firewall path and disappear. What is the best next step?",
+      "options": [
+        "Every asymmetric route is necessarily invalid without firewalls",
+        "Trace both directions and inspect stateful-device routing",
+        "Keep changing the listening port without examining reply traffic",
+        "Only the forward route matters for TCP connectivity"
+      ],
+      "correct": [
+        1
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "networking",
+      "objective": "Explain asymmetric routing and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Asymmetric routing \u2014 primary reference",
+          "url": "https://docs.aws.amazon.com/vpc/latest/userguide/vpc-network-acls.html"
+        }
+      ],
+      "tags": [
+        "networking",
+        "asymmetric-routing"
+      ],
+      "takeaway": "Both forward and reverse paths matter when stateful devices are involved.",
+      "explanation": "Return traffic may bypass the device holding the connection state. Both forward and reverse paths matter when stateful devices are involved. In the scenario, trace both directions and inspect stateful-device routing. The alternative \u2018Keep changing the listening port without examining reply traffic\u2019 does not address the stated evidence or constraint.",
+      "id": "networking-23-principles",
+      "title": "Asymmetric routing \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing asymmetric routing, which TWO statements are sound operational principles?",
+      "options": [
+        "Return traffic may bypass the device holding the connection state",
+        "Both forward and reverse paths matter when stateful devices are involved",
+        "Only the forward route matters for TCP connectivity",
+        "Every asymmetric route is necessarily invalid without firewalls"
+      ],
+      "correct": [
+        0,
+        1
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "networking",
+      "objective": "Explain asymmetric routing and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Asymmetric routing \u2014 primary reference",
+          "url": "https://docs.aws.amazon.com/vpc/latest/userguide/vpc-network-acls.html"
+        }
+      ],
+      "tags": [
+        "networking",
+        "asymmetric-routing"
+      ],
+      "takeaway": "Both forward and reverse paths matter when stateful devices are involved.",
+      "explanation": "Return traffic may bypass the device holding the connection state. Both forward and reverse paths matter when stateful devices are involved. In the scenario, trace both directions and inspect stateful-device routing. The alternative \u2018Keep changing the listening port without examining reply traffic\u2019 does not address the stated evidence or constraint.",
+      "id": "networking-23-interview",
+      "title": "Asymmetric routing \u00b7 interview",
+      "type": "interview",
+      "question": "Explain how you would diagnose asymmetric-path connectivity failures.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "Return traffic may bypass the device holding the connection state. Both forward and reverse paths matter when stateful devices are involved. A practical response is: Trace both directions and inspect stateful-device routing. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that only the forward route matters for TCP connectivity.",
+      "answerChecklist": [
+        "Return traffic may bypass the device holding the connection state",
+        "Both forward and reverse paths matter when stateful devices are involved",
+        "Trace both directions and inspect stateful-device routing",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "Packets reach the server but replies take a different firewall path and disappear. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "networking",
+      "objective": "Explain anycast and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Anycast \u2014 primary reference",
+          "url": "https://www.rfc-editor.org/rfc/rfc4786.html"
+        }
+      ],
+      "tags": [
+        "networking",
+        "anycast"
+      ],
+      "takeaway": "Routing chooses a path rather than an application-level session scheduler.",
+      "explanation": "Multiple locations advertise reachability for the same address. Routing chooses a path rather than an application-level session scheduler. In the scenario, check route convergence and whether session state tolerates location changes. The alternative \u2018Assume all session state is automatically replicated by routing\u2019 does not address the stated evidence or constraint.",
+      "id": "networking-24-concept",
+      "title": "Anycast \u00b7 concept",
+      "type": "concept",
+      "question": "What is the core idea of IP anycast?",
+      "options": [
+        "Assume all session state is automatically replicated by routing",
+        "Multiple locations advertise reachability for the same address",
+        "Anycast guarantees all requests from a user reach one process forever",
+        "Anycast sends every request to all advertised locations simultaneously"
+      ],
+      "correct": [
+        1
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "networking",
+      "objective": "Explain anycast and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Anycast \u2014 primary reference",
+          "url": "https://www.rfc-editor.org/rfc/rfc4786.html"
+        }
+      ],
+      "tags": [
+        "networking",
+        "anycast"
+      ],
+      "takeaway": "Routing chooses a path rather than an application-level session scheduler.",
+      "explanation": "Multiple locations advertise reachability for the same address. Routing chooses a path rather than an application-level session scheduler. In the scenario, check route convergence and whether session state tolerates location changes. The alternative \u2018Assume all session state is automatically replicated by routing\u2019 does not address the stated evidence or constraint.",
+      "id": "networking-24-scenario",
+      "title": "Anycast \u00b7 scenario",
+      "type": "scenario",
+      "question": "A route change moves traffic to another anycast location. What is the best next step?",
+      "options": [
+        "Check route convergence and whether session state tolerates location changes",
+        "Assume all session state is automatically replicated by routing",
+        "Anycast guarantees all requests from a user reach one process forever",
+        "Anycast sends every request to all advertised locations simultaneously"
+      ],
+      "correct": [
+        0
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "networking",
+      "objective": "Explain anycast and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Anycast \u2014 primary reference",
+          "url": "https://www.rfc-editor.org/rfc/rfc4786.html"
+        }
+      ],
+      "tags": [
+        "networking",
+        "anycast"
+      ],
+      "takeaway": "Routing chooses a path rather than an application-level session scheduler.",
+      "explanation": "Multiple locations advertise reachability for the same address. Routing chooses a path rather than an application-level session scheduler. In the scenario, check route convergence and whether session state tolerates location changes. The alternative \u2018Assume all session state is automatically replicated by routing\u2019 does not address the stated evidence or constraint.",
+      "id": "networking-24-principles",
+      "title": "Anycast \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing anycast, which TWO statements are sound operational principles?",
+      "options": [
+        "Routing chooses a path rather than an application-level session scheduler",
+        "Anycast guarantees all requests from a user reach one process forever",
+        "Anycast sends every request to all advertised locations simultaneously",
+        "Multiple locations advertise reachability for the same address"
+      ],
+      "correct": [
+        0,
+        3
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "networking",
+      "objective": "Explain anycast and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Anycast \u2014 primary reference",
+          "url": "https://www.rfc-editor.org/rfc/rfc4786.html"
+        }
+      ],
+      "tags": [
+        "networking",
+        "anycast"
+      ],
+      "takeaway": "Routing chooses a path rather than an application-level session scheduler.",
+      "explanation": "Multiple locations advertise reachability for the same address. Routing chooses a path rather than an application-level session scheduler. In the scenario, check route convergence and whether session state tolerates location changes. The alternative \u2018Assume all session state is automatically replicated by routing\u2019 does not address the stated evidence or constraint.",
+      "id": "networking-24-interview",
+      "title": "Anycast \u00b7 interview",
+      "type": "interview",
+      "question": "Explain anycast benefits and session-continuity risks.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "Multiple locations advertise reachability for the same address. Routing chooses a path rather than an application-level session scheduler. A practical response is: Check route convergence and whether session state tolerates location changes. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that anycast guarantees all requests from a user reach one process forever.",
+      "answerChecklist": [
+        "Multiple locations advertise reachability for the same address",
+        "Routing chooses a path rather than an application-level session scheduler",
+        "Check route convergence and whether session state tolerates location changes",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "A route change moves traffic to another anycast location. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "networking",
+      "objective": "Explain bgp policy and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "BGP policy \u2014 primary reference",
+          "url": "https://www.rfc-editor.org/rfc/rfc4271.html"
+        }
+      ],
+      "tags": [
+        "networking",
+        "bgp-policy"
+      ],
+      "takeaway": "The selected route need not be the path with lowest measured latency.",
+      "explanation": "Policy and path attributes guide route selection. The selected route need not be the path with lowest measured latency. In the scenario, inspect route advertisements and policy attributes. The alternative \u2018Assume BGP is malfunctioning solely because another path has lower latency\u2019 does not address the stated evidence or constraint.",
+      "id": "networking-25-concept",
+      "title": "BGP policy \u00b7 concept",
+      "type": "concept",
+      "question": "What primarily distinguishes BGP path selection from a pure latency optimizer?",
+      "options": [
+        "Policy and path attributes guide route selection",
+        "BGP continuously measures application response time for every route",
+        "BGP guarantees the geographically nearest server",
+        "Assume BGP is malfunctioning solely because another path has lower latency"
+      ],
+      "correct": [
+        0
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "networking",
+      "objective": "Explain bgp policy and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "BGP policy \u2014 primary reference",
+          "url": "https://www.rfc-editor.org/rfc/rfc4271.html"
+        }
+      ],
+      "tags": [
+        "networking",
+        "bgp-policy"
+      ],
+      "takeaway": "The selected route need not be the path with lowest measured latency.",
+      "explanation": "Policy and path attributes guide route selection. The selected route need not be the path with lowest measured latency. In the scenario, inspect route advertisements and policy attributes. The alternative \u2018Assume BGP is malfunctioning solely because another path has lower latency\u2019 does not address the stated evidence or constraint.",
+      "id": "networking-25-scenario",
+      "title": "BGP policy \u00b7 scenario",
+      "type": "scenario",
+      "question": "Traffic follows an unexpected provider path despite a nearby alternative. What is the best next step?",
+      "options": [
+        "Assume BGP is malfunctioning solely because another path has lower latency",
+        "BGP continuously measures application response time for every route",
+        "BGP guarantees the geographically nearest server",
+        "Inspect route advertisements and policy attributes"
+      ],
+      "correct": [
+        3
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "networking",
+      "objective": "Explain bgp policy and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "BGP policy \u2014 primary reference",
+          "url": "https://www.rfc-editor.org/rfc/rfc4271.html"
+        }
+      ],
+      "tags": [
+        "networking",
+        "bgp-policy"
+      ],
+      "takeaway": "The selected route need not be the path with lowest measured latency.",
+      "explanation": "Policy and path attributes guide route selection. The selected route need not be the path with lowest measured latency. In the scenario, inspect route advertisements and policy attributes. The alternative \u2018Assume BGP is malfunctioning solely because another path has lower latency\u2019 does not address the stated evidence or constraint.",
+      "id": "networking-25-principles",
+      "title": "BGP policy \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing bgp policy, which TWO statements are sound operational principles?",
+      "options": [
+        "BGP continuously measures application response time for every route",
+        "BGP guarantees the geographically nearest server",
+        "Policy and path attributes guide route selection",
+        "The selected route need not be the path with lowest measured latency"
+      ],
+      "correct": [
+        2,
+        3
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "networking",
+      "objective": "Explain bgp policy and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "BGP policy \u2014 primary reference",
+          "url": "https://www.rfc-editor.org/rfc/rfc4271.html"
+        }
+      ],
+      "tags": [
+        "networking",
+        "bgp-policy"
+      ],
+      "takeaway": "The selected route need not be the path with lowest measured latency.",
+      "explanation": "Policy and path attributes guide route selection. The selected route need not be the path with lowest measured latency. In the scenario, inspect route advertisements and policy attributes. The alternative \u2018Assume BGP is malfunctioning solely because another path has lower latency\u2019 does not address the stated evidence or constraint.",
+      "id": "networking-25-interview",
+      "title": "BGP policy \u00b7 interview",
+      "type": "interview",
+      "question": "Explain why Internet routing may not follow the shortest geographic path.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "Policy and path attributes guide route selection. The selected route need not be the path with lowest measured latency. A practical response is: Inspect route advertisements and policy attributes. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that bGP continuously measures application response time for every route.",
+      "answerChecklist": [
+        "Policy and path attributes guide route selection",
+        "The selected route need not be the path with lowest measured latency",
+        "Inspect route advertisements and policy attributes",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "Traffic follows an unexpected provider path despite a nearby alternative. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "networking",
+      "objective": "Explain ipv6 neighbor discovery and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "IPv6 neighbor discovery \u2014 primary reference",
+          "url": "https://www.rfc-editor.org/rfc/rfc4861.html"
+        }
+      ],
+      "tags": [
+        "networking",
+        "ipv6-neighbor-discovery"
+      ],
+      "takeaway": "Blocking all ICMPv6 can break essential IPv6 operation.",
+      "explanation": "ICMPv6 Neighbor Discovery. Blocking all ICMPv6 can break essential IPv6 operation. In the scenario, review required Neighbor Discovery and path-MTU control traffic. The alternative \u2018Keep blocking all ICMPv6 and only permit TCP\u2019 does not address the stated evidence or constraint.",
+      "id": "networking-26-concept",
+      "title": "IPv6 neighbor discovery \u00b7 concept",
+      "type": "concept",
+      "question": "What replaces ARP's local-neighbor role in IPv6?",
+      "options": [
+        "IPv6 uses IPv4 ARP broadcasts unchanged",
+        "ICMPv6 is only optional diagnostic ping traffic",
+        "Keep blocking all ICMPv6 and only permit TCP",
+        "ICMPv6 Neighbor Discovery"
+      ],
+      "correct": [
+        3
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "networking",
+      "objective": "Explain ipv6 neighbor discovery and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "IPv6 neighbor discovery \u2014 primary reference",
+          "url": "https://www.rfc-editor.org/rfc/rfc4861.html"
+        }
+      ],
+      "tags": [
+        "networking",
+        "ipv6-neighbor-discovery"
+      ],
+      "takeaway": "Blocking all ICMPv6 can break essential IPv6 operation.",
+      "explanation": "ICMPv6 Neighbor Discovery. Blocking all ICMPv6 can break essential IPv6 operation. In the scenario, review required Neighbor Discovery and path-MTU control traffic. The alternative \u2018Keep blocking all ICMPv6 and only permit TCP\u2019 does not address the stated evidence or constraint.",
+      "id": "networking-26-scenario",
+      "title": "IPv6 neighbor discovery \u00b7 scenario",
+      "type": "scenario",
+      "question": "IPv6 communication breaks after a blanket ICMPv6 deny rule. What is the best next step?",
+      "options": [
+        "IPv6 uses IPv4 ARP broadcasts unchanged",
+        "ICMPv6 is only optional diagnostic ping traffic",
+        "Review required Neighbor Discovery and path-MTU control traffic",
+        "Keep blocking all ICMPv6 and only permit TCP"
+      ],
+      "correct": [
+        2
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "networking",
+      "objective": "Explain ipv6 neighbor discovery and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "IPv6 neighbor discovery \u2014 primary reference",
+          "url": "https://www.rfc-editor.org/rfc/rfc4861.html"
+        }
+      ],
+      "tags": [
+        "networking",
+        "ipv6-neighbor-discovery"
+      ],
+      "takeaway": "Blocking all ICMPv6 can break essential IPv6 operation.",
+      "explanation": "ICMPv6 Neighbor Discovery. Blocking all ICMPv6 can break essential IPv6 operation. In the scenario, review required Neighbor Discovery and path-MTU control traffic. The alternative \u2018Keep blocking all ICMPv6 and only permit TCP\u2019 does not address the stated evidence or constraint.",
+      "id": "networking-26-principles",
+      "title": "IPv6 neighbor discovery \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing ipv6 neighbor discovery, which TWO statements are sound operational principles?",
+      "options": [
+        "ICMPv6 is only optional diagnostic ping traffic",
+        "ICMPv6 Neighbor Discovery",
+        "Blocking all ICMPv6 can break essential IPv6 operation",
+        "IPv6 uses IPv4 ARP broadcasts unchanged"
+      ],
+      "correct": [
+        1,
+        2
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "networking",
+      "objective": "Explain ipv6 neighbor discovery and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "IPv6 neighbor discovery \u2014 primary reference",
+          "url": "https://www.rfc-editor.org/rfc/rfc4861.html"
+        }
+      ],
+      "tags": [
+        "networking",
+        "ipv6-neighbor-discovery"
+      ],
+      "takeaway": "Blocking all ICMPv6 can break essential IPv6 operation.",
+      "explanation": "ICMPv6 Neighbor Discovery. Blocking all ICMPv6 can break essential IPv6 operation. In the scenario, review required Neighbor Discovery and path-MTU control traffic. The alternative \u2018Keep blocking all ICMPv6 and only permit TCP\u2019 does not address the stated evidence or constraint.",
+      "id": "networking-26-interview",
+      "title": "IPv6 neighbor discovery \u00b7 interview",
+      "type": "interview",
+      "question": "Explain why blanket ICMPv6 blocking is unsafe for IPv6 connectivity.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "ICMPv6 Neighbor Discovery. Blocking all ICMPv6 can break essential IPv6 operation. A practical response is: Review required Neighbor Discovery and path-MTU control traffic. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that iPv6 uses IPv4 ARP broadcasts unchanged.",
+      "answerChecklist": [
+        "ICMPv6 Neighbor Discovery",
+        "Blocking all ICMPv6 can break essential IPv6 operation",
+        "Review required Neighbor Discovery and path-MTU control traffic",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "IPv6 communication breaks after a blanket ICMPv6 deny rule. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "networking",
+      "objective": "Explain tcp time_wait and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "TCP TIME_WAIT \u2014 primary reference",
+          "url": "https://www.rfc-editor.org/rfc/rfc9293.html"
+        }
+      ],
+      "tags": [
+        "networking",
+        "tcp-time_wait"
+      ],
+      "takeaway": "Large TIME_WAIT counts need context rather than automatic deletion.",
+      "explanation": "It helps handle delayed segments and the final close exchange. Large TIME_WAIT counts need context rather than automatic deletion. In the scenario, inspect connection churn port capacity and reuse patterns. The alternative \u2018Treat every TIME_WAIT socket as a hung application worker\u2019 does not address the stated evidence or constraint.",
+      "id": "networking-27-concept",
+      "title": "TCP TIME_WAIT \u00b7 concept",
+      "type": "concept",
+      "question": "Why does TCP keep some closed connections in TIME_WAIT?",
+      "options": [
+        "TIME_WAIT always proves a process memory leak",
+        "Treat every TIME_WAIT socket as a hung application worker",
+        "It helps handle delayed segments and the final close exchange",
+        "TIME_WAIT means every socket is actively processing requests"
+      ],
+      "correct": [
+        2
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "networking",
+      "objective": "Explain tcp time_wait and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "TCP TIME_WAIT \u2014 primary reference",
+          "url": "https://www.rfc-editor.org/rfc/rfc9293.html"
+        }
+      ],
+      "tags": [
+        "networking",
+        "tcp-time_wait"
+      ],
+      "takeaway": "Large TIME_WAIT counts need context rather than automatic deletion.",
+      "explanation": "It helps handle delayed segments and the final close exchange. Large TIME_WAIT counts need context rather than automatic deletion. In the scenario, inspect connection churn port capacity and reuse patterns. The alternative \u2018Treat every TIME_WAIT socket as a hung application worker\u2019 does not address the stated evidence or constraint.",
+      "id": "networking-27-scenario",
+      "title": "TCP TIME_WAIT \u00b7 scenario",
+      "type": "scenario",
+      "question": "A busy client creates many short connections and accumulates TIME_WAIT sockets. What is the best next step?",
+      "options": [
+        "TIME_WAIT always proves a process memory leak",
+        "Inspect connection churn port capacity and reuse patterns",
+        "Treat every TIME_WAIT socket as a hung application worker",
+        "TIME_WAIT means every socket is actively processing requests"
+      ],
+      "correct": [
+        1
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "networking",
+      "objective": "Explain tcp time_wait and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "TCP TIME_WAIT \u2014 primary reference",
+          "url": "https://www.rfc-editor.org/rfc/rfc9293.html"
+        }
+      ],
+      "tags": [
+        "networking",
+        "tcp-time_wait"
+      ],
+      "takeaway": "Large TIME_WAIT counts need context rather than automatic deletion.",
+      "explanation": "It helps handle delayed segments and the final close exchange. Large TIME_WAIT counts need context rather than automatic deletion. In the scenario, inspect connection churn port capacity and reuse patterns. The alternative \u2018Treat every TIME_WAIT socket as a hung application worker\u2019 does not address the stated evidence or constraint.",
+      "id": "networking-27-principles",
+      "title": "TCP TIME_WAIT \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing tcp time_wait, which TWO statements are sound operational principles?",
+      "options": [
+        "It helps handle delayed segments and the final close exchange",
+        "Large TIME_WAIT counts need context rather than automatic deletion",
+        "TIME_WAIT means every socket is actively processing requests",
+        "TIME_WAIT always proves a process memory leak"
+      ],
+      "correct": [
+        0,
+        1
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "networking",
+      "objective": "Explain tcp time_wait and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "TCP TIME_WAIT \u2014 primary reference",
+          "url": "https://www.rfc-editor.org/rfc/rfc9293.html"
+        }
+      ],
+      "tags": [
+        "networking",
+        "tcp-time_wait"
+      ],
+      "takeaway": "Large TIME_WAIT counts need context rather than automatic deletion.",
+      "explanation": "It helps handle delayed segments and the final close exchange. Large TIME_WAIT counts need context rather than automatic deletion. In the scenario, inspect connection churn port capacity and reuse patterns. The alternative \u2018Treat every TIME_WAIT socket as a hung application worker\u2019 does not address the stated evidence or constraint.",
+      "id": "networking-27-interview",
+      "title": "TCP TIME_WAIT \u00b7 interview",
+      "type": "interview",
+      "question": "Explain TIME_WAIT and when connection churn becomes a capacity problem.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "It helps handle delayed segments and the final close exchange. Large TIME_WAIT counts need context rather than automatic deletion. A practical response is: Inspect connection churn port capacity and reuse patterns. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that tIME_WAIT means every socket is actively processing requests.",
+      "answerChecklist": [
+        "It helps handle delayed segments and the final close exchange",
+        "Large TIME_WAIT counts need context rather than automatic deletion",
+        "Inspect connection churn port capacity and reuse patterns",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "A busy client creates many short connections and accumulates TIME_WAIT sockets. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "networking",
+      "objective": "Explain queueing and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Queueing \u2014 primary reference",
+          "url": "https://www.rfc-editor.org/rfc/rfc5681.html"
+        }
+      ],
+      "tags": [
+        "networking",
+        "queueing"
+      ],
+      "takeaway": "More buffering can trade packet loss for queueing delay.",
+      "explanation": "Packets wait longer before transmission under sustained congestion. More buffering can trade packet loss for queueing delay. In the scenario, measure queueing delay and evaluate traffic management. The alternative \u2018Increase buffer sizes without measuring latency\u2019 does not address the stated evidence or constraint.",
+      "id": "networking-28-concept",
+      "title": "Queueing \u00b7 concept",
+      "type": "concept",
+      "question": "Why can a large network queue worsen interactive latency?",
+      "options": [
+        "Increase buffer sizes without measuring latency",
+        "Packets wait longer before transmission under sustained congestion",
+        "Increasing every buffer always lowers latency",
+        "Queue depth has no relationship to request delay"
+      ],
+      "correct": [
+        1
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "networking",
+      "objective": "Explain queueing and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Queueing \u2014 primary reference",
+          "url": "https://www.rfc-editor.org/rfc/rfc5681.html"
+        }
+      ],
+      "tags": [
+        "networking",
+        "queueing"
+      ],
+      "takeaway": "More buffering can trade packet loss for queueing delay.",
+      "explanation": "Packets wait longer before transmission under sustained congestion. More buffering can trade packet loss for queueing delay. In the scenario, measure queueing delay and evaluate traffic management. The alternative \u2018Increase buffer sizes without measuring latency\u2019 does not address the stated evidence or constraint.",
+      "id": "networking-28-scenario",
+      "title": "Queueing \u00b7 scenario",
+      "type": "scenario",
+      "question": "Throughput looks stable but interactive latency climbs during bulk transfers. What is the best next step?",
+      "options": [
+        "Measure queueing delay and evaluate traffic management",
+        "Increase buffer sizes without measuring latency",
+        "Increasing every buffer always lowers latency",
+        "Queue depth has no relationship to request delay"
+      ],
+      "correct": [
+        0
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "networking",
+      "objective": "Explain queueing and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Queueing \u2014 primary reference",
+          "url": "https://www.rfc-editor.org/rfc/rfc5681.html"
+        }
+      ],
+      "tags": [
+        "networking",
+        "queueing"
+      ],
+      "takeaway": "More buffering can trade packet loss for queueing delay.",
+      "explanation": "Packets wait longer before transmission under sustained congestion. More buffering can trade packet loss for queueing delay. In the scenario, measure queueing delay and evaluate traffic management. The alternative \u2018Increase buffer sizes without measuring latency\u2019 does not address the stated evidence or constraint.",
+      "id": "networking-28-principles",
+      "title": "Queueing \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing queueing, which TWO statements are sound operational principles?",
+      "options": [
+        "More buffering can trade packet loss for queueing delay",
+        "Increasing every buffer always lowers latency",
+        "Queue depth has no relationship to request delay",
+        "Packets wait longer before transmission under sustained congestion"
+      ],
+      "correct": [
+        0,
+        3
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "networking",
+      "objective": "Explain queueing and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Queueing \u2014 primary reference",
+          "url": "https://www.rfc-editor.org/rfc/rfc5681.html"
+        }
+      ],
+      "tags": [
+        "networking",
+        "queueing"
+      ],
+      "takeaway": "More buffering can trade packet loss for queueing delay.",
+      "explanation": "Packets wait longer before transmission under sustained congestion. More buffering can trade packet loss for queueing delay. In the scenario, measure queueing delay and evaluate traffic management. The alternative \u2018Increase buffer sizes without measuring latency\u2019 does not address the stated evidence or constraint.",
+      "id": "networking-28-interview",
+      "title": "Queueing \u00b7 interview",
+      "type": "interview",
+      "question": "Explain throughput latency and bufferbloat trade-offs.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "Packets wait longer before transmission under sustained congestion. More buffering can trade packet loss for queueing delay. A practical response is: Measure queueing delay and evaluate traffic management. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that increasing every buffer always lowers latency.",
+      "answerChecklist": [
+        "Packets wait longer before transmission under sustained congestion",
+        "More buffering can trade packet loss for queueing delay",
+        "Measure queueing delay and evaluate traffic management",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "Throughput looks stable but interactive latency climbs during bulk transfers. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "networking",
+      "objective": "Explain tls termination and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "TLS termination \u2014 primary reference",
+          "url": "https://www.rfc-editor.org/rfc/rfc8446.html"
+        }
+      ],
+      "tags": [
+        "networking",
+        "tls-termination"
+      ],
+      "takeaway": "Encryption to the backend is a separate connection policy.",
+      "explanation": "The proxy can access plaintext application traffic. Encryption to the backend is a separate connection policy. In the scenario, verify and configure encryption on the backend connection too. The alternative \u2018Assume frontend HTTPS proves every internal hop is encrypted\u2019 does not address the stated evidence or constraint.",
+      "id": "networking-29-concept",
+      "title": "TLS termination \u00b7 concept",
+      "type": "concept",
+      "question": "What changes when TLS is terminated at a proxy?",
+      "options": [
+        "The proxy can access plaintext application traffic",
+        "Terminating TLS automatically encrypts the backend hop",
+        "The proxy cannot see decrypted HTTP headers",
+        "Assume frontend HTTPS proves every internal hop is encrypted"
+      ],
+      "correct": [
+        0
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "networking",
+      "objective": "Explain tls termination and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "TLS termination \u2014 primary reference",
+          "url": "https://www.rfc-editor.org/rfc/rfc8446.html"
+        }
+      ],
+      "tags": [
+        "networking",
+        "tls-termination"
+      ],
+      "takeaway": "Encryption to the backend is a separate connection policy.",
+      "explanation": "The proxy can access plaintext application traffic. Encryption to the backend is a separate connection policy. In the scenario, verify and configure encryption on the backend connection too. The alternative \u2018Assume frontend HTTPS proves every internal hop is encrypted\u2019 does not address the stated evidence or constraint.",
+      "id": "networking-29-scenario",
+      "title": "TLS termination \u00b7 scenario",
+      "type": "scenario",
+      "question": "A compliance requirement covers traffic between the proxy and backend. What is the best next step?",
+      "options": [
+        "Assume frontend HTTPS proves every internal hop is encrypted",
+        "Terminating TLS automatically encrypts the backend hop",
+        "The proxy cannot see decrypted HTTP headers",
+        "Verify and configure encryption on the backend connection too"
+      ],
+      "correct": [
+        3
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "networking",
+      "objective": "Explain tls termination and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "TLS termination \u2014 primary reference",
+          "url": "https://www.rfc-editor.org/rfc/rfc8446.html"
+        }
+      ],
+      "tags": [
+        "networking",
+        "tls-termination"
+      ],
+      "takeaway": "Encryption to the backend is a separate connection policy.",
+      "explanation": "The proxy can access plaintext application traffic. Encryption to the backend is a separate connection policy. In the scenario, verify and configure encryption on the backend connection too. The alternative \u2018Assume frontend HTTPS proves every internal hop is encrypted\u2019 does not address the stated evidence or constraint.",
+      "id": "networking-29-principles",
+      "title": "TLS termination \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing tls termination, which TWO statements are sound operational principles?",
+      "options": [
+        "Terminating TLS automatically encrypts the backend hop",
+        "The proxy cannot see decrypted HTTP headers",
+        "The proxy can access plaintext application traffic",
+        "Encryption to the backend is a separate connection policy"
+      ],
+      "correct": [
+        2,
+        3
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "networking",
+      "objective": "Explain tls termination and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "TLS termination \u2014 primary reference",
+          "url": "https://www.rfc-editor.org/rfc/rfc8446.html"
+        }
+      ],
+      "tags": [
+        "networking",
+        "tls-termination"
+      ],
+      "takeaway": "Encryption to the backend is a separate connection policy.",
+      "explanation": "The proxy can access plaintext application traffic. Encryption to the backend is a separate connection policy. In the scenario, verify and configure encryption on the backend connection too. The alternative \u2018Assume frontend HTTPS proves every internal hop is encrypted\u2019 does not address the stated evidence or constraint.",
+      "id": "networking-29-interview",
+      "title": "TLS termination \u00b7 interview",
+      "type": "interview",
+      "question": "Explain end-to-end transport protection through a reverse proxy.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "The proxy can access plaintext application traffic. Encryption to the backend is a separate connection policy. A practical response is: Verify and configure encryption on the backend connection too. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that terminating TLS automatically encrypts the backend hop.",
+      "answerChecklist": [
+        "The proxy can access plaintext application traffic",
+        "Encryption to the backend is a separate connection policy",
+        "Verify and configure encryption on the backend connection too",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "A compliance requirement covers traffic between the proxy and backend. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "networking",
+      "objective": "Explain idempotency and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Idempotency \u2014 primary reference",
+          "url": "https://www.rfc-editor.org/rfc/rfc9110.html"
+        }
+      ],
+      "tags": [
+        "networking",
+        "idempotency"
+      ],
+      "takeaway": "Idempotency keys need scoped storage and a retention policy.",
+      "explanation": "Repeated requests can avoid duplicating the intended effect. Idempotency keys need scoped storage and a retention policy. In the scenario, reuse an operation identifier and check recorded outcomes. The alternative \u2018Generate a new operation identifier for every retry\u2019 does not address the stated evidence or constraint.",
+      "id": "networking-30-concept",
+      "title": "Idempotency \u00b7 concept",
+      "type": "concept",
+      "question": "Why is idempotency useful for retried network writes?",
+      "options": [
+        "Every HTTP POST is automatically idempotent",
+        "A random new key for every retry prevents duplicate effects",
+        "Generate a new operation identifier for every retry",
+        "Repeated requests can avoid duplicating the intended effect"
+      ],
+      "correct": [
+        3
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "networking",
+      "objective": "Explain idempotency and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Idempotency \u2014 primary reference",
+          "url": "https://www.rfc-editor.org/rfc/rfc9110.html"
+        }
+      ],
+      "tags": [
+        "networking",
+        "idempotency"
+      ],
+      "takeaway": "Idempotency keys need scoped storage and a retention policy.",
+      "explanation": "Repeated requests can avoid duplicating the intended effect. Idempotency keys need scoped storage and a retention policy. In the scenario, reuse an operation identifier and check recorded outcomes. The alternative \u2018Generate a new operation identifier for every retry\u2019 does not address the stated evidence or constraint.",
+      "id": "networking-30-scenario",
+      "title": "Idempotency \u00b7 scenario",
+      "type": "scenario",
+      "question": "A client may retry an order after losing the response. What is the best next step?",
+      "options": [
+        "Every HTTP POST is automatically idempotent",
+        "A random new key for every retry prevents duplicate effects",
+        "Reuse an operation identifier and check recorded outcomes",
+        "Generate a new operation identifier for every retry"
+      ],
+      "correct": [
+        2
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "networking",
+      "objective": "Explain idempotency and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Idempotency \u2014 primary reference",
+          "url": "https://www.rfc-editor.org/rfc/rfc9110.html"
+        }
+      ],
+      "tags": [
+        "networking",
+        "idempotency"
+      ],
+      "takeaway": "Idempotency keys need scoped storage and a retention policy.",
+      "explanation": "Repeated requests can avoid duplicating the intended effect. Idempotency keys need scoped storage and a retention policy. In the scenario, reuse an operation identifier and check recorded outcomes. The alternative \u2018Generate a new operation identifier for every retry\u2019 does not address the stated evidence or constraint.",
+      "id": "networking-30-principles",
+      "title": "Idempotency \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing idempotency, which TWO statements are sound operational principles?",
+      "options": [
+        "A random new key for every retry prevents duplicate effects",
+        "Repeated requests can avoid duplicating the intended effect",
+        "Idempotency keys need scoped storage and a retention policy",
+        "Every HTTP POST is automatically idempotent"
+      ],
+      "correct": [
+        1,
+        2
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "networking",
+      "objective": "Explain idempotency and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Idempotency \u2014 primary reference",
+          "url": "https://www.rfc-editor.org/rfc/rfc9110.html"
+        }
+      ],
+      "tags": [
+        "networking",
+        "idempotency"
+      ],
+      "takeaway": "Idempotency keys need scoped storage and a retention policy.",
+      "explanation": "Repeated requests can avoid duplicating the intended effect. Idempotency keys need scoped storage and a retention policy. In the scenario, reuse an operation identifier and check recorded outcomes. The alternative \u2018Generate a new operation identifier for every retry\u2019 does not address the stated evidence or constraint.",
+      "id": "networking-30-interview",
+      "title": "Idempotency \u00b7 interview",
+      "type": "interview",
+      "question": "Explain how you would design retries for a write whose response can be lost.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "Repeated requests can avoid duplicating the intended effect. Idempotency keys need scoped storage and a retention policy. A practical response is: Reuse an operation identifier and check recorded outcomes. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that every HTTP POST is automatically idempotent.",
+      "answerChecklist": [
+        "Repeated requests can avoid duplicating the intended effect",
+        "Idempotency keys need scoped storage and a retention policy",
+        "Reuse an operation identifier and check recorded outcomes",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "A client may retry an order after losing the response. Explain the evidence that would change your decision."
+      ]
+    }
+  ]
+}

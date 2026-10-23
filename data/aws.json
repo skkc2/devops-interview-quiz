@@ -1,0 +1,3733 @@
+{
+  "schemaVersion": 1,
+  "subject": "AWS",
+  "levels": [
+    "easy",
+    "medium",
+    "mediumHard",
+    "hard"
+  ],
+  "description": "30 competency sets: 90 scored questions and 30 self-reviewed interview prompts. Related questions intentionally reinforce a competency from different angles.",
+  "questions": [
+    {
+      "level": "easy",
+      "topic": "aws",
+      "objective": "Explain regions and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Regions \u2014 primary reference",
+          "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/welcome.html"
+        }
+      ],
+      "tags": [
+        "aws",
+        "regions"
+      ],
+      "takeaway": "Regional service availability and requirements should be verified.",
+      "explanation": "A geographic area containing multiple Availability Zones. Regional service availability and requirements should be verified. In the scenario, inventory regional dependencies and explicitly provision the recovery environment. The alternative \u2018Assume a Region choice enables global replication\u2019 does not address the stated evidence or constraint.",
+      "id": "aws-01-concept",
+      "title": "Regions \u00b7 concept",
+      "type": "concept",
+      "question": "What is an AWS Region?",
+      "options": [
+        "A geographic area containing multiple Availability Zones",
+        "Every Region shares one physical data center",
+        "Selecting a Region automatically replicates every resource worldwide",
+        "Assume a Region choice enables global replication"
+      ],
+      "correct": [
+        0
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "aws",
+      "objective": "Explain regions and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Regions \u2014 primary reference",
+          "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/welcome.html"
+        }
+      ],
+      "tags": [
+        "aws",
+        "regions"
+      ],
+      "takeaway": "Regional service availability and requirements should be verified.",
+      "explanation": "A geographic area containing multiple Availability Zones. Regional service availability and requirements should be verified. In the scenario, inventory regional dependencies and explicitly provision the recovery environment. The alternative \u2018Assume a Region choice enables global replication\u2019 does not address the stated evidence or constraint.",
+      "id": "aws-01-scenario",
+      "title": "Regions \u00b7 scenario",
+      "type": "scenario",
+      "question": "A recovery plan assumes resources exist in a second Region. What is the best next step?",
+      "options": [
+        "Assume a Region choice enables global replication",
+        "Every Region shares one physical data center",
+        "Selecting a Region automatically replicates every resource worldwide",
+        "Inventory regional dependencies and explicitly provision the recovery environment"
+      ],
+      "correct": [
+        3
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "aws",
+      "objective": "Explain regions and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Regions \u2014 primary reference",
+          "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/welcome.html"
+        }
+      ],
+      "tags": [
+        "aws",
+        "regions"
+      ],
+      "takeaway": "Regional service availability and requirements should be verified.",
+      "explanation": "A geographic area containing multiple Availability Zones. Regional service availability and requirements should be verified. In the scenario, inventory regional dependencies and explicitly provision the recovery environment. The alternative \u2018Assume a Region choice enables global replication\u2019 does not address the stated evidence or constraint.",
+      "id": "aws-01-principles",
+      "title": "Regions \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing regions, which TWO statements are sound operational principles?",
+      "options": [
+        "Every Region shares one physical data center",
+        "Selecting a Region automatically replicates every resource worldwide",
+        "A geographic area containing multiple Availability Zones",
+        "Regional service availability and requirements should be verified"
+      ],
+      "correct": [
+        2,
+        3
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "aws",
+      "objective": "Explain regions and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Regions \u2014 primary reference",
+          "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/welcome.html"
+        }
+      ],
+      "tags": [
+        "aws",
+        "regions"
+      ],
+      "takeaway": "Regional service availability and requirements should be verified.",
+      "explanation": "A geographic area containing multiple Availability Zones. Regional service availability and requirements should be verified. In the scenario, inventory regional dependencies and explicitly provision the recovery environment. The alternative \u2018Assume a Region choice enables global replication\u2019 does not address the stated evidence or constraint.",
+      "id": "aws-01-interview",
+      "title": "Regions \u00b7 interview",
+      "type": "interview",
+      "question": "Explain regional deployment and recovery boundaries.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "A geographic area containing multiple Availability Zones. Regional service availability and requirements should be verified. A practical response is: Inventory regional dependencies and explicitly provision the recovery environment. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that every Region shares one physical data center.",
+      "answerChecklist": [
+        "A geographic area containing multiple Availability Zones",
+        "Regional service availability and requirements should be verified",
+        "Inventory regional dependencies and explicitly provision the recovery environment",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "A recovery plan assumes resources exist in a second Region. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "aws",
+      "objective": "Explain availability zones and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Availability Zones \u2014 primary reference",
+          "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/welcome.html"
+        }
+      ],
+      "tags": [
+        "aws",
+        "availability-zones"
+      ],
+      "takeaway": "Applications still need sufficient surviving capacity.",
+      "explanation": "Reduce exposure to a single zone failure. Applications still need sufficient surviving capacity. In the scenario, verify surviving capacity and cross-zone application behavior. The alternative \u2018Assume zone distribution alone guarantees full throughput\u2019 does not address the stated evidence or constraint.",
+      "id": "aws-02-concept",
+      "title": "Availability Zones \u00b7 concept",
+      "type": "concept",
+      "question": "Why distribute workloads across Availability Zones?",
+      "options": [
+        "Two instances in one zone guarantee zone-failure tolerance",
+        "Multi-AZ placement automatically fixes application state management",
+        "Assume zone distribution alone guarantees full throughput",
+        "Reduce exposure to a single zone failure"
+      ],
+      "correct": [
+        3
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "aws",
+      "objective": "Explain availability zones and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Availability Zones \u2014 primary reference",
+          "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/welcome.html"
+        }
+      ],
+      "tags": [
+        "aws",
+        "availability-zones"
+      ],
+      "takeaway": "Applications still need sufficient surviving capacity.",
+      "explanation": "Reduce exposure to a single zone failure. Applications still need sufficient surviving capacity. In the scenario, verify surviving capacity and cross-zone application behavior. The alternative \u2018Assume zone distribution alone guarantees full throughput\u2019 does not address the stated evidence or constraint.",
+      "id": "aws-02-scenario",
+      "title": "Availability Zones \u00b7 scenario",
+      "type": "scenario",
+      "question": "A zone outage removes half the service capacity. What is the best next step?",
+      "options": [
+        "Two instances in one zone guarantee zone-failure tolerance",
+        "Multi-AZ placement automatically fixes application state management",
+        "Verify surviving capacity and cross-zone application behavior",
+        "Assume zone distribution alone guarantees full throughput"
+      ],
+      "correct": [
+        2
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "aws",
+      "objective": "Explain availability zones and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Availability Zones \u2014 primary reference",
+          "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/welcome.html"
+        }
+      ],
+      "tags": [
+        "aws",
+        "availability-zones"
+      ],
+      "takeaway": "Applications still need sufficient surviving capacity.",
+      "explanation": "Reduce exposure to a single zone failure. Applications still need sufficient surviving capacity. In the scenario, verify surviving capacity and cross-zone application behavior. The alternative \u2018Assume zone distribution alone guarantees full throughput\u2019 does not address the stated evidence or constraint.",
+      "id": "aws-02-principles",
+      "title": "Availability Zones \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing availability zones, which TWO statements are sound operational principles?",
+      "options": [
+        "Multi-AZ placement automatically fixes application state management",
+        "Reduce exposure to a single zone failure",
+        "Applications still need sufficient surviving capacity",
+        "Two instances in one zone guarantee zone-failure tolerance"
+      ],
+      "correct": [
+        1,
+        2
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "aws",
+      "objective": "Explain availability zones and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Availability Zones \u2014 primary reference",
+          "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/welcome.html"
+        }
+      ],
+      "tags": [
+        "aws",
+        "availability-zones"
+      ],
+      "takeaway": "Applications still need sufficient surviving capacity.",
+      "explanation": "Reduce exposure to a single zone failure. Applications still need sufficient surviving capacity. In the scenario, verify surviving capacity and cross-zone application behavior. The alternative \u2018Assume zone distribution alone guarantees full throughput\u2019 does not address the stated evidence or constraint.",
+      "id": "aws-02-interview",
+      "title": "Availability Zones \u00b7 interview",
+      "type": "interview",
+      "question": "Explain how you validate a multi-AZ design.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "Reduce exposure to a single zone failure. Applications still need sufficient surviving capacity. A practical response is: Verify surviving capacity and cross-zone application behavior. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that two instances in one zone guarantee zone-failure tolerance.",
+      "answerChecklist": [
+        "Reduce exposure to a single zone failure",
+        "Applications still need sufficient surviving capacity",
+        "Verify surviving capacity and cross-zone application behavior",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "A zone outage removes half the service capacity. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "aws",
+      "objective": "Explain iam roles and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "IAM roles \u2014 primary reference",
+          "url": "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html"
+        }
+      ],
+      "tags": [
+        "aws",
+        "iam-roles"
+      ],
+      "takeaway": "Role permissions should match the workload's required actions.",
+      "explanation": "Reduce dependence on embedded long-lived access keys. Role permissions should match the workload's required actions. In the scenario, use an appropriate workload role and rotate the exposed key. The alternative \u2018Move the key to another file in the same image\u2019 does not address the stated evidence or constraint.",
+      "id": "aws-03-concept",
+      "title": "IAM roles \u00b7 concept",
+      "type": "concept",
+      "question": "Why prefer roles with temporary credentials for workloads?",
+      "options": [
+        "Temporary credentials eliminate all authorization review",
+        "Move the key to another file in the same image",
+        "Reduce dependence on embedded long-lived access keys",
+        "Roles always grant administrator access"
+      ],
+      "correct": [
+        2
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "aws",
+      "objective": "Explain iam roles and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "IAM roles \u2014 primary reference",
+          "url": "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html"
+        }
+      ],
+      "tags": [
+        "aws",
+        "iam-roles"
+      ],
+      "takeaway": "Role permissions should match the workload's required actions.",
+      "explanation": "Reduce dependence on embedded long-lived access keys. Role permissions should match the workload's required actions. In the scenario, use an appropriate workload role and rotate the exposed key. The alternative \u2018Move the key to another file in the same image\u2019 does not address the stated evidence or constraint.",
+      "id": "aws-03-scenario",
+      "title": "IAM roles \u00b7 scenario",
+      "type": "scenario",
+      "question": "An application image contains a long-lived AWS access key. What is the best next step?",
+      "options": [
+        "Temporary credentials eliminate all authorization review",
+        "Use an appropriate workload role and rotate the exposed key",
+        "Move the key to another file in the same image",
+        "Roles always grant administrator access"
+      ],
+      "correct": [
+        1
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "aws",
+      "objective": "Explain iam roles and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "IAM roles \u2014 primary reference",
+          "url": "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html"
+        }
+      ],
+      "tags": [
+        "aws",
+        "iam-roles"
+      ],
+      "takeaway": "Role permissions should match the workload's required actions.",
+      "explanation": "Reduce dependence on embedded long-lived access keys. Role permissions should match the workload's required actions. In the scenario, use an appropriate workload role and rotate the exposed key. The alternative \u2018Move the key to another file in the same image\u2019 does not address the stated evidence or constraint.",
+      "id": "aws-03-principles",
+      "title": "IAM roles \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing iam roles, which TWO statements are sound operational principles?",
+      "options": [
+        "Reduce dependence on embedded long-lived access keys",
+        "Role permissions should match the workload's required actions",
+        "Roles always grant administrator access",
+        "Temporary credentials eliminate all authorization review"
+      ],
+      "correct": [
+        0,
+        1
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "aws",
+      "objective": "Explain iam roles and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "IAM roles \u2014 primary reference",
+          "url": "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html"
+        }
+      ],
+      "tags": [
+        "aws",
+        "iam-roles"
+      ],
+      "takeaway": "Role permissions should match the workload's required actions.",
+      "explanation": "Reduce dependence on embedded long-lived access keys. Role permissions should match the workload's required actions. In the scenario, use an appropriate workload role and rotate the exposed key. The alternative \u2018Move the key to another file in the same image\u2019 does not address the stated evidence or constraint.",
+      "id": "aws-03-interview",
+      "title": "IAM roles \u00b7 interview",
+      "type": "interview",
+      "question": "Explain workload identity and temporary credentials.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "Reduce dependence on embedded long-lived access keys. Role permissions should match the workload's required actions. A practical response is: Use an appropriate workload role and rotate the exposed key. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that roles always grant administrator access.",
+      "answerChecklist": [
+        "Reduce dependence on embedded long-lived access keys",
+        "Role permissions should match the workload's required actions",
+        "Use an appropriate workload role and rotate the exposed key",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "An application image contains a long-lived AWS access key. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "aws",
+      "objective": "Explain least privilege and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Least privilege \u2014 primary reference",
+          "url": "https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies.html"
+        }
+      ],
+      "tags": [
+        "aws",
+        "least-privilege"
+      ],
+      "takeaway": "Explicit denies can override otherwise allowed actions.",
+      "explanation": "Allow only required actions on intended resources under appropriate conditions. Explicit denies can override otherwise allowed actions. In the scenario, narrow actions resources and conditions after verifying actual needs. The alternative \u2018Grant more wildcard permissions to avoid future access errors\u2019 does not address the stated evidence or constraint.",
+      "id": "aws-04-concept",
+      "title": "Least privilege \u00b7 concept",
+      "type": "concept",
+      "question": "What is the goal of least-privilege IAM policies?",
+      "options": [
+        "Grant more wildcard permissions to avoid future access errors",
+        "Allow only required actions on intended resources under appropriate conditions",
+        "An allow statement always overrides every explicit deny",
+        "Every workload requires wildcard administrator permissions"
+      ],
+      "correct": [
+        1
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "aws",
+      "objective": "Explain least privilege and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Least privilege \u2014 primary reference",
+          "url": "https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies.html"
+        }
+      ],
+      "tags": [
+        "aws",
+        "least-privilege"
+      ],
+      "takeaway": "Explicit denies can override otherwise allowed actions.",
+      "explanation": "Allow only required actions on intended resources under appropriate conditions. Explicit denies can override otherwise allowed actions. In the scenario, narrow actions resources and conditions after verifying actual needs. The alternative \u2018Grant more wildcard permissions to avoid future access errors\u2019 does not address the stated evidence or constraint.",
+      "id": "aws-04-scenario",
+      "title": "Least privilege \u00b7 scenario",
+      "type": "scenario",
+      "question": "A service can delete unrelated production resources. What is the best next step?",
+      "options": [
+        "Narrow actions resources and conditions after verifying actual needs",
+        "Grant more wildcard permissions to avoid future access errors",
+        "An allow statement always overrides every explicit deny",
+        "Every workload requires wildcard administrator permissions"
+      ],
+      "correct": [
+        0
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "aws",
+      "objective": "Explain least privilege and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Least privilege \u2014 primary reference",
+          "url": "https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies.html"
+        }
+      ],
+      "tags": [
+        "aws",
+        "least-privilege"
+      ],
+      "takeaway": "Explicit denies can override otherwise allowed actions.",
+      "explanation": "Allow only required actions on intended resources under appropriate conditions. Explicit denies can override otherwise allowed actions. In the scenario, narrow actions resources and conditions after verifying actual needs. The alternative \u2018Grant more wildcard permissions to avoid future access errors\u2019 does not address the stated evidence or constraint.",
+      "id": "aws-04-principles",
+      "title": "Least privilege \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing least privilege, which TWO statements are sound operational principles?",
+      "options": [
+        "Explicit denies can override otherwise allowed actions",
+        "An allow statement always overrides every explicit deny",
+        "Every workload requires wildcard administrator permissions",
+        "Allow only required actions on intended resources under appropriate conditions"
+      ],
+      "correct": [
+        0,
+        3
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "aws",
+      "objective": "Explain least privilege and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Least privilege \u2014 primary reference",
+          "url": "https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies.html"
+        }
+      ],
+      "tags": [
+        "aws",
+        "least-privilege"
+      ],
+      "takeaway": "Explicit denies can override otherwise allowed actions.",
+      "explanation": "Allow only required actions on intended resources under appropriate conditions. Explicit denies can override otherwise allowed actions. In the scenario, narrow actions resources and conditions after verifying actual needs. The alternative \u2018Grant more wildcard permissions to avoid future access errors\u2019 does not address the stated evidence or constraint.",
+      "id": "aws-04-interview",
+      "title": "Least privilege \u00b7 interview",
+      "type": "interview",
+      "question": "Explain how you would reduce an overly broad IAM policy.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "Allow only required actions on intended resources under appropriate conditions. Explicit denies can override otherwise allowed actions. A practical response is: Narrow actions resources and conditions after verifying actual needs. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that an allow statement always overrides every explicit deny.",
+      "answerChecklist": [
+        "Allow only required actions on intended resources under appropriate conditions",
+        "Explicit denies can override otherwise allowed actions",
+        "Narrow actions resources and conditions after verifying actual needs",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "A service can delete unrelated production resources. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "aws",
+      "objective": "Explain s3 storage and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "S3 storage \u2014 primary reference",
+          "url": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/Welcome.html"
+        }
+      ],
+      "tags": [
+        "aws",
+        "s3-storage"
+      ],
+      "takeaway": "Object storage differs from a local POSIX filesystem.",
+      "explanation": "Object storage addressed through buckets and object keys. Object storage differs from a local POSIX filesystem. In the scenario, review the object API and redesign the storage interaction appropriately. The alternative \u2018Treat the bucket as identical to a local disk\u2019 does not address the stated evidence or constraint.",
+      "id": "aws-05-concept",
+      "title": "S3 storage \u00b7 concept",
+      "type": "concept",
+      "question": "What storage model does Amazon S3 primarily provide?",
+      "options": [
+        "Object storage addressed through buckets and object keys",
+        "An S3 bucket is automatically a mounted block device",
+        "Every object supports arbitrary in-place POSIX writes",
+        "Treat the bucket as identical to a local disk"
+      ],
+      "correct": [
+        0
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "aws",
+      "objective": "Explain s3 storage and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "S3 storage \u2014 primary reference",
+          "url": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/Welcome.html"
+        }
+      ],
+      "tags": [
+        "aws",
+        "s3-storage"
+      ],
+      "takeaway": "Object storage differs from a local POSIX filesystem.",
+      "explanation": "Object storage addressed through buckets and object keys. Object storage differs from a local POSIX filesystem. In the scenario, review the object API and redesign the storage interaction appropriately. The alternative \u2018Treat the bucket as identical to a local disk\u2019 does not address the stated evidence or constraint.",
+      "id": "aws-05-scenario",
+      "title": "S3 storage \u00b7 scenario",
+      "type": "scenario",
+      "question": "An application assumes S3 supports local filesystem locking semantics. What is the best next step?",
+      "options": [
+        "Treat the bucket as identical to a local disk",
+        "An S3 bucket is automatically a mounted block device",
+        "Every object supports arbitrary in-place POSIX writes",
+        "Review the object API and redesign the storage interaction appropriately"
+      ],
+      "correct": [
+        3
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "aws",
+      "objective": "Explain s3 storage and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "S3 storage \u2014 primary reference",
+          "url": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/Welcome.html"
+        }
+      ],
+      "tags": [
+        "aws",
+        "s3-storage"
+      ],
+      "takeaway": "Object storage differs from a local POSIX filesystem.",
+      "explanation": "Object storage addressed through buckets and object keys. Object storage differs from a local POSIX filesystem. In the scenario, review the object API and redesign the storage interaction appropriately. The alternative \u2018Treat the bucket as identical to a local disk\u2019 does not address the stated evidence or constraint.",
+      "id": "aws-05-principles",
+      "title": "S3 storage \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing s3 storage, which TWO statements are sound operational principles?",
+      "options": [
+        "An S3 bucket is automatically a mounted block device",
+        "Every object supports arbitrary in-place POSIX writes",
+        "Object storage addressed through buckets and object keys",
+        "Object storage differs from a local POSIX filesystem"
+      ],
+      "correct": [
+        2,
+        3
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "aws",
+      "objective": "Explain s3 storage and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "S3 storage \u2014 primary reference",
+          "url": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/Welcome.html"
+        }
+      ],
+      "tags": [
+        "aws",
+        "s3-storage"
+      ],
+      "takeaway": "Object storage differs from a local POSIX filesystem.",
+      "explanation": "Object storage addressed through buckets and object keys. Object storage differs from a local POSIX filesystem. In the scenario, review the object API and redesign the storage interaction appropriately. The alternative \u2018Treat the bucket as identical to a local disk\u2019 does not address the stated evidence or constraint.",
+      "id": "aws-05-interview",
+      "title": "S3 storage \u00b7 interview",
+      "type": "interview",
+      "question": "Explain object storage versus block and filesystem storage.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "Object storage addressed through buckets and object keys. Object storage differs from a local POSIX filesystem. A practical response is: Review the object API and redesign the storage interaction appropriately. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that an S3 bucket is automatically a mounted block device.",
+      "answerChecklist": [
+        "Object storage addressed through buckets and object keys",
+        "Object storage differs from a local POSIX filesystem",
+        "Review the object API and redesign the storage interaction appropriately",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "An application assumes S3 supports local filesystem locking semantics. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "aws",
+      "objective": "Explain ebs and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "EBS \u2014 primary reference",
+          "url": "https://docs.aws.amazon.com/ebs/latest/userguide/what-is-ebs.html"
+        }
+      ],
+      "tags": [
+        "aws",
+        "ebs"
+      ],
+      "takeaway": "Volume durability does not replace independent backups.",
+      "explanation": "Block storage for EC2 workloads. Volume durability does not replace independent backups. In the scenario, choose suitable volumes and implement tested snapshot or backup recovery. The alternative \u2018Rely solely on the running instance's existence\u2019 does not address the stated evidence or constraint.",
+      "id": "aws-06-concept",
+      "title": "EBS \u00b7 concept",
+      "type": "concept",
+      "question": "What is a common use of Amazon EBS?",
+      "options": [
+        "An EBS volume is automatically a global shared filesystem",
+        "Every EBS volume can attach freely across Regions",
+        "Rely solely on the running instance's existence",
+        "Block storage for EC2 workloads"
+      ],
+      "correct": [
+        3
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "aws",
+      "objective": "Explain ebs and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "EBS \u2014 primary reference",
+          "url": "https://docs.aws.amazon.com/ebs/latest/userguide/what-is-ebs.html"
+        }
+      ],
+      "tags": [
+        "aws",
+        "ebs"
+      ],
+      "takeaway": "Volume durability does not replace independent backups.",
+      "explanation": "Block storage for EC2 workloads. Volume durability does not replace independent backups. In the scenario, choose suitable volumes and implement tested snapshot or backup recovery. The alternative \u2018Rely solely on the running instance's existence\u2019 does not address the stated evidence or constraint.",
+      "id": "aws-06-scenario",
+      "title": "EBS \u00b7 scenario",
+      "type": "scenario",
+      "question": "An EC2 database needs recoverable persistent block storage. What is the best next step?",
+      "options": [
+        "An EBS volume is automatically a global shared filesystem",
+        "Every EBS volume can attach freely across Regions",
+        "Choose suitable volumes and implement tested snapshot or backup recovery",
+        "Rely solely on the running instance's existence"
+      ],
+      "correct": [
+        2
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "aws",
+      "objective": "Explain ebs and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "EBS \u2014 primary reference",
+          "url": "https://docs.aws.amazon.com/ebs/latest/userguide/what-is-ebs.html"
+        }
+      ],
+      "tags": [
+        "aws",
+        "ebs"
+      ],
+      "takeaway": "Volume durability does not replace independent backups.",
+      "explanation": "Block storage for EC2 workloads. Volume durability does not replace independent backups. In the scenario, choose suitable volumes and implement tested snapshot or backup recovery. The alternative \u2018Rely solely on the running instance's existence\u2019 does not address the stated evidence or constraint.",
+      "id": "aws-06-principles",
+      "title": "EBS \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing ebs, which TWO statements are sound operational principles?",
+      "options": [
+        "Every EBS volume can attach freely across Regions",
+        "Block storage for EC2 workloads",
+        "Volume durability does not replace independent backups",
+        "An EBS volume is automatically a global shared filesystem"
+      ],
+      "correct": [
+        1,
+        2
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "aws",
+      "objective": "Explain ebs and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "EBS \u2014 primary reference",
+          "url": "https://docs.aws.amazon.com/ebs/latest/userguide/what-is-ebs.html"
+        }
+      ],
+      "tags": [
+        "aws",
+        "ebs"
+      ],
+      "takeaway": "Volume durability does not replace independent backups.",
+      "explanation": "Block storage for EC2 workloads. Volume durability does not replace independent backups. In the scenario, choose suitable volumes and implement tested snapshot or backup recovery. The alternative \u2018Rely solely on the running instance's existence\u2019 does not address the stated evidence or constraint.",
+      "id": "aws-06-interview",
+      "title": "EBS \u00b7 interview",
+      "type": "interview",
+      "question": "Explain EBS persistence and recovery planning.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "Block storage for EC2 workloads. Volume durability does not replace independent backups. A practical response is: Choose suitable volumes and implement tested snapshot or backup recovery. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that an EBS volume is automatically a global shared filesystem.",
+      "answerChecklist": [
+        "Block storage for EC2 workloads",
+        "Volume durability does not replace independent backups",
+        "Choose suitable volumes and implement tested snapshot or backup recovery",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "An EC2 database needs recoverable persistent block storage. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "aws",
+      "objective": "Explain security groups and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Security groups \u2014 primary reference",
+          "url": "https://docs.aws.amazon.com/vpc/latest/userguide/vpc-security-groups.html"
+        }
+      ],
+      "tags": [
+        "aws",
+        "security-groups"
+      ],
+      "takeaway": "Rules should be scoped to required sources and ports.",
+      "explanation": "Stateful rules allow specified traffic for associated resources. Rules should be scoped to required sources and ports. In the scenario, restrict sources to intended application identities or network ranges. The alternative \u2018Keep broad access because the database uses a password\u2019 does not address the stated evidence or constraint.",
+      "id": "aws-07-concept",
+      "title": "Security groups \u00b7 concept",
+      "type": "concept",
+      "question": "How do security groups generally filter traffic?",
+      "options": [
+        "Security groups replace application authentication",
+        "Keep broad access because the database uses a password",
+        "Stateful rules allow specified traffic for associated resources",
+        "Security groups are stateless subnet-wide deny lists"
+      ],
+      "correct": [
+        2
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "aws",
+      "objective": "Explain security groups and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Security groups \u2014 primary reference",
+          "url": "https://docs.aws.amazon.com/vpc/latest/userguide/vpc-security-groups.html"
+        }
+      ],
+      "tags": [
+        "aws",
+        "security-groups"
+      ],
+      "takeaway": "Rules should be scoped to required sources and ports.",
+      "explanation": "Stateful rules allow specified traffic for associated resources. Rules should be scoped to required sources and ports. In the scenario, restrict sources to intended application identities or network ranges. The alternative \u2018Keep broad access because the database uses a password\u2019 does not address the stated evidence or constraint.",
+      "id": "aws-07-scenario",
+      "title": "Security groups \u00b7 scenario",
+      "type": "scenario",
+      "question": "A database security group allows inbound traffic from everywhere. What is the best next step?",
+      "options": [
+        "Security groups replace application authentication",
+        "Restrict sources to intended application identities or network ranges",
+        "Keep broad access because the database uses a password",
+        "Security groups are stateless subnet-wide deny lists"
+      ],
+      "correct": [
+        1
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "aws",
+      "objective": "Explain security groups and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Security groups \u2014 primary reference",
+          "url": "https://docs.aws.amazon.com/vpc/latest/userguide/vpc-security-groups.html"
+        }
+      ],
+      "tags": [
+        "aws",
+        "security-groups"
+      ],
+      "takeaway": "Rules should be scoped to required sources and ports.",
+      "explanation": "Stateful rules allow specified traffic for associated resources. Rules should be scoped to required sources and ports. In the scenario, restrict sources to intended application identities or network ranges. The alternative \u2018Keep broad access because the database uses a password\u2019 does not address the stated evidence or constraint.",
+      "id": "aws-07-principles",
+      "title": "Security groups \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing security groups, which TWO statements are sound operational principles?",
+      "options": [
+        "Stateful rules allow specified traffic for associated resources",
+        "Rules should be scoped to required sources and ports",
+        "Security groups are stateless subnet-wide deny lists",
+        "Security groups replace application authentication"
+      ],
+      "correct": [
+        0,
+        1
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "aws",
+      "objective": "Explain security groups and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Security groups \u2014 primary reference",
+          "url": "https://docs.aws.amazon.com/vpc/latest/userguide/vpc-security-groups.html"
+        }
+      ],
+      "tags": [
+        "aws",
+        "security-groups"
+      ],
+      "takeaway": "Rules should be scoped to required sources and ports.",
+      "explanation": "Stateful rules allow specified traffic for associated resources. Rules should be scoped to required sources and ports. In the scenario, restrict sources to intended application identities or network ranges. The alternative \u2018Keep broad access because the database uses a password\u2019 does not address the stated evidence or constraint.",
+      "id": "aws-07-interview",
+      "title": "Security groups \u00b7 interview",
+      "type": "interview",
+      "question": "Explain security-group design for a private application database.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "Stateful rules allow specified traffic for associated resources. Rules should be scoped to required sources and ports. A practical response is: Restrict sources to intended application identities or network ranges. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that security groups are stateless subnet-wide deny lists.",
+      "answerChecklist": [
+        "Stateful rules allow specified traffic for associated resources",
+        "Rules should be scoped to required sources and ports",
+        "Restrict sources to intended application identities or network ranges",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "A database security group allows inbound traffic from everywhere. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "aws",
+      "objective": "Explain vpc subnets and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "VPC subnets \u2014 primary reference",
+          "url": "https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Subnets.html"
+        }
+      ],
+      "tags": [
+        "aws",
+        "vpc-subnets"
+      ],
+      "takeaway": "Instances also need appropriate addressing and security controls for reachability.",
+      "explanation": "A route to an Internet Gateway supports direct Internet routing. Instances also need appropriate addressing and security controls for reachability. In the scenario, inspect addressing route table gateway and security controls. The alternative \u2018Rename the subnet to public again\u2019 does not address the stated evidence or constraint.",
+      "id": "aws-08-concept",
+      "title": "VPC subnets \u00b7 concept",
+      "type": "concept",
+      "question": "What makes a subnet public in the usual IPv4 routing sense?",
+      "options": [
+        "Rename the subnet to public again",
+        "A route to an Internet Gateway supports direct Internet routing",
+        "A subnet name containing public automatically provides Internet access",
+        "Every instance in a public subnet is reachable regardless of address and rules"
+      ],
+      "correct": [
+        1
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "aws",
+      "objective": "Explain vpc subnets and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "VPC subnets \u2014 primary reference",
+          "url": "https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Subnets.html"
+        }
+      ],
+      "tags": [
+        "aws",
+        "vpc-subnets"
+      ],
+      "takeaway": "Instances also need appropriate addressing and security controls for reachability.",
+      "explanation": "A route to an Internet Gateway supports direct Internet routing. Instances also need appropriate addressing and security controls for reachability. In the scenario, inspect addressing route table gateway and security controls. The alternative \u2018Rename the subnet to public again\u2019 does not address the stated evidence or constraint.",
+      "id": "aws-08-scenario",
+      "title": "VPC subnets \u00b7 scenario",
+      "type": "scenario",
+      "question": "An instance in a public subnet cannot reach the Internet. What is the best next step?",
+      "options": [
+        "Inspect addressing route table gateway and security controls",
+        "Rename the subnet to public again",
+        "A subnet name containing public automatically provides Internet access",
+        "Every instance in a public subnet is reachable regardless of address and rules"
+      ],
+      "correct": [
+        0
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "aws",
+      "objective": "Explain vpc subnets and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "VPC subnets \u2014 primary reference",
+          "url": "https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Subnets.html"
+        }
+      ],
+      "tags": [
+        "aws",
+        "vpc-subnets"
+      ],
+      "takeaway": "Instances also need appropriate addressing and security controls for reachability.",
+      "explanation": "A route to an Internet Gateway supports direct Internet routing. Instances also need appropriate addressing and security controls for reachability. In the scenario, inspect addressing route table gateway and security controls. The alternative \u2018Rename the subnet to public again\u2019 does not address the stated evidence or constraint.",
+      "id": "aws-08-principles",
+      "title": "VPC subnets \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing vpc subnets, which TWO statements are sound operational principles?",
+      "options": [
+        "Instances also need appropriate addressing and security controls for reachability",
+        "A subnet name containing public automatically provides Internet access",
+        "Every instance in a public subnet is reachable regardless of address and rules",
+        "A route to an Internet Gateway supports direct Internet routing"
+      ],
+      "correct": [
+        0,
+        3
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "aws",
+      "objective": "Explain vpc subnets and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "VPC subnets \u2014 primary reference",
+          "url": "https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Subnets.html"
+        }
+      ],
+      "tags": [
+        "aws",
+        "vpc-subnets"
+      ],
+      "takeaway": "Instances also need appropriate addressing and security controls for reachability.",
+      "explanation": "A route to an Internet Gateway supports direct Internet routing. Instances also need appropriate addressing and security controls for reachability. In the scenario, inspect addressing route table gateway and security controls. The alternative \u2018Rename the subnet to public again\u2019 does not address the stated evidence or constraint.",
+      "id": "aws-08-interview",
+      "title": "VPC subnets \u00b7 interview",
+      "type": "interview",
+      "question": "Explain the components required for public EC2 connectivity.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "A route to an Internet Gateway supports direct Internet routing. Instances also need appropriate addressing and security controls for reachability. A practical response is: Inspect addressing route table gateway and security controls. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that a subnet name containing public automatically provides Internet access.",
+      "answerChecklist": [
+        "A route to an Internet Gateway supports direct Internet routing",
+        "Instances also need appropriate addressing and security controls for reachability",
+        "Inspect addressing route table gateway and security controls",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "An instance in a public subnet cannot reach the Internet. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "aws",
+      "objective": "Explain nat gateways and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "NAT gateways \u2014 primary reference",
+          "url": "https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html"
+        }
+      ],
+      "tags": [
+        "aws",
+        "nat-gateways"
+      ],
+      "takeaway": "Outbound NAT does not by itself publish inbound application access.",
+      "explanation": "Allow private-subnet workloads to initiate suitable outbound connections. Outbound NAT does not by itself publish inbound application access. In the scenario, configure an appropriate NAT path and verify routes and security. The alternative \u2018Assign every private workload unrestricted inbound Internet access\u2019 does not address the stated evidence or constraint.",
+      "id": "aws-09-concept",
+      "title": "NAT gateways \u00b7 concept",
+      "type": "concept",
+      "question": "What is a typical purpose of a NAT gateway?",
+      "options": [
+        "Allow private-subnet workloads to initiate suitable outbound connections",
+        "A NAT gateway is an inbound application load balancer",
+        "Private instances never need a route to use NAT",
+        "Assign every private workload unrestricted inbound Internet access"
+      ],
+      "correct": [
+        0
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "aws",
+      "objective": "Explain nat gateways and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "NAT gateways \u2014 primary reference",
+          "url": "https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html"
+        }
+      ],
+      "tags": [
+        "aws",
+        "nat-gateways"
+      ],
+      "takeaway": "Outbound NAT does not by itself publish inbound application access.",
+      "explanation": "Allow private-subnet workloads to initiate suitable outbound connections. Outbound NAT does not by itself publish inbound application access. In the scenario, configure an appropriate NAT path and verify routes and security. The alternative \u2018Assign every private workload unrestricted inbound Internet access\u2019 does not address the stated evidence or constraint.",
+      "id": "aws-09-scenario",
+      "title": "NAT gateways \u00b7 scenario",
+      "type": "scenario",
+      "question": "A private workload needs outbound IPv4 access without a public address. What is the best next step?",
+      "options": [
+        "Assign every private workload unrestricted inbound Internet access",
+        "A NAT gateway is an inbound application load balancer",
+        "Private instances never need a route to use NAT",
+        "Configure an appropriate NAT path and verify routes and security"
+      ],
+      "correct": [
+        3
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "aws",
+      "objective": "Explain nat gateways and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "NAT gateways \u2014 primary reference",
+          "url": "https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html"
+        }
+      ],
+      "tags": [
+        "aws",
+        "nat-gateways"
+      ],
+      "takeaway": "Outbound NAT does not by itself publish inbound application access.",
+      "explanation": "Allow private-subnet workloads to initiate suitable outbound connections. Outbound NAT does not by itself publish inbound application access. In the scenario, configure an appropriate NAT path and verify routes and security. The alternative \u2018Assign every private workload unrestricted inbound Internet access\u2019 does not address the stated evidence or constraint.",
+      "id": "aws-09-principles",
+      "title": "NAT gateways \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing nat gateways, which TWO statements are sound operational principles?",
+      "options": [
+        "A NAT gateway is an inbound application load balancer",
+        "Private instances never need a route to use NAT",
+        "Allow private-subnet workloads to initiate suitable outbound connections",
+        "Outbound NAT does not by itself publish inbound application access"
+      ],
+      "correct": [
+        2,
+        3
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "aws",
+      "objective": "Explain nat gateways and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "NAT gateways \u2014 primary reference",
+          "url": "https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html"
+        }
+      ],
+      "tags": [
+        "aws",
+        "nat-gateways"
+      ],
+      "takeaway": "Outbound NAT does not by itself publish inbound application access.",
+      "explanation": "Allow private-subnet workloads to initiate suitable outbound connections. Outbound NAT does not by itself publish inbound application access. In the scenario, configure an appropriate NAT path and verify routes and security. The alternative \u2018Assign every private workload unrestricted inbound Internet access\u2019 does not address the stated evidence or constraint.",
+      "id": "aws-09-interview",
+      "title": "NAT gateways \u00b7 interview",
+      "type": "interview",
+      "question": "Explain private-subnet egress design and its failure modes.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "Allow private-subnet workloads to initiate suitable outbound connections. Outbound NAT does not by itself publish inbound application access. A practical response is: Configure an appropriate NAT path and verify routes and security. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that a NAT gateway is an inbound application load balancer.",
+      "answerChecklist": [
+        "Allow private-subnet workloads to initiate suitable outbound connections",
+        "Outbound NAT does not by itself publish inbound application access",
+        "Configure an appropriate NAT path and verify routes and security",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "A private workload needs outbound IPv4 access without a public address. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "aws",
+      "objective": "Explain vpc endpoints and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "VPC endpoints \u2014 primary reference",
+          "url": "https://docs.aws.amazon.com/vpc/latest/privatelink/concepts.html"
+        }
+      ],
+      "tags": [
+        "aws",
+        "vpc-endpoints"
+      ],
+      "takeaway": "Endpoint type policies DNS and service support affect behavior.",
+      "explanation": "Provide a private connectivity path without relying on ordinary Internet egress. Endpoint type policies DNS and service support affect behavior. In the scenario, evaluate the suitable endpoint and verify routing and authorization. The alternative \u2018Assume private connectivity bypasses IAM\u2019 does not address the stated evidence or constraint.",
+      "id": "aws-10-concept",
+      "title": "VPC endpoints \u00b7 concept",
+      "type": "concept",
+      "question": "Why use a VPC endpoint for a supported service?",
+      "options": [
+        "Every endpoint supports every AWS service identically",
+        "An endpoint automatically grants all service permissions",
+        "Assume private connectivity bypasses IAM",
+        "Provide a private connectivity path without relying on ordinary Internet egress"
+      ],
+      "correct": [
+        3
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "aws",
+      "objective": "Explain vpc endpoints and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "VPC endpoints \u2014 primary reference",
+          "url": "https://docs.aws.amazon.com/vpc/latest/privatelink/concepts.html"
+        }
+      ],
+      "tags": [
+        "aws",
+        "vpc-endpoints"
+      ],
+      "takeaway": "Endpoint type policies DNS and service support affect behavior.",
+      "explanation": "Provide a private connectivity path without relying on ordinary Internet egress. Endpoint type policies DNS and service support affect behavior. In the scenario, evaluate the suitable endpoint and verify routing and authorization. The alternative \u2018Assume private connectivity bypasses IAM\u2019 does not address the stated evidence or constraint.",
+      "id": "aws-10-scenario",
+      "title": "VPC endpoints \u00b7 scenario",
+      "type": "scenario",
+      "question": "A private workload must access S3 without the planned NAT path. What is the best next step?",
+      "options": [
+        "Every endpoint supports every AWS service identically",
+        "An endpoint automatically grants all service permissions",
+        "Evaluate the suitable endpoint and verify routing and authorization",
+        "Assume private connectivity bypasses IAM"
+      ],
+      "correct": [
+        2
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "aws",
+      "objective": "Explain vpc endpoints and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "VPC endpoints \u2014 primary reference",
+          "url": "https://docs.aws.amazon.com/vpc/latest/privatelink/concepts.html"
+        }
+      ],
+      "tags": [
+        "aws",
+        "vpc-endpoints"
+      ],
+      "takeaway": "Endpoint type policies DNS and service support affect behavior.",
+      "explanation": "Provide a private connectivity path without relying on ordinary Internet egress. Endpoint type policies DNS and service support affect behavior. In the scenario, evaluate the suitable endpoint and verify routing and authorization. The alternative \u2018Assume private connectivity bypasses IAM\u2019 does not address the stated evidence or constraint.",
+      "id": "aws-10-principles",
+      "title": "VPC endpoints \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing vpc endpoints, which TWO statements are sound operational principles?",
+      "options": [
+        "An endpoint automatically grants all service permissions",
+        "Provide a private connectivity path without relying on ordinary Internet egress",
+        "Endpoint type policies DNS and service support affect behavior",
+        "Every endpoint supports every AWS service identically"
+      ],
+      "correct": [
+        1,
+        2
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "aws",
+      "objective": "Explain vpc endpoints and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "VPC endpoints \u2014 primary reference",
+          "url": "https://docs.aws.amazon.com/vpc/latest/privatelink/concepts.html"
+        }
+      ],
+      "tags": [
+        "aws",
+        "vpc-endpoints"
+      ],
+      "takeaway": "Endpoint type policies DNS and service support affect behavior.",
+      "explanation": "Provide a private connectivity path without relying on ordinary Internet egress. Endpoint type policies DNS and service support affect behavior. In the scenario, evaluate the suitable endpoint and verify routing and authorization. The alternative \u2018Assume private connectivity bypasses IAM\u2019 does not address the stated evidence or constraint.",
+      "id": "aws-10-interview",
+      "title": "VPC endpoints \u00b7 interview",
+      "type": "interview",
+      "question": "Explain private service access and authorization boundaries.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "Provide a private connectivity path without relying on ordinary Internet egress. Endpoint type policies DNS and service support affect behavior. A practical response is: Evaluate the suitable endpoint and verify routing and authorization. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that every endpoint supports every AWS service identically.",
+      "answerChecklist": [
+        "Provide a private connectivity path without relying on ordinary Internet egress",
+        "Endpoint type policies DNS and service support affect behavior",
+        "Evaluate the suitable endpoint and verify routing and authorization",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "A private workload must access S3 without the planned NAT path. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "aws",
+      "objective": "Explain application load balancers and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Application Load Balancers \u2014 primary reference",
+          "url": "https://docs.aws.amazon.com/elasticloadbalancing/latest/application/introduction.html"
+        }
+      ],
+      "tags": [
+        "aws",
+        "application-load-balancers"
+      ],
+      "takeaway": "Healthy target selection depends on configured checks.",
+      "explanation": "Application-layer routing for protocols such as HTTP. Healthy target selection depends on configured checks. In the scenario, inspect target registration health-check settings and application responses. The alternative \u2018Change DNS repeatedly without checking target health\u2019 does not address the stated evidence or constraint.",
+      "id": "aws-11-concept",
+      "title": "Application Load Balancers \u00b7 concept",
+      "type": "concept",
+      "question": "What kind of routing is an ALB designed to support?",
+      "options": [
+        "An ALB only routes raw Ethernet frames",
+        "Change DNS repeatedly without checking target health",
+        "Application-layer routing for protocols such as HTTP",
+        "An ALB automatically makes every database query healthy"
+      ],
+      "correct": [
+        2
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "aws",
+      "objective": "Explain application load balancers and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Application Load Balancers \u2014 primary reference",
+          "url": "https://docs.aws.amazon.com/elasticloadbalancing/latest/application/introduction.html"
+        }
+      ],
+      "tags": [
+        "aws",
+        "application-load-balancers"
+      ],
+      "takeaway": "Healthy target selection depends on configured checks.",
+      "explanation": "Application-layer routing for protocols such as HTTP. Healthy target selection depends on configured checks. In the scenario, inspect target registration health-check settings and application responses. The alternative \u2018Change DNS repeatedly without checking target health\u2019 does not address the stated evidence or constraint.",
+      "id": "aws-11-scenario",
+      "title": "Application Load Balancers \u00b7 scenario",
+      "type": "scenario",
+      "question": "An ALB reports no healthy targets after deployment. What is the best next step?",
+      "options": [
+        "An ALB only routes raw Ethernet frames",
+        "Inspect target registration health-check settings and application responses",
+        "Change DNS repeatedly without checking target health",
+        "An ALB automatically makes every database query healthy"
+      ],
+      "correct": [
+        1
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "aws",
+      "objective": "Explain application load balancers and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Application Load Balancers \u2014 primary reference",
+          "url": "https://docs.aws.amazon.com/elasticloadbalancing/latest/application/introduction.html"
+        }
+      ],
+      "tags": [
+        "aws",
+        "application-load-balancers"
+      ],
+      "takeaway": "Healthy target selection depends on configured checks.",
+      "explanation": "Application-layer routing for protocols such as HTTP. Healthy target selection depends on configured checks. In the scenario, inspect target registration health-check settings and application responses. The alternative \u2018Change DNS repeatedly without checking target health\u2019 does not address the stated evidence or constraint.",
+      "id": "aws-11-principles",
+      "title": "Application Load Balancers \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing application load balancers, which TWO statements are sound operational principles?",
+      "options": [
+        "Application-layer routing for protocols such as HTTP",
+        "Healthy target selection depends on configured checks",
+        "An ALB automatically makes every database query healthy",
+        "An ALB only routes raw Ethernet frames"
+      ],
+      "correct": [
+        0,
+        1
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "aws",
+      "objective": "Explain application load balancers and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Application Load Balancers \u2014 primary reference",
+          "url": "https://docs.aws.amazon.com/elasticloadbalancing/latest/application/introduction.html"
+        }
+      ],
+      "tags": [
+        "aws",
+        "application-load-balancers"
+      ],
+      "takeaway": "Healthy target selection depends on configured checks.",
+      "explanation": "Application-layer routing for protocols such as HTTP. Healthy target selection depends on configured checks. In the scenario, inspect target registration health-check settings and application responses. The alternative \u2018Change DNS repeatedly without checking target health\u2019 does not address the stated evidence or constraint.",
+      "id": "aws-11-interview",
+      "title": "Application Load Balancers \u00b7 interview",
+      "type": "interview",
+      "question": "Explain ALB health checks and request routing.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "Application-layer routing for protocols such as HTTP. Healthy target selection depends on configured checks. A practical response is: Inspect target registration health-check settings and application responses. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that an ALB automatically makes every database query healthy.",
+      "answerChecklist": [
+        "Application-layer routing for protocols such as HTTP",
+        "Healthy target selection depends on configured checks",
+        "Inspect target registration health-check settings and application responses",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "An ALB reports no healthy targets after deployment. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "aws",
+      "objective": "Explain auto scaling and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Auto Scaling \u2014 primary reference",
+          "url": "https://docs.aws.amazon.com/autoscaling/ec2/userguide/what-is-amazon-ec2-auto-scaling.html"
+        }
+      ],
+      "tags": [
+        "aws",
+        "auto-scaling"
+      ],
+      "takeaway": "Scaling requires warm-up time and downstream capacity.",
+      "explanation": "A metric and target aligned with workload capacity needs. Scaling requires warm-up time and downstream capacity. In the scenario, choose a workload-relevant signal and investigate the dependency bottleneck. The alternative \u2018Increase CPU thresholds without examining queue behavior\u2019 does not address the stated evidence or constraint.",
+      "id": "aws-12-concept",
+      "title": "Auto Scaling \u00b7 concept",
+      "type": "concept",
+      "question": "What should drive a useful scaling policy?",
+      "options": [
+        "Increase CPU thresholds without examining queue behavior",
+        "A metric and target aligned with workload capacity needs",
+        "Adding instances instantly fixes every bottleneck",
+        "CPU is always the correct scaling signal for every workload"
+      ],
+      "correct": [
+        1
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "aws",
+      "objective": "Explain auto scaling and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Auto Scaling \u2014 primary reference",
+          "url": "https://docs.aws.amazon.com/autoscaling/ec2/userguide/what-is-amazon-ec2-auto-scaling.html"
+        }
+      ],
+      "tags": [
+        "aws",
+        "auto-scaling"
+      ],
+      "takeaway": "Scaling requires warm-up time and downstream capacity.",
+      "explanation": "A metric and target aligned with workload capacity needs. Scaling requires warm-up time and downstream capacity. In the scenario, choose a workload-relevant signal and investigate the dependency bottleneck. The alternative \u2018Increase CPU thresholds without examining queue behavior\u2019 does not address the stated evidence or constraint.",
+      "id": "aws-12-scenario",
+      "title": "Auto Scaling \u00b7 scenario",
+      "type": "scenario",
+      "question": "Queue age grows while worker CPU remains low due to slow external calls. What is the best next step?",
+      "options": [
+        "Choose a workload-relevant signal and investigate the dependency bottleneck",
+        "Increase CPU thresholds without examining queue behavior",
+        "Adding instances instantly fixes every bottleneck",
+        "CPU is always the correct scaling signal for every workload"
+      ],
+      "correct": [
+        0
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "aws",
+      "objective": "Explain auto scaling and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Auto Scaling \u2014 primary reference",
+          "url": "https://docs.aws.amazon.com/autoscaling/ec2/userguide/what-is-amazon-ec2-auto-scaling.html"
+        }
+      ],
+      "tags": [
+        "aws",
+        "auto-scaling"
+      ],
+      "takeaway": "Scaling requires warm-up time and downstream capacity.",
+      "explanation": "A metric and target aligned with workload capacity needs. Scaling requires warm-up time and downstream capacity. In the scenario, choose a workload-relevant signal and investigate the dependency bottleneck. The alternative \u2018Increase CPU thresholds without examining queue behavior\u2019 does not address the stated evidence or constraint.",
+      "id": "aws-12-principles",
+      "title": "Auto Scaling \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing auto scaling, which TWO statements are sound operational principles?",
+      "options": [
+        "Scaling requires warm-up time and downstream capacity",
+        "Adding instances instantly fixes every bottleneck",
+        "CPU is always the correct scaling signal for every workload",
+        "A metric and target aligned with workload capacity needs"
+      ],
+      "correct": [
+        0,
+        3
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "aws",
+      "objective": "Explain auto scaling and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Auto Scaling \u2014 primary reference",
+          "url": "https://docs.aws.amazon.com/autoscaling/ec2/userguide/what-is-amazon-ec2-auto-scaling.html"
+        }
+      ],
+      "tags": [
+        "aws",
+        "auto-scaling"
+      ],
+      "takeaway": "Scaling requires warm-up time and downstream capacity.",
+      "explanation": "A metric and target aligned with workload capacity needs. Scaling requires warm-up time and downstream capacity. In the scenario, choose a workload-relevant signal and investigate the dependency bottleneck. The alternative \u2018Increase CPU thresholds without examining queue behavior\u2019 does not address the stated evidence or constraint.",
+      "id": "aws-12-interview",
+      "title": "Auto Scaling \u00b7 interview",
+      "type": "interview",
+      "question": "Explain scaling a queue-based worker service.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "A metric and target aligned with workload capacity needs. Scaling requires warm-up time and downstream capacity. A practical response is: Choose a workload-relevant signal and investigate the dependency bottleneck. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that adding instances instantly fixes every bottleneck.",
+      "answerChecklist": [
+        "A metric and target aligned with workload capacity needs",
+        "Scaling requires warm-up time and downstream capacity",
+        "Choose a workload-relevant signal and investigate the dependency bottleneck",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "Queue age grows while worker CPU remains low due to slow external calls. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "aws",
+      "objective": "Explain cloudwatch metrics and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "CloudWatch metrics \u2014 primary reference",
+          "url": "https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/WhatIsCloudWatch.html"
+        }
+      ],
+      "tags": [
+        "aws",
+        "cloudwatch-metrics"
+      ],
+      "takeaway": "Resolution aggregation and dimensions influence interpretation.",
+      "explanation": "Time-series measurements identified by namespace and dimensions. Resolution aggregation and dimensions influence interpretation. In the scenario, inspect dimensions and aggregation alongside per-resource evidence. The alternative \u2018Trust a fleet average as proof every instance is healthy\u2019 does not address the stated evidence or constraint.",
+      "id": "aws-13-concept",
+      "title": "CloudWatch metrics \u00b7 concept",
+      "type": "concept",
+      "question": "What does a CloudWatch metric represent?",
+      "options": [
+        "Time-series measurements identified by namespace and dimensions",
+        "Every metric point is a complete application trace",
+        "Metrics automatically capture every application-specific business event",
+        "Trust a fleet average as proof every instance is healthy"
+      ],
+      "correct": [
+        0
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "aws",
+      "objective": "Explain cloudwatch metrics and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "CloudWatch metrics \u2014 primary reference",
+          "url": "https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/WhatIsCloudWatch.html"
+        }
+      ],
+      "tags": [
+        "aws",
+        "cloudwatch-metrics"
+      ],
+      "takeaway": "Resolution aggregation and dimensions influence interpretation.",
+      "explanation": "Time-series measurements identified by namespace and dimensions. Resolution aggregation and dimensions influence interpretation. In the scenario, inspect dimensions and aggregation alongside per-resource evidence. The alternative \u2018Trust a fleet average as proof every instance is healthy\u2019 does not address the stated evidence or constraint.",
+      "id": "aws-13-scenario",
+      "title": "CloudWatch metrics \u00b7 scenario",
+      "type": "scenario",
+      "question": "A dashboard combines different dimensions and hides one unhealthy instance. What is the best next step?",
+      "options": [
+        "Trust a fleet average as proof every instance is healthy",
+        "Every metric point is a complete application trace",
+        "Metrics automatically capture every application-specific business event",
+        "Inspect dimensions and aggregation alongside per-resource evidence"
+      ],
+      "correct": [
+        3
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "aws",
+      "objective": "Explain cloudwatch metrics and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "CloudWatch metrics \u2014 primary reference",
+          "url": "https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/WhatIsCloudWatch.html"
+        }
+      ],
+      "tags": [
+        "aws",
+        "cloudwatch-metrics"
+      ],
+      "takeaway": "Resolution aggregation and dimensions influence interpretation.",
+      "explanation": "Time-series measurements identified by namespace and dimensions. Resolution aggregation and dimensions influence interpretation. In the scenario, inspect dimensions and aggregation alongside per-resource evidence. The alternative \u2018Trust a fleet average as proof every instance is healthy\u2019 does not address the stated evidence or constraint.",
+      "id": "aws-13-principles",
+      "title": "CloudWatch metrics \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing cloudwatch metrics, which TWO statements are sound operational principles?",
+      "options": [
+        "Every metric point is a complete application trace",
+        "Metrics automatically capture every application-specific business event",
+        "Time-series measurements identified by namespace and dimensions",
+        "Resolution aggregation and dimensions influence interpretation"
+      ],
+      "correct": [
+        2,
+        3
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "aws",
+      "objective": "Explain cloudwatch metrics and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "CloudWatch metrics \u2014 primary reference",
+          "url": "https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/WhatIsCloudWatch.html"
+        }
+      ],
+      "tags": [
+        "aws",
+        "cloudwatch-metrics"
+      ],
+      "takeaway": "Resolution aggregation and dimensions influence interpretation.",
+      "explanation": "Time-series measurements identified by namespace and dimensions. Resolution aggregation and dimensions influence interpretation. In the scenario, inspect dimensions and aggregation alongside per-resource evidence. The alternative \u2018Trust a fleet average as proof every instance is healthy\u2019 does not address the stated evidence or constraint.",
+      "id": "aws-13-interview",
+      "title": "CloudWatch metrics \u00b7 interview",
+      "type": "interview",
+      "question": "Explain designing useful CloudWatch metrics and alarms.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "Time-series measurements identified by namespace and dimensions. Resolution aggregation and dimensions influence interpretation. A practical response is: Inspect dimensions and aggregation alongside per-resource evidence. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that every metric point is a complete application trace.",
+      "answerChecklist": [
+        "Time-series measurements identified by namespace and dimensions",
+        "Resolution aggregation and dimensions influence interpretation",
+        "Inspect dimensions and aggregation alongside per-resource evidence",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "A dashboard combines different dimensions and hides one unhealthy instance. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "aws",
+      "objective": "Explain cloudtrail and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "CloudTrail \u2014 primary reference",
+          "url": "https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-user-guide.html"
+        }
+      ],
+      "tags": [
+        "aws",
+        "cloudtrail"
+      ],
+      "takeaway": "Coverage and event configuration must match the required audit use case.",
+      "explanation": "AWS API activity and associated identity context. Coverage and event configuration must match the required audit use case. In the scenario, inspect relevant audit events and confirm event coverage. The alternative \u2018Search only the application's access log\u2019 does not address the stated evidence or constraint.",
+      "id": "aws-14-concept",
+      "title": "CloudTrail \u00b7 concept",
+      "type": "concept",
+      "question": "What is CloudTrail commonly used to investigate?",
+      "options": [
+        "CloudTrail is a replacement for all application logs",
+        "Every possible data event is automatically captured with identical defaults",
+        "Search only the application's access log",
+        "AWS API activity and associated identity context"
+      ],
+      "correct": [
+        3
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "aws",
+      "objective": "Explain cloudtrail and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "CloudTrail \u2014 primary reference",
+          "url": "https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-user-guide.html"
+        }
+      ],
+      "tags": [
+        "aws",
+        "cloudtrail"
+      ],
+      "takeaway": "Coverage and event configuration must match the required audit use case.",
+      "explanation": "AWS API activity and associated identity context. Coverage and event configuration must match the required audit use case. In the scenario, inspect relevant audit events and confirm event coverage. The alternative \u2018Search only the application's access log\u2019 does not address the stated evidence or constraint.",
+      "id": "aws-14-scenario",
+      "title": "CloudTrail \u00b7 scenario",
+      "type": "scenario",
+      "question": "A resource was deleted and the responsible API caller is unknown. What is the best next step?",
+      "options": [
+        "CloudTrail is a replacement for all application logs",
+        "Every possible data event is automatically captured with identical defaults",
+        "Inspect relevant audit events and confirm event coverage",
+        "Search only the application's access log"
+      ],
+      "correct": [
+        2
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "aws",
+      "objective": "Explain cloudtrail and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "CloudTrail \u2014 primary reference",
+          "url": "https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-user-guide.html"
+        }
+      ],
+      "tags": [
+        "aws",
+        "cloudtrail"
+      ],
+      "takeaway": "Coverage and event configuration must match the required audit use case.",
+      "explanation": "AWS API activity and associated identity context. Coverage and event configuration must match the required audit use case. In the scenario, inspect relevant audit events and confirm event coverage. The alternative \u2018Search only the application's access log\u2019 does not address the stated evidence or constraint.",
+      "id": "aws-14-principles",
+      "title": "CloudTrail \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing cloudtrail, which TWO statements are sound operational principles?",
+      "options": [
+        "Every possible data event is automatically captured with identical defaults",
+        "AWS API activity and associated identity context",
+        "Coverage and event configuration must match the required audit use case",
+        "CloudTrail is a replacement for all application logs"
+      ],
+      "correct": [
+        1,
+        2
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "aws",
+      "objective": "Explain cloudtrail and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "CloudTrail \u2014 primary reference",
+          "url": "https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-user-guide.html"
+        }
+      ],
+      "tags": [
+        "aws",
+        "cloudtrail"
+      ],
+      "takeaway": "Coverage and event configuration must match the required audit use case.",
+      "explanation": "AWS API activity and associated identity context. Coverage and event configuration must match the required audit use case. In the scenario, inspect relevant audit events and confirm event coverage. The alternative \u2018Search only the application's access log\u2019 does not address the stated evidence or constraint.",
+      "id": "aws-14-interview",
+      "title": "CloudTrail \u00b7 interview",
+      "type": "interview",
+      "question": "Explain how you would investigate an unexpected AWS configuration change.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "AWS API activity and associated identity context. Coverage and event configuration must match the required audit use case. A practical response is: Inspect relevant audit events and confirm event coverage. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that cloudTrail is a replacement for all application logs.",
+      "answerChecklist": [
+        "AWS API activity and associated identity context",
+        "Coverage and event configuration must match the required audit use case",
+        "Inspect relevant audit events and confirm event coverage",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "A resource was deleted and the responsible API caller is unknown. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "aws",
+      "objective": "Explain shared responsibility and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Shared responsibility \u2014 primary reference",
+          "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/welcome.html"
+        }
+      ],
+      "tags": [
+        "aws",
+        "shared-responsibility"
+      ],
+      "takeaway": "Customer configuration data and identity controls remain important.",
+      "explanation": "AWS and customers own different security responsibilities. Customer configuration data and identity controls remain important. In the scenario, correct customer-controlled access and investigate the exposure. The alternative \u2018Assume the provider is solely responsible for bucket permissions\u2019 does not address the stated evidence or constraint.",
+      "id": "aws-15-concept",
+      "title": "Shared responsibility \u00b7 concept",
+      "type": "concept",
+      "question": "What does AWS shared responsibility imply?",
+      "options": [
+        "Using a managed service removes all customer security duties",
+        "Assume the provider is solely responsible for bucket permissions",
+        "AWS and customers own different security responsibilities",
+        "AWS automatically secures every customer IAM policy"
+      ],
+      "correct": [
+        2
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "aws",
+      "objective": "Explain shared responsibility and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Shared responsibility \u2014 primary reference",
+          "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/welcome.html"
+        }
+      ],
+      "tags": [
+        "aws",
+        "shared-responsibility"
+      ],
+      "takeaway": "Customer configuration data and identity controls remain important.",
+      "explanation": "AWS and customers own different security responsibilities. Customer configuration data and identity controls remain important. In the scenario, correct customer-controlled access and investigate the exposure. The alternative \u2018Assume the provider is solely responsible for bucket permissions\u2019 does not address the stated evidence or constraint.",
+      "id": "aws-15-scenario",
+      "title": "Shared responsibility \u00b7 scenario",
+      "type": "scenario",
+      "question": "A public bucket exposes sensitive customer data. What is the best next step?",
+      "options": [
+        "Using a managed service removes all customer security duties",
+        "Correct customer-controlled access and investigate the exposure",
+        "Assume the provider is solely responsible for bucket permissions",
+        "AWS automatically secures every customer IAM policy"
+      ],
+      "correct": [
+        1
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "aws",
+      "objective": "Explain shared responsibility and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Shared responsibility \u2014 primary reference",
+          "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/welcome.html"
+        }
+      ],
+      "tags": [
+        "aws",
+        "shared-responsibility"
+      ],
+      "takeaway": "Customer configuration data and identity controls remain important.",
+      "explanation": "AWS and customers own different security responsibilities. Customer configuration data and identity controls remain important. In the scenario, correct customer-controlled access and investigate the exposure. The alternative \u2018Assume the provider is solely responsible for bucket permissions\u2019 does not address the stated evidence or constraint.",
+      "id": "aws-15-principles",
+      "title": "Shared responsibility \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing shared responsibility, which TWO statements are sound operational principles?",
+      "options": [
+        "AWS and customers own different security responsibilities",
+        "Customer configuration data and identity controls remain important",
+        "AWS automatically secures every customer IAM policy",
+        "Using a managed service removes all customer security duties"
+      ],
+      "correct": [
+        0,
+        1
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "aws",
+      "objective": "Explain shared responsibility and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Shared responsibility \u2014 primary reference",
+          "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/welcome.html"
+        }
+      ],
+      "tags": [
+        "aws",
+        "shared-responsibility"
+      ],
+      "takeaway": "Customer configuration data and identity controls remain important.",
+      "explanation": "AWS and customers own different security responsibilities. Customer configuration data and identity controls remain important. In the scenario, correct customer-controlled access and investigate the exposure. The alternative \u2018Assume the provider is solely responsible for bucket permissions\u2019 does not address the stated evidence or constraint.",
+      "id": "aws-15-interview",
+      "title": "Shared responsibility \u00b7 interview",
+      "type": "interview",
+      "question": "Explain shared responsibility using a concrete storage example.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "AWS and customers own different security responsibilities. Customer configuration data and identity controls remain important. A practical response is: Correct customer-controlled access and investigate the exposure. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that aWS automatically secures every customer IAM policy.",
+      "answerChecklist": [
+        "AWS and customers own different security responsibilities",
+        "Customer configuration data and identity controls remain important",
+        "Correct customer-controlled access and investigate the exposure",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "A public bucket exposes sensitive customer data. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "aws",
+      "objective": "Explain s3 versioning and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "S3 versioning \u2014 primary reference",
+          "url": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/Welcome.html"
+        }
+      ],
+      "tags": [
+        "aws",
+        "s3-versioning"
+      ],
+      "takeaway": "Versioning still needs lifecycle cost and access considerations.",
+      "explanation": "Accidental overwrites or deletions when prior versions remain available. Versioning still needs lifecycle cost and access considerations. In the scenario, inspect retained versions and restore the intended one safely. The alternative \u2018Assume the newest object is the only recoverable version\u2019 does not address the stated evidence or constraint.",
+      "id": "aws-16-concept",
+      "title": "S3 versioning \u00b7 concept",
+      "type": "concept",
+      "question": "What can S3 versioning help recover from?",
+      "options": [
+        "Assume the newest object is the only recoverable version",
+        "Accidental overwrites or deletions when prior versions remain available",
+        "Versioning guarantees protection from every authorized destructive action",
+        "Versioning makes storage cost independent of retained history"
+      ],
+      "correct": [
+        1
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "aws",
+      "objective": "Explain s3 versioning and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "S3 versioning \u2014 primary reference",
+          "url": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/Welcome.html"
+        }
+      ],
+      "tags": [
+        "aws",
+        "s3-versioning"
+      ],
+      "takeaway": "Versioning still needs lifecycle cost and access considerations.",
+      "explanation": "Accidental overwrites or deletions when prior versions remain available. Versioning still needs lifecycle cost and access considerations. In the scenario, inspect retained versions and restore the intended one safely. The alternative \u2018Assume the newest object is the only recoverable version\u2019 does not address the stated evidence or constraint.",
+      "id": "aws-16-scenario",
+      "title": "S3 versioning \u00b7 scenario",
+      "type": "scenario",
+      "question": "An object was overwritten with incorrect content. What is the best next step?",
+      "options": [
+        "Inspect retained versions and restore the intended one safely",
+        "Assume the newest object is the only recoverable version",
+        "Versioning guarantees protection from every authorized destructive action",
+        "Versioning makes storage cost independent of retained history"
+      ],
+      "correct": [
+        0
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "aws",
+      "objective": "Explain s3 versioning and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "S3 versioning \u2014 primary reference",
+          "url": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/Welcome.html"
+        }
+      ],
+      "tags": [
+        "aws",
+        "s3-versioning"
+      ],
+      "takeaway": "Versioning still needs lifecycle cost and access considerations.",
+      "explanation": "Accidental overwrites or deletions when prior versions remain available. Versioning still needs lifecycle cost and access considerations. In the scenario, inspect retained versions and restore the intended one safely. The alternative \u2018Assume the newest object is the only recoverable version\u2019 does not address the stated evidence or constraint.",
+      "id": "aws-16-principles",
+      "title": "S3 versioning \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing s3 versioning, which TWO statements are sound operational principles?",
+      "options": [
+        "Versioning still needs lifecycle cost and access considerations",
+        "Versioning guarantees protection from every authorized destructive action",
+        "Versioning makes storage cost independent of retained history",
+        "Accidental overwrites or deletions when prior versions remain available"
+      ],
+      "correct": [
+        0,
+        3
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "aws",
+      "objective": "Explain s3 versioning and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "S3 versioning \u2014 primary reference",
+          "url": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/Welcome.html"
+        }
+      ],
+      "tags": [
+        "aws",
+        "s3-versioning"
+      ],
+      "takeaway": "Versioning still needs lifecycle cost and access considerations.",
+      "explanation": "Accidental overwrites or deletions when prior versions remain available. Versioning still needs lifecycle cost and access considerations. In the scenario, inspect retained versions and restore the intended one safely. The alternative \u2018Assume the newest object is the only recoverable version\u2019 does not address the stated evidence or constraint.",
+      "id": "aws-16-interview",
+      "title": "S3 versioning \u00b7 interview",
+      "type": "interview",
+      "question": "Explain versioning retention and recovery trade-offs.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "Accidental overwrites or deletions when prior versions remain available. Versioning still needs lifecycle cost and access considerations. A practical response is: Inspect retained versions and restore the intended one safely. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that versioning guarantees protection from every authorized destructive action.",
+      "answerChecklist": [
+        "Accidental overwrites or deletions when prior versions remain available",
+        "Versioning still needs lifecycle cost and access considerations",
+        "Inspect retained versions and restore the intended one safely",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "An object was overwritten with incorrect content. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "aws",
+      "objective": "Explain rds availability and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "RDS availability \u2014 primary reference",
+          "url": "https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.MultiAZ.html"
+        }
+      ],
+      "tags": [
+        "aws",
+        "rds-availability"
+      ],
+      "takeaway": "Availability features do not replace application reconnect behavior and backups.",
+      "explanation": "Improve availability through managed standby and failover mechanisms. Availability features do not replace application reconnect behavior and backups. In the scenario, verify reconnect handling timeouts and recovery behavior. The alternative \u2018Assume a stable endpoint prevents every connection interruption\u2019 does not address the stated evidence or constraint.",
+      "id": "aws-17-concept",
+      "title": "RDS availability \u00b7 concept",
+      "type": "concept",
+      "question": "What is the main purpose of a standard RDS Multi-AZ deployment?",
+      "options": [
+        "Improve availability through managed standby and failover mechanisms",
+        "Every standby is automatically a readable scaling replica",
+        "Multi-AZ guarantees zero interruption for all clients",
+        "Assume a stable endpoint prevents every connection interruption"
+      ],
+      "correct": [
+        0
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "aws",
+      "objective": "Explain rds availability and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "RDS availability \u2014 primary reference",
+          "url": "https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.MultiAZ.html"
+        }
+      ],
+      "tags": [
+        "aws",
+        "rds-availability"
+      ],
+      "takeaway": "Availability features do not replace application reconnect behavior and backups.",
+      "explanation": "Improve availability through managed standby and failover mechanisms. Availability features do not replace application reconnect behavior and backups. In the scenario, verify reconnect handling timeouts and recovery behavior. The alternative \u2018Assume a stable endpoint prevents every connection interruption\u2019 does not address the stated evidence or constraint.",
+      "id": "aws-17-scenario",
+      "title": "RDS availability \u00b7 scenario",
+      "type": "scenario",
+      "question": "A database failover occurs and clients retain broken connections. What is the best next step?",
+      "options": [
+        "Assume a stable endpoint prevents every connection interruption",
+        "Every standby is automatically a readable scaling replica",
+        "Multi-AZ guarantees zero interruption for all clients",
+        "Verify reconnect handling timeouts and recovery behavior"
+      ],
+      "correct": [
+        3
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "aws",
+      "objective": "Explain rds availability and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "RDS availability \u2014 primary reference",
+          "url": "https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.MultiAZ.html"
+        }
+      ],
+      "tags": [
+        "aws",
+        "rds-availability"
+      ],
+      "takeaway": "Availability features do not replace application reconnect behavior and backups.",
+      "explanation": "Improve availability through managed standby and failover mechanisms. Availability features do not replace application reconnect behavior and backups. In the scenario, verify reconnect handling timeouts and recovery behavior. The alternative \u2018Assume a stable endpoint prevents every connection interruption\u2019 does not address the stated evidence or constraint.",
+      "id": "aws-17-principles",
+      "title": "RDS availability \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing rds availability, which TWO statements are sound operational principles?",
+      "options": [
+        "Every standby is automatically a readable scaling replica",
+        "Multi-AZ guarantees zero interruption for all clients",
+        "Improve availability through managed standby and failover mechanisms",
+        "Availability features do not replace application reconnect behavior and backups"
+      ],
+      "correct": [
+        2,
+        3
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "aws",
+      "objective": "Explain rds availability and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "RDS availability \u2014 primary reference",
+          "url": "https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.MultiAZ.html"
+        }
+      ],
+      "tags": [
+        "aws",
+        "rds-availability"
+      ],
+      "takeaway": "Availability features do not replace application reconnect behavior and backups.",
+      "explanation": "Improve availability through managed standby and failover mechanisms. Availability features do not replace application reconnect behavior and backups. In the scenario, verify reconnect handling timeouts and recovery behavior. The alternative \u2018Assume a stable endpoint prevents every connection interruption\u2019 does not address the stated evidence or constraint.",
+      "id": "aws-17-interview",
+      "title": "RDS availability \u00b7 interview",
+      "type": "interview",
+      "question": "Explain application behavior during managed database failover.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "Improve availability through managed standby and failover mechanisms. Availability features do not replace application reconnect behavior and backups. A practical response is: Verify reconnect handling timeouts and recovery behavior. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that every standby is automatically a readable scaling replica.",
+      "answerChecklist": [
+        "Improve availability through managed standby and failover mechanisms",
+        "Availability features do not replace application reconnect behavior and backups",
+        "Verify reconnect handling timeouts and recovery behavior",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "A database failover occurs and clients retain broken connections. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "aws",
+      "objective": "Explain read replicas and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Read replicas \u2014 primary reference",
+          "url": "https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_ReadRepl.html"
+        }
+      ],
+      "tags": [
+        "aws",
+        "read-replicas"
+      ],
+      "takeaway": "Replication lag can affect freshness of reads.",
+      "explanation": "Offload eligible reads or support specific replication use cases. Replication lag can affect freshness of reads. In the scenario, review consistency requirements and route freshness-sensitive reads appropriately. The alternative \u2018Assume all replicas are synchronously current\u2019 does not address the stated evidence or constraint.",
+      "id": "aws-18-concept",
+      "title": "Read replicas \u00b7 concept",
+      "type": "concept",
+      "question": "What is a common role of database read replicas?",
+      "options": [
+        "All replicas always provide immediately current writes",
+        "A read replica automatically replaces every backup",
+        "Assume all replicas are synchronously current",
+        "Offload eligible reads or support specific replication use cases"
+      ],
+      "correct": [
+        3
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "aws",
+      "objective": "Explain read replicas and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Read replicas \u2014 primary reference",
+          "url": "https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_ReadRepl.html"
+        }
+      ],
+      "tags": [
+        "aws",
+        "read-replicas"
+      ],
+      "takeaway": "Replication lag can affect freshness of reads.",
+      "explanation": "Offload eligible reads or support specific replication use cases. Replication lag can affect freshness of reads. In the scenario, review consistency requirements and route freshness-sensitive reads appropriately. The alternative \u2018Assume all replicas are synchronously current\u2019 does not address the stated evidence or constraint.",
+      "id": "aws-18-scenario",
+      "title": "Read replicas \u00b7 scenario",
+      "type": "scenario",
+      "question": "Users read stale data immediately after a write. What is the best next step?",
+      "options": [
+        "All replicas always provide immediately current writes",
+        "A read replica automatically replaces every backup",
+        "Review consistency requirements and route freshness-sensitive reads appropriately",
+        "Assume all replicas are synchronously current"
+      ],
+      "correct": [
+        2
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "aws",
+      "objective": "Explain read replicas and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Read replicas \u2014 primary reference",
+          "url": "https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_ReadRepl.html"
+        }
+      ],
+      "tags": [
+        "aws",
+        "read-replicas"
+      ],
+      "takeaway": "Replication lag can affect freshness of reads.",
+      "explanation": "Offload eligible reads or support specific replication use cases. Replication lag can affect freshness of reads. In the scenario, review consistency requirements and route freshness-sensitive reads appropriately. The alternative \u2018Assume all replicas are synchronously current\u2019 does not address the stated evidence or constraint.",
+      "id": "aws-18-principles",
+      "title": "Read replicas \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing read replicas, which TWO statements are sound operational principles?",
+      "options": [
+        "A read replica automatically replaces every backup",
+        "Offload eligible reads or support specific replication use cases",
+        "Replication lag can affect freshness of reads",
+        "All replicas always provide immediately current writes"
+      ],
+      "correct": [
+        1,
+        2
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "aws",
+      "objective": "Explain read replicas and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Read replicas \u2014 primary reference",
+          "url": "https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_ReadRepl.html"
+        }
+      ],
+      "tags": [
+        "aws",
+        "read-replicas"
+      ],
+      "takeaway": "Replication lag can affect freshness of reads.",
+      "explanation": "Offload eligible reads or support specific replication use cases. Replication lag can affect freshness of reads. In the scenario, review consistency requirements and route freshness-sensitive reads appropriately. The alternative \u2018Assume all replicas are synchronously current\u2019 does not address the stated evidence or constraint.",
+      "id": "aws-18-interview",
+      "title": "Read replicas \u00b7 interview",
+      "type": "interview",
+      "question": "Explain when read replicas are unsuitable for read-after-write requirements.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "Offload eligible reads or support specific replication use cases. Replication lag can affect freshness of reads. A practical response is: Review consistency requirements and route freshness-sensitive reads appropriately. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that all replicas always provide immediately current writes.",
+      "answerChecklist": [
+        "Offload eligible reads or support specific replication use cases",
+        "Replication lag can affect freshness of reads",
+        "Review consistency requirements and route freshness-sensitive reads appropriately",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "Users read stale data immediately after a write. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "aws",
+      "objective": "Explain lambda retries and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Lambda retries \u2014 primary reference",
+          "url": "https://docs.aws.amazon.com/lambda/latest/dg/best-practices.html"
+        }
+      ],
+      "tags": [
+        "aws",
+        "lambda-retries"
+      ],
+      "takeaway": "Handlers should use idempotent operations for duplicate-sensitive effects.",
+      "explanation": "Event sources and retries can deliver work more than once. Handlers should use idempotent operations for duplicate-sensitive effects. In the scenario, use an operation identity and durable deduplication strategy. The alternative \u2018Assume the platform can never repeat an event\u2019 does not address the stated evidence or constraint.",
+      "id": "aws-19-concept",
+      "title": "Lambda retries \u00b7 concept",
+      "type": "concept",
+      "question": "Why design Lambda event processing for duplicate delivery where applicable?",
+      "options": [
+        "A successful invocation prevents every later duplicate",
+        "Assume the platform can never repeat an event",
+        "Event sources and retries can deliver work more than once",
+        "Every Lambda event source guarantees exactly one execution"
+      ],
+      "correct": [
+        2
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "aws",
+      "objective": "Explain lambda retries and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Lambda retries \u2014 primary reference",
+          "url": "https://docs.aws.amazon.com/lambda/latest/dg/best-practices.html"
+        }
+      ],
+      "tags": [
+        "aws",
+        "lambda-retries"
+      ],
+      "takeaway": "Handlers should use idempotent operations for duplicate-sensitive effects.",
+      "explanation": "Event sources and retries can deliver work more than once. Handlers should use idempotent operations for duplicate-sensitive effects. In the scenario, use an operation identity and durable deduplication strategy. The alternative \u2018Assume the platform can never repeat an event\u2019 does not address the stated evidence or constraint.",
+      "id": "aws-19-scenario",
+      "title": "Lambda retries \u00b7 scenario",
+      "type": "scenario",
+      "question": "An event triggers the same order action twice. What is the best next step?",
+      "options": [
+        "A successful invocation prevents every later duplicate",
+        "Use an operation identity and durable deduplication strategy",
+        "Assume the platform can never repeat an event",
+        "Every Lambda event source guarantees exactly one execution"
+      ],
+      "correct": [
+        1
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "aws",
+      "objective": "Explain lambda retries and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Lambda retries \u2014 primary reference",
+          "url": "https://docs.aws.amazon.com/lambda/latest/dg/best-practices.html"
+        }
+      ],
+      "tags": [
+        "aws",
+        "lambda-retries"
+      ],
+      "takeaway": "Handlers should use idempotent operations for duplicate-sensitive effects.",
+      "explanation": "Event sources and retries can deliver work more than once. Handlers should use idempotent operations for duplicate-sensitive effects. In the scenario, use an operation identity and durable deduplication strategy. The alternative \u2018Assume the platform can never repeat an event\u2019 does not address the stated evidence or constraint.",
+      "id": "aws-19-principles",
+      "title": "Lambda retries \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing lambda retries, which TWO statements are sound operational principles?",
+      "options": [
+        "Event sources and retries can deliver work more than once",
+        "Handlers should use idempotent operations for duplicate-sensitive effects",
+        "Every Lambda event source guarantees exactly one execution",
+        "A successful invocation prevents every later duplicate"
+      ],
+      "correct": [
+        0,
+        1
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "aws",
+      "objective": "Explain lambda retries and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Lambda retries \u2014 primary reference",
+          "url": "https://docs.aws.amazon.com/lambda/latest/dg/best-practices.html"
+        }
+      ],
+      "tags": [
+        "aws",
+        "lambda-retries"
+      ],
+      "takeaway": "Handlers should use idempotent operations for duplicate-sensitive effects.",
+      "explanation": "Event sources and retries can deliver work more than once. Handlers should use idempotent operations for duplicate-sensitive effects. In the scenario, use an operation identity and durable deduplication strategy. The alternative \u2018Assume the platform can never repeat an event\u2019 does not address the stated evidence or constraint.",
+      "id": "aws-19-interview",
+      "title": "Lambda retries \u00b7 interview",
+      "type": "interview",
+      "question": "Explain idempotent serverless event processing.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "Event sources and retries can deliver work more than once. Handlers should use idempotent operations for duplicate-sensitive effects. A practical response is: Use an operation identity and durable deduplication strategy. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that every Lambda event source guarantees exactly one execution.",
+      "answerChecklist": [
+        "Event sources and retries can deliver work more than once",
+        "Handlers should use idempotent operations for duplicate-sensitive effects",
+        "Use an operation identity and durable deduplication strategy",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "An event triggers the same order action twice. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "aws",
+      "objective": "Explain sqs visibility and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "SQS visibility \u2014 primary reference",
+          "url": "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-visibility-timeout.html"
+        }
+      ],
+      "tags": [
+        "aws",
+        "sqs-visibility"
+      ],
+      "takeaway": "Processing longer than visibility can lead to duplicate concurrent work.",
+      "explanation": "How long a received message is hidden from other consumers before deletion or expiry. Processing longer than visibility can lead to duplicate concurrent work. In the scenario, adjust or extend visibility appropriately and keep processing idempotent. The alternative \u2018Assume receiving the message grants a permanent exclusive lock\u2019 does not address the stated evidence or constraint.",
+      "id": "aws-20-concept",
+      "title": "SQS visibility \u00b7 concept",
+      "type": "concept",
+      "question": "What does SQS visibility timeout control?",
+      "options": [
+        "Assume receiving the message grants a permanent exclusive lock",
+        "How long a received message is hidden from other consumers before deletion or expiry",
+        "Receiving a message permanently deletes it",
+        "Visibility timeout is the queue's total retention period"
+      ],
+      "correct": [
+        1
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "aws",
+      "objective": "Explain sqs visibility and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "SQS visibility \u2014 primary reference",
+          "url": "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-visibility-timeout.html"
+        }
+      ],
+      "tags": [
+        "aws",
+        "sqs-visibility"
+      ],
+      "takeaway": "Processing longer than visibility can lead to duplicate concurrent work.",
+      "explanation": "How long a received message is hidden from other consumers before deletion or expiry. Processing longer than visibility can lead to duplicate concurrent work. In the scenario, adjust or extend visibility appropriately and keep processing idempotent. The alternative \u2018Assume receiving the message grants a permanent exclusive lock\u2019 does not address the stated evidence or constraint.",
+      "id": "aws-20-scenario",
+      "title": "SQS visibility \u00b7 scenario",
+      "type": "scenario",
+      "question": "A long-running worker sees the same message processed elsewhere. What is the best next step?",
+      "options": [
+        "Adjust or extend visibility appropriately and keep processing idempotent",
+        "Assume receiving the message grants a permanent exclusive lock",
+        "Receiving a message permanently deletes it",
+        "Visibility timeout is the queue's total retention period"
+      ],
+      "correct": [
+        0
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "aws",
+      "objective": "Explain sqs visibility and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "SQS visibility \u2014 primary reference",
+          "url": "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-visibility-timeout.html"
+        }
+      ],
+      "tags": [
+        "aws",
+        "sqs-visibility"
+      ],
+      "takeaway": "Processing longer than visibility can lead to duplicate concurrent work.",
+      "explanation": "How long a received message is hidden from other consumers before deletion or expiry. Processing longer than visibility can lead to duplicate concurrent work. In the scenario, adjust or extend visibility appropriately and keep processing idempotent. The alternative \u2018Assume receiving the message grants a permanent exclusive lock\u2019 does not address the stated evidence or constraint.",
+      "id": "aws-20-principles",
+      "title": "SQS visibility \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing sqs visibility, which TWO statements are sound operational principles?",
+      "options": [
+        "Processing longer than visibility can lead to duplicate concurrent work",
+        "Receiving a message permanently deletes it",
+        "Visibility timeout is the queue's total retention period",
+        "How long a received message is hidden from other consumers before deletion or expiry"
+      ],
+      "correct": [
+        0,
+        3
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "aws",
+      "objective": "Explain sqs visibility and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "SQS visibility \u2014 primary reference",
+          "url": "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-visibility-timeout.html"
+        }
+      ],
+      "tags": [
+        "aws",
+        "sqs-visibility"
+      ],
+      "takeaway": "Processing longer than visibility can lead to duplicate concurrent work.",
+      "explanation": "How long a received message is hidden from other consumers before deletion or expiry. Processing longer than visibility can lead to duplicate concurrent work. In the scenario, adjust or extend visibility appropriately and keep processing idempotent. The alternative \u2018Assume receiving the message grants a permanent exclusive lock\u2019 does not address the stated evidence or constraint.",
+      "id": "aws-20-interview",
+      "title": "SQS visibility \u00b7 interview",
+      "type": "interview",
+      "question": "Explain visibility timeout and safe message completion.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "How long a received message is hidden from other consumers before deletion or expiry. Processing longer than visibility can lead to duplicate concurrent work. A practical response is: Adjust or extend visibility appropriately and keep processing idempotent. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that receiving a message permanently deletes it.",
+      "answerChecklist": [
+        "How long a received message is hidden from other consumers before deletion or expiry",
+        "Processing longer than visibility can lead to duplicate concurrent work",
+        "Adjust or extend visibility appropriately and keep processing idempotent",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "A long-running worker sees the same message processed elsewhere. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "aws",
+      "objective": "Explain dead-letter queues and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Dead-letter queues \u2014 primary reference",
+          "url": "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-dead-letter-queues.html"
+        }
+      ],
+      "tags": [
+        "aws",
+        "dead-letter-queues"
+      ],
+      "takeaway": "Redrive needs care to avoid replaying the same failure at scale.",
+      "explanation": "Isolate repeatedly failing messages for investigation and recovery. Redrive needs care to avoid replaying the same failure at scale. In the scenario, inspect failures route them appropriately and define a controlled redrive. The alternative \u2018Replay every failed message continuously without correcting the cause\u2019 does not address the stated evidence or constraint.",
+      "id": "aws-21-concept",
+      "title": "Dead-letter queues \u00b7 concept",
+      "type": "concept",
+      "question": "What is a dead-letter queue useful for?",
+      "options": [
+        "Isolate repeatedly failing messages for investigation and recovery",
+        "A dead-letter queue automatically fixes malformed messages",
+        "Messages in a dead-letter queue require no monitoring",
+        "Replay every failed message continuously without correcting the cause"
+      ],
+      "correct": [
+        0
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "aws",
+      "objective": "Explain dead-letter queues and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Dead-letter queues \u2014 primary reference",
+          "url": "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-dead-letter-queues.html"
+        }
+      ],
+      "tags": [
+        "aws",
+        "dead-letter-queues"
+      ],
+      "takeaway": "Redrive needs care to avoid replaying the same failure at scale.",
+      "explanation": "Isolate repeatedly failing messages for investigation and recovery. Redrive needs care to avoid replaying the same failure at scale. In the scenario, inspect failures route them appropriately and define a controlled redrive. The alternative \u2018Replay every failed message continuously without correcting the cause\u2019 does not address the stated evidence or constraint.",
+      "id": "aws-21-scenario",
+      "title": "Dead-letter queues \u00b7 scenario",
+      "type": "scenario",
+      "question": "Poison messages repeatedly fail and block useful processing. What is the best next step?",
+      "options": [
+        "Replay every failed message continuously without correcting the cause",
+        "A dead-letter queue automatically fixes malformed messages",
+        "Messages in a dead-letter queue require no monitoring",
+        "Inspect failures route them appropriately and define a controlled redrive"
+      ],
+      "correct": [
+        3
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "aws",
+      "objective": "Explain dead-letter queues and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Dead-letter queues \u2014 primary reference",
+          "url": "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-dead-letter-queues.html"
+        }
+      ],
+      "tags": [
+        "aws",
+        "dead-letter-queues"
+      ],
+      "takeaway": "Redrive needs care to avoid replaying the same failure at scale.",
+      "explanation": "Isolate repeatedly failing messages for investigation and recovery. Redrive needs care to avoid replaying the same failure at scale. In the scenario, inspect failures route them appropriately and define a controlled redrive. The alternative \u2018Replay every failed message continuously without correcting the cause\u2019 does not address the stated evidence or constraint.",
+      "id": "aws-21-principles",
+      "title": "Dead-letter queues \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing dead-letter queues, which TWO statements are sound operational principles?",
+      "options": [
+        "A dead-letter queue automatically fixes malformed messages",
+        "Messages in a dead-letter queue require no monitoring",
+        "Isolate repeatedly failing messages for investigation and recovery",
+        "Redrive needs care to avoid replaying the same failure at scale"
+      ],
+      "correct": [
+        2,
+        3
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "aws",
+      "objective": "Explain dead-letter queues and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Dead-letter queues \u2014 primary reference",
+          "url": "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-dead-letter-queues.html"
+        }
+      ],
+      "tags": [
+        "aws",
+        "dead-letter-queues"
+      ],
+      "takeaway": "Redrive needs care to avoid replaying the same failure at scale.",
+      "explanation": "Isolate repeatedly failing messages for investigation and recovery. Redrive needs care to avoid replaying the same failure at scale. In the scenario, inspect failures route them appropriately and define a controlled redrive. The alternative \u2018Replay every failed message continuously without correcting the cause\u2019 does not address the stated evidence or constraint.",
+      "id": "aws-21-interview",
+      "title": "Dead-letter queues \u00b7 interview",
+      "type": "interview",
+      "question": "Explain dead-letter queue operations and alerting.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "Isolate repeatedly failing messages for investigation and recovery. Redrive needs care to avoid replaying the same failure at scale. A practical response is: Inspect failures route them appropriately and define a controlled redrive. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that a dead-letter queue automatically fixes malformed messages.",
+      "answerChecklist": [
+        "Isolate repeatedly failing messages for investigation and recovery",
+        "Redrive needs care to avoid replaying the same failure at scale",
+        "Inspect failures route them appropriately and define a controlled redrive",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "Poison messages repeatedly fail and block useful processing. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "aws",
+      "objective": "Explain dynamodb keys and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "DynamoDB keys \u2014 primary reference",
+          "url": "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/bp-partition-key-design.html"
+        }
+      ],
+      "tags": [
+        "aws",
+        "dynamodb-keys"
+      ],
+      "takeaway": "A highly concentrated key can create a hot workload.",
+      "explanation": "It affects data distribution and access patterns. A highly concentrated key can create a hot workload. In the scenario, inspect access concentration and redesign or shard the hot pattern where justified. The alternative \u2018Increase unrelated table attributes to spread load\u2019 does not address the stated evidence or constraint.",
+      "id": "aws-22-concept",
+      "title": "DynamoDB keys \u00b7 concept",
+      "type": "concept",
+      "question": "Why is partition-key design important?",
+      "options": [
+        "Every partition key provides identical performance for every access pattern",
+        "Adding attributes automatically distributes all hot-key traffic",
+        "Increase unrelated table attributes to spread load",
+        "It affects data distribution and access patterns"
+      ],
+      "correct": [
+        3
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "aws",
+      "objective": "Explain dynamodb keys and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "DynamoDB keys \u2014 primary reference",
+          "url": "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/bp-partition-key-design.html"
+        }
+      ],
+      "tags": [
+        "aws",
+        "dynamodb-keys"
+      ],
+      "takeaway": "A highly concentrated key can create a hot workload.",
+      "explanation": "It affects data distribution and access patterns. A highly concentrated key can create a hot workload. In the scenario, inspect access concentration and redesign or shard the hot pattern where justified. The alternative \u2018Increase unrelated table attributes to spread load\u2019 does not address the stated evidence or constraint.",
+      "id": "aws-22-scenario",
+      "title": "DynamoDB keys \u00b7 scenario",
+      "type": "scenario",
+      "question": "Most requests target one popular key and experience throttling. What is the best next step?",
+      "options": [
+        "Every partition key provides identical performance for every access pattern",
+        "Adding attributes automatically distributes all hot-key traffic",
+        "Inspect access concentration and redesign or shard the hot pattern where justified",
+        "Increase unrelated table attributes to spread load"
+      ],
+      "correct": [
+        2
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "aws",
+      "objective": "Explain dynamodb keys and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "DynamoDB keys \u2014 primary reference",
+          "url": "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/bp-partition-key-design.html"
+        }
+      ],
+      "tags": [
+        "aws",
+        "dynamodb-keys"
+      ],
+      "takeaway": "A highly concentrated key can create a hot workload.",
+      "explanation": "It affects data distribution and access patterns. A highly concentrated key can create a hot workload. In the scenario, inspect access concentration and redesign or shard the hot pattern where justified. The alternative \u2018Increase unrelated table attributes to spread load\u2019 does not address the stated evidence or constraint.",
+      "id": "aws-22-principles",
+      "title": "DynamoDB keys \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing dynamodb keys, which TWO statements are sound operational principles?",
+      "options": [
+        "Adding attributes automatically distributes all hot-key traffic",
+        "It affects data distribution and access patterns",
+        "A highly concentrated key can create a hot workload",
+        "Every partition key provides identical performance for every access pattern"
+      ],
+      "correct": [
+        1,
+        2
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "aws",
+      "objective": "Explain dynamodb keys and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "DynamoDB keys \u2014 primary reference",
+          "url": "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/bp-partition-key-design.html"
+        }
+      ],
+      "tags": [
+        "aws",
+        "dynamodb-keys"
+      ],
+      "takeaway": "A highly concentrated key can create a hot workload.",
+      "explanation": "It affects data distribution and access patterns. A highly concentrated key can create a hot workload. In the scenario, inspect access concentration and redesign or shard the hot pattern where justified. The alternative \u2018Increase unrelated table attributes to spread load\u2019 does not address the stated evidence or constraint.",
+      "id": "aws-22-interview",
+      "title": "DynamoDB keys \u00b7 interview",
+      "type": "interview",
+      "question": "Explain DynamoDB key design around real access patterns.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "It affects data distribution and access patterns. A highly concentrated key can create a hot workload. A practical response is: Inspect access concentration and redesign or shard the hot pattern where justified. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that every partition key provides identical performance for every access pattern.",
+      "answerChecklist": [
+        "It affects data distribution and access patterns",
+        "A highly concentrated key can create a hot workload",
+        "Inspect access concentration and redesign or shard the hot pattern where justified",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "Most requests target one popular key and experience throttling. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "aws",
+      "objective": "Explain kms controls and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "KMS controls \u2014 primary reference",
+          "url": "https://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html"
+        }
+      ],
+      "tags": [
+        "aws",
+        "kms-controls"
+      ],
+      "takeaway": "Encryption does not eliminate the need to control decrypt permissions.",
+      "explanation": "Key policies and applicable identity permissions govern key use. Encryption does not eliminate the need to control decrypt permissions. In the scenario, inspect the key policy identity permissions and encryption context. The alternative \u2018Disable encryption without investigating authorization\u2019 does not address the stated evidence or constraint.",
+      "id": "aws-23-concept",
+      "title": "KMS controls \u00b7 concept",
+      "type": "concept",
+      "question": "What is an important aspect of KMS authorization?",
+      "options": [
+        "An S3 allow alone always bypasses all key-policy restrictions",
+        "Disable encryption without investigating authorization",
+        "Key policies and applicable identity permissions govern key use",
+        "Any user can decrypt data merely because it is encrypted"
+      ],
+      "correct": [
+        2
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "aws",
+      "objective": "Explain kms controls and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "KMS controls \u2014 primary reference",
+          "url": "https://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html"
+        }
+      ],
+      "tags": [
+        "aws",
+        "kms-controls"
+      ],
+      "takeaway": "Encryption does not eliminate the need to control decrypt permissions.",
+      "explanation": "Key policies and applicable identity permissions govern key use. Encryption does not eliminate the need to control decrypt permissions. In the scenario, inspect the key policy identity permissions and encryption context. The alternative \u2018Disable encryption without investigating authorization\u2019 does not address the stated evidence or constraint.",
+      "id": "aws-23-scenario",
+      "title": "KMS controls \u00b7 scenario",
+      "type": "scenario",
+      "question": "A workload can read object metadata but cannot decrypt the encrypted object. What is the best next step?",
+      "options": [
+        "An S3 allow alone always bypasses all key-policy restrictions",
+        "Inspect the key policy identity permissions and encryption context",
+        "Disable encryption without investigating authorization",
+        "Any user can decrypt data merely because it is encrypted"
+      ],
+      "correct": [
+        1
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "aws",
+      "objective": "Explain kms controls and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "KMS controls \u2014 primary reference",
+          "url": "https://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html"
+        }
+      ],
+      "tags": [
+        "aws",
+        "kms-controls"
+      ],
+      "takeaway": "Encryption does not eliminate the need to control decrypt permissions.",
+      "explanation": "Key policies and applicable identity permissions govern key use. Encryption does not eliminate the need to control decrypt permissions. In the scenario, inspect the key policy identity permissions and encryption context. The alternative \u2018Disable encryption without investigating authorization\u2019 does not address the stated evidence or constraint.",
+      "id": "aws-23-principles",
+      "title": "KMS controls \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing kms controls, which TWO statements are sound operational principles?",
+      "options": [
+        "Key policies and applicable identity permissions govern key use",
+        "Encryption does not eliminate the need to control decrypt permissions",
+        "Any user can decrypt data merely because it is encrypted",
+        "An S3 allow alone always bypasses all key-policy restrictions"
+      ],
+      "correct": [
+        0,
+        1
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "aws",
+      "objective": "Explain kms controls and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "KMS controls \u2014 primary reference",
+          "url": "https://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html"
+        }
+      ],
+      "tags": [
+        "aws",
+        "kms-controls"
+      ],
+      "takeaway": "Encryption does not eliminate the need to control decrypt permissions.",
+      "explanation": "Key policies and applicable identity permissions govern key use. Encryption does not eliminate the need to control decrypt permissions. In the scenario, inspect the key policy identity permissions and encryption context. The alternative \u2018Disable encryption without investigating authorization\u2019 does not address the stated evidence or constraint.",
+      "id": "aws-23-interview",
+      "title": "KMS controls \u00b7 interview",
+      "type": "interview",
+      "question": "Explain troubleshooting encrypted-data access failures.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "Key policies and applicable identity permissions govern key use. Encryption does not eliminate the need to control decrypt permissions. A practical response is: Inspect the key policy identity permissions and encryption context. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that any user can decrypt data merely because it is encrypted.",
+      "answerChecklist": [
+        "Key policies and applicable identity permissions govern key use",
+        "Encryption does not eliminate the need to control decrypt permissions",
+        "Inspect the key policy identity permissions and encryption context",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "A workload can read object metadata but cannot decrypt the encrypted object. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "aws",
+      "objective": "Explain secrets rotation and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Secrets rotation \u2014 primary reference",
+          "url": "https://docs.aws.amazon.com/secretsmanager/latest/userguide/rotating-secrets.html"
+        }
+      ],
+      "tags": [
+        "aws",
+        "secrets-rotation"
+      ],
+      "takeaway": "Rotation should include validation and recovery behavior.",
+      "explanation": "Consumers must obtain and use the updated credential correctly. Rotation should include validation and recovery behavior. In the scenario, refresh consumer credentials and verify the rotation integration. The alternative \u2018Stop rotating permanently instead of fixing consumer behavior\u2019 does not address the stated evidence or constraint.",
+      "id": "aws-24-concept",
+      "title": "Secrets rotation \u00b7 concept",
+      "type": "concept",
+      "question": "What must accompany credential rotation?",
+      "options": [
+        "Stop rotating permanently instead of fixing consumer behavior",
+        "Consumers must obtain and use the updated credential correctly",
+        "Changing a secret automatically updates every application cache",
+        "Rotation removes the need to restrict secret access"
+      ],
+      "correct": [
+        1
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "aws",
+      "objective": "Explain secrets rotation and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Secrets rotation \u2014 primary reference",
+          "url": "https://docs.aws.amazon.com/secretsmanager/latest/userguide/rotating-secrets.html"
+        }
+      ],
+      "tags": [
+        "aws",
+        "secrets-rotation"
+      ],
+      "takeaway": "Rotation should include validation and recovery behavior.",
+      "explanation": "Consumers must obtain and use the updated credential correctly. Rotation should include validation and recovery behavior. In the scenario, refresh consumer credentials and verify the rotation integration. The alternative \u2018Stop rotating permanently instead of fixing consumer behavior\u2019 does not address the stated evidence or constraint.",
+      "id": "aws-24-scenario",
+      "title": "Secrets rotation \u00b7 scenario",
+      "type": "scenario",
+      "question": "A rotated database credential breaks clients using a cached old value. What is the best next step?",
+      "options": [
+        "Refresh consumer credentials and verify the rotation integration",
+        "Stop rotating permanently instead of fixing consumer behavior",
+        "Changing a secret automatically updates every application cache",
+        "Rotation removes the need to restrict secret access"
+      ],
+      "correct": [
+        0
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "aws",
+      "objective": "Explain secrets rotation and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Secrets rotation \u2014 primary reference",
+          "url": "https://docs.aws.amazon.com/secretsmanager/latest/userguide/rotating-secrets.html"
+        }
+      ],
+      "tags": [
+        "aws",
+        "secrets-rotation"
+      ],
+      "takeaway": "Rotation should include validation and recovery behavior.",
+      "explanation": "Consumers must obtain and use the updated credential correctly. Rotation should include validation and recovery behavior. In the scenario, refresh consumer credentials and verify the rotation integration. The alternative \u2018Stop rotating permanently instead of fixing consumer behavior\u2019 does not address the stated evidence or constraint.",
+      "id": "aws-24-principles",
+      "title": "Secrets rotation \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing secrets rotation, which TWO statements are sound operational principles?",
+      "options": [
+        "Rotation should include validation and recovery behavior",
+        "Changing a secret automatically updates every application cache",
+        "Rotation removes the need to restrict secret access",
+        "Consumers must obtain and use the updated credential correctly"
+      ],
+      "correct": [
+        0,
+        3
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "aws",
+      "objective": "Explain secrets rotation and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Secrets rotation \u2014 primary reference",
+          "url": "https://docs.aws.amazon.com/secretsmanager/latest/userguide/rotating-secrets.html"
+        }
+      ],
+      "tags": [
+        "aws",
+        "secrets-rotation"
+      ],
+      "takeaway": "Rotation should include validation and recovery behavior.",
+      "explanation": "Consumers must obtain and use the updated credential correctly. Rotation should include validation and recovery behavior. In the scenario, refresh consumer credentials and verify the rotation integration. The alternative \u2018Stop rotating permanently instead of fixing consumer behavior\u2019 does not address the stated evidence or constraint.",
+      "id": "aws-24-interview",
+      "title": "Secrets rotation \u00b7 interview",
+      "type": "interview",
+      "question": "Explain a reliable secret-rotation workflow.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "Consumers must obtain and use the updated credential correctly. Rotation should include validation and recovery behavior. A practical response is: Refresh consumer credentials and verify the rotation integration. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that changing a secret automatically updates every application cache.",
+      "answerChecklist": [
+        "Consumers must obtain and use the updated credential correctly",
+        "Rotation should include validation and recovery behavior",
+        "Refresh consumer credentials and verify the rotation integration",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "A rotated database credential breaks clients using a cached old value. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "aws",
+      "objective": "Explain route 53 failover and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Route 53 failover \u2014 primary reference",
+          "url": "https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/dns-failover.html"
+        }
+      ],
+      "tags": [
+        "aws",
+        "route-53-failover"
+      ],
+      "takeaway": "Health checks must reflect the intended service failure conditions.",
+      "explanation": "Resolver caching and client behavior affect switchover timing. Health checks must reflect the intended service failure conditions. In the scenario, inspect TTLs caches and client reconnect behavior. The alternative \u2018Assume the DNS service failed because old connections remain\u2019 does not address the stated evidence or constraint.",
+      "id": "aws-25-concept",
+      "title": "Route 53 failover \u00b7 concept",
+      "type": "concept",
+      "question": "What is a limitation of DNS-based failover?",
+      "options": [
+        "Resolver caching and client behavior affect switchover timing",
+        "DNS failover moves every established TCP connection instantly",
+        "A record update flushes all caches globally",
+        "Assume the DNS service failed because old connections remain"
+      ],
+      "correct": [
+        0
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "aws",
+      "objective": "Explain route 53 failover and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Route 53 failover \u2014 primary reference",
+          "url": "https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/dns-failover.html"
+        }
+      ],
+      "tags": [
+        "aws",
+        "route-53-failover"
+      ],
+      "takeaway": "Health checks must reflect the intended service failure conditions.",
+      "explanation": "Resolver caching and client behavior affect switchover timing. Health checks must reflect the intended service failure conditions. In the scenario, inspect TTLs caches and client reconnect behavior. The alternative \u2018Assume the DNS service failed because old connections remain\u2019 does not address the stated evidence or constraint.",
+      "id": "aws-25-scenario",
+      "title": "Route 53 failover \u00b7 scenario",
+      "type": "scenario",
+      "question": "A failover record changes but some clients still reach the old endpoint. What is the best next step?",
+      "options": [
+        "Assume the DNS service failed because old connections remain",
+        "DNS failover moves every established TCP connection instantly",
+        "A record update flushes all caches globally",
+        "Inspect TTLs caches and client reconnect behavior"
+      ],
+      "correct": [
+        3
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "aws",
+      "objective": "Explain route 53 failover and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Route 53 failover \u2014 primary reference",
+          "url": "https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/dns-failover.html"
+        }
+      ],
+      "tags": [
+        "aws",
+        "route-53-failover"
+      ],
+      "takeaway": "Health checks must reflect the intended service failure conditions.",
+      "explanation": "Resolver caching and client behavior affect switchover timing. Health checks must reflect the intended service failure conditions. In the scenario, inspect TTLs caches and client reconnect behavior. The alternative \u2018Assume the DNS service failed because old connections remain\u2019 does not address the stated evidence or constraint.",
+      "id": "aws-25-principles",
+      "title": "Route 53 failover \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing route 53 failover, which TWO statements are sound operational principles?",
+      "options": [
+        "DNS failover moves every established TCP connection instantly",
+        "A record update flushes all caches globally",
+        "Resolver caching and client behavior affect switchover timing",
+        "Health checks must reflect the intended service failure conditions"
+      ],
+      "correct": [
+        2,
+        3
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "aws",
+      "objective": "Explain route 53 failover and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Route 53 failover \u2014 primary reference",
+          "url": "https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/dns-failover.html"
+        }
+      ],
+      "tags": [
+        "aws",
+        "route-53-failover"
+      ],
+      "takeaway": "Health checks must reflect the intended service failure conditions.",
+      "explanation": "Resolver caching and client behavior affect switchover timing. Health checks must reflect the intended service failure conditions. In the scenario, inspect TTLs caches and client reconnect behavior. The alternative \u2018Assume the DNS service failed because old connections remain\u2019 does not address the stated evidence or constraint.",
+      "id": "aws-25-interview",
+      "title": "Route 53 failover \u00b7 interview",
+      "type": "interview",
+      "question": "Explain realistic expectations for DNS failover.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "Resolver caching and client behavior affect switchover timing. Health checks must reflect the intended service failure conditions. A practical response is: Inspect TTLs caches and client reconnect behavior. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that dNS failover moves every established TCP connection instantly.",
+      "answerChecklist": [
+        "Resolver caching and client behavior affect switchover timing",
+        "Health checks must reflect the intended service failure conditions",
+        "Inspect TTLs caches and client reconnect behavior",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "A failover record changes but some clients still reach the old endpoint. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "aws",
+      "objective": "Explain cloudfront caching and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "CloudFront caching \u2014 primary reference",
+          "url": "https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/controlling-the-cache-key.html"
+        }
+      ],
+      "tags": [
+        "aws",
+        "cloudfront-caching"
+      ],
+      "takeaway": "Cache keys and origin behavior need deliberate alignment.",
+      "explanation": "Different responses must not incorrectly share one cache entry. Cache keys and origin behavior need deliberate alignment. In the scenario, disable unsafe caching and correct cache-key and response policy. The alternative \u2018Increase cache lifetime to make responses more consistent\u2019 does not address the stated evidence or constraint.",
+      "id": "aws-26-concept",
+      "title": "CloudFront caching \u00b7 concept",
+      "type": "concept",
+      "question": "Why include relevant request variation in cache policy?",
+      "options": [
+        "A cache always knows which cookies are security-sensitive",
+        "Caching authenticated responses is safe regardless of cache key",
+        "Increase cache lifetime to make responses more consistent",
+        "Different responses must not incorrectly share one cache entry"
+      ],
+      "correct": [
+        3
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "aws",
+      "objective": "Explain cloudfront caching and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "CloudFront caching \u2014 primary reference",
+          "url": "https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/controlling-the-cache-key.html"
+        }
+      ],
+      "tags": [
+        "aws",
+        "cloudfront-caching"
+      ],
+      "takeaway": "Cache keys and origin behavior need deliberate alignment.",
+      "explanation": "Different responses must not incorrectly share one cache entry. Cache keys and origin behavior need deliberate alignment. In the scenario, disable unsafe caching and correct cache-key and response policy. The alternative \u2018Increase cache lifetime to make responses more consistent\u2019 does not address the stated evidence or constraint.",
+      "id": "aws-26-scenario",
+      "title": "CloudFront caching \u00b7 scenario",
+      "type": "scenario",
+      "question": "One user's personalized response appears for another user. What is the best next step?",
+      "options": [
+        "A cache always knows which cookies are security-sensitive",
+        "Caching authenticated responses is safe regardless of cache key",
+        "Disable unsafe caching and correct cache-key and response policy",
+        "Increase cache lifetime to make responses more consistent"
+      ],
+      "correct": [
+        2
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "aws",
+      "objective": "Explain cloudfront caching and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "CloudFront caching \u2014 primary reference",
+          "url": "https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/controlling-the-cache-key.html"
+        }
+      ],
+      "tags": [
+        "aws",
+        "cloudfront-caching"
+      ],
+      "takeaway": "Cache keys and origin behavior need deliberate alignment.",
+      "explanation": "Different responses must not incorrectly share one cache entry. Cache keys and origin behavior need deliberate alignment. In the scenario, disable unsafe caching and correct cache-key and response policy. The alternative \u2018Increase cache lifetime to make responses more consistent\u2019 does not address the stated evidence or constraint.",
+      "id": "aws-26-principles",
+      "title": "CloudFront caching \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing cloudfront caching, which TWO statements are sound operational principles?",
+      "options": [
+        "Caching authenticated responses is safe regardless of cache key",
+        "Different responses must not incorrectly share one cache entry",
+        "Cache keys and origin behavior need deliberate alignment",
+        "A cache always knows which cookies are security-sensitive"
+      ],
+      "correct": [
+        1,
+        2
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "aws",
+      "objective": "Explain cloudfront caching and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "CloudFront caching \u2014 primary reference",
+          "url": "https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/controlling-the-cache-key.html"
+        }
+      ],
+      "tags": [
+        "aws",
+        "cloudfront-caching"
+      ],
+      "takeaway": "Cache keys and origin behavior need deliberate alignment.",
+      "explanation": "Different responses must not incorrectly share one cache entry. Cache keys and origin behavior need deliberate alignment. In the scenario, disable unsafe caching and correct cache-key and response policy. The alternative \u2018Increase cache lifetime to make responses more consistent\u2019 does not address the stated evidence or constraint.",
+      "id": "aws-26-interview",
+      "title": "CloudFront caching \u00b7 interview",
+      "type": "interview",
+      "question": "Explain safe caching for personalized application content.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "Different responses must not incorrectly share one cache entry. Cache keys and origin behavior need deliberate alignment. A practical response is: Disable unsafe caching and correct cache-key and response policy. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that a cache always knows which cookies are security-sensitive.",
+      "answerChecklist": [
+        "Different responses must not incorrectly share one cache entry",
+        "Cache keys and origin behavior need deliberate alignment",
+        "Disable unsafe caching and correct cache-key and response policy",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "One user's personalized response appears for another user. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "aws",
+      "objective": "Explain cross-account access and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Cross-account access \u2014 primary reference",
+          "url": "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html"
+        }
+      ],
+      "tags": [
+        "aws",
+        "cross-account-access"
+      ],
+      "takeaway": "Trusting an account is distinct from granting every possible action.",
+      "explanation": "The role trust relationship and caller authorization. Trusting an account is distinct from granting every possible action. In the scenario, inspect trust policy caller permissions and required conditions. The alternative \u2018Grant broad service permissions without checking trust\u2019 does not address the stated evidence or constraint.",
+      "id": "aws-27-concept",
+      "title": "Cross-account access \u00b7 concept",
+      "type": "concept",
+      "question": "What must be evaluated for role assumption across accounts?",
+      "options": [
+        "A trust policy replaces all permissions on the assumed role",
+        "Grant broad service permissions without checking trust",
+        "The role trust relationship and caller authorization",
+        "A role name alone authorizes any external caller"
+      ],
+      "correct": [
+        2
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "aws",
+      "objective": "Explain cross-account access and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Cross-account access \u2014 primary reference",
+          "url": "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html"
+        }
+      ],
+      "tags": [
+        "aws",
+        "cross-account-access"
+      ],
+      "takeaway": "Trusting an account is distinct from granting every possible action.",
+      "explanation": "The role trust relationship and caller authorization. Trusting an account is distinct from granting every possible action. In the scenario, inspect trust policy caller permissions and required conditions. The alternative \u2018Grant broad service permissions without checking trust\u2019 does not address the stated evidence or constraint.",
+      "id": "aws-27-scenario",
+      "title": "Cross-account access \u00b7 scenario",
+      "type": "scenario",
+      "question": "A pipeline cannot assume a deployment role in another account. What is the best next step?",
+      "options": [
+        "A trust policy replaces all permissions on the assumed role",
+        "Inspect trust policy caller permissions and required conditions",
+        "Grant broad service permissions without checking trust",
+        "A role name alone authorizes any external caller"
+      ],
+      "correct": [
+        1
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "aws",
+      "objective": "Explain cross-account access and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Cross-account access \u2014 primary reference",
+          "url": "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html"
+        }
+      ],
+      "tags": [
+        "aws",
+        "cross-account-access"
+      ],
+      "takeaway": "Trusting an account is distinct from granting every possible action.",
+      "explanation": "The role trust relationship and caller authorization. Trusting an account is distinct from granting every possible action. In the scenario, inspect trust policy caller permissions and required conditions. The alternative \u2018Grant broad service permissions without checking trust\u2019 does not address the stated evidence or constraint.",
+      "id": "aws-27-principles",
+      "title": "Cross-account access \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing cross-account access, which TWO statements are sound operational principles?",
+      "options": [
+        "The role trust relationship and caller authorization",
+        "Trusting an account is distinct from granting every possible action",
+        "A role name alone authorizes any external caller",
+        "A trust policy replaces all permissions on the assumed role"
+      ],
+      "correct": [
+        0,
+        1
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "aws",
+      "objective": "Explain cross-account access and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Cross-account access \u2014 primary reference",
+          "url": "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html"
+        }
+      ],
+      "tags": [
+        "aws",
+        "cross-account-access"
+      ],
+      "takeaway": "Trusting an account is distinct from granting every possible action.",
+      "explanation": "The role trust relationship and caller authorization. Trusting an account is distinct from granting every possible action. In the scenario, inspect trust policy caller permissions and required conditions. The alternative \u2018Grant broad service permissions without checking trust\u2019 does not address the stated evidence or constraint.",
+      "id": "aws-27-interview",
+      "title": "Cross-account access \u00b7 interview",
+      "type": "interview",
+      "question": "Explain cross-account deployment identity and least privilege.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "The role trust relationship and caller authorization. Trusting an account is distinct from granting every possible action. A practical response is: Inspect trust policy caller permissions and required conditions. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that a role name alone authorizes any external caller.",
+      "answerChecklist": [
+        "The role trust relationship and caller authorization",
+        "Trusting an account is distinct from granting every possible action",
+        "Inspect trust policy caller permissions and required conditions",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "A pipeline cannot assume a deployment role in another account. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "aws",
+      "objective": "Explain service quotas and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Service quotas \u2014 primary reference",
+          "url": "https://docs.aws.amazon.com/servicequotas/latest/userguide/intro.html"
+        }
+      ],
+      "tags": [
+        "aws",
+        "service-quotas"
+      ],
+      "takeaway": "Quota increases and regional differences may require advance preparation.",
+      "explanation": "Quota limits can block scaling even when the design is otherwise valid. Quota increases and regional differences may require advance preparation. In the scenario, inspect the relevant quota and plan capacity or approved increases. The alternative \u2018Keep retrying indefinitely without checking the rejection reason\u2019 does not address the stated evidence or constraint.",
+      "id": "aws-28-concept",
+      "title": "Service quotas \u00b7 concept",
+      "type": "concept",
+      "question": "Why include service quotas in capacity planning?",
+      "options": [
+        "Keep retrying indefinitely without checking the rejection reason",
+        "Quota limits can block scaling even when the design is otherwise valid",
+        "Auto Scaling bypasses every service quota",
+        "A successful small deployment proves unlimited scale"
+      ],
+      "correct": [
+        1
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "aws",
+      "objective": "Explain service quotas and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Service quotas \u2014 primary reference",
+          "url": "https://docs.aws.amazon.com/servicequotas/latest/userguide/intro.html"
+        }
+      ],
+      "tags": [
+        "aws",
+        "service-quotas"
+      ],
+      "takeaway": "Quota increases and regional differences may require advance preparation.",
+      "explanation": "Quota limits can block scaling even when the design is otherwise valid. Quota increases and regional differences may require advance preparation. In the scenario, inspect the relevant quota and plan capacity or approved increases. The alternative \u2018Keep retrying indefinitely without checking the rejection reason\u2019 does not address the stated evidence or constraint.",
+      "id": "aws-28-scenario",
+      "title": "Service quotas \u00b7 scenario",
+      "type": "scenario",
+      "question": "A surge triggers scaling but new capacity is rejected at a quota. What is the best next step?",
+      "options": [
+        "Inspect the relevant quota and plan capacity or approved increases",
+        "Keep retrying indefinitely without checking the rejection reason",
+        "Auto Scaling bypasses every service quota",
+        "A successful small deployment proves unlimited scale"
+      ],
+      "correct": [
+        0
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "aws",
+      "objective": "Explain service quotas and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Service quotas \u2014 primary reference",
+          "url": "https://docs.aws.amazon.com/servicequotas/latest/userguide/intro.html"
+        }
+      ],
+      "tags": [
+        "aws",
+        "service-quotas"
+      ],
+      "takeaway": "Quota increases and regional differences may require advance preparation.",
+      "explanation": "Quota limits can block scaling even when the design is otherwise valid. Quota increases and regional differences may require advance preparation. In the scenario, inspect the relevant quota and plan capacity or approved increases. The alternative \u2018Keep retrying indefinitely without checking the rejection reason\u2019 does not address the stated evidence or constraint.",
+      "id": "aws-28-principles",
+      "title": "Service quotas \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing service quotas, which TWO statements are sound operational principles?",
+      "options": [
+        "Quota increases and regional differences may require advance preparation",
+        "Auto Scaling bypasses every service quota",
+        "A successful small deployment proves unlimited scale",
+        "Quota limits can block scaling even when the design is otherwise valid"
+      ],
+      "correct": [
+        0,
+        3
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "aws",
+      "objective": "Explain service quotas and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Service quotas \u2014 primary reference",
+          "url": "https://docs.aws.amazon.com/servicequotas/latest/userguide/intro.html"
+        }
+      ],
+      "tags": [
+        "aws",
+        "service-quotas"
+      ],
+      "takeaway": "Quota increases and regional differences may require advance preparation.",
+      "explanation": "Quota limits can block scaling even when the design is otherwise valid. Quota increases and regional differences may require advance preparation. In the scenario, inspect the relevant quota and plan capacity or approved increases. The alternative \u2018Keep retrying indefinitely without checking the rejection reason\u2019 does not address the stated evidence or constraint.",
+      "id": "aws-28-interview",
+      "title": "Service quotas \u00b7 interview",
+      "type": "interview",
+      "question": "Explain quota-aware launch and disaster-recovery planning.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "Quota limits can block scaling even when the design is otherwise valid. Quota increases and regional differences may require advance preparation. A practical response is: Inspect the relevant quota and plan capacity or approved increases. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that auto Scaling bypasses every service quota.",
+      "answerChecklist": [
+        "Quota limits can block scaling even when the design is otherwise valid",
+        "Quota increases and regional differences may require advance preparation",
+        "Inspect the relevant quota and plan capacity or approved increases",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "A surge triggers scaling but new capacity is rejected at a quota. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "aws",
+      "objective": "Explain cost attribution and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Cost attribution \u2014 primary reference",
+          "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/welcome.html"
+        }
+      ],
+      "tags": [
+        "aws",
+        "cost-attribution"
+      ],
+      "takeaway": "Cost optimization should preserve required reliability and security.",
+      "explanation": "Connect spend to accountable services and teams. Cost optimization should preserve required reliability and security. In the scenario, attribute usage to resources and compare with workload changes. The alternative \u2018Delete arbitrary production resources solely by cost ranking\u2019 does not address the stated evidence or constraint.",
+      "id": "aws-29-concept",
+      "title": "Cost attribution \u00b7 concept",
+      "type": "concept",
+      "question": "Why use cost allocation and workload ownership metadata?",
+      "options": [
+        "Connect spend to accountable services and teams",
+        "The lowest bill always represents the best architecture",
+        "Tags automatically prevent every unexpected charge",
+        "Delete arbitrary production resources solely by cost ranking"
+      ],
+      "correct": [
+        0
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "aws",
+      "objective": "Explain cost attribution and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Cost attribution \u2014 primary reference",
+          "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/welcome.html"
+        }
+      ],
+      "tags": [
+        "aws",
+        "cost-attribution"
+      ],
+      "takeaway": "Cost optimization should preserve required reliability and security.",
+      "explanation": "Connect spend to accountable services and teams. Cost optimization should preserve required reliability and security. In the scenario, attribute usage to resources and compare with workload changes. The alternative \u2018Delete arbitrary production resources solely by cost ranking\u2019 does not address the stated evidence or constraint.",
+      "id": "aws-29-scenario",
+      "title": "Cost attribution \u00b7 scenario",
+      "type": "scenario",
+      "question": "An unexplained bill increase follows a new deployment. What is the best next step?",
+      "options": [
+        "Delete arbitrary production resources solely by cost ranking",
+        "The lowest bill always represents the best architecture",
+        "Tags automatically prevent every unexpected charge",
+        "Attribute usage to resources and compare with workload changes"
+      ],
+      "correct": [
+        3
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "aws",
+      "objective": "Explain cost attribution and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Cost attribution \u2014 primary reference",
+          "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/welcome.html"
+        }
+      ],
+      "tags": [
+        "aws",
+        "cost-attribution"
+      ],
+      "takeaway": "Cost optimization should preserve required reliability and security.",
+      "explanation": "Connect spend to accountable services and teams. Cost optimization should preserve required reliability and security. In the scenario, attribute usage to resources and compare with workload changes. The alternative \u2018Delete arbitrary production resources solely by cost ranking\u2019 does not address the stated evidence or constraint.",
+      "id": "aws-29-principles",
+      "title": "Cost attribution \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing cost attribution, which TWO statements are sound operational principles?",
+      "options": [
+        "The lowest bill always represents the best architecture",
+        "Tags automatically prevent every unexpected charge",
+        "Connect spend to accountable services and teams",
+        "Cost optimization should preserve required reliability and security"
+      ],
+      "correct": [
+        2,
+        3
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "aws",
+      "objective": "Explain cost attribution and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Cost attribution \u2014 primary reference",
+          "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/welcome.html"
+        }
+      ],
+      "tags": [
+        "aws",
+        "cost-attribution"
+      ],
+      "takeaway": "Cost optimization should preserve required reliability and security.",
+      "explanation": "Connect spend to accountable services and teams. Cost optimization should preserve required reliability and security. In the scenario, attribute usage to resources and compare with workload changes. The alternative \u2018Delete arbitrary production resources solely by cost ranking\u2019 does not address the stated evidence or constraint.",
+      "id": "aws-29-interview",
+      "title": "Cost attribution \u00b7 interview",
+      "type": "interview",
+      "question": "Explain evidence-based cost investigation without causing an outage.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "Connect spend to accountable services and teams. Cost optimization should preserve required reliability and security. A practical response is: Attribute usage to resources and compare with workload changes. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that the lowest bill always represents the best architecture.",
+      "answerChecklist": [
+        "Connect spend to accountable services and teams",
+        "Cost optimization should preserve required reliability and security",
+        "Attribute usage to resources and compare with workload changes",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "An unexplained bill increase follows a new deployment. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "aws",
+      "objective": "Explain disaster recovery and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Disaster recovery \u2014 primary reference",
+          "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/welcome.html"
+        }
+      ],
+      "tags": [
+        "aws",
+        "disaster-recovery"
+      ],
+      "takeaway": "Recovery objectives must be measured in realistic exercises.",
+      "explanation": "Tested recovery of data identities dependencies and traffic handling. Recovery objectives must be measured in realistic exercises. In the scenario, test the full recovery dependency chain and remediate gaps. The alternative \u2018Declare success because the compute image launched\u2019 does not address the stated evidence or constraint.",
+      "id": "aws-30-concept",
+      "title": "Disaster recovery \u00b7 concept",
+      "type": "concept",
+      "question": "What makes a second-Region recovery design credible?",
+      "options": [
+        "Copying one machine image proves full regional recovery",
+        "An unused recovery Region requires no maintenance",
+        "Declare success because the compute image launched",
+        "Tested recovery of data identities dependencies and traffic handling"
+      ],
+      "correct": [
+        3
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "aws",
+      "objective": "Explain disaster recovery and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Disaster recovery \u2014 primary reference",
+          "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/welcome.html"
+        }
+      ],
+      "tags": [
+        "aws",
+        "disaster-recovery"
+      ],
+      "takeaway": "Recovery objectives must be measured in realistic exercises.",
+      "explanation": "Tested recovery of data identities dependencies and traffic handling. Recovery objectives must be measured in realistic exercises. In the scenario, test the full recovery dependency chain and remediate gaps. The alternative \u2018Declare success because the compute image launched\u2019 does not address the stated evidence or constraint.",
+      "id": "aws-30-scenario",
+      "title": "Disaster recovery \u00b7 scenario",
+      "type": "scenario",
+      "question": "A regional exercise fails because required secrets and quotas are missing. What is the best next step?",
+      "options": [
+        "Copying one machine image proves full regional recovery",
+        "An unused recovery Region requires no maintenance",
+        "Test the full recovery dependency chain and remediate gaps",
+        "Declare success because the compute image launched"
+      ],
+      "correct": [
+        2
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "aws",
+      "objective": "Explain disaster recovery and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Disaster recovery \u2014 primary reference",
+          "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/welcome.html"
+        }
+      ],
+      "tags": [
+        "aws",
+        "disaster-recovery"
+      ],
+      "takeaway": "Recovery objectives must be measured in realistic exercises.",
+      "explanation": "Tested recovery of data identities dependencies and traffic handling. Recovery objectives must be measured in realistic exercises. In the scenario, test the full recovery dependency chain and remediate gaps. The alternative \u2018Declare success because the compute image launched\u2019 does not address the stated evidence or constraint.",
+      "id": "aws-30-principles",
+      "title": "Disaster recovery \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing disaster recovery, which TWO statements are sound operational principles?",
+      "options": [
+        "An unused recovery Region requires no maintenance",
+        "Tested recovery of data identities dependencies and traffic handling",
+        "Recovery objectives must be measured in realistic exercises",
+        "Copying one machine image proves full regional recovery"
+      ],
+      "correct": [
+        1,
+        2
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "aws",
+      "objective": "Explain disaster recovery and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Disaster recovery \u2014 primary reference",
+          "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/welcome.html"
+        }
+      ],
+      "tags": [
+        "aws",
+        "disaster-recovery"
+      ],
+      "takeaway": "Recovery objectives must be measured in realistic exercises.",
+      "explanation": "Tested recovery of data identities dependencies and traffic handling. Recovery objectives must be measured in realistic exercises. In the scenario, test the full recovery dependency chain and remediate gaps. The alternative \u2018Declare success because the compute image launched\u2019 does not address the stated evidence or constraint.",
+      "id": "aws-30-interview",
+      "title": "Disaster recovery \u00b7 interview",
+      "type": "interview",
+      "question": "Explain how you validate regional disaster recovery.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "Tested recovery of data identities dependencies and traffic handling. Recovery objectives must be measured in realistic exercises. A practical response is: Test the full recovery dependency chain and remediate gaps. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that copying one machine image proves full regional recovery.",
+      "answerChecklist": [
+        "Tested recovery of data identities dependencies and traffic handling",
+        "Recovery objectives must be measured in realistic exercises",
+        "Test the full recovery dependency chain and remediate gaps",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "A regional exercise fails because required secrets and quotas are missing. Explain the evidence that would change your decision."
+      ]
+    }
+  ]
+}

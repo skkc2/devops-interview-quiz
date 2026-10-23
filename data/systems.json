@@ -1,0 +1,3733 @@
+{
+  "schemaVersion": 1,
+  "subject": "Systems administration",
+  "levels": [
+    "easy",
+    "medium",
+    "mediumHard",
+    "hard"
+  ],
+  "description": "30 competency sets: 90 scored questions and 30 self-reviewed interview prompts. Related questions intentionally reinforce a competency from different angles.",
+  "questions": [
+    {
+      "level": "easy",
+      "topic": "systems",
+      "objective": "Explain service managers and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Service managers \u2014 primary reference",
+          "url": "https://www.freedesktop.org/software/systemd/man/latest/"
+        }
+      ],
+      "tags": [
+        "systems",
+        "service-managers"
+      ],
+      "takeaway": "A running process and a healthy service are different observations.",
+      "explanation": "Managing configured service lifecycle and supervision. A running process and a healthy service are different observations. In the scenario, inspect application health and logs alongside unit status. The alternative \u2018Declare success solely from an active status\u2019 does not address the stated evidence or constraint.",
+      "id": "systems-01-concept",
+      "title": "Service managers \u00b7 concept",
+      "type": "concept",
+      "question": "What is a service manager responsible for?",
+      "options": [
+        "Managing configured service lifecycle and supervision",
+        "Starting a service proves all business operations succeed",
+        "A service manager replaces every application health check",
+        "Declare success solely from an active status"
+      ],
+      "correct": [
+        0
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "systems",
+      "objective": "Explain service managers and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Service managers \u2014 primary reference",
+          "url": "https://www.freedesktop.org/software/systemd/man/latest/"
+        }
+      ],
+      "tags": [
+        "systems",
+        "service-managers"
+      ],
+      "takeaway": "A running process and a healthy service are different observations.",
+      "explanation": "Managing configured service lifecycle and supervision. A running process and a healthy service are different observations. In the scenario, inspect application health and logs alongside unit status. The alternative \u2018Declare success solely from an active status\u2019 does not address the stated evidence or constraint.",
+      "id": "systems-01-scenario",
+      "title": "Service managers \u00b7 scenario",
+      "type": "scenario",
+      "question": "A service is active but its endpoint returns errors. What is the best next step?",
+      "options": [
+        "Declare success solely from an active status",
+        "Starting a service proves all business operations succeed",
+        "A service manager replaces every application health check",
+        "Inspect application health and logs alongside unit status"
+      ],
+      "correct": [
+        3
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "systems",
+      "objective": "Explain service managers and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Service managers \u2014 primary reference",
+          "url": "https://www.freedesktop.org/software/systemd/man/latest/"
+        }
+      ],
+      "tags": [
+        "systems",
+        "service-managers"
+      ],
+      "takeaway": "A running process and a healthy service are different observations.",
+      "explanation": "Managing configured service lifecycle and supervision. A running process and a healthy service are different observations. In the scenario, inspect application health and logs alongside unit status. The alternative \u2018Declare success solely from an active status\u2019 does not address the stated evidence or constraint.",
+      "id": "systems-01-principles",
+      "title": "Service managers \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing service managers, which TWO statements are sound operational principles?",
+      "options": [
+        "Starting a service proves all business operations succeed",
+        "A service manager replaces every application health check",
+        "Managing configured service lifecycle and supervision",
+        "A running process and a healthy service are different observations"
+      ],
+      "correct": [
+        2,
+        3
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "systems",
+      "objective": "Explain service managers and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Service managers \u2014 primary reference",
+          "url": "https://www.freedesktop.org/software/systemd/man/latest/"
+        }
+      ],
+      "tags": [
+        "systems",
+        "service-managers"
+      ],
+      "takeaway": "A running process and a healthy service are different observations.",
+      "explanation": "Managing configured service lifecycle and supervision. A running process and a healthy service are different observations. In the scenario, inspect application health and logs alongside unit status. The alternative \u2018Declare success solely from an active status\u2019 does not address the stated evidence or constraint.",
+      "id": "systems-01-interview",
+      "title": "Service managers \u00b7 interview",
+      "type": "interview",
+      "question": "Explain service lifecycle versus application readiness.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "Managing configured service lifecycle and supervision. A running process and a healthy service are different observations. A practical response is: Inspect application health and logs alongside unit status. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that starting a service proves all business operations succeed.",
+      "answerChecklist": [
+        "Managing configured service lifecycle and supervision",
+        "A running process and a healthy service are different observations",
+        "Inspect application health and logs alongside unit status",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "A service is active but its endpoint returns errors. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "systems",
+      "objective": "Explain enable versus start and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Enable versus start \u2014 primary reference",
+          "url": "https://www.freedesktop.org/software/systemd/man/latest/"
+        }
+      ],
+      "tags": [
+        "systems",
+        "enable-versus-start"
+      ],
+      "takeaway": "Enabling and starting are separate operations unless explicitly combined.",
+      "explanation": "Activation through configured unit installation relationships such as boot targets. Enabling and starting are separate operations unless explicitly combined. In the scenario, inspect enablement and the intended boot activation path. The alternative \u2018Assume a successful manual start persists boot configuration\u2019 does not address the stated evidence or constraint.",
+      "id": "systems-02-concept",
+      "title": "Enable versus start \u00b7 concept",
+      "type": "concept",
+      "question": "What does enabling a systemd service generally configure?",
+      "options": [
+        "Enable always starts the process immediately",
+        "Start always enables the service on future boots",
+        "Assume a successful manual start persists boot configuration",
+        "Activation through configured unit installation relationships such as boot targets"
+      ],
+      "correct": [
+        3
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "systems",
+      "objective": "Explain enable versus start and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Enable versus start \u2014 primary reference",
+          "url": "https://www.freedesktop.org/software/systemd/man/latest/"
+        }
+      ],
+      "tags": [
+        "systems",
+        "enable-versus-start"
+      ],
+      "takeaway": "Enabling and starting are separate operations unless explicitly combined.",
+      "explanation": "Activation through configured unit installation relationships such as boot targets. Enabling and starting are separate operations unless explicitly combined. In the scenario, inspect enablement and the intended boot activation path. The alternative \u2018Assume a successful manual start persists boot configuration\u2019 does not address the stated evidence or constraint.",
+      "id": "systems-02-scenario",
+      "title": "Enable versus start \u00b7 scenario",
+      "type": "scenario",
+      "question": "A service works now but does not return after reboot. What is the best next step?",
+      "options": [
+        "Enable always starts the process immediately",
+        "Start always enables the service on future boots",
+        "Inspect enablement and the intended boot activation path",
+        "Assume a successful manual start persists boot configuration"
+      ],
+      "correct": [
+        2
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "systems",
+      "objective": "Explain enable versus start and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Enable versus start \u2014 primary reference",
+          "url": "https://www.freedesktop.org/software/systemd/man/latest/"
+        }
+      ],
+      "tags": [
+        "systems",
+        "enable-versus-start"
+      ],
+      "takeaway": "Enabling and starting are separate operations unless explicitly combined.",
+      "explanation": "Activation through configured unit installation relationships such as boot targets. Enabling and starting are separate operations unless explicitly combined. In the scenario, inspect enablement and the intended boot activation path. The alternative \u2018Assume a successful manual start persists boot configuration\u2019 does not address the stated evidence or constraint.",
+      "id": "systems-02-principles",
+      "title": "Enable versus start \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing enable versus start, which TWO statements are sound operational principles?",
+      "options": [
+        "Start always enables the service on future boots",
+        "Activation through configured unit installation relationships such as boot targets",
+        "Enabling and starting are separate operations unless explicitly combined",
+        "Enable always starts the process immediately"
+      ],
+      "correct": [
+        1,
+        2
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "systems",
+      "objective": "Explain enable versus start and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Enable versus start \u2014 primary reference",
+          "url": "https://www.freedesktop.org/software/systemd/man/latest/"
+        }
+      ],
+      "tags": [
+        "systems",
+        "enable-versus-start"
+      ],
+      "takeaway": "Enabling and starting are separate operations unless explicitly combined.",
+      "explanation": "Activation through configured unit installation relationships such as boot targets. Enabling and starting are separate operations unless explicitly combined. In the scenario, inspect enablement and the intended boot activation path. The alternative \u2018Assume a successful manual start persists boot configuration\u2019 does not address the stated evidence or constraint.",
+      "id": "systems-02-interview",
+      "title": "Enable versus start \u00b7 interview",
+      "type": "interview",
+      "question": "Explain systemd enable start and their operational differences.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "Activation through configured unit installation relationships such as boot targets. Enabling and starting are separate operations unless explicitly combined. A practical response is: Inspect enablement and the intended boot activation path. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that enable always starts the process immediately.",
+      "answerChecklist": [
+        "Activation through configured unit installation relationships such as boot targets",
+        "Enabling and starting are separate operations unless explicitly combined",
+        "Inspect enablement and the intended boot activation path",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "A service works now but does not return after reboot. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "systems",
+      "objective": "Explain unit overrides and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Unit overrides \u2014 primary reference",
+          "url": "https://www.freedesktop.org/software/systemd/man/latest/"
+        }
+      ],
+      "tags": [
+        "systems",
+        "unit-overrides"
+      ],
+      "takeaway": "Configuration changes may require daemon reload and service action.",
+      "explanation": "Customize a unit without directly editing a vendor-supplied unit file. Configuration changes may require daemon reload and service action. In the scenario, use a managed drop-in and verify the effective unit configuration. The alternative \u2018Keep re-editing package-owned files after each upgrade\u2019 does not address the stated evidence or constraint.",
+      "id": "systems-03-concept",
+      "title": "Unit overrides \u00b7 concept",
+      "type": "concept",
+      "question": "Why use a systemd drop-in override?",
+      "options": [
+        "Editing a vendor file is the only supported customization method",
+        "Keep re-editing package-owned files after each upgrade",
+        "Customize a unit without directly editing a vendor-supplied unit file",
+        "Drop-ins are ignored whenever packages update"
+      ],
+      "correct": [
+        2
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "systems",
+      "objective": "Explain unit overrides and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Unit overrides \u2014 primary reference",
+          "url": "https://www.freedesktop.org/software/systemd/man/latest/"
+        }
+      ],
+      "tags": [
+        "systems",
+        "unit-overrides"
+      ],
+      "takeaway": "Configuration changes may require daemon reload and service action.",
+      "explanation": "Customize a unit without directly editing a vendor-supplied unit file. Configuration changes may require daemon reload and service action. In the scenario, use a managed drop-in and verify the effective unit configuration. The alternative \u2018Keep re-editing package-owned files after each upgrade\u2019 does not address the stated evidence or constraint.",
+      "id": "systems-03-scenario",
+      "title": "Unit overrides \u00b7 scenario",
+      "type": "scenario",
+      "question": "A package upgrade replaces local service tuning. What is the best next step?",
+      "options": [
+        "Editing a vendor file is the only supported customization method",
+        "Use a managed drop-in and verify the effective unit configuration",
+        "Keep re-editing package-owned files after each upgrade",
+        "Drop-ins are ignored whenever packages update"
+      ],
+      "correct": [
+        1
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "systems",
+      "objective": "Explain unit overrides and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Unit overrides \u2014 primary reference",
+          "url": "https://www.freedesktop.org/software/systemd/man/latest/"
+        }
+      ],
+      "tags": [
+        "systems",
+        "unit-overrides"
+      ],
+      "takeaway": "Configuration changes may require daemon reload and service action.",
+      "explanation": "Customize a unit without directly editing a vendor-supplied unit file. Configuration changes may require daemon reload and service action. In the scenario, use a managed drop-in and verify the effective unit configuration. The alternative \u2018Keep re-editing package-owned files after each upgrade\u2019 does not address the stated evidence or constraint.",
+      "id": "systems-03-principles",
+      "title": "Unit overrides \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing unit overrides, which TWO statements are sound operational principles?",
+      "options": [
+        "Customize a unit without directly editing a vendor-supplied unit file",
+        "Configuration changes may require daemon reload and service action",
+        "Drop-ins are ignored whenever packages update",
+        "Editing a vendor file is the only supported customization method"
+      ],
+      "correct": [
+        0,
+        1
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "systems",
+      "objective": "Explain unit overrides and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Unit overrides \u2014 primary reference",
+          "url": "https://www.freedesktop.org/software/systemd/man/latest/"
+        }
+      ],
+      "tags": [
+        "systems",
+        "unit-overrides"
+      ],
+      "takeaway": "Configuration changes may require daemon reload and service action.",
+      "explanation": "Customize a unit without directly editing a vendor-supplied unit file. Configuration changes may require daemon reload and service action. In the scenario, use a managed drop-in and verify the effective unit configuration. The alternative \u2018Keep re-editing package-owned files after each upgrade\u2019 does not address the stated evidence or constraint.",
+      "id": "systems-03-interview",
+      "title": "Unit overrides \u00b7 interview",
+      "type": "interview",
+      "question": "Explain maintainable service configuration overrides.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "Customize a unit without directly editing a vendor-supplied unit file. Configuration changes may require daemon reload and service action. A practical response is: Use a managed drop-in and verify the effective unit configuration. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that drop-ins are ignored whenever packages update.",
+      "answerChecklist": [
+        "Customize a unit without directly editing a vendor-supplied unit file",
+        "Configuration changes may require daemon reload and service action",
+        "Use a managed drop-in and verify the effective unit configuration",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "A package upgrade replaces local service tuning. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "systems",
+      "objective": "Explain journals and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Journals \u2014 primary reference",
+          "url": "https://www.freedesktop.org/software/systemd/man/latest/"
+        }
+      ],
+      "tags": [
+        "systems",
+        "journals"
+      ],
+      "takeaway": "Retention and persistence settings determine available history.",
+      "explanation": "Querying journal records with filters such as unit and time. Retention and persistence settings determine available history. In the scenario, query the relevant unit and time window. The alternative \u2018Search every unrelated log without narrowing the incident window\u2019 does not address the stated evidence or constraint.",
+      "id": "systems-04-concept",
+      "title": "Journals \u00b7 concept",
+      "type": "concept",
+      "question": "What is journalctl useful for?",
+      "options": [
+        "Search every unrelated log without narrowing the incident window",
+        "Querying journal records with filters such as unit and time",
+        "The journal always retains all logs forever",
+        "Journal entries automatically contain every application event"
+      ],
+      "correct": [
+        1
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "systems",
+      "objective": "Explain journals and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Journals \u2014 primary reference",
+          "url": "https://www.freedesktop.org/software/systemd/man/latest/"
+        }
+      ],
+      "tags": [
+        "systems",
+        "journals"
+      ],
+      "takeaway": "Retention and persistence settings determine available history.",
+      "explanation": "Querying journal records with filters such as unit and time. Retention and persistence settings determine available history. In the scenario, query the relevant unit and time window. The alternative \u2018Search every unrelated log without narrowing the incident window\u2019 does not address the stated evidence or constraint.",
+      "id": "systems-04-scenario",
+      "title": "Journals \u00b7 scenario",
+      "type": "scenario",
+      "question": "A restart failure needs investigation around a known time. What is the best next step?",
+      "options": [
+        "Query the relevant unit and time window",
+        "Search every unrelated log without narrowing the incident window",
+        "The journal always retains all logs forever",
+        "Journal entries automatically contain every application event"
+      ],
+      "correct": [
+        0
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "systems",
+      "objective": "Explain journals and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Journals \u2014 primary reference",
+          "url": "https://www.freedesktop.org/software/systemd/man/latest/"
+        }
+      ],
+      "tags": [
+        "systems",
+        "journals"
+      ],
+      "takeaway": "Retention and persistence settings determine available history.",
+      "explanation": "Querying journal records with filters such as unit and time. Retention and persistence settings determine available history. In the scenario, query the relevant unit and time window. The alternative \u2018Search every unrelated log without narrowing the incident window\u2019 does not address the stated evidence or constraint.",
+      "id": "systems-04-principles",
+      "title": "Journals \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing journals, which TWO statements are sound operational principles?",
+      "options": [
+        "Retention and persistence settings determine available history",
+        "The journal always retains all logs forever",
+        "Journal entries automatically contain every application event",
+        "Querying journal records with filters such as unit and time"
+      ],
+      "correct": [
+        0,
+        3
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "systems",
+      "objective": "Explain journals and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Journals \u2014 primary reference",
+          "url": "https://www.freedesktop.org/software/systemd/man/latest/"
+        }
+      ],
+      "tags": [
+        "systems",
+        "journals"
+      ],
+      "takeaway": "Retention and persistence settings determine available history.",
+      "explanation": "Querying journal records with filters such as unit and time. Retention and persistence settings determine available history. In the scenario, query the relevant unit and time window. The alternative \u2018Search every unrelated log without narrowing the incident window\u2019 does not address the stated evidence or constraint.",
+      "id": "systems-04-interview",
+      "title": "Journals \u00b7 interview",
+      "type": "interview",
+      "question": "Explain focused journal-based service troubleshooting.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "Querying journal records with filters such as unit and time. Retention and persistence settings determine available history. A practical response is: Query the relevant unit and time window. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that the journal always retains all logs forever.",
+      "answerChecklist": [
+        "Querying journal records with filters such as unit and time",
+        "Retention and persistence settings determine available history",
+        "Query the relevant unit and time window",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "A restart failure needs investigation around a known time. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "systems",
+      "objective": "Explain accounts and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Accounts \u2014 primary reference",
+          "url": "https://man7.org/linux/man-pages/man7/credentials.7.html"
+        }
+      ],
+      "tags": [
+        "systems",
+        "accounts"
+      ],
+      "takeaway": "Account separation must be paired with appropriate permissions.",
+      "explanation": "Limit access and attribute activity to distinct workloads. Account separation must be paired with appropriate permissions. In the scenario, separate identities and narrow file and service access. The alternative \u2018Rely on naming conventions without changing permissions\u2019 does not address the stated evidence or constraint.",
+      "id": "systems-05-concept",
+      "title": "Accounts \u00b7 concept",
+      "type": "concept",
+      "question": "Why use separate service accounts?",
+      "options": [
+        "Limit access and attribute activity to distinct workloads",
+        "Separate usernames automatically isolate all files and networks",
+        "Every service should share one administrator account",
+        "Rely on naming conventions without changing permissions"
+      ],
+      "correct": [
+        0
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "systems",
+      "objective": "Explain accounts and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Accounts \u2014 primary reference",
+          "url": "https://man7.org/linux/man-pages/man7/credentials.7.html"
+        }
+      ],
+      "tags": [
+        "systems",
+        "accounts"
+      ],
+      "takeaway": "Account separation must be paired with appropriate permissions.",
+      "explanation": "Limit access and attribute activity to distinct workloads. Account separation must be paired with appropriate permissions. In the scenario, separate identities and narrow file and service access. The alternative \u2018Rely on naming conventions without changing permissions\u2019 does not address the stated evidence or constraint.",
+      "id": "systems-05-scenario",
+      "title": "Accounts \u00b7 scenario",
+      "type": "scenario",
+      "question": "One service account can read unrelated applications' secrets. What is the best next step?",
+      "options": [
+        "Rely on naming conventions without changing permissions",
+        "Separate usernames automatically isolate all files and networks",
+        "Every service should share one administrator account",
+        "Separate identities and narrow file and service access"
+      ],
+      "correct": [
+        3
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "systems",
+      "objective": "Explain accounts and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Accounts \u2014 primary reference",
+          "url": "https://man7.org/linux/man-pages/man7/credentials.7.html"
+        }
+      ],
+      "tags": [
+        "systems",
+        "accounts"
+      ],
+      "takeaway": "Account separation must be paired with appropriate permissions.",
+      "explanation": "Limit access and attribute activity to distinct workloads. Account separation must be paired with appropriate permissions. In the scenario, separate identities and narrow file and service access. The alternative \u2018Rely on naming conventions without changing permissions\u2019 does not address the stated evidence or constraint.",
+      "id": "systems-05-principles",
+      "title": "Accounts \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing accounts, which TWO statements are sound operational principles?",
+      "options": [
+        "Separate usernames automatically isolate all files and networks",
+        "Every service should share one administrator account",
+        "Limit access and attribute activity to distinct workloads",
+        "Account separation must be paired with appropriate permissions"
+      ],
+      "correct": [
+        2,
+        3
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "systems",
+      "objective": "Explain accounts and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Accounts \u2014 primary reference",
+          "url": "https://man7.org/linux/man-pages/man7/credentials.7.html"
+        }
+      ],
+      "tags": [
+        "systems",
+        "accounts"
+      ],
+      "takeaway": "Account separation must be paired with appropriate permissions.",
+      "explanation": "Limit access and attribute activity to distinct workloads. Account separation must be paired with appropriate permissions. In the scenario, separate identities and narrow file and service access. The alternative \u2018Rely on naming conventions without changing permissions\u2019 does not address the stated evidence or constraint.",
+      "id": "systems-05-interview",
+      "title": "Accounts \u00b7 interview",
+      "type": "interview",
+      "question": "Explain service identity isolation on a shared host.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "Limit access and attribute activity to distinct workloads. Account separation must be paired with appropriate permissions. A practical response is: Separate identities and narrow file and service access. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that separate usernames automatically isolate all files and networks.",
+      "answerChecklist": [
+        "Limit access and attribute activity to distinct workloads",
+        "Account separation must be paired with appropriate permissions",
+        "Separate identities and narrow file and service access",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "One service account can read unrelated applications' secrets. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "systems",
+      "objective": "Explain ssh keys and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "SSH keys \u2014 primary reference",
+          "url": "https://www.openssh.com/manual.html"
+        }
+      ],
+      "tags": [
+        "systems",
+        "ssh-keys"
+      ],
+      "takeaway": "Key removal and rotation require reviewing authorized locations.",
+      "explanation": "Possession can enable authentication wherever the key is trusted. Key removal and rotation require reviewing authorized locations. In the scenario, revoke or rotate the key and review affected access. The alternative \u2018Delete only the visible log line and keep using the key\u2019 does not address the stated evidence or constraint.",
+      "id": "systems-06-concept",
+      "title": "SSH keys \u00b7 concept",
+      "type": "concept",
+      "question": "Why protect private SSH keys?",
+      "options": [
+        "A private key is safe to publish if the username is hidden",
+        "A public key must remain secret like a password",
+        "Delete only the visible log line and keep using the key",
+        "Possession can enable authentication wherever the key is trusted"
+      ],
+      "correct": [
+        3
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "systems",
+      "objective": "Explain ssh keys and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "SSH keys \u2014 primary reference",
+          "url": "https://www.openssh.com/manual.html"
+        }
+      ],
+      "tags": [
+        "systems",
+        "ssh-keys"
+      ],
+      "takeaway": "Key removal and rotation require reviewing authorized locations.",
+      "explanation": "Possession can enable authentication wherever the key is trusted. Key removal and rotation require reviewing authorized locations. In the scenario, revoke or rotate the key and review affected access. The alternative \u2018Delete only the visible log line and keep using the key\u2019 does not address the stated evidence or constraint.",
+      "id": "systems-06-scenario",
+      "title": "SSH keys \u00b7 scenario",
+      "type": "scenario",
+      "question": "A private deployment key appears in a shared log. What is the best next step?",
+      "options": [
+        "A private key is safe to publish if the username is hidden",
+        "A public key must remain secret like a password",
+        "Revoke or rotate the key and review affected access",
+        "Delete only the visible log line and keep using the key"
+      ],
+      "correct": [
+        2
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "systems",
+      "objective": "Explain ssh keys and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "SSH keys \u2014 primary reference",
+          "url": "https://www.openssh.com/manual.html"
+        }
+      ],
+      "tags": [
+        "systems",
+        "ssh-keys"
+      ],
+      "takeaway": "Key removal and rotation require reviewing authorized locations.",
+      "explanation": "Possession can enable authentication wherever the key is trusted. Key removal and rotation require reviewing authorized locations. In the scenario, revoke or rotate the key and review affected access. The alternative \u2018Delete only the visible log line and keep using the key\u2019 does not address the stated evidence or constraint.",
+      "id": "systems-06-principles",
+      "title": "SSH keys \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing ssh keys, which TWO statements are sound operational principles?",
+      "options": [
+        "A public key must remain secret like a password",
+        "Possession can enable authentication wherever the key is trusted",
+        "Key removal and rotation require reviewing authorized locations",
+        "A private key is safe to publish if the username is hidden"
+      ],
+      "correct": [
+        1,
+        2
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "systems",
+      "objective": "Explain ssh keys and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "SSH keys \u2014 primary reference",
+          "url": "https://www.openssh.com/manual.html"
+        }
+      ],
+      "tags": [
+        "systems",
+        "ssh-keys"
+      ],
+      "takeaway": "Key removal and rotation require reviewing authorized locations.",
+      "explanation": "Possession can enable authentication wherever the key is trusted. Key removal and rotation require reviewing authorized locations. In the scenario, revoke or rotate the key and review affected access. The alternative \u2018Delete only the visible log line and keep using the key\u2019 does not address the stated evidence or constraint.",
+      "id": "systems-06-interview",
+      "title": "SSH keys \u00b7 interview",
+      "type": "interview",
+      "question": "Explain response to an exposed SSH private key.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "Possession can enable authentication wherever the key is trusted. Key removal and rotation require reviewing authorized locations. A practical response is: Revoke or rotate the key and review affected access. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that a private key is safe to publish if the username is hidden.",
+      "answerChecklist": [
+        "Possession can enable authentication wherever the key is trusted",
+        "Key removal and rotation require reviewing authorized locations",
+        "Revoke or rotate the key and review affected access",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "A private deployment key appears in a shared log. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "systems",
+      "objective": "Explain package management and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Package management \u2014 primary reference",
+          "url": "https://www.debian.org/doc/manuals/debian-reference/ch02.en.html"
+        }
+      ],
+      "tags": [
+        "systems",
+        "package-management"
+      ],
+      "takeaway": "Third-party sources still require trust and version review.",
+      "explanation": "It tracks package ownership dependencies and updates. Third-party sources still require trust and version review. In the scenario, inventory the installation and establish a supported update path. The alternative \u2018Assume untracked software receives normal package security updates\u2019 does not address the stated evidence or constraint.",
+      "id": "systems-07-concept",
+      "title": "Package management \u00b7 concept",
+      "type": "concept",
+      "question": "Why prefer the distribution package manager for system packages?",
+      "options": [
+        "Copying random binaries always improves reproducibility",
+        "Assume untracked software receives normal package security updates",
+        "It tracks package ownership dependencies and updates",
+        "A package manager proves every package is vulnerability-free"
+      ],
+      "correct": [
+        2
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "systems",
+      "objective": "Explain package management and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Package management \u2014 primary reference",
+          "url": "https://www.debian.org/doc/manuals/debian-reference/ch02.en.html"
+        }
+      ],
+      "tags": [
+        "systems",
+        "package-management"
+      ],
+      "takeaway": "Third-party sources still require trust and version review.",
+      "explanation": "It tracks package ownership dependencies and updates. Third-party sources still require trust and version review. In the scenario, inventory the installation and establish a supported update path. The alternative \u2018Assume untracked software receives normal package security updates\u2019 does not address the stated evidence or constraint.",
+      "id": "systems-07-scenario",
+      "title": "Package management \u00b7 scenario",
+      "type": "scenario",
+      "question": "A critical library was installed manually outside package tracking. What is the best next step?",
+      "options": [
+        "Copying random binaries always improves reproducibility",
+        "Inventory the installation and establish a supported update path",
+        "Assume untracked software receives normal package security updates",
+        "A package manager proves every package is vulnerability-free"
+      ],
+      "correct": [
+        1
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "systems",
+      "objective": "Explain package management and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Package management \u2014 primary reference",
+          "url": "https://www.debian.org/doc/manuals/debian-reference/ch02.en.html"
+        }
+      ],
+      "tags": [
+        "systems",
+        "package-management"
+      ],
+      "takeaway": "Third-party sources still require trust and version review.",
+      "explanation": "It tracks package ownership dependencies and updates. Third-party sources still require trust and version review. In the scenario, inventory the installation and establish a supported update path. The alternative \u2018Assume untracked software receives normal package security updates\u2019 does not address the stated evidence or constraint.",
+      "id": "systems-07-principles",
+      "title": "Package management \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing package management, which TWO statements are sound operational principles?",
+      "options": [
+        "It tracks package ownership dependencies and updates",
+        "Third-party sources still require trust and version review",
+        "A package manager proves every package is vulnerability-free",
+        "Copying random binaries always improves reproducibility"
+      ],
+      "correct": [
+        0,
+        1
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "systems",
+      "objective": "Explain package management and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Package management \u2014 primary reference",
+          "url": "https://www.debian.org/doc/manuals/debian-reference/ch02.en.html"
+        }
+      ],
+      "tags": [
+        "systems",
+        "package-management"
+      ],
+      "takeaway": "Third-party sources still require trust and version review.",
+      "explanation": "It tracks package ownership dependencies and updates. Third-party sources still require trust and version review. In the scenario, inventory the installation and establish a supported update path. The alternative \u2018Assume untracked software receives normal package security updates\u2019 does not address the stated evidence or constraint.",
+      "id": "systems-07-interview",
+      "title": "Package management \u00b7 interview",
+      "type": "interview",
+      "question": "Explain maintaining an auditable system software inventory.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "It tracks package ownership dependencies and updates. Third-party sources still require trust and version review. A practical response is: Inventory the installation and establish a supported update path. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that a package manager proves every package is vulnerability-free.",
+      "answerChecklist": [
+        "It tracks package ownership dependencies and updates",
+        "Third-party sources still require trust and version review",
+        "Inventory the installation and establish a supported update path",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "A critical library was installed manually outside package tracking. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "systems",
+      "objective": "Explain scheduled jobs and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Scheduled jobs \u2014 primary reference",
+          "url": "https://man7.org/linux/man-pages/man5/crontab.5.html"
+        }
+      ],
+      "tags": [
+        "systems",
+        "scheduled-jobs"
+      ],
+      "takeaway": "Use explicit paths and controlled output handling.",
+      "explanation": "They may run with different PATH working directory and credentials. Use explicit paths and controlled output handling. In the scenario, compare identity environment paths and working directory. The alternative \u2018Add arbitrary delays without inspecting the execution context\u2019 does not address the stated evidence or constraint.",
+      "id": "systems-08-concept",
+      "title": "Scheduled jobs \u00b7 concept",
+      "type": "concept",
+      "question": "Why define explicit environments for scheduled jobs?",
+      "options": [
+        "Add arbitrary delays without inspecting the execution context",
+        "They may run with different PATH working directory and credentials",
+        "Cron always inherits an interactive shell's full environment",
+        "Scheduled jobs always run as the currently logged-in user"
+      ],
+      "correct": [
+        1
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "systems",
+      "objective": "Explain scheduled jobs and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Scheduled jobs \u2014 primary reference",
+          "url": "https://man7.org/linux/man-pages/man5/crontab.5.html"
+        }
+      ],
+      "tags": [
+        "systems",
+        "scheduled-jobs"
+      ],
+      "takeaway": "Use explicit paths and controlled output handling.",
+      "explanation": "They may run with different PATH working directory and credentials. Use explicit paths and controlled output handling. In the scenario, compare identity environment paths and working directory. The alternative \u2018Add arbitrary delays without inspecting the execution context\u2019 does not address the stated evidence or constraint.",
+      "id": "systems-08-scenario",
+      "title": "Scheduled jobs \u00b7 scenario",
+      "type": "scenario",
+      "question": "A script works interactively but fails under the scheduler. What is the best next step?",
+      "options": [
+        "Compare identity environment paths and working directory",
+        "Add arbitrary delays without inspecting the execution context",
+        "Cron always inherits an interactive shell's full environment",
+        "Scheduled jobs always run as the currently logged-in user"
+      ],
+      "correct": [
+        0
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "systems",
+      "objective": "Explain scheduled jobs and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Scheduled jobs \u2014 primary reference",
+          "url": "https://man7.org/linux/man-pages/man5/crontab.5.html"
+        }
+      ],
+      "tags": [
+        "systems",
+        "scheduled-jobs"
+      ],
+      "takeaway": "Use explicit paths and controlled output handling.",
+      "explanation": "They may run with different PATH working directory and credentials. Use explicit paths and controlled output handling. In the scenario, compare identity environment paths and working directory. The alternative \u2018Add arbitrary delays without inspecting the execution context\u2019 does not address the stated evidence or constraint.",
+      "id": "systems-08-principles",
+      "title": "Scheduled jobs \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing scheduled jobs, which TWO statements are sound operational principles?",
+      "options": [
+        "Use explicit paths and controlled output handling",
+        "Cron always inherits an interactive shell's full environment",
+        "Scheduled jobs always run as the currently logged-in user",
+        "They may run with different PATH working directory and credentials"
+      ],
+      "correct": [
+        0,
+        3
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "systems",
+      "objective": "Explain scheduled jobs and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Scheduled jobs \u2014 primary reference",
+          "url": "https://man7.org/linux/man-pages/man5/crontab.5.html"
+        }
+      ],
+      "tags": [
+        "systems",
+        "scheduled-jobs"
+      ],
+      "takeaway": "Use explicit paths and controlled output handling.",
+      "explanation": "They may run with different PATH working directory and credentials. Use explicit paths and controlled output handling. In the scenario, compare identity environment paths and working directory. The alternative \u2018Add arbitrary delays without inspecting the execution context\u2019 does not address the stated evidence or constraint.",
+      "id": "systems-08-interview",
+      "title": "Scheduled jobs \u00b7 interview",
+      "type": "interview",
+      "question": "Explain reliable scheduled-job design.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "They may run with different PATH working directory and credentials. Use explicit paths and controlled output handling. A practical response is: Compare identity environment paths and working directory. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that cron always inherits an interactive shell's full environment.",
+      "answerChecklist": [
+        "They may run with different PATH working directory and credentials",
+        "Use explicit paths and controlled output handling",
+        "Compare identity environment paths and working directory",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "A script works interactively but fails under the scheduler. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "systems",
+      "objective": "Explain time synchronization and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Time synchronization \u2014 primary reference",
+          "url": "https://www.freedesktop.org/software/systemd/man/latest/"
+        }
+      ],
+      "tags": [
+        "systems",
+        "time-synchronization"
+      ],
+      "takeaway": "Elapsed-time measurement may need monotonic clocks separately.",
+      "explanation": "Authentication log correlation and distributed behavior can depend on it. Elapsed-time measurement may need monotonic clocks separately. In the scenario, inspect synchronization state and correct the time source safely. The alternative \u2018Disable time synchronization permanently\u2019 does not address the stated evidence or constraint.",
+      "id": "systems-09-concept",
+      "title": "Time synchronization \u00b7 concept",
+      "type": "concept",
+      "question": "Why does consistent system time matter operationally?",
+      "options": [
+        "Authentication log correlation and distributed behavior can depend on it",
+        "Clock synchronization makes all machines perfectly simultaneous forever",
+        "Wall-clock timestamps alone establish exact distributed event order",
+        "Disable time synchronization permanently"
+      ],
+      "correct": [
+        0
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "systems",
+      "objective": "Explain time synchronization and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Time synchronization \u2014 primary reference",
+          "url": "https://www.freedesktop.org/software/systemd/man/latest/"
+        }
+      ],
+      "tags": [
+        "systems",
+        "time-synchronization"
+      ],
+      "takeaway": "Elapsed-time measurement may need monotonic clocks separately.",
+      "explanation": "Authentication log correlation and distributed behavior can depend on it. Elapsed-time measurement may need monotonic clocks separately. In the scenario, inspect synchronization state and correct the time source safely. The alternative \u2018Disable time synchronization permanently\u2019 does not address the stated evidence or constraint.",
+      "id": "systems-09-scenario",
+      "title": "Time synchronization \u00b7 scenario",
+      "type": "scenario",
+      "question": "Authentication failures coincide with clock drift. What is the best next step?",
+      "options": [
+        "Disable time synchronization permanently",
+        "Clock synchronization makes all machines perfectly simultaneous forever",
+        "Wall-clock timestamps alone establish exact distributed event order",
+        "Inspect synchronization state and correct the time source safely"
+      ],
+      "correct": [
+        3
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "systems",
+      "objective": "Explain time synchronization and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Time synchronization \u2014 primary reference",
+          "url": "https://www.freedesktop.org/software/systemd/man/latest/"
+        }
+      ],
+      "tags": [
+        "systems",
+        "time-synchronization"
+      ],
+      "takeaway": "Elapsed-time measurement may need monotonic clocks separately.",
+      "explanation": "Authentication log correlation and distributed behavior can depend on it. Elapsed-time measurement may need monotonic clocks separately. In the scenario, inspect synchronization state and correct the time source safely. The alternative \u2018Disable time synchronization permanently\u2019 does not address the stated evidence or constraint.",
+      "id": "systems-09-principles",
+      "title": "Time synchronization \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing time synchronization, which TWO statements are sound operational principles?",
+      "options": [
+        "Clock synchronization makes all machines perfectly simultaneous forever",
+        "Wall-clock timestamps alone establish exact distributed event order",
+        "Authentication log correlation and distributed behavior can depend on it",
+        "Elapsed-time measurement may need monotonic clocks separately"
+      ],
+      "correct": [
+        2,
+        3
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "systems",
+      "objective": "Explain time synchronization and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Time synchronization \u2014 primary reference",
+          "url": "https://www.freedesktop.org/software/systemd/man/latest/"
+        }
+      ],
+      "tags": [
+        "systems",
+        "time-synchronization"
+      ],
+      "takeaway": "Elapsed-time measurement may need monotonic clocks separately.",
+      "explanation": "Authentication log correlation and distributed behavior can depend on it. Elapsed-time measurement may need monotonic clocks separately. In the scenario, inspect synchronization state and correct the time source safely. The alternative \u2018Disable time synchronization permanently\u2019 does not address the stated evidence or constraint.",
+      "id": "systems-09-interview",
+      "title": "Time synchronization \u00b7 interview",
+      "type": "interview",
+      "question": "Explain clock drift detection and its operational impact.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "Authentication log correlation and distributed behavior can depend on it. Elapsed-time measurement may need monotonic clocks separately. A practical response is: Inspect synchronization state and correct the time source safely. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that clock synchronization makes all machines perfectly simultaneous forever.",
+      "answerChecklist": [
+        "Authentication log correlation and distributed behavior can depend on it",
+        "Elapsed-time measurement may need monotonic clocks separately",
+        "Inspect synchronization state and correct the time source safely",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "Authentication failures coincide with clock drift. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "systems",
+      "objective": "Explain disk layout and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Disk layout \u2014 primary reference",
+          "url": "https://man7.org/linux/man-pages/man8/mount.8.html"
+        }
+      ],
+      "tags": [
+        "systems",
+        "disk-layout"
+      ],
+      "takeaway": "Capacity limits and monitoring still matter after separation.",
+      "explanation": "Reduce the chance one workload exhausts space needed for core operation. Capacity limits and monitoring still matter after separation. In the scenario, bound log growth and evaluate storage isolation. The alternative \u2018Keep increasing log verbosity on the full filesystem\u2019 does not address the stated evidence or constraint.",
+      "id": "systems-10-concept",
+      "title": "Disk layout \u00b7 concept",
+      "type": "concept",
+      "question": "Why separate growth-prone data from critical system paths?",
+      "options": [
+        "Separate directories alone always mean separate capacity",
+        "A separate partition can never fill up",
+        "Keep increasing log verbosity on the full filesystem",
+        "Reduce the chance one workload exhausts space needed for core operation"
+      ],
+      "correct": [
+        3
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "systems",
+      "objective": "Explain disk layout and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Disk layout \u2014 primary reference",
+          "url": "https://man7.org/linux/man-pages/man8/mount.8.html"
+        }
+      ],
+      "tags": [
+        "systems",
+        "disk-layout"
+      ],
+      "takeaway": "Capacity limits and monitoring still matter after separation.",
+      "explanation": "Reduce the chance one workload exhausts space needed for core operation. Capacity limits and monitoring still matter after separation. In the scenario, bound log growth and evaluate storage isolation. The alternative \u2018Keep increasing log verbosity on the full filesystem\u2019 does not address the stated evidence or constraint.",
+      "id": "systems-10-scenario",
+      "title": "Disk layout \u00b7 scenario",
+      "type": "scenario",
+      "question": "Application logs fill the root filesystem and disrupt system services. What is the best next step?",
+      "options": [
+        "Separate directories alone always mean separate capacity",
+        "A separate partition can never fill up",
+        "Bound log growth and evaluate storage isolation",
+        "Keep increasing log verbosity on the full filesystem"
+      ],
+      "correct": [
+        2
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "systems",
+      "objective": "Explain disk layout and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Disk layout \u2014 primary reference",
+          "url": "https://man7.org/linux/man-pages/man8/mount.8.html"
+        }
+      ],
+      "tags": [
+        "systems",
+        "disk-layout"
+      ],
+      "takeaway": "Capacity limits and monitoring still matter after separation.",
+      "explanation": "Reduce the chance one workload exhausts space needed for core operation. Capacity limits and monitoring still matter after separation. In the scenario, bound log growth and evaluate storage isolation. The alternative \u2018Keep increasing log verbosity on the full filesystem\u2019 does not address the stated evidence or constraint.",
+      "id": "systems-10-principles",
+      "title": "Disk layout \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing disk layout, which TWO statements are sound operational principles?",
+      "options": [
+        "A separate partition can never fill up",
+        "Reduce the chance one workload exhausts space needed for core operation",
+        "Capacity limits and monitoring still matter after separation",
+        "Separate directories alone always mean separate capacity"
+      ],
+      "correct": [
+        1,
+        2
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "systems",
+      "objective": "Explain disk layout and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Disk layout \u2014 primary reference",
+          "url": "https://man7.org/linux/man-pages/man8/mount.8.html"
+        }
+      ],
+      "tags": [
+        "systems",
+        "disk-layout"
+      ],
+      "takeaway": "Capacity limits and monitoring still matter after separation.",
+      "explanation": "Reduce the chance one workload exhausts space needed for core operation. Capacity limits and monitoring still matter after separation. In the scenario, bound log growth and evaluate storage isolation. The alternative \u2018Keep increasing log verbosity on the full filesystem\u2019 does not address the stated evidence or constraint.",
+      "id": "systems-10-interview",
+      "title": "Disk layout \u00b7 interview",
+      "type": "interview",
+      "question": "Explain disk layout and capacity protection for production hosts.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "Reduce the chance one workload exhausts space needed for core operation. Capacity limits and monitoring still matter after separation. A practical response is: Bound log growth and evaluate storage isolation. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that separate directories alone always mean separate capacity.",
+      "answerChecklist": [
+        "Reduce the chance one workload exhausts space needed for core operation",
+        "Capacity limits and monitoring still matter after separation",
+        "Bound log growth and evaluate storage isolation",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "Application logs fill the root filesystem and disrupt system services. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "systems",
+      "objective": "Explain log rotation and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Log rotation \u2014 primary reference",
+          "url": "https://man7.org/linux/man-pages/man8/logrotate.8.html"
+        }
+      ],
+      "tags": [
+        "systems",
+        "log-rotation"
+      ],
+      "takeaway": "A process may keep writing to a renamed or deleted open file.",
+      "explanation": "A retention policy and appropriate application file-handle behavior. A process may keep writing to a renamed or deleted open file. In the scenario, inspect open handles and use the application's supported reopen mechanism. The alternative \u2018Delete more active files without checking their owners\u2019 does not address the stated evidence or constraint.",
+      "id": "systems-11-concept",
+      "title": "Log rotation \u00b7 concept",
+      "type": "concept",
+      "question": "What should log rotation include beyond renaming files?",
+      "options": [
+        "Rotation automatically archives logs to independent backup storage",
+        "Delete more active files without checking their owners",
+        "A retention policy and appropriate application file-handle behavior",
+        "Renaming a log guarantees the process reopens a new file"
+      ],
+      "correct": [
+        2
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "systems",
+      "objective": "Explain log rotation and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Log rotation \u2014 primary reference",
+          "url": "https://man7.org/linux/man-pages/man8/logrotate.8.html"
+        }
+      ],
+      "tags": [
+        "systems",
+        "log-rotation"
+      ],
+      "takeaway": "A process may keep writing to a renamed or deleted open file.",
+      "explanation": "A retention policy and appropriate application file-handle behavior. A process may keep writing to a renamed or deleted open file. In the scenario, inspect open handles and use the application's supported reopen mechanism. The alternative \u2018Delete more active files without checking their owners\u2019 does not address the stated evidence or constraint.",
+      "id": "systems-11-scenario",
+      "title": "Log rotation \u00b7 scenario",
+      "type": "scenario",
+      "question": "Disk usage remains high after a log file was deleted. What is the best next step?",
+      "options": [
+        "Rotation automatically archives logs to independent backup storage",
+        "Inspect open handles and use the application's supported reopen mechanism",
+        "Delete more active files without checking their owners",
+        "Renaming a log guarantees the process reopens a new file"
+      ],
+      "correct": [
+        1
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "systems",
+      "objective": "Explain log rotation and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Log rotation \u2014 primary reference",
+          "url": "https://man7.org/linux/man-pages/man8/logrotate.8.html"
+        }
+      ],
+      "tags": [
+        "systems",
+        "log-rotation"
+      ],
+      "takeaway": "A process may keep writing to a renamed or deleted open file.",
+      "explanation": "A retention policy and appropriate application file-handle behavior. A process may keep writing to a renamed or deleted open file. In the scenario, inspect open handles and use the application's supported reopen mechanism. The alternative \u2018Delete more active files without checking their owners\u2019 does not address the stated evidence or constraint.",
+      "id": "systems-11-principles",
+      "title": "Log rotation \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing log rotation, which TWO statements are sound operational principles?",
+      "options": [
+        "A retention policy and appropriate application file-handle behavior",
+        "A process may keep writing to a renamed or deleted open file",
+        "Renaming a log guarantees the process reopens a new file",
+        "Rotation automatically archives logs to independent backup storage"
+      ],
+      "correct": [
+        0,
+        1
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "systems",
+      "objective": "Explain log rotation and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Log rotation \u2014 primary reference",
+          "url": "https://man7.org/linux/man-pages/man8/logrotate.8.html"
+        }
+      ],
+      "tags": [
+        "systems",
+        "log-rotation"
+      ],
+      "takeaway": "A process may keep writing to a renamed or deleted open file.",
+      "explanation": "A retention policy and appropriate application file-handle behavior. A process may keep writing to a renamed or deleted open file. In the scenario, inspect open handles and use the application's supported reopen mechanism. The alternative \u2018Delete more active files without checking their owners\u2019 does not address the stated evidence or constraint.",
+      "id": "systems-11-interview",
+      "title": "Log rotation \u00b7 interview",
+      "type": "interview",
+      "question": "Explain safe log rotation and open-file behavior.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "A retention policy and appropriate application file-handle behavior. A process may keep writing to a renamed or deleted open file. A practical response is: Inspect open handles and use the application's supported reopen mechanism. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that renaming a log guarantees the process reopens a new file.",
+      "answerChecklist": [
+        "A retention policy and appropriate application file-handle behavior",
+        "A process may keep writing to a renamed or deleted open file",
+        "Inspect open handles and use the application's supported reopen mechanism",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "Disk usage remains high after a log file was deleted. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "systems",
+      "objective": "Explain backups and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Backups \u2014 primary reference",
+          "url": "https://sre.google/sre-book/data-integrity/"
+        }
+      ],
+      "tags": [
+        "systems",
+        "backups"
+      ],
+      "takeaway": "Replication can propagate accidental deletion or corruption.",
+      "explanation": "Recoverable retained data protected from relevant failure modes. Replication can propagate accidental deletion or corruption. In the scenario, restore from a verified retained recovery point. The alternative \u2018Assume the live replica necessarily contains the pre-deletion state\u2019 does not address the stated evidence or constraint.",
+      "id": "systems-12-concept",
+      "title": "Backups \u00b7 concept",
+      "type": "concept",
+      "question": "What distinguishes a backup from a second live copy?",
+      "options": [
+        "Assume the live replica necessarily contains the pre-deletion state",
+        "Recoverable retained data protected from relevant failure modes",
+        "Replication always replaces historical backups",
+        "A backup is useful even if it cannot be restored"
+      ],
+      "correct": [
+        1
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "systems",
+      "objective": "Explain backups and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Backups \u2014 primary reference",
+          "url": "https://sre.google/sre-book/data-integrity/"
+        }
+      ],
+      "tags": [
+        "systems",
+        "backups"
+      ],
+      "takeaway": "Replication can propagate accidental deletion or corruption.",
+      "explanation": "Recoverable retained data protected from relevant failure modes. Replication can propagate accidental deletion or corruption. In the scenario, restore from a verified retained recovery point. The alternative \u2018Assume the live replica necessarily contains the pre-deletion state\u2019 does not address the stated evidence or constraint.",
+      "id": "systems-12-scenario",
+      "title": "Backups \u00b7 scenario",
+      "type": "scenario",
+      "question": "An operator deletes data and replication mirrors the deletion. What is the best next step?",
+      "options": [
+        "Restore from a verified retained recovery point",
+        "Assume the live replica necessarily contains the pre-deletion state",
+        "Replication always replaces historical backups",
+        "A backup is useful even if it cannot be restored"
+      ],
+      "correct": [
+        0
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "systems",
+      "objective": "Explain backups and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Backups \u2014 primary reference",
+          "url": "https://sre.google/sre-book/data-integrity/"
+        }
+      ],
+      "tags": [
+        "systems",
+        "backups"
+      ],
+      "takeaway": "Replication can propagate accidental deletion or corruption.",
+      "explanation": "Recoverable retained data protected from relevant failure modes. Replication can propagate accidental deletion or corruption. In the scenario, restore from a verified retained recovery point. The alternative \u2018Assume the live replica necessarily contains the pre-deletion state\u2019 does not address the stated evidence or constraint.",
+      "id": "systems-12-principles",
+      "title": "Backups \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing backups, which TWO statements are sound operational principles?",
+      "options": [
+        "Replication can propagate accidental deletion or corruption",
+        "Replication always replaces historical backups",
+        "A backup is useful even if it cannot be restored",
+        "Recoverable retained data protected from relevant failure modes"
+      ],
+      "correct": [
+        0,
+        3
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "systems",
+      "objective": "Explain backups and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Backups \u2014 primary reference",
+          "url": "https://sre.google/sre-book/data-integrity/"
+        }
+      ],
+      "tags": [
+        "systems",
+        "backups"
+      ],
+      "takeaway": "Replication can propagate accidental deletion or corruption.",
+      "explanation": "Recoverable retained data protected from relevant failure modes. Replication can propagate accidental deletion or corruption. In the scenario, restore from a verified retained recovery point. The alternative \u2018Assume the live replica necessarily contains the pre-deletion state\u2019 does not address the stated evidence or constraint.",
+      "id": "systems-12-interview",
+      "title": "Backups \u00b7 interview",
+      "type": "interview",
+      "question": "Explain backups versus replication.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "Recoverable retained data protected from relevant failure modes. Replication can propagate accidental deletion or corruption. A practical response is: Restore from a verified retained recovery point. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that replication always replaces historical backups.",
+      "answerChecklist": [
+        "Recoverable retained data protected from relevant failure modes",
+        "Replication can propagate accidental deletion or corruption",
+        "Restore from a verified retained recovery point",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "An operator deletes data and replication mirrors the deletion. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "systems",
+      "objective": "Explain restore verification and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Restore verification \u2014 primary reference",
+          "url": "https://sre.google/sre-book/data-integrity/"
+        }
+      ],
+      "tags": [
+        "systems",
+        "restore-verification"
+      ],
+      "takeaway": "Recovery time and required credentials belong in the test.",
+      "explanation": "Data integrity and usable application behavior after recovery. Recovery time and required credentials belong in the test. In the scenario, validate business-relevant data and recovery-point expectations. The alternative \u2018Declare success solely because the database process runs\u2019 does not address the stated evidence or constraint.",
+      "id": "systems-13-concept",
+      "title": "Restore verification \u00b7 concept",
+      "type": "concept",
+      "question": "What should a restore test verify?",
+      "options": [
+        "Data integrity and usable application behavior after recovery",
+        "A completed file copy proves the application can recover",
+        "A restore test never needs application-level checks",
+        "Declare success solely because the database process runs"
+      ],
+      "correct": [
+        0
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "systems",
+      "objective": "Explain restore verification and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Restore verification \u2014 primary reference",
+          "url": "https://sre.google/sre-book/data-integrity/"
+        }
+      ],
+      "tags": [
+        "systems",
+        "restore-verification"
+      ],
+      "takeaway": "Recovery time and required credentials belong in the test.",
+      "explanation": "Data integrity and usable application behavior after recovery. Recovery time and required credentials belong in the test. In the scenario, validate business-relevant data and recovery-point expectations. The alternative \u2018Declare success solely because the database process runs\u2019 does not address the stated evidence or constraint.",
+      "id": "systems-13-scenario",
+      "title": "Restore verification \u00b7 scenario",
+      "type": "scenario",
+      "question": "A restored database starts but required records are missing. What is the best next step?",
+      "options": [
+        "Declare success solely because the database process runs",
+        "A completed file copy proves the application can recover",
+        "A restore test never needs application-level checks",
+        "Validate business-relevant data and recovery-point expectations"
+      ],
+      "correct": [
+        3
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "systems",
+      "objective": "Explain restore verification and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Restore verification \u2014 primary reference",
+          "url": "https://sre.google/sre-book/data-integrity/"
+        }
+      ],
+      "tags": [
+        "systems",
+        "restore-verification"
+      ],
+      "takeaway": "Recovery time and required credentials belong in the test.",
+      "explanation": "Data integrity and usable application behavior after recovery. Recovery time and required credentials belong in the test. In the scenario, validate business-relevant data and recovery-point expectations. The alternative \u2018Declare success solely because the database process runs\u2019 does not address the stated evidence or constraint.",
+      "id": "systems-13-principles",
+      "title": "Restore verification \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing restore verification, which TWO statements are sound operational principles?",
+      "options": [
+        "A completed file copy proves the application can recover",
+        "A restore test never needs application-level checks",
+        "Data integrity and usable application behavior after recovery",
+        "Recovery time and required credentials belong in the test"
+      ],
+      "correct": [
+        2,
+        3
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "systems",
+      "objective": "Explain restore verification and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Restore verification \u2014 primary reference",
+          "url": "https://sre.google/sre-book/data-integrity/"
+        }
+      ],
+      "tags": [
+        "systems",
+        "restore-verification"
+      ],
+      "takeaway": "Recovery time and required credentials belong in the test.",
+      "explanation": "Data integrity and usable application behavior after recovery. Recovery time and required credentials belong in the test. In the scenario, validate business-relevant data and recovery-point expectations. The alternative \u2018Declare success solely because the database process runs\u2019 does not address the stated evidence or constraint.",
+      "id": "systems-13-interview",
+      "title": "Restore verification \u00b7 interview",
+      "type": "interview",
+      "question": "Explain acceptance criteria for a restore exercise.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "Data integrity and usable application behavior after recovery. Recovery time and required credentials belong in the test. A practical response is: Validate business-relevant data and recovery-point expectations. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that a completed file copy proves the application can recover.",
+      "answerChecklist": [
+        "Data integrity and usable application behavior after recovery",
+        "Recovery time and required credentials belong in the test",
+        "Validate business-relevant data and recovery-point expectations",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "A restored database starts but required records are missing. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "systems",
+      "objective": "Explain raid and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "RAID \u2014 primary reference",
+          "url": "https://sre.google/sre-book/data-integrity/"
+        }
+      ],
+      "tags": [
+        "systems",
+        "raid"
+      ],
+      "takeaway": "Redundancy and independent backups solve different problems.",
+      "explanation": "It does not protect against every logical deletion or corruption event. Redundancy and independent backups solve different problems. In the scenario, recover from appropriate backups rather than expecting redundancy to undo deletion. The alternative \u2018Wait for RAID to reconstruct intentionally deleted files\u2019 does not address the stated evidence or constraint.",
+      "id": "systems-14-concept",
+      "title": "RAID \u00b7 concept",
+      "type": "concept",
+      "question": "What is a limitation of RAID?",
+      "options": [
+        "RAID makes backups unnecessary",
+        "Any RAID level survives any number of disk failures",
+        "Wait for RAID to reconstruct intentionally deleted files",
+        "It does not protect against every logical deletion or corruption event"
+      ],
+      "correct": [
+        3
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "systems",
+      "objective": "Explain raid and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "RAID \u2014 primary reference",
+          "url": "https://sre.google/sre-book/data-integrity/"
+        }
+      ],
+      "tags": [
+        "systems",
+        "raid"
+      ],
+      "takeaway": "Redundancy and independent backups solve different problems.",
+      "explanation": "It does not protect against every logical deletion or corruption event. Redundancy and independent backups solve different problems. In the scenario, recover from appropriate backups rather than expecting redundancy to undo deletion. The alternative \u2018Wait for RAID to reconstruct intentionally deleted files\u2019 does not address the stated evidence or constraint.",
+      "id": "systems-14-scenario",
+      "title": "RAID \u00b7 scenario",
+      "type": "scenario",
+      "question": "An administrator deletes a directory on a redundant array. What is the best next step?",
+      "options": [
+        "RAID makes backups unnecessary",
+        "Any RAID level survives any number of disk failures",
+        "Recover from appropriate backups rather than expecting redundancy to undo deletion",
+        "Wait for RAID to reconstruct intentionally deleted files"
+      ],
+      "correct": [
+        2
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "systems",
+      "objective": "Explain raid and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "RAID \u2014 primary reference",
+          "url": "https://sre.google/sre-book/data-integrity/"
+        }
+      ],
+      "tags": [
+        "systems",
+        "raid"
+      ],
+      "takeaway": "Redundancy and independent backups solve different problems.",
+      "explanation": "It does not protect against every logical deletion or corruption event. Redundancy and independent backups solve different problems. In the scenario, recover from appropriate backups rather than expecting redundancy to undo deletion. The alternative \u2018Wait for RAID to reconstruct intentionally deleted files\u2019 does not address the stated evidence or constraint.",
+      "id": "systems-14-principles",
+      "title": "RAID \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing raid, which TWO statements are sound operational principles?",
+      "options": [
+        "Any RAID level survives any number of disk failures",
+        "It does not protect against every logical deletion or corruption event",
+        "Redundancy and independent backups solve different problems",
+        "RAID makes backups unnecessary"
+      ],
+      "correct": [
+        1,
+        2
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "systems",
+      "objective": "Explain raid and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "RAID \u2014 primary reference",
+          "url": "https://sre.google/sre-book/data-integrity/"
+        }
+      ],
+      "tags": [
+        "systems",
+        "raid"
+      ],
+      "takeaway": "Redundancy and independent backups solve different problems.",
+      "explanation": "It does not protect against every logical deletion or corruption event. Redundancy and independent backups solve different problems. In the scenario, recover from appropriate backups rather than expecting redundancy to undo deletion. The alternative \u2018Wait for RAID to reconstruct intentionally deleted files\u2019 does not address the stated evidence or constraint.",
+      "id": "systems-14-interview",
+      "title": "RAID \u00b7 interview",
+      "type": "interview",
+      "question": "Explain redundancy versus recoverability.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "It does not protect against every logical deletion or corruption event. Redundancy and independent backups solve different problems. A practical response is: Recover from appropriate backups rather than expecting redundancy to undo deletion. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that rAID makes backups unnecessary.",
+      "answerChecklist": [
+        "It does not protect against every logical deletion or corruption event",
+        "Redundancy and independent backups solve different problems",
+        "Recover from appropriate backups rather than expecting redundancy to undo deletion",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "An administrator deletes a directory on a redundant array. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "systems",
+      "objective": "Explain lvm and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "LVM \u2014 primary reference",
+          "url": "https://man7.org/linux/man-pages/man8/lvm.8.html"
+        }
+      ],
+      "tags": [
+        "systems",
+        "lvm"
+      ],
+      "takeaway": "Filesystem resizing requirements are separate from volume resizing.",
+      "explanation": "An abstraction for allocating logical storage from physical capacity. Filesystem resizing requirements are separate from volume resizing. In the scenario, check and perform the filesystem-specific growth step safely. The alternative \u2018Assume the extra blocks are immediately usable by every filesystem\u2019 does not address the stated evidence or constraint.",
+      "id": "systems-15-concept",
+      "title": "LVM \u00b7 concept",
+      "type": "concept",
+      "question": "What does logical volume management provide?",
+      "options": [
+        "Shrinking any filesystem online is always supported",
+        "Assume the extra blocks are immediately usable by every filesystem",
+        "An abstraction for allocating logical storage from physical capacity",
+        "Growing a logical volume always grows every filesystem automatically"
+      ],
+      "correct": [
+        2
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "systems",
+      "objective": "Explain lvm and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "LVM \u2014 primary reference",
+          "url": "https://man7.org/linux/man-pages/man8/lvm.8.html"
+        }
+      ],
+      "tags": [
+        "systems",
+        "lvm"
+      ],
+      "takeaway": "Filesystem resizing requirements are separate from volume resizing.",
+      "explanation": "An abstraction for allocating logical storage from physical capacity. Filesystem resizing requirements are separate from volume resizing. In the scenario, check and perform the filesystem-specific growth step safely. The alternative \u2018Assume the extra blocks are immediately usable by every filesystem\u2019 does not address the stated evidence or constraint.",
+      "id": "systems-15-scenario",
+      "title": "LVM \u00b7 scenario",
+      "type": "scenario",
+      "question": "A logical volume was extended but df shows unchanged capacity. What is the best next step?",
+      "options": [
+        "Shrinking any filesystem online is always supported",
+        "Check and perform the filesystem-specific growth step safely",
+        "Assume the extra blocks are immediately usable by every filesystem",
+        "Growing a logical volume always grows every filesystem automatically"
+      ],
+      "correct": [
+        1
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "systems",
+      "objective": "Explain lvm and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "LVM \u2014 primary reference",
+          "url": "https://man7.org/linux/man-pages/man8/lvm.8.html"
+        }
+      ],
+      "tags": [
+        "systems",
+        "lvm"
+      ],
+      "takeaway": "Filesystem resizing requirements are separate from volume resizing.",
+      "explanation": "An abstraction for allocating logical storage from physical capacity. Filesystem resizing requirements are separate from volume resizing. In the scenario, check and perform the filesystem-specific growth step safely. The alternative \u2018Assume the extra blocks are immediately usable by every filesystem\u2019 does not address the stated evidence or constraint.",
+      "id": "systems-15-principles",
+      "title": "LVM \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing lvm, which TWO statements are sound operational principles?",
+      "options": [
+        "An abstraction for allocating logical storage from physical capacity",
+        "Filesystem resizing requirements are separate from volume resizing",
+        "Growing a logical volume always grows every filesystem automatically",
+        "Shrinking any filesystem online is always supported"
+      ],
+      "correct": [
+        0,
+        1
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "systems",
+      "objective": "Explain lvm and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "LVM \u2014 primary reference",
+          "url": "https://man7.org/linux/man-pages/man8/lvm.8.html"
+        }
+      ],
+      "tags": [
+        "systems",
+        "lvm"
+      ],
+      "takeaway": "Filesystem resizing requirements are separate from volume resizing.",
+      "explanation": "An abstraction for allocating logical storage from physical capacity. Filesystem resizing requirements are separate from volume resizing. In the scenario, check and perform the filesystem-specific growth step safely. The alternative \u2018Assume the extra blocks are immediately usable by every filesystem\u2019 does not address the stated evidence or constraint.",
+      "id": "systems-15-interview",
+      "title": "LVM \u00b7 interview",
+      "type": "interview",
+      "question": "Explain layered storage resizing and verification.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "An abstraction for allocating logical storage from physical capacity. Filesystem resizing requirements are separate from volume resizing. A practical response is: Check and perform the filesystem-specific growth step safely. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that growing a logical volume always grows every filesystem automatically.",
+      "answerChecklist": [
+        "An abstraction for allocating logical storage from physical capacity",
+        "Filesystem resizing requirements are separate from volume resizing",
+        "Check and perform the filesystem-specific growth step safely",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "A logical volume was extended but df shows unchanged capacity. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "systems",
+      "objective": "Explain filesystem mounts and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Filesystem mounts \u2014 primary reference",
+          "url": "https://man7.org/linux/man-pages/man8/mount.8.html"
+        }
+      ],
+      "tags": [
+        "systems",
+        "filesystem-mounts"
+      ],
+      "takeaway": "Mount configuration should be tested before a critical reboot.",
+      "explanation": "Device enumeration names can change across boots. Mount configuration should be tested before a critical reboot. In the scenario, use stable identifiers and verify mount dependencies. The alternative \u2018Hard-code whichever device name appeared during one boot\u2019 does not address the stated evidence or constraint.",
+      "id": "systems-16-concept",
+      "title": "Filesystem mounts \u00b7 concept",
+      "type": "concept",
+      "question": "Why use stable device identifiers in mount configuration?",
+      "options": [
+        "Hard-code whichever device name appeared during one boot",
+        "Device enumeration names can change across boots",
+        "A disk always keeps the same enumeration name forever",
+        "A mount entry guarantees the underlying disk is healthy"
+      ],
+      "correct": [
+        1
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "systems",
+      "objective": "Explain filesystem mounts and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Filesystem mounts \u2014 primary reference",
+          "url": "https://man7.org/linux/man-pages/man8/mount.8.html"
+        }
+      ],
+      "tags": [
+        "systems",
+        "filesystem-mounts"
+      ],
+      "takeaway": "Mount configuration should be tested before a critical reboot.",
+      "explanation": "Device enumeration names can change across boots. Mount configuration should be tested before a critical reboot. In the scenario, use stable identifiers and verify mount dependencies. The alternative \u2018Hard-code whichever device name appeared during one boot\u2019 does not address the stated evidence or constraint.",
+      "id": "systems-16-scenario",
+      "title": "Filesystem mounts \u00b7 scenario",
+      "type": "scenario",
+      "question": "A host mounts the wrong volume after device ordering changes. What is the best next step?",
+      "options": [
+        "Use stable identifiers and verify mount dependencies",
+        "Hard-code whichever device name appeared during one boot",
+        "A disk always keeps the same enumeration name forever",
+        "A mount entry guarantees the underlying disk is healthy"
+      ],
+      "correct": [
+        0
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "systems",
+      "objective": "Explain filesystem mounts and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Filesystem mounts \u2014 primary reference",
+          "url": "https://man7.org/linux/man-pages/man8/mount.8.html"
+        }
+      ],
+      "tags": [
+        "systems",
+        "filesystem-mounts"
+      ],
+      "takeaway": "Mount configuration should be tested before a critical reboot.",
+      "explanation": "Device enumeration names can change across boots. Mount configuration should be tested before a critical reboot. In the scenario, use stable identifiers and verify mount dependencies. The alternative \u2018Hard-code whichever device name appeared during one boot\u2019 does not address the stated evidence or constraint.",
+      "id": "systems-16-principles",
+      "title": "Filesystem mounts \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing filesystem mounts, which TWO statements are sound operational principles?",
+      "options": [
+        "Mount configuration should be tested before a critical reboot",
+        "A disk always keeps the same enumeration name forever",
+        "A mount entry guarantees the underlying disk is healthy",
+        "Device enumeration names can change across boots"
+      ],
+      "correct": [
+        0,
+        3
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "systems",
+      "objective": "Explain filesystem mounts and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Filesystem mounts \u2014 primary reference",
+          "url": "https://man7.org/linux/man-pages/man8/mount.8.html"
+        }
+      ],
+      "tags": [
+        "systems",
+        "filesystem-mounts"
+      ],
+      "takeaway": "Mount configuration should be tested before a critical reboot.",
+      "explanation": "Device enumeration names can change across boots. Mount configuration should be tested before a critical reboot. In the scenario, use stable identifiers and verify mount dependencies. The alternative \u2018Hard-code whichever device name appeared during one boot\u2019 does not address the stated evidence or constraint.",
+      "id": "systems-16-interview",
+      "title": "Filesystem mounts \u00b7 interview",
+      "type": "interview",
+      "question": "Explain reliable persistent mount configuration.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "Device enumeration names can change across boots. Mount configuration should be tested before a critical reboot. A practical response is: Use stable identifiers and verify mount dependencies. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that a disk always keeps the same enumeration name forever.",
+      "answerChecklist": [
+        "Device enumeration names can change across boots",
+        "Mount configuration should be tested before a critical reboot",
+        "Use stable identifiers and verify mount dependencies",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "A host mounts the wrong volume after device ordering changes. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "systems",
+      "objective": "Explain boot recovery and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Boot recovery \u2014 primary reference",
+          "url": "https://www.freedesktop.org/software/systemd/man/latest/"
+        }
+      ],
+      "tags": [
+        "systems",
+        "boot-recovery"
+      ],
+      "takeaway": "Keep a known recovery route before making risky boot changes.",
+      "explanation": "Use an authorized recovery path and inspect the specific boot failure. Keep a known recovery route before making risky boot changes. In the scenario, use recovery access to inspect and correct the faulty entry. The alternative \u2018Reinstall the entire system before checking the recent change\u2019 does not address the stated evidence or constraint.",
+      "id": "systems-17-concept",
+      "title": "Boot recovery \u00b7 concept",
+      "type": "concept",
+      "question": "What is a safe first step when a host fails after a boot configuration change?",
+      "options": [
+        "Use an authorized recovery path and inspect the specific boot failure",
+        "Repeated blind rebooting repairs every configuration error",
+        "Boot failures always prove the physical disk is dead",
+        "Reinstall the entire system before checking the recent change"
+      ],
+      "correct": [
+        0
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "systems",
+      "objective": "Explain boot recovery and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Boot recovery \u2014 primary reference",
+          "url": "https://www.freedesktop.org/software/systemd/man/latest/"
+        }
+      ],
+      "tags": [
+        "systems",
+        "boot-recovery"
+      ],
+      "takeaway": "Keep a known recovery route before making risky boot changes.",
+      "explanation": "Use an authorized recovery path and inspect the specific boot failure. Keep a known recovery route before making risky boot changes. In the scenario, use recovery access to inspect and correct the faulty entry. The alternative \u2018Reinstall the entire system before checking the recent change\u2019 does not address the stated evidence or constraint.",
+      "id": "systems-17-scenario",
+      "title": "Boot recovery \u00b7 scenario",
+      "type": "scenario",
+      "question": "A modified mount entry prevents normal boot. What is the best next step?",
+      "options": [
+        "Reinstall the entire system before checking the recent change",
+        "Repeated blind rebooting repairs every configuration error",
+        "Boot failures always prove the physical disk is dead",
+        "Use recovery access to inspect and correct the faulty entry"
+      ],
+      "correct": [
+        3
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "systems",
+      "objective": "Explain boot recovery and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Boot recovery \u2014 primary reference",
+          "url": "https://www.freedesktop.org/software/systemd/man/latest/"
+        }
+      ],
+      "tags": [
+        "systems",
+        "boot-recovery"
+      ],
+      "takeaway": "Keep a known recovery route before making risky boot changes.",
+      "explanation": "Use an authorized recovery path and inspect the specific boot failure. Keep a known recovery route before making risky boot changes. In the scenario, use recovery access to inspect and correct the faulty entry. The alternative \u2018Reinstall the entire system before checking the recent change\u2019 does not address the stated evidence or constraint.",
+      "id": "systems-17-principles",
+      "title": "Boot recovery \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing boot recovery, which TWO statements are sound operational principles?",
+      "options": [
+        "Repeated blind rebooting repairs every configuration error",
+        "Boot failures always prove the physical disk is dead",
+        "Use an authorized recovery path and inspect the specific boot failure",
+        "Keep a known recovery route before making risky boot changes"
+      ],
+      "correct": [
+        2,
+        3
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "systems",
+      "objective": "Explain boot recovery and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Boot recovery \u2014 primary reference",
+          "url": "https://www.freedesktop.org/software/systemd/man/latest/"
+        }
+      ],
+      "tags": [
+        "systems",
+        "boot-recovery"
+      ],
+      "takeaway": "Keep a known recovery route before making risky boot changes.",
+      "explanation": "Use an authorized recovery path and inspect the specific boot failure. Keep a known recovery route before making risky boot changes. In the scenario, use recovery access to inspect and correct the faulty entry. The alternative \u2018Reinstall the entire system before checking the recent change\u2019 does not address the stated evidence or constraint.",
+      "id": "systems-17-interview",
+      "title": "Boot recovery \u00b7 interview",
+      "type": "interview",
+      "question": "Explain a controlled response to a boot-time configuration failure.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "Use an authorized recovery path and inspect the specific boot failure. Keep a known recovery route before making risky boot changes. A practical response is: Use recovery access to inspect and correct the faulty entry. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that repeated blind rebooting repairs every configuration error.",
+      "answerChecklist": [
+        "Use an authorized recovery path and inspect the specific boot failure",
+        "Keep a known recovery route before making risky boot changes",
+        "Use recovery access to inspect and correct the faulty entry",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "A modified mount entry prevents normal boot. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "systems",
+      "objective": "Explain patching and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Patching \u2014 primary reference",
+          "url": "https://sre.google/workbook/canarying-releases/"
+        }
+      ],
+      "tags": [
+        "systems",
+        "patching"
+      ],
+      "takeaway": "Some updates require service restart or reboot to take effect.",
+      "explanation": "Representative validation staged deployment and recovery planning. Some updates require service restart or reboot to take effect. In the scenario, plan and verify the required reboot within availability constraints. The alternative \u2018Assume the package version proves the active kernel changed\u2019 does not address the stated evidence or constraint.",
+      "id": "systems-18-concept",
+      "title": "Patching \u00b7 concept",
+      "type": "concept",
+      "question": "What should a patch rollout include?",
+      "options": [
+        "Installing a package proves all running processes use the new code",
+        "Every patch should be deployed fleet-wide without observation",
+        "Assume the package version proves the active kernel changed",
+        "Representative validation staged deployment and recovery planning"
+      ],
+      "correct": [
+        3
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "systems",
+      "objective": "Explain patching and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Patching \u2014 primary reference",
+          "url": "https://sre.google/workbook/canarying-releases/"
+        }
+      ],
+      "tags": [
+        "systems",
+        "patching"
+      ],
+      "takeaway": "Some updates require service restart or reboot to take effect.",
+      "explanation": "Representative validation staged deployment and recovery planning. Some updates require service restart or reboot to take effect. In the scenario, plan and verify the required reboot within availability constraints. The alternative \u2018Assume the package version proves the active kernel changed\u2019 does not address the stated evidence or constraint.",
+      "id": "systems-18-scenario",
+      "title": "Patching \u00b7 scenario",
+      "type": "scenario",
+      "question": "A kernel update is installed but the old kernel remains running. What is the best next step?",
+      "options": [
+        "Installing a package proves all running processes use the new code",
+        "Every patch should be deployed fleet-wide without observation",
+        "Plan and verify the required reboot within availability constraints",
+        "Assume the package version proves the active kernel changed"
+      ],
+      "correct": [
+        2
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "systems",
+      "objective": "Explain patching and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Patching \u2014 primary reference",
+          "url": "https://sre.google/workbook/canarying-releases/"
+        }
+      ],
+      "tags": [
+        "systems",
+        "patching"
+      ],
+      "takeaway": "Some updates require service restart or reboot to take effect.",
+      "explanation": "Representative validation staged deployment and recovery planning. Some updates require service restart or reboot to take effect. In the scenario, plan and verify the required reboot within availability constraints. The alternative \u2018Assume the package version proves the active kernel changed\u2019 does not address the stated evidence or constraint.",
+      "id": "systems-18-principles",
+      "title": "Patching \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing patching, which TWO statements are sound operational principles?",
+      "options": [
+        "Every patch should be deployed fleet-wide without observation",
+        "Representative validation staged deployment and recovery planning",
+        "Some updates require service restart or reboot to take effect",
+        "Installing a package proves all running processes use the new code"
+      ],
+      "correct": [
+        1,
+        2
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "systems",
+      "objective": "Explain patching and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Patching \u2014 primary reference",
+          "url": "https://sre.google/workbook/canarying-releases/"
+        }
+      ],
+      "tags": [
+        "systems",
+        "patching"
+      ],
+      "takeaway": "Some updates require service restart or reboot to take effect.",
+      "explanation": "Representative validation staged deployment and recovery planning. Some updates require service restart or reboot to take effect. In the scenario, plan and verify the required reboot within availability constraints. The alternative \u2018Assume the package version proves the active kernel changed\u2019 does not address the stated evidence or constraint.",
+      "id": "systems-18-interview",
+      "title": "Patching \u00b7 interview",
+      "type": "interview",
+      "question": "Explain patch verification for running systems.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "Representative validation staged deployment and recovery planning. Some updates require service restart or reboot to take effect. A practical response is: Plan and verify the required reboot within availability constraints. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that installing a package proves all running processes use the new code.",
+      "answerChecklist": [
+        "Representative validation staged deployment and recovery planning",
+        "Some updates require service restart or reboot to take effect",
+        "Plan and verify the required reboot within availability constraints",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "A kernel update is installed but the old kernel remains running. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "systems",
+      "objective": "Explain configuration drift and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Configuration drift \u2014 primary reference",
+          "url": "https://sre.google/workbook/canarying-releases/"
+        }
+      ],
+      "tags": [
+        "systems",
+        "configuration-drift"
+      ],
+      "takeaway": "Intentional emergency changes need reconciliation into the managed baseline.",
+      "explanation": "Untracked changes can undermine reproducibility and policy. Intentional emergency changes need reconciliation into the managed baseline. In the scenario, review the change and adopt or revert it deliberately. The alternative \u2018Overwrite the mitigation blindly during the active incident\u2019 does not address the stated evidence or constraint.",
+      "id": "systems-19-concept",
+      "title": "Configuration drift \u00b7 concept",
+      "type": "concept",
+      "question": "Why monitor configuration drift?",
+      "options": [
+        "Configuration management guarantees drift can never occur",
+        "Overwrite the mitigation blindly during the active incident",
+        "Untracked changes can undermine reproducibility and policy",
+        "Every manual change is malicious"
+      ],
+      "correct": [
+        2
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "systems",
+      "objective": "Explain configuration drift and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Configuration drift \u2014 primary reference",
+          "url": "https://sre.google/workbook/canarying-releases/"
+        }
+      ],
+      "tags": [
+        "systems",
+        "configuration-drift"
+      ],
+      "takeaway": "Intentional emergency changes need reconciliation into the managed baseline.",
+      "explanation": "Untracked changes can undermine reproducibility and policy. Intentional emergency changes need reconciliation into the managed baseline. In the scenario, review the change and adopt or revert it deliberately. The alternative \u2018Overwrite the mitigation blindly during the active incident\u2019 does not address the stated evidence or constraint.",
+      "id": "systems-19-scenario",
+      "title": "Configuration drift \u00b7 scenario",
+      "type": "scenario",
+      "question": "A host differs from its declared baseline after incident mitigation. What is the best next step?",
+      "options": [
+        "Configuration management guarantees drift can never occur",
+        "Review the change and adopt or revert it deliberately",
+        "Overwrite the mitigation blindly during the active incident",
+        "Every manual change is malicious"
+      ],
+      "correct": [
+        1
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "systems",
+      "objective": "Explain configuration drift and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Configuration drift \u2014 primary reference",
+          "url": "https://sre.google/workbook/canarying-releases/"
+        }
+      ],
+      "tags": [
+        "systems",
+        "configuration-drift"
+      ],
+      "takeaway": "Intentional emergency changes need reconciliation into the managed baseline.",
+      "explanation": "Untracked changes can undermine reproducibility and policy. Intentional emergency changes need reconciliation into the managed baseline. In the scenario, review the change and adopt or revert it deliberately. The alternative \u2018Overwrite the mitigation blindly during the active incident\u2019 does not address the stated evidence or constraint.",
+      "id": "systems-19-principles",
+      "title": "Configuration drift \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing configuration drift, which TWO statements are sound operational principles?",
+      "options": [
+        "Untracked changes can undermine reproducibility and policy",
+        "Intentional emergency changes need reconciliation into the managed baseline",
+        "Every manual change is malicious",
+        "Configuration management guarantees drift can never occur"
+      ],
+      "correct": [
+        0,
+        1
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "systems",
+      "objective": "Explain configuration drift and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Configuration drift \u2014 primary reference",
+          "url": "https://sre.google/workbook/canarying-releases/"
+        }
+      ],
+      "tags": [
+        "systems",
+        "configuration-drift"
+      ],
+      "takeaway": "Intentional emergency changes need reconciliation into the managed baseline.",
+      "explanation": "Untracked changes can undermine reproducibility and policy. Intentional emergency changes need reconciliation into the managed baseline. In the scenario, review the change and adopt or revert it deliberately. The alternative \u2018Overwrite the mitigation blindly during the active incident\u2019 does not address the stated evidence or constraint.",
+      "id": "systems-19-interview",
+      "title": "Configuration drift \u00b7 interview",
+      "type": "interview",
+      "question": "Explain closing the loop after emergency configuration changes.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "Untracked changes can undermine reproducibility and policy. Intentional emergency changes need reconciliation into the managed baseline. A practical response is: Review the change and adopt or revert it deliberately. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that every manual change is malicious.",
+      "answerChecklist": [
+        "Untracked changes can undermine reproducibility and policy",
+        "Intentional emergency changes need reconciliation into the managed baseline",
+        "Review the change and adopt or revert it deliberately",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "A host differs from its declared baseline after incident mitigation. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "systems",
+      "objective": "Explain access reviews and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Access reviews \u2014 primary reference",
+          "url": "https://man7.org/linux/man-pages/man7/credentials.7.html"
+        }
+      ],
+      "tags": [
+        "systems",
+        "access-reviews"
+      ],
+      "takeaway": "Removal should account for service dependencies and emergency access.",
+      "explanation": "Roles and operational needs change over time. Removal should account for service dependencies and emergency access. In the scenario, revoke access through the managed identity path and audit related credentials. The alternative \u2018Leave access active indefinitely in case it becomes convenient\u2019 does not address the stated evidence or constraint.",
+      "id": "systems-20-concept",
+      "title": "Access reviews \u00b7 concept",
+      "type": "concept",
+      "question": "Why periodically review privileged access?",
+      "options": [
+        "Leave access active indefinitely in case it becomes convenient",
+        "Roles and operational needs change over time",
+        "Once granted privileged access should never expire",
+        "A username alone proves current authorization need"
+      ],
+      "correct": [
+        1
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "systems",
+      "objective": "Explain access reviews and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Access reviews \u2014 primary reference",
+          "url": "https://man7.org/linux/man-pages/man7/credentials.7.html"
+        }
+      ],
+      "tags": [
+        "systems",
+        "access-reviews"
+      ],
+      "takeaway": "Removal should account for service dependencies and emergency access.",
+      "explanation": "Roles and operational needs change over time. Removal should account for service dependencies and emergency access. In the scenario, revoke access through the managed identity path and audit related credentials. The alternative \u2018Leave access active indefinitely in case it becomes convenient\u2019 does not address the stated evidence or constraint.",
+      "id": "systems-20-scenario",
+      "title": "Access reviews \u00b7 scenario",
+      "type": "scenario",
+      "question": "A departed team member retains production administrative access. What is the best next step?",
+      "options": [
+        "Revoke access through the managed identity path and audit related credentials",
+        "Leave access active indefinitely in case it becomes convenient",
+        "Once granted privileged access should never expire",
+        "A username alone proves current authorization need"
+      ],
+      "correct": [
+        0
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "systems",
+      "objective": "Explain access reviews and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Access reviews \u2014 primary reference",
+          "url": "https://man7.org/linux/man-pages/man7/credentials.7.html"
+        }
+      ],
+      "tags": [
+        "systems",
+        "access-reviews"
+      ],
+      "takeaway": "Removal should account for service dependencies and emergency access.",
+      "explanation": "Roles and operational needs change over time. Removal should account for service dependencies and emergency access. In the scenario, revoke access through the managed identity path and audit related credentials. The alternative \u2018Leave access active indefinitely in case it becomes convenient\u2019 does not address the stated evidence or constraint.",
+      "id": "systems-20-principles",
+      "title": "Access reviews \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing access reviews, which TWO statements are sound operational principles?",
+      "options": [
+        "Removal should account for service dependencies and emergency access",
+        "Once granted privileged access should never expire",
+        "A username alone proves current authorization need",
+        "Roles and operational needs change over time"
+      ],
+      "correct": [
+        0,
+        3
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "systems",
+      "objective": "Explain access reviews and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Access reviews \u2014 primary reference",
+          "url": "https://man7.org/linux/man-pages/man7/credentials.7.html"
+        }
+      ],
+      "tags": [
+        "systems",
+        "access-reviews"
+      ],
+      "takeaway": "Removal should account for service dependencies and emergency access.",
+      "explanation": "Roles and operational needs change over time. Removal should account for service dependencies and emergency access. In the scenario, revoke access through the managed identity path and audit related credentials. The alternative \u2018Leave access active indefinitely in case it becomes convenient\u2019 does not address the stated evidence or constraint.",
+      "id": "systems-20-interview",
+      "title": "Access reviews \u00b7 interview",
+      "type": "interview",
+      "question": "Explain a practical privileged-access review.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "Roles and operational needs change over time. Removal should account for service dependencies and emergency access. A practical response is: Revoke access through the managed identity path and audit related credentials. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that once granted privileged access should never expire.",
+      "answerChecklist": [
+        "Roles and operational needs change over time",
+        "Removal should account for service dependencies and emergency access",
+        "Revoke access through the managed identity path and audit related credentials",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "A departed team member retains production administrative access. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "systems",
+      "objective": "Explain sudo policy and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Sudo policy \u2014 primary reference",
+          "url": "https://www.sudo.ws/docs/man/sudoers.man/"
+        }
+      ],
+      "tags": [
+        "systems",
+        "sudo-policy"
+      ],
+      "takeaway": "Editors shells and writable command paths can enable escalation.",
+      "explanation": "Privileged commands can expose more capability than their names suggest. Editors shells and writable command paths can enable escalation. In the scenario, review effective capabilities and narrow the allowed operation. The alternative \u2018Assume the command's friendly name guarantees limited privilege\u2019 does not address the stated evidence or constraint.",
+      "id": "systems-21-concept",
+      "title": "Sudo policy \u00b7 concept",
+      "type": "concept",
+      "question": "Why scope sudo permissions carefully?",
+      "options": [
+        "Privileged commands can expose more capability than their names suggest",
+        "Allowing any editor as root is always harmless",
+        "A command allowlist makes argument handling irrelevant",
+        "Assume the command's friendly name guarantees limited privilege"
+      ],
+      "correct": [
+        0
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "systems",
+      "objective": "Explain sudo policy and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Sudo policy \u2014 primary reference",
+          "url": "https://www.sudo.ws/docs/man/sudoers.man/"
+        }
+      ],
+      "tags": [
+        "systems",
+        "sudo-policy"
+      ],
+      "takeaway": "Editors shells and writable command paths can enable escalation.",
+      "explanation": "Privileged commands can expose more capability than their names suggest. Editors shells and writable command paths can enable escalation. In the scenario, review effective capabilities and narrow the allowed operation. The alternative \u2018Assume the command's friendly name guarantees limited privilege\u2019 does not address the stated evidence or constraint.",
+      "id": "systems-21-scenario",
+      "title": "Sudo policy \u00b7 scenario",
+      "type": "scenario",
+      "question": "A restricted sudo rule permits a tool that can launch arbitrary shells. What is the best next step?",
+      "options": [
+        "Assume the command's friendly name guarantees limited privilege",
+        "Allowing any editor as root is always harmless",
+        "A command allowlist makes argument handling irrelevant",
+        "Review effective capabilities and narrow the allowed operation"
+      ],
+      "correct": [
+        3
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "systems",
+      "objective": "Explain sudo policy and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Sudo policy \u2014 primary reference",
+          "url": "https://www.sudo.ws/docs/man/sudoers.man/"
+        }
+      ],
+      "tags": [
+        "systems",
+        "sudo-policy"
+      ],
+      "takeaway": "Editors shells and writable command paths can enable escalation.",
+      "explanation": "Privileged commands can expose more capability than their names suggest. Editors shells and writable command paths can enable escalation. In the scenario, review effective capabilities and narrow the allowed operation. The alternative \u2018Assume the command's friendly name guarantees limited privilege\u2019 does not address the stated evidence or constraint.",
+      "id": "systems-21-principles",
+      "title": "Sudo policy \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing sudo policy, which TWO statements are sound operational principles?",
+      "options": [
+        "Allowing any editor as root is always harmless",
+        "A command allowlist makes argument handling irrelevant",
+        "Privileged commands can expose more capability than their names suggest",
+        "Editors shells and writable command paths can enable escalation"
+      ],
+      "correct": [
+        2,
+        3
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "systems",
+      "objective": "Explain sudo policy and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Sudo policy \u2014 primary reference",
+          "url": "https://www.sudo.ws/docs/man/sudoers.man/"
+        }
+      ],
+      "tags": [
+        "systems",
+        "sudo-policy"
+      ],
+      "takeaway": "Editors shells and writable command paths can enable escalation.",
+      "explanation": "Privileged commands can expose more capability than their names suggest. Editors shells and writable command paths can enable escalation. In the scenario, review effective capabilities and narrow the allowed operation. The alternative \u2018Assume the command's friendly name guarantees limited privilege\u2019 does not address the stated evidence or constraint.",
+      "id": "systems-21-interview",
+      "title": "Sudo policy \u00b7 interview",
+      "type": "interview",
+      "question": "Explain pitfalls in designing restricted sudo rules.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "Privileged commands can expose more capability than their names suggest. Editors shells and writable command paths can enable escalation. A practical response is: Review effective capabilities and narrow the allowed operation. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that allowing any editor as root is always harmless.",
+      "answerChecklist": [
+        "Privileged commands can expose more capability than their names suggest",
+        "Editors shells and writable command paths can enable escalation",
+        "Review effective capabilities and narrow the allowed operation",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "A restricted sudo rule permits a tool that can launch arbitrary shells. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "systems",
+      "objective": "Explain resource limits and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Resource limits \u2014 primary reference",
+          "url": "https://www.freedesktop.org/software/systemd/man/latest/"
+        }
+      ],
+      "tags": [
+        "systems",
+        "resource-limits"
+      ],
+      "takeaway": "Limits must be tested against legitimate workload needs.",
+      "explanation": "Contain resource consumption and protect shared capacity. Limits must be tested against legitimate workload needs. In the scenario, compare legitimate demand with observed usage and tune deliberately. The alternative \u2018Raise every limit without investigating possible leaks\u2019 does not address the stated evidence or constraint.",
+      "id": "systems-22-concept",
+      "title": "Resource limits \u00b7 concept",
+      "type": "concept",
+      "question": "Why set service-specific resource limits?",
+      "options": [
+        "Any low limit improves reliability without trade-offs",
+        "One host-wide limit is optimal for every service",
+        "Raise every limit without investigating possible leaks",
+        "Contain resource consumption and protect shared capacity"
+      ],
+      "correct": [
+        3
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "systems",
+      "objective": "Explain resource limits and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Resource limits \u2014 primary reference",
+          "url": "https://www.freedesktop.org/software/systemd/man/latest/"
+        }
+      ],
+      "tags": [
+        "systems",
+        "resource-limits"
+      ],
+      "takeaway": "Limits must be tested against legitimate workload needs.",
+      "explanation": "Contain resource consumption and protect shared capacity. Limits must be tested against legitimate workload needs. In the scenario, compare legitimate demand with observed usage and tune deliberately. The alternative \u2018Raise every limit without investigating possible leaks\u2019 does not address the stated evidence or constraint.",
+      "id": "systems-22-scenario",
+      "title": "Resource limits \u00b7 scenario",
+      "type": "scenario",
+      "question": "A service fails under load after an aggressive descriptor limit. What is the best next step?",
+      "options": [
+        "Any low limit improves reliability without trade-offs",
+        "One host-wide limit is optimal for every service",
+        "Compare legitimate demand with observed usage and tune deliberately",
+        "Raise every limit without investigating possible leaks"
+      ],
+      "correct": [
+        2
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "systems",
+      "objective": "Explain resource limits and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Resource limits \u2014 primary reference",
+          "url": "https://www.freedesktop.org/software/systemd/man/latest/"
+        }
+      ],
+      "tags": [
+        "systems",
+        "resource-limits"
+      ],
+      "takeaway": "Limits must be tested against legitimate workload needs.",
+      "explanation": "Contain resource consumption and protect shared capacity. Limits must be tested against legitimate workload needs. In the scenario, compare legitimate demand with observed usage and tune deliberately. The alternative \u2018Raise every limit without investigating possible leaks\u2019 does not address the stated evidence or constraint.",
+      "id": "systems-22-principles",
+      "title": "Resource limits \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing resource limits, which TWO statements are sound operational principles?",
+      "options": [
+        "One host-wide limit is optimal for every service",
+        "Contain resource consumption and protect shared capacity",
+        "Limits must be tested against legitimate workload needs",
+        "Any low limit improves reliability without trade-offs"
+      ],
+      "correct": [
+        1,
+        2
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "systems",
+      "objective": "Explain resource limits and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Resource limits \u2014 primary reference",
+          "url": "https://www.freedesktop.org/software/systemd/man/latest/"
+        }
+      ],
+      "tags": [
+        "systems",
+        "resource-limits"
+      ],
+      "takeaway": "Limits must be tested against legitimate workload needs.",
+      "explanation": "Contain resource consumption and protect shared capacity. Limits must be tested against legitimate workload needs. In the scenario, compare legitimate demand with observed usage and tune deliberately. The alternative \u2018Raise every limit without investigating possible leaks\u2019 does not address the stated evidence or constraint.",
+      "id": "systems-22-interview",
+      "title": "Resource limits \u00b7 interview",
+      "type": "interview",
+      "question": "Explain balancing containment with service capacity.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "Contain resource consumption and protect shared capacity. Limits must be tested against legitimate workload needs. A practical response is: Compare legitimate demand with observed usage and tune deliberately. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that any low limit improves reliability without trade-offs.",
+      "answerChecklist": [
+        "Contain resource consumption and protect shared capacity",
+        "Limits must be tested against legitimate workload needs",
+        "Compare legitimate demand with observed usage and tune deliberately",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "A service fails under load after an aggressive descriptor limit. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "systems",
+      "objective": "Explain system monitoring and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "System monitoring \u2014 primary reference",
+          "url": "https://sre.google/workbook/monitoring/"
+        }
+      ],
+      "tags": [
+        "systems",
+        "system-monitoring"
+      ],
+      "takeaway": "A healthy host metric alone does not prove application success.",
+      "explanation": "Resource pressure and user-visible behavior provide complementary evidence. A healthy host metric alone does not prove application success. In the scenario, inspect application and dependency indicators alongside host health. The alternative \u2018Dismiss the incident because system graphs are green\u2019 does not address the stated evidence or constraint.",
+      "id": "systems-23-concept",
+      "title": "System monitoring \u00b7 concept",
+      "type": "concept",
+      "question": "Why monitor both resource and service indicators?",
+      "options": [
+        "Application failures always appear as high memory use",
+        "Dismiss the incident because system graphs are green",
+        "Resource pressure and user-visible behavior provide complementary evidence",
+        "Low CPU guarantees healthy service behavior"
+      ],
+      "correct": [
+        2
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "systems",
+      "objective": "Explain system monitoring and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "System monitoring \u2014 primary reference",
+          "url": "https://sre.google/workbook/monitoring/"
+        }
+      ],
+      "tags": [
+        "systems",
+        "system-monitoring"
+      ],
+      "takeaway": "A healthy host metric alone does not prove application success.",
+      "explanation": "Resource pressure and user-visible behavior provide complementary evidence. A healthy host metric alone does not prove application success. In the scenario, inspect application and dependency indicators alongside host health. The alternative \u2018Dismiss the incident because system graphs are green\u2019 does not address the stated evidence or constraint.",
+      "id": "systems-23-scenario",
+      "title": "System monitoring \u00b7 scenario",
+      "type": "scenario",
+      "question": "Users see errors while host resources look normal. What is the best next step?",
+      "options": [
+        "Application failures always appear as high memory use",
+        "Inspect application and dependency indicators alongside host health",
+        "Dismiss the incident because system graphs are green",
+        "Low CPU guarantees healthy service behavior"
+      ],
+      "correct": [
+        1
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "systems",
+      "objective": "Explain system monitoring and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "System monitoring \u2014 primary reference",
+          "url": "https://sre.google/workbook/monitoring/"
+        }
+      ],
+      "tags": [
+        "systems",
+        "system-monitoring"
+      ],
+      "takeaway": "A healthy host metric alone does not prove application success.",
+      "explanation": "Resource pressure and user-visible behavior provide complementary evidence. A healthy host metric alone does not prove application success. In the scenario, inspect application and dependency indicators alongside host health. The alternative \u2018Dismiss the incident because system graphs are green\u2019 does not address the stated evidence or constraint.",
+      "id": "systems-23-principles",
+      "title": "System monitoring \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing system monitoring, which TWO statements are sound operational principles?",
+      "options": [
+        "Resource pressure and user-visible behavior provide complementary evidence",
+        "A healthy host metric alone does not prove application success",
+        "Low CPU guarantees healthy service behavior",
+        "Application failures always appear as high memory use"
+      ],
+      "correct": [
+        0,
+        1
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "systems",
+      "objective": "Explain system monitoring and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "System monitoring \u2014 primary reference",
+          "url": "https://sre.google/workbook/monitoring/"
+        }
+      ],
+      "tags": [
+        "systems",
+        "system-monitoring"
+      ],
+      "takeaway": "A healthy host metric alone does not prove application success.",
+      "explanation": "Resource pressure and user-visible behavior provide complementary evidence. A healthy host metric alone does not prove application success. In the scenario, inspect application and dependency indicators alongside host health. The alternative \u2018Dismiss the incident because system graphs are green\u2019 does not address the stated evidence or constraint.",
+      "id": "systems-23-interview",
+      "title": "System monitoring \u00b7 interview",
+      "type": "interview",
+      "question": "Explain a useful monitoring model for a production host.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "Resource pressure and user-visible behavior provide complementary evidence. A healthy host metric alone does not prove application success. A practical response is: Inspect application and dependency indicators alongside host health. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that low CPU guarantees healthy service behavior.",
+      "answerChecklist": [
+        "Resource pressure and user-visible behavior provide complementary evidence",
+        "A healthy host metric alone does not prove application success",
+        "Inspect application and dependency indicators alongside host health",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "Users see errors while host resources look normal. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "systems",
+      "objective": "Explain immutable hosts and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Immutable hosts \u2014 primary reference",
+          "url": "https://sre.google/workbook/canarying-releases/"
+        }
+      ],
+      "tags": [
+        "systems",
+        "immutable-hosts"
+      ],
+      "takeaway": "Persistent data and identity must survive through explicit design.",
+      "explanation": "Reduce divergence caused by accumulated manual changes. Persistent data and identity must survive through explicit design. In the scenario, capture the intended configuration and rebuild a tested image. The alternative \u2018Keep the unique host forever as the only source of truth\u2019 does not address the stated evidence or constraint.",
+      "id": "systems-24-concept",
+      "title": "Immutable hosts \u00b7 concept",
+      "type": "concept",
+      "question": "What is an advantage of replacing hosts from a known image?",
+      "options": [
+        "Keep the unique host forever as the only source of truth",
+        "Reduce divergence caused by accumulated manual changes",
+        "Replacing a host automatically preserves all local mutable data",
+        "An image removes the need to patch dependencies"
+      ],
+      "correct": [
+        1
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "systems",
+      "objective": "Explain immutable hosts and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Immutable hosts \u2014 primary reference",
+          "url": "https://sre.google/workbook/canarying-releases/"
+        }
+      ],
+      "tags": [
+        "systems",
+        "immutable-hosts"
+      ],
+      "takeaway": "Persistent data and identity must survive through explicit design.",
+      "explanation": "Reduce divergence caused by accumulated manual changes. Persistent data and identity must survive through explicit design. In the scenario, capture the intended configuration and rebuild a tested image. The alternative \u2018Keep the unique host forever as the only source of truth\u2019 does not address the stated evidence or constraint.",
+      "id": "systems-24-scenario",
+      "title": "Immutable hosts \u00b7 scenario",
+      "type": "scenario",
+      "question": "A manually repaired host cannot be reproduced elsewhere. What is the best next step?",
+      "options": [
+        "Capture the intended configuration and rebuild a tested image",
+        "Keep the unique host forever as the only source of truth",
+        "Replacing a host automatically preserves all local mutable data",
+        "An image removes the need to patch dependencies"
+      ],
+      "correct": [
+        0
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "systems",
+      "objective": "Explain immutable hosts and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Immutable hosts \u2014 primary reference",
+          "url": "https://sre.google/workbook/canarying-releases/"
+        }
+      ],
+      "tags": [
+        "systems",
+        "immutable-hosts"
+      ],
+      "takeaway": "Persistent data and identity must survive through explicit design.",
+      "explanation": "Reduce divergence caused by accumulated manual changes. Persistent data and identity must survive through explicit design. In the scenario, capture the intended configuration and rebuild a tested image. The alternative \u2018Keep the unique host forever as the only source of truth\u2019 does not address the stated evidence or constraint.",
+      "id": "systems-24-principles",
+      "title": "Immutable hosts \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing immutable hosts, which TWO statements are sound operational principles?",
+      "options": [
+        "Persistent data and identity must survive through explicit design",
+        "Replacing a host automatically preserves all local mutable data",
+        "An image removes the need to patch dependencies",
+        "Reduce divergence caused by accumulated manual changes"
+      ],
+      "correct": [
+        0,
+        3
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "systems",
+      "objective": "Explain immutable hosts and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Immutable hosts \u2014 primary reference",
+          "url": "https://sre.google/workbook/canarying-releases/"
+        }
+      ],
+      "tags": [
+        "systems",
+        "immutable-hosts"
+      ],
+      "takeaway": "Persistent data and identity must survive through explicit design.",
+      "explanation": "Reduce divergence caused by accumulated manual changes. Persistent data and identity must survive through explicit design. In the scenario, capture the intended configuration and rebuild a tested image. The alternative \u2018Keep the unique host forever as the only source of truth\u2019 does not address the stated evidence or constraint.",
+      "id": "systems-24-interview",
+      "title": "Immutable hosts \u00b7 interview",
+      "type": "interview",
+      "question": "Explain immutable infrastructure and its state-management requirements.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "Reduce divergence caused by accumulated manual changes. Persistent data and identity must survive through explicit design. A practical response is: Capture the intended configuration and rebuild a tested image. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that replacing a host automatically preserves all local mutable data.",
+      "answerChecklist": [
+        "Reduce divergence caused by accumulated manual changes",
+        "Persistent data and identity must survive through explicit design",
+        "Capture the intended configuration and rebuild a tested image",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "A manually repaired host cannot be reproduced elsewhere. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "systems",
+      "objective": "Explain capacity forecasts and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Capacity forecasts \u2014 primary reference",
+          "url": "https://sre.google/workbook/monitoring/"
+        }
+      ],
+      "tags": [
+        "systems",
+        "capacity-forecasts"
+      ],
+      "takeaway": "Forecasts should be checked against observed trends and load tests.",
+      "explanation": "Normal averages can underestimate future or degraded-mode demand. Forecasts should be checked against observed trends and load tests. In the scenario, project the trend and act before the required lead time is consumed. The alternative \u2018Wait for a full-disk alert before arranging capacity\u2019 does not address the stated evidence or constraint.",
+      "id": "systems-25-concept",
+      "title": "Capacity forecasts \u00b7 concept",
+      "type": "concept",
+      "question": "Why consider growth and failure scenarios in capacity forecasts?",
+      "options": [
+        "Normal averages can underestimate future or degraded-mode demand",
+        "Current free space guarantees next month's capacity",
+        "Capacity planning is unnecessary when monitoring exists",
+        "Wait for a full-disk alert before arranging capacity"
+      ],
+      "correct": [
+        0
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "systems",
+      "objective": "Explain capacity forecasts and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Capacity forecasts \u2014 primary reference",
+          "url": "https://sre.google/workbook/monitoring/"
+        }
+      ],
+      "tags": [
+        "systems",
+        "capacity-forecasts"
+      ],
+      "takeaway": "Forecasts should be checked against observed trends and load tests.",
+      "explanation": "Normal averages can underestimate future or degraded-mode demand. Forecasts should be checked against observed trends and load tests. In the scenario, project the trend and act before the required lead time is consumed. The alternative \u2018Wait for a full-disk alert before arranging capacity\u2019 does not address the stated evidence or constraint.",
+      "id": "systems-25-scenario",
+      "title": "Capacity forecasts \u00b7 scenario",
+      "type": "scenario",
+      "question": "Storage growth will exhaust capacity before the procurement lead time. What is the best next step?",
+      "options": [
+        "Wait for a full-disk alert before arranging capacity",
+        "Current free space guarantees next month's capacity",
+        "Capacity planning is unnecessary when monitoring exists",
+        "Project the trend and act before the required lead time is consumed"
+      ],
+      "correct": [
+        3
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "systems",
+      "objective": "Explain capacity forecasts and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Capacity forecasts \u2014 primary reference",
+          "url": "https://sre.google/workbook/monitoring/"
+        }
+      ],
+      "tags": [
+        "systems",
+        "capacity-forecasts"
+      ],
+      "takeaway": "Forecasts should be checked against observed trends and load tests.",
+      "explanation": "Normal averages can underestimate future or degraded-mode demand. Forecasts should be checked against observed trends and load tests. In the scenario, project the trend and act before the required lead time is consumed. The alternative \u2018Wait for a full-disk alert before arranging capacity\u2019 does not address the stated evidence or constraint.",
+      "id": "systems-25-principles",
+      "title": "Capacity forecasts \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing capacity forecasts, which TWO statements are sound operational principles?",
+      "options": [
+        "Current free space guarantees next month's capacity",
+        "Capacity planning is unnecessary when monitoring exists",
+        "Normal averages can underestimate future or degraded-mode demand",
+        "Forecasts should be checked against observed trends and load tests"
+      ],
+      "correct": [
+        2,
+        3
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "systems",
+      "objective": "Explain capacity forecasts and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Capacity forecasts \u2014 primary reference",
+          "url": "https://sre.google/workbook/monitoring/"
+        }
+      ],
+      "tags": [
+        "systems",
+        "capacity-forecasts"
+      ],
+      "takeaway": "Forecasts should be checked against observed trends and load tests.",
+      "explanation": "Normal averages can underestimate future or degraded-mode demand. Forecasts should be checked against observed trends and load tests. In the scenario, project the trend and act before the required lead time is consumed. The alternative \u2018Wait for a full-disk alert before arranging capacity\u2019 does not address the stated evidence or constraint.",
+      "id": "systems-25-interview",
+      "title": "Capacity forecasts \u00b7 interview",
+      "type": "interview",
+      "question": "Explain proactive capacity management.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "Normal averages can underestimate future or degraded-mode demand. Forecasts should be checked against observed trends and load tests. A practical response is: Project the trend and act before the required lead time is consumed. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that current free space guarantees next month's capacity.",
+      "answerChecklist": [
+        "Normal averages can underestimate future or degraded-mode demand",
+        "Forecasts should be checked against observed trends and load tests",
+        "Project the trend and act before the required lead time is consumed",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "Storage growth will exhaust capacity before the procurement lead time. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "systems",
+      "objective": "Explain remote administration and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Remote administration \u2014 primary reference",
+          "url": "https://www.openssh.com/manual.html"
+        }
+      ],
+      "tags": [
+        "systems",
+        "remote-administration"
+      ],
+      "takeaway": "Test and stage changes with a rollback path.",
+      "explanation": "A faulty change can cut off the primary management connection. Test and stage changes with a rollback path. In the scenario, use staged rules and verified console or rollback access. The alternative \u2018Apply an untested deny-all rule over the only SSH session\u2019 does not address the stated evidence or constraint.",
+      "id": "systems-26-concept",
+      "title": "Remote administration \u00b7 concept",
+      "type": "concept",
+      "question": "Why preserve an independent recovery path during network changes?",
+      "options": [
+        "An SSH session guarantees permanent recovery access",
+        "Remote firewall edits cannot affect the current operator",
+        "Apply an untested deny-all rule over the only SSH session",
+        "A faulty change can cut off the primary management connection"
+      ],
+      "correct": [
+        3
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "systems",
+      "objective": "Explain remote administration and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Remote administration \u2014 primary reference",
+          "url": "https://www.openssh.com/manual.html"
+        }
+      ],
+      "tags": [
+        "systems",
+        "remote-administration"
+      ],
+      "takeaway": "Test and stage changes with a rollback path.",
+      "explanation": "A faulty change can cut off the primary management connection. Test and stage changes with a rollback path. In the scenario, use staged rules and verified console or rollback access. The alternative \u2018Apply an untested deny-all rule over the only SSH session\u2019 does not address the stated evidence or constraint.",
+      "id": "systems-26-scenario",
+      "title": "Remote administration \u00b7 scenario",
+      "type": "scenario",
+      "question": "A firewall change risks removing management access. What is the best next step?",
+      "options": [
+        "An SSH session guarantees permanent recovery access",
+        "Remote firewall edits cannot affect the current operator",
+        "Use staged rules and verified console or rollback access",
+        "Apply an untested deny-all rule over the only SSH session"
+      ],
+      "correct": [
+        2
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "systems",
+      "objective": "Explain remote administration and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Remote administration \u2014 primary reference",
+          "url": "https://www.openssh.com/manual.html"
+        }
+      ],
+      "tags": [
+        "systems",
+        "remote-administration"
+      ],
+      "takeaway": "Test and stage changes with a rollback path.",
+      "explanation": "A faulty change can cut off the primary management connection. Test and stage changes with a rollback path. In the scenario, use staged rules and verified console or rollback access. The alternative \u2018Apply an untested deny-all rule over the only SSH session\u2019 does not address the stated evidence or constraint.",
+      "id": "systems-26-principles",
+      "title": "Remote administration \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing remote administration, which TWO statements are sound operational principles?",
+      "options": [
+        "Remote firewall edits cannot affect the current operator",
+        "A faulty change can cut off the primary management connection",
+        "Test and stage changes with a rollback path",
+        "An SSH session guarantees permanent recovery access"
+      ],
+      "correct": [
+        1,
+        2
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "systems",
+      "objective": "Explain remote administration and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Remote administration \u2014 primary reference",
+          "url": "https://www.openssh.com/manual.html"
+        }
+      ],
+      "tags": [
+        "systems",
+        "remote-administration"
+      ],
+      "takeaway": "Test and stage changes with a rollback path.",
+      "explanation": "A faulty change can cut off the primary management connection. Test and stage changes with a rollback path. In the scenario, use staged rules and verified console or rollback access. The alternative \u2018Apply an untested deny-all rule over the only SSH session\u2019 does not address the stated evidence or constraint.",
+      "id": "systems-26-interview",
+      "title": "Remote administration \u00b7 interview",
+      "type": "interview",
+      "question": "Explain safe remote network maintenance.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "A faulty change can cut off the primary management connection. Test and stage changes with a rollback path. A practical response is: Use staged rules and verified console or rollback access. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that an SSH session guarantees permanent recovery access.",
+      "answerChecklist": [
+        "A faulty change can cut off the primary management connection",
+        "Test and stage changes with a rollback path",
+        "Use staged rules and verified console or rollback access",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "A firewall change risks removing management access. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "systems",
+      "objective": "Explain data sanitization and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Data sanitization \u2014 primary reference",
+          "url": "https://www.gnu.org/software/coreutils/manual/html_node/shred-invocation.html"
+        }
+      ],
+      "tags": [
+        "systems",
+        "data-sanitization"
+      ],
+      "takeaway": "Disposal procedures must match media technology and sensitivity.",
+      "explanation": "Deleted data may remain recoverable depending on storage and controls. Disposal procedures must match media technology and sensitivity. In the scenario, follow an approved media-specific sanitization or destruction process. The alternative \u2018Assume emptying a directory securely erased the disk\u2019 does not address the stated evidence or constraint.",
+      "id": "systems-27-concept",
+      "title": "Data sanitization \u00b7 concept",
+      "type": "concept",
+      "question": "Why distinguish file deletion from secure media disposal?",
+      "options": [
+        "One universal overwrite command is correct for all storage media",
+        "Assume emptying a directory securely erased the disk",
+        "Deleted data may remain recoverable depending on storage and controls",
+        "Deleting a filename always overwrites every physical copy"
+      ],
+      "correct": [
+        2
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "systems",
+      "objective": "Explain data sanitization and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Data sanitization \u2014 primary reference",
+          "url": "https://www.gnu.org/software/coreutils/manual/html_node/shred-invocation.html"
+        }
+      ],
+      "tags": [
+        "systems",
+        "data-sanitization"
+      ],
+      "takeaway": "Disposal procedures must match media technology and sensitivity.",
+      "explanation": "Deleted data may remain recoverable depending on storage and controls. Disposal procedures must match media technology and sensitivity. In the scenario, follow an approved media-specific sanitization or destruction process. The alternative \u2018Assume emptying a directory securely erased the disk\u2019 does not address the stated evidence or constraint.",
+      "id": "systems-27-scenario",
+      "title": "Data sanitization \u00b7 scenario",
+      "type": "scenario",
+      "question": "A retired disk contains sensitive production data. What is the best next step?",
+      "options": [
+        "One universal overwrite command is correct for all storage media",
+        "Follow an approved media-specific sanitization or destruction process",
+        "Assume emptying a directory securely erased the disk",
+        "Deleting a filename always overwrites every physical copy"
+      ],
+      "correct": [
+        1
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "systems",
+      "objective": "Explain data sanitization and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Data sanitization \u2014 primary reference",
+          "url": "https://www.gnu.org/software/coreutils/manual/html_node/shred-invocation.html"
+        }
+      ],
+      "tags": [
+        "systems",
+        "data-sanitization"
+      ],
+      "takeaway": "Disposal procedures must match media technology and sensitivity.",
+      "explanation": "Deleted data may remain recoverable depending on storage and controls. Disposal procedures must match media technology and sensitivity. In the scenario, follow an approved media-specific sanitization or destruction process. The alternative \u2018Assume emptying a directory securely erased the disk\u2019 does not address the stated evidence or constraint.",
+      "id": "systems-27-principles",
+      "title": "Data sanitization \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing data sanitization, which TWO statements are sound operational principles?",
+      "options": [
+        "Deleted data may remain recoverable depending on storage and controls",
+        "Disposal procedures must match media technology and sensitivity",
+        "Deleting a filename always overwrites every physical copy",
+        "One universal overwrite command is correct for all storage media"
+      ],
+      "correct": [
+        0,
+        1
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "systems",
+      "objective": "Explain data sanitization and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Data sanitization \u2014 primary reference",
+          "url": "https://www.gnu.org/software/coreutils/manual/html_node/shred-invocation.html"
+        }
+      ],
+      "tags": [
+        "systems",
+        "data-sanitization"
+      ],
+      "takeaway": "Disposal procedures must match media technology and sensitivity.",
+      "explanation": "Deleted data may remain recoverable depending on storage and controls. Disposal procedures must match media technology and sensitivity. In the scenario, follow an approved media-specific sanitization or destruction process. The alternative \u2018Assume emptying a directory securely erased the disk\u2019 does not address the stated evidence or constraint.",
+      "id": "systems-27-interview",
+      "title": "Data sanitization \u00b7 interview",
+      "type": "interview",
+      "question": "Explain the operational difference between deletion and sanitization.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "Deleted data may remain recoverable depending on storage and controls. Disposal procedures must match media technology and sensitivity. A practical response is: Follow an approved media-specific sanitization or destruction process. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that deleting a filename always overwrites every physical copy.",
+      "answerChecklist": [
+        "Deleted data may remain recoverable depending on storage and controls",
+        "Disposal procedures must match media technology and sensitivity",
+        "Follow an approved media-specific sanitization or destruction process",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "A retired disk contains sensitive production data. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "systems",
+      "objective": "Explain fleet changes and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Fleet changes \u2014 primary reference",
+          "url": "https://sre.google/workbook/canarying-releases/"
+        }
+      ],
+      "tags": [
+        "systems",
+        "fleet-changes"
+      ],
+      "takeaway": "Canaries should represent important workload variations.",
+      "explanation": "Limit impact and observe behavior before wider deployment. Canaries should represent important workload variations. In the scenario, test representative groups and expand with monitored stop criteria. The alternative \u2018Apply globally based only on the idle-host result\u2019 does not address the stated evidence or constraint.",
+      "id": "systems-28-concept",
+      "title": "Fleet changes \u00b7 concept",
+      "type": "concept",
+      "question": "Why use staged rollouts for system configuration?",
+      "options": [
+        "Apply globally based only on the idle-host result",
+        "Limit impact and observe behavior before wider deployment",
+        "A successful change on one idle host proves fleet-wide safety",
+        "The fastest rollout always minimizes risk"
+      ],
+      "correct": [
+        1
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "systems",
+      "objective": "Explain fleet changes and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Fleet changes \u2014 primary reference",
+          "url": "https://sre.google/workbook/canarying-releases/"
+        }
+      ],
+      "tags": [
+        "systems",
+        "fleet-changes"
+      ],
+      "takeaway": "Canaries should represent important workload variations.",
+      "explanation": "Limit impact and observe behavior before wider deployment. Canaries should represent important workload variations. In the scenario, test representative groups and expand with monitored stop criteria. The alternative \u2018Apply globally based only on the idle-host result\u2019 does not address the stated evidence or constraint.",
+      "id": "systems-28-scenario",
+      "title": "Fleet changes \u00b7 scenario",
+      "type": "scenario",
+      "question": "A kernel setting works on one host but harms busy database hosts. What is the best next step?",
+      "options": [
+        "Test representative groups and expand with monitored stop criteria",
+        "Apply globally based only on the idle-host result",
+        "A successful change on one idle host proves fleet-wide safety",
+        "The fastest rollout always minimizes risk"
+      ],
+      "correct": [
+        0
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "systems",
+      "objective": "Explain fleet changes and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Fleet changes \u2014 primary reference",
+          "url": "https://sre.google/workbook/canarying-releases/"
+        }
+      ],
+      "tags": [
+        "systems",
+        "fleet-changes"
+      ],
+      "takeaway": "Canaries should represent important workload variations.",
+      "explanation": "Limit impact and observe behavior before wider deployment. Canaries should represent important workload variations. In the scenario, test representative groups and expand with monitored stop criteria. The alternative \u2018Apply globally based only on the idle-host result\u2019 does not address the stated evidence or constraint.",
+      "id": "systems-28-principles",
+      "title": "Fleet changes \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing fleet changes, which TWO statements are sound operational principles?",
+      "options": [
+        "Canaries should represent important workload variations",
+        "A successful change on one idle host proves fleet-wide safety",
+        "The fastest rollout always minimizes risk",
+        "Limit impact and observe behavior before wider deployment"
+      ],
+      "correct": [
+        0,
+        3
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "systems",
+      "objective": "Explain fleet changes and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Fleet changes \u2014 primary reference",
+          "url": "https://sre.google/workbook/canarying-releases/"
+        }
+      ],
+      "tags": [
+        "systems",
+        "fleet-changes"
+      ],
+      "takeaway": "Canaries should represent important workload variations.",
+      "explanation": "Limit impact and observe behavior before wider deployment. Canaries should represent important workload variations. In the scenario, test representative groups and expand with monitored stop criteria. The alternative \u2018Apply globally based only on the idle-host result\u2019 does not address the stated evidence or constraint.",
+      "id": "systems-28-interview",
+      "title": "Fleet changes \u00b7 interview",
+      "type": "interview",
+      "question": "Explain representative canaries for heterogeneous fleets.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "Limit impact and observe behavior before wider deployment. Canaries should represent important workload variations. A practical response is: Test representative groups and expand with monitored stop criteria. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that a successful change on one idle host proves fleet-wide safety.",
+      "answerChecklist": [
+        "Limit impact and observe behavior before wider deployment",
+        "Canaries should represent important workload variations",
+        "Test representative groups and expand with monitored stop criteria",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "A kernel setting works on one host but harms busy database hosts. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "systems",
+      "objective": "Explain disaster documentation and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Disaster documentation \u2014 primary reference",
+          "url": "https://sre.google/sre-book/data-integrity/"
+        }
+      ],
+      "tags": [
+        "systems",
+        "disaster-documentation"
+      ],
+      "takeaway": "Recovery instructions should be accessible during the failure they address.",
+      "explanation": "Dependencies access requirements verification and responsible owners. Recovery instructions should be accessible during the failure they address. In the scenario, provide an authorized resilient documentation and access path. The alternative \u2018Store the only recovery guide behind the same unavailable dependency\u2019 does not address the stated evidence or constraint.",
+      "id": "systems-29-concept",
+      "title": "Disaster documentation \u00b7 concept",
+      "type": "concept",
+      "question": "What must recovery documentation include to be usable?",
+      "options": [
+        "Dependencies access requirements verification and responsible owners",
+        "Documentation stored only on the failed system is sufficient",
+        "A list of server names is a complete recovery plan",
+        "Store the only recovery guide behind the same unavailable dependency"
+      ],
+      "correct": [
+        0
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "systems",
+      "objective": "Explain disaster documentation and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Disaster documentation \u2014 primary reference",
+          "url": "https://sre.google/sre-book/data-integrity/"
+        }
+      ],
+      "tags": [
+        "systems",
+        "disaster-documentation"
+      ],
+      "takeaway": "Recovery instructions should be accessible during the failure they address.",
+      "explanation": "Dependencies access requirements verification and responsible owners. Recovery instructions should be accessible during the failure they address. In the scenario, provide an authorized resilient documentation and access path. The alternative \u2018Store the only recovery guide behind the same unavailable dependency\u2019 does not address the stated evidence or constraint.",
+      "id": "systems-29-scenario",
+      "title": "Disaster documentation \u00b7 scenario",
+      "type": "scenario",
+      "question": "A recovery team cannot access the instructions because identity services are down. What is the best next step?",
+      "options": [
+        "Store the only recovery guide behind the same unavailable dependency",
+        "Documentation stored only on the failed system is sufficient",
+        "A list of server names is a complete recovery plan",
+        "Provide an authorized resilient documentation and access path"
+      ],
+      "correct": [
+        3
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "systems",
+      "objective": "Explain disaster documentation and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Disaster documentation \u2014 primary reference",
+          "url": "https://sre.google/sre-book/data-integrity/"
+        }
+      ],
+      "tags": [
+        "systems",
+        "disaster-documentation"
+      ],
+      "takeaway": "Recovery instructions should be accessible during the failure they address.",
+      "explanation": "Dependencies access requirements verification and responsible owners. Recovery instructions should be accessible during the failure they address. In the scenario, provide an authorized resilient documentation and access path. The alternative \u2018Store the only recovery guide behind the same unavailable dependency\u2019 does not address the stated evidence or constraint.",
+      "id": "systems-29-principles",
+      "title": "Disaster documentation \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing disaster documentation, which TWO statements are sound operational principles?",
+      "options": [
+        "Documentation stored only on the failed system is sufficient",
+        "A list of server names is a complete recovery plan",
+        "Dependencies access requirements verification and responsible owners",
+        "Recovery instructions should be accessible during the failure they address"
+      ],
+      "correct": [
+        2,
+        3
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "systems",
+      "objective": "Explain disaster documentation and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Disaster documentation \u2014 primary reference",
+          "url": "https://sre.google/sre-book/data-integrity/"
+        }
+      ],
+      "tags": [
+        "systems",
+        "disaster-documentation"
+      ],
+      "takeaway": "Recovery instructions should be accessible during the failure they address.",
+      "explanation": "Dependencies access requirements verification and responsible owners. Recovery instructions should be accessible during the failure they address. In the scenario, provide an authorized resilient documentation and access path. The alternative \u2018Store the only recovery guide behind the same unavailable dependency\u2019 does not address the stated evidence or constraint.",
+      "id": "systems-29-interview",
+      "title": "Disaster documentation \u00b7 interview",
+      "type": "interview",
+      "question": "Explain avoiding circular dependencies in recovery plans.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "Dependencies access requirements verification and responsible owners. Recovery instructions should be accessible during the failure they address. A practical response is: Provide an authorized resilient documentation and access path. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that documentation stored only on the failed system is sufficient.",
+      "answerChecklist": [
+        "Dependencies access requirements verification and responsible owners",
+        "Recovery instructions should be accessible during the failure they address",
+        "Provide an authorized resilient documentation and access path",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "A recovery team cannot access the instructions because identity services are down. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "systems",
+      "objective": "Explain change verification and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Change verification \u2014 primary reference",
+          "url": "https://sre.google/workbook/canarying-releases/"
+        }
+      ],
+      "tags": [
+        "systems",
+        "change-verification"
+      ],
+      "takeaway": "Exit status is evidence about the command rather than complete service health.",
+      "explanation": "Verify the intended system outcome and relevant side effects. Exit status is evidence about the command rather than complete service health. In the scenario, check service behavior logs and the actual loaded configuration. The alternative \u2018Close the incident solely because the command returned zero\u2019 does not address the stated evidence or constraint.",
+      "id": "systems-30-concept",
+      "title": "Change verification \u00b7 concept",
+      "type": "concept",
+      "question": "What should follow a successful administration command?",
+      "options": [
+        "Exit code zero proves every user workflow is healthy",
+        "Verification is unnecessary after an automated command",
+        "Close the incident solely because the command returned zero",
+        "Verify the intended system outcome and relevant side effects"
+      ],
+      "correct": [
+        3
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "systems",
+      "objective": "Explain change verification and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Change verification \u2014 primary reference",
+          "url": "https://sre.google/workbook/canarying-releases/"
+        }
+      ],
+      "tags": [
+        "systems",
+        "change-verification"
+      ],
+      "takeaway": "Exit status is evidence about the command rather than complete service health.",
+      "explanation": "Verify the intended system outcome and relevant side effects. Exit status is evidence about the command rather than complete service health. In the scenario, check service behavior logs and the actual loaded configuration. The alternative \u2018Close the incident solely because the command returned zero\u2019 does not address the stated evidence or constraint.",
+      "id": "systems-30-scenario",
+      "title": "Change verification \u00b7 scenario",
+      "type": "scenario",
+      "question": "A reload command succeeds but requests still fail. What is the best next step?",
+      "options": [
+        "Exit code zero proves every user workflow is healthy",
+        "Verification is unnecessary after an automated command",
+        "Check service behavior logs and the actual loaded configuration",
+        "Close the incident solely because the command returned zero"
+      ],
+      "correct": [
+        2
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "systems",
+      "objective": "Explain change verification and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Change verification \u2014 primary reference",
+          "url": "https://sre.google/workbook/canarying-releases/"
+        }
+      ],
+      "tags": [
+        "systems",
+        "change-verification"
+      ],
+      "takeaway": "Exit status is evidence about the command rather than complete service health.",
+      "explanation": "Verify the intended system outcome and relevant side effects. Exit status is evidence about the command rather than complete service health. In the scenario, check service behavior logs and the actual loaded configuration. The alternative \u2018Close the incident solely because the command returned zero\u2019 does not address the stated evidence or constraint.",
+      "id": "systems-30-principles",
+      "title": "Change verification \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing change verification, which TWO statements are sound operational principles?",
+      "options": [
+        "Verification is unnecessary after an automated command",
+        "Verify the intended system outcome and relevant side effects",
+        "Exit status is evidence about the command rather than complete service health",
+        "Exit code zero proves every user workflow is healthy"
+      ],
+      "correct": [
+        1,
+        2
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "systems",
+      "objective": "Explain change verification and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Change verification \u2014 primary reference",
+          "url": "https://sre.google/workbook/canarying-releases/"
+        }
+      ],
+      "tags": [
+        "systems",
+        "change-verification"
+      ],
+      "takeaway": "Exit status is evidence about the command rather than complete service health.",
+      "explanation": "Verify the intended system outcome and relevant side effects. Exit status is evidence about the command rather than complete service health. In the scenario, check service behavior logs and the actual loaded configuration. The alternative \u2018Close the incident solely because the command returned zero\u2019 does not address the stated evidence or constraint.",
+      "id": "systems-30-interview",
+      "title": "Change verification \u00b7 interview",
+      "type": "interview",
+      "question": "Explain outcome-based verification after operational changes.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "Verify the intended system outcome and relevant side effects. Exit status is evidence about the command rather than complete service health. A practical response is: Check service behavior logs and the actual loaded configuration. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that exit code zero proves every user workflow is healthy.",
+      "answerChecklist": [
+        "Verify the intended system outcome and relevant side effects",
+        "Exit status is evidence about the command rather than complete service health",
+        "Check service behavior logs and the actual loaded configuration",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "A reload command succeeds but requests still fail. Explain the evidence that would change your decision."
+      ]
+    }
+  ]
+}

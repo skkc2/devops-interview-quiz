@@ -5,7 +5,7 @@
       "id": "aws-lesson-01",
       "topic": "aws",
       "title": "Regions",
-      "summary": "A geographic area containing multiple Availability Zones.",
+      "summary": "What is an AWS Region? A geographic area containing multiple Availability Zones.",
       "sections": [
         {
           "heading": "How it works",
@@ -32,7 +32,7 @@
       "id": "aws-lesson-02",
       "topic": "aws",
       "title": "Availability Zones",
-      "summary": "Reduce exposure to a single zone failure.",
+      "summary": "Why distribute workloads across Availability Zones? Reduce exposure to a single zone failure.",
       "sections": [
         {
           "heading": "How it works",
@@ -59,7 +59,7 @@
       "id": "aws-lesson-03",
       "topic": "aws",
       "title": "IAM roles",
-      "summary": "Reduce dependence on embedded long-lived access keys.",
+      "summary": "Why prefer roles with temporary credentials for workloads? Reduce dependence on embedded long-lived access keys.",
       "sections": [
         {
           "heading": "How it works",
@@ -86,7 +86,7 @@
       "id": "aws-lesson-04",
       "topic": "aws",
       "title": "Least privilege",
-      "summary": "Allow only required actions on intended resources under appropriate conditions.",
+      "summary": "What is the goal of least-privilege IAM policies? Allow only required actions on intended resources under appropriate conditions.",
       "sections": [
         {
           "heading": "How it works",
@@ -113,7 +113,7 @@
       "id": "aws-lesson-05",
       "topic": "aws",
       "title": "S3 storage",
-      "summary": "Object storage addressed through buckets and object keys.",
+      "summary": "What storage model does Amazon S3 primarily provide? Object storage addressed through buckets and object keys.",
       "sections": [
         {
           "heading": "How it works",
@@ -140,7 +140,7 @@
       "id": "aws-lesson-06",
       "topic": "aws",
       "title": "EBS",
-      "summary": "Block storage for EC2 workloads.",
+      "summary": "What is a common use of Amazon EBS? Block storage for EC2 workloads.",
       "sections": [
         {
           "heading": "How it works",
@@ -167,7 +167,7 @@
       "id": "aws-lesson-07",
       "topic": "aws",
       "title": "Security groups",
-      "summary": "Stateful rules allow specified traffic for associated resources.",
+      "summary": "How do security groups generally filter traffic? Stateful rules allow specified traffic for associated resources.",
       "sections": [
         {
           "heading": "How it works",
@@ -194,7 +194,7 @@
       "id": "aws-lesson-08",
       "topic": "aws",
       "title": "VPC subnets",
-      "summary": "A route to an Internet Gateway supports direct Internet routing.",
+      "summary": "What makes a subnet public in the usual IPv4 routing sense? A route to an Internet Gateway supports direct Internet routing.",
       "sections": [
         {
           "heading": "How it works",
@@ -221,7 +221,7 @@
       "id": "aws-lesson-09",
       "topic": "aws",
       "title": "NAT gateways",
-      "summary": "Allow private-subnet workloads to initiate suitable outbound connections.",
+      "summary": "What is a typical purpose of a NAT gateway? Allow private-subnet workloads to initiate suitable outbound connections.",
       "sections": [
         {
           "heading": "How it works",
@@ -248,7 +248,7 @@
       "id": "aws-lesson-10",
       "topic": "aws",
       "title": "VPC endpoints",
-      "summary": "Provide a private connectivity path without relying on ordinary Internet egress.",
+      "summary": "Why use a VPC endpoint for a supported service? Provide a private connectivity path without relying on ordinary Internet egress.",
       "sections": [
         {
           "heading": "How it works",
@@ -275,7 +275,7 @@
       "id": "aws-lesson-11",
       "topic": "aws",
       "title": "Application Load Balancers",
-      "summary": "Application-layer routing for protocols such as HTTP.",
+      "summary": "What kind of routing is an ALB designed to support? Application-layer routing for protocols such as HTTP.",
       "sections": [
         {
           "heading": "How it works",
@@ -302,7 +302,7 @@
       "id": "aws-lesson-12",
       "topic": "aws",
       "title": "Auto Scaling",
-      "summary": "A metric and target aligned with workload capacity needs.",
+      "summary": "What should drive a useful scaling policy? A metric and target aligned with workload capacity needs.",
       "sections": [
         {
           "heading": "How it works",
@@ -329,7 +329,7 @@
       "id": "aws-lesson-13",
       "topic": "aws",
       "title": "CloudWatch metrics",
-      "summary": "Time-series measurements identified by namespace and dimensions.",
+      "summary": "What does a CloudWatch metric represent? Time-series measurements identified by namespace and dimensions.",
       "sections": [
         {
           "heading": "How it works",
@@ -356,7 +356,7 @@
       "id": "aws-lesson-14",
       "topic": "aws",
       "title": "CloudTrail",
-      "summary": "AWS API activity and associated identity context.",
+      "summary": "What is CloudTrail commonly used to investigate? AWS API activity and associated identity context.",
       "sections": [
         {
           "heading": "How it works",
@@ -383,7 +383,7 @@
       "id": "aws-lesson-15",
       "topic": "aws",
       "title": "Shared responsibility",
-      "summary": "AWS and customers own different security responsibilities.",
+      "summary": "What does AWS shared responsibility imply? AWS and customers own different security responsibilities.",
       "sections": [
         {
           "heading": "How it works",
@@ -410,7 +410,7 @@
       "id": "aws-lesson-16",
       "topic": "aws",
       "title": "S3 versioning",
-      "summary": "Accidental overwrites or deletions when prior versions remain available.",
+      "summary": "What can S3 versioning help recover from? Accidental overwrites or deletions when prior versions remain available.",
       "sections": [
         {
           "heading": "How it works",
@@ -437,7 +437,7 @@
       "id": "aws-lesson-17",
       "topic": "aws",
       "title": "RDS availability",
-      "summary": "Improve availability through managed standby and failover mechanisms.",
+      "summary": "What is the main purpose of a standard RDS Multi-AZ deployment? Improve availability through managed standby and failover mechanisms.",
       "sections": [
         {
           "heading": "How it works",
@@ -464,7 +464,7 @@
       "id": "aws-lesson-18",
       "topic": "aws",
       "title": "Read replicas",
-      "summary": "Offload eligible reads or support specific replication use cases.",
+      "summary": "What is a common role of database read replicas? Offload eligible reads or support specific replication use cases.",
       "sections": [
         {
           "heading": "How it works",
@@ -491,7 +491,7 @@
       "id": "aws-lesson-19",
       "topic": "aws",
       "title": "Lambda retries",
-      "summary": "Event sources and retries can deliver work more than once.",
+      "summary": "Why design Lambda event processing for duplicate delivery where applicable? Event sources and retries can deliver work more than once.",
       "sections": [
         {
           "heading": "How it works",
@@ -518,7 +518,7 @@
       "id": "aws-lesson-20",
       "topic": "aws",
       "title": "SQS visibility",
-      "summary": "How long a received message is hidden from other consumers before deletion or expiry.",
+      "summary": "What does SQS visibility timeout control? How long a received message is hidden from other consumers before deletion or expiry.",
       "sections": [
         {
           "heading": "How it works",
@@ -545,7 +545,7 @@
       "id": "aws-lesson-21",
       "topic": "aws",
       "title": "Dead-letter queues",
-      "summary": "Isolate repeatedly failing messages for investigation and recovery.",
+      "summary": "What is a dead-letter queue useful for? Isolate repeatedly failing messages for investigation and recovery.",
       "sections": [
         {
           "heading": "How it works",
@@ -572,7 +572,7 @@
       "id": "aws-lesson-22",
       "topic": "aws",
       "title": "DynamoDB keys",
-      "summary": "It affects data distribution and access patterns.",
+      "summary": "Why is partition-key design important? It affects data distribution and access patterns.",
       "sections": [
         {
           "heading": "How it works",
@@ -599,7 +599,7 @@
       "id": "aws-lesson-23",
       "topic": "aws",
       "title": "KMS controls",
-      "summary": "Key policies and applicable identity permissions govern key use.",
+      "summary": "What is an important aspect of KMS authorization? Key policies and applicable identity permissions govern key use.",
       "sections": [
         {
           "heading": "How it works",
@@ -626,7 +626,7 @@
       "id": "aws-lesson-24",
       "topic": "aws",
       "title": "Secrets rotation",
-      "summary": "Consumers must obtain and use the updated credential correctly.",
+      "summary": "What must accompany credential rotation? Consumers must obtain and use the updated credential correctly.",
       "sections": [
         {
           "heading": "How it works",
@@ -653,7 +653,7 @@
       "id": "aws-lesson-25",
       "topic": "aws",
       "title": "Route 53 failover",
-      "summary": "Resolver caching and client behavior affect switchover timing.",
+      "summary": "What is a limitation of DNS-based failover? Resolver caching and client behavior affect switchover timing.",
       "sections": [
         {
           "heading": "How it works",
@@ -680,7 +680,7 @@
       "id": "aws-lesson-26",
       "topic": "aws",
       "title": "CloudFront caching",
-      "summary": "Different responses must not incorrectly share one cache entry.",
+      "summary": "Why include relevant request variation in cache policy? Different responses must not incorrectly share one cache entry.",
       "sections": [
         {
           "heading": "How it works",
@@ -707,7 +707,7 @@
       "id": "aws-lesson-27",
       "topic": "aws",
       "title": "Cross-account access",
-      "summary": "The role trust relationship and caller authorization.",
+      "summary": "What must be evaluated for role assumption across accounts? The role trust relationship and caller authorization.",
       "sections": [
         {
           "heading": "How it works",
@@ -734,7 +734,7 @@
       "id": "aws-lesson-28",
       "topic": "aws",
       "title": "Service quotas",
-      "summary": "Quota limits can block scaling even when the design is otherwise valid.",
+      "summary": "Why include service quotas in capacity planning? Quota limits can block scaling even when the design is otherwise valid.",
       "sections": [
         {
           "heading": "How it works",
@@ -761,7 +761,7 @@
       "id": "aws-lesson-29",
       "topic": "aws",
       "title": "Cost attribution",
-      "summary": "Connect spend to accountable services and teams.",
+      "summary": "Why use cost allocation and workload ownership metadata? Connect spend to accountable services and teams.",
       "sections": [
         {
           "heading": "How it works",
@@ -788,7 +788,7 @@
       "id": "aws-lesson-30",
       "topic": "aws",
       "title": "Disaster recovery",
-      "summary": "Tested recovery of data identities dependencies and traffic handling.",
+      "summary": "What makes a second-Region recovery design credible? Tested recovery of data identities dependencies and traffic handling.",
       "sections": [
         {
           "heading": "How it works",

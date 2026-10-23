@@ -88,7 +88,7 @@
       "id": "terraform-01-principles",
       "title": "Desired state \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing desired state, which TWO statements are sound operational principles?",
+      "question": "What does Terraform configuration primarily express? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "It is only a sequential shell script",
         "It directly replaces every cloud API",
@@ -122,7 +122,7 @@
       "question": "Explain declarative infrastructure and how Terraform detects drift.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "The desired state of managed infrastructure. Providers translate resource operations into service API calls. A practical response is: Review the plan for drift before applying changes. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that it is only a sequential shell script.",
+      "sampleAnswer": "Providers translate resource operations into service API calls. Consider this situation: A resource was edited manually and differs from configuration. A practical response is: Review the plan for drift before applying changes. The relevant concept is: What does Terraform configuration primarily express? The desired state of managed infrastructure. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that it is only a sequential shell script.",
       "answerChecklist": [
         "The desired state of managed infrastructure",
         "Providers translate resource operations into service API calls",
@@ -212,7 +212,7 @@
       "id": "terraform-02-principles",
       "title": "Initialization \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing initialization, which TWO statements are sound operational principles?",
+      "question": "What is terraform init used for? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "It destroys resources absent from configuration",
         "Initialize the working directory and required dependencies",
@@ -246,7 +246,7 @@
       "question": "Explain what you verify during initialization in a new environment.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Initialize the working directory and required dependencies. Backend changes may require explicit migration decisions. A practical response is: Run initialization with the intended backend configuration. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that it applies every planned infrastructure change.",
+      "sampleAnswer": "Backend changes may require explicit migration decisions. Consider this situation: A fresh checkout cannot load its provider dependencies. A practical response is: Run initialization with the intended backend configuration. The relevant concept is: What is terraform init used for? Initialize the working directory and required dependencies. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that it applies every planned infrastructure change.",
       "answerChecklist": [
         "Initialize the working directory and required dependencies",
         "Backend changes may require explicit migration decisions",
@@ -336,7 +336,7 @@
       "id": "terraform-03-principles",
       "title": "Planning \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing planning, which TWO statements are sound operational principles?",
+      "question": "What does terraform plan produce? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "A proposed set of changes based on configuration and observed state",
         "A plan is a review opportunity rather than a guarantee against future drift",
@@ -370,7 +370,7 @@
       "question": "Explain how you review a plan containing a stateful resource replacement.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "A proposed set of changes based on configuration and observed state. A plan is a review opportunity rather than a guarantee against future drift. A practical response is: Inspect the replacement cause and data-protection strategy. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that it necessarily performs every proposed change.",
+      "sampleAnswer": "A plan is a review opportunity rather than a guarantee against future drift. Consider this situation: A plan unexpectedly proposes replacing a database. A practical response is: Inspect the replacement cause and data-protection strategy. The relevant concept is: What does terraform plan produce? A proposed set of changes based on configuration and observed state. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that it necessarily performs every proposed change.",
       "answerChecklist": [
         "A proposed set of changes based on configuration and observed state",
         "A plan is a review opportunity rather than a guarantee against future drift",
@@ -460,7 +460,7 @@
       "id": "terraform-04-principles",
       "title": "State mapping \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing state mapping, which TWO statements are sound operational principles?",
+      "question": "Why does Terraform maintain state? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "State is operational data that requires protection and recovery planning",
         "State is merely optional console formatting",
@@ -494,7 +494,7 @@
       "question": "Explain the role of state in infrastructure ownership.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "To map configuration addresses to managed remote objects. State is operational data that requires protection and recovery planning. A practical response is: Investigate the mapping and consider a controlled import. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that state is merely optional console formatting.",
+      "sampleAnswer": "State is operational data that requires protection and recovery planning. Consider this situation: A resource exists remotely but its state mapping is missing. A practical response is: Investigate the mapping and consider a controlled import. The relevant concept is: Why does Terraform maintain state? To map configuration addresses to managed remote objects. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that state is merely optional console formatting.",
       "answerChecklist": [
         "To map configuration addresses to managed remote objects",
         "State is operational data that requires protection and recovery planning",
@@ -584,7 +584,7 @@
       "id": "terraform-05-principles",
       "title": "Variables \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing variables, which TWO statements are sound operational principles?",
+      "question": "What do input variables provide? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "Variables automatically encrypt every value",
         "Variables are always populated only from environment variables",
@@ -618,7 +618,7 @@
       "question": "Explain how you design a safe module input interface.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Parameters for a Terraform module. Types and validation can catch invalid inputs early. A practical response is: Add explicit input validation and clear accepted values. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that variables automatically encrypt every value.",
+      "sampleAnswer": "Types and validation can catch invalid inputs early. Consider this situation: A module receives an invalid environment name. A practical response is: Add explicit input validation and clear accepted values. The relevant concept is: What do input variables provide? Parameters for a Terraform module. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that variables automatically encrypt every value.",
       "answerChecklist": [
         "Parameters for a Terraform module",
         "Types and validation can catch invalid inputs early",
@@ -708,7 +708,7 @@
       "id": "terraform-06-principles",
       "title": "Outputs \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing outputs, which TWO statements are sound operational principles?",
+      "question": "What are Terraform outputs used for? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "Every output is automatically public-safe",
         "Expose selected values from a module",
@@ -742,7 +742,7 @@
       "question": "Explain safe use of outputs between modules and automation.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Expose selected values from a module. Outputs can contain sensitive data and need appropriate handling. A practical response is: Mark and handle sensitive values appropriately and restrict log exposure. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that outputs are never stored with state.",
+      "sampleAnswer": "Outputs can contain sensitive data and need appropriate handling. Consider this situation: A pipeline prints a credential-bearing output into shared logs. A practical response is: Mark and handle sensitive values appropriately and restrict log exposure. The relevant concept is: What are Terraform outputs used for? Expose selected values from a module. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that outputs are never stored with state.",
       "answerChecklist": [
         "Expose selected values from a module",
         "Outputs can contain sensitive data and need appropriate handling",
@@ -832,7 +832,7 @@
       "id": "terraform-07-principles",
       "title": "Providers \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing providers, which TWO statements are sound operational principles?",
+      "question": "What is a Terraform provider? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "A plugin implementing interactions with a service or platform",
         "Provider versions affect resource behavior and schema",
@@ -866,7 +866,7 @@
       "question": "Explain provider version management for reproducible changes.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "A plugin implementing interactions with a service or platform. Provider versions affect resource behavior and schema. A practical response is: Review provider version changes and test the plan. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that a provider is the same thing as a variable file.",
+      "sampleAnswer": "Provider versions affect resource behavior and schema. Consider this situation: An upgrade changes a resource's planned behavior. A practical response is: Review provider version changes and test the plan. The relevant concept is: What is a Terraform provider? A plugin implementing interactions with a service or platform. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that a provider is the same thing as a variable file.",
       "answerChecklist": [
         "A plugin implementing interactions with a service or platform",
         "Provider versions affect resource behavior and schema",
@@ -956,7 +956,7 @@
       "id": "terraform-08-principles",
       "title": "Modules \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing modules, which TWO statements are sound operational principles?",
+      "question": "What does a module encapsulate? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "A clear module interface reduces coupling to implementation details",
         "A module is a separate cloud account by definition",
@@ -990,7 +990,7 @@
       "question": "Explain where you would draw a reusable module boundary.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "A reusable group of Terraform configuration. A clear module interface reduces coupling to implementation details. A practical response is: Create a versioned module with deliberate inputs and outputs. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that a module is a separate cloud account by definition.",
+      "sampleAnswer": "A clear module interface reduces coupling to implementation details. Consider this situation: Teams duplicate similar infrastructure with inconsistent defaults. A practical response is: Create a versioned module with deliberate inputs and outputs. The relevant concept is: What does a module encapsulate? A reusable group of Terraform configuration. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that a module is a separate cloud account by definition.",
       "answerChecklist": [
         "A reusable group of Terraform configuration",
         "A clear module interface reduces coupling to implementation details",
@@ -1080,7 +1080,7 @@
       "id": "terraform-09-principles",
       "title": "Lock files \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing lock files, which TWO statements are sound operational principles?",
+      "question": "What does the dependency lock file primarily record? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "It locks all remote infrastructure against edits",
         "It records every module version selection automatically",
@@ -1114,7 +1114,7 @@
       "question": "Explain provider constraints versus the dependency lock file.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Selected provider versions and checksums. Commit the lock file to support consistent provider selection. A practical response is: Review constraints and commit the intended provider lock selections. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that it locks all remote infrastructure against edits.",
+      "sampleAnswer": "Commit the lock file to support consistent provider selection. Consider this situation: Two CI runs install different provider builds after initialization. A practical response is: Review constraints and commit the intended provider lock selections. The relevant concept is: What does the dependency lock file primarily record? Selected provider versions and checksums. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that it locks all remote infrastructure against edits.",
       "answerChecklist": [
         "Selected provider versions and checksums",
         "Commit the lock file to support consistent provider selection",
@@ -1204,7 +1204,7 @@
       "id": "terraform-10-principles",
       "title": "Remote state \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing remote state, which TWO statements are sound operational principles?",
+      "question": "Why use a suitably secured remote backend for shared work? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "Every remote backend supports identical locking behavior",
         "It centralizes state access and can support collaboration controls",
@@ -1238,7 +1238,7 @@
       "question": "Explain the requirements of a shared Terraform backend.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "It centralizes state access and can support collaboration controls. Backend locking capability depends on the chosen backend. A practical response is: Move to a coordinated backend with appropriate access and locking. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that remote storage makes all state contents non-sensitive.",
+      "sampleAnswer": "Backend locking capability depends on the chosen backend. Consider this situation: Two engineers apply against separate local state copies. A practical response is: Move to a coordinated backend with appropriate access and locking. The relevant concept is: Why use a suitably secured remote backend for shared work? It centralizes state access and can support collaboration controls. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that remote storage makes all state contents non-sensitive.",
       "answerChecklist": [
         "It centralizes state access and can support collaboration controls",
         "Backend locking capability depends on the chosen backend",
@@ -1328,7 +1328,7 @@
       "id": "terraform-11-principles",
       "title": "State locking \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing state locking, which TWO statements are sound operational principles?",
+      "question": "What does state locking help prevent? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "Concurrent writers corrupting the same state workflow",
         "A lock should be cleared only after verifying its owner is inactive",
@@ -1362,7 +1362,7 @@
       "question": "Explain a safe response to an apparently stale state lock.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Concurrent writers corrupting the same state workflow. A lock should be cleared only after verifying its owner is inactive. A practical response is: Verify the original operation stopped before a controlled unlock. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that locking prevents every manual cloud-console edit.",
+      "sampleAnswer": "A lock should be cleared only after verifying its owner is inactive. Consider this situation: An apply is blocked by a lock after a runner interruption. A practical response is: Verify the original operation stopped before a controlled unlock. The relevant concept is: What does state locking help prevent? Concurrent writers corrupting the same state workflow. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that locking prevents every manual cloud-console edit.",
       "answerChecklist": [
         "Concurrent writers corrupting the same state workflow",
         "A lock should be cleared only after verifying its owner is inactive",
@@ -1452,7 +1452,7 @@
       "id": "terraform-12-principles",
       "title": "Sensitive values \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing sensitive values, which TWO statements are sound operational principles?",
+      "question": "What does marking a value sensitive generally do? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "Sensitive marking alone does not encrypt stored state",
         "It removes every occurrence from state automatically",
@@ -1486,7 +1486,7 @@
       "question": "Explain output redaction versus secret storage protection.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Redact it from ordinary user-facing output. Sensitive marking alone does not encrypt stored state. A practical response is: Restrict and remediate exposure and secure the state storage. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that it removes every occurrence from state automatically.",
+      "sampleAnswer": "Sensitive marking alone does not encrypt stored state. Consider this situation: A team commits state believing sensitive values were removed. A practical response is: Restrict and remediate exposure and secure the state storage. The relevant concept is: What does marking a value sensitive generally do? Redact it from ordinary user-facing output. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that it removes every occurrence from state automatically.",
       "answerChecklist": [
         "Redact it from ordinary user-facing output",
         "Sensitive marking alone does not encrypt stored state",
@@ -1576,7 +1576,7 @@
       "id": "terraform-13-principles",
       "title": "Resource addresses \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing resource addresses, which TWO statements are sound operational principles?",
+      "question": "Why do stable for_each keys matter? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "Keys only affect display order",
         "Renaming keys never changes resource addresses",
@@ -1610,7 +1610,7 @@
       "question": "Explain stable identity when designing for_each inputs.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Keys form part of resource instance identity. Changing a key can appear as removal and creation. A practical response is: Review address migration and use an appropriate moved mapping. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that keys only affect display order.",
+      "sampleAnswer": "Changing a key can appear as removal and creation. Consider this situation: Renaming a map key proposes destroying a live object. A practical response is: Review address migration and use an appropriate moved mapping. The relevant concept is: Why do stable for_each keys matter? Keys form part of resource instance identity. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that keys only affect display order.",
       "answerChecklist": [
         "Keys form part of resource instance identity",
         "Changing a key can appear as removal and creation",
@@ -1700,7 +1700,7 @@
       "id": "terraform-14-principles",
       "title": "Count indexing \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing count indexing, which TWO statements are sound operational principles?",
+      "question": "What risk comes from removing an item in a count-indexed list? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "Removing one list item can never affect later instances",
         "Later numeric indices can shift their resource associations",
@@ -1734,7 +1734,7 @@
       "question": "Compare count and for_each for long-lived infrastructure.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Later numeric indices can shift their resource associations. Stable semantic keys can reduce unintended identity changes. A practical response is: Review index shifts and migrate toward stable keys where appropriate. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that count indices are permanently tied to object names.",
+      "sampleAnswer": "Stable semantic keys can reduce unintended identity changes. Consider this situation: Removing the first subnet name causes several unexpected changes. A practical response is: Review index shifts and migrate toward stable keys where appropriate. The relevant concept is: What risk comes from removing an item in a count-indexed list? Later numeric indices can shift their resource associations. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that count indices are permanently tied to object names.",
       "answerChecklist": [
         "Later numeric indices can shift their resource associations",
         "Stable semantic keys can reduce unintended identity changes",
@@ -1824,7 +1824,7 @@
       "id": "terraform-15-principles",
       "title": "Dependencies \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing dependencies, which TWO statements are sound operational principles?",
+      "question": "How does Terraform infer many resource dependencies? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "References between resource values form graph edges",
         "Explicit depends_on is for dependencies not represented by normal references",
@@ -1858,7 +1858,7 @@
       "question": "Explain implicit versus explicit Terraform dependencies.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "References between resource values form graph edges. Explicit depends_on is for dependencies not represented by normal references. A practical response is: Represent the dependency explicitly and explain why it is needed. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that file ordering determines every resource execution order.",
+      "sampleAnswer": "Explicit depends_on is for dependencies not represented by normal references. Consider this situation: A resource requires a hidden prerequisite not expressed by an input reference. A practical response is: Represent the dependency explicitly and explain why it is needed. The relevant concept is: How does Terraform infer many resource dependencies? References between resource values form graph edges. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that file ordering determines every resource execution order.",
       "answerChecklist": [
         "References between resource values form graph edges",
         "Explicit depends_on is for dependencies not represented by normal references",
@@ -1948,7 +1948,7 @@
       "id": "terraform-16-principles",
       "title": "Data sources \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing data sources, which TWO statements are sound operational principles?",
+      "question": "What is a data source typically used for? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "Reading an object is different from declaring ownership of its lifecycle",
         "Every data source creates the referenced object",
@@ -1982,7 +1982,7 @@
       "question": "Explain how you reference externally managed infrastructure.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Read information about objects or service data. Reading an object is different from declaring ownership of its lifecycle. A practical response is: Use an appropriate data lookup or explicit input. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that every data source creates the referenced object.",
+      "sampleAnswer": "Reading an object is different from declaring ownership of its lifecycle. Consider this situation: A module needs an existing network identifier without managing that network. A practical response is: Use an appropriate data lookup or explicit input. The relevant concept is: What is a data source typically used for? Read information about objects or service data. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that every data source creates the referenced object.",
       "answerChecklist": [
         "Read information about objects or service data",
         "Reading an object is different from declaring ownership of its lifecycle",
@@ -2072,7 +2072,7 @@
       "id": "terraform-17-principles",
       "title": "Import \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing import, which TWO statements are sound operational principles?",
+      "question": "What does importing an existing resource establish? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "Import guarantees a subsequent plan has no changes",
         "Import automatically discovers every dependent resource",
@@ -2106,7 +2106,7 @@
       "question": "Explain a safe adoption workflow for existing infrastructure.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "A mapping from an existing remote object to a resource address. Configuration still needs to match intended management behavior. A practical response is: Prepare configuration import the object and review the resulting plan. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that import guarantees a subsequent plan has no changes.",
+      "sampleAnswer": "Configuration still needs to match intended management behavior. Consider this situation: A manually created database must become managed infrastructure. A practical response is: Prepare configuration import the object and review the resulting plan. The relevant concept is: What does importing an existing resource establish? A mapping from an existing remote object to a resource address. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that import guarantees a subsequent plan has no changes.",
       "answerChecklist": [
         "A mapping from an existing remote object to a resource address",
         "Configuration still needs to match intended management behavior",
@@ -2196,7 +2196,7 @@
       "id": "terraform-18-principles",
       "title": "Moved blocks \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing moved blocks, which TWO statements are sound operational principles?",
+      "question": "What can a moved block communicate? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "It is equivalent to destroying and recreating every resource",
         "An intentional resource address change",
@@ -2230,7 +2230,7 @@
       "question": "Explain how you refactor Terraform without recreating resources.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "An intentional resource address change. Address migration can preserve an existing object's identity. A practical response is: Describe the address move and verify the plan avoids unintended replacement. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that it automatically copies data between unrelated databases.",
+      "sampleAnswer": "Address migration can preserve an existing object's identity. Consider this situation: A refactor moves a resource into a child module. A practical response is: Describe the address move and verify the plan avoids unintended replacement. The relevant concept is: What can a moved block communicate? An intentional resource address change. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that it automatically copies data between unrelated databases.",
       "answerChecklist": [
         "An intentional resource address change",
         "Address migration can preserve an existing object's identity",
@@ -2320,7 +2320,7 @@
       "id": "terraform-19-principles",
       "title": "Lifecycle protection \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing lifecycle protection, which TWO statements are sound operational principles?",
+      "question": "What is a limitation of prevent_destroy? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "It is a configuration safeguard rather than universal deletion protection",
         "Remote authorization and backups remain necessary",
@@ -2354,7 +2354,7 @@
       "question": "Explain layered protection for a Terraform-managed database.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "It is a configuration safeguard rather than universal deletion protection. Remote authorization and backups remain necessary. A practical response is: Add appropriate service-level protection and recovery controls. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that it prevents deletion through every external API.",
+      "sampleAnswer": "Remote authorization and backups remain necessary. Consider this situation: A critical database has prevent_destroy but administrators can delete it externally. A practical response is: Add appropriate service-level protection and recovery controls. The relevant concept is: What is a limitation of prevent_destroy? It is a configuration safeguard rather than universal deletion protection. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that it prevents deletion through every external API.",
       "answerChecklist": [
         "It is a configuration safeguard rather than universal deletion protection",
         "Remote authorization and backups remain necessary",
@@ -2444,7 +2444,7 @@
       "id": "terraform-20-principles",
       "title": "Ignored changes \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing ignored changes, which TWO statements are sound operational principles?",
+      "question": "What trade-off does ignore_changes introduce? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "Broad ignores can hide meaningful configuration drift",
         "It makes ignored attributes immutable in the remote service",
@@ -2478,7 +2478,7 @@
       "question": "Explain when ignore_changes is justified and how to prevent blind spots.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "It delegates selected differences away from normal reconciliation. Broad ignores can hide meaningful configuration drift. A practical response is: Narrow the ignored attributes and review ownership boundaries. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that it makes ignored attributes immutable in the remote service.",
+      "sampleAnswer": "Broad ignores can hide meaningful configuration drift. Consider this situation: A broad lifecycle ignore hides an unexpected security setting change. A practical response is: Narrow the ignored attributes and review ownership boundaries. The relevant concept is: What trade-off does ignore_changes introduce? It delegates selected differences away from normal reconciliation. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that it makes ignored attributes immutable in the remote service.",
       "answerChecklist": [
         "It delegates selected differences away from normal reconciliation",
         "Broad ignores can hide meaningful configuration drift",
@@ -2568,7 +2568,7 @@
       "id": "terraform-21-principles",
       "title": "Replacement order \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing replacement order, which TWO statements are sound operational principles?",
+      "question": "What does create_before_destroy try to change? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "It guarantees zero downtime for every resource",
         "It bypasses all provider quotas",
@@ -2602,7 +2602,7 @@
       "question": "Explain when replacement ordering does and does not preserve availability.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Create a replacement before destroying the old object. Name uniqueness quotas and dependency behavior can limit this approach. A practical response is: Review naming capacity and migration constraints. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that it guarantees zero downtime for every resource.",
+      "sampleAnswer": "Name uniqueness quotas and dependency behavior can limit this approach. Consider this situation: A replacement cannot coexist because the service requires a unique fixed name. A practical response is: Review naming capacity and migration constraints. The relevant concept is: What does create_before_destroy try to change? Create a replacement before destroying the old object. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that it guarantees zero downtime for every resource.",
       "answerChecklist": [
         "Create a replacement before destroying the old object",
         "Name uniqueness quotas and dependency behavior can limit this approach",
@@ -2692,7 +2692,7 @@
       "id": "terraform-22-principles",
       "title": "Targeted applies \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing targeted applies, which TWO statements are sound operational principles?",
+      "question": "Why avoid routine broad reliance on -target? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "A successful target proves the entire stack matches configuration",
         "Targeting can leave the overall configuration only partially reconciled",
@@ -2726,7 +2726,7 @@
       "question": "Explain the appropriate limits of targeted Terraform operations.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Targeting can leave the overall configuration only partially reconciled. Exceptional targeted work should be followed by a full plan review. A practical response is: Run a full plan to inspect remaining differences. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that targeting always applies every dependent change in the whole configuration.",
+      "sampleAnswer": "Exceptional targeted work should be followed by a full plan review. Consider this situation: An emergency targeted apply completes. A practical response is: Run a full plan to inspect remaining differences. The relevant concept is: Why avoid routine broad reliance on -target? Targeting can leave the overall configuration only partially reconciled. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that targeting always applies every dependent change in the whole configuration.",
       "answerChecklist": [
         "Targeting can leave the overall configuration only partially reconciled",
         "Exceptional targeted work should be followed by a full plan review",
@@ -2816,7 +2816,7 @@
       "id": "terraform-23-principles",
       "title": "Provisioners \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing provisioners, which TWO statements are sound operational principles?",
+      "question": "Why prefer native resources over provisioners where practical? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "Native resources model lifecycle and changes more explicitly",
         "Provisioners can introduce imperative side effects that are harder to track",
@@ -2850,7 +2850,7 @@
       "question": "Explain how you reduce brittle imperative steps in infrastructure provisioning.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Native resources model lifecycle and changes more explicitly. Provisioners can introduce imperative side effects that are harder to track. A practical response is: Use image or configuration tooling and explicit lifecycle ownership. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that provisioners make every shell command idempotent.",
+      "sampleAnswer": "Provisioners can introduce imperative side effects that are harder to track. Consider this situation: A shell provisioner leaves partially configured hosts on failure. A practical response is: Use image or configuration tooling and explicit lifecycle ownership. The relevant concept is: Why prefer native resources over provisioners where practical? Native resources model lifecycle and changes more explicitly. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that provisioners make every shell command idempotent.",
       "answerChecklist": [
         "Native resources model lifecycle and changes more explicitly",
         "Provisioners can introduce imperative side effects that are harder to track",
@@ -2940,7 +2940,7 @@
       "id": "terraform-24-principles",
       "title": "Workspace boundaries \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing workspace boundaries, which TWO statements are sound operational principles?",
+      "question": "What is a limitation of CLI workspaces as environment isolation? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "Strong environment isolation may need separate backends and access boundaries",
         "Each workspace automatically creates a new cloud account",
@@ -2974,7 +2974,7 @@
       "question": "Explain environment isolation beyond workspace names.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "They separate state instances but do not inherently isolate credentials or permissions. Strong environment isolation may need separate backends and access boundaries. A practical response is: Separate access controls and backend boundaries according to risk. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that each workspace automatically creates a new cloud account.",
+      "sampleAnswer": "Strong environment isolation may need separate backends and access boundaries. Consider this situation: A developer workspace can still authenticate with production-wide credentials. A practical response is: Separate access controls and backend boundaries according to risk. The relevant concept is: What is a limitation of CLI workspaces as environment isolation? They separate state instances but do not inherently isolate credentials or permissions. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that each workspace automatically creates a new cloud account.",
       "answerChecklist": [
         "They separate state instances but do not inherently isolate credentials or permissions",
         "Strong environment isolation may need separate backends and access boundaries",
@@ -3064,7 +3064,7 @@
       "id": "terraform-25-principles",
       "title": "Saved plans \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing saved plans, which TWO statements are sound operational principles?",
+      "question": "Why protect a saved plan file? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "Plan files contain no secrets by design",
         "Any old plan is guaranteed valid indefinitely",
@@ -3098,7 +3098,7 @@
       "question": "Explain secure review and promotion of saved Terraform plans.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "It can contain sensitive configuration and state information. Apply should use the reviewed artifact under controlled conditions. A practical response is: Restrict artifact access and handle potential secret exposure. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that plan files contain no secrets by design.",
+      "sampleAnswer": "Apply should use the reviewed artifact under controlled conditions. Consider this situation: A pipeline uploads a plan artifact to a public location. A practical response is: Restrict artifact access and handle potential secret exposure. The relevant concept is: Why protect a saved plan file? It can contain sensitive configuration and state information. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that plan files contain no secrets by design.",
       "answerChecklist": [
         "It can contain sensitive configuration and state information",
         "Apply should use the reviewed artifact under controlled conditions",
@@ -3188,7 +3188,7 @@
       "id": "terraform-26-principles",
       "title": "Drift policy \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing drift policy, which TWO statements are sound operational principles?",
+      "question": "What should happen after detecting a manual production change? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "Drift means Terraform state is always corrupted",
         "Decide whether to adopt or revert the change based on intent",
@@ -3222,7 +3222,7 @@
       "question": "Explain how emergency changes return to infrastructure-as-code control.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Decide whether to adopt or revert the change based on intent. Blind reconciliation can undo an emergency fix. A practical response is: Review the reason and reconcile configuration deliberately. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that all manual changes must be reverted without investigation.",
+      "sampleAnswer": "Blind reconciliation can undo an emergency fix. Consider this situation: An emergency firewall rule differs from versioned configuration. A practical response is: Review the reason and reconcile configuration deliberately. The relevant concept is: What should happen after detecting a manual production change? Decide whether to adopt or revert the change based on intent. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that all manual changes must be reverted without investigation.",
       "answerChecklist": [
         "Decide whether to adopt or revert the change based on intent",
         "Blind reconciliation can undo an emergency fix",
@@ -3312,7 +3312,7 @@
       "id": "terraform-27-principles",
       "title": "State splitting \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing state splitting, which TWO statements are sound operational principles?",
+      "question": "Why split infrastructure into multiple state boundaries? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "Reduce coupling access scope and change blast radius",
         "Cross-state dependencies need explicit interface and sequencing decisions",
@@ -3346,7 +3346,7 @@
       "question": "Explain how you would choose Terraform state boundaries.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Reduce coupling access scope and change blast radius. Cross-state dependencies need explicit interface and sequencing decisions. A practical response is: Evaluate boundaries by lifecycle ownership and risk. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that more state files automatically remove all dependencies.",
+      "sampleAnswer": "Cross-state dependencies need explicit interface and sequencing decisions. Consider this situation: A small application change routinely locks a huge shared stack. A practical response is: Evaluate boundaries by lifecycle ownership and risk. The relevant concept is: Why split infrastructure into multiple state boundaries? Reduce coupling access scope and change blast radius. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that more state files automatically remove all dependencies.",
       "answerChecklist": [
         "Reduce coupling access scope and change blast radius",
         "Cross-state dependencies need explicit interface and sequencing decisions",
@@ -3436,7 +3436,7 @@
       "id": "terraform-28-principles",
       "title": "Partial failure \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing partial failure, which TWO statements are sound operational principles?",
+      "question": "What can a failed apply leave behind? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "The next step is to inspect state and actual resources before retrying",
         "Every failed apply automatically rolls back all changes",
@@ -3470,7 +3470,7 @@
       "question": "Explain recovery from a partially completed Terraform apply.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Some resources may have changed successfully before failure. The next step is to inspect state and actual resources before retrying. A practical response is: Inspect completed changes and review a fresh plan. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that every failed apply automatically rolls back all changes.",
+      "sampleAnswer": "The next step is to inspect state and actual resources before retrying. Consider this situation: An apply fails halfway through a network rollout. A practical response is: Inspect completed changes and review a fresh plan. The relevant concept is: What can a failed apply leave behind? Some resources may have changed successfully before failure. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that every failed apply automatically rolls back all changes.",
       "answerChecklist": [
         "Some resources may have changed successfully before failure",
         "The next step is to inspect state and actual resources before retrying",
@@ -3560,7 +3560,7 @@
       "id": "terraform-29-principles",
       "title": "Provider upgrades \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing provider upgrades, which TWO statements are sound operational principles?",
+      "question": "How should a major provider upgrade be evaluated? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "A major version change can never affect resource behavior",
         "The lock file replaces all upgrade testing",
@@ -3594,7 +3594,7 @@
       "question": "Explain a provider upgrade strategy for a production estate.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Review migration guidance and plans in a representative environment. Schema changes may affect existing resources without configuration edits. A practical response is: Investigate release changes and test a controlled migration. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that a major version change can never affect resource behavior.",
+      "sampleAnswer": "Schema changes may affect existing resources without configuration edits. Consider this situation: A new provider version proposes unexpected replacements. A practical response is: Investigate release changes and test a controlled migration. The relevant concept is: How should a major provider upgrade be evaluated? Review migration guidance and plans in a representative environment. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that a major version change can never affect resource behavior.",
       "answerChecklist": [
         "Review migration guidance and plans in a representative environment",
         "Schema changes may affect existing resources without configuration edits",
@@ -3684,7 +3684,7 @@
       "id": "terraform-30-principles",
       "title": "Policy checks \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing policy checks, which TWO statements are sound operational principles?",
+      "question": "What role can policy checks play in Terraform delivery? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "Policy checks eliminate the need for access control",
         "Reject changes that violate defined infrastructure rules",
@@ -3718,7 +3718,7 @@
       "question": "Explain how you would combine validation policy review and runtime verification.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Reject changes that violate defined infrastructure rules. Policy checks complement plan review rather than proving all runtime behavior. A practical response is: Block the unsafe exposure and explain the required exception process. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that passing policy guarantees no outage can occur.",
+      "sampleAnswer": "Policy checks complement plan review rather than proving all runtime behavior. Consider this situation: A plan opens a sensitive service to the Internet. A practical response is: Block the unsafe exposure and explain the required exception process. The relevant concept is: What role can policy checks play in Terraform delivery? Reject changes that violate defined infrastructure rules. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that passing policy guarantees no outage can occur.",
       "answerChecklist": [
         "Reject changes that violate defined infrastructure rules",
         "Policy checks complement plan review rather than proving all runtime behavior",

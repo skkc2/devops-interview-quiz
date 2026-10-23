@@ -5,7 +5,7 @@
       "id": "networking-lesson-01",
       "topic": "networking",
       "title": "TCP delivery",
-      "summary": "Reliable ordered delivery within a connection.",
+      "summary": "What does TCP provide to an application byte stream? Reliable ordered delivery within a connection.",
       "sections": [
         {
           "heading": "How it works",
@@ -32,7 +32,7 @@
       "id": "networking-lesson-02",
       "topic": "networking",
       "title": "UDP semantics",
-      "summary": "UDP preserves datagram boundaries without built-in reliable delivery.",
+      "summary": "Which property distinguishes UDP from TCP? UDP preserves datagram boundaries without built-in reliable delivery.",
       "sections": [
         {
           "heading": "How it works",
@@ -59,7 +59,7 @@
       "id": "networking-lesson-03",
       "topic": "networking",
       "title": "DNS records",
-      "summary": "An IPv4 address for a DNS name.",
+      "summary": "What does an A record normally contain? An IPv4 address for a DNS name.",
       "sections": [
         {
           "heading": "How it works",
@@ -86,7 +86,7 @@
       "id": "networking-lesson-04",
       "topic": "networking",
       "title": "DNS caching",
-      "summary": "How long a resolver may cache that record.",
+      "summary": "What does a DNS record TTL influence? How long a resolver may cache that record.",
       "sections": [
         {
           "heading": "How it works",
@@ -113,7 +113,7 @@
       "id": "networking-lesson-05",
       "topic": "networking",
       "title": "Subnets",
-      "summary": "The number of network-prefix bits in the address.",
+      "summary": "What does an IPv4 prefix length describe? The number of network-prefix bits in the address.",
       "sections": [
         {
           "heading": "How it works",
@@ -140,7 +140,7 @@
       "id": "networking-lesson-06",
       "topic": "networking",
       "title": "Default routes",
-      "summary": "When no more specific matching route is selected.",
+      "summary": "When is a default route typically used? When no more specific matching route is selected.",
       "sections": [
         {
           "heading": "How it works",
@@ -167,7 +167,7 @@
       "id": "networking-lesson-07",
       "topic": "networking",
       "title": "ARP",
-      "summary": "An IPv4 address to a link-layer address.",
+      "summary": "What does ARP resolve on an IPv4 local link? An IPv4 address to a link-layer address.",
       "sections": [
         {
           "heading": "How it works",
@@ -194,7 +194,7 @@
       "id": "networking-lesson-08",
       "topic": "networking",
       "title": "Ports",
-      "summary": "Source and destination addresses and ports.",
+      "summary": "What identifies a TCP connection together with protocol context? Source and destination addresses and ports.",
       "sections": [
         {
           "heading": "How it works",
@@ -221,7 +221,7 @@
       "id": "networking-lesson-09",
       "topic": "networking",
       "title": "TCP handshake",
-      "summary": "Transport-level connection state between endpoints.",
+      "summary": "What does a successful TCP handshake establish? Transport-level connection state between endpoints.",
       "sections": [
         {
           "heading": "How it works",
@@ -248,7 +248,7 @@
       "id": "networking-lesson-10",
       "topic": "networking",
       "title": "TLS identity",
-      "summary": "Accepting a certificate for a different service identity.",
+      "summary": "What does hostname verification protect against? Accepting a certificate for a different service identity.",
       "sections": [
         {
           "heading": "How it works",
@@ -275,7 +275,7 @@
       "id": "networking-lesson-11",
       "topic": "networking",
       "title": "HTTP status",
-      "summary": "The server is currently unable to handle the request.",
+      "summary": "What does an HTTP 503 response normally indicate? The server is currently unable to handle the request.",
       "sections": [
         {
           "heading": "How it works",
@@ -302,7 +302,7 @@
       "id": "networking-lesson-12",
       "topic": "networking",
       "title": "NAT state",
-      "summary": "Translation devices have finite state and port resources.",
+      "summary": "Why can outbound NAT capacity limit new connections? Translation devices have finite state and port resources.",
       "sections": [
         {
           "heading": "How it works",
@@ -329,7 +329,7 @@
       "id": "networking-lesson-13",
       "topic": "networking",
       "title": "Firewall direction",
-      "summary": "Stateful filtering can track established flow state.",
+      "summary": "What distinguishes stateful filtering from stateless filtering? Stateful filtering can track established flow state.",
       "sections": [
         {
           "heading": "How it works",
@@ -356,7 +356,7 @@
       "id": "networking-lesson-14",
       "topic": "networking",
       "title": "MTU",
-      "summary": "Large packets may fail while small exchanges succeed.",
+      "summary": "What can an MTU mismatch cause? Large packets may fail while small exchanges succeed.",
       "sections": [
         {
           "heading": "How it works",
@@ -383,7 +383,7 @@
       "id": "networking-lesson-15",
       "topic": "networking",
       "title": "Packet loss",
-      "summary": "Retransmission recovery can increase request completion time.",
+      "summary": "Why correlate packet loss with TCP retransmissions and latency? Retransmission recovery can increase request completion time.",
       "sections": [
         {
           "heading": "How it works",
@@ -410,7 +410,7 @@
       "id": "networking-lesson-16",
       "topic": "networking",
       "title": "DNS negative caching",
-      "summary": "Resolvers may cache a prior negative response.",
+      "summary": "Why can a newly created DNS name still appear nonexistent? Resolvers may cache a prior negative response.",
       "sections": [
         {
           "heading": "How it works",
@@ -437,7 +437,7 @@
       "id": "networking-lesson-17",
       "topic": "networking",
       "title": "Keepalive",
-      "summary": "It does not prove that the application can process a request.",
+      "summary": "What is a limitation of TCP keepalive for service monitoring? It does not prove that the application can process a request.",
       "sections": [
         {
           "heading": "How it works",
@@ -464,7 +464,7 @@
       "id": "networking-lesson-18",
       "topic": "networking",
       "title": "Connection pooling",
-      "summary": "It reduces repeated connection setup overhead.",
+      "summary": "What benefit can connection pooling provide? It reduces repeated connection setup overhead.",
       "sections": [
         {
           "heading": "How it works",
@@ -491,7 +491,7 @@
       "id": "networking-lesson-19",
       "topic": "networking",
       "title": "Load balancing",
-      "summary": "HTTP-level fields such as host and path.",
+      "summary": "What can an L7 HTTP load balancer inspect for routing? HTTP-level fields such as host and path.",
       "sections": [
         {
           "heading": "How it works",
@@ -518,7 +518,7 @@
       "id": "networking-lesson-20",
       "topic": "networking",
       "title": "Proxy headers",
-      "summary": "Clients can forge headers unless a trusted proxy controls them.",
+      "summary": "Why should forwarded client-address headers be trusted selectively? Clients can forge headers unless a trusted proxy controls them.",
       "sections": [
         {
           "heading": "How it works",
@@ -545,7 +545,7 @@
       "id": "networking-lesson-21",
       "topic": "networking",
       "title": "Retries",
-      "summary": "They increase offered load while capacity may already be impaired.",
+      "summary": "How can network retries amplify an outage? They increase offered load while capacity may already be impaired.",
       "sections": [
         {
           "heading": "How it works",
@@ -572,7 +572,7 @@
       "id": "networking-lesson-22",
       "topic": "networking",
       "title": "Timeout budgets",
-      "summary": "Downstream work should fit within the caller's remaining budget.",
+      "summary": "Why coordinate deadlines across a request chain? Downstream work should fit within the caller's remaining budget.",
       "sections": [
         {
           "heading": "How it works",
@@ -599,7 +599,7 @@
       "id": "networking-lesson-23",
       "topic": "networking",
       "title": "Asymmetric routing",
-      "summary": "Return traffic may bypass the device holding the connection state.",
+      "summary": "Why can asymmetric routing break a stateful firewall path? Return traffic may bypass the device holding the connection state.",
       "sections": [
         {
           "heading": "How it works",
@@ -626,7 +626,7 @@
       "id": "networking-lesson-24",
       "topic": "networking",
       "title": "Anycast",
-      "summary": "Multiple locations advertise reachability for the same address.",
+      "summary": "What is the core idea of IP anycast? Multiple locations advertise reachability for the same address.",
       "sections": [
         {
           "heading": "How it works",
@@ -653,7 +653,7 @@
       "id": "networking-lesson-25",
       "topic": "networking",
       "title": "BGP policy",
-      "summary": "Policy and path attributes guide route selection.",
+      "summary": "What primarily distinguishes BGP path selection from a pure latency optimizer? Policy and path attributes guide route selection.",
       "sections": [
         {
           "heading": "How it works",
@@ -680,7 +680,7 @@
       "id": "networking-lesson-26",
       "topic": "networking",
       "title": "IPv6 neighbor discovery",
-      "summary": "ICMPv6 Neighbor Discovery.",
+      "summary": "What replaces ARP's local-neighbor role in IPv6? ICMPv6 Neighbor Discovery.",
       "sections": [
         {
           "heading": "How it works",
@@ -707,7 +707,7 @@
       "id": "networking-lesson-27",
       "topic": "networking",
       "title": "TCP TIME_WAIT",
-      "summary": "It helps handle delayed segments and the final close exchange.",
+      "summary": "Why does TCP keep some closed connections in TIME_WAIT? It helps handle delayed segments and the final close exchange.",
       "sections": [
         {
           "heading": "How it works",
@@ -734,7 +734,7 @@
       "id": "networking-lesson-28",
       "topic": "networking",
       "title": "Queueing",
-      "summary": "Packets wait longer before transmission under sustained congestion.",
+      "summary": "Why can a large network queue worsen interactive latency? Packets wait longer before transmission under sustained congestion.",
       "sections": [
         {
           "heading": "How it works",
@@ -761,7 +761,7 @@
       "id": "networking-lesson-29",
       "topic": "networking",
       "title": "TLS termination",
-      "summary": "The proxy can access plaintext application traffic.",
+      "summary": "What changes when TLS is terminated at a proxy? The proxy can access plaintext application traffic.",
       "sections": [
         {
           "heading": "How it works",
@@ -788,7 +788,7 @@
       "id": "networking-lesson-30",
       "topic": "networking",
       "title": "Idempotency",
-      "summary": "Repeated requests can avoid duplicating the intended effect.",
+      "summary": "Why is idempotency useful for retried network writes? Repeated requests can avoid duplicating the intended effect.",
       "sections": [
         {
           "heading": "How it works",

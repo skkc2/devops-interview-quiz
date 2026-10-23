@@ -70,6 +70,13 @@ for (const subject of manifest.subjects) {
     assert.equal(pack.questions.filter(q=>q.type==='interview').length,30);
     for (const type of ['concept','scenario','multi-select']) assert.equal(pack.questions.filter(q=>q.type===type).length,30);
     assert.equal(library.lessons.length,30);
+    for(const concept of pack.questions.filter(q=>q.type==='concept')) {
+      const prefix=concept.id.replace(/-concept$/, '');
+      const check=pack.questions.find(q=>q.id===prefix+'-principles');
+      assert.ok(check.question.startsWith(concept.question), prefix+': multi-select must retain the factual context');
+      const lesson=library.lessons.find(l=>l.id===subject.id+'-lesson-'+prefix.split('-').pop());
+      assert.ok(lesson?.summary.startsWith(concept.question), prefix+': lesson must retain the factual context');
+    }
   }
   for (const key of ['lessons','commands','debugging']) {
     assert.ok(Array.isArray(library[key]));

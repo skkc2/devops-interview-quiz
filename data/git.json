@@ -88,7 +88,7 @@
       "id": "git-01-principles",
       "title": "Working tree \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing working tree, which TWO statements are sound operational principles?",
+      "question": "What is the Git working tree? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "It is always identical to the latest commit",
         "It exists only on the remote server",
@@ -122,7 +122,7 @@
       "question": "Explain working tree index and commit snapshots.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "The checked-out files being edited. Uncommitted changes are distinct from committed history. A practical response is: Inspect git status and the relevant diff. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that it is always identical to the latest commit.",
+      "sampleAnswer": "Uncommitted changes are distinct from committed history. Consider this situation: A developer wants to know which local files changed. A practical response is: Inspect git status and the relevant diff. The relevant concept is: What is the Git working tree? The checked-out files being edited. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that it is always identical to the latest commit.",
       "answerChecklist": [
         "The checked-out files being edited",
         "Uncommitted changes are distinct from committed history",
@@ -212,7 +212,7 @@
       "id": "git-02-principles",
       "title": "Staging \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing staging, which TWO statements are sound operational principles?",
+      "question": "What does the Git index represent? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "The index contains only deleted files",
         "The proposed contents of the next commit",
@@ -246,7 +246,7 @@
       "question": "Explain partial staging and focused commits.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "The proposed contents of the next commit. Staging selected changes supports focused commits. A practical response is: Stage relevant hunks and review the staged diff. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that staging automatically pushes changes to the remote.",
+      "sampleAnswer": "Staging selected changes supports focused commits. Consider this situation: One file contains unrelated fixes that should be separate commits. A practical response is: Stage relevant hunks and review the staged diff. The relevant concept is: What does the Git index represent? The proposed contents of the next commit. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that staging automatically pushes changes to the remote.",
       "answerChecklist": [
         "The proposed contents of the next commit",
         "Staging selected changes supports focused commits",
@@ -336,7 +336,7 @@
       "id": "git-03-principles",
       "title": "Commits \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing commits, which TWO statements are sound operational principles?",
+      "question": "What does a Git commit identify? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "A snapshot with metadata and parent relationships",
         "Commit identifiers change when commit contents or metadata change",
@@ -370,7 +370,7 @@
       "question": "Explain commit identity and the effects of amendment.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "A snapshot with metadata and parent relationships. Commit identifiers change when commit contents or metadata change. A practical response is: Recognize that amended metadata creates a new commit object. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that a commit is only a mutable branch name.",
+      "sampleAnswer": "Commit identifiers change when commit contents or metadata change. Consider this situation: An amended commit has a different hash despite similar files. A practical response is: Recognize that amended metadata creates a new commit object. The relevant concept is: What does a Git commit identify? A snapshot with metadata and parent relationships. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that a commit is only a mutable branch name.",
       "answerChecklist": [
         "A snapshot with metadata and parent relationships",
         "Commit identifiers change when commit contents or metadata change",
@@ -460,7 +460,7 @@
       "id": "git-04-principles",
       "title": "Branches \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing branches, which TWO statements are sound operational principles?",
+      "question": "What is a Git branch primarily? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "Creating a branch does not copy an entire independent repository",
         "A branch is a separate physical copy of every historical file",
@@ -494,7 +494,7 @@
       "question": "Explain local branches remote branches and tracking references.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "A movable reference to a commit. Creating a branch does not copy an entire independent repository. A practical response is: Push the intended branch reference when ready to share. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that a branch is a separate physical copy of every historical file.",
+      "sampleAnswer": "Creating a branch does not copy an entire independent repository. Consider this situation: A new local branch is invisible to teammates. A practical response is: Push the intended branch reference when ready to share. The relevant concept is: What is a Git branch primarily? A movable reference to a commit. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that a branch is a separate physical copy of every historical file.",
       "answerChecklist": [
         "A movable reference to a commit",
         "Creating a branch does not copy an entire independent repository",
@@ -584,7 +584,7 @@
       "id": "git-05-principles",
       "title": "Fetch \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing fetch, which TWO statements are sound operational principles?",
+      "question": "What does git fetch normally do? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "Fetch automatically discards every local modification",
         "Fetch always rebases the checked-out branch",
@@ -618,7 +618,7 @@
       "question": "Explain fetch versus pull in a collaborative workflow.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Download remote objects and update remote-tracking references. Fetching does not itself merge changes into the current branch. A practical response is: Fetch and compare the relevant references. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that fetch automatically discards every local modification.",
+      "sampleAnswer": "Fetching does not itself merge changes into the current branch. Consider this situation: A developer wants to inspect remote changes before integration. A practical response is: Fetch and compare the relevant references. The relevant concept is: What does git fetch normally do? Download remote objects and update remote-tracking references. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that fetch automatically discards every local modification.",
       "answerChecklist": [
         "Download remote objects and update remote-tracking references",
         "Fetching does not itself merge changes into the current branch",
@@ -708,7 +708,7 @@
       "id": "git-06-principles",
       "title": "Merge \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing merge, which TWO statements are sound operational principles?",
+      "question": "What does a non-fast-forward merge usually create? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "A conflict-free merge guarantees functional correctness",
         "A commit joining multiple lines of history",
@@ -742,7 +742,7 @@
       "question": "Explain semantic conflicts that Git cannot detect.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "A commit joining multiple lines of history. Merge conflict resolution must preserve intended behavior. A practical response is: Run integration checks and inspect the interacting changes. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that every merge rewrites all existing commits.",
+      "sampleAnswer": "Merge conflict resolution must preserve intended behavior. Consider this situation: Two branches merge cleanly but their combined behavior breaks tests. A practical response is: Run integration checks and inspect the interacting changes. The relevant concept is: What does a non-fast-forward merge usually create? A commit joining multiple lines of history. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that every merge rewrites all existing commits.",
       "answerChecklist": [
         "A commit joining multiple lines of history",
         "Merge conflict resolution must preserve intended behavior",
@@ -832,7 +832,7 @@
       "id": "git-07-principles",
       "title": "Ignore rules \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing ignore rules, which TWO statements are sound operational principles?",
+      "question": "What is a limitation of gitignore? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "It does not automatically untrack files already committed",
         "Sensitive files should be excluded before entering history",
@@ -866,7 +866,7 @@
       "question": "Explain why ignore rules are not secret remediation.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "It does not automatically untrack files already committed. Sensitive files should be excluded before entering history. A practical response is: Rotate the credential and handle repository exposure deliberately. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that adding a secret to gitignore removes it from all past commits.",
+      "sampleAnswer": "Sensitive files should be excluded before entering history. Consider this situation: A credential was committed before an ignore rule was added. A practical response is: Rotate the credential and handle repository exposure deliberately. The relevant concept is: What is a limitation of gitignore? It does not automatically untrack files already committed. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that adding a secret to gitignore removes it from all past commits.",
       "answerChecklist": [
         "It does not automatically untrack files already committed",
         "Sensitive files should be excluded before entering history",
@@ -956,7 +956,7 @@
       "id": "git-08-principles",
       "title": "Diffs \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing diffs, which TWO statements are sound operational principles?",
+      "question": "What should a staged diff review verify? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "Generated or unrelated changes deserve deliberate review",
         "Only filenames matter when reviewing a commit",
@@ -990,7 +990,7 @@
       "question": "Explain your pre-commit review process.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "The exact changes intended for the next commit. Generated or unrelated changes deserve deliberate review. A practical response is: Inspect and unstage the unintended change. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that only filenames matter when reviewing a commit.",
+      "sampleAnswer": "Generated or unrelated changes deserve deliberate review. Consider this situation: A commit includes a local debug setting accidentally. A practical response is: Inspect and unstage the unintended change. The relevant concept is: What should a staged diff review verify? The exact changes intended for the next commit. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that only filenames matter when reviewing a commit.",
       "answerChecklist": [
         "The exact changes intended for the next commit",
         "Generated or unrelated changes deserve deliberate review",
@@ -1080,7 +1080,7 @@
       "id": "git-09-principles",
       "title": "Rebase \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing rebase, which TWO statements are sound operational principles?",
+      "question": "What does rebase generally do? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "Rebase preserves every replayed commit hash unchanged",
         "Rebase automatically informs every collaborator of rewritten history",
@@ -1114,7 +1114,7 @@
       "question": "Explain when rebase is useful and when shared history makes it risky.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Replay commits onto a different base with new identities. Rewriting shared history requires coordination. A practical response is: Coordinate the rewrite and recovery expectations before publishing. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that rebase preserves every replayed commit hash unchanged.",
+      "sampleAnswer": "Rewriting shared history requires coordination. Consider this situation: A developer rebases commits others have already based work on. A practical response is: Coordinate the rewrite and recovery expectations before publishing. The relevant concept is: What does rebase generally do? Replay commits onto a different base with new identities. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that rebase preserves every replayed commit hash unchanged.",
       "answerChecklist": [
         "Replay commits onto a different base with new identities",
         "Rewriting shared history requires coordination",
@@ -1204,7 +1204,7 @@
       "id": "git-10-principles",
       "title": "Revert \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing revert, which TWO statements are sound operational principles?",
+      "question": "What does git revert normally produce? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "Revert is always identical to deleting a branch",
         "A new commit that reverses selected changes",
@@ -1238,7 +1238,7 @@
       "question": "Explain revert versus reset for a published mistake.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "A new commit that reverses selected changes. Reverting can preserve published history. A practical response is: Create and verify a reversal appropriate to the deployed change. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that revert erases the original commit from every clone.",
+      "sampleAnswer": "Reverting can preserve published history. Consider this situation: A bad change is already on a shared production branch. A practical response is: Create and verify a reversal appropriate to the deployed change. The relevant concept is: What does git revert normally produce? A new commit that reverses selected changes. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that revert erases the original commit from every clone.",
       "answerChecklist": [
         "A new commit that reverses selected changes",
         "Reverting can preserve published history",
@@ -1328,7 +1328,7 @@
       "id": "git-11-principles",
       "title": "Reset \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing reset, which TWO statements are sound operational principles?",
+      "question": "Why can a hard reset be destructive? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "It can discard tracked working-tree and index changes",
         "Inspect and preserve needed work before destructive local operations",
@@ -1362,7 +1362,7 @@
       "question": "Explain the risks and modes of git reset.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "It can discard tracked working-tree and index changes. Inspect and preserve needed work before destructive local operations. A practical response is: Preserve the edits and choose the appropriate history operation. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that a hard reset always saves every uncommitted edit.",
+      "sampleAnswer": "Inspect and preserve needed work before destructive local operations. Consider this situation: A developer wants to remove one commit but has valuable uncommitted edits. A practical response is: Preserve the edits and choose the appropriate history operation. The relevant concept is: Why can a hard reset be destructive? It can discard tracked working-tree and index changes. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that a hard reset always saves every uncommitted edit.",
       "answerChecklist": [
         "It can discard tracked working-tree and index changes",
         "Inspect and preserve needed work before destructive local operations",
@@ -1452,7 +1452,7 @@
       "id": "git-12-principles",
       "title": "Cherry-pick \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing cherry-pick, which TWO statements are sound operational principles?",
+      "question": "What does cherry-pick typically do? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "Dependencies of the selected change may need separate consideration",
         "Cherry-pick always imports the entire source branch",
@@ -1486,7 +1486,7 @@
       "question": "Explain a safe hotfix cherry-pick workflow.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Apply selected commit changes onto the current branch. Dependencies of the selected change may need separate consideration. A practical response is: Check dependencies and apply only the verified fix. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that cherry-pick always imports the entire source branch.",
+      "sampleAnswer": "Dependencies of the selected change may need separate consideration. Consider this situation: A hotfix is needed without unrelated feature work. A practical response is: Check dependencies and apply only the verified fix. The relevant concept is: What does cherry-pick typically do? Apply selected commit changes onto the current branch. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that cherry-pick always imports the entire source branch.",
       "answerChecklist": [
         "Apply selected commit changes onto the current branch",
         "Dependencies of the selected change may need separate consideration",
@@ -1576,7 +1576,7 @@
       "id": "git-13-principles",
       "title": "Conflict resolution \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing conflict resolution, which TWO statements are sound operational principles?",
+      "question": "What should guide resolving a merge conflict? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "Choosing one side everywhere always preserves intent",
         "Removing conflict markers proves the merge is correct",
@@ -1610,7 +1610,7 @@
       "question": "Explain how you resolve a substantive merge conflict.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "The intended combined behavior of both changes. Tests and domain understanding matter beyond removing markers. A practical response is: Understand both changes and test the merged behavior. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that choosing one side everywhere always preserves intent.",
+      "sampleAnswer": "Tests and domain understanding matter beyond removing markers. Consider this situation: A conflict affects a security check modified on both branches. A practical response is: Understand both changes and test the merged behavior. The relevant concept is: What should guide resolving a merge conflict? The intended combined behavior of both changes. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that choosing one side everywhere always preserves intent.",
       "answerChecklist": [
         "The intended combined behavior of both changes",
         "Tests and domain understanding matter beyond removing markers",
@@ -1700,7 +1700,7 @@
       "id": "git-14-principles",
       "title": "Reflog \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing reflog, which TWO statements are sound operational principles?",
+      "question": "What can a local reflog help recover? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "Every remote automatically receives your local reflog",
         "Recent local reference movements and otherwise hard-to-find commits",
@@ -1734,7 +1734,7 @@
       "question": "Explain reflog recovery and its limitations.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Recent local reference movements and otherwise hard-to-find commits. Reflog availability is local and subject to retention. A practical response is: Inspect the local reflog and recover the intended commit reference. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that reflog is a permanent shared backup of all repository data.",
+      "sampleAnswer": "Reflog availability is local and subject to retention. Consider this situation: A branch pointer was accidentally moved away from recent work. A practical response is: Inspect the local reflog and recover the intended commit reference. The relevant concept is: What can a local reflog help recover? Recent local reference movements and otherwise hard-to-find commits. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that reflog is a permanent shared backup of all repository data.",
       "answerChecklist": [
         "Recent local reference movements and otherwise hard-to-find commits",
         "Reflog availability is local and subject to retention",
@@ -1824,7 +1824,7 @@
       "id": "git-15-principles",
       "title": "Bisect \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing bisect, which TWO statements are sound operational principles?",
+      "question": "What does git bisect help identify? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "A commit associated with a change between known good and bad revisions",
         "A reliable reproducible test is essential",
@@ -1858,7 +1858,7 @@
       "question": "Explain a practical regression bisect including flaky tests.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "A commit associated with a change between known good and bad revisions. A reliable reproducible test is essential. A practical response is: Define a reliable test and narrow the introducing revision. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that bisect proves a single commit is the complete root cause in every case.",
+      "sampleAnswer": "A reliable reproducible test is essential. Consider this situation: A regression appeared somewhere in many recent commits. A practical response is: Define a reliable test and narrow the introducing revision. The relevant concept is: What does git bisect help identify? A commit associated with a change between known good and bad revisions. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that bisect proves a single commit is the complete root cause in every case.",
       "answerChecklist": [
         "A commit associated with a change between known good and bad revisions",
         "A reliable reproducible test is essential",
@@ -1948,7 +1948,7 @@
       "id": "git-16-principles",
       "title": "Force with lease \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing force with lease, which TWO statements are sound operational principles?",
+      "question": "What protection does force-with-lease provide? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "It still rewrites history and requires deliberate coordination",
         "It guarantees no collaborator can ever be affected",
@@ -1982,7 +1982,7 @@
       "question": "Explain the protection and limits of force-with-lease.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Reject a rewrite when the remote reference differs from the expected value. It still rewrites history and requires deliberate coordination. A practical response is: Check the expected remote state and use a controlled lease. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that it guarantees no collaborator can ever be affected.",
+      "sampleAnswer": "It still rewrites history and requires deliberate coordination. Consider this situation: A rewritten branch must be published without overwriting unseen remote work. A practical response is: Check the expected remote state and use a controlled lease. The relevant concept is: What protection does force-with-lease provide? Reject a rewrite when the remote reference differs from the expected value. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that it guarantees no collaborator can ever be affected.",
       "answerChecklist": [
         "Reject a rewrite when the remote reference differs from the expected value",
         "It still rewrites history and requires deliberate coordination",
@@ -2072,7 +2072,7 @@
       "id": "git-17-principles",
       "title": "Continuous integration \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing continuous integration, which TWO statements are sound operational principles?",
+      "question": "What is the purpose of continuous integration checks? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "A green build proves the software has no defects",
         "CI eliminates the need for code review",
@@ -2106,7 +2106,7 @@
       "question": "Explain a useful CI validation hierarchy.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Detect integration problems early through repeatable validation. Checks should exercise meaningful behavior not just syntax. A practical response is: Add a meaningful behavioral regression check. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that a green build proves the software has no defects.",
+      "sampleAnswer": "Checks should exercise meaningful behavior not just syntax. Consider this situation: A change passes lint but breaks a user workflow. A practical response is: Add a meaningful behavioral regression check. The relevant concept is: What is the purpose of continuous integration checks? Detect integration problems early through repeatable validation. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that a green build proves the software has no defects.",
       "answerChecklist": [
         "Detect integration problems early through repeatable validation",
         "Checks should exercise meaningful behavior not just syntax",
@@ -2196,7 +2196,7 @@
       "id": "git-18-principles",
       "title": "Artifacts \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing artifacts, which TWO statements are sound operational principles?",
+      "question": "Why promote the same built artifact across environments? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "A filename alone proves artifact integrity",
         "Reduce differences caused by rebuilding during promotion",
@@ -2230,7 +2230,7 @@
       "question": "Explain build-once artifact promotion.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Reduce differences caused by rebuilding during promotion. Artifact identity and provenance should be recorded. A practical response is: Promote the verified immutable artifact with traceable metadata. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that rebuilding the same source always produces identical bytes.",
+      "sampleAnswer": "Artifact identity and provenance should be recorded. Consider this situation: Production differs from staging after separate rebuilds. A practical response is: Promote the verified immutable artifact with traceable metadata. The relevant concept is: Why promote the same built artifact across environments? Reduce differences caused by rebuilding during promotion. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that rebuilding the same source always produces identical bytes.",
       "answerChecklist": [
         "Reduce differences caused by rebuilding during promotion",
         "Artifact identity and provenance should be recorded",
@@ -2320,7 +2320,7 @@
       "id": "git-19-principles",
       "title": "CI secrets \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing ci secrets, which TWO statements are sound operational principles?",
+      "question": "Why should untrusted pull-request code have restricted credentials? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "It can execute arbitrary code in the runner context",
         "Secret access should follow the trust level of the workflow trigger",
@@ -2354,7 +2354,7 @@
       "question": "Explain trust boundaries for CI pipelines.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "It can execute arbitrary code in the runner context. Secret access should follow the trust level of the workflow trigger. A practical response is: Separate untrusted validation from privileged deployment. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that any pull request from a public fork is inherently trusted.",
+      "sampleAnswer": "Secret access should follow the trust level of the workflow trigger. Consider this situation: A workflow runs contributor code with deployment credentials. A practical response is: Separate untrusted validation from privileged deployment. The relevant concept is: Why should untrusted pull-request code have restricted credentials? It can execute arbitrary code in the runner context. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that any pull request from a public fork is inherently trusted.",
       "answerChecklist": [
         "It can execute arbitrary code in the runner context",
         "Secret access should follow the trust level of the workflow trigger",
@@ -2444,7 +2444,7 @@
       "id": "git-20-principles",
       "title": "Dependency pinning \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing dependency pinning, which TWO statements are sound operational principles?",
+      "question": "Why pin CI actions or dependencies to reviewed immutable versions? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "Pinned versions still need a deliberate update process",
         "Pinning guarantees absence of vulnerabilities forever",
@@ -2478,7 +2478,7 @@
       "question": "Explain reproducible and maintainable CI dependency management.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Reduce surprise changes in third-party execution inputs. Pinned versions still need a deliberate update process. A practical response is: Review and pin the intended immutable revision then manage updates. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that pinning guarantees absence of vulnerabilities forever.",
+      "sampleAnswer": "Pinned versions still need a deliberate update process. Consider this situation: A third-party action changes behavior unexpectedly. A practical response is: Review and pin the intended immutable revision then manage updates. The relevant concept is: Why pin CI actions or dependencies to reviewed immutable versions? Reduce surprise changes in third-party execution inputs. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that pinning guarantees absence of vulnerabilities forever.",
       "answerChecklist": [
         "Reduce surprise changes in third-party execution inputs",
         "Pinned versions still need a deliberate update process",
@@ -2568,7 +2568,7 @@
       "id": "git-21-principles",
       "title": "Caching \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing caching, which TWO statements are sound operational principles?",
+      "question": "What is a risk of an overly broad CI cache key? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "A cache hit proves the build output is correct",
         "All branches should always share writable caches without restriction",
@@ -2602,7 +2602,7 @@
       "question": "Explain safe CI cache design.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Reusing stale or incompatible dependencies or outputs. Cache keys should reflect relevant inputs and trust boundaries. A practical response is: Inspect cached assumptions and test clean reproducibility. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that a cache hit proves the build output is correct.",
+      "sampleAnswer": "Cache keys should reflect relevant inputs and trust boundaries. Consider this situation: A pipeline passes with cache but fails on a clean runner. A practical response is: Inspect cached assumptions and test clean reproducibility. The relevant concept is: What is a risk of an overly broad CI cache key? Reusing stale or incompatible dependencies or outputs. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that a cache hit proves the build output is correct.",
       "answerChecklist": [
         "Reusing stale or incompatible dependencies or outputs",
         "Cache keys should reflect relevant inputs and trust boundaries",
@@ -2692,7 +2692,7 @@
       "id": "git-22-principles",
       "title": "Deployment gates \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing deployment gates, which TWO statements are sound operational principles?",
+      "question": "What should a production deployment gate establish? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "Every deployment must bypass tests to minimize delay",
         "Required validation and authorization conditions are satisfied",
@@ -2726,7 +2726,7 @@
       "question": "Explain evidence-based deployment approval.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Required validation and authorization conditions are satisfied. Gates need clear ownership and useful evidence. A practical response is: Require the relevant verified artifact and checks before release. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that a manual click alone proves a release is safe.",
+      "sampleAnswer": "Gates need clear ownership and useful evidence. Consider this situation: A deployment is awaiting approval but the test artifact is missing. A practical response is: Require the relevant verified artifact and checks before release. The relevant concept is: What should a production deployment gate establish? Required validation and authorization conditions are satisfied. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that a manual click alone proves a release is safe.",
       "answerChecklist": [
         "Required validation and authorization conditions are satisfied",
         "Gates need clear ownership and useful evidence",
@@ -2816,7 +2816,7 @@
       "id": "git-23-principles",
       "title": "Rollback \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing rollback, which TWO statements are sound operational principles?",
+      "question": "Why is code rollback sometimes insufficient? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "Data or external side effects may be incompatible with the old code",
         "Rollback plans must include state and schema compatibility",
@@ -2850,7 +2850,7 @@
       "question": "Explain release rollback for stateful applications.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Data or external side effects may be incompatible with the old code. Rollback plans must include state and schema compatibility. A practical response is: Use a planned compatible migration or verified recovery path. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that reverting a commit reverses all database writes automatically.",
+      "sampleAnswer": "Rollback plans must include state and schema compatibility. Consider this situation: A deployment performs an irreversible schema migration. A practical response is: Use a planned compatible migration or verified recovery path. The relevant concept is: Why is code rollback sometimes insufficient? Data or external side effects may be incompatible with the old code. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that reverting a commit reverses all database writes automatically.",
       "answerChecklist": [
         "Data or external side effects may be incompatible with the old code",
         "Rollback plans must include state and schema compatibility",
@@ -2940,7 +2940,7 @@
       "id": "git-24-principles",
       "title": "Concurrency controls \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing concurrency controls, which TWO statements are sound operational principles?",
+      "question": "Why serialize some deployment workflows? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "Cancellation policy should consider partially applied operations",
         "Parallel deployment always improves safety",
@@ -2974,7 +2974,7 @@
       "question": "Explain deployment concurrency and cancellation risks.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Prevent overlapping changes to the same environment. Cancellation policy should consider partially applied operations. A practical response is: Coordinate deployment ownership and inspect any partial changes. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that parallel deployment always improves safety.",
+      "sampleAnswer": "Cancellation policy should consider partially applied operations. Consider this situation: Two releases concurrently modify the same infrastructure. A practical response is: Coordinate deployment ownership and inspect any partial changes. The relevant concept is: Why serialize some deployment workflows? Prevent overlapping changes to the same environment. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that parallel deployment always improves safety.",
       "answerChecklist": [
         "Prevent overlapping changes to the same environment",
         "Cancellation policy should consider partially applied operations",
@@ -3064,7 +3064,7 @@
       "id": "git-25-principles",
       "title": "OIDC federation \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing oidc federation, which TWO statements are sound operational principles?",
+      "question": "Why use workload federation in CI where supported? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "Federation means every workflow should get administrator access",
         "Short-lived credentials make trust-policy scope irrelevant",
@@ -3098,7 +3098,7 @@
       "question": "Explain secure CI-to-cloud identity federation.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Obtain short-lived credentials tied to workflow identity. Trust conditions should constrain repository branch and environment. A practical response is: Narrow the federated identity conditions to intended workloads. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that federation means every workflow should get administrator access.",
+      "sampleAnswer": "Trust conditions should constrain repository branch and environment. Consider this situation: A cloud role trusts any repository in an organization. A practical response is: Narrow the federated identity conditions to intended workloads. The relevant concept is: Why use workload federation in CI where supported? Obtain short-lived credentials tied to workflow identity. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that federation means every workflow should get administrator access.",
       "answerChecklist": [
         "Obtain short-lived credentials tied to workflow identity",
         "Trust conditions should constrain repository branch and environment",
@@ -3188,7 +3188,7 @@
       "id": "git-26-principles",
       "title": "Monorepo checks \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing monorepo checks, which TWO statements are sound operational principles?",
+      "question": "What is a risk of path-filtered CI checks? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "Skipping all tests is safe if filenames look unrelated",
         "Indirect dependencies can be missed by simplistic file filters",
@@ -3222,7 +3222,7 @@
       "question": "Explain efficient validation without missing cross-component regressions.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Indirect dependencies can be missed by simplistic file filters. Check selection should model relevant dependency relationships. A practical response is: Include dependent components in the validation selection. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that a change outside one directory can never affect that component.",
+      "sampleAnswer": "Check selection should model relevant dependency relationships. Consider this situation: A shared library change skips downstream application tests. A practical response is: Include dependent components in the validation selection. The relevant concept is: What is a risk of path-filtered CI checks? Indirect dependencies can be missed by simplistic file filters. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that a change outside one directory can never affect that component.",
       "answerChecklist": [
         "Indirect dependencies can be missed by simplistic file filters",
         "Check selection should model relevant dependency relationships",
@@ -3312,7 +3312,7 @@
       "id": "git-27-principles",
       "title": "Release tags \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing release tags, which TWO statements are sound operational principles?",
+      "question": "What should release tagging support? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "Trace a release to an intended source or artifact identity",
         "Tag protection and verification help preserve release meaning",
@@ -3346,7 +3346,7 @@
       "question": "Explain trustworthy release tagging and traceability.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Trace a release to an intended source or artifact identity. Tag protection and verification help preserve release meaning. A practical response is: Investigate the identity mismatch and preserve an auditable release trail. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that every tag is intrinsically immutable and unforgeable.",
+      "sampleAnswer": "Tag protection and verification help preserve release meaning. Consider this situation: A release tag is moved after artifacts were published. A practical response is: Investigate the identity mismatch and preserve an auditable release trail. The relevant concept is: What should release tagging support? Trace a release to an intended source or artifact identity. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that every tag is intrinsically immutable and unforgeable.",
       "answerChecklist": [
         "Trace a release to an intended source or artifact identity",
         "Tag protection and verification help preserve release meaning",
@@ -3436,7 +3436,7 @@
       "id": "git-28-principles",
       "title": "Flaky tests \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing flaky tests, which TWO statements are sound operational principles?",
+      "question": "Why are flaky tests harmful to CI? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "Track and fix nondeterminism rather than normalizing blind retries",
         "Retrying until green proves correctness",
@@ -3470,7 +3470,7 @@
       "question": "Explain a strategy for restoring confidence in a flaky test suite.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "They weaken confidence that failures indicate real regressions. Track and fix nondeterminism rather than normalizing blind retries. A practical response is: Record failure patterns and isolate the nondeterministic cause. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that retrying until green proves correctness.",
+      "sampleAnswer": "Track and fix nondeterminism rather than normalizing blind retries. Consider this situation: A team reruns failed tests repeatedly without investigation. A practical response is: Record failure patterns and isolate the nondeterministic cause. The relevant concept is: Why are flaky tests harmful to CI? They weaken confidence that failures indicate real regressions. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that retrying until green proves correctness.",
       "answerChecklist": [
         "They weaken confidence that failures indicate real regressions",
         "Track and fix nondeterminism rather than normalizing blind retries",
@@ -3560,7 +3560,7 @@
       "id": "git-29-principles",
       "title": "Branch protection \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing branch protection, which TWO statements are sound operational principles?",
+      "question": "What do protected-branch rules help enforce? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "Branch protection proves all merged code is bug-free",
         "Rules automatically secure every deployment credential",
@@ -3594,7 +3594,7 @@
       "question": "Explain repository controls that support reliable delivery.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Defined review and status-check requirements before integration. Rules should match the actual delivery risk and trusted actors. A practical response is: Restore the intended gate and verify the effective rule behavior. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that branch protection proves all merged code is bug-free.",
+      "sampleAnswer": "Rules should match the actual delivery risk and trusted actors. Consider this situation: A required test is accidentally made optional on the release branch. A practical response is: Restore the intended gate and verify the effective rule behavior. The relevant concept is: What do protected-branch rules help enforce? Defined review and status-check requirements before integration. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that branch protection proves all merged code is bug-free.",
       "answerChecklist": [
         "Defined review and status-check requirements before integration",
         "Rules should match the actual delivery risk and trusted actors",
@@ -3684,7 +3684,7 @@
       "id": "git-30-principles",
       "title": "Supply-chain evidence \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing supply-chain evidence, which TWO statements are sound operational principles?",
+      "question": "What should release provenance help answer? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "Any artifact with metadata is automatically trustworthy",
         "Which inputs and process produced the artifact",
@@ -3718,7 +3718,7 @@
       "question": "Explain how you would verify a production artifact's origin.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Which inputs and process produced the artifact. Provenance is evidence to verify against a trust policy. A practical response is: Require traceable build evidence and verify artifact identity. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that provenance replaces all vulnerability assessment.",
+      "sampleAnswer": "Provenance is evidence to verify against a trust policy. Consider this situation: A binary's source revision and build workflow cannot be established. A practical response is: Require traceable build evidence and verify artifact identity. The relevant concept is: What should release provenance help answer? Which inputs and process produced the artifact. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that provenance replaces all vulnerability assessment.",
       "answerChecklist": [
         "Which inputs and process produced the artifact",
         "Provenance is evidence to verify against a trust policy",

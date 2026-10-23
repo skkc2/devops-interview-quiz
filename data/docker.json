@@ -88,7 +88,7 @@
       "id": "docker-01-principles",
       "title": "Images and containers \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing images and containers, which TWO statements are sound operational principles?",
+      "question": "What is the relationship between an image and a container? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "An image is always a running process",
         "Changing one container automatically changes every image tag",
@@ -122,7 +122,7 @@
       "question": "Explain images containers and reproducible deployment.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "A container is a runtime instance created from an image. Multiple containers can be created from the same image. A practical response is: Rebuild and version the image with the intended change. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that an image is always a running process.",
+      "sampleAnswer": "Multiple containers can be created from the same image. Consider this situation: A team edits a running container and expects future instances to include the fix. A practical response is: Rebuild and version the image with the intended change. The relevant concept is: What is the relationship between an image and a container? A container is a runtime instance created from an image. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that an image is always a running process.",
       "answerChecklist": [
         "A container is a runtime instance created from an image",
         "Multiple containers can be created from the same image",
@@ -212,7 +212,7 @@
       "id": "docker-02-principles",
       "title": "Layering \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing layering, which TWO statements are sound operational principles?",
+      "question": "How are container image changes commonly represented? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "Every layer is a separate running virtual machine",
         "As filesystem layers plus image configuration",
@@ -246,7 +246,7 @@
       "question": "Explain why image layers matter for secret handling.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "As filesystem layers plus image configuration. Later layers can hide earlier files without removing their bytes from older layers. A practical response is: Rebuild without the secret and rotate any exposed credential. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that deleting a file in a later layer always removes it from image history.",
+      "sampleAnswer": "Later layers can hide earlier files without removing their bytes from older layers. Consider this situation: A secret was copied into an image and deleted in a later step. A practical response is: Rebuild without the secret and rotate any exposed credential. The relevant concept is: How are container image changes commonly represented? As filesystem layers plus image configuration. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that deleting a file in a later layer always removes it from image history.",
       "answerChecklist": [
         "As filesystem layers plus image configuration",
         "Later layers can hide earlier files without removing their bytes from older layers",
@@ -336,7 +336,7 @@
       "id": "docker-03-principles",
       "title": "Dockerfiles \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing dockerfiles, which TWO statements are sound operational principles?",
+      "question": "What does a Dockerfile describe? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "Instructions for building an image",
         "Build inputs and base versions affect reproducibility",
@@ -370,7 +370,7 @@
       "question": "Explain how you would make a Docker build reproducible.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Instructions for building an image. Build inputs and base versions affect reproducibility. A practical response is: Review and pin the intended base version or digest. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that it is a live process supervisor for every host service.",
+      "sampleAnswer": "Build inputs and base versions affect reproducibility. Consider this situation: A rebuild unexpectedly uses a changed base image tag. A practical response is: Review and pin the intended base version or digest. The relevant concept is: What does a Dockerfile describe? Instructions for building an image. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that it is a live process supervisor for every host service.",
       "answerChecklist": [
         "Instructions for building an image",
         "Build inputs and base versions affect reproducibility",
@@ -460,7 +460,7 @@
       "id": "docker-04-principles",
       "title": "Build context \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing build context, which TWO statements are sound operational principles?",
+      "question": "What is the Docker build context? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "A dockerignore file can exclude unnecessary or sensitive inputs",
         "It is only the Dockerfile text",
@@ -494,7 +494,7 @@
       "question": "Explain how you choose a safe efficient build context.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "The set of files made available to the build. A dockerignore file can exclude unnecessary or sensitive inputs. A practical response is: Restrict context and add deliberate exclusion rules. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that it is only the Dockerfile text.",
+      "sampleAnswer": "A dockerignore file can exclude unnecessary or sensitive inputs. Consider this situation: A build sends a large directory containing private files. A practical response is: Restrict context and add deliberate exclusion rules. The relevant concept is: What is the Docker build context? The set of files made available to the build. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that it is only the Dockerfile text.",
       "answerChecklist": [
         "The set of files made available to the build",
         "A dockerignore file can exclude unnecessary or sensitive inputs",
@@ -584,7 +584,7 @@
       "id": "docker-05-principles",
       "title": "Container logs \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing container logs, which TWO statements are sound operational principles?",
+      "question": "Where should a containerized service commonly send operational logs? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "Logs sent to stdout can never consume host storage",
         "Docker automatically stores logs forever without capacity cost",
@@ -618,7 +618,7 @@
       "question": "Explain container log collection and storage limits.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "To stdout and stderr for collection by the runtime. Log retention and rotation still need explicit management. A practical response is: Inspect the logging driver and configure bounded retention. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that logs sent to stdout can never consume host storage.",
+      "sampleAnswer": "Log retention and rotation still need explicit management. Consider this situation: Host disk fills because container logs grow without rotation. A practical response is: Inspect the logging driver and configure bounded retention. The relevant concept is: Where should a containerized service commonly send operational logs? To stdout and stderr for collection by the runtime. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that logs sent to stdout can never consume host storage.",
       "answerChecklist": [
         "To stdout and stderr for collection by the runtime",
         "Log retention and rotation still need explicit management",
@@ -708,7 +708,7 @@
       "id": "docker-06-principles",
       "title": "Port publishing \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing port publishing, which TWO statements are sound operational principles?",
+      "question": "What does Docker port publishing do? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "Publishing a port makes application authentication unnecessary",
         "Map a host endpoint to a container port",
@@ -742,7 +742,7 @@
       "question": "Explain EXPOSE versus publishing a port.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Map a host endpoint to a container port. Exposing metadata alone does not publish a host port. A practical response is: Check listener binding and the explicit port mapping. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that eXPOSE automatically opens every host firewall.",
+      "sampleAnswer": "Exposing metadata alone does not publish a host port. Consider this situation: A service listens inside a container but is unreachable on the host port. A practical response is: Check listener binding and the explicit port mapping. The relevant concept is: What does Docker port publishing do? Map a host endpoint to a container port. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that eXPOSE automatically opens every host firewall.",
       "answerChecklist": [
         "Map a host endpoint to a container port",
         "Exposing metadata alone does not publish a host port",
@@ -832,7 +832,7 @@
       "id": "docker-07-principles",
       "title": "Volumes \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing volumes, which TWO statements are sound operational principles?",
+      "question": "Why use a volume for persistent container data? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "Its lifecycle can be managed separately from the container writable layer",
         "Volumes still require backup and access controls",
@@ -866,7 +866,7 @@
       "question": "Explain storage choices for a containerized database.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Its lifecycle can be managed separately from the container writable layer. Volumes still require backup and access controls. A practical response is: Move persistent data to appropriate managed storage and restore verified backups. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that deleting any container always preserves its writable-layer data.",
+      "sampleAnswer": "Volumes still require backup and access controls. Consider this situation: A database loses data after its container is replaced. A practical response is: Move persistent data to appropriate managed storage and restore verified backups. The relevant concept is: Why use a volume for persistent container data? Its lifecycle can be managed separately from the container writable layer. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that deleting any container always preserves its writable-layer data.",
       "answerChecklist": [
         "Its lifecycle can be managed separately from the container writable layer",
         "Volumes still require backup and access controls",
@@ -956,7 +956,7 @@
       "id": "docker-08-principles",
       "title": "Entrypoints \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing entrypoints, which TWO statements are sound operational principles?",
+      "question": "What is a benefit of exec-form ENTRYPOINT for a simple service? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "Signal forwarding differs when an intermediate shell is involved",
         "Exec form starts an interactive shell by default",
@@ -990,7 +990,7 @@
       "question": "Explain entrypoint design and signal handling.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "The service can run directly as the container's main process. Signal forwarding differs when an intermediate shell is involved. A practical response is: Use exec appropriately and verify stop behavior. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that exec form starts an interactive shell by default.",
+      "sampleAnswer": "Signal forwarding differs when an intermediate shell is involved. Consider this situation: A service ignores graceful stop because its shell wrapper mishandles signals. A practical response is: Use exec appropriately and verify stop behavior. The relevant concept is: What is a benefit of exec-form ENTRYPOINT for a simple service? The service can run directly as the container's main process. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that exec form starts an interactive shell by default.",
       "answerChecklist": [
         "The service can run directly as the container's main process",
         "Signal forwarding differs when an intermediate shell is involved",
@@ -1080,7 +1080,7 @@
       "id": "docker-09-principles",
       "title": "PID one \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing pid one, which TWO statements are sound operational principles?",
+      "question": "Why does the container's main process need careful child handling? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "PID one automatically reaps every child in all applications",
         "Container shutdown guarantees every child flushes its data",
@@ -1114,7 +1114,7 @@
       "question": "Explain PID-one responsibilities in a container.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "It may need to reap children and handle termination signals. A small init can help workloads that spawn child processes. A practical response is: Inspect reaping behavior and use suitable process supervision. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that pID one automatically reaps every child in all applications.",
+      "sampleAnswer": "A small init can help workloads that spawn child processes. Consider this situation: A worker container accumulates zombie child processes. A practical response is: Inspect reaping behavior and use suitable process supervision. The relevant concept is: Why does the container's main process need careful child handling? It may need to reap children and handle termination signals. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that pID one automatically reaps every child in all applications.",
       "answerChecklist": [
         "It may need to reap children and handle termination signals",
         "A small init can help workloads that spawn child processes",
@@ -1204,7 +1204,7 @@
       "id": "docker-10-principles",
       "title": "Health checks \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing health checks, which TWO statements are sound operational principles?",
+      "question": "What does a Docker health check report? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "A successful process start proves ongoing application readiness",
         "A health status based on the configured check result",
@@ -1238,7 +1238,7 @@
       "question": "Explain the difference between running healthy and ready.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "A health status based on the configured check result. A health status alone does not guarantee automatic container restart. A practical response is: Inspect health output and configure the intended supervisory response. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that an unhealthy status always restarts the container in standalone Docker.",
+      "sampleAnswer": "A health status alone does not guarantee automatic container restart. Consider this situation: A container is unhealthy but still running. A practical response is: Inspect health output and configure the intended supervisory response. The relevant concept is: What does a Docker health check report? A health status based on the configured check result. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that an unhealthy status always restarts the container in standalone Docker.",
       "answerChecklist": [
         "A health status based on the configured check result",
         "A health status alone does not guarantee automatic container restart",
@@ -1328,7 +1328,7 @@
       "id": "docker-11-principles",
       "title": "User identity \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing user identity, which TWO statements are sound operational principles?",
+      "question": "Why run an application as a non-root user when possible? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "Reduce the privileges available to compromised application code",
         "Non-root execution complements other isolation controls",
@@ -1362,7 +1362,7 @@
       "question": "Explain least privilege in container runtime configuration.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Reduce the privileges available to compromised application code. Non-root execution complements other isolation controls. A practical response is: Set an appropriate user and narrow directory permissions. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that a non-root container has no possible security risks.",
+      "sampleAnswer": "Non-root execution complements other isolation controls. Consider this situation: An application needs write access only to one data directory. A practical response is: Set an appropriate user and narrow directory permissions. The relevant concept is: Why run an application as a non-root user when possible? Reduce the privileges available to compromised application code. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that a non-root container has no possible security risks.",
       "answerChecklist": [
         "Reduce the privileges available to compromised application code",
         "Non-root execution complements other isolation controls",
@@ -1452,7 +1452,7 @@
       "id": "docker-12-principles",
       "title": "Memory limits \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing memory limits, which TWO statements are sound operational principles?",
+      "question": "What can a container memory limit cause under excess demand? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "Host free memory does not negate a container's configured limit",
         "A memory limit only changes monitoring display",
@@ -1486,7 +1486,7 @@
       "question": "Explain container-specific memory failures.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "The workload can encounter cgroup memory pressure or OOM termination. Host free memory does not negate a container's configured limit. A practical response is: Inspect its limit memory events and working-set demand. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that a memory limit only changes monitoring display.",
+      "sampleAnswer": "Host free memory does not negate a container's configured limit. Consider this situation: A container dies while the host reports free RAM. A practical response is: Inspect its limit memory events and working-set demand. The relevant concept is: What can a container memory limit cause under excess demand? The workload can encounter cgroup memory pressure or OOM termination. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that a memory limit only changes monitoring display.",
       "answerChecklist": [
         "The workload can encounter cgroup memory pressure or OOM termination",
         "Host free memory does not negate a container's configured limit",
@@ -1576,7 +1576,7 @@
       "id": "docker-13-principles",
       "title": "CPU quotas \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing cpu quotas, which TWO statements are sound operational principles?",
+      "question": "What does a CPU quota constrain? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "A CPU quota reserves an exclusive physical core automatically",
         "Quota exhaustion always terminates the container",
@@ -1610,7 +1610,7 @@
       "question": "Explain CPU quotas versus CPU affinity and shares.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "CPU runtime available to the cgroup over scheduling periods. Quota throttling can affect latency. A practical response is: Compare quota demand and throttling before adjusting limits. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that a CPU quota reserves an exclusive physical core automatically.",
+      "sampleAnswer": "Quota throttling can affect latency. Consider this situation: A low-CPU-limit service has high tail latency with throttling. A practical response is: Compare quota demand and throttling before adjusting limits. The relevant concept is: What does a CPU quota constrain? CPU runtime available to the cgroup over scheduling periods. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that a CPU quota reserves an exclusive physical core automatically.",
       "answerChecklist": [
         "CPU runtime available to the cgroup over scheduling periods",
         "Quota throttling can affect latency",
@@ -1700,7 +1700,7 @@
       "id": "docker-14-principles",
       "title": "Bind mounts \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing bind mounts, which TWO statements are sound operational principles?",
+      "question": "What distinguishes a bind mount from a named volume? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "Bind mounts are automatically portable across every host",
         "A bind mount exposes a specified host path",
@@ -1734,7 +1734,7 @@
       "question": "Explain portability risks introduced by bind mounts.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "A bind mount exposes a specified host path. Host path permissions and contents directly affect the container. A practical response is: Verify the host path and avoid hidden host-specific dependencies. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that a bind mount always copies data into the image.",
+      "sampleAnswer": "Host path permissions and contents directly affect the container. Consider this situation: A deployment works on one host but lacks files on another. A practical response is: Verify the host path and avoid hidden host-specific dependencies. The relevant concept is: What distinguishes a bind mount from a named volume? A bind mount exposes a specified host path. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that a bind mount always copies data into the image.",
       "answerChecklist": [
         "A bind mount exposes a specified host path",
         "Host path permissions and contents directly affect the container",
@@ -1824,7 +1824,7 @@
       "id": "docker-15-principles",
       "title": "Read-only filesystems \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing read-only filesystems, which TWO statements are sound operational principles?",
+      "question": "Why use a read-only container root filesystem? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "Reduce unintended writes to the image-derived filesystem",
         "Required writable paths must be provisioned separately",
@@ -1858,7 +1858,7 @@
       "question": "Explain how you would harden filesystem access without breaking the application.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Reduce unintended writes to the image-derived filesystem. Required writable paths must be provisioned separately. A practical response is: Provide narrowly scoped writable temporary storage. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that read-only root prevents every network attack.",
+      "sampleAnswer": "Required writable paths must be provisioned separately. Consider this situation: A hardened container fails when writing temporary files. A practical response is: Provide narrowly scoped writable temporary storage. The relevant concept is: Why use a read-only container root filesystem? Reduce unintended writes to the image-derived filesystem. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that read-only root prevents every network attack.",
       "answerChecklist": [
         "Reduce unintended writes to the image-derived filesystem",
         "Required writable paths must be provisioned separately",
@@ -1948,7 +1948,7 @@
       "id": "docker-16-principles",
       "title": "Multi-stage builds \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing multi-stage builds, which TWO statements are sound operational principles?",
+      "question": "What is a primary benefit of multi-stage builds? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "Only explicitly copied artifacts need enter the final stage",
         "Every intermediate build tool must remain in the runtime image",
@@ -1982,7 +1982,7 @@
       "question": "Explain multi-stage build design and runtime dependency verification.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Separate build tooling from the final runtime image. Only explicitly copied artifacts need enter the final stage. A practical response is: Copy required runtime artifacts from a builder into a smaller final stage. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that every intermediate build tool must remain in the runtime image.",
+      "sampleAnswer": "Only explicitly copied artifacts need enter the final stage. Consider this situation: A production image contains compilers and package caches unnecessarily. A practical response is: Copy required runtime artifacts from a builder into a smaller final stage. The relevant concept is: What is a primary benefit of multi-stage builds? Separate build tooling from the final runtime image. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that every intermediate build tool must remain in the runtime image.",
       "answerChecklist": [
         "Separate build tooling from the final runtime image",
         "Only explicitly copied artifacts need enter the final stage",
@@ -2072,7 +2072,7 @@
       "id": "docker-17-principles",
       "title": "Build cache \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing build cache, which TWO statements are sound operational principles?",
+      "question": "Why order stable dependencies before frequently changing source? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "Docker caches every step forever regardless of inputs",
         "A cached build proves dependencies are up to date",
@@ -2106,7 +2106,7 @@
       "question": "Explain cache-efficient Dockerfile ordering.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "It can preserve useful cached build steps. Cache keys and inputs determine whether a step can be reused. A practical response is: Separate dependency manifests from frequently changing application source. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that docker caches every step forever regardless of inputs.",
+      "sampleAnswer": "Cache keys and inputs determine whether a step can be reused. Consider this situation: A small source edit causes expensive dependency installation every build. A practical response is: Separate dependency manifests from frequently changing application source. The relevant concept is: Why order stable dependencies before frequently changing source? It can preserve useful cached build steps. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that docker caches every step forever regardless of inputs.",
       "answerChecklist": [
         "It can preserve useful cached build steps",
         "Cache keys and inputs determine whether a step can be reused",
@@ -2196,7 +2196,7 @@
       "id": "docker-18-principles",
       "title": "Secrets in builds \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing secrets in builds, which TWO statements are sound operational principles?",
+      "question": "How should build-time credentials be supplied where supported? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "Deleting a credential in a later layer guarantees secrecy",
         "Use a dedicated build secret mechanism",
@@ -2230,7 +2230,7 @@
       "question": "Explain secure authenticated dependency access during builds.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Use a dedicated build secret mechanism. Secrets should not be baked into layers or ordinary build arguments. A practical response is: Use scoped build secrets and verify the final image contains no credential. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that build arguments are always encrypted and excluded from history.",
+      "sampleAnswer": "Secrets should not be baked into layers or ordinary build arguments. Consider this situation: A dependency download requires a private registry credential. A practical response is: Use scoped build secrets and verify the final image contains no credential. The relevant concept is: How should build-time credentials be supplied where supported? Use a dedicated build secret mechanism. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that build arguments are always encrypted and excluded from history.",
       "answerChecklist": [
         "Use a dedicated build secret mechanism",
         "Secrets should not be baked into layers or ordinary build arguments",
@@ -2320,7 +2320,7 @@
       "id": "docker-19-principles",
       "title": "Image digests \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing image digests, which TWO statements are sound operational principles?",
+      "question": "What does an image digest identify? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "Specific content-addressed image data",
         "Mutable tags can move to different content",
@@ -2354,7 +2354,7 @@
       "question": "Explain tags digests and traceable releases.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Specific content-addressed image data. Mutable tags can move to different content. A practical response is: Record and deploy the intended immutable digest. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that a digest is just a friendly mutable alias.",
+      "sampleAnswer": "Mutable tags can move to different content. Consider this situation: Two deployments of the same tag run different builds. A practical response is: Record and deploy the intended immutable digest. The relevant concept is: What does an image digest identify? Specific content-addressed image data. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that a digest is just a friendly mutable alias.",
       "answerChecklist": [
         "Specific content-addressed image data",
         "Mutable tags can move to different content",
@@ -2444,7 +2444,7 @@
       "id": "docker-20-principles",
       "title": "Networks \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing networks, which TWO statements are sound operational principles?",
+      "question": "What benefit does a user-defined bridge network provide? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "Network attachment and published host ports are distinct choices",
         "Every container name resolves globally across unrelated networks",
@@ -2478,7 +2478,7 @@
       "question": "Explain container-to-container discovery on a user-defined network.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Scoped container connectivity with built-in name resolution. Network attachment and published host ports are distinct choices. A practical response is: Inspect network membership and intended service names. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that every container name resolves globally across unrelated networks.",
+      "sampleAnswer": "Network attachment and published host ports are distinct choices. Consider this situation: Two containers expected to communicate are attached to different networks. A practical response is: Inspect network membership and intended service names. The relevant concept is: What benefit does a user-defined bridge network provide? Scoped container connectivity with built-in name resolution. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that every container name resolves globally across unrelated networks.",
       "answerChecklist": [
         "Scoped container connectivity with built-in name resolution",
         "Network attachment and published host ports are distinct choices",
@@ -2568,7 +2568,7 @@
       "id": "docker-21-principles",
       "title": "Compose dependencies \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing compose dependencies, which TWO statements are sound operational principles?",
+      "question": "What is a limitation of simple startup ordering? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "Starting a database process proves schema initialization is complete",
         "Startup ordering eliminates all later dependency failures",
@@ -2602,7 +2602,7 @@
       "question": "Explain startup order versus readiness in Compose applications.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "A started dependency may not yet be ready to serve requests. Readiness checks and application retry behavior remain important. A practical response is: Use readiness-aware orchestration and bounded connection retries. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that starting a database process proves schema initialization is complete.",
+      "sampleAnswer": "Readiness checks and application retry behavior remain important. Consider this situation: An application starts before its database becomes usable. A practical response is: Use readiness-aware orchestration and bounded connection retries. The relevant concept is: What is a limitation of simple startup ordering? A started dependency may not yet be ready to serve requests. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that starting a database process proves schema initialization is complete.",
       "answerChecklist": [
         "A started dependency may not yet be ready to serve requests",
         "Readiness checks and application retry behavior remain important",
@@ -2692,7 +2692,7 @@
       "id": "docker-22-principles",
       "title": "Restart policy \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing restart policy, which TWO statements are sound operational principles?",
+      "question": "What does a restart policy govern? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "Every unhealthy status is equivalent to process exit",
         "Runtime behavior when a container exits under specified conditions",
@@ -2726,7 +2726,7 @@
       "question": "Explain restart loops and how you would diagnose them.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Runtime behavior when a container exits under specified conditions. Restarting repeatedly does not repair an underlying bad configuration. A practical response is: Inspect exit logs and correct configuration before relying on restarts. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that a restart policy fixes every application bug.",
+      "sampleAnswer": "Restarting repeatedly does not repair an underlying bad configuration. Consider this situation: A container exits immediately because a required setting is missing. A practical response is: Inspect exit logs and correct configuration before relying on restarts. The relevant concept is: What does a restart policy govern? Runtime behavior when a container exits under specified conditions. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that a restart policy fixes every application bug.",
       "answerChecklist": [
         "Runtime behavior when a container exits under specified conditions",
         "Restarting repeatedly does not repair an underlying bad configuration",
@@ -2816,7 +2816,7 @@
       "id": "docker-23-principles",
       "title": "Registry access \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing registry access, which TWO statements are sound operational principles?",
+      "question": "Why separate image pull credentials from application credentials? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "They grant different capabilities at different lifecycle stages",
         "Credentials should have the minimum required repository scope",
@@ -2850,7 +2850,7 @@
       "question": "Explain least-privilege access to a private image registry.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "They grant different capabilities at different lifecycle stages. Credentials should have the minimum required repository scope. A practical response is: Reduce registry credential scope and separate build from runtime identities. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that a registry password is always safe to embed in an image.",
+      "sampleAnswer": "Credentials should have the minimum required repository scope. Consider this situation: A runtime workload can overwrite the image it was deployed from. A practical response is: Reduce registry credential scope and separate build from runtime identities. The relevant concept is: Why separate image pull credentials from application credentials? They grant different capabilities at different lifecycle stages. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that a registry password is always safe to embed in an image.",
       "answerChecklist": [
         "They grant different capabilities at different lifecycle stages",
         "Credentials should have the minimum required repository scope",
@@ -2940,7 +2940,7 @@
       "id": "docker-24-principles",
       "title": "Resource cleanup \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing resource cleanup, which TWO statements are sound operational principles?",
+      "question": "Why inspect Docker objects before pruning? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "Volume deletion can remove persistent data",
         "Every prune operation is harmless to recoverability",
@@ -2974,7 +2974,7 @@
       "question": "Explain a safe Docker disk-cleanup procedure.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Unused from the runtime's perspective may still be operationally valuable. Volume deletion can remove persistent data. A practical response is: Identify consumers and backups before scoped cleanup. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that every prune operation is harmless to recoverability.",
+      "sampleAnswer": "Volume deletion can remove persistent data. Consider this situation: A host is low on disk and an operator proposes deleting every volume. A practical response is: Identify consumers and backups before scoped cleanup. The relevant concept is: Why inspect Docker objects before pruning? Unused from the runtime's perspective may still be operationally valuable. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that every prune operation is harmless to recoverability.",
       "answerChecklist": [
         "Unused from the runtime's perspective may still be operationally valuable",
         "Volume deletion can remove persistent data",
@@ -3064,7 +3064,7 @@
       "id": "docker-25-principles",
       "title": "Socket exposure \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing socket exposure, which TWO statements are sound operational principles?",
+      "question": "Why is mounting the Docker daemon socket high risk? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "The socket grants only read-only log access by default",
         "A non-root process cannot misuse a mounted daemon socket",
@@ -3098,7 +3098,7 @@
       "question": "Explain the risks of Docker socket access inside a container.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Daemon access can grant extensive control over the host. Treat daemon API access as a privileged trust boundary. A practical response is: Remove unnecessary daemon access or isolate a narrowly controlled service. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that the socket grants only read-only log access by default.",
+      "sampleAnswer": "Treat daemon API access as a privileged trust boundary. Consider this situation: A web application mounts the daemon socket for convenience. A practical response is: Remove unnecessary daemon access or isolate a narrowly controlled service. The relevant concept is: Why is mounting the Docker daemon socket high risk? Daemon access can grant extensive control over the host. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that the socket grants only read-only log access by default.",
       "answerChecklist": [
         "Daemon access can grant extensive control over the host",
         "Treat daemon API access as a privileged trust boundary",
@@ -3188,7 +3188,7 @@
       "id": "docker-26-principles",
       "title": "Rootless mode \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing rootless mode, which TWO statements are sound operational principles?",
+      "question": "What does rootless Docker aim to reduce? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "Rootless mode guarantees every privileged workload works unchanged",
         "The need for a root-privileged daemon and containers",
@@ -3222,7 +3222,7 @@
       "question": "Explain rootless Docker benefits and limitations.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "The need for a root-privileged daemon and containers. Rootless operation has compatibility and resource-control considerations. A practical response is: Evaluate rootless support against networking storage and workload requirements. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that rootless mode removes all kernel attack surface.",
+      "sampleAnswer": "Rootless operation has compatibility and resource-control considerations. Consider this situation: A team wants to reduce daemon privilege on developer hosts. A practical response is: Evaluate rootless support against networking storage and workload requirements. The relevant concept is: What does rootless Docker aim to reduce? The need for a root-privileged daemon and containers. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that rootless mode removes all kernel attack surface.",
       "answerChecklist": [
         "The need for a root-privileged daemon and containers",
         "Rootless operation has compatibility and resource-control considerations",
@@ -3312,7 +3312,7 @@
       "id": "docker-27-principles",
       "title": "Image scanning \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing image scanning, which TWO statements are sound operational principles?",
+      "question": "What does a vulnerability scan provide? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "Evidence about known issues in the inspected image and metadata",
         "A clean scan is not proof of absence of all vulnerabilities",
@@ -3346,7 +3346,7 @@
       "question": "Explain how scanning fits into image maintenance.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Evidence about known issues in the inspected image and metadata. A clean scan is not proof of absence of all vulnerabilities. A practical response is: Assess reachability and impact then rebuild and redeploy a verified fix. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that scanning guarantees application logic is secure.",
+      "sampleAnswer": "A clean scan is not proof of absence of all vulnerabilities. Consider this situation: A scan finds a critical library issue in a deployed image. A practical response is: Assess reachability and impact then rebuild and redeploy a verified fix. The relevant concept is: What does a vulnerability scan provide? Evidence about known issues in the inspected image and metadata. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that scanning guarantees application logic is secure.",
       "answerChecklist": [
         "Evidence about known issues in the inspected image and metadata",
         "A clean scan is not proof of absence of all vulnerabilities",
@@ -3436,7 +3436,7 @@
       "id": "docker-28-principles",
       "title": "Supply chain \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing supply chain, which TWO statements are sound operational principles?",
+      "question": "Why verify image provenance or signatures? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "Verification policy must define trusted identities and sources",
         "Any signed image is automatically safe regardless of signer",
@@ -3470,7 +3470,7 @@
       "question": "Explain a trustworthy container artifact promotion process.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Establish evidence about artifact origin and integrity. Verification policy must define trusted identities and sources. A practical response is: Verify digest provenance and the authorized publishing identity. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that any signed image is automatically safe regardless of signer.",
+      "sampleAnswer": "Verification policy must define trusted identities and sources. Consider this situation: A registry contains an unexpected image under a trusted-looking tag. A practical response is: Verify digest provenance and the authorized publishing identity. The relevant concept is: Why verify image provenance or signatures? Establish evidence about artifact origin and integrity. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that any signed image is automatically safe regardless of signer.",
       "answerChecklist": [
         "Establish evidence about artifact origin and integrity",
         "Verification policy must define trusted identities and sources",
@@ -3560,7 +3560,7 @@
       "id": "docker-29-principles",
       "title": "Shared kernel \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing shared kernel, which TWO statements are sound operational principles?",
+      "question": "What security implication follows from containers sharing a host kernel? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "Each container always has an independent kernel",
         "Updating only application packages patches the host kernel",
@@ -3594,7 +3594,7 @@
       "question": "Compare container and virtual-machine isolation boundaries.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Kernel vulnerabilities can cross container isolation boundaries. Host patching remains important even with minimal images. A practical response is: Assess host exposure and roll out host remediation safely. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that each container always has an independent kernel.",
+      "sampleAnswer": "Host patching remains important even with minimal images. Consider this situation: A host kernel vulnerability affects container isolation. A practical response is: Assess host exposure and roll out host remediation safely. The relevant concept is: What security implication follows from containers sharing a host kernel? Kernel vulnerabilities can cross container isolation boundaries. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that each container always has an independent kernel.",
       "answerChecklist": [
         "Kernel vulnerabilities can cross container isolation boundaries",
         "Host patching remains important even with minimal images",
@@ -3684,7 +3684,7 @@
       "id": "docker-30-principles",
       "title": "Stateful migration \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing stateful migration, which TWO statements are sound operational principles?",
+      "question": "Why is replacing a database container not always a complete rollback? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "Volumes version their data automatically with image tags",
         "Persistent data or schema changes may outlive the old image",
@@ -3718,7 +3718,7 @@
       "question": "Explain rollback planning for a stateful container deployment.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Persistent data or schema changes may outlive the old image. Application and data compatibility must be considered together. A practical response is: Plan compatible migration or verified data recovery before rollback. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that restoring an old image automatically reverses all schema changes.",
+      "sampleAnswer": "Application and data compatibility must be considered together. Consider this situation: A new image migrates the database schema incompatibly. A practical response is: Plan compatible migration or verified data recovery before rollback. The relevant concept is: Why is replacing a database container not always a complete rollback? Persistent data or schema changes may outlive the old image. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that restoring an old image automatically reverses all schema changes.",
       "answerChecklist": [
         "Persistent data or schema changes may outlive the old image",
         "Application and data compatibility must be considered together",

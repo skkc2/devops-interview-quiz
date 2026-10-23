@@ -5,7 +5,7 @@
       "id": "ansible-lesson-01",
       "topic": "ansible",
       "title": "Inventory",
-      "summary": "Managed hosts and their grouping or connection data.",
+      "summary": "What does an Ansible inventory describe? Managed hosts and their grouping or connection data.",
       "sections": [
         {
           "heading": "How it works",
@@ -32,7 +32,7 @@
       "id": "ansible-lesson-02",
       "topic": "ansible",
       "title": "Playbooks",
-      "summary": "Plays mapping tasks and roles to target hosts.",
+      "summary": "What does a playbook organize? Plays mapping tasks and roles to target hosts.",
       "sections": [
         {
           "heading": "How it works",
@@ -59,7 +59,7 @@
       "id": "ansible-lesson-03",
       "topic": "ansible",
       "title": "Modules",
-      "summary": "Modules often model desired state and support idempotent behavior.",
+      "summary": "Why prefer purpose-built modules over shell commands? Modules often model desired state and support idempotent behavior.",
       "sections": [
         {
           "heading": "How it works",
@@ -86,7 +86,7 @@
       "id": "ansible-lesson-04",
       "topic": "ansible",
       "title": "Idempotence",
-      "summary": "Repeated execution can preserve the already-correct desired state.",
+      "summary": "What does idempotence mean for a configuration task? Repeated execution can preserve the already-correct desired state.",
       "sections": [
         {
           "heading": "How it works",
@@ -113,7 +113,7 @@
       "id": "ansible-lesson-05",
       "topic": "ansible",
       "title": "Become",
-      "summary": "Privilege escalation for selected operations.",
+      "summary": "What does become enable? Privilege escalation for selected operations.",
       "sections": [
         {
           "heading": "How it works",
@@ -140,7 +140,7 @@
       "id": "ansible-lesson-06",
       "topic": "ansible",
       "title": "Variables",
-      "summary": "Values can come from multiple sources with precedence rules.",
+      "summary": "What is an important property of Ansible variables? Values can come from multiple sources with precedence rules.",
       "sections": [
         {
           "heading": "How it works",
@@ -167,7 +167,7 @@
       "id": "ansible-lesson-07",
       "topic": "ansible",
       "title": "Facts",
-      "summary": "Discover host characteristics for conditional automation.",
+      "summary": "What are gathered facts typically used for? Discover host characteristics for conditional automation.",
       "sections": [
         {
           "heading": "How it works",
@@ -194,7 +194,7 @@
       "id": "ansible-lesson-08",
       "topic": "ansible",
       "title": "Handlers",
-      "summary": "At defined handler execution points after notifying changes.",
+      "summary": "When are notified handlers normally run? At defined handler execution points after notifying changes.",
       "sections": [
         {
           "heading": "How it works",
@@ -221,7 +221,7 @@
       "id": "ansible-lesson-09",
       "topic": "ansible",
       "title": "Check mode",
-      "summary": "Support and predictive accuracy depend on the module and task.",
+      "summary": "What is a limitation of Ansible check mode? Support and predictive accuracy depend on the module and task.",
       "sections": [
         {
           "heading": "How it works",
@@ -248,7 +248,7 @@
       "id": "ansible-lesson-10",
       "topic": "ansible",
       "title": "Diff mode",
-      "summary": "It can reveal sensitive configuration content.",
+      "summary": "Why use diff output carefully? It can reveal sensitive configuration content.",
       "sections": [
         {
           "heading": "How it works",
@@ -275,7 +275,7 @@
       "id": "ansible-lesson-11",
       "topic": "ansible",
       "title": "Vault",
-      "summary": "Encrypted content at rest when properly managed.",
+      "summary": "What does Ansible Vault protect? Encrypted content at rest when properly managed.",
       "sections": [
         {
           "heading": "How it works",
@@ -302,7 +302,7 @@
       "id": "ansible-lesson-12",
       "topic": "ansible",
       "title": "Templates",
-      "summary": "Render configuration from variables and expressions.",
+      "summary": "What does a Jinja template allow? Render configuration from variables and expressions.",
       "sections": [
         {
           "heading": "How it works",
@@ -329,7 +329,7 @@
       "id": "ansible-lesson-13",
       "topic": "ansible",
       "title": "Roles",
-      "summary": "Related tasks defaults handlers and supporting files.",
+      "summary": "What does an Ansible role package? Related tasks defaults handlers and supporting files.",
       "sections": [
         {
           "heading": "How it works",
@@ -356,7 +356,7 @@
       "id": "ansible-lesson-14",
       "topic": "ansible",
       "title": "Collections",
-      "summary": "Distribute related modules plugins and roles.",
+      "summary": "What is an Ansible collection used for? Distribute related modules plugins and roles.",
       "sections": [
         {
           "heading": "How it works",
@@ -383,7 +383,7 @@
       "id": "ansible-lesson-15",
       "topic": "ansible",
       "title": "FQCNs",
-      "summary": "Make the intended module namespace explicit.",
+      "summary": "Why use fully qualified collection names for modules? Make the intended module namespace explicit.",
       "sections": [
         {
           "heading": "How it works",
@@ -410,7 +410,7 @@
       "id": "ansible-lesson-16",
       "topic": "ansible",
       "title": "Conditionals",
-      "summary": "Whether a task executes for a host based on a condition.",
+      "summary": "What does a when expression control? Whether a task executes for a host based on a condition.",
       "sections": [
         {
           "heading": "How it works",
@@ -437,7 +437,7 @@
       "id": "ansible-lesson-17",
       "topic": "ansible",
       "title": "Registered results",
-      "summary": "A task result for later use in the play.",
+      "summary": "What does register capture? A task result for later use in the play.",
       "sections": [
         {
           "heading": "How it works",
@@ -464,7 +464,7 @@
       "id": "ansible-lesson-18",
       "topic": "ansible",
       "title": "Loops",
-      "summary": "Avoid variable collisions in nested or included tasks.",
+      "summary": "Why choose loop variable names deliberately? Avoid variable collisions in nested or included tasks.",
       "sections": [
         {
           "heading": "How it works",
@@ -491,7 +491,7 @@
       "id": "ansible-lesson-19",
       "topic": "ansible",
       "title": "Failure conditions",
-      "summary": "The condition under which a task is considered failed.",
+      "summary": "What does failed_when customize? The condition under which a task is considered failed.",
       "sections": [
         {
           "heading": "How it works",
@@ -518,7 +518,7 @@
       "id": "ansible-lesson-20",
       "topic": "ansible",
       "title": "Change reporting",
-      "summary": "Whether a task reports that it changed state.",
+      "summary": "What does changed_when customize? Whether a task reports that it changed state.",
       "sections": [
         {
           "heading": "How it works",
@@ -545,7 +545,7 @@
       "id": "ansible-lesson-21",
       "topic": "ansible",
       "title": "Serial rollout",
-      "summary": "The batch size of hosts processed through the play.",
+      "summary": "What does serial control in a play? The batch size of hosts processed through the play.",
       "sections": [
         {
           "heading": "How it works",
@@ -572,7 +572,7 @@
       "id": "ansible-lesson-22",
       "topic": "ansible",
       "title": "Delegation",
-      "summary": "The host on which a task executes.",
+      "summary": "What does delegate_to change? The host on which a task executes.",
       "sections": [
         {
           "heading": "How it works",
@@ -599,7 +599,7 @@
       "id": "ansible-lesson-23",
       "topic": "ansible",
       "title": "Run once",
-      "summary": "Execution can occur once per batch rather than once for the whole inventory.",
+      "summary": "What is a nuance of run_once with serial batches? Execution can occur once per batch rather than once for the whole inventory.",
       "sections": [
         {
           "heading": "How it works",
@@ -626,7 +626,7 @@
       "id": "ansible-lesson-24",
       "topic": "ansible",
       "title": "Blocks and rescue",
-      "summary": "Handle qualifying task failures with recovery steps.",
+      "summary": "What is a rescue block useful for? Handle qualifying task failures with recovery steps.",
       "sections": [
         {
           "heading": "How it works",
@@ -653,7 +653,7 @@
       "id": "ansible-lesson-25",
       "topic": "ansible",
       "title": "Async tasks",
-      "summary": "Long-running tasks without holding a normal synchronous wait.",
+      "summary": "What can async execution support? Long-running tasks without holding a normal synchronous wait.",
       "sections": [
         {
           "heading": "How it works",
@@ -680,7 +680,7 @@
       "id": "ansible-lesson-26",
       "topic": "ansible",
       "title": "Tags",
-      "summary": "Required prerequisite tasks may be skipped.",
+      "summary": "What is a risk of selective tag execution? Required prerequisite tasks may be skipped.",
       "sections": [
         {
           "heading": "How it works",
@@ -707,7 +707,7 @@
       "id": "ansible-lesson-27",
       "topic": "ansible",
       "title": "Dynamic inventory",
-      "summary": "Discover hosts from an external authoritative source.",
+      "summary": "Why use dynamic inventory? Discover hosts from an external authoritative source.",
       "sections": [
         {
           "heading": "How it works",
@@ -734,7 +734,7 @@
       "id": "ansible-lesson-28",
       "topic": "ansible",
       "title": "Concurrency",
-      "summary": "Overload of targets controllers or shared dependencies.",
+      "summary": "What can excessive forks cause? Overload of targets controllers or shared dependencies.",
       "sections": [
         {
           "heading": "How it works",
@@ -761,7 +761,7 @@
       "id": "ansible-lesson-29",
       "topic": "ansible",
       "title": "Secret logging",
-      "summary": "Sensitive task data from normal Ansible output.",
+      "summary": "What does no_log help protect? Sensitive task data from normal Ansible output.",
       "sections": [
         {
           "heading": "How it works",
@@ -788,7 +788,7 @@
       "id": "ansible-lesson-30",
       "topic": "ansible",
       "title": "Automation validation",
-      "summary": "Representative execution and checks of the resulting system behavior.",
+      "summary": "What should follow successful syntax validation? Representative execution and checks of the resulting system behavior.",
       "sections": [
         {
           "heading": "How it works",

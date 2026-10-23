@@ -5,7 +5,7 @@
       "id": "linux-lesson-01",
       "topic": "linux",
       "title": "File permissions",
-      "summary": "The group can read but not write the file.",
+      "summary": "What does mode 640 grant to the owning group? The group can read but not write the file.",
       "sections": [
         {
           "heading": "How it works",
@@ -32,7 +32,7 @@
       "id": "linux-lesson-02",
       "topic": "linux",
       "title": "Ownership",
-      "summary": "It changes the owning user or group.",
+      "summary": "What does chown change on a Linux file? It changes the owning user or group.",
       "sections": [
         {
           "heading": "How it works",
@@ -59,7 +59,7 @@
       "id": "linux-lesson-03",
       "topic": "linux",
       "title": "Symbolic links",
-      "summary": "It stores a path to another filesystem object.",
+      "summary": "Which statement describes a symbolic link? It stores a path to another filesystem object.",
       "sections": [
         {
           "heading": "How it works",
@@ -86,7 +86,7 @@
       "id": "linux-lesson-04",
       "topic": "linux",
       "title": "Hard links",
-      "summary": "Both directory entries reference the same inode.",
+      "summary": "What is shared by two hard links to a regular file? Both directory entries reference the same inode.",
       "sections": [
         {
           "heading": "How it works",
@@ -113,7 +113,7 @@
       "id": "linux-lesson-05",
       "topic": "linux",
       "title": "Pipelines",
-      "summary": "The first command's standard output to the next command's standard input.",
+      "summary": "What does a standard shell pipe connect? The first command's standard output to the next command's standard input.",
       "sections": [
         {
           "heading": "How it works",
@@ -140,7 +140,7 @@
       "id": "linux-lesson-06",
       "topic": "linux",
       "title": "Quoting",
-      "summary": "Quoting prevents word splitting and pathname expansion on that value.",
+      "summary": "Why quote a shell expansion such as \"$file\"? Quoting prevents word splitting and pathname expansion on that value.",
       "sections": [
         {
           "heading": "How it works",
@@ -167,7 +167,7 @@
       "id": "linux-lesson-07",
       "topic": "linux",
       "title": "Processes",
-      "summary": "A currently running process within a PID namespace.",
+      "summary": "What does a process ID identify? A currently running process within a PID namespace.",
       "sections": [
         {
           "heading": "How it works",
@@ -194,7 +194,7 @@
       "id": "linux-lesson-08",
       "topic": "linux",
       "title": "Signals",
-      "summary": "SIGTERM asks a process to terminate and may be handled.",
+      "summary": "Which signal normally requests graceful termination? SIGTERM asks a process to terminate and may be handled.",
       "sections": [
         {
           "heading": "How it works",
@@ -221,7 +221,7 @@
       "id": "linux-lesson-09",
       "topic": "linux",
       "title": "Disk blocks",
-      "summary": "Space allocation for mounted filesystems.",
+      "summary": "What does df primarily report? Space allocation for mounted filesystems.",
       "sections": [
         {
           "heading": "How it works",
@@ -248,7 +248,7 @@
       "id": "linux-lesson-10",
       "topic": "linux",
       "title": "Inodes",
-      "summary": "Creation of new filesystem objects.",
+      "summary": "What can inode exhaustion prevent even when free blocks remain? Creation of new filesystem objects.",
       "sections": [
         {
           "heading": "How it works",
@@ -275,7 +275,7 @@
       "id": "linux-lesson-11",
       "topic": "linux",
       "title": "Open file limits",
-      "summary": "The number of file descriptors a process can hold open.",
+      "summary": "What does a per-process file descriptor limit constrain? The number of file descriptors a process can hold open.",
       "sections": [
         {
           "heading": "How it works",
@@ -302,7 +302,7 @@
       "id": "linux-lesson-12",
       "topic": "linux",
       "title": "Load average",
-      "summary": "Tasks in uninterruptible sleep can contribute.",
+      "summary": "What can contribute to Linux load average besides runnable tasks? Tasks in uninterruptible sleep can contribute.",
       "sections": [
         {
           "heading": "How it works",
@@ -329,7 +329,7 @@
       "id": "linux-lesson-13",
       "topic": "linux",
       "title": "Memory cache",
-      "summary": "Unused RAM is often used for reclaimable filesystem cache.",
+      "summary": "Why can Linux show little completely free memory on a healthy host? Unused RAM is often used for reclaimable filesystem cache.",
       "sections": [
         {
           "heading": "How it works",
@@ -356,7 +356,7 @@
       "id": "linux-lesson-14",
       "topic": "linux",
       "title": "OOM evidence",
-      "summary": "Kernel logs and the relevant cgroup memory events.",
+      "summary": "What is a useful source of evidence after a suspected Linux OOM kill? Kernel logs and the relevant cgroup memory events.",
       "sections": [
         {
           "heading": "How it works",
@@ -383,7 +383,7 @@
       "id": "linux-lesson-15",
       "topic": "linux",
       "title": "Socket inspection",
-      "summary": "Listening TCP sockets using numeric addresses.",
+      "summary": "What does ss -lnt help inspect? Listening TCP sockets using numeric addresses.",
       "sections": [
         {
           "heading": "How it works",
@@ -410,7 +410,7 @@
       "id": "linux-lesson-16",
       "topic": "linux",
       "title": "Name resolution",
-      "summary": "getent follows the configured name service lookup path.",
+      "summary": "Why can getent hosts differ from a direct DNS query? getent follows the configured name service lookup path.",
       "sections": [
         {
           "heading": "How it works",
@@ -437,7 +437,7 @@
       "id": "linux-lesson-17",
       "topic": "linux",
       "title": "Mount options",
-      "summary": "Writes through that mounted filesystem view.",
+      "summary": "What does a read-only mount prevent? Writes through that mounted filesystem view.",
       "sections": [
         {
           "heading": "How it works",
@@ -464,7 +464,7 @@
       "id": "linux-lesson-18",
       "topic": "linux",
       "title": "Deleted executables",
-      "summary": "The process retains references to the mapped executable data.",
+      "summary": "Why can a running process continue after its executable pathname is removed? The process retains references to the mapped executable data.",
       "sections": [
         {
           "heading": "How it works",
@@ -491,7 +491,7 @@
       "id": "linux-lesson-19",
       "topic": "linux",
       "title": "Zombies",
-      "summary": "An exited child whose termination status has not been reaped.",
+      "summary": "What is a zombie process? An exited child whose termination status has not been reaped.",
       "sections": [
         {
           "heading": "How it works",
@@ -518,7 +518,7 @@
       "id": "linux-lesson-20",
       "topic": "linux",
       "title": "System calls",
-      "summary": "System calls and signals observed for a traced process.",
+      "summary": "What can strace reveal during troubleshooting? System calls and signals observed for a traced process.",
       "sections": [
         {
           "heading": "How it works",
@@ -545,7 +545,7 @@
       "id": "linux-lesson-21",
       "topic": "linux",
       "title": "Scheduling priority",
-      "summary": "Lower scheduling priority relative to competing normal tasks.",
+      "summary": "What does a higher nice value generally mean under normal scheduling? Lower scheduling priority relative to competing normal tasks.",
       "sections": [
         {
           "heading": "How it works",
@@ -572,7 +572,7 @@
       "id": "linux-lesson-22",
       "topic": "linux",
       "title": "Swap pressure",
-      "summary": "Memory pressure requiring closer investigation.",
+      "summary": "What does sustained swapping often indicate during a slowdown? Memory pressure requiring closer investigation.",
       "sections": [
         {
           "heading": "How it works",
@@ -599,7 +599,7 @@
       "id": "linux-lesson-23",
       "topic": "linux",
       "title": "Capabilities",
-      "summary": "A way to split traditionally root-associated privileges.",
+      "summary": "What do Linux capabilities provide? A way to split traditionally root-associated privileges.",
       "sections": [
         {
           "heading": "How it works",
@@ -626,7 +626,7 @@
       "id": "linux-lesson-24",
       "topic": "linux",
       "title": "ACL masks",
-      "summary": "It limits effective permissions for named users and the group class.",
+      "summary": "How can a POSIX ACL mask affect a named user's access? It limits effective permissions for named users and the group class.",
       "sections": [
         {
           "heading": "How it works",
@@ -653,7 +653,7 @@
       "id": "linux-lesson-25",
       "topic": "linux",
       "title": "Atomic replacement",
-      "summary": "Rename can atomically replace the directory entry.",
+      "summary": "Why write a new file and rename it over a configuration on the same filesystem? Rename can atomically replace the directory entry.",
       "sections": [
         {
           "heading": "How it works",
@@ -680,7 +680,7 @@
       "id": "linux-lesson-26",
       "topic": "linux",
       "title": "Namespaces",
-      "summary": "Views of resources such as processes mounts and network stacks.",
+      "summary": "What do Linux namespaces isolate? Views of resources such as processes mounts and network stacks.",
       "sections": [
         {
           "heading": "How it works",
@@ -707,7 +707,7 @@
       "id": "linux-lesson-27",
       "topic": "linux",
       "title": "Cgroup throttling",
-      "summary": "Runnable tasks can be throttled until budget becomes available.",
+      "summary": "What can happen when a cgroup exhausts its CPU quota? Runnable tasks can be throttled until budget becomes available.",
       "sections": [
         {
           "heading": "How it works",
@@ -734,7 +734,7 @@
       "id": "linux-lesson-28",
       "topic": "linux",
       "title": "Filesystem recovery",
-      "summary": "Concurrent writes can undermine repair assumptions and risk corruption.",
+      "summary": "Why avoid running a repair tool against an actively mounted writable filesystem? Concurrent writes can undermine repair assumptions and risk corruption.",
       "sections": [
         {
           "heading": "How it works",
@@ -761,7 +761,7 @@
       "id": "linux-lesson-29",
       "topic": "linux",
       "title": "Clock selection",
-      "summary": "It is not subject to wall-clock time adjustments in the same way.",
+      "summary": "Why use a monotonic clock for elapsed-time measurement? It is not subject to wall-clock time adjustments in the same way.",
       "sections": [
         {
           "heading": "How it works",
@@ -788,7 +788,7 @@
       "id": "linux-lesson-30",
       "topic": "linux",
       "title": "Kernel versus user space",
-      "summary": "A controlled transition from user space into kernel services.",
+      "summary": "What is the boundary crossed by a system call? A controlled transition from user space into kernel services.",
       "sections": [
         {
           "heading": "How it works",

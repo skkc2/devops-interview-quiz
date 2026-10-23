@@ -88,7 +88,7 @@
       "id": "observability-01-principles",
       "title": "Metrics \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing metrics, which TWO statements are sound operational principles?",
+      "question": "What are metrics best suited to represent? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "Every metric is a complete individual request record",
         "Metrics automatically explain every root cause",
@@ -122,7 +122,7 @@
       "question": "Explain a metric design for service request health.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Aggregated measurements of system behavior over time. Metric dimensions affect both usefulness and storage cost. A practical response is: Instrument suitable counters and derive rates with clear dimensions. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that every metric is a complete individual request record.",
+      "sampleAnswer": "Metric dimensions affect both usefulness and storage cost. Consider this situation: A team needs to track request rate and error ratio over time. A practical response is: Instrument suitable counters and derive rates with clear dimensions. The relevant concept is: What are metrics best suited to represent? Aggregated measurements of system behavior over time. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that every metric is a complete individual request record.",
       "answerChecklist": [
         "Aggregated measurements of system behavior over time",
         "Metric dimensions affect both usefulness and storage cost",
@@ -212,7 +212,7 @@
       "id": "observability-02-principles",
       "title": "Logs \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing logs, which TWO statements are sound operational principles?",
+      "question": "What do logs commonly provide? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "Every log line automatically has a valid trace identifier",
         "Discrete event records with contextual detail",
@@ -246,7 +246,7 @@
       "question": "Explain useful structured logging for operational diagnosis.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Discrete event records with contextual detail. Structured fields make filtering and correlation more reliable. A practical response is: Use structured operation identifiers and relevant error fields. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that logs always provide an unbiased statistical sample.",
+      "sampleAnswer": "Structured fields make filtering and correlation more reliable. Consider this situation: Incident diagnosis requires finding failures for one operation. A practical response is: Use structured operation identifiers and relevant error fields. The relevant concept is: What do logs commonly provide? Discrete event records with contextual detail. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that logs always provide an unbiased statistical sample.",
       "answerChecklist": [
         "Discrete event records with contextual detail",
         "Structured fields make filtering and correlation more reliable",
@@ -336,7 +336,7 @@
       "id": "observability-03-principles",
       "title": "Traces \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing traces, which TWO statements are sound operational principles?",
+      "question": "What does a distributed trace describe? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "Related spans representing work across a request path",
         "Trace propagation is needed to connect work across boundaries",
@@ -370,7 +370,7 @@
       "question": "Explain distributed trace context propagation.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Related spans representing work across a request path. Trace propagation is needed to connect work across boundaries. A practical response is: Verify context propagation across the relevant boundaries. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that every trace contains all requests ever processed.",
+      "sampleAnswer": "Trace propagation is needed to connect work across boundaries. Consider this situation: A request crosses services but appears as disconnected traces. A practical response is: Verify context propagation across the relevant boundaries. The relevant concept is: What does a distributed trace describe? Related spans representing work across a request path. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that every trace contains all requests ever processed.",
       "answerChecklist": [
         "Related spans representing work across a request path",
         "Trace propagation is needed to connect work across boundaries",
@@ -460,7 +460,7 @@
       "id": "observability-04-principles",
       "title": "Counters \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing counters, which TWO statements are sound operational principles?",
+      "question": "What is a typical property of a counter? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "Rate calculations must account for resets",
         "A counter is intended to fluctuate freely with current temperature",
@@ -494,7 +494,7 @@
       "question": "Explain counters and reset-aware rate calculations.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "It accumulates events and may reset when its producer restarts. Rate calculations must account for resets. A practical response is: Use an appropriate reset-aware rate calculation. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that a counter is intended to fluctuate freely with current temperature.",
+      "sampleAnswer": "Rate calculations must account for resets. Consider this situation: A service restart makes the raw request counter fall. A practical response is: Use an appropriate reset-aware rate calculation. The relevant concept is: What is a typical property of a counter? It accumulates events and may reset when its producer restarts. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that a counter is intended to fluctuate freely with current temperature.",
       "answerChecklist": [
         "It accumulates events and may reset when its producer restarts",
         "Rate calculations must account for resets",
@@ -584,7 +584,7 @@
       "id": "observability-05-principles",
       "title": "Gauges \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing gauges, which TWO statements are sound operational principles?",
+      "question": "What does a gauge commonly represent? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "Gauges must only increase forever",
         "A gauge always counts total requests since process start",
@@ -618,7 +618,7 @@
       "question": "Explain gauge limitations and useful complementary metrics.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "A value that can rise or fall such as queue depth. A gauge snapshot does not automatically describe all events between samples. A practical response is: Review sampling and complementary event or age measurements. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that gauges must only increase forever.",
+      "sampleAnswer": "A gauge snapshot does not automatically describe all events between samples. Consider this situation: A queue briefly spikes between scrape intervals. A practical response is: Review sampling and complementary event or age measurements. The relevant concept is: What does a gauge commonly represent? A value that can rise or fall such as queue depth. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that gauges must only increase forever.",
       "answerChecklist": [
         "A value that can rise or fall such as queue depth",
         "A gauge snapshot does not automatically describe all events between samples",
@@ -708,7 +708,7 @@
       "id": "observability-06-principles",
       "title": "Histograms \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing histograms, which TWO statements are sound operational principles?",
+      "question": "What does a histogram capture? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "Any histogram gives exact arbitrary percentiles without approximation",
         "A distribution of observations using buckets or supported histogram structures",
@@ -742,7 +742,7 @@
       "question": "Explain histogram design for latency SLOs.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "A distribution of observations using buckets or supported histogram structures. Bucket design affects useful resolution around important thresholds. A practical response is: Choose resolution around the operational threshold. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that a histogram is only a single average.",
+      "sampleAnswer": "Bucket design affects useful resolution around important thresholds. Consider this situation: A latency SLO threshold lies inside a very wide bucket. A practical response is: Choose resolution around the operational threshold. The relevant concept is: What does a histogram capture? A distribution of observations using buckets or supported histogram structures. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that a histogram is only a single average.",
       "answerChecklist": [
         "A distribution of observations using buckets or supported histogram structures",
         "Bucket design affects useful resolution around important thresholds",
@@ -832,7 +832,7 @@
       "id": "observability-07-principles",
       "title": "Labels \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing labels, which TWO statements are sound operational principles?",
+      "question": "Why limit metric label cardinality? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "Each unique label combination can create another time series",
         "Unbounded identifiers can create major cost and reliability problems",
@@ -866,7 +866,7 @@
       "question": "Explain where high-cardinality request context belongs.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Each unique label combination can create another time series. Unbounded identifiers can create major cost and reliability problems. A practical response is: Remove unbounded labels and use logs or traces for per-request identity. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that user IDs are always safe low-cardinality metric labels.",
+      "sampleAnswer": "Unbounded identifiers can create major cost and reliability problems. Consider this situation: A metric adds a request ID label and series count explodes. A practical response is: Remove unbounded labels and use logs or traces for per-request identity. The relevant concept is: Why limit metric label cardinality? Each unique label combination can create another time series. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that user IDs are always safe low-cardinality metric labels.",
       "answerChecklist": [
         "Each unique label combination can create another time series",
         "Unbounded identifiers can create major cost and reliability problems",
@@ -956,7 +956,7 @@
       "id": "observability-08-principles",
       "title": "Dashboards \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing dashboards, which TWO statements are sound operational principles?",
+      "question": "What makes a dashboard operationally useful? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "Clear units windows and aggregation prevent misinterpretation",
         "More panels always mean better incident response",
@@ -990,7 +990,7 @@
       "question": "Explain how you design an incident-focused dashboard.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "It supports specific questions about service behavior and impact. Clear units windows and aggregation prevent misinterpretation. A practical response is: Label units and queries and organize around operational questions. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that more panels always mean better incident response.",
+      "sampleAnswer": "Clear units windows and aggregation prevent misinterpretation. Consider this situation: Responders cannot tell whether a graph shows totals or rates. A practical response is: Label units and queries and organize around operational questions. The relevant concept is: What makes a dashboard operationally useful? It supports specific questions about service behavior and impact. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that more panels always mean better incident response.",
       "answerChecklist": [
         "It supports specific questions about service behavior and impact",
         "Clear units windows and aggregation prevent misinterpretation",
@@ -1080,7 +1080,7 @@
       "id": "observability-09-principles",
       "title": "Rate before aggregation \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing rate before aggregation, which TWO statements are sound operational principles?",
+      "question": "Why often calculate counter rates before summing series? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "Summing raw counters always preserves every reset correctly",
         "Rate calculations are only valid for gauges",
@@ -1114,7 +1114,7 @@
       "question": "Explain counter reset handling across multiple instances.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Per-series reset detection can be lost after combining counters. Counter identity matters when instances restart independently. A practical response is: Compute reset-aware rates per counter series before aggregation. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that summing raw counters always preserves every reset correctly.",
+      "sampleAnswer": "Counter identity matters when instances restart independently. Consider this situation: One instance restarts and an aggregate traffic graph spikes incorrectly. A practical response is: Compute reset-aware rates per counter series before aggregation. The relevant concept is: Why often calculate counter rates before summing series? Per-series reset detection can be lost after combining counters. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that summing raw counters always preserves every reset correctly.",
       "answerChecklist": [
         "Per-series reset detection can be lost after combining counters",
         "Counter identity matters when instances restart independently",
@@ -1204,7 +1204,7 @@
       "id": "observability-10-principles",
       "title": "Percentiles \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing percentiles, which TWO statements are sound operational principles?",
+      "question": "Why should you avoid averaging instance p99 values? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "Every instance contributes identical traffic volume",
         "An average of quantiles is not the quantile of the combined distribution",
@@ -1238,7 +1238,7 @@
       "question": "Explain fleet-level latency percentiles.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "An average of quantiles is not the quantile of the combined distribution. Aggregate compatible distributions before estimating fleet quantiles. A practical response is: Aggregate suitable histogram data for the desired population. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that the average of p99 values is always the fleet p99.",
+      "sampleAnswer": "Aggregate compatible distributions before estimating fleet quantiles. Consider this situation: Two instances have very different traffic and latency distributions. A practical response is: Aggregate suitable histogram data for the desired population. The relevant concept is: Why should you avoid averaging instance p99 values? An average of quantiles is not the quantile of the combined distribution. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that the average of p99 values is always the fleet p99.",
       "answerChecklist": [
         "An average of quantiles is not the quantile of the combined distribution",
         "Aggregate compatible distributions before estimating fleet quantiles",
@@ -1328,7 +1328,7 @@
       "id": "observability-11-principles",
       "title": "Missing data \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing missing data, which TWO statements are sound operational principles?",
+      "question": "Why distinguish missing samples from zero values? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "Absence can mean collection or service failure rather than zero activity",
         "Missing-data policy should match the alert's intended meaning",
@@ -1362,7 +1362,7 @@
       "question": "Explain how monitoring should handle missing telemetry.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Absence can mean collection or service failure rather than zero activity. Missing-data policy should match the alert's intended meaning. A practical response is: Monitor collection health and define explicit missing-data behavior. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that no samples always prove no errors occurred.",
+      "sampleAnswer": "Missing-data policy should match the alert's intended meaning. Consider this situation: An error-rate alert goes quiet when scraping stops. A practical response is: Monitor collection health and define explicit missing-data behavior. The relevant concept is: Why distinguish missing samples from zero values? Absence can mean collection or service failure rather than zero activity. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that no samples always prove no errors occurred.",
       "answerChecklist": [
         "Absence can mean collection or service failure rather than zero activity",
         "Missing-data policy should match the alert's intended meaning",
@@ -1452,7 +1452,7 @@
       "id": "observability-12-principles",
       "title": "Scrape health \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing scrape health, which TWO statements are sound operational principles?",
+      "question": "What does a failed metrics scrape indicate? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "The cause may be target failure or a collection-path problem",
         "It always proves all user requests failed",
@@ -1486,7 +1486,7 @@
       "question": "Explain target monitoring versus user-visible availability.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "The collector could not obtain the expected metrics response. The cause may be target failure or a collection-path problem. A practical response is: Inspect scrape errors and distinguish telemetry reachability from service behavior. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that it always proves all user requests failed.",
+      "sampleAnswer": "The cause may be target failure or a collection-path problem. Consider this situation: A target scrape fails while user traffic still succeeds. A practical response is: Inspect scrape errors and distinguish telemetry reachability from service behavior. The relevant concept is: What does a failed metrics scrape indicate? The collector could not obtain the expected metrics response. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that it always proves all user requests failed.",
       "answerChecklist": [
         "The collector could not obtain the expected metrics response",
         "The cause may be target failure or a collection-path problem",
@@ -1576,7 +1576,7 @@
       "id": "observability-13-principles",
       "title": "Recording rules \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing recording rules, which TWO statements are sound operational principles?",
+      "question": "What is a common use of recording rules? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "Recording rules automatically make incorrect queries correct",
         "They preserve every raw event forever",
@@ -1610,7 +1610,7 @@
       "question": "Explain when precomputation helps observability queries.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Precompute useful derived time series for repeated queries. Rule correctness and evaluation cost still need review. A practical response is: Evaluate a suitable precomputed rule and validate its semantics. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that recording rules automatically make incorrect queries correct.",
+      "sampleAnswer": "Rule correctness and evaluation cost still need review. Consider this situation: A frequently used expensive dashboard query overloads the backend. A practical response is: Evaluate a suitable precomputed rule and validate its semantics. The relevant concept is: What is a common use of recording rules? Precompute useful derived time series for repeated queries. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that recording rules automatically make incorrect queries correct.",
       "answerChecklist": [
         "Precompute useful derived time series for repeated queries",
         "Rule correctness and evaluation cost still need review",
@@ -1700,7 +1700,7 @@
       "id": "observability-14-principles",
       "title": "Alert duration \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing alert duration, which TWO statements are sound operational principles?",
+      "question": "What does a sustained-condition alert delay help reduce? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "A delay changes the underlying metric value",
         "Pages caused by brief threshold crossings",
@@ -1734,7 +1734,7 @@
       "question": "Explain alert persistence windows and detection trade-offs.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Pages caused by brief threshold crossings. Long delays can also postpone detection of genuine incidents. A practical response is: Tune duration with impact and detection-time requirements. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that any delay always improves every alert.",
+      "sampleAnswer": "Long delays can also postpone detection of genuine incidents. Consider this situation: An alert pages repeatedly on harmless short spikes. A practical response is: Tune duration with impact and detection-time requirements. The relevant concept is: What does a sustained-condition alert delay help reduce? Pages caused by brief threshold crossings. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that any delay always improves every alert.",
       "answerChecklist": [
         "Pages caused by brief threshold crossings",
         "Long delays can also postpone detection of genuine incidents",
@@ -1824,7 +1824,7 @@
       "id": "observability-15-principles",
       "title": "Alert grouping \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing alert grouping, which TWO statements are sound operational principles?",
+      "question": "Why group related alerts? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "Reduce duplicated notifications about the same operational event",
         "Grouping must preserve enough context to identify affected services",
@@ -1858,7 +1858,7 @@
       "question": "Explain useful alert grouping without losing scope.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Reduce duplicated notifications about the same operational event. Grouping must preserve enough context to identify affected services. A practical response is: Group correlated notifications and identify the likely shared incident. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that grouping means discarding all but one underlying signal forever.",
+      "sampleAnswer": "Grouping must preserve enough context to identify affected services. Consider this situation: One dependency outage causes dozens of similar pages. A practical response is: Group correlated notifications and identify the likely shared incident. The relevant concept is: Why group related alerts? Reduce duplicated notifications about the same operational event. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that grouping means discarding all but one underlying signal forever.",
       "answerChecklist": [
         "Reduce duplicated notifications about the same operational event",
         "Grouping must preserve enough context to identify affected services",
@@ -1948,7 +1948,7 @@
       "id": "observability-16-principles",
       "title": "Alert inhibition \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing alert inhibition, which TWO statements are sound operational principles?",
+      "question": "What is alert inhibition used for? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "Rules must avoid hiding unrelated genuine incidents",
         "Inhibition deletes the underlying metric data",
@@ -1982,7 +1982,7 @@
       "question": "Explain scoped alert inhibition and its risks.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Suppress lower-level notifications when a related higher-level condition applies. Rules must avoid hiding unrelated genuine incidents. A practical response is: Use carefully scoped inhibition while retaining evidence. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that inhibition deletes the underlying metric data.",
+      "sampleAnswer": "Rules must avoid hiding unrelated genuine incidents. Consider this situation: A host-down event triggers many derivative service alerts. A practical response is: Use carefully scoped inhibition while retaining evidence. The relevant concept is: What is alert inhibition used for? Suppress lower-level notifications when a related higher-level condition applies. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that inhibition deletes the underlying metric data.",
       "answerChecklist": [
         "Suppress lower-level notifications when a related higher-level condition applies",
         "Rules must avoid hiding unrelated genuine incidents",
@@ -2072,7 +2072,7 @@
       "id": "observability-17-principles",
       "title": "Sampling \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing sampling, which TWO statements are sound operational principles?",
+      "question": "What is a trade-off of trace sampling? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "Sampled traces are automatically a complete record of every error",
         "Sampling removes all instrumentation overhead",
@@ -2106,7 +2106,7 @@
       "question": "Explain trace sampling bias and operational goals.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Reduce volume at the cost of retaining only part of traffic. Sampling policy affects which questions retained traces can answer. A practical response is: Review sampling policy and error-retention requirements. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that sampled traces are automatically a complete record of every error.",
+      "sampleAnswer": "Sampling policy affects which questions retained traces can answer. Consider this situation: Rare failures are absent from a low-rate head-sampled dataset. A practical response is: Review sampling policy and error-retention requirements. The relevant concept is: What is a trade-off of trace sampling? Reduce volume at the cost of retaining only part of traffic. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that sampled traces are automatically a complete record of every error.",
       "answerChecklist": [
         "Reduce volume at the cost of retaining only part of traffic",
         "Sampling policy affects which questions retained traces can answer",
@@ -2196,7 +2196,7 @@
       "id": "observability-18-principles",
       "title": "Tail sampling \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing tail sampling, which TWO statements are sound operational principles?",
+      "question": "What distinguishes tail-based trace sampling? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "It guarantees every span arrives before the decision",
         "Decisions can use information collected about a trace after processing",
@@ -2230,7 +2230,7 @@
       "question": "Explain head versus tail sampling trade-offs.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Decisions can use information collected about a trace after processing. Buffering completeness and decision latency introduce operational costs. A practical response is: Evaluate tail sampling with capacity and completeness constraints. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that tail sampling requires no memory or coordination.",
+      "sampleAnswer": "Buffering completeness and decision latency introduce operational costs. Consider this situation: A team wants to retain slow and failed traces preferentially. A practical response is: Evaluate tail sampling with capacity and completeness constraints. The relevant concept is: What distinguishes tail-based trace sampling? Decisions can use information collected about a trace after processing. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that tail sampling requires no memory or coordination.",
       "answerChecklist": [
         "Decisions can use information collected about a trace after processing",
         "Buffering completeness and decision latency introduce operational costs",
@@ -2320,7 +2320,7 @@
       "id": "observability-19-principles",
       "title": "Context propagation \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing context propagation, which TWO statements are sound operational principles?",
+      "question": "Why can asynchronous work break trace continuity? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "Context may not be carried through queues or task boundaries automatically",
         "Message metadata and instrumentation need deliberate propagation",
@@ -2354,7 +2354,7 @@
       "question": "Explain tracing asynchronous workflows.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Context may not be carried through queues or task boundaries automatically. Message metadata and instrumentation need deliberate propagation. A practical response is: Propagate the appropriate trace context through supported message metadata. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that thread-local context automatically crosses every process and queue.",
+      "sampleAnswer": "Message metadata and instrumentation need deliberate propagation. Consider this situation: A queued worker starts unrelated traces for each job. A practical response is: Propagate the appropriate trace context through supported message metadata. The relevant concept is: Why can asynchronous work break trace continuity? Context may not be carried through queues or task boundaries automatically. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that thread-local context automatically crosses every process and queue.",
       "answerChecklist": [
         "Context may not be carried through queues or task boundaries automatically",
         "Message metadata and instrumentation need deliberate propagation",
@@ -2444,7 +2444,7 @@
       "id": "observability-20-principles",
       "title": "Correlation \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing correlation, which TWO statements are sound operational principles?",
+      "question": "How can logs and traces complement each other? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "Correlation requires consistent identifiers and suitable access controls",
         "A timestamp alone always uniquely identifies a distributed request",
@@ -2478,7 +2478,7 @@
       "question": "Explain useful safe correlation across telemetry signals.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Shared identifiers connect detailed events to request paths. Correlation requires consistent identifiers and suitable access controls. A practical response is: Include relevant trace or operation identifiers in structured logs. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that a timestamp alone always uniquely identifies a distributed request.",
+      "sampleAnswer": "Correlation requires consistent identifiers and suitable access controls. Consider this situation: An error log is difficult to connect to a slow request. A practical response is: Include relevant trace or operation identifiers in structured logs. The relevant concept is: How can logs and traces complement each other? Shared identifiers connect detailed events to request paths. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that a timestamp alone always uniquely identifies a distributed request.",
       "answerChecklist": [
         "Shared identifiers connect detailed events to request paths",
         "Correlation requires consistent identifiers and suitable access controls",
@@ -2568,7 +2568,7 @@
       "id": "observability-21-principles",
       "title": "Sensitive telemetry \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing sensitive telemetry, which TWO statements are sound operational principles?",
+      "question": "Why minimize sensitive data in telemetry? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "Observability data is automatically exempt from privacy requirements",
         "Masking a dashboard removes secrets from stored raw data",
@@ -2602,7 +2602,7 @@
       "question": "Explain protecting sensitive data in instrumentation.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Logs traces and labels can become secondary stores of private data. Collection controls retention and access policy all matter. A practical response is: Stop or redact collection and address existing exposure. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that observability data is automatically exempt from privacy requirements.",
+      "sampleAnswer": "Collection controls retention and access policy all matter. Consider this situation: Request headers containing credentials are exported in traces. A practical response is: Stop or redact collection and address existing exposure. The relevant concept is: Why minimize sensitive data in telemetry? Logs traces and labels can become secondary stores of private data. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that observability data is automatically exempt from privacy requirements.",
       "answerChecklist": [
         "Logs traces and labels can become secondary stores of private data",
         "Collection controls retention and access policy all matter",
@@ -2692,7 +2692,7 @@
       "id": "observability-22-principles",
       "title": "Retention \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing retention, which TWO statements are sound operational principles?",
+      "question": "How should telemetry retention be chosen? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "Short retention always improves every investigation",
         "Balance operational investigation requirements cost and data sensitivity",
@@ -2726,7 +2726,7 @@
       "question": "Explain a practical telemetry retention policy.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Balance operational investigation requirements cost and data sensitivity. Different signal types may justify different retention periods. A practical response is: Review investigation windows and set deliberate tiered retention. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that all telemetry should be kept forever regardless of sensitivity.",
+      "sampleAnswer": "Different signal types may justify different retention periods. Consider this situation: Incident analysis needs data already removed by an overly short policy. A practical response is: Review investigation windows and set deliberate tiered retention. The relevant concept is: How should telemetry retention be chosen? Balance operational investigation requirements cost and data sensitivity. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that all telemetry should be kept forever regardless of sensitivity.",
       "answerChecklist": [
         "Balance operational investigation requirements cost and data sensitivity",
         "Different signal types may justify different retention periods",
@@ -2816,7 +2816,7 @@
       "id": "observability-23-principles",
       "title": "Telemetry pipelines \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing telemetry pipelines, which TWO statements are sound operational principles?",
+      "question": "What can collector backpressure affect? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "Delivery delay or loss when telemetry production exceeds processing capacity",
         "Buffers retries and drop behavior need explicit monitoring",
@@ -2850,7 +2850,7 @@
       "question": "Explain observing the observability pipeline itself.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Delivery delay or loss when telemetry production exceeds processing capacity. Buffers retries and drop behavior need explicit monitoring. A practical response is: Inspect collector queues drops and downstream capacity. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that collectors have infinite buffering by default.",
+      "sampleAnswer": "Buffers retries and drop behavior need explicit monitoring. Consider this situation: Telemetry disappears during peak load while applications still run. A practical response is: Inspect collector queues drops and downstream capacity. The relevant concept is: What can collector backpressure affect? Delivery delay or loss when telemetry production exceeds processing capacity. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that collectors have infinite buffering by default.",
       "answerChecklist": [
         "Delivery delay or loss when telemetry production exceeds processing capacity",
         "Buffers retries and drop behavior need explicit monitoring",
@@ -2940,7 +2940,7 @@
       "id": "observability-24-principles",
       "title": "Resource identity \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing resource identity, which TWO statements are sound operational principles?",
+      "question": "Why use consistent resource attributes? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "Inconsistent identity makes cross-signal queries unreliable",
         "Every exporter automatically knows the correct deployment environment",
@@ -2974,7 +2974,7 @@
       "question": "Explain resource identity conventions for observability.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Identify the service environment and instance producing telemetry. Inconsistent identity makes cross-signal queries unreliable. A practical response is: Standardize service and environment attributes. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that every exporter automatically knows the correct deployment environment.",
+      "sampleAnswer": "Inconsistent identity makes cross-signal queries unreliable. Consider this situation: Production and staging telemetry appear under indistinguishable identities. A practical response is: Standardize service and environment attributes. The relevant concept is: Why use consistent resource attributes? Identify the service environment and instance producing telemetry. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that every exporter automatically knows the correct deployment environment.",
       "answerChecklist": [
         "Identify the service environment and instance producing telemetry",
         "Inconsistent identity makes cross-signal queries unreliable",
@@ -3064,7 +3064,7 @@
       "id": "observability-25-principles",
       "title": "Clock skew \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing clock skew, which TWO statements are sound operational principles?",
+      "question": "How can clock skew affect distributed investigation? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "Wall timestamps always establish exact causal order",
         "Clock skew can never affect log correlation",
@@ -3098,7 +3098,7 @@
       "question": "Explain clock-related pitfalls in distributed traces and logs.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Timestamps across hosts may imply a misleading event order. Trace relationships and measured durations provide context beyond wall time. A practical response is: Inspect time synchronization and causal identifiers. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that wall timestamps always establish exact causal order.",
+      "sampleAnswer": "Trace relationships and measured durations provide context beyond wall time. Consider this situation: A downstream log appears earlier than the upstream request. A practical response is: Inspect time synchronization and causal identifiers. The relevant concept is: How can clock skew affect distributed investigation? Timestamps across hosts may imply a misleading event order. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that wall timestamps always establish exact causal order.",
       "answerChecklist": [
         "Timestamps across hosts may imply a misleading event order",
         "Trace relationships and measured durations provide context beyond wall time",
@@ -3188,7 +3188,7 @@
       "id": "observability-26-principles",
       "title": "RED signals \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing red signals, which TWO statements are sound operational principles?",
+      "question": "What does RED focus on for request-driven services? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "RED metrics automatically identify every root cause",
         "Rate errors and duration",
@@ -3222,7 +3222,7 @@
       "question": "Explain RED monitoring and its limits.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Rate errors and duration. Resource saturation signals can complement request-centric indicators. A practical response is: Measure traffic error behavior and latency with clear request definitions. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that rED means only disk capacity and host uptime.",
+      "sampleAnswer": "Resource saturation signals can complement request-centric indicators. Consider this situation: A service needs an initial user-impact dashboard. A practical response is: Measure traffic error behavior and latency with clear request definitions. The relevant concept is: What does RED focus on for request-driven services? Rate errors and duration. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that rED means only disk capacity and host uptime.",
       "answerChecklist": [
         "Rate errors and duration",
         "Resource saturation signals can complement request-centric indicators",
@@ -3312,7 +3312,7 @@
       "id": "observability-27-principles",
       "title": "USE signals \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing use signals, which TWO statements are sound operational principles?",
+      "question": "What does USE examine for resources? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "Utilization saturation and errors",
         "Resource analysis complements service-level symptoms",
@@ -3346,7 +3346,7 @@
       "question": "Explain the difference between utilization and saturation.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Utilization saturation and errors. Resource analysis complements service-level symptoms. A practical response is: Inspect saturation and errors as well as utilization. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that uSE is a substitute for every user-facing SLI.",
+      "sampleAnswer": "Resource analysis complements service-level symptoms. Consider this situation: A device shows moderate utilization but growing queues. A practical response is: Inspect saturation and errors as well as utilization. The relevant concept is: What does USE examine for resources? Utilization saturation and errors. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that uSE is a substitute for every user-facing SLI.",
       "answerChecklist": [
         "Utilization saturation and errors",
         "Resource analysis complements service-level symptoms",
@@ -3436,7 +3436,7 @@
       "id": "observability-28-principles",
       "title": "Synthetic checks \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing synthetic checks, which TWO statements are sound operational principles?",
+      "question": "What can synthetic monitoring provide? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "Synthetic coverage is limited to what the check actually exercises",
         "One successful synthetic proves every user path works",
@@ -3470,7 +3470,7 @@
       "question": "Explain useful synthetic coverage and its blind spots.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Active checks of selected user journeys or endpoints. Synthetic coverage is limited to what the check actually exercises. A practical response is: Add a representative checkout check with safe test data. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that one successful synthetic proves every user path works.",
+      "sampleAnswer": "Synthetic coverage is limited to what the check actually exercises. Consider this situation: A homepage check passes while checkout is broken. A practical response is: Add a representative checkout check with safe test data. The relevant concept is: What can synthetic monitoring provide? Active checks of selected user journeys or endpoints. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that one successful synthetic proves every user path works.",
       "answerChecklist": [
         "Active checks of selected user journeys or endpoints",
         "Synthetic coverage is limited to what the check actually exercises",
@@ -3560,7 +3560,7 @@
       "id": "observability-29-principles",
       "title": "Instrumentation cost \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing instrumentation cost, which TWO statements are sound operational principles?",
+      "question": "Why measure instrumentation overhead? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "Instrumentation has zero performance impact by definition",
         "More telemetry always improves reliability regardless of overhead",
@@ -3594,7 +3594,7 @@
       "question": "Explain observability value versus instrumentation cost.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Telemetry collection can consume CPU memory network and storage. Sampling batching and cardinality controls can reduce cost. A practical response is: Measure overhead and tune collection to preserve useful evidence. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that instrumentation has zero performance impact by definition.",
+      "sampleAnswer": "Sampling batching and cardinality controls can reduce cost. Consider this situation: Detailed tracing adds material latency under peak load. A practical response is: Measure overhead and tune collection to preserve useful evidence. The relevant concept is: Why measure instrumentation overhead? Telemetry collection can consume CPU memory network and storage. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that instrumentation has zero performance impact by definition.",
       "answerChecklist": [
         "Telemetry collection can consume CPU memory network and storage",
         "Sampling batching and cardinality controls can reduce cost",
@@ -3684,7 +3684,7 @@
       "id": "observability-30-principles",
       "title": "Evidence and causality \u00b7 principles",
       "type": "multi-select",
-      "question": "When reviewing evidence and causality, which TWO statements are sound operational principles?",
+      "question": "Why distinguish correlation from causation in dashboards? Considering this context and its operational implications, which TWO statements are accurate?",
       "options": [
         "A dashboard can replace all knowledge of system dependencies",
         "Simultaneous changes do not prove one caused the other",
@@ -3718,7 +3718,7 @@
       "question": "Explain how you move from correlated signals to a defensible diagnosis.",
       "options": [],
       "correct": [],
-      "sampleAnswer": "Simultaneous changes do not prove one caused the other. Hypotheses need supporting evidence and controlled verification where possible. A practical response is: Test a plausible causal hypothesis using traces changes and dependency evidence. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that two aligned graph spikes prove a causal relationship.",
+      "sampleAnswer": "Hypotheses need supporting evidence and controlled verification where possible. Consider this situation: Latency and CPU rise together after a release. A practical response is: Test a plausible causal hypothesis using traces changes and dependency evidence. The relevant concept is: Why distinguish correlation from causation in dashboards? Simultaneous changes do not prove one caused the other. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that two aligned graph spikes prove a causal relationship.",
       "answerChecklist": [
         "Simultaneous changes do not prove one caused the other",
         "Hypotheses need supporting evidence and controlled verification where possible",

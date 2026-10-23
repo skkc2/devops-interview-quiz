@@ -1,0 +1,71 @@
+{
+  "schemaVersion": 1,
+  "subjects": [
+    {
+      "id": "kubernetes",
+      "label": "Kubernetes",
+      "questions": "data/kubernetes.json",
+      "learning": "data/kubernetes-learning.json"
+    },
+    {
+      "id": "linux",
+      "label": "Linux",
+      "questions": "data/linux.json",
+      "learning": "data/linux-learning.json"
+    },
+    {
+      "id": "networking",
+      "label": "Networking",
+      "questions": "data/networking.json",
+      "learning": "data/networking-learning.json"
+    },
+    {
+      "id": "sre",
+      "label": "SRE & incident response",
+      "questions": "data/sre.json",
+      "learning": "data/sre-learning.json"
+    },
+    {
+      "id": "systems",
+      "label": "Systems administration",
+      "questions": "data/systems.json",
+      "learning": "data/systems-learning.json"
+    },
+    {
+      "id": "aws",
+      "label": "AWS",
+      "questions": "data/aws.json",
+      "learning": "data/aws-learning.json"
+    },
+    {
+      "id": "terraform",
+      "label": "Terraform",
+      "questions": "data/terraform.json",
+      "learning": "data/terraform-learning.json"
+    },
+    {
+      "id": "docker",
+      "label": "Docker",
+      "questions": "data/docker.json",
+      "learning": "data/docker-learning.json"
+    },
+    {
+      "id": "ansible",
+      "label": "Ansible",
+      "questions": "data/ansible.json",
+      "learning": "data/ansible-learning.json"
+    },
+    {
+      "id": "git",
+      "label": "Git & CI/CD",
+      "questions": "data/git.json",
+      "learning": "data/git-learning.json"
+    },
+    {
+      "id": "observability",
+      "label": "Observability",
+      "questions": "data/observability.json",
+      "learning": "data/observability-learning.json"
+    }
+  ]
+}

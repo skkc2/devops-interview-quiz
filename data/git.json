@@ -1,0 +1,3733 @@
+{
+  "schemaVersion": 1,
+  "subject": "Git & CI/CD",
+  "levels": [
+    "easy",
+    "medium",
+    "mediumHard",
+    "hard"
+  ],
+  "description": "30 competency sets: 90 scored questions and 30 self-reviewed interview prompts. Related questions intentionally reinforce a competency from different angles.",
+  "questions": [
+    {
+      "level": "easy",
+      "topic": "git",
+      "objective": "Explain working tree and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Working tree \u2014 primary reference",
+          "url": "https://git-scm.com/docs/git-status"
+        }
+      ],
+      "tags": [
+        "git",
+        "working-tree"
+      ],
+      "takeaway": "Uncommitted changes are distinct from committed history.",
+      "explanation": "The checked-out files being edited. Uncommitted changes are distinct from committed history. In the scenario, inspect git status and the relevant diff. The alternative \u2018Assume every file on disk is already committed\u2019 does not address the stated evidence or constraint.",
+      "id": "git-01-concept",
+      "title": "Working tree \u00b7 concept",
+      "type": "concept",
+      "question": "What is the Git working tree?",
+      "options": [
+        "The checked-out files being edited",
+        "It is always identical to the latest commit",
+        "It exists only on the remote server",
+        "Assume every file on disk is already committed"
+      ],
+      "correct": [
+        0
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "git",
+      "objective": "Explain working tree and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Working tree \u2014 primary reference",
+          "url": "https://git-scm.com/docs/git-status"
+        }
+      ],
+      "tags": [
+        "git",
+        "working-tree"
+      ],
+      "takeaway": "Uncommitted changes are distinct from committed history.",
+      "explanation": "The checked-out files being edited. Uncommitted changes are distinct from committed history. In the scenario, inspect git status and the relevant diff. The alternative \u2018Assume every file on disk is already committed\u2019 does not address the stated evidence or constraint.",
+      "id": "git-01-scenario",
+      "title": "Working tree \u00b7 scenario",
+      "type": "scenario",
+      "question": "A developer wants to know which local files changed. What is the best next step?",
+      "options": [
+        "Assume every file on disk is already committed",
+        "It is always identical to the latest commit",
+        "It exists only on the remote server",
+        "Inspect git status and the relevant diff"
+      ],
+      "correct": [
+        3
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "git",
+      "objective": "Explain working tree and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Working tree \u2014 primary reference",
+          "url": "https://git-scm.com/docs/git-status"
+        }
+      ],
+      "tags": [
+        "git",
+        "working-tree"
+      ],
+      "takeaway": "Uncommitted changes are distinct from committed history.",
+      "explanation": "The checked-out files being edited. Uncommitted changes are distinct from committed history. In the scenario, inspect git status and the relevant diff. The alternative \u2018Assume every file on disk is already committed\u2019 does not address the stated evidence or constraint.",
+      "id": "git-01-principles",
+      "title": "Working tree \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing working tree, which TWO statements are sound operational principles?",
+      "options": [
+        "It is always identical to the latest commit",
+        "It exists only on the remote server",
+        "The checked-out files being edited",
+        "Uncommitted changes are distinct from committed history"
+      ],
+      "correct": [
+        2,
+        3
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "git",
+      "objective": "Explain working tree and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Working tree \u2014 primary reference",
+          "url": "https://git-scm.com/docs/git-status"
+        }
+      ],
+      "tags": [
+        "git",
+        "working-tree"
+      ],
+      "takeaway": "Uncommitted changes are distinct from committed history.",
+      "explanation": "The checked-out files being edited. Uncommitted changes are distinct from committed history. In the scenario, inspect git status and the relevant diff. The alternative \u2018Assume every file on disk is already committed\u2019 does not address the stated evidence or constraint.",
+      "id": "git-01-interview",
+      "title": "Working tree \u00b7 interview",
+      "type": "interview",
+      "question": "Explain working tree index and commit snapshots.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "The checked-out files being edited. Uncommitted changes are distinct from committed history. A practical response is: Inspect git status and the relevant diff. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that it is always identical to the latest commit.",
+      "answerChecklist": [
+        "The checked-out files being edited",
+        "Uncommitted changes are distinct from committed history",
+        "Inspect git status and the relevant diff",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "A developer wants to know which local files changed. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "git",
+      "objective": "Explain staging and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Staging \u2014 primary reference",
+          "url": "https://git-scm.com/docs/git-add"
+        }
+      ],
+      "tags": [
+        "git",
+        "staging"
+      ],
+      "takeaway": "Staging selected changes supports focused commits.",
+      "explanation": "The proposed contents of the next commit. Staging selected changes supports focused commits. In the scenario, stage relevant hunks and review the staged diff. The alternative \u2018Commit every local change without reviewing scope\u2019 does not address the stated evidence or constraint.",
+      "id": "git-02-concept",
+      "title": "Staging \u00b7 concept",
+      "type": "concept",
+      "question": "What does the Git index represent?",
+      "options": [
+        "Staging automatically pushes changes to the remote",
+        "The index contains only deleted files",
+        "Commit every local change without reviewing scope",
+        "The proposed contents of the next commit"
+      ],
+      "correct": [
+        3
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "git",
+      "objective": "Explain staging and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Staging \u2014 primary reference",
+          "url": "https://git-scm.com/docs/git-add"
+        }
+      ],
+      "tags": [
+        "git",
+        "staging"
+      ],
+      "takeaway": "Staging selected changes supports focused commits.",
+      "explanation": "The proposed contents of the next commit. Staging selected changes supports focused commits. In the scenario, stage relevant hunks and review the staged diff. The alternative \u2018Commit every local change without reviewing scope\u2019 does not address the stated evidence or constraint.",
+      "id": "git-02-scenario",
+      "title": "Staging \u00b7 scenario",
+      "type": "scenario",
+      "question": "One file contains unrelated fixes that should be separate commits. What is the best next step?",
+      "options": [
+        "Staging automatically pushes changes to the remote",
+        "The index contains only deleted files",
+        "Stage relevant hunks and review the staged diff",
+        "Commit every local change without reviewing scope"
+      ],
+      "correct": [
+        2
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "git",
+      "objective": "Explain staging and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Staging \u2014 primary reference",
+          "url": "https://git-scm.com/docs/git-add"
+        }
+      ],
+      "tags": [
+        "git",
+        "staging"
+      ],
+      "takeaway": "Staging selected changes supports focused commits.",
+      "explanation": "The proposed contents of the next commit. Staging selected changes supports focused commits. In the scenario, stage relevant hunks and review the staged diff. The alternative \u2018Commit every local change without reviewing scope\u2019 does not address the stated evidence or constraint.",
+      "id": "git-02-principles",
+      "title": "Staging \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing staging, which TWO statements are sound operational principles?",
+      "options": [
+        "The index contains only deleted files",
+        "The proposed contents of the next commit",
+        "Staging selected changes supports focused commits",
+        "Staging automatically pushes changes to the remote"
+      ],
+      "correct": [
+        1,
+        2
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "git",
+      "objective": "Explain staging and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Staging \u2014 primary reference",
+          "url": "https://git-scm.com/docs/git-add"
+        }
+      ],
+      "tags": [
+        "git",
+        "staging"
+      ],
+      "takeaway": "Staging selected changes supports focused commits.",
+      "explanation": "The proposed contents of the next commit. Staging selected changes supports focused commits. In the scenario, stage relevant hunks and review the staged diff. The alternative \u2018Commit every local change without reviewing scope\u2019 does not address the stated evidence or constraint.",
+      "id": "git-02-interview",
+      "title": "Staging \u00b7 interview",
+      "type": "interview",
+      "question": "Explain partial staging and focused commits.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "The proposed contents of the next commit. Staging selected changes supports focused commits. A practical response is: Stage relevant hunks and review the staged diff. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that staging automatically pushes changes to the remote.",
+      "answerChecklist": [
+        "The proposed contents of the next commit",
+        "Staging selected changes supports focused commits",
+        "Stage relevant hunks and review the staged diff",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "One file contains unrelated fixes that should be separate commits. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "git",
+      "objective": "Explain commits and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Commits \u2014 primary reference",
+          "url": "https://git-scm.com/docs/git-commit"
+        }
+      ],
+      "tags": [
+        "git",
+        "commits"
+      ],
+      "takeaway": "Commit identifiers change when commit contents or metadata change.",
+      "explanation": "A snapshot with metadata and parent relationships. Commit identifiers change when commit contents or metadata change. In the scenario, recognize that amended metadata creates a new commit object. The alternative \u2018Assume the repository is corrupt because the hash changed\u2019 does not address the stated evidence or constraint.",
+      "id": "git-03-concept",
+      "title": "Commits \u00b7 concept",
+      "type": "concept",
+      "question": "What does a Git commit identify?",
+      "options": [
+        "Changing a commit message never changes its identifier",
+        "Assume the repository is corrupt because the hash changed",
+        "A snapshot with metadata and parent relationships",
+        "A commit is only a mutable branch name"
+      ],
+      "correct": [
+        2
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "git",
+      "objective": "Explain commits and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Commits \u2014 primary reference",
+          "url": "https://git-scm.com/docs/git-commit"
+        }
+      ],
+      "tags": [
+        "git",
+        "commits"
+      ],
+      "takeaway": "Commit identifiers change when commit contents or metadata change.",
+      "explanation": "A snapshot with metadata and parent relationships. Commit identifiers change when commit contents or metadata change. In the scenario, recognize that amended metadata creates a new commit object. The alternative \u2018Assume the repository is corrupt because the hash changed\u2019 does not address the stated evidence or constraint.",
+      "id": "git-03-scenario",
+      "title": "Commits \u00b7 scenario",
+      "type": "scenario",
+      "question": "An amended commit has a different hash despite similar files. What is the best next step?",
+      "options": [
+        "Changing a commit message never changes its identifier",
+        "Recognize that amended metadata creates a new commit object",
+        "Assume the repository is corrupt because the hash changed",
+        "A commit is only a mutable branch name"
+      ],
+      "correct": [
+        1
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "git",
+      "objective": "Explain commits and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Commits \u2014 primary reference",
+          "url": "https://git-scm.com/docs/git-commit"
+        }
+      ],
+      "tags": [
+        "git",
+        "commits"
+      ],
+      "takeaway": "Commit identifiers change when commit contents or metadata change.",
+      "explanation": "A snapshot with metadata and parent relationships. Commit identifiers change when commit contents or metadata change. In the scenario, recognize that amended metadata creates a new commit object. The alternative \u2018Assume the repository is corrupt because the hash changed\u2019 does not address the stated evidence or constraint.",
+      "id": "git-03-principles",
+      "title": "Commits \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing commits, which TWO statements are sound operational principles?",
+      "options": [
+        "A snapshot with metadata and parent relationships",
+        "Commit identifiers change when commit contents or metadata change",
+        "A commit is only a mutable branch name",
+        "Changing a commit message never changes its identifier"
+      ],
+      "correct": [
+        0,
+        1
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "git",
+      "objective": "Explain commits and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Commits \u2014 primary reference",
+          "url": "https://git-scm.com/docs/git-commit"
+        }
+      ],
+      "tags": [
+        "git",
+        "commits"
+      ],
+      "takeaway": "Commit identifiers change when commit contents or metadata change.",
+      "explanation": "A snapshot with metadata and parent relationships. Commit identifiers change when commit contents or metadata change. In the scenario, recognize that amended metadata creates a new commit object. The alternative \u2018Assume the repository is corrupt because the hash changed\u2019 does not address the stated evidence or constraint.",
+      "id": "git-03-interview",
+      "title": "Commits \u00b7 interview",
+      "type": "interview",
+      "question": "Explain commit identity and the effects of amendment.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "A snapshot with metadata and parent relationships. Commit identifiers change when commit contents or metadata change. A practical response is: Recognize that amended metadata creates a new commit object. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that a commit is only a mutable branch name.",
+      "answerChecklist": [
+        "A snapshot with metadata and parent relationships",
+        "Commit identifiers change when commit contents or metadata change",
+        "Recognize that amended metadata creates a new commit object",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "An amended commit has a different hash despite similar files. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "git",
+      "objective": "Explain branches and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Branches \u2014 primary reference",
+          "url": "https://git-scm.com/docs/git-branch"
+        }
+      ],
+      "tags": [
+        "git",
+        "branches"
+      ],
+      "takeaway": "Creating a branch does not copy an entire independent repository.",
+      "explanation": "A movable reference to a commit. Creating a branch does not copy an entire independent repository. In the scenario, push the intended branch reference when ready to share. The alternative \u2018Assume local branch creation published it globally\u2019 does not address the stated evidence or constraint.",
+      "id": "git-04-concept",
+      "title": "Branches \u00b7 concept",
+      "type": "concept",
+      "question": "What is a Git branch primarily?",
+      "options": [
+        "Assume local branch creation published it globally",
+        "A movable reference to a commit",
+        "A branch is a separate physical copy of every historical file",
+        "Every branch automatically exists on every remote"
+      ],
+      "correct": [
+        1
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "git",
+      "objective": "Explain branches and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Branches \u2014 primary reference",
+          "url": "https://git-scm.com/docs/git-branch"
+        }
+      ],
+      "tags": [
+        "git",
+        "branches"
+      ],
+      "takeaway": "Creating a branch does not copy an entire independent repository.",
+      "explanation": "A movable reference to a commit. Creating a branch does not copy an entire independent repository. In the scenario, push the intended branch reference when ready to share. The alternative \u2018Assume local branch creation published it globally\u2019 does not address the stated evidence or constraint.",
+      "id": "git-04-scenario",
+      "title": "Branches \u00b7 scenario",
+      "type": "scenario",
+      "question": "A new local branch is invisible to teammates. What is the best next step?",
+      "options": [
+        "Push the intended branch reference when ready to share",
+        "Assume local branch creation published it globally",
+        "A branch is a separate physical copy of every historical file",
+        "Every branch automatically exists on every remote"
+      ],
+      "correct": [
+        0
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "git",
+      "objective": "Explain branches and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Branches \u2014 primary reference",
+          "url": "https://git-scm.com/docs/git-branch"
+        }
+      ],
+      "tags": [
+        "git",
+        "branches"
+      ],
+      "takeaway": "Creating a branch does not copy an entire independent repository.",
+      "explanation": "A movable reference to a commit. Creating a branch does not copy an entire independent repository. In the scenario, push the intended branch reference when ready to share. The alternative \u2018Assume local branch creation published it globally\u2019 does not address the stated evidence or constraint.",
+      "id": "git-04-principles",
+      "title": "Branches \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing branches, which TWO statements are sound operational principles?",
+      "options": [
+        "Creating a branch does not copy an entire independent repository",
+        "A branch is a separate physical copy of every historical file",
+        "Every branch automatically exists on every remote",
+        "A movable reference to a commit"
+      ],
+      "correct": [
+        0,
+        3
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "git",
+      "objective": "Explain branches and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Branches \u2014 primary reference",
+          "url": "https://git-scm.com/docs/git-branch"
+        }
+      ],
+      "tags": [
+        "git",
+        "branches"
+      ],
+      "takeaway": "Creating a branch does not copy an entire independent repository.",
+      "explanation": "A movable reference to a commit. Creating a branch does not copy an entire independent repository. In the scenario, push the intended branch reference when ready to share. The alternative \u2018Assume local branch creation published it globally\u2019 does not address the stated evidence or constraint.",
+      "id": "git-04-interview",
+      "title": "Branches \u00b7 interview",
+      "type": "interview",
+      "question": "Explain local branches remote branches and tracking references.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "A movable reference to a commit. Creating a branch does not copy an entire independent repository. A practical response is: Push the intended branch reference when ready to share. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that a branch is a separate physical copy of every historical file.",
+      "answerChecklist": [
+        "A movable reference to a commit",
+        "Creating a branch does not copy an entire independent repository",
+        "Push the intended branch reference when ready to share",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "A new local branch is invisible to teammates. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "git",
+      "objective": "Explain fetch and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Fetch \u2014 primary reference",
+          "url": "https://git-scm.com/docs/git-fetch"
+        }
+      ],
+      "tags": [
+        "git",
+        "fetch"
+      ],
+      "takeaway": "Fetching does not itself merge changes into the current branch.",
+      "explanation": "Download remote objects and update remote-tracking references. Fetching does not itself merge changes into the current branch. In the scenario, fetch and compare the relevant references. The alternative \u2018Pull with an unknown integration policy just to inspect history\u2019 does not address the stated evidence or constraint.",
+      "id": "git-05-concept",
+      "title": "Fetch \u00b7 concept",
+      "type": "concept",
+      "question": "What does git fetch normally do?",
+      "options": [
+        "Download remote objects and update remote-tracking references",
+        "Fetch automatically discards every local modification",
+        "Fetch always rebases the checked-out branch",
+        "Pull with an unknown integration policy just to inspect history"
+      ],
+      "correct": [
+        0
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "git",
+      "objective": "Explain fetch and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Fetch \u2014 primary reference",
+          "url": "https://git-scm.com/docs/git-fetch"
+        }
+      ],
+      "tags": [
+        "git",
+        "fetch"
+      ],
+      "takeaway": "Fetching does not itself merge changes into the current branch.",
+      "explanation": "Download remote objects and update remote-tracking references. Fetching does not itself merge changes into the current branch. In the scenario, fetch and compare the relevant references. The alternative \u2018Pull with an unknown integration policy just to inspect history\u2019 does not address the stated evidence or constraint.",
+      "id": "git-05-scenario",
+      "title": "Fetch \u00b7 scenario",
+      "type": "scenario",
+      "question": "A developer wants to inspect remote changes before integration. What is the best next step?",
+      "options": [
+        "Pull with an unknown integration policy just to inspect history",
+        "Fetch automatically discards every local modification",
+        "Fetch always rebases the checked-out branch",
+        "Fetch and compare the relevant references"
+      ],
+      "correct": [
+        3
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "git",
+      "objective": "Explain fetch and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Fetch \u2014 primary reference",
+          "url": "https://git-scm.com/docs/git-fetch"
+        }
+      ],
+      "tags": [
+        "git",
+        "fetch"
+      ],
+      "takeaway": "Fetching does not itself merge changes into the current branch.",
+      "explanation": "Download remote objects and update remote-tracking references. Fetching does not itself merge changes into the current branch. In the scenario, fetch and compare the relevant references. The alternative \u2018Pull with an unknown integration policy just to inspect history\u2019 does not address the stated evidence or constraint.",
+      "id": "git-05-principles",
+      "title": "Fetch \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing fetch, which TWO statements are sound operational principles?",
+      "options": [
+        "Fetch automatically discards every local modification",
+        "Fetch always rebases the checked-out branch",
+        "Download remote objects and update remote-tracking references",
+        "Fetching does not itself merge changes into the current branch"
+      ],
+      "correct": [
+        2,
+        3
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "git",
+      "objective": "Explain fetch and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Fetch \u2014 primary reference",
+          "url": "https://git-scm.com/docs/git-fetch"
+        }
+      ],
+      "tags": [
+        "git",
+        "fetch"
+      ],
+      "takeaway": "Fetching does not itself merge changes into the current branch.",
+      "explanation": "Download remote objects and update remote-tracking references. Fetching does not itself merge changes into the current branch. In the scenario, fetch and compare the relevant references. The alternative \u2018Pull with an unknown integration policy just to inspect history\u2019 does not address the stated evidence or constraint.",
+      "id": "git-05-interview",
+      "title": "Fetch \u00b7 interview",
+      "type": "interview",
+      "question": "Explain fetch versus pull in a collaborative workflow.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "Download remote objects and update remote-tracking references. Fetching does not itself merge changes into the current branch. A practical response is: Fetch and compare the relevant references. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that fetch automatically discards every local modification.",
+      "answerChecklist": [
+        "Download remote objects and update remote-tracking references",
+        "Fetching does not itself merge changes into the current branch",
+        "Fetch and compare the relevant references",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "A developer wants to inspect remote changes before integration. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "git",
+      "objective": "Explain merge and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Merge \u2014 primary reference",
+          "url": "https://git-scm.com/docs/git-merge"
+        }
+      ],
+      "tags": [
+        "git",
+        "merge"
+      ],
+      "takeaway": "Merge conflict resolution must preserve intended behavior.",
+      "explanation": "A commit joining multiple lines of history. Merge conflict resolution must preserve intended behavior. In the scenario, run integration checks and inspect the interacting changes. The alternative \u2018Treat absence of textual conflicts as proof of correctness\u2019 does not address the stated evidence or constraint.",
+      "id": "git-06-concept",
+      "title": "Merge \u00b7 concept",
+      "type": "concept",
+      "question": "What does a non-fast-forward merge usually create?",
+      "options": [
+        "Every merge rewrites all existing commits",
+        "A conflict-free merge guarantees functional correctness",
+        "Treat absence of textual conflicts as proof of correctness",
+        "A commit joining multiple lines of history"
+      ],
+      "correct": [
+        3
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "git",
+      "objective": "Explain merge and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Merge \u2014 primary reference",
+          "url": "https://git-scm.com/docs/git-merge"
+        }
+      ],
+      "tags": [
+        "git",
+        "merge"
+      ],
+      "takeaway": "Merge conflict resolution must preserve intended behavior.",
+      "explanation": "A commit joining multiple lines of history. Merge conflict resolution must preserve intended behavior. In the scenario, run integration checks and inspect the interacting changes. The alternative \u2018Treat absence of textual conflicts as proof of correctness\u2019 does not address the stated evidence or constraint.",
+      "id": "git-06-scenario",
+      "title": "Merge \u00b7 scenario",
+      "type": "scenario",
+      "question": "Two branches merge cleanly but their combined behavior breaks tests. What is the best next step?",
+      "options": [
+        "Every merge rewrites all existing commits",
+        "A conflict-free merge guarantees functional correctness",
+        "Run integration checks and inspect the interacting changes",
+        "Treat absence of textual conflicts as proof of correctness"
+      ],
+      "correct": [
+        2
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "git",
+      "objective": "Explain merge and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Merge \u2014 primary reference",
+          "url": "https://git-scm.com/docs/git-merge"
+        }
+      ],
+      "tags": [
+        "git",
+        "merge"
+      ],
+      "takeaway": "Merge conflict resolution must preserve intended behavior.",
+      "explanation": "A commit joining multiple lines of history. Merge conflict resolution must preserve intended behavior. In the scenario, run integration checks and inspect the interacting changes. The alternative \u2018Treat absence of textual conflicts as proof of correctness\u2019 does not address the stated evidence or constraint.",
+      "id": "git-06-principles",
+      "title": "Merge \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing merge, which TWO statements are sound operational principles?",
+      "options": [
+        "A conflict-free merge guarantees functional correctness",
+        "A commit joining multiple lines of history",
+        "Merge conflict resolution must preserve intended behavior",
+        "Every merge rewrites all existing commits"
+      ],
+      "correct": [
+        1,
+        2
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "git",
+      "objective": "Explain merge and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Merge \u2014 primary reference",
+          "url": "https://git-scm.com/docs/git-merge"
+        }
+      ],
+      "tags": [
+        "git",
+        "merge"
+      ],
+      "takeaway": "Merge conflict resolution must preserve intended behavior.",
+      "explanation": "A commit joining multiple lines of history. Merge conflict resolution must preserve intended behavior. In the scenario, run integration checks and inspect the interacting changes. The alternative \u2018Treat absence of textual conflicts as proof of correctness\u2019 does not address the stated evidence or constraint.",
+      "id": "git-06-interview",
+      "title": "Merge \u00b7 interview",
+      "type": "interview",
+      "question": "Explain semantic conflicts that Git cannot detect.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "A commit joining multiple lines of history. Merge conflict resolution must preserve intended behavior. A practical response is: Run integration checks and inspect the interacting changes. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that every merge rewrites all existing commits.",
+      "answerChecklist": [
+        "A commit joining multiple lines of history",
+        "Merge conflict resolution must preserve intended behavior",
+        "Run integration checks and inspect the interacting changes",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "Two branches merge cleanly but their combined behavior breaks tests. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "git",
+      "objective": "Explain ignore rules and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Ignore rules \u2014 primary reference",
+          "url": "https://git-scm.com/docs/gitignore"
+        }
+      ],
+      "tags": [
+        "git",
+        "ignore-rules"
+      ],
+      "takeaway": "Sensitive files should be excluded before entering history.",
+      "explanation": "It does not automatically untrack files already committed. Sensitive files should be excluded before entering history. In the scenario, rotate the credential and handle repository exposure deliberately. The alternative \u2018Assume adding gitignore erased the secret\u2019 does not address the stated evidence or constraint.",
+      "id": "git-07-concept",
+      "title": "Ignore rules \u00b7 concept",
+      "type": "concept",
+      "question": "What is a limitation of gitignore?",
+      "options": [
+        "Ignored files can never be explicitly added",
+        "Assume adding gitignore erased the secret",
+        "It does not automatically untrack files already committed",
+        "Adding a secret to gitignore removes it from all past commits"
+      ],
+      "correct": [
+        2
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "git",
+      "objective": "Explain ignore rules and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Ignore rules \u2014 primary reference",
+          "url": "https://git-scm.com/docs/gitignore"
+        }
+      ],
+      "tags": [
+        "git",
+        "ignore-rules"
+      ],
+      "takeaway": "Sensitive files should be excluded before entering history.",
+      "explanation": "It does not automatically untrack files already committed. Sensitive files should be excluded before entering history. In the scenario, rotate the credential and handle repository exposure deliberately. The alternative \u2018Assume adding gitignore erased the secret\u2019 does not address the stated evidence or constraint.",
+      "id": "git-07-scenario",
+      "title": "Ignore rules \u00b7 scenario",
+      "type": "scenario",
+      "question": "A credential was committed before an ignore rule was added. What is the best next step?",
+      "options": [
+        "Ignored files can never be explicitly added",
+        "Rotate the credential and handle repository exposure deliberately",
+        "Assume adding gitignore erased the secret",
+        "Adding a secret to gitignore removes it from all past commits"
+      ],
+      "correct": [
+        1
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "git",
+      "objective": "Explain ignore rules and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Ignore rules \u2014 primary reference",
+          "url": "https://git-scm.com/docs/gitignore"
+        }
+      ],
+      "tags": [
+        "git",
+        "ignore-rules"
+      ],
+      "takeaway": "Sensitive files should be excluded before entering history.",
+      "explanation": "It does not automatically untrack files already committed. Sensitive files should be excluded before entering history. In the scenario, rotate the credential and handle repository exposure deliberately. The alternative \u2018Assume adding gitignore erased the secret\u2019 does not address the stated evidence or constraint.",
+      "id": "git-07-principles",
+      "title": "Ignore rules \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing ignore rules, which TWO statements are sound operational principles?",
+      "options": [
+        "It does not automatically untrack files already committed",
+        "Sensitive files should be excluded before entering history",
+        "Adding a secret to gitignore removes it from all past commits",
+        "Ignored files can never be explicitly added"
+      ],
+      "correct": [
+        0,
+        1
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "git",
+      "objective": "Explain ignore rules and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Ignore rules \u2014 primary reference",
+          "url": "https://git-scm.com/docs/gitignore"
+        }
+      ],
+      "tags": [
+        "git",
+        "ignore-rules"
+      ],
+      "takeaway": "Sensitive files should be excluded before entering history.",
+      "explanation": "It does not automatically untrack files already committed. Sensitive files should be excluded before entering history. In the scenario, rotate the credential and handle repository exposure deliberately. The alternative \u2018Assume adding gitignore erased the secret\u2019 does not address the stated evidence or constraint.",
+      "id": "git-07-interview",
+      "title": "Ignore rules \u00b7 interview",
+      "type": "interview",
+      "question": "Explain why ignore rules are not secret remediation.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "It does not automatically untrack files already committed. Sensitive files should be excluded before entering history. A practical response is: Rotate the credential and handle repository exposure deliberately. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that adding a secret to gitignore removes it from all past commits.",
+      "answerChecklist": [
+        "It does not automatically untrack files already committed",
+        "Sensitive files should be excluded before entering history",
+        "Rotate the credential and handle repository exposure deliberately",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "A credential was committed before an ignore rule was added. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "git",
+      "objective": "Explain diffs and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Diffs \u2014 primary reference",
+          "url": "https://git-scm.com/docs/git-diff"
+        }
+      ],
+      "tags": [
+        "git",
+        "diffs"
+      ],
+      "takeaway": "Generated or unrelated changes deserve deliberate review.",
+      "explanation": "The exact changes intended for the next commit. Generated or unrelated changes deserve deliberate review. In the scenario, inspect and unstage the unintended change. The alternative \u2018Commit it because it is in the same directory as the fix\u2019 does not address the stated evidence or constraint.",
+      "id": "git-08-concept",
+      "title": "Diffs \u00b7 concept",
+      "type": "concept",
+      "question": "What should a staged diff review verify?",
+      "options": [
+        "Commit it because it is in the same directory as the fix",
+        "The exact changes intended for the next commit",
+        "Only filenames matter when reviewing a commit",
+        "A passing formatter proves every staged change is intended"
+      ],
+      "correct": [
+        1
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "git",
+      "objective": "Explain diffs and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Diffs \u2014 primary reference",
+          "url": "https://git-scm.com/docs/git-diff"
+        }
+      ],
+      "tags": [
+        "git",
+        "diffs"
+      ],
+      "takeaway": "Generated or unrelated changes deserve deliberate review.",
+      "explanation": "The exact changes intended for the next commit. Generated or unrelated changes deserve deliberate review. In the scenario, inspect and unstage the unintended change. The alternative \u2018Commit it because it is in the same directory as the fix\u2019 does not address the stated evidence or constraint.",
+      "id": "git-08-scenario",
+      "title": "Diffs \u00b7 scenario",
+      "type": "scenario",
+      "question": "A commit includes a local debug setting accidentally. What is the best next step?",
+      "options": [
+        "Inspect and unstage the unintended change",
+        "Commit it because it is in the same directory as the fix",
+        "Only filenames matter when reviewing a commit",
+        "A passing formatter proves every staged change is intended"
+      ],
+      "correct": [
+        0
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "git",
+      "objective": "Explain diffs and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Diffs \u2014 primary reference",
+          "url": "https://git-scm.com/docs/git-diff"
+        }
+      ],
+      "tags": [
+        "git",
+        "diffs"
+      ],
+      "takeaway": "Generated or unrelated changes deserve deliberate review.",
+      "explanation": "The exact changes intended for the next commit. Generated or unrelated changes deserve deliberate review. In the scenario, inspect and unstage the unintended change. The alternative \u2018Commit it because it is in the same directory as the fix\u2019 does not address the stated evidence or constraint.",
+      "id": "git-08-principles",
+      "title": "Diffs \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing diffs, which TWO statements are sound operational principles?",
+      "options": [
+        "Generated or unrelated changes deserve deliberate review",
+        "Only filenames matter when reviewing a commit",
+        "A passing formatter proves every staged change is intended",
+        "The exact changes intended for the next commit"
+      ],
+      "correct": [
+        0,
+        3
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "git",
+      "objective": "Explain diffs and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Diffs \u2014 primary reference",
+          "url": "https://git-scm.com/docs/git-diff"
+        }
+      ],
+      "tags": [
+        "git",
+        "diffs"
+      ],
+      "takeaway": "Generated or unrelated changes deserve deliberate review.",
+      "explanation": "The exact changes intended for the next commit. Generated or unrelated changes deserve deliberate review. In the scenario, inspect and unstage the unintended change. The alternative \u2018Commit it because it is in the same directory as the fix\u2019 does not address the stated evidence or constraint.",
+      "id": "git-08-interview",
+      "title": "Diffs \u00b7 interview",
+      "type": "interview",
+      "question": "Explain your pre-commit review process.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "The exact changes intended for the next commit. Generated or unrelated changes deserve deliberate review. A practical response is: Inspect and unstage the unintended change. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that only filenames matter when reviewing a commit.",
+      "answerChecklist": [
+        "The exact changes intended for the next commit",
+        "Generated or unrelated changes deserve deliberate review",
+        "Inspect and unstage the unintended change",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "A commit includes a local debug setting accidentally. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "git",
+      "objective": "Explain rebase and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Rebase \u2014 primary reference",
+          "url": "https://git-scm.com/docs/git-rebase"
+        }
+      ],
+      "tags": [
+        "git",
+        "rebase"
+      ],
+      "takeaway": "Rewriting shared history requires coordination.",
+      "explanation": "Replay commits onto a different base with new identities. Rewriting shared history requires coordination. In the scenario, coordinate the rewrite and recovery expectations before publishing. The alternative \u2018Force-push without checking collaborator work\u2019 does not address the stated evidence or constraint.",
+      "id": "git-09-concept",
+      "title": "Rebase \u00b7 concept",
+      "type": "concept",
+      "question": "What does rebase generally do?",
+      "options": [
+        "Replay commits onto a different base with new identities",
+        "Rebase preserves every replayed commit hash unchanged",
+        "Rebase automatically informs every collaborator of rewritten history",
+        "Force-push without checking collaborator work"
+      ],
+      "correct": [
+        0
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "git",
+      "objective": "Explain rebase and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Rebase \u2014 primary reference",
+          "url": "https://git-scm.com/docs/git-rebase"
+        }
+      ],
+      "tags": [
+        "git",
+        "rebase"
+      ],
+      "takeaway": "Rewriting shared history requires coordination.",
+      "explanation": "Replay commits onto a different base with new identities. Rewriting shared history requires coordination. In the scenario, coordinate the rewrite and recovery expectations before publishing. The alternative \u2018Force-push without checking collaborator work\u2019 does not address the stated evidence or constraint.",
+      "id": "git-09-scenario",
+      "title": "Rebase \u00b7 scenario",
+      "type": "scenario",
+      "question": "A developer rebases commits others have already based work on. What is the best next step?",
+      "options": [
+        "Force-push without checking collaborator work",
+        "Rebase preserves every replayed commit hash unchanged",
+        "Rebase automatically informs every collaborator of rewritten history",
+        "Coordinate the rewrite and recovery expectations before publishing"
+      ],
+      "correct": [
+        3
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "git",
+      "objective": "Explain rebase and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Rebase \u2014 primary reference",
+          "url": "https://git-scm.com/docs/git-rebase"
+        }
+      ],
+      "tags": [
+        "git",
+        "rebase"
+      ],
+      "takeaway": "Rewriting shared history requires coordination.",
+      "explanation": "Replay commits onto a different base with new identities. Rewriting shared history requires coordination. In the scenario, coordinate the rewrite and recovery expectations before publishing. The alternative \u2018Force-push without checking collaborator work\u2019 does not address the stated evidence or constraint.",
+      "id": "git-09-principles",
+      "title": "Rebase \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing rebase, which TWO statements are sound operational principles?",
+      "options": [
+        "Rebase preserves every replayed commit hash unchanged",
+        "Rebase automatically informs every collaborator of rewritten history",
+        "Replay commits onto a different base with new identities",
+        "Rewriting shared history requires coordination"
+      ],
+      "correct": [
+        2,
+        3
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "git",
+      "objective": "Explain rebase and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Rebase \u2014 primary reference",
+          "url": "https://git-scm.com/docs/git-rebase"
+        }
+      ],
+      "tags": [
+        "git",
+        "rebase"
+      ],
+      "takeaway": "Rewriting shared history requires coordination.",
+      "explanation": "Replay commits onto a different base with new identities. Rewriting shared history requires coordination. In the scenario, coordinate the rewrite and recovery expectations before publishing. The alternative \u2018Force-push without checking collaborator work\u2019 does not address the stated evidence or constraint.",
+      "id": "git-09-interview",
+      "title": "Rebase \u00b7 interview",
+      "type": "interview",
+      "question": "Explain when rebase is useful and when shared history makes it risky.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "Replay commits onto a different base with new identities. Rewriting shared history requires coordination. A practical response is: Coordinate the rewrite and recovery expectations before publishing. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that rebase preserves every replayed commit hash unchanged.",
+      "answerChecklist": [
+        "Replay commits onto a different base with new identities",
+        "Rewriting shared history requires coordination",
+        "Coordinate the rewrite and recovery expectations before publishing",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "A developer rebases commits others have already based work on. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "git",
+      "objective": "Explain revert and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Revert \u2014 primary reference",
+          "url": "https://git-scm.com/docs/git-revert"
+        }
+      ],
+      "tags": [
+        "git",
+        "revert"
+      ],
+      "takeaway": "Reverting can preserve published history.",
+      "explanation": "A new commit that reverses selected changes. Reverting can preserve published history. In the scenario, create and verify a reversal appropriate to the deployed change. The alternative \u2018Rewrite shared history as the default rollback mechanism\u2019 does not address the stated evidence or constraint.",
+      "id": "git-10-concept",
+      "title": "Revert \u00b7 concept",
+      "type": "concept",
+      "question": "What does git revert normally produce?",
+      "options": [
+        "Revert erases the original commit from every clone",
+        "Revert is always identical to deleting a branch",
+        "Rewrite shared history as the default rollback mechanism",
+        "A new commit that reverses selected changes"
+      ],
+      "correct": [
+        3
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "git",
+      "objective": "Explain revert and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Revert \u2014 primary reference",
+          "url": "https://git-scm.com/docs/git-revert"
+        }
+      ],
+      "tags": [
+        "git",
+        "revert"
+      ],
+      "takeaway": "Reverting can preserve published history.",
+      "explanation": "A new commit that reverses selected changes. Reverting can preserve published history. In the scenario, create and verify a reversal appropriate to the deployed change. The alternative \u2018Rewrite shared history as the default rollback mechanism\u2019 does not address the stated evidence or constraint.",
+      "id": "git-10-scenario",
+      "title": "Revert \u00b7 scenario",
+      "type": "scenario",
+      "question": "A bad change is already on a shared production branch. What is the best next step?",
+      "options": [
+        "Revert erases the original commit from every clone",
+        "Revert is always identical to deleting a branch",
+        "Create and verify a reversal appropriate to the deployed change",
+        "Rewrite shared history as the default rollback mechanism"
+      ],
+      "correct": [
+        2
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "git",
+      "objective": "Explain revert and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Revert \u2014 primary reference",
+          "url": "https://git-scm.com/docs/git-revert"
+        }
+      ],
+      "tags": [
+        "git",
+        "revert"
+      ],
+      "takeaway": "Reverting can preserve published history.",
+      "explanation": "A new commit that reverses selected changes. Reverting can preserve published history. In the scenario, create and verify a reversal appropriate to the deployed change. The alternative \u2018Rewrite shared history as the default rollback mechanism\u2019 does not address the stated evidence or constraint.",
+      "id": "git-10-principles",
+      "title": "Revert \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing revert, which TWO statements are sound operational principles?",
+      "options": [
+        "Revert is always identical to deleting a branch",
+        "A new commit that reverses selected changes",
+        "Reverting can preserve published history",
+        "Revert erases the original commit from every clone"
+      ],
+      "correct": [
+        1,
+        2
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "git",
+      "objective": "Explain revert and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Revert \u2014 primary reference",
+          "url": "https://git-scm.com/docs/git-revert"
+        }
+      ],
+      "tags": [
+        "git",
+        "revert"
+      ],
+      "takeaway": "Reverting can preserve published history.",
+      "explanation": "A new commit that reverses selected changes. Reverting can preserve published history. In the scenario, create and verify a reversal appropriate to the deployed change. The alternative \u2018Rewrite shared history as the default rollback mechanism\u2019 does not address the stated evidence or constraint.",
+      "id": "git-10-interview",
+      "title": "Revert \u00b7 interview",
+      "type": "interview",
+      "question": "Explain revert versus reset for a published mistake.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "A new commit that reverses selected changes. Reverting can preserve published history. A practical response is: Create and verify a reversal appropriate to the deployed change. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that revert erases the original commit from every clone.",
+      "answerChecklist": [
+        "A new commit that reverses selected changes",
+        "Reverting can preserve published history",
+        "Create and verify a reversal appropriate to the deployed change",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "A bad change is already on a shared production branch. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "git",
+      "objective": "Explain reset and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Reset \u2014 primary reference",
+          "url": "https://git-scm.com/docs/git-reset"
+        }
+      ],
+      "tags": [
+        "git",
+        "reset"
+      ],
+      "takeaway": "Inspect and preserve needed work before destructive local operations.",
+      "explanation": "It can discard tracked working-tree and index changes. Inspect and preserve needed work before destructive local operations. In the scenario, preserve the edits and choose the appropriate history operation. The alternative \u2018Run hard reset without checking local changes\u2019 does not address the stated evidence or constraint.",
+      "id": "git-11-concept",
+      "title": "Reset \u00b7 concept",
+      "type": "concept",
+      "question": "Why can a hard reset be destructive?",
+      "options": [
+        "Reset only changes remote permissions",
+        "Run hard reset without checking local changes",
+        "It can discard tracked working-tree and index changes",
+        "A hard reset always saves every uncommitted edit"
+      ],
+      "correct": [
+        2
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "git",
+      "objective": "Explain reset and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Reset \u2014 primary reference",
+          "url": "https://git-scm.com/docs/git-reset"
+        }
+      ],
+      "tags": [
+        "git",
+        "reset"
+      ],
+      "takeaway": "Inspect and preserve needed work before destructive local operations.",
+      "explanation": "It can discard tracked working-tree and index changes. Inspect and preserve needed work before destructive local operations. In the scenario, preserve the edits and choose the appropriate history operation. The alternative \u2018Run hard reset without checking local changes\u2019 does not address the stated evidence or constraint.",
+      "id": "git-11-scenario",
+      "title": "Reset \u00b7 scenario",
+      "type": "scenario",
+      "question": "A developer wants to remove one commit but has valuable uncommitted edits. What is the best next step?",
+      "options": [
+        "Reset only changes remote permissions",
+        "Preserve the edits and choose the appropriate history operation",
+        "Run hard reset without checking local changes",
+        "A hard reset always saves every uncommitted edit"
+      ],
+      "correct": [
+        1
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "git",
+      "objective": "Explain reset and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Reset \u2014 primary reference",
+          "url": "https://git-scm.com/docs/git-reset"
+        }
+      ],
+      "tags": [
+        "git",
+        "reset"
+      ],
+      "takeaway": "Inspect and preserve needed work before destructive local operations.",
+      "explanation": "It can discard tracked working-tree and index changes. Inspect and preserve needed work before destructive local operations. In the scenario, preserve the edits and choose the appropriate history operation. The alternative \u2018Run hard reset without checking local changes\u2019 does not address the stated evidence or constraint.",
+      "id": "git-11-principles",
+      "title": "Reset \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing reset, which TWO statements are sound operational principles?",
+      "options": [
+        "It can discard tracked working-tree and index changes",
+        "Inspect and preserve needed work before destructive local operations",
+        "A hard reset always saves every uncommitted edit",
+        "Reset only changes remote permissions"
+      ],
+      "correct": [
+        0,
+        1
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "git",
+      "objective": "Explain reset and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Reset \u2014 primary reference",
+          "url": "https://git-scm.com/docs/git-reset"
+        }
+      ],
+      "tags": [
+        "git",
+        "reset"
+      ],
+      "takeaway": "Inspect and preserve needed work before destructive local operations.",
+      "explanation": "It can discard tracked working-tree and index changes. Inspect and preserve needed work before destructive local operations. In the scenario, preserve the edits and choose the appropriate history operation. The alternative \u2018Run hard reset without checking local changes\u2019 does not address the stated evidence or constraint.",
+      "id": "git-11-interview",
+      "title": "Reset \u00b7 interview",
+      "type": "interview",
+      "question": "Explain the risks and modes of git reset.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "It can discard tracked working-tree and index changes. Inspect and preserve needed work before destructive local operations. A practical response is: Preserve the edits and choose the appropriate history operation. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that a hard reset always saves every uncommitted edit.",
+      "answerChecklist": [
+        "It can discard tracked working-tree and index changes",
+        "Inspect and preserve needed work before destructive local operations",
+        "Preserve the edits and choose the appropriate history operation",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "A developer wants to remove one commit but has valuable uncommitted edits. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "git",
+      "objective": "Explain cherry-pick and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Cherry-pick \u2014 primary reference",
+          "url": "https://git-scm.com/docs/git-cherry-pick"
+        }
+      ],
+      "tags": [
+        "git",
+        "cherry-pick"
+      ],
+      "takeaway": "Dependencies of the selected change may need separate consideration.",
+      "explanation": "Apply selected commit changes onto the current branch. Dependencies of the selected change may need separate consideration. In the scenario, check dependencies and apply only the verified fix. The alternative \u2018Assume every isolated commit is self-contained\u2019 does not address the stated evidence or constraint.",
+      "id": "git-12-concept",
+      "title": "Cherry-pick \u00b7 concept",
+      "type": "concept",
+      "question": "What does cherry-pick typically do?",
+      "options": [
+        "Assume every isolated commit is self-contained",
+        "Apply selected commit changes onto the current branch",
+        "Cherry-pick always imports the entire source branch",
+        "A picked commit can never depend on earlier commits"
+      ],
+      "correct": [
+        1
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "git",
+      "objective": "Explain cherry-pick and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Cherry-pick \u2014 primary reference",
+          "url": "https://git-scm.com/docs/git-cherry-pick"
+        }
+      ],
+      "tags": [
+        "git",
+        "cherry-pick"
+      ],
+      "takeaway": "Dependencies of the selected change may need separate consideration.",
+      "explanation": "Apply selected commit changes onto the current branch. Dependencies of the selected change may need separate consideration. In the scenario, check dependencies and apply only the verified fix. The alternative \u2018Assume every isolated commit is self-contained\u2019 does not address the stated evidence or constraint.",
+      "id": "git-12-scenario",
+      "title": "Cherry-pick \u00b7 scenario",
+      "type": "scenario",
+      "question": "A hotfix is needed without unrelated feature work. What is the best next step?",
+      "options": [
+        "Check dependencies and apply only the verified fix",
+        "Assume every isolated commit is self-contained",
+        "Cherry-pick always imports the entire source branch",
+        "A picked commit can never depend on earlier commits"
+      ],
+      "correct": [
+        0
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "git",
+      "objective": "Explain cherry-pick and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Cherry-pick \u2014 primary reference",
+          "url": "https://git-scm.com/docs/git-cherry-pick"
+        }
+      ],
+      "tags": [
+        "git",
+        "cherry-pick"
+      ],
+      "takeaway": "Dependencies of the selected change may need separate consideration.",
+      "explanation": "Apply selected commit changes onto the current branch. Dependencies of the selected change may need separate consideration. In the scenario, check dependencies and apply only the verified fix. The alternative \u2018Assume every isolated commit is self-contained\u2019 does not address the stated evidence or constraint.",
+      "id": "git-12-principles",
+      "title": "Cherry-pick \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing cherry-pick, which TWO statements are sound operational principles?",
+      "options": [
+        "Dependencies of the selected change may need separate consideration",
+        "Cherry-pick always imports the entire source branch",
+        "A picked commit can never depend on earlier commits",
+        "Apply selected commit changes onto the current branch"
+      ],
+      "correct": [
+        0,
+        3
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "git",
+      "objective": "Explain cherry-pick and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Cherry-pick \u2014 primary reference",
+          "url": "https://git-scm.com/docs/git-cherry-pick"
+        }
+      ],
+      "tags": [
+        "git",
+        "cherry-pick"
+      ],
+      "takeaway": "Dependencies of the selected change may need separate consideration.",
+      "explanation": "Apply selected commit changes onto the current branch. Dependencies of the selected change may need separate consideration. In the scenario, check dependencies and apply only the verified fix. The alternative \u2018Assume every isolated commit is self-contained\u2019 does not address the stated evidence or constraint.",
+      "id": "git-12-interview",
+      "title": "Cherry-pick \u00b7 interview",
+      "type": "interview",
+      "question": "Explain a safe hotfix cherry-pick workflow.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "Apply selected commit changes onto the current branch. Dependencies of the selected change may need separate consideration. A practical response is: Check dependencies and apply only the verified fix. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that cherry-pick always imports the entire source branch.",
+      "answerChecklist": [
+        "Apply selected commit changes onto the current branch",
+        "Dependencies of the selected change may need separate consideration",
+        "Check dependencies and apply only the verified fix",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "A hotfix is needed without unrelated feature work. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "git",
+      "objective": "Explain conflict resolution and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Conflict resolution \u2014 primary reference",
+          "url": "https://git-scm.com/docs/git-merge"
+        }
+      ],
+      "tags": [
+        "git",
+        "conflict-resolution"
+      ],
+      "takeaway": "Tests and domain understanding matter beyond removing markers.",
+      "explanation": "The intended combined behavior of both changes. Tests and domain understanding matter beyond removing markers. In the scenario, understand both changes and test the merged behavior. The alternative \u2018Keep whichever side has fewer lines\u2019 does not address the stated evidence or constraint.",
+      "id": "git-13-concept",
+      "title": "Conflict resolution \u00b7 concept",
+      "type": "concept",
+      "question": "What should guide resolving a merge conflict?",
+      "options": [
+        "The intended combined behavior of both changes",
+        "Choosing one side everywhere always preserves intent",
+        "Removing conflict markers proves the merge is correct",
+        "Keep whichever side has fewer lines"
+      ],
+      "correct": [
+        0
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "git",
+      "objective": "Explain conflict resolution and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Conflict resolution \u2014 primary reference",
+          "url": "https://git-scm.com/docs/git-merge"
+        }
+      ],
+      "tags": [
+        "git",
+        "conflict-resolution"
+      ],
+      "takeaway": "Tests and domain understanding matter beyond removing markers.",
+      "explanation": "The intended combined behavior of both changes. Tests and domain understanding matter beyond removing markers. In the scenario, understand both changes and test the merged behavior. The alternative \u2018Keep whichever side has fewer lines\u2019 does not address the stated evidence or constraint.",
+      "id": "git-13-scenario",
+      "title": "Conflict resolution \u00b7 scenario",
+      "type": "scenario",
+      "question": "A conflict affects a security check modified on both branches. What is the best next step?",
+      "options": [
+        "Keep whichever side has fewer lines",
+        "Choosing one side everywhere always preserves intent",
+        "Removing conflict markers proves the merge is correct",
+        "Understand both changes and test the merged behavior"
+      ],
+      "correct": [
+        3
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "git",
+      "objective": "Explain conflict resolution and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Conflict resolution \u2014 primary reference",
+          "url": "https://git-scm.com/docs/git-merge"
+        }
+      ],
+      "tags": [
+        "git",
+        "conflict-resolution"
+      ],
+      "takeaway": "Tests and domain understanding matter beyond removing markers.",
+      "explanation": "The intended combined behavior of both changes. Tests and domain understanding matter beyond removing markers. In the scenario, understand both changes and test the merged behavior. The alternative \u2018Keep whichever side has fewer lines\u2019 does not address the stated evidence or constraint.",
+      "id": "git-13-principles",
+      "title": "Conflict resolution \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing conflict resolution, which TWO statements are sound operational principles?",
+      "options": [
+        "Choosing one side everywhere always preserves intent",
+        "Removing conflict markers proves the merge is correct",
+        "The intended combined behavior of both changes",
+        "Tests and domain understanding matter beyond removing markers"
+      ],
+      "correct": [
+        2,
+        3
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "git",
+      "objective": "Explain conflict resolution and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Conflict resolution \u2014 primary reference",
+          "url": "https://git-scm.com/docs/git-merge"
+        }
+      ],
+      "tags": [
+        "git",
+        "conflict-resolution"
+      ],
+      "takeaway": "Tests and domain understanding matter beyond removing markers.",
+      "explanation": "The intended combined behavior of both changes. Tests and domain understanding matter beyond removing markers. In the scenario, understand both changes and test the merged behavior. The alternative \u2018Keep whichever side has fewer lines\u2019 does not address the stated evidence or constraint.",
+      "id": "git-13-interview",
+      "title": "Conflict resolution \u00b7 interview",
+      "type": "interview",
+      "question": "Explain how you resolve a substantive merge conflict.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "The intended combined behavior of both changes. Tests and domain understanding matter beyond removing markers. A practical response is: Understand both changes and test the merged behavior. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that choosing one side everywhere always preserves intent.",
+      "answerChecklist": [
+        "The intended combined behavior of both changes",
+        "Tests and domain understanding matter beyond removing markers",
+        "Understand both changes and test the merged behavior",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "A conflict affects a security check modified on both branches. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "git",
+      "objective": "Explain reflog and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Reflog \u2014 primary reference",
+          "url": "https://git-scm.com/docs/git-reflog"
+        }
+      ],
+      "tags": [
+        "git",
+        "reflog"
+      ],
+      "takeaway": "Reflog availability is local and subject to retention.",
+      "explanation": "Recent local reference movements and otherwise hard-to-find commits. Reflog availability is local and subject to retention. In the scenario, inspect the local reflog and recover the intended commit reference. The alternative \u2018Assume the commit is immediately unrecoverable\u2019 does not address the stated evidence or constraint.",
+      "id": "git-14-concept",
+      "title": "Reflog \u00b7 concept",
+      "type": "concept",
+      "question": "What can a local reflog help recover?",
+      "options": [
+        "Reflog is a permanent shared backup of all repository data",
+        "Every remote automatically receives your local reflog",
+        "Assume the commit is immediately unrecoverable",
+        "Recent local reference movements and otherwise hard-to-find commits"
+      ],
+      "correct": [
+        3
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "git",
+      "objective": "Explain reflog and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Reflog \u2014 primary reference",
+          "url": "https://git-scm.com/docs/git-reflog"
+        }
+      ],
+      "tags": [
+        "git",
+        "reflog"
+      ],
+      "takeaway": "Reflog availability is local and subject to retention.",
+      "explanation": "Recent local reference movements and otherwise hard-to-find commits. Reflog availability is local and subject to retention. In the scenario, inspect the local reflog and recover the intended commit reference. The alternative \u2018Assume the commit is immediately unrecoverable\u2019 does not address the stated evidence or constraint.",
+      "id": "git-14-scenario",
+      "title": "Reflog \u00b7 scenario",
+      "type": "scenario",
+      "question": "A branch pointer was accidentally moved away from recent work. What is the best next step?",
+      "options": [
+        "Reflog is a permanent shared backup of all repository data",
+        "Every remote automatically receives your local reflog",
+        "Inspect the local reflog and recover the intended commit reference",
+        "Assume the commit is immediately unrecoverable"
+      ],
+      "correct": [
+        2
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "git",
+      "objective": "Explain reflog and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Reflog \u2014 primary reference",
+          "url": "https://git-scm.com/docs/git-reflog"
+        }
+      ],
+      "tags": [
+        "git",
+        "reflog"
+      ],
+      "takeaway": "Reflog availability is local and subject to retention.",
+      "explanation": "Recent local reference movements and otherwise hard-to-find commits. Reflog availability is local and subject to retention. In the scenario, inspect the local reflog and recover the intended commit reference. The alternative \u2018Assume the commit is immediately unrecoverable\u2019 does not address the stated evidence or constraint.",
+      "id": "git-14-principles",
+      "title": "Reflog \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing reflog, which TWO statements are sound operational principles?",
+      "options": [
+        "Every remote automatically receives your local reflog",
+        "Recent local reference movements and otherwise hard-to-find commits",
+        "Reflog availability is local and subject to retention",
+        "Reflog is a permanent shared backup of all repository data"
+      ],
+      "correct": [
+        1,
+        2
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "git",
+      "objective": "Explain reflog and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Reflog \u2014 primary reference",
+          "url": "https://git-scm.com/docs/git-reflog"
+        }
+      ],
+      "tags": [
+        "git",
+        "reflog"
+      ],
+      "takeaway": "Reflog availability is local and subject to retention.",
+      "explanation": "Recent local reference movements and otherwise hard-to-find commits. Reflog availability is local and subject to retention. In the scenario, inspect the local reflog and recover the intended commit reference. The alternative \u2018Assume the commit is immediately unrecoverable\u2019 does not address the stated evidence or constraint.",
+      "id": "git-14-interview",
+      "title": "Reflog \u00b7 interview",
+      "type": "interview",
+      "question": "Explain reflog recovery and its limitations.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "Recent local reference movements and otherwise hard-to-find commits. Reflog availability is local and subject to retention. A practical response is: Inspect the local reflog and recover the intended commit reference. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that reflog is a permanent shared backup of all repository data.",
+      "answerChecklist": [
+        "Recent local reference movements and otherwise hard-to-find commits",
+        "Reflog availability is local and subject to retention",
+        "Inspect the local reflog and recover the intended commit reference",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "A branch pointer was accidentally moved away from recent work. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "git",
+      "objective": "Explain bisect and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Bisect \u2014 primary reference",
+          "url": "https://git-scm.com/docs/git-bisect"
+        }
+      ],
+      "tags": [
+        "git",
+        "bisect"
+      ],
+      "takeaway": "A reliable reproducible test is essential.",
+      "explanation": "A commit associated with a change between known good and bad revisions. A reliable reproducible test is essential. In the scenario, define a reliable test and narrow the introducing revision. The alternative \u2018Guess from commit-message wording alone\u2019 does not address the stated evidence or constraint.",
+      "id": "git-15-concept",
+      "title": "Bisect \u00b7 concept",
+      "type": "concept",
+      "question": "What does git bisect help identify?",
+      "options": [
+        "Bisect works without any known behavior distinction",
+        "Guess from commit-message wording alone",
+        "A commit associated with a change between known good and bad revisions",
+        "Bisect proves a single commit is the complete root cause in every case"
+      ],
+      "correct": [
+        2
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "git",
+      "objective": "Explain bisect and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Bisect \u2014 primary reference",
+          "url": "https://git-scm.com/docs/git-bisect"
+        }
+      ],
+      "tags": [
+        "git",
+        "bisect"
+      ],
+      "takeaway": "A reliable reproducible test is essential.",
+      "explanation": "A commit associated with a change between known good and bad revisions. A reliable reproducible test is essential. In the scenario, define a reliable test and narrow the introducing revision. The alternative \u2018Guess from commit-message wording alone\u2019 does not address the stated evidence or constraint.",
+      "id": "git-15-scenario",
+      "title": "Bisect \u00b7 scenario",
+      "type": "scenario",
+      "question": "A regression appeared somewhere in many recent commits. What is the best next step?",
+      "options": [
+        "Bisect works without any known behavior distinction",
+        "Define a reliable test and narrow the introducing revision",
+        "Guess from commit-message wording alone",
+        "Bisect proves a single commit is the complete root cause in every case"
+      ],
+      "correct": [
+        1
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "git",
+      "objective": "Explain bisect and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Bisect \u2014 primary reference",
+          "url": "https://git-scm.com/docs/git-bisect"
+        }
+      ],
+      "tags": [
+        "git",
+        "bisect"
+      ],
+      "takeaway": "A reliable reproducible test is essential.",
+      "explanation": "A commit associated with a change between known good and bad revisions. A reliable reproducible test is essential. In the scenario, define a reliable test and narrow the introducing revision. The alternative \u2018Guess from commit-message wording alone\u2019 does not address the stated evidence or constraint.",
+      "id": "git-15-principles",
+      "title": "Bisect \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing bisect, which TWO statements are sound operational principles?",
+      "options": [
+        "A commit associated with a change between known good and bad revisions",
+        "A reliable reproducible test is essential",
+        "Bisect proves a single commit is the complete root cause in every case",
+        "Bisect works without any known behavior distinction"
+      ],
+      "correct": [
+        0,
+        1
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "git",
+      "objective": "Explain bisect and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Bisect \u2014 primary reference",
+          "url": "https://git-scm.com/docs/git-bisect"
+        }
+      ],
+      "tags": [
+        "git",
+        "bisect"
+      ],
+      "takeaway": "A reliable reproducible test is essential.",
+      "explanation": "A commit associated with a change between known good and bad revisions. A reliable reproducible test is essential. In the scenario, define a reliable test and narrow the introducing revision. The alternative \u2018Guess from commit-message wording alone\u2019 does not address the stated evidence or constraint.",
+      "id": "git-15-interview",
+      "title": "Bisect \u00b7 interview",
+      "type": "interview",
+      "question": "Explain a practical regression bisect including flaky tests.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "A commit associated with a change between known good and bad revisions. A reliable reproducible test is essential. A practical response is: Define a reliable test and narrow the introducing revision. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that bisect proves a single commit is the complete root cause in every case.",
+      "answerChecklist": [
+        "A commit associated with a change between known good and bad revisions",
+        "A reliable reproducible test is essential",
+        "Define a reliable test and narrow the introducing revision",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "A regression appeared somewhere in many recent commits. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "git",
+      "objective": "Explain force with lease and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Force with lease \u2014 primary reference",
+          "url": "https://git-scm.com/docs/git-push"
+        }
+      ],
+      "tags": [
+        "git",
+        "force-with-lease"
+      ],
+      "takeaway": "It still rewrites history and requires deliberate coordination.",
+      "explanation": "Reject a rewrite when the remote reference differs from the expected value. It still rewrites history and requires deliberate coordination. In the scenario, check the expected remote state and use a controlled lease. The alternative \u2018Use unconditional force to avoid checking the remote\u2019 does not address the stated evidence or constraint.",
+      "id": "git-16-concept",
+      "title": "Force with lease \u00b7 concept",
+      "type": "concept",
+      "question": "What protection does force-with-lease provide?",
+      "options": [
+        "Use unconditional force to avoid checking the remote",
+        "Reject a rewrite when the remote reference differs from the expected value",
+        "It guarantees no collaborator can ever be affected",
+        "It is equivalent to a normal non-rewriting push"
+      ],
+      "correct": [
+        1
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "git",
+      "objective": "Explain force with lease and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Force with lease \u2014 primary reference",
+          "url": "https://git-scm.com/docs/git-push"
+        }
+      ],
+      "tags": [
+        "git",
+        "force-with-lease"
+      ],
+      "takeaway": "It still rewrites history and requires deliberate coordination.",
+      "explanation": "Reject a rewrite when the remote reference differs from the expected value. It still rewrites history and requires deliberate coordination. In the scenario, check the expected remote state and use a controlled lease. The alternative \u2018Use unconditional force to avoid checking the remote\u2019 does not address the stated evidence or constraint.",
+      "id": "git-16-scenario",
+      "title": "Force with lease \u00b7 scenario",
+      "type": "scenario",
+      "question": "A rewritten branch must be published without overwriting unseen remote work. What is the best next step?",
+      "options": [
+        "Check the expected remote state and use a controlled lease",
+        "Use unconditional force to avoid checking the remote",
+        "It guarantees no collaborator can ever be affected",
+        "It is equivalent to a normal non-rewriting push"
+      ],
+      "correct": [
+        0
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "git",
+      "objective": "Explain force with lease and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Force with lease \u2014 primary reference",
+          "url": "https://git-scm.com/docs/git-push"
+        }
+      ],
+      "tags": [
+        "git",
+        "force-with-lease"
+      ],
+      "takeaway": "It still rewrites history and requires deliberate coordination.",
+      "explanation": "Reject a rewrite when the remote reference differs from the expected value. It still rewrites history and requires deliberate coordination. In the scenario, check the expected remote state and use a controlled lease. The alternative \u2018Use unconditional force to avoid checking the remote\u2019 does not address the stated evidence or constraint.",
+      "id": "git-16-principles",
+      "title": "Force with lease \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing force with lease, which TWO statements are sound operational principles?",
+      "options": [
+        "It still rewrites history and requires deliberate coordination",
+        "It guarantees no collaborator can ever be affected",
+        "It is equivalent to a normal non-rewriting push",
+        "Reject a rewrite when the remote reference differs from the expected value"
+      ],
+      "correct": [
+        0,
+        3
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "git",
+      "objective": "Explain force with lease and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Force with lease \u2014 primary reference",
+          "url": "https://git-scm.com/docs/git-push"
+        }
+      ],
+      "tags": [
+        "git",
+        "force-with-lease"
+      ],
+      "takeaway": "It still rewrites history and requires deliberate coordination.",
+      "explanation": "Reject a rewrite when the remote reference differs from the expected value. It still rewrites history and requires deliberate coordination. In the scenario, check the expected remote state and use a controlled lease. The alternative \u2018Use unconditional force to avoid checking the remote\u2019 does not address the stated evidence or constraint.",
+      "id": "git-16-interview",
+      "title": "Force with lease \u00b7 interview",
+      "type": "interview",
+      "question": "Explain the protection and limits of force-with-lease.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "Reject a rewrite when the remote reference differs from the expected value. It still rewrites history and requires deliberate coordination. A practical response is: Check the expected remote state and use a controlled lease. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that it guarantees no collaborator can ever be affected.",
+      "answerChecklist": [
+        "Reject a rewrite when the remote reference differs from the expected value",
+        "It still rewrites history and requires deliberate coordination",
+        "Check the expected remote state and use a controlled lease",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "A rewritten branch must be published without overwriting unseen remote work. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "git",
+      "objective": "Explain continuous integration and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Continuous integration \u2014 primary reference",
+          "url": "https://docs.github.com/en/actions"
+        }
+      ],
+      "tags": [
+        "git",
+        "continuous-integration"
+      ],
+      "takeaway": "Checks should exercise meaningful behavior not just syntax.",
+      "explanation": "Detect integration problems early through repeatable validation. Checks should exercise meaningful behavior not just syntax. In the scenario, add a meaningful behavioral regression check. The alternative \u2018Add more formatting checks instead of testing the broken workflow\u2019 does not address the stated evidence or constraint.",
+      "id": "git-17-concept",
+      "title": "Continuous integration \u00b7 concept",
+      "type": "concept",
+      "question": "What is the purpose of continuous integration checks?",
+      "options": [
+        "Detect integration problems early through repeatable validation",
+        "A green build proves the software has no defects",
+        "CI eliminates the need for code review",
+        "Add more formatting checks instead of testing the broken workflow"
+      ],
+      "correct": [
+        0
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "git",
+      "objective": "Explain continuous integration and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Continuous integration \u2014 primary reference",
+          "url": "https://docs.github.com/en/actions"
+        }
+      ],
+      "tags": [
+        "git",
+        "continuous-integration"
+      ],
+      "takeaway": "Checks should exercise meaningful behavior not just syntax.",
+      "explanation": "Detect integration problems early through repeatable validation. Checks should exercise meaningful behavior not just syntax. In the scenario, add a meaningful behavioral regression check. The alternative \u2018Add more formatting checks instead of testing the broken workflow\u2019 does not address the stated evidence or constraint.",
+      "id": "git-17-scenario",
+      "title": "Continuous integration \u00b7 scenario",
+      "type": "scenario",
+      "question": "A change passes lint but breaks a user workflow. What is the best next step?",
+      "options": [
+        "Add more formatting checks instead of testing the broken workflow",
+        "A green build proves the software has no defects",
+        "CI eliminates the need for code review",
+        "Add a meaningful behavioral regression check"
+      ],
+      "correct": [
+        3
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "git",
+      "objective": "Explain continuous integration and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Continuous integration \u2014 primary reference",
+          "url": "https://docs.github.com/en/actions"
+        }
+      ],
+      "tags": [
+        "git",
+        "continuous-integration"
+      ],
+      "takeaway": "Checks should exercise meaningful behavior not just syntax.",
+      "explanation": "Detect integration problems early through repeatable validation. Checks should exercise meaningful behavior not just syntax. In the scenario, add a meaningful behavioral regression check. The alternative \u2018Add more formatting checks instead of testing the broken workflow\u2019 does not address the stated evidence or constraint.",
+      "id": "git-17-principles",
+      "title": "Continuous integration \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing continuous integration, which TWO statements are sound operational principles?",
+      "options": [
+        "A green build proves the software has no defects",
+        "CI eliminates the need for code review",
+        "Detect integration problems early through repeatable validation",
+        "Checks should exercise meaningful behavior not just syntax"
+      ],
+      "correct": [
+        2,
+        3
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "git",
+      "objective": "Explain continuous integration and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Continuous integration \u2014 primary reference",
+          "url": "https://docs.github.com/en/actions"
+        }
+      ],
+      "tags": [
+        "git",
+        "continuous-integration"
+      ],
+      "takeaway": "Checks should exercise meaningful behavior not just syntax.",
+      "explanation": "Detect integration problems early through repeatable validation. Checks should exercise meaningful behavior not just syntax. In the scenario, add a meaningful behavioral regression check. The alternative \u2018Add more formatting checks instead of testing the broken workflow\u2019 does not address the stated evidence or constraint.",
+      "id": "git-17-interview",
+      "title": "Continuous integration \u00b7 interview",
+      "type": "interview",
+      "question": "Explain a useful CI validation hierarchy.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "Detect integration problems early through repeatable validation. Checks should exercise meaningful behavior not just syntax. A practical response is: Add a meaningful behavioral regression check. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that a green build proves the software has no defects.",
+      "answerChecklist": [
+        "Detect integration problems early through repeatable validation",
+        "Checks should exercise meaningful behavior not just syntax",
+        "Add a meaningful behavioral regression check",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "A change passes lint but breaks a user workflow. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "git",
+      "objective": "Explain artifacts and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Artifacts \u2014 primary reference",
+          "url": "https://docs.github.com/en/actions"
+        }
+      ],
+      "tags": [
+        "git",
+        "artifacts"
+      ],
+      "takeaway": "Artifact identity and provenance should be recorded.",
+      "explanation": "Reduce differences caused by rebuilding during promotion. Artifact identity and provenance should be recorded. In the scenario, promote the verified immutable artifact with traceable metadata. The alternative \u2018Rebuild again until production happens to match\u2019 does not address the stated evidence or constraint.",
+      "id": "git-18-concept",
+      "title": "Artifacts \u00b7 concept",
+      "type": "concept",
+      "question": "Why promote the same built artifact across environments?",
+      "options": [
+        "Rebuilding the same source always produces identical bytes",
+        "A filename alone proves artifact integrity",
+        "Rebuild again until production happens to match",
+        "Reduce differences caused by rebuilding during promotion"
+      ],
+      "correct": [
+        3
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "git",
+      "objective": "Explain artifacts and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Artifacts \u2014 primary reference",
+          "url": "https://docs.github.com/en/actions"
+        }
+      ],
+      "tags": [
+        "git",
+        "artifacts"
+      ],
+      "takeaway": "Artifact identity and provenance should be recorded.",
+      "explanation": "Reduce differences caused by rebuilding during promotion. Artifact identity and provenance should be recorded. In the scenario, promote the verified immutable artifact with traceable metadata. The alternative \u2018Rebuild again until production happens to match\u2019 does not address the stated evidence or constraint.",
+      "id": "git-18-scenario",
+      "title": "Artifacts \u00b7 scenario",
+      "type": "scenario",
+      "question": "Production differs from staging after separate rebuilds. What is the best next step?",
+      "options": [
+        "Rebuilding the same source always produces identical bytes",
+        "A filename alone proves artifact integrity",
+        "Promote the verified immutable artifact with traceable metadata",
+        "Rebuild again until production happens to match"
+      ],
+      "correct": [
+        2
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "git",
+      "objective": "Explain artifacts and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Artifacts \u2014 primary reference",
+          "url": "https://docs.github.com/en/actions"
+        }
+      ],
+      "tags": [
+        "git",
+        "artifacts"
+      ],
+      "takeaway": "Artifact identity and provenance should be recorded.",
+      "explanation": "Reduce differences caused by rebuilding during promotion. Artifact identity and provenance should be recorded. In the scenario, promote the verified immutable artifact with traceable metadata. The alternative \u2018Rebuild again until production happens to match\u2019 does not address the stated evidence or constraint.",
+      "id": "git-18-principles",
+      "title": "Artifacts \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing artifacts, which TWO statements are sound operational principles?",
+      "options": [
+        "A filename alone proves artifact integrity",
+        "Reduce differences caused by rebuilding during promotion",
+        "Artifact identity and provenance should be recorded",
+        "Rebuilding the same source always produces identical bytes"
+      ],
+      "correct": [
+        1,
+        2
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "git",
+      "objective": "Explain artifacts and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Artifacts \u2014 primary reference",
+          "url": "https://docs.github.com/en/actions"
+        }
+      ],
+      "tags": [
+        "git",
+        "artifacts"
+      ],
+      "takeaway": "Artifact identity and provenance should be recorded.",
+      "explanation": "Reduce differences caused by rebuilding during promotion. Artifact identity and provenance should be recorded. In the scenario, promote the verified immutable artifact with traceable metadata. The alternative \u2018Rebuild again until production happens to match\u2019 does not address the stated evidence or constraint.",
+      "id": "git-18-interview",
+      "title": "Artifacts \u00b7 interview",
+      "type": "interview",
+      "question": "Explain build-once artifact promotion.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "Reduce differences caused by rebuilding during promotion. Artifact identity and provenance should be recorded. A practical response is: Promote the verified immutable artifact with traceable metadata. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that rebuilding the same source always produces identical bytes.",
+      "answerChecklist": [
+        "Reduce differences caused by rebuilding during promotion",
+        "Artifact identity and provenance should be recorded",
+        "Promote the verified immutable artifact with traceable metadata",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "Production differs from staging after separate rebuilds. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "git",
+      "objective": "Explain ci secrets and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "CI secrets \u2014 primary reference",
+          "url": "https://docs.github.com/en/actions"
+        }
+      ],
+      "tags": [
+        "git",
+        "ci-secrets"
+      ],
+      "takeaway": "Secret access should follow the trust level of the workflow trigger.",
+      "explanation": "It can execute arbitrary code in the runner context. Secret access should follow the trust level of the workflow trigger. In the scenario, separate untrusted validation from privileged deployment. The alternative \u2018Expose credentials because the workflow hides them in console output\u2019 does not address the stated evidence or constraint.",
+      "id": "git-19-concept",
+      "title": "CI secrets \u00b7 concept",
+      "type": "concept",
+      "question": "Why should untrusted pull-request code have restricted credentials?",
+      "options": [
+        "Masking a secret in logs prevents every exfiltration method",
+        "Expose credentials because the workflow hides them in console output",
+        "It can execute arbitrary code in the runner context",
+        "Any pull request from a public fork is inherently trusted"
+      ],
+      "correct": [
+        2
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "git",
+      "objective": "Explain ci secrets and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "CI secrets \u2014 primary reference",
+          "url": "https://docs.github.com/en/actions"
+        }
+      ],
+      "tags": [
+        "git",
+        "ci-secrets"
+      ],
+      "takeaway": "Secret access should follow the trust level of the workflow trigger.",
+      "explanation": "It can execute arbitrary code in the runner context. Secret access should follow the trust level of the workflow trigger. In the scenario, separate untrusted validation from privileged deployment. The alternative \u2018Expose credentials because the workflow hides them in console output\u2019 does not address the stated evidence or constraint.",
+      "id": "git-19-scenario",
+      "title": "CI secrets \u00b7 scenario",
+      "type": "scenario",
+      "question": "A workflow runs contributor code with deployment credentials. What is the best next step?",
+      "options": [
+        "Masking a secret in logs prevents every exfiltration method",
+        "Separate untrusted validation from privileged deployment",
+        "Expose credentials because the workflow hides them in console output",
+        "Any pull request from a public fork is inherently trusted"
+      ],
+      "correct": [
+        1
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "git",
+      "objective": "Explain ci secrets and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "CI secrets \u2014 primary reference",
+          "url": "https://docs.github.com/en/actions"
+        }
+      ],
+      "tags": [
+        "git",
+        "ci-secrets"
+      ],
+      "takeaway": "Secret access should follow the trust level of the workflow trigger.",
+      "explanation": "It can execute arbitrary code in the runner context. Secret access should follow the trust level of the workflow trigger. In the scenario, separate untrusted validation from privileged deployment. The alternative \u2018Expose credentials because the workflow hides them in console output\u2019 does not address the stated evidence or constraint.",
+      "id": "git-19-principles",
+      "title": "CI secrets \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing ci secrets, which TWO statements are sound operational principles?",
+      "options": [
+        "It can execute arbitrary code in the runner context",
+        "Secret access should follow the trust level of the workflow trigger",
+        "Any pull request from a public fork is inherently trusted",
+        "Masking a secret in logs prevents every exfiltration method"
+      ],
+      "correct": [
+        0,
+        1
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "git",
+      "objective": "Explain ci secrets and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "CI secrets \u2014 primary reference",
+          "url": "https://docs.github.com/en/actions"
+        }
+      ],
+      "tags": [
+        "git",
+        "ci-secrets"
+      ],
+      "takeaway": "Secret access should follow the trust level of the workflow trigger.",
+      "explanation": "It can execute arbitrary code in the runner context. Secret access should follow the trust level of the workflow trigger. In the scenario, separate untrusted validation from privileged deployment. The alternative \u2018Expose credentials because the workflow hides them in console output\u2019 does not address the stated evidence or constraint.",
+      "id": "git-19-interview",
+      "title": "CI secrets \u00b7 interview",
+      "type": "interview",
+      "question": "Explain trust boundaries for CI pipelines.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "It can execute arbitrary code in the runner context. Secret access should follow the trust level of the workflow trigger. A practical response is: Separate untrusted validation from privileged deployment. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that any pull request from a public fork is inherently trusted.",
+      "answerChecklist": [
+        "It can execute arbitrary code in the runner context",
+        "Secret access should follow the trust level of the workflow trigger",
+        "Separate untrusted validation from privileged deployment",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "A workflow runs contributor code with deployment credentials. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "git",
+      "objective": "Explain dependency pinning and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Dependency pinning \u2014 primary reference",
+          "url": "https://docs.github.com/en/actions"
+        }
+      ],
+      "tags": [
+        "git",
+        "dependency-pinning"
+      ],
+      "takeaway": "Pinned versions still need a deliberate update process.",
+      "explanation": "Reduce surprise changes in third-party execution inputs. Pinned versions still need a deliberate update process. In the scenario, review and pin the intended immutable revision then manage updates. The alternative \u2018Trust a mutable tag indefinitely without review\u2019 does not address the stated evidence or constraint.",
+      "id": "git-20-concept",
+      "title": "Dependency pinning \u00b7 concept",
+      "type": "concept",
+      "question": "Why pin CI actions or dependencies to reviewed immutable versions?",
+      "options": [
+        "Trust a mutable tag indefinitely without review",
+        "Reduce surprise changes in third-party execution inputs",
+        "Pinning guarantees absence of vulnerabilities forever",
+        "Mutable version labels can never change their contents"
+      ],
+      "correct": [
+        1
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "git",
+      "objective": "Explain dependency pinning and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Dependency pinning \u2014 primary reference",
+          "url": "https://docs.github.com/en/actions"
+        }
+      ],
+      "tags": [
+        "git",
+        "dependency-pinning"
+      ],
+      "takeaway": "Pinned versions still need a deliberate update process.",
+      "explanation": "Reduce surprise changes in third-party execution inputs. Pinned versions still need a deliberate update process. In the scenario, review and pin the intended immutable revision then manage updates. The alternative \u2018Trust a mutable tag indefinitely without review\u2019 does not address the stated evidence or constraint.",
+      "id": "git-20-scenario",
+      "title": "Dependency pinning \u00b7 scenario",
+      "type": "scenario",
+      "question": "A third-party action changes behavior unexpectedly. What is the best next step?",
+      "options": [
+        "Review and pin the intended immutable revision then manage updates",
+        "Trust a mutable tag indefinitely without review",
+        "Pinning guarantees absence of vulnerabilities forever",
+        "Mutable version labels can never change their contents"
+      ],
+      "correct": [
+        0
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "git",
+      "objective": "Explain dependency pinning and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Dependency pinning \u2014 primary reference",
+          "url": "https://docs.github.com/en/actions"
+        }
+      ],
+      "tags": [
+        "git",
+        "dependency-pinning"
+      ],
+      "takeaway": "Pinned versions still need a deliberate update process.",
+      "explanation": "Reduce surprise changes in third-party execution inputs. Pinned versions still need a deliberate update process. In the scenario, review and pin the intended immutable revision then manage updates. The alternative \u2018Trust a mutable tag indefinitely without review\u2019 does not address the stated evidence or constraint.",
+      "id": "git-20-principles",
+      "title": "Dependency pinning \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing dependency pinning, which TWO statements are sound operational principles?",
+      "options": [
+        "Pinned versions still need a deliberate update process",
+        "Pinning guarantees absence of vulnerabilities forever",
+        "Mutable version labels can never change their contents",
+        "Reduce surprise changes in third-party execution inputs"
+      ],
+      "correct": [
+        0,
+        3
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "git",
+      "objective": "Explain dependency pinning and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Dependency pinning \u2014 primary reference",
+          "url": "https://docs.github.com/en/actions"
+        }
+      ],
+      "tags": [
+        "git",
+        "dependency-pinning"
+      ],
+      "takeaway": "Pinned versions still need a deliberate update process.",
+      "explanation": "Reduce surprise changes in third-party execution inputs. Pinned versions still need a deliberate update process. In the scenario, review and pin the intended immutable revision then manage updates. The alternative \u2018Trust a mutable tag indefinitely without review\u2019 does not address the stated evidence or constraint.",
+      "id": "git-20-interview",
+      "title": "Dependency pinning \u00b7 interview",
+      "type": "interview",
+      "question": "Explain reproducible and maintainable CI dependency management.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "Reduce surprise changes in third-party execution inputs. Pinned versions still need a deliberate update process. A practical response is: Review and pin the intended immutable revision then manage updates. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that pinning guarantees absence of vulnerabilities forever.",
+      "answerChecklist": [
+        "Reduce surprise changes in third-party execution inputs",
+        "Pinned versions still need a deliberate update process",
+        "Review and pin the intended immutable revision then manage updates",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "A third-party action changes behavior unexpectedly. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "git",
+      "objective": "Explain caching and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Caching \u2014 primary reference",
+          "url": "https://docs.github.com/en/actions"
+        }
+      ],
+      "tags": [
+        "git",
+        "caching"
+      ],
+      "takeaway": "Cache keys should reflect relevant inputs and trust boundaries.",
+      "explanation": "Reusing stale or incompatible dependencies or outputs. Cache keys should reflect relevant inputs and trust boundaries. In the scenario, inspect cached assumptions and test clean reproducibility. The alternative \u2018Treat cache contents as authoritative source code\u2019 does not address the stated evidence or constraint.",
+      "id": "git-21-concept",
+      "title": "Caching \u00b7 concept",
+      "type": "concept",
+      "question": "What is a risk of an overly broad CI cache key?",
+      "options": [
+        "Reusing stale or incompatible dependencies or outputs",
+        "A cache hit proves the build output is correct",
+        "All branches should always share writable caches without restriction",
+        "Treat cache contents as authoritative source code"
+      ],
+      "correct": [
+        0
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "git",
+      "objective": "Explain caching and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Caching \u2014 primary reference",
+          "url": "https://docs.github.com/en/actions"
+        }
+      ],
+      "tags": [
+        "git",
+        "caching"
+      ],
+      "takeaway": "Cache keys should reflect relevant inputs and trust boundaries.",
+      "explanation": "Reusing stale or incompatible dependencies or outputs. Cache keys should reflect relevant inputs and trust boundaries. In the scenario, inspect cached assumptions and test clean reproducibility. The alternative \u2018Treat cache contents as authoritative source code\u2019 does not address the stated evidence or constraint.",
+      "id": "git-21-scenario",
+      "title": "Caching \u00b7 scenario",
+      "type": "scenario",
+      "question": "A pipeline passes with cache but fails on a clean runner. What is the best next step?",
+      "options": [
+        "Treat cache contents as authoritative source code",
+        "A cache hit proves the build output is correct",
+        "All branches should always share writable caches without restriction",
+        "Inspect cached assumptions and test clean reproducibility"
+      ],
+      "correct": [
+        3
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "git",
+      "objective": "Explain caching and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Caching \u2014 primary reference",
+          "url": "https://docs.github.com/en/actions"
+        }
+      ],
+      "tags": [
+        "git",
+        "caching"
+      ],
+      "takeaway": "Cache keys should reflect relevant inputs and trust boundaries.",
+      "explanation": "Reusing stale or incompatible dependencies or outputs. Cache keys should reflect relevant inputs and trust boundaries. In the scenario, inspect cached assumptions and test clean reproducibility. The alternative \u2018Treat cache contents as authoritative source code\u2019 does not address the stated evidence or constraint.",
+      "id": "git-21-principles",
+      "title": "Caching \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing caching, which TWO statements are sound operational principles?",
+      "options": [
+        "A cache hit proves the build output is correct",
+        "All branches should always share writable caches without restriction",
+        "Reusing stale or incompatible dependencies or outputs",
+        "Cache keys should reflect relevant inputs and trust boundaries"
+      ],
+      "correct": [
+        2,
+        3
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "git",
+      "objective": "Explain caching and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Caching \u2014 primary reference",
+          "url": "https://docs.github.com/en/actions"
+        }
+      ],
+      "tags": [
+        "git",
+        "caching"
+      ],
+      "takeaway": "Cache keys should reflect relevant inputs and trust boundaries.",
+      "explanation": "Reusing stale or incompatible dependencies or outputs. Cache keys should reflect relevant inputs and trust boundaries. In the scenario, inspect cached assumptions and test clean reproducibility. The alternative \u2018Treat cache contents as authoritative source code\u2019 does not address the stated evidence or constraint.",
+      "id": "git-21-interview",
+      "title": "Caching \u00b7 interview",
+      "type": "interview",
+      "question": "Explain safe CI cache design.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "Reusing stale or incompatible dependencies or outputs. Cache keys should reflect relevant inputs and trust boundaries. A practical response is: Inspect cached assumptions and test clean reproducibility. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that a cache hit proves the build output is correct.",
+      "answerChecklist": [
+        "Reusing stale or incompatible dependencies or outputs",
+        "Cache keys should reflect relevant inputs and trust boundaries",
+        "Inspect cached assumptions and test clean reproducibility",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "A pipeline passes with cache but fails on a clean runner. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "git",
+      "objective": "Explain deployment gates and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Deployment gates \u2014 primary reference",
+          "url": "https://docs.github.com/en/actions"
+        }
+      ],
+      "tags": [
+        "git",
+        "deployment-gates"
+      ],
+      "takeaway": "Gates need clear ownership and useful evidence.",
+      "explanation": "Required validation and authorization conditions are satisfied. Gates need clear ownership and useful evidence. In the scenario, require the relevant verified artifact and checks before release. The alternative \u2018Approve solely because the change is labeled urgent\u2019 does not address the stated evidence or constraint.",
+      "id": "git-22-concept",
+      "title": "Deployment gates \u00b7 concept",
+      "type": "concept",
+      "question": "What should a production deployment gate establish?",
+      "options": [
+        "A manual click alone proves a release is safe",
+        "Every deployment must bypass tests to minimize delay",
+        "Approve solely because the change is labeled urgent",
+        "Required validation and authorization conditions are satisfied"
+      ],
+      "correct": [
+        3
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "git",
+      "objective": "Explain deployment gates and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Deployment gates \u2014 primary reference",
+          "url": "https://docs.github.com/en/actions"
+        }
+      ],
+      "tags": [
+        "git",
+        "deployment-gates"
+      ],
+      "takeaway": "Gates need clear ownership and useful evidence.",
+      "explanation": "Required validation and authorization conditions are satisfied. Gates need clear ownership and useful evidence. In the scenario, require the relevant verified artifact and checks before release. The alternative \u2018Approve solely because the change is labeled urgent\u2019 does not address the stated evidence or constraint.",
+      "id": "git-22-scenario",
+      "title": "Deployment gates \u00b7 scenario",
+      "type": "scenario",
+      "question": "A deployment is awaiting approval but the test artifact is missing. What is the best next step?",
+      "options": [
+        "A manual click alone proves a release is safe",
+        "Every deployment must bypass tests to minimize delay",
+        "Require the relevant verified artifact and checks before release",
+        "Approve solely because the change is labeled urgent"
+      ],
+      "correct": [
+        2
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "git",
+      "objective": "Explain deployment gates and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Deployment gates \u2014 primary reference",
+          "url": "https://docs.github.com/en/actions"
+        }
+      ],
+      "tags": [
+        "git",
+        "deployment-gates"
+      ],
+      "takeaway": "Gates need clear ownership and useful evidence.",
+      "explanation": "Required validation and authorization conditions are satisfied. Gates need clear ownership and useful evidence. In the scenario, require the relevant verified artifact and checks before release. The alternative \u2018Approve solely because the change is labeled urgent\u2019 does not address the stated evidence or constraint.",
+      "id": "git-22-principles",
+      "title": "Deployment gates \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing deployment gates, which TWO statements are sound operational principles?",
+      "options": [
+        "Every deployment must bypass tests to minimize delay",
+        "Required validation and authorization conditions are satisfied",
+        "Gates need clear ownership and useful evidence",
+        "A manual click alone proves a release is safe"
+      ],
+      "correct": [
+        1,
+        2
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "git",
+      "objective": "Explain deployment gates and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Deployment gates \u2014 primary reference",
+          "url": "https://docs.github.com/en/actions"
+        }
+      ],
+      "tags": [
+        "git",
+        "deployment-gates"
+      ],
+      "takeaway": "Gates need clear ownership and useful evidence.",
+      "explanation": "Required validation and authorization conditions are satisfied. Gates need clear ownership and useful evidence. In the scenario, require the relevant verified artifact and checks before release. The alternative \u2018Approve solely because the change is labeled urgent\u2019 does not address the stated evidence or constraint.",
+      "id": "git-22-interview",
+      "title": "Deployment gates \u00b7 interview",
+      "type": "interview",
+      "question": "Explain evidence-based deployment approval.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "Required validation and authorization conditions are satisfied. Gates need clear ownership and useful evidence. A practical response is: Require the relevant verified artifact and checks before release. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that a manual click alone proves a release is safe.",
+      "answerChecklist": [
+        "Required validation and authorization conditions are satisfied",
+        "Gates need clear ownership and useful evidence",
+        "Require the relevant verified artifact and checks before release",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "A deployment is awaiting approval but the test artifact is missing. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "git",
+      "objective": "Explain rollback and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Rollback \u2014 primary reference",
+          "url": "https://sre.google/workbook/canarying-releases/"
+        }
+      ],
+      "tags": [
+        "git",
+        "rollback"
+      ],
+      "takeaway": "Rollback plans must include state and schema compatibility.",
+      "explanation": "Data or external side effects may be incompatible with the old code. Rollback plans must include state and schema compatibility. In the scenario, use a planned compatible migration or verified recovery path. The alternative \u2018Deploy old code blindly against an incompatible schema\u2019 does not address the stated evidence or constraint.",
+      "id": "git-23-concept",
+      "title": "Rollback \u00b7 concept",
+      "type": "concept",
+      "question": "Why is code rollback sometimes insufficient?",
+      "options": [
+        "Every release can be undone by deleting one file",
+        "Deploy old code blindly against an incompatible schema",
+        "Data or external side effects may be incompatible with the old code",
+        "Reverting a commit reverses all database writes automatically"
+      ],
+      "correct": [
+        2
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "git",
+      "objective": "Explain rollback and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Rollback \u2014 primary reference",
+          "url": "https://sre.google/workbook/canarying-releases/"
+        }
+      ],
+      "tags": [
+        "git",
+        "rollback"
+      ],
+      "takeaway": "Rollback plans must include state and schema compatibility.",
+      "explanation": "Data or external side effects may be incompatible with the old code. Rollback plans must include state and schema compatibility. In the scenario, use a planned compatible migration or verified recovery path. The alternative \u2018Deploy old code blindly against an incompatible schema\u2019 does not address the stated evidence or constraint.",
+      "id": "git-23-scenario",
+      "title": "Rollback \u00b7 scenario",
+      "type": "scenario",
+      "question": "A deployment performs an irreversible schema migration. What is the best next step?",
+      "options": [
+        "Every release can be undone by deleting one file",
+        "Use a planned compatible migration or verified recovery path",
+        "Deploy old code blindly against an incompatible schema",
+        "Reverting a commit reverses all database writes automatically"
+      ],
+      "correct": [
+        1
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "git",
+      "objective": "Explain rollback and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Rollback \u2014 primary reference",
+          "url": "https://sre.google/workbook/canarying-releases/"
+        }
+      ],
+      "tags": [
+        "git",
+        "rollback"
+      ],
+      "takeaway": "Rollback plans must include state and schema compatibility.",
+      "explanation": "Data or external side effects may be incompatible with the old code. Rollback plans must include state and schema compatibility. In the scenario, use a planned compatible migration or verified recovery path. The alternative \u2018Deploy old code blindly against an incompatible schema\u2019 does not address the stated evidence or constraint.",
+      "id": "git-23-principles",
+      "title": "Rollback \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing rollback, which TWO statements are sound operational principles?",
+      "options": [
+        "Data or external side effects may be incompatible with the old code",
+        "Rollback plans must include state and schema compatibility",
+        "Reverting a commit reverses all database writes automatically",
+        "Every release can be undone by deleting one file"
+      ],
+      "correct": [
+        0,
+        1
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "git",
+      "objective": "Explain rollback and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Rollback \u2014 primary reference",
+          "url": "https://sre.google/workbook/canarying-releases/"
+        }
+      ],
+      "tags": [
+        "git",
+        "rollback"
+      ],
+      "takeaway": "Rollback plans must include state and schema compatibility.",
+      "explanation": "Data or external side effects may be incompatible with the old code. Rollback plans must include state and schema compatibility. In the scenario, use a planned compatible migration or verified recovery path. The alternative \u2018Deploy old code blindly against an incompatible schema\u2019 does not address the stated evidence or constraint.",
+      "id": "git-23-interview",
+      "title": "Rollback \u00b7 interview",
+      "type": "interview",
+      "question": "Explain release rollback for stateful applications.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "Data or external side effects may be incompatible with the old code. Rollback plans must include state and schema compatibility. A practical response is: Use a planned compatible migration or verified recovery path. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that reverting a commit reverses all database writes automatically.",
+      "answerChecklist": [
+        "Data or external side effects may be incompatible with the old code",
+        "Rollback plans must include state and schema compatibility",
+        "Use a planned compatible migration or verified recovery path",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "A deployment performs an irreversible schema migration. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "git",
+      "objective": "Explain concurrency controls and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Concurrency controls \u2014 primary reference",
+          "url": "https://docs.github.com/en/actions"
+        }
+      ],
+      "tags": [
+        "git",
+        "concurrency-controls"
+      ],
+      "takeaway": "Cancellation policy should consider partially applied operations.",
+      "explanation": "Prevent overlapping changes to the same environment. Cancellation policy should consider partially applied operations. In the scenario, coordinate deployment ownership and inspect any partial changes. The alternative \u2018Allow both to race and keep whichever finishes last\u2019 does not address the stated evidence or constraint.",
+      "id": "git-24-concept",
+      "title": "Concurrency controls \u00b7 concept",
+      "type": "concept",
+      "question": "Why serialize some deployment workflows?",
+      "options": [
+        "Allow both to race and keep whichever finishes last",
+        "Prevent overlapping changes to the same environment",
+        "Parallel deployment always improves safety",
+        "Canceling a workflow automatically undoes its completed changes"
+      ],
+      "correct": [
+        1
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "git",
+      "objective": "Explain concurrency controls and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Concurrency controls \u2014 primary reference",
+          "url": "https://docs.github.com/en/actions"
+        }
+      ],
+      "tags": [
+        "git",
+        "concurrency-controls"
+      ],
+      "takeaway": "Cancellation policy should consider partially applied operations.",
+      "explanation": "Prevent overlapping changes to the same environment. Cancellation policy should consider partially applied operations. In the scenario, coordinate deployment ownership and inspect any partial changes. The alternative \u2018Allow both to race and keep whichever finishes last\u2019 does not address the stated evidence or constraint.",
+      "id": "git-24-scenario",
+      "title": "Concurrency controls \u00b7 scenario",
+      "type": "scenario",
+      "question": "Two releases concurrently modify the same infrastructure. What is the best next step?",
+      "options": [
+        "Coordinate deployment ownership and inspect any partial changes",
+        "Allow both to race and keep whichever finishes last",
+        "Parallel deployment always improves safety",
+        "Canceling a workflow automatically undoes its completed changes"
+      ],
+      "correct": [
+        0
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "git",
+      "objective": "Explain concurrency controls and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Concurrency controls \u2014 primary reference",
+          "url": "https://docs.github.com/en/actions"
+        }
+      ],
+      "tags": [
+        "git",
+        "concurrency-controls"
+      ],
+      "takeaway": "Cancellation policy should consider partially applied operations.",
+      "explanation": "Prevent overlapping changes to the same environment. Cancellation policy should consider partially applied operations. In the scenario, coordinate deployment ownership and inspect any partial changes. The alternative \u2018Allow both to race and keep whichever finishes last\u2019 does not address the stated evidence or constraint.",
+      "id": "git-24-principles",
+      "title": "Concurrency controls \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing concurrency controls, which TWO statements are sound operational principles?",
+      "options": [
+        "Cancellation policy should consider partially applied operations",
+        "Parallel deployment always improves safety",
+        "Canceling a workflow automatically undoes its completed changes",
+        "Prevent overlapping changes to the same environment"
+      ],
+      "correct": [
+        0,
+        3
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "git",
+      "objective": "Explain concurrency controls and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Concurrency controls \u2014 primary reference",
+          "url": "https://docs.github.com/en/actions"
+        }
+      ],
+      "tags": [
+        "git",
+        "concurrency-controls"
+      ],
+      "takeaway": "Cancellation policy should consider partially applied operations.",
+      "explanation": "Prevent overlapping changes to the same environment. Cancellation policy should consider partially applied operations. In the scenario, coordinate deployment ownership and inspect any partial changes. The alternative \u2018Allow both to race and keep whichever finishes last\u2019 does not address the stated evidence or constraint.",
+      "id": "git-24-interview",
+      "title": "Concurrency controls \u00b7 interview",
+      "type": "interview",
+      "question": "Explain deployment concurrency and cancellation risks.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "Prevent overlapping changes to the same environment. Cancellation policy should consider partially applied operations. A practical response is: Coordinate deployment ownership and inspect any partial changes. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that parallel deployment always improves safety.",
+      "answerChecklist": [
+        "Prevent overlapping changes to the same environment",
+        "Cancellation policy should consider partially applied operations",
+        "Coordinate deployment ownership and inspect any partial changes",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "Two releases concurrently modify the same infrastructure. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "git",
+      "objective": "Explain oidc federation and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "OIDC federation \u2014 primary reference",
+          "url": "https://docs.github.com/en/actions"
+        }
+      ],
+      "tags": [
+        "git",
+        "oidc-federation"
+      ],
+      "takeaway": "Trust conditions should constrain repository branch and environment.",
+      "explanation": "Obtain short-lived credentials tied to workflow identity. Trust conditions should constrain repository branch and environment. In the scenario, narrow the federated identity conditions to intended workloads. The alternative \u2018Rely only on credential expiration to prevent unauthorized use\u2019 does not address the stated evidence or constraint.",
+      "id": "git-25-concept",
+      "title": "OIDC federation \u00b7 concept",
+      "type": "concept",
+      "question": "Why use workload federation in CI where supported?",
+      "options": [
+        "Obtain short-lived credentials tied to workflow identity",
+        "Federation means every workflow should get administrator access",
+        "Short-lived credentials make trust-policy scope irrelevant",
+        "Rely only on credential expiration to prevent unauthorized use"
+      ],
+      "correct": [
+        0
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "git",
+      "objective": "Explain oidc federation and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "OIDC federation \u2014 primary reference",
+          "url": "https://docs.github.com/en/actions"
+        }
+      ],
+      "tags": [
+        "git",
+        "oidc-federation"
+      ],
+      "takeaway": "Trust conditions should constrain repository branch and environment.",
+      "explanation": "Obtain short-lived credentials tied to workflow identity. Trust conditions should constrain repository branch and environment. In the scenario, narrow the federated identity conditions to intended workloads. The alternative \u2018Rely only on credential expiration to prevent unauthorized use\u2019 does not address the stated evidence or constraint.",
+      "id": "git-25-scenario",
+      "title": "OIDC federation \u00b7 scenario",
+      "type": "scenario",
+      "question": "A cloud role trusts any repository in an organization. What is the best next step?",
+      "options": [
+        "Rely only on credential expiration to prevent unauthorized use",
+        "Federation means every workflow should get administrator access",
+        "Short-lived credentials make trust-policy scope irrelevant",
+        "Narrow the federated identity conditions to intended workloads"
+      ],
+      "correct": [
+        3
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "git",
+      "objective": "Explain oidc federation and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "OIDC federation \u2014 primary reference",
+          "url": "https://docs.github.com/en/actions"
+        }
+      ],
+      "tags": [
+        "git",
+        "oidc-federation"
+      ],
+      "takeaway": "Trust conditions should constrain repository branch and environment.",
+      "explanation": "Obtain short-lived credentials tied to workflow identity. Trust conditions should constrain repository branch and environment. In the scenario, narrow the federated identity conditions to intended workloads. The alternative \u2018Rely only on credential expiration to prevent unauthorized use\u2019 does not address the stated evidence or constraint.",
+      "id": "git-25-principles",
+      "title": "OIDC federation \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing oidc federation, which TWO statements are sound operational principles?",
+      "options": [
+        "Federation means every workflow should get administrator access",
+        "Short-lived credentials make trust-policy scope irrelevant",
+        "Obtain short-lived credentials tied to workflow identity",
+        "Trust conditions should constrain repository branch and environment"
+      ],
+      "correct": [
+        2,
+        3
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "git",
+      "objective": "Explain oidc federation and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "OIDC federation \u2014 primary reference",
+          "url": "https://docs.github.com/en/actions"
+        }
+      ],
+      "tags": [
+        "git",
+        "oidc-federation"
+      ],
+      "takeaway": "Trust conditions should constrain repository branch and environment.",
+      "explanation": "Obtain short-lived credentials tied to workflow identity. Trust conditions should constrain repository branch and environment. In the scenario, narrow the federated identity conditions to intended workloads. The alternative \u2018Rely only on credential expiration to prevent unauthorized use\u2019 does not address the stated evidence or constraint.",
+      "id": "git-25-interview",
+      "title": "OIDC federation \u00b7 interview",
+      "type": "interview",
+      "question": "Explain secure CI-to-cloud identity federation.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "Obtain short-lived credentials tied to workflow identity. Trust conditions should constrain repository branch and environment. A practical response is: Narrow the federated identity conditions to intended workloads. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that federation means every workflow should get administrator access.",
+      "answerChecklist": [
+        "Obtain short-lived credentials tied to workflow identity",
+        "Trust conditions should constrain repository branch and environment",
+        "Narrow the federated identity conditions to intended workloads",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "A cloud role trusts any repository in an organization. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "git",
+      "objective": "Explain monorepo checks and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Monorepo checks \u2014 primary reference",
+          "url": "https://docs.github.com/en/actions"
+        }
+      ],
+      "tags": [
+        "git",
+        "monorepo-checks"
+      ],
+      "takeaway": "Check selection should model relevant dependency relationships.",
+      "explanation": "Indirect dependencies can be missed by simplistic file filters. Check selection should model relevant dependency relationships. In the scenario, include dependent components in the validation selection. The alternative \u2018Keep filters based only on the application's own directory\u2019 does not address the stated evidence or constraint.",
+      "id": "git-26-concept",
+      "title": "Monorepo checks \u00b7 concept",
+      "type": "concept",
+      "question": "What is a risk of path-filtered CI checks?",
+      "options": [
+        "A change outside one directory can never affect that component",
+        "Skipping all tests is safe if filenames look unrelated",
+        "Keep filters based only on the application's own directory",
+        "Indirect dependencies can be missed by simplistic file filters"
+      ],
+      "correct": [
+        3
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "git",
+      "objective": "Explain monorepo checks and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Monorepo checks \u2014 primary reference",
+          "url": "https://docs.github.com/en/actions"
+        }
+      ],
+      "tags": [
+        "git",
+        "monorepo-checks"
+      ],
+      "takeaway": "Check selection should model relevant dependency relationships.",
+      "explanation": "Indirect dependencies can be missed by simplistic file filters. Check selection should model relevant dependency relationships. In the scenario, include dependent components in the validation selection. The alternative \u2018Keep filters based only on the application's own directory\u2019 does not address the stated evidence or constraint.",
+      "id": "git-26-scenario",
+      "title": "Monorepo checks \u00b7 scenario",
+      "type": "scenario",
+      "question": "A shared library change skips downstream application tests. What is the best next step?",
+      "options": [
+        "A change outside one directory can never affect that component",
+        "Skipping all tests is safe if filenames look unrelated",
+        "Include dependent components in the validation selection",
+        "Keep filters based only on the application's own directory"
+      ],
+      "correct": [
+        2
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "git",
+      "objective": "Explain monorepo checks and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Monorepo checks \u2014 primary reference",
+          "url": "https://docs.github.com/en/actions"
+        }
+      ],
+      "tags": [
+        "git",
+        "monorepo-checks"
+      ],
+      "takeaway": "Check selection should model relevant dependency relationships.",
+      "explanation": "Indirect dependencies can be missed by simplistic file filters. Check selection should model relevant dependency relationships. In the scenario, include dependent components in the validation selection. The alternative \u2018Keep filters based only on the application's own directory\u2019 does not address the stated evidence or constraint.",
+      "id": "git-26-principles",
+      "title": "Monorepo checks \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing monorepo checks, which TWO statements are sound operational principles?",
+      "options": [
+        "Skipping all tests is safe if filenames look unrelated",
+        "Indirect dependencies can be missed by simplistic file filters",
+        "Check selection should model relevant dependency relationships",
+        "A change outside one directory can never affect that component"
+      ],
+      "correct": [
+        1,
+        2
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "git",
+      "objective": "Explain monorepo checks and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Monorepo checks \u2014 primary reference",
+          "url": "https://docs.github.com/en/actions"
+        }
+      ],
+      "tags": [
+        "git",
+        "monorepo-checks"
+      ],
+      "takeaway": "Check selection should model relevant dependency relationships.",
+      "explanation": "Indirect dependencies can be missed by simplistic file filters. Check selection should model relevant dependency relationships. In the scenario, include dependent components in the validation selection. The alternative \u2018Keep filters based only on the application's own directory\u2019 does not address the stated evidence or constraint.",
+      "id": "git-26-interview",
+      "title": "Monorepo checks \u00b7 interview",
+      "type": "interview",
+      "question": "Explain efficient validation without missing cross-component regressions.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "Indirect dependencies can be missed by simplistic file filters. Check selection should model relevant dependency relationships. A practical response is: Include dependent components in the validation selection. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that a change outside one directory can never affect that component.",
+      "answerChecklist": [
+        "Indirect dependencies can be missed by simplistic file filters",
+        "Check selection should model relevant dependency relationships",
+        "Include dependent components in the validation selection",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "A shared library change skips downstream application tests. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "git",
+      "objective": "Explain release tags and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Release tags \u2014 primary reference",
+          "url": "https://git-scm.com/docs/git-tag"
+        }
+      ],
+      "tags": [
+        "git",
+        "release-tags"
+      ],
+      "takeaway": "Tag protection and verification help preserve release meaning.",
+      "explanation": "Trace a release to an intended source or artifact identity. Tag protection and verification help preserve release meaning. In the scenario, investigate the identity mismatch and preserve an auditable release trail. The alternative \u2018Assume the unchanged tag name proves the artifacts match\u2019 does not address the stated evidence or constraint.",
+      "id": "git-27-concept",
+      "title": "Release tags \u00b7 concept",
+      "type": "concept",
+      "question": "What should release tagging support?",
+      "options": [
+        "A tag automatically deploys successfully in every environment",
+        "Assume the unchanged tag name proves the artifacts match",
+        "Trace a release to an intended source or artifact identity",
+        "Every tag is intrinsically immutable and unforgeable"
+      ],
+      "correct": [
+        2
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "git",
+      "objective": "Explain release tags and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Release tags \u2014 primary reference",
+          "url": "https://git-scm.com/docs/git-tag"
+        }
+      ],
+      "tags": [
+        "git",
+        "release-tags"
+      ],
+      "takeaway": "Tag protection and verification help preserve release meaning.",
+      "explanation": "Trace a release to an intended source or artifact identity. Tag protection and verification help preserve release meaning. In the scenario, investigate the identity mismatch and preserve an auditable release trail. The alternative \u2018Assume the unchanged tag name proves the artifacts match\u2019 does not address the stated evidence or constraint.",
+      "id": "git-27-scenario",
+      "title": "Release tags \u00b7 scenario",
+      "type": "scenario",
+      "question": "A release tag is moved after artifacts were published. What is the best next step?",
+      "options": [
+        "A tag automatically deploys successfully in every environment",
+        "Investigate the identity mismatch and preserve an auditable release trail",
+        "Assume the unchanged tag name proves the artifacts match",
+        "Every tag is intrinsically immutable and unforgeable"
+      ],
+      "correct": [
+        1
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "git",
+      "objective": "Explain release tags and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Release tags \u2014 primary reference",
+          "url": "https://git-scm.com/docs/git-tag"
+        }
+      ],
+      "tags": [
+        "git",
+        "release-tags"
+      ],
+      "takeaway": "Tag protection and verification help preserve release meaning.",
+      "explanation": "Trace a release to an intended source or artifact identity. Tag protection and verification help preserve release meaning. In the scenario, investigate the identity mismatch and preserve an auditable release trail. The alternative \u2018Assume the unchanged tag name proves the artifacts match\u2019 does not address the stated evidence or constraint.",
+      "id": "git-27-principles",
+      "title": "Release tags \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing release tags, which TWO statements are sound operational principles?",
+      "options": [
+        "Trace a release to an intended source or artifact identity",
+        "Tag protection and verification help preserve release meaning",
+        "Every tag is intrinsically immutable and unforgeable",
+        "A tag automatically deploys successfully in every environment"
+      ],
+      "correct": [
+        0,
+        1
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "git",
+      "objective": "Explain release tags and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Release tags \u2014 primary reference",
+          "url": "https://git-scm.com/docs/git-tag"
+        }
+      ],
+      "tags": [
+        "git",
+        "release-tags"
+      ],
+      "takeaway": "Tag protection and verification help preserve release meaning.",
+      "explanation": "Trace a release to an intended source or artifact identity. Tag protection and verification help preserve release meaning. In the scenario, investigate the identity mismatch and preserve an auditable release trail. The alternative \u2018Assume the unchanged tag name proves the artifacts match\u2019 does not address the stated evidence or constraint.",
+      "id": "git-27-interview",
+      "title": "Release tags \u00b7 interview",
+      "type": "interview",
+      "question": "Explain trustworthy release tagging and traceability.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "Trace a release to an intended source or artifact identity. Tag protection and verification help preserve release meaning. A practical response is: Investigate the identity mismatch and preserve an auditable release trail. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that every tag is intrinsically immutable and unforgeable.",
+      "answerChecklist": [
+        "Trace a release to an intended source or artifact identity",
+        "Tag protection and verification help preserve release meaning",
+        "Investigate the identity mismatch and preserve an auditable release trail",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "A release tag is moved after artifacts were published. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "git",
+      "objective": "Explain flaky tests and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Flaky tests \u2014 primary reference",
+          "url": "https://sre.google/workbook/canarying-releases/"
+        }
+      ],
+      "tags": [
+        "git",
+        "flaky-tests"
+      ],
+      "takeaway": "Track and fix nondeterminism rather than normalizing blind retries.",
+      "explanation": "They weaken confidence that failures indicate real regressions. Track and fix nondeterminism rather than normalizing blind retries. In the scenario, record failure patterns and isolate the nondeterministic cause. The alternative \u2018Disable every failing test permanently\u2019 does not address the stated evidence or constraint.",
+      "id": "git-28-concept",
+      "title": "Flaky tests \u00b7 concept",
+      "type": "concept",
+      "question": "Why are flaky tests harmful to CI?",
+      "options": [
+        "Disable every failing test permanently",
+        "They weaken confidence that failures indicate real regressions",
+        "Retrying until green proves correctness",
+        "Flaky tests can never hide real bugs"
+      ],
+      "correct": [
+        1
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "git",
+      "objective": "Explain flaky tests and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Flaky tests \u2014 primary reference",
+          "url": "https://sre.google/workbook/canarying-releases/"
+        }
+      ],
+      "tags": [
+        "git",
+        "flaky-tests"
+      ],
+      "takeaway": "Track and fix nondeterminism rather than normalizing blind retries.",
+      "explanation": "They weaken confidence that failures indicate real regressions. Track and fix nondeterminism rather than normalizing blind retries. In the scenario, record failure patterns and isolate the nondeterministic cause. The alternative \u2018Disable every failing test permanently\u2019 does not address the stated evidence or constraint.",
+      "id": "git-28-scenario",
+      "title": "Flaky tests \u00b7 scenario",
+      "type": "scenario",
+      "question": "A team reruns failed tests repeatedly without investigation. What is the best next step?",
+      "options": [
+        "Record failure patterns and isolate the nondeterministic cause",
+        "Disable every failing test permanently",
+        "Retrying until green proves correctness",
+        "Flaky tests can never hide real bugs"
+      ],
+      "correct": [
+        0
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "git",
+      "objective": "Explain flaky tests and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Flaky tests \u2014 primary reference",
+          "url": "https://sre.google/workbook/canarying-releases/"
+        }
+      ],
+      "tags": [
+        "git",
+        "flaky-tests"
+      ],
+      "takeaway": "Track and fix nondeterminism rather than normalizing blind retries.",
+      "explanation": "They weaken confidence that failures indicate real regressions. Track and fix nondeterminism rather than normalizing blind retries. In the scenario, record failure patterns and isolate the nondeterministic cause. The alternative \u2018Disable every failing test permanently\u2019 does not address the stated evidence or constraint.",
+      "id": "git-28-principles",
+      "title": "Flaky tests \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing flaky tests, which TWO statements are sound operational principles?",
+      "options": [
+        "Track and fix nondeterminism rather than normalizing blind retries",
+        "Retrying until green proves correctness",
+        "Flaky tests can never hide real bugs",
+        "They weaken confidence that failures indicate real regressions"
+      ],
+      "correct": [
+        0,
+        3
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "git",
+      "objective": "Explain flaky tests and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Flaky tests \u2014 primary reference",
+          "url": "https://sre.google/workbook/canarying-releases/"
+        }
+      ],
+      "tags": [
+        "git",
+        "flaky-tests"
+      ],
+      "takeaway": "Track and fix nondeterminism rather than normalizing blind retries.",
+      "explanation": "They weaken confidence that failures indicate real regressions. Track and fix nondeterminism rather than normalizing blind retries. In the scenario, record failure patterns and isolate the nondeterministic cause. The alternative \u2018Disable every failing test permanently\u2019 does not address the stated evidence or constraint.",
+      "id": "git-28-interview",
+      "title": "Flaky tests \u00b7 interview",
+      "type": "interview",
+      "question": "Explain a strategy for restoring confidence in a flaky test suite.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "They weaken confidence that failures indicate real regressions. Track and fix nondeterminism rather than normalizing blind retries. A practical response is: Record failure patterns and isolate the nondeterministic cause. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that retrying until green proves correctness.",
+      "answerChecklist": [
+        "They weaken confidence that failures indicate real regressions",
+        "Track and fix nondeterminism rather than normalizing blind retries",
+        "Record failure patterns and isolate the nondeterministic cause",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "A team reruns failed tests repeatedly without investigation. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "git",
+      "objective": "Explain branch protection and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Branch protection \u2014 primary reference",
+          "url": "https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/about-protected-branches"
+        }
+      ],
+      "tags": [
+        "git",
+        "branch-protection"
+      ],
+      "takeaway": "Rules should match the actual delivery risk and trusted actors.",
+      "explanation": "Defined review and status-check requirements before integration. Rules should match the actual delivery risk and trusted actors. In the scenario, restore the intended gate and verify the effective rule behavior. The alternative \u2018Assume documentation alone enforces the policy\u2019 does not address the stated evidence or constraint.",
+      "id": "git-29-concept",
+      "title": "Branch protection \u00b7 concept",
+      "type": "concept",
+      "question": "What do protected-branch rules help enforce?",
+      "options": [
+        "Defined review and status-check requirements before integration",
+        "Branch protection proves all merged code is bug-free",
+        "Rules automatically secure every deployment credential",
+        "Assume documentation alone enforces the policy"
+      ],
+      "correct": [
+        0
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "git",
+      "objective": "Explain branch protection and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Branch protection \u2014 primary reference",
+          "url": "https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/about-protected-branches"
+        }
+      ],
+      "tags": [
+        "git",
+        "branch-protection"
+      ],
+      "takeaway": "Rules should match the actual delivery risk and trusted actors.",
+      "explanation": "Defined review and status-check requirements before integration. Rules should match the actual delivery risk and trusted actors. In the scenario, restore the intended gate and verify the effective rule behavior. The alternative \u2018Assume documentation alone enforces the policy\u2019 does not address the stated evidence or constraint.",
+      "id": "git-29-scenario",
+      "title": "Branch protection \u00b7 scenario",
+      "type": "scenario",
+      "question": "A required test is accidentally made optional on the release branch. What is the best next step?",
+      "options": [
+        "Assume documentation alone enforces the policy",
+        "Branch protection proves all merged code is bug-free",
+        "Rules automatically secure every deployment credential",
+        "Restore the intended gate and verify the effective rule behavior"
+      ],
+      "correct": [
+        3
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "git",
+      "objective": "Explain branch protection and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Branch protection \u2014 primary reference",
+          "url": "https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/about-protected-branches"
+        }
+      ],
+      "tags": [
+        "git",
+        "branch-protection"
+      ],
+      "takeaway": "Rules should match the actual delivery risk and trusted actors.",
+      "explanation": "Defined review and status-check requirements before integration. Rules should match the actual delivery risk and trusted actors. In the scenario, restore the intended gate and verify the effective rule behavior. The alternative \u2018Assume documentation alone enforces the policy\u2019 does not address the stated evidence or constraint.",
+      "id": "git-29-principles",
+      "title": "Branch protection \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing branch protection, which TWO statements are sound operational principles?",
+      "options": [
+        "Branch protection proves all merged code is bug-free",
+        "Rules automatically secure every deployment credential",
+        "Defined review and status-check requirements before integration",
+        "Rules should match the actual delivery risk and trusted actors"
+      ],
+      "correct": [
+        2,
+        3
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "git",
+      "objective": "Explain branch protection and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Branch protection \u2014 primary reference",
+          "url": "https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/about-protected-branches"
+        }
+      ],
+      "tags": [
+        "git",
+        "branch-protection"
+      ],
+      "takeaway": "Rules should match the actual delivery risk and trusted actors.",
+      "explanation": "Defined review and status-check requirements before integration. Rules should match the actual delivery risk and trusted actors. In the scenario, restore the intended gate and verify the effective rule behavior. The alternative \u2018Assume documentation alone enforces the policy\u2019 does not address the stated evidence or constraint.",
+      "id": "git-29-interview",
+      "title": "Branch protection \u00b7 interview",
+      "type": "interview",
+      "question": "Explain repository controls that support reliable delivery.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "Defined review and status-check requirements before integration. Rules should match the actual delivery risk and trusted actors. A practical response is: Restore the intended gate and verify the effective rule behavior. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that branch protection proves all merged code is bug-free.",
+      "answerChecklist": [
+        "Defined review and status-check requirements before integration",
+        "Rules should match the actual delivery risk and trusted actors",
+        "Restore the intended gate and verify the effective rule behavior",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "A required test is accidentally made optional on the release branch. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "git",
+      "objective": "Explain supply-chain evidence and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Supply-chain evidence \u2014 primary reference",
+          "url": "https://docs.github.com/en/actions"
+        }
+      ],
+      "tags": [
+        "git",
+        "supply-chain-evidence"
+      ],
+      "takeaway": "Provenance is evidence to verify against a trust policy.",
+      "explanation": "Which inputs and process produced the artifact. Provenance is evidence to verify against a trust policy. In the scenario, require traceable build evidence and verify artifact identity. The alternative \u2018Deploy based only on a familiar filename\u2019 does not address the stated evidence or constraint.",
+      "id": "git-30-concept",
+      "title": "Supply-chain evidence \u00b7 concept",
+      "type": "concept",
+      "question": "What should release provenance help answer?",
+      "options": [
+        "Provenance replaces all vulnerability assessment",
+        "Any artifact with metadata is automatically trustworthy",
+        "Deploy based only on a familiar filename",
+        "Which inputs and process produced the artifact"
+      ],
+      "correct": [
+        3
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "git",
+      "objective": "Explain supply-chain evidence and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Supply-chain evidence \u2014 primary reference",
+          "url": "https://docs.github.com/en/actions"
+        }
+      ],
+      "tags": [
+        "git",
+        "supply-chain-evidence"
+      ],
+      "takeaway": "Provenance is evidence to verify against a trust policy.",
+      "explanation": "Which inputs and process produced the artifact. Provenance is evidence to verify against a trust policy. In the scenario, require traceable build evidence and verify artifact identity. The alternative \u2018Deploy based only on a familiar filename\u2019 does not address the stated evidence or constraint.",
+      "id": "git-30-scenario",
+      "title": "Supply-chain evidence \u00b7 scenario",
+      "type": "scenario",
+      "question": "A binary's source revision and build workflow cannot be established. What is the best next step?",
+      "options": [
+        "Provenance replaces all vulnerability assessment",
+        "Any artifact with metadata is automatically trustworthy",
+        "Require traceable build evidence and verify artifact identity",
+        "Deploy based only on a familiar filename"
+      ],
+      "correct": [
+        2
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "git",
+      "objective": "Explain supply-chain evidence and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Supply-chain evidence \u2014 primary reference",
+          "url": "https://docs.github.com/en/actions"
+        }
+      ],
+      "tags": [
+        "git",
+        "supply-chain-evidence"
+      ],
+      "takeaway": "Provenance is evidence to verify against a trust policy.",
+      "explanation": "Which inputs and process produced the artifact. Provenance is evidence to verify against a trust policy. In the scenario, require traceable build evidence and verify artifact identity. The alternative \u2018Deploy based only on a familiar filename\u2019 does not address the stated evidence or constraint.",
+      "id": "git-30-principles",
+      "title": "Supply-chain evidence \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing supply-chain evidence, which TWO statements are sound operational principles?",
+      "options": [
+        "Any artifact with metadata is automatically trustworthy",
+        "Which inputs and process produced the artifact",
+        "Provenance is evidence to verify against a trust policy",
+        "Provenance replaces all vulnerability assessment"
+      ],
+      "correct": [
+        1,
+        2
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "git",
+      "objective": "Explain supply-chain evidence and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Supply-chain evidence \u2014 primary reference",
+          "url": "https://docs.github.com/en/actions"
+        }
+      ],
+      "tags": [
+        "git",
+        "supply-chain-evidence"
+      ],
+      "takeaway": "Provenance is evidence to verify against a trust policy.",
+      "explanation": "Which inputs and process produced the artifact. Provenance is evidence to verify against a trust policy. In the scenario, require traceable build evidence and verify artifact identity. The alternative \u2018Deploy based only on a familiar filename\u2019 does not address the stated evidence or constraint.",
+      "id": "git-30-interview",
+      "title": "Supply-chain evidence \u00b7 interview",
+      "type": "interview",
+      "question": "Explain how you would verify a production artifact's origin.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "Which inputs and process produced the artifact. Provenance is evidence to verify against a trust policy. A practical response is: Require traceable build evidence and verify artifact identity. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that provenance replaces all vulnerability assessment.",
+      "answerChecklist": [
+        "Which inputs and process produced the artifact",
+        "Provenance is evidence to verify against a trust policy",
+        "Require traceable build evidence and verify artifact identity",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "A binary's source revision and build workflow cannot be established. Explain the evidence that would change your decision."
+      ]
+    }
+  ]
+}

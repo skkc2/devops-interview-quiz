@@ -272,5 +272,101 @@ class OpsLabBrowserTests(unittest.TestCase):
         self.assertEqual(download.suggested_filename, "opslab-session-review.txt")
 
 
+    def test_catalog_has_all_subjects_and_honest_counts(self):
+        expect(self.page.locator("#subject-grid .subject-card")).to_have_count(11)
+        expect(self.page.locator("#catalog-count")).to_contain_text("1,020 scored")
+        expect(self.page.locator("#catalog-count")).to_contain_text("304 interview")
+        self.page.locator("#subject-search").fill("network")
+        expect(self.page.locator("#subject-grid .subject-card")).to_have_count(1)
+        self.page.locator('[data-subject="networking"]').click()
+        expect(self.page.locator("#topic-select")).to_have_value("networking")
+        expect(self.page.locator("#topic-help")).to_contain_text("90 scored")
+
+    def test_new_subjects_work_in_every_session_mode(self):
+        topics = ["linux", "networking", "sre", "systems", "aws", "terraform", "docker", "ansible", "git", "observability"]
+        for topic in topics:
+            with self.subTest(topic=topic):
+                self.page.locator("#topic-select").select_option(topic)
+                self.choose_mode("learn")
+                expect(self.page.locator("#topic-select")).to_have_value(topic)
+                self.page.locator("#start-quiz").click()
+                expect(self.page.locator("#learning-content-list .learning-item")).to_have_count(30)
+                self.page.locator("#back-from-learning").click()
+                self.choose_mode("practice")
+                self.page.locator("#level-select").select_option("easy")
+                self.page.locator("#type-select").select_option("all")
+                self.page.locator("#count-select").select_option("5")
+                expect(self.page.locator("#available-count")).to_contain_text("24 questions")
+                self.start()
+                self.page.keyboard.press("1")
+                self.page.locator("#check-answer").click()
+                expect(self.page.locator("#question-feedback")).to_be_visible()
+                self.page.once("dialog", lambda dialog: dialog.accept())
+                self.page.locator("#exit-quiz").click()
+                self.choose_mode("exam")
+                self.start()
+                self.page.keyboard.press("1")
+                self.page.locator("#check-answer").click()
+                expect(self.page.locator("#question-feedback")).to_be_hidden()
+                self.page.once("dialog", lambda dialog: dialog.accept())
+                self.page.locator("#exit-quiz").click()
+                self.choose_mode("interview")
+                expect(self.page.locator("#available-count")).to_contain_text("8 questions")
+                self.start()
+                expect(self.page.locator("#interview-answer-area")).to_be_visible()
+                self.page.once("dialog", lambda dialog: dialog.accept())
+                self.page.locator("#exit-quiz").click()
+                self.choose_mode("learn")
+
+    def test_library_switching_and_search_do_not_leak_other_subjects(self):
+        self.page.locator("#start-quiz").click()
+        self.page.locator("#learning-topic").select_option("linux")
+        expect(self.page.locator("#learning-content-list .learning-item")).to_have_count(30)
+        self.page.locator("#learning-search").fill("inode")
+        expect(self.page.locator("#learning-content-list")).to_contain_text("Inodes")
+        self.page.locator("#learning-search").fill("no-such-concept-xyz")
+        expect(self.page.locator("#learning-content-list .learning-item")).to_have_count(0)
+        expect(self.page.locator("#learning-content-detail")).to_contain_text("No content matches")
+        self.page.locator("#learning-search").fill("")
+        self.page.locator("#learning-topic").select_option("kubernetes")
+        expect(self.page.locator("#learning-content-list .learning-item")).to_have_count(6)
+        self.page.locator('#learning-module-nav [data-module="scenarios"]').click()
+        expect(self.page.locator("#learning-content-list .learning-item")).to_have_count(38)
+
+    def test_partial_pack_failure_keeps_other_subjects_usable(self):
+        self.page.route("**/data/linux.json", lambda route: route.fulfill(status=503, body="Unavailable"))
+        self.page.reload(wait_until="networkidle")
+        expect(self.page.locator("#catalog-warning")).to_contain_text("Linux")
+        expect(self.page.locator("#subject-grid .subject-card")).to_have_count(10)
+        self.choose_mode("practice")
+        self.start()
+
+    def test_all_pack_failure_has_recoverable_error(self):
+        self.page.route("**/data/*-learning.json", lambda route: route.fulfill(status=503, body="Unavailable"))
+        self.page.reload(wait_until="networkidle")
+        expect(self.page.locator("#app-error")).to_be_visible()
+        expect(self.page.locator("#start-quiz")).to_be_disabled()
+        self.page.unroute("**/data/*-learning.json")
+        self.page.locator("#reload-app").click()
+        expect(self.page.locator("#start-quiz")).to_be_enabled()
+
+    def test_mobile_catalog_and_library_fit_viewport(self):
+        self.page.set_viewport_size({"width": 390, "height": 844})
+        self.assertFalse(self.page.evaluate("document.documentElement.scrollWidth > innerWidth"))
+        self.page.locator('[data-subject="sre"]').click()
+        self.page.locator("#start-quiz").click()
+        expect(self.page.locator("#learning-content-detail")).to_be_visible()
+        self.assertFalse(self.page.evaluate("document.documentElement.scrollWidth > innerWidth"))
+
+    def test_storage_failure_does_not_prevent_practice(self):
+        self.page.add_init_script("Storage.prototype.getItem = () => { throw new Error('blocked'); }; Storage.prototype.setItem = () => { throw new Error('blocked'); };")
+        self.page.reload(wait_until="networkidle")
+        self.choose_mode("practice")
+        self.page.locator("#topic-select").select_option("linux")
+        self.start()
+        expect(self.page.locator("#question-title")).not_to_be_empty()
+
+
 if __name__ == "__main__":
     unittest.main(verbosity=2)
+

@@ -1,0 +1,3733 @@
+{
+  "schemaVersion": 1,
+  "subject": "Terraform",
+  "levels": [
+    "easy",
+    "medium",
+    "mediumHard",
+    "hard"
+  ],
+  "description": "30 competency sets: 90 scored questions and 30 self-reviewed interview prompts. Related questions intentionally reinforce a competency from different angles.",
+  "questions": [
+    {
+      "level": "easy",
+      "topic": "terraform",
+      "objective": "Explain desired state and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Desired state \u2014 primary reference",
+          "url": "https://developer.hashicorp.com/terraform/language"
+        }
+      ],
+      "tags": [
+        "terraform",
+        "desired-state"
+      ],
+      "takeaway": "Providers translate resource operations into service API calls.",
+      "explanation": "The desired state of managed infrastructure. Providers translate resource operations into service API calls. In the scenario, review the plan for drift before applying changes. The alternative \u2018Assume configuration and live resources can never diverge\u2019 does not address the stated evidence or constraint.",
+      "id": "terraform-01-concept",
+      "title": "Desired state \u00b7 concept",
+      "type": "concept",
+      "question": "What does Terraform configuration primarily express?",
+      "options": [
+        "The desired state of managed infrastructure",
+        "It is only a sequential shell script",
+        "It directly replaces every cloud API",
+        "Assume configuration and live resources can never diverge"
+      ],
+      "correct": [
+        0
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "terraform",
+      "objective": "Explain desired state and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Desired state \u2014 primary reference",
+          "url": "https://developer.hashicorp.com/terraform/language"
+        }
+      ],
+      "tags": [
+        "terraform",
+        "desired-state"
+      ],
+      "takeaway": "Providers translate resource operations into service API calls.",
+      "explanation": "The desired state of managed infrastructure. Providers translate resource operations into service API calls. In the scenario, review the plan for drift before applying changes. The alternative \u2018Assume configuration and live resources can never diverge\u2019 does not address the stated evidence or constraint.",
+      "id": "terraform-01-scenario",
+      "title": "Desired state \u00b7 scenario",
+      "type": "scenario",
+      "question": "A resource was edited manually and differs from configuration. What is the best next step?",
+      "options": [
+        "Assume configuration and live resources can never diverge",
+        "It is only a sequential shell script",
+        "It directly replaces every cloud API",
+        "Review the plan for drift before applying changes"
+      ],
+      "correct": [
+        3
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "terraform",
+      "objective": "Explain desired state and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Desired state \u2014 primary reference",
+          "url": "https://developer.hashicorp.com/terraform/language"
+        }
+      ],
+      "tags": [
+        "terraform",
+        "desired-state"
+      ],
+      "takeaway": "Providers translate resource operations into service API calls.",
+      "explanation": "The desired state of managed infrastructure. Providers translate resource operations into service API calls. In the scenario, review the plan for drift before applying changes. The alternative \u2018Assume configuration and live resources can never diverge\u2019 does not address the stated evidence or constraint.",
+      "id": "terraform-01-principles",
+      "title": "Desired state \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing desired state, which TWO statements are sound operational principles?",
+      "options": [
+        "It is only a sequential shell script",
+        "It directly replaces every cloud API",
+        "The desired state of managed infrastructure",
+        "Providers translate resource operations into service API calls"
+      ],
+      "correct": [
+        2,
+        3
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "terraform",
+      "objective": "Explain desired state and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Desired state \u2014 primary reference",
+          "url": "https://developer.hashicorp.com/terraform/language"
+        }
+      ],
+      "tags": [
+        "terraform",
+        "desired-state"
+      ],
+      "takeaway": "Providers translate resource operations into service API calls.",
+      "explanation": "The desired state of managed infrastructure. Providers translate resource operations into service API calls. In the scenario, review the plan for drift before applying changes. The alternative \u2018Assume configuration and live resources can never diverge\u2019 does not address the stated evidence or constraint.",
+      "id": "terraform-01-interview",
+      "title": "Desired state \u00b7 interview",
+      "type": "interview",
+      "question": "Explain declarative infrastructure and how Terraform detects drift.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "The desired state of managed infrastructure. Providers translate resource operations into service API calls. A practical response is: Review the plan for drift before applying changes. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that it is only a sequential shell script.",
+      "answerChecklist": [
+        "The desired state of managed infrastructure",
+        "Providers translate resource operations into service API calls",
+        "Review the plan for drift before applying changes",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "A resource was edited manually and differs from configuration. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "terraform",
+      "objective": "Explain initialization and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Initialization \u2014 primary reference",
+          "url": "https://developer.hashicorp.com/terraform/language"
+        }
+      ],
+      "tags": [
+        "terraform",
+        "initialization"
+      ],
+      "takeaway": "Backend changes may require explicit migration decisions.",
+      "explanation": "Initialize the working directory and required dependencies. Backend changes may require explicit migration decisions. In the scenario, run initialization with the intended backend configuration. The alternative \u2018Run destroy to repair the working directory\u2019 does not address the stated evidence or constraint.",
+      "id": "terraform-02-concept",
+      "title": "Initialization \u00b7 concept",
+      "type": "concept",
+      "question": "What is terraform init used for?",
+      "options": [
+        "It applies every planned infrastructure change",
+        "It destroys resources absent from configuration",
+        "Run destroy to repair the working directory",
+        "Initialize the working directory and required dependencies"
+      ],
+      "correct": [
+        3
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "terraform",
+      "objective": "Explain initialization and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Initialization \u2014 primary reference",
+          "url": "https://developer.hashicorp.com/terraform/language"
+        }
+      ],
+      "tags": [
+        "terraform",
+        "initialization"
+      ],
+      "takeaway": "Backend changes may require explicit migration decisions.",
+      "explanation": "Initialize the working directory and required dependencies. Backend changes may require explicit migration decisions. In the scenario, run initialization with the intended backend configuration. The alternative \u2018Run destroy to repair the working directory\u2019 does not address the stated evidence or constraint.",
+      "id": "terraform-02-scenario",
+      "title": "Initialization \u00b7 scenario",
+      "type": "scenario",
+      "question": "A fresh checkout cannot load its provider dependencies. What is the best next step?",
+      "options": [
+        "It applies every planned infrastructure change",
+        "It destroys resources absent from configuration",
+        "Run initialization with the intended backend configuration",
+        "Run destroy to repair the working directory"
+      ],
+      "correct": [
+        2
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "terraform",
+      "objective": "Explain initialization and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Initialization \u2014 primary reference",
+          "url": "https://developer.hashicorp.com/terraform/language"
+        }
+      ],
+      "tags": [
+        "terraform",
+        "initialization"
+      ],
+      "takeaway": "Backend changes may require explicit migration decisions.",
+      "explanation": "Initialize the working directory and required dependencies. Backend changes may require explicit migration decisions. In the scenario, run initialization with the intended backend configuration. The alternative \u2018Run destroy to repair the working directory\u2019 does not address the stated evidence or constraint.",
+      "id": "terraform-02-principles",
+      "title": "Initialization \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing initialization, which TWO statements are sound operational principles?",
+      "options": [
+        "It destroys resources absent from configuration",
+        "Initialize the working directory and required dependencies",
+        "Backend changes may require explicit migration decisions",
+        "It applies every planned infrastructure change"
+      ],
+      "correct": [
+        1,
+        2
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "terraform",
+      "objective": "Explain initialization and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Initialization \u2014 primary reference",
+          "url": "https://developer.hashicorp.com/terraform/language"
+        }
+      ],
+      "tags": [
+        "terraform",
+        "initialization"
+      ],
+      "takeaway": "Backend changes may require explicit migration decisions.",
+      "explanation": "Initialize the working directory and required dependencies. Backend changes may require explicit migration decisions. In the scenario, run initialization with the intended backend configuration. The alternative \u2018Run destroy to repair the working directory\u2019 does not address the stated evidence or constraint.",
+      "id": "terraform-02-interview",
+      "title": "Initialization \u00b7 interview",
+      "type": "interview",
+      "question": "Explain what you verify during initialization in a new environment.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "Initialize the working directory and required dependencies. Backend changes may require explicit migration decisions. A practical response is: Run initialization with the intended backend configuration. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that it applies every planned infrastructure change.",
+      "answerChecklist": [
+        "Initialize the working directory and required dependencies",
+        "Backend changes may require explicit migration decisions",
+        "Run initialization with the intended backend configuration",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "A fresh checkout cannot load its provider dependencies. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "terraform",
+      "objective": "Explain planning and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Planning \u2014 primary reference",
+          "url": "https://developer.hashicorp.com/terraform/language"
+        }
+      ],
+      "tags": [
+        "terraform",
+        "planning"
+      ],
+      "takeaway": "A plan is a review opportunity rather than a guarantee against future drift.",
+      "explanation": "A proposed set of changes based on configuration and observed state. A plan is a review opportunity rather than a guarantee against future drift. In the scenario, inspect the replacement cause and data-protection strategy. The alternative \u2018Apply immediately because planning succeeded\u2019 does not address the stated evidence or constraint.",
+      "id": "terraform-03-concept",
+      "title": "Planning \u00b7 concept",
+      "type": "concept",
+      "question": "What does terraform plan produce?",
+      "options": [
+        "It proves the target system cannot change before apply",
+        "Apply immediately because planning succeeded",
+        "A proposed set of changes based on configuration and observed state",
+        "It necessarily performs every proposed change"
+      ],
+      "correct": [
+        2
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "terraform",
+      "objective": "Explain planning and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Planning \u2014 primary reference",
+          "url": "https://developer.hashicorp.com/terraform/language"
+        }
+      ],
+      "tags": [
+        "terraform",
+        "planning"
+      ],
+      "takeaway": "A plan is a review opportunity rather than a guarantee against future drift.",
+      "explanation": "A proposed set of changes based on configuration and observed state. A plan is a review opportunity rather than a guarantee against future drift. In the scenario, inspect the replacement cause and data-protection strategy. The alternative \u2018Apply immediately because planning succeeded\u2019 does not address the stated evidence or constraint.",
+      "id": "terraform-03-scenario",
+      "title": "Planning \u00b7 scenario",
+      "type": "scenario",
+      "question": "A plan unexpectedly proposes replacing a database. What is the best next step?",
+      "options": [
+        "It proves the target system cannot change before apply",
+        "Inspect the replacement cause and data-protection strategy",
+        "Apply immediately because planning succeeded",
+        "It necessarily performs every proposed change"
+      ],
+      "correct": [
+        1
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "terraform",
+      "objective": "Explain planning and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Planning \u2014 primary reference",
+          "url": "https://developer.hashicorp.com/terraform/language"
+        }
+      ],
+      "tags": [
+        "terraform",
+        "planning"
+      ],
+      "takeaway": "A plan is a review opportunity rather than a guarantee against future drift.",
+      "explanation": "A proposed set of changes based on configuration and observed state. A plan is a review opportunity rather than a guarantee against future drift. In the scenario, inspect the replacement cause and data-protection strategy. The alternative \u2018Apply immediately because planning succeeded\u2019 does not address the stated evidence or constraint.",
+      "id": "terraform-03-principles",
+      "title": "Planning \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing planning, which TWO statements are sound operational principles?",
+      "options": [
+        "A proposed set of changes based on configuration and observed state",
+        "A plan is a review opportunity rather than a guarantee against future drift",
+        "It necessarily performs every proposed change",
+        "It proves the target system cannot change before apply"
+      ],
+      "correct": [
+        0,
+        1
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "terraform",
+      "objective": "Explain planning and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Planning \u2014 primary reference",
+          "url": "https://developer.hashicorp.com/terraform/language"
+        }
+      ],
+      "tags": [
+        "terraform",
+        "planning"
+      ],
+      "takeaway": "A plan is a review opportunity rather than a guarantee against future drift.",
+      "explanation": "A proposed set of changes based on configuration and observed state. A plan is a review opportunity rather than a guarantee against future drift. In the scenario, inspect the replacement cause and data-protection strategy. The alternative \u2018Apply immediately because planning succeeded\u2019 does not address the stated evidence or constraint.",
+      "id": "terraform-03-interview",
+      "title": "Planning \u00b7 interview",
+      "type": "interview",
+      "question": "Explain how you review a plan containing a stateful resource replacement.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "A proposed set of changes based on configuration and observed state. A plan is a review opportunity rather than a guarantee against future drift. A practical response is: Inspect the replacement cause and data-protection strategy. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that it necessarily performs every proposed change.",
+      "answerChecklist": [
+        "A proposed set of changes based on configuration and observed state",
+        "A plan is a review opportunity rather than a guarantee against future drift",
+        "Inspect the replacement cause and data-protection strategy",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "A plan unexpectedly proposes replacing a database. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "terraform",
+      "objective": "Explain state mapping and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "State mapping \u2014 primary reference",
+          "url": "https://developer.hashicorp.com/terraform/language"
+        }
+      ],
+      "tags": [
+        "terraform",
+        "state-mapping"
+      ],
+      "takeaway": "State is operational data that requires protection and recovery planning.",
+      "explanation": "To map configuration addresses to managed remote objects. State is operational data that requires protection and recovery planning. In the scenario, investigate the mapping and consider a controlled import. The alternative \u2018Create a duplicate resource without checking the existing object\u2019 does not address the stated evidence or constraint.",
+      "id": "terraform-04-concept",
+      "title": "State mapping \u00b7 concept",
+      "type": "concept",
+      "question": "Why does Terraform maintain state?",
+      "options": [
+        "Create a duplicate resource without checking the existing object",
+        "To map configuration addresses to managed remote objects",
+        "State is merely optional console formatting",
+        "Deleting state safely deletes all remote infrastructure"
+      ],
+      "correct": [
+        1
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "terraform",
+      "objective": "Explain state mapping and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "State mapping \u2014 primary reference",
+          "url": "https://developer.hashicorp.com/terraform/language"
+        }
+      ],
+      "tags": [
+        "terraform",
+        "state-mapping"
+      ],
+      "takeaway": "State is operational data that requires protection and recovery planning.",
+      "explanation": "To map configuration addresses to managed remote objects. State is operational data that requires protection and recovery planning. In the scenario, investigate the mapping and consider a controlled import. The alternative \u2018Create a duplicate resource without checking the existing object\u2019 does not address the stated evidence or constraint.",
+      "id": "terraform-04-scenario",
+      "title": "State mapping \u00b7 scenario",
+      "type": "scenario",
+      "question": "A resource exists remotely but its state mapping is missing. What is the best next step?",
+      "options": [
+        "Investigate the mapping and consider a controlled import",
+        "Create a duplicate resource without checking the existing object",
+        "State is merely optional console formatting",
+        "Deleting state safely deletes all remote infrastructure"
+      ],
+      "correct": [
+        0
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "terraform",
+      "objective": "Explain state mapping and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "State mapping \u2014 primary reference",
+          "url": "https://developer.hashicorp.com/terraform/language"
+        }
+      ],
+      "tags": [
+        "terraform",
+        "state-mapping"
+      ],
+      "takeaway": "State is operational data that requires protection and recovery planning.",
+      "explanation": "To map configuration addresses to managed remote objects. State is operational data that requires protection and recovery planning. In the scenario, investigate the mapping and consider a controlled import. The alternative \u2018Create a duplicate resource without checking the existing object\u2019 does not address the stated evidence or constraint.",
+      "id": "terraform-04-principles",
+      "title": "State mapping \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing state mapping, which TWO statements are sound operational principles?",
+      "options": [
+        "State is operational data that requires protection and recovery planning",
+        "State is merely optional console formatting",
+        "Deleting state safely deletes all remote infrastructure",
+        "To map configuration addresses to managed remote objects"
+      ],
+      "correct": [
+        0,
+        3
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "terraform",
+      "objective": "Explain state mapping and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "State mapping \u2014 primary reference",
+          "url": "https://developer.hashicorp.com/terraform/language"
+        }
+      ],
+      "tags": [
+        "terraform",
+        "state-mapping"
+      ],
+      "takeaway": "State is operational data that requires protection and recovery planning.",
+      "explanation": "To map configuration addresses to managed remote objects. State is operational data that requires protection and recovery planning. In the scenario, investigate the mapping and consider a controlled import. The alternative \u2018Create a duplicate resource without checking the existing object\u2019 does not address the stated evidence or constraint.",
+      "id": "terraform-04-interview",
+      "title": "State mapping \u00b7 interview",
+      "type": "interview",
+      "question": "Explain the role of state in infrastructure ownership.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "To map configuration addresses to managed remote objects. State is operational data that requires protection and recovery planning. A practical response is: Investigate the mapping and consider a controlled import. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that state is merely optional console formatting.",
+      "answerChecklist": [
+        "To map configuration addresses to managed remote objects",
+        "State is operational data that requires protection and recovery planning",
+        "Investigate the mapping and consider a controlled import",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "A resource exists remotely but its state mapping is missing. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "terraform",
+      "objective": "Explain variables and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Variables \u2014 primary reference",
+          "url": "https://developer.hashicorp.com/terraform/language"
+        }
+      ],
+      "tags": [
+        "terraform",
+        "variables"
+      ],
+      "takeaway": "Types and validation can catch invalid inputs early.",
+      "explanation": "Parameters for a Terraform module. Types and validation can catch invalid inputs early. In the scenario, add explicit input validation and clear accepted values. The alternative \u2018Let the cloud API fail after unrelated changes begin\u2019 does not address the stated evidence or constraint.",
+      "id": "terraform-05-concept",
+      "title": "Variables \u00b7 concept",
+      "type": "concept",
+      "question": "What do input variables provide?",
+      "options": [
+        "Parameters for a Terraform module",
+        "Variables automatically encrypt every value",
+        "Variables are always populated only from environment variables",
+        "Let the cloud API fail after unrelated changes begin"
+      ],
+      "correct": [
+        0
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "terraform",
+      "objective": "Explain variables and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Variables \u2014 primary reference",
+          "url": "https://developer.hashicorp.com/terraform/language"
+        }
+      ],
+      "tags": [
+        "terraform",
+        "variables"
+      ],
+      "takeaway": "Types and validation can catch invalid inputs early.",
+      "explanation": "Parameters for a Terraform module. Types and validation can catch invalid inputs early. In the scenario, add explicit input validation and clear accepted values. The alternative \u2018Let the cloud API fail after unrelated changes begin\u2019 does not address the stated evidence or constraint.",
+      "id": "terraform-05-scenario",
+      "title": "Variables \u00b7 scenario",
+      "type": "scenario",
+      "question": "A module receives an invalid environment name. What is the best next step?",
+      "options": [
+        "Let the cloud API fail after unrelated changes begin",
+        "Variables automatically encrypt every value",
+        "Variables are always populated only from environment variables",
+        "Add explicit input validation and clear accepted values"
+      ],
+      "correct": [
+        3
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "terraform",
+      "objective": "Explain variables and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Variables \u2014 primary reference",
+          "url": "https://developer.hashicorp.com/terraform/language"
+        }
+      ],
+      "tags": [
+        "terraform",
+        "variables"
+      ],
+      "takeaway": "Types and validation can catch invalid inputs early.",
+      "explanation": "Parameters for a Terraform module. Types and validation can catch invalid inputs early. In the scenario, add explicit input validation and clear accepted values. The alternative \u2018Let the cloud API fail after unrelated changes begin\u2019 does not address the stated evidence or constraint.",
+      "id": "terraform-05-principles",
+      "title": "Variables \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing variables, which TWO statements are sound operational principles?",
+      "options": [
+        "Variables automatically encrypt every value",
+        "Variables are always populated only from environment variables",
+        "Parameters for a Terraform module",
+        "Types and validation can catch invalid inputs early"
+      ],
+      "correct": [
+        2,
+        3
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "terraform",
+      "objective": "Explain variables and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Variables \u2014 primary reference",
+          "url": "https://developer.hashicorp.com/terraform/language"
+        }
+      ],
+      "tags": [
+        "terraform",
+        "variables"
+      ],
+      "takeaway": "Types and validation can catch invalid inputs early.",
+      "explanation": "Parameters for a Terraform module. Types and validation can catch invalid inputs early. In the scenario, add explicit input validation and clear accepted values. The alternative \u2018Let the cloud API fail after unrelated changes begin\u2019 does not address the stated evidence or constraint.",
+      "id": "terraform-05-interview",
+      "title": "Variables \u00b7 interview",
+      "type": "interview",
+      "question": "Explain how you design a safe module input interface.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "Parameters for a Terraform module. Types and validation can catch invalid inputs early. A practical response is: Add explicit input validation and clear accepted values. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that variables automatically encrypt every value.",
+      "answerChecklist": [
+        "Parameters for a Terraform module",
+        "Types and validation can catch invalid inputs early",
+        "Add explicit input validation and clear accepted values",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "A module receives an invalid environment name. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "terraform",
+      "objective": "Explain outputs and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Outputs \u2014 primary reference",
+          "url": "https://developer.hashicorp.com/terraform/language"
+        }
+      ],
+      "tags": [
+        "terraform",
+        "outputs"
+      ],
+      "takeaway": "Outputs can contain sensitive data and need appropriate handling.",
+      "explanation": "Expose selected values from a module. Outputs can contain sensitive data and need appropriate handling. In the scenario, mark and handle sensitive values appropriately and restrict log exposure. The alternative \u2018Assume output values cannot include secrets\u2019 does not address the stated evidence or constraint.",
+      "id": "terraform-06-concept",
+      "title": "Outputs \u00b7 concept",
+      "type": "concept",
+      "question": "What are Terraform outputs used for?",
+      "options": [
+        "Outputs are never stored with state",
+        "Every output is automatically public-safe",
+        "Assume output values cannot include secrets",
+        "Expose selected values from a module"
+      ],
+      "correct": [
+        3
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "terraform",
+      "objective": "Explain outputs and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Outputs \u2014 primary reference",
+          "url": "https://developer.hashicorp.com/terraform/language"
+        }
+      ],
+      "tags": [
+        "terraform",
+        "outputs"
+      ],
+      "takeaway": "Outputs can contain sensitive data and need appropriate handling.",
+      "explanation": "Expose selected values from a module. Outputs can contain sensitive data and need appropriate handling. In the scenario, mark and handle sensitive values appropriately and restrict log exposure. The alternative \u2018Assume output values cannot include secrets\u2019 does not address the stated evidence or constraint.",
+      "id": "terraform-06-scenario",
+      "title": "Outputs \u00b7 scenario",
+      "type": "scenario",
+      "question": "A pipeline prints a credential-bearing output into shared logs. What is the best next step?",
+      "options": [
+        "Outputs are never stored with state",
+        "Every output is automatically public-safe",
+        "Mark and handle sensitive values appropriately and restrict log exposure",
+        "Assume output values cannot include secrets"
+      ],
+      "correct": [
+        2
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "terraform",
+      "objective": "Explain outputs and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Outputs \u2014 primary reference",
+          "url": "https://developer.hashicorp.com/terraform/language"
+        }
+      ],
+      "tags": [
+        "terraform",
+        "outputs"
+      ],
+      "takeaway": "Outputs can contain sensitive data and need appropriate handling.",
+      "explanation": "Expose selected values from a module. Outputs can contain sensitive data and need appropriate handling. In the scenario, mark and handle sensitive values appropriately and restrict log exposure. The alternative \u2018Assume output values cannot include secrets\u2019 does not address the stated evidence or constraint.",
+      "id": "terraform-06-principles",
+      "title": "Outputs \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing outputs, which TWO statements are sound operational principles?",
+      "options": [
+        "Every output is automatically public-safe",
+        "Expose selected values from a module",
+        "Outputs can contain sensitive data and need appropriate handling",
+        "Outputs are never stored with state"
+      ],
+      "correct": [
+        1,
+        2
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "terraform",
+      "objective": "Explain outputs and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Outputs \u2014 primary reference",
+          "url": "https://developer.hashicorp.com/terraform/language"
+        }
+      ],
+      "tags": [
+        "terraform",
+        "outputs"
+      ],
+      "takeaway": "Outputs can contain sensitive data and need appropriate handling.",
+      "explanation": "Expose selected values from a module. Outputs can contain sensitive data and need appropriate handling. In the scenario, mark and handle sensitive values appropriately and restrict log exposure. The alternative \u2018Assume output values cannot include secrets\u2019 does not address the stated evidence or constraint.",
+      "id": "terraform-06-interview",
+      "title": "Outputs \u00b7 interview",
+      "type": "interview",
+      "question": "Explain safe use of outputs between modules and automation.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "Expose selected values from a module. Outputs can contain sensitive data and need appropriate handling. A practical response is: Mark and handle sensitive values appropriately and restrict log exposure. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that outputs are never stored with state.",
+      "answerChecklist": [
+        "Expose selected values from a module",
+        "Outputs can contain sensitive data and need appropriate handling",
+        "Mark and handle sensitive values appropriately and restrict log exposure",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "A pipeline prints a credential-bearing output into shared logs. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "terraform",
+      "objective": "Explain providers and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Providers \u2014 primary reference",
+          "url": "https://developer.hashicorp.com/terraform/language"
+        }
+      ],
+      "tags": [
+        "terraform",
+        "providers"
+      ],
+      "takeaway": "Provider versions affect resource behavior and schema.",
+      "explanation": "A plugin implementing interactions with a service or platform. Provider versions affect resource behavior and schema. In the scenario, review provider version changes and test the plan. The alternative \u2018Upgrade every provider blindly during production apply\u2019 does not address the stated evidence or constraint.",
+      "id": "terraform-07-concept",
+      "title": "Providers \u00b7 concept",
+      "type": "concept",
+      "question": "What is a Terraform provider?",
+      "options": [
+        "Providers eliminate the need for credentials",
+        "Upgrade every provider blindly during production apply",
+        "A plugin implementing interactions with a service or platform",
+        "A provider is the same thing as a variable file"
+      ],
+      "correct": [
+        2
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "terraform",
+      "objective": "Explain providers and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Providers \u2014 primary reference",
+          "url": "https://developer.hashicorp.com/terraform/language"
+        }
+      ],
+      "tags": [
+        "terraform",
+        "providers"
+      ],
+      "takeaway": "Provider versions affect resource behavior and schema.",
+      "explanation": "A plugin implementing interactions with a service or platform. Provider versions affect resource behavior and schema. In the scenario, review provider version changes and test the plan. The alternative \u2018Upgrade every provider blindly during production apply\u2019 does not address the stated evidence or constraint.",
+      "id": "terraform-07-scenario",
+      "title": "Providers \u00b7 scenario",
+      "type": "scenario",
+      "question": "An upgrade changes a resource's planned behavior. What is the best next step?",
+      "options": [
+        "Providers eliminate the need for credentials",
+        "Review provider version changes and test the plan",
+        "Upgrade every provider blindly during production apply",
+        "A provider is the same thing as a variable file"
+      ],
+      "correct": [
+        1
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "terraform",
+      "objective": "Explain providers and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Providers \u2014 primary reference",
+          "url": "https://developer.hashicorp.com/terraform/language"
+        }
+      ],
+      "tags": [
+        "terraform",
+        "providers"
+      ],
+      "takeaway": "Provider versions affect resource behavior and schema.",
+      "explanation": "A plugin implementing interactions with a service or platform. Provider versions affect resource behavior and schema. In the scenario, review provider version changes and test the plan. The alternative \u2018Upgrade every provider blindly during production apply\u2019 does not address the stated evidence or constraint.",
+      "id": "terraform-07-principles",
+      "title": "Providers \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing providers, which TWO statements are sound operational principles?",
+      "options": [
+        "A plugin implementing interactions with a service or platform",
+        "Provider versions affect resource behavior and schema",
+        "A provider is the same thing as a variable file",
+        "Providers eliminate the need for credentials"
+      ],
+      "correct": [
+        0,
+        1
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "terraform",
+      "objective": "Explain providers and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Providers \u2014 primary reference",
+          "url": "https://developer.hashicorp.com/terraform/language"
+        }
+      ],
+      "tags": [
+        "terraform",
+        "providers"
+      ],
+      "takeaway": "Provider versions affect resource behavior and schema.",
+      "explanation": "A plugin implementing interactions with a service or platform. Provider versions affect resource behavior and schema. In the scenario, review provider version changes and test the plan. The alternative \u2018Upgrade every provider blindly during production apply\u2019 does not address the stated evidence or constraint.",
+      "id": "terraform-07-interview",
+      "title": "Providers \u00b7 interview",
+      "type": "interview",
+      "question": "Explain provider version management for reproducible changes.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "A plugin implementing interactions with a service or platform. Provider versions affect resource behavior and schema. A practical response is: Review provider version changes and test the plan. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that a provider is the same thing as a variable file.",
+      "answerChecklist": [
+        "A plugin implementing interactions with a service or platform",
+        "Provider versions affect resource behavior and schema",
+        "Review provider version changes and test the plan",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "An upgrade changes a resource's planned behavior. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "terraform",
+      "objective": "Explain modules and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Modules \u2014 primary reference",
+          "url": "https://developer.hashicorp.com/terraform/language"
+        }
+      ],
+      "tags": [
+        "terraform",
+        "modules"
+      ],
+      "takeaway": "A clear module interface reduces coupling to implementation details.",
+      "explanation": "A reusable group of Terraform configuration. A clear module interface reduces coupling to implementation details. In the scenario, create a versioned module with deliberate inputs and outputs. The alternative \u2018Copy the same files into more repositories indefinitely\u2019 does not address the stated evidence or constraint.",
+      "id": "terraform-08-concept",
+      "title": "Modules \u00b7 concept",
+      "type": "concept",
+      "question": "What does a module encapsulate?",
+      "options": [
+        "Copy the same files into more repositories indefinitely",
+        "A reusable group of Terraform configuration",
+        "A module is a separate cloud account by definition",
+        "Every module automatically uses an isolated backend"
+      ],
+      "correct": [
+        1
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "terraform",
+      "objective": "Explain modules and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Modules \u2014 primary reference",
+          "url": "https://developer.hashicorp.com/terraform/language"
+        }
+      ],
+      "tags": [
+        "terraform",
+        "modules"
+      ],
+      "takeaway": "A clear module interface reduces coupling to implementation details.",
+      "explanation": "A reusable group of Terraform configuration. A clear module interface reduces coupling to implementation details. In the scenario, create a versioned module with deliberate inputs and outputs. The alternative \u2018Copy the same files into more repositories indefinitely\u2019 does not address the stated evidence or constraint.",
+      "id": "terraform-08-scenario",
+      "title": "Modules \u00b7 scenario",
+      "type": "scenario",
+      "question": "Teams duplicate similar infrastructure with inconsistent defaults. What is the best next step?",
+      "options": [
+        "Create a versioned module with deliberate inputs and outputs",
+        "Copy the same files into more repositories indefinitely",
+        "A module is a separate cloud account by definition",
+        "Every module automatically uses an isolated backend"
+      ],
+      "correct": [
+        0
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "terraform",
+      "objective": "Explain modules and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Modules \u2014 primary reference",
+          "url": "https://developer.hashicorp.com/terraform/language"
+        }
+      ],
+      "tags": [
+        "terraform",
+        "modules"
+      ],
+      "takeaway": "A clear module interface reduces coupling to implementation details.",
+      "explanation": "A reusable group of Terraform configuration. A clear module interface reduces coupling to implementation details. In the scenario, create a versioned module with deliberate inputs and outputs. The alternative \u2018Copy the same files into more repositories indefinitely\u2019 does not address the stated evidence or constraint.",
+      "id": "terraform-08-principles",
+      "title": "Modules \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing modules, which TWO statements are sound operational principles?",
+      "options": [
+        "A clear module interface reduces coupling to implementation details",
+        "A module is a separate cloud account by definition",
+        "Every module automatically uses an isolated backend",
+        "A reusable group of Terraform configuration"
+      ],
+      "correct": [
+        0,
+        3
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "terraform",
+      "objective": "Explain modules and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Modules \u2014 primary reference",
+          "url": "https://developer.hashicorp.com/terraform/language"
+        }
+      ],
+      "tags": [
+        "terraform",
+        "modules"
+      ],
+      "takeaway": "A clear module interface reduces coupling to implementation details.",
+      "explanation": "A reusable group of Terraform configuration. A clear module interface reduces coupling to implementation details. In the scenario, create a versioned module with deliberate inputs and outputs. The alternative \u2018Copy the same files into more repositories indefinitely\u2019 does not address the stated evidence or constraint.",
+      "id": "terraform-08-interview",
+      "title": "Modules \u00b7 interview",
+      "type": "interview",
+      "question": "Explain where you would draw a reusable module boundary.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "A reusable group of Terraform configuration. A clear module interface reduces coupling to implementation details. A practical response is: Create a versioned module with deliberate inputs and outputs. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that a module is a separate cloud account by definition.",
+      "answerChecklist": [
+        "A reusable group of Terraform configuration",
+        "A clear module interface reduces coupling to implementation details",
+        "Create a versioned module with deliberate inputs and outputs",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "Teams duplicate similar infrastructure with inconsistent defaults. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "terraform",
+      "objective": "Explain lock files and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Lock files \u2014 primary reference",
+          "url": "https://developer.hashicorp.com/terraform/language"
+        }
+      ],
+      "tags": [
+        "terraform",
+        "lock-files"
+      ],
+      "takeaway": "Commit the lock file to support consistent provider selection.",
+      "explanation": "Selected provider versions and checksums. Commit the lock file to support consistent provider selection. In the scenario, review constraints and commit the intended provider lock selections. The alternative \u2018Delete the lock file on every run\u2019 does not address the stated evidence or constraint.",
+      "id": "terraform-09-concept",
+      "title": "Lock files \u00b7 concept",
+      "type": "concept",
+      "question": "What does the dependency lock file primarily record?",
+      "options": [
+        "Selected provider versions and checksums",
+        "It locks all remote infrastructure against edits",
+        "It records every module version selection automatically",
+        "Delete the lock file on every run"
+      ],
+      "correct": [
+        0
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "terraform",
+      "objective": "Explain lock files and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Lock files \u2014 primary reference",
+          "url": "https://developer.hashicorp.com/terraform/language"
+        }
+      ],
+      "tags": [
+        "terraform",
+        "lock-files"
+      ],
+      "takeaway": "Commit the lock file to support consistent provider selection.",
+      "explanation": "Selected provider versions and checksums. Commit the lock file to support consistent provider selection. In the scenario, review constraints and commit the intended provider lock selections. The alternative \u2018Delete the lock file on every run\u2019 does not address the stated evidence or constraint.",
+      "id": "terraform-09-scenario",
+      "title": "Lock files \u00b7 scenario",
+      "type": "scenario",
+      "question": "Two CI runs install different provider builds after initialization. What is the best next step?",
+      "options": [
+        "Delete the lock file on every run",
+        "It locks all remote infrastructure against edits",
+        "It records every module version selection automatically",
+        "Review constraints and commit the intended provider lock selections"
+      ],
+      "correct": [
+        3
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "terraform",
+      "objective": "Explain lock files and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Lock files \u2014 primary reference",
+          "url": "https://developer.hashicorp.com/terraform/language"
+        }
+      ],
+      "tags": [
+        "terraform",
+        "lock-files"
+      ],
+      "takeaway": "Commit the lock file to support consistent provider selection.",
+      "explanation": "Selected provider versions and checksums. Commit the lock file to support consistent provider selection. In the scenario, review constraints and commit the intended provider lock selections. The alternative \u2018Delete the lock file on every run\u2019 does not address the stated evidence or constraint.",
+      "id": "terraform-09-principles",
+      "title": "Lock files \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing lock files, which TWO statements are sound operational principles?",
+      "options": [
+        "It locks all remote infrastructure against edits",
+        "It records every module version selection automatically",
+        "Selected provider versions and checksums",
+        "Commit the lock file to support consistent provider selection"
+      ],
+      "correct": [
+        2,
+        3
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "terraform",
+      "objective": "Explain lock files and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Lock files \u2014 primary reference",
+          "url": "https://developer.hashicorp.com/terraform/language"
+        }
+      ],
+      "tags": [
+        "terraform",
+        "lock-files"
+      ],
+      "takeaway": "Commit the lock file to support consistent provider selection.",
+      "explanation": "Selected provider versions and checksums. Commit the lock file to support consistent provider selection. In the scenario, review constraints and commit the intended provider lock selections. The alternative \u2018Delete the lock file on every run\u2019 does not address the stated evidence or constraint.",
+      "id": "terraform-09-interview",
+      "title": "Lock files \u00b7 interview",
+      "type": "interview",
+      "question": "Explain provider constraints versus the dependency lock file.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "Selected provider versions and checksums. Commit the lock file to support consistent provider selection. A practical response is: Review constraints and commit the intended provider lock selections. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that it locks all remote infrastructure against edits.",
+      "answerChecklist": [
+        "Selected provider versions and checksums",
+        "Commit the lock file to support consistent provider selection",
+        "Review constraints and commit the intended provider lock selections",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "Two CI runs install different provider builds after initialization. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "terraform",
+      "objective": "Explain remote state and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Remote state \u2014 primary reference",
+          "url": "https://developer.hashicorp.com/terraform/language"
+        }
+      ],
+      "tags": [
+        "terraform",
+        "remote-state"
+      ],
+      "takeaway": "Backend locking capability depends on the chosen backend.",
+      "explanation": "It centralizes state access and can support collaboration controls. Backend locking capability depends on the chosen backend. In the scenario, move to a coordinated backend with appropriate access and locking. The alternative \u2018Continue sharing state by copying files over chat\u2019 does not address the stated evidence or constraint.",
+      "id": "terraform-10-concept",
+      "title": "Remote state \u00b7 concept",
+      "type": "concept",
+      "question": "Why use a suitably secured remote backend for shared work?",
+      "options": [
+        "Remote storage makes all state contents non-sensitive",
+        "Every remote backend supports identical locking behavior",
+        "Continue sharing state by copying files over chat",
+        "It centralizes state access and can support collaboration controls"
+      ],
+      "correct": [
+        3
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "terraform",
+      "objective": "Explain remote state and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Remote state \u2014 primary reference",
+          "url": "https://developer.hashicorp.com/terraform/language"
+        }
+      ],
+      "tags": [
+        "terraform",
+        "remote-state"
+      ],
+      "takeaway": "Backend locking capability depends on the chosen backend.",
+      "explanation": "It centralizes state access and can support collaboration controls. Backend locking capability depends on the chosen backend. In the scenario, move to a coordinated backend with appropriate access and locking. The alternative \u2018Continue sharing state by copying files over chat\u2019 does not address the stated evidence or constraint.",
+      "id": "terraform-10-scenario",
+      "title": "Remote state \u00b7 scenario",
+      "type": "scenario",
+      "question": "Two engineers apply against separate local state copies. What is the best next step?",
+      "options": [
+        "Remote storage makes all state contents non-sensitive",
+        "Every remote backend supports identical locking behavior",
+        "Move to a coordinated backend with appropriate access and locking",
+        "Continue sharing state by copying files over chat"
+      ],
+      "correct": [
+        2
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "terraform",
+      "objective": "Explain remote state and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Remote state \u2014 primary reference",
+          "url": "https://developer.hashicorp.com/terraform/language"
+        }
+      ],
+      "tags": [
+        "terraform",
+        "remote-state"
+      ],
+      "takeaway": "Backend locking capability depends on the chosen backend.",
+      "explanation": "It centralizes state access and can support collaboration controls. Backend locking capability depends on the chosen backend. In the scenario, move to a coordinated backend with appropriate access and locking. The alternative \u2018Continue sharing state by copying files over chat\u2019 does not address the stated evidence or constraint.",
+      "id": "terraform-10-principles",
+      "title": "Remote state \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing remote state, which TWO statements are sound operational principles?",
+      "options": [
+        "Every remote backend supports identical locking behavior",
+        "It centralizes state access and can support collaboration controls",
+        "Backend locking capability depends on the chosen backend",
+        "Remote storage makes all state contents non-sensitive"
+      ],
+      "correct": [
+        1,
+        2
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "terraform",
+      "objective": "Explain remote state and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Remote state \u2014 primary reference",
+          "url": "https://developer.hashicorp.com/terraform/language"
+        }
+      ],
+      "tags": [
+        "terraform",
+        "remote-state"
+      ],
+      "takeaway": "Backend locking capability depends on the chosen backend.",
+      "explanation": "It centralizes state access and can support collaboration controls. Backend locking capability depends on the chosen backend. In the scenario, move to a coordinated backend with appropriate access and locking. The alternative \u2018Continue sharing state by copying files over chat\u2019 does not address the stated evidence or constraint.",
+      "id": "terraform-10-interview",
+      "title": "Remote state \u00b7 interview",
+      "type": "interview",
+      "question": "Explain the requirements of a shared Terraform backend.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "It centralizes state access and can support collaboration controls. Backend locking capability depends on the chosen backend. A practical response is: Move to a coordinated backend with appropriate access and locking. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that remote storage makes all state contents non-sensitive.",
+      "answerChecklist": [
+        "It centralizes state access and can support collaboration controls",
+        "Backend locking capability depends on the chosen backend",
+        "Move to a coordinated backend with appropriate access and locking",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "Two engineers apply against separate local state copies. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "terraform",
+      "objective": "Explain state locking and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "State locking \u2014 primary reference",
+          "url": "https://developer.hashicorp.com/terraform/language"
+        }
+      ],
+      "tags": [
+        "terraform",
+        "state-locking"
+      ],
+      "takeaway": "A lock should be cleared only after verifying its owner is inactive.",
+      "explanation": "Concurrent writers corrupting the same state workflow. A lock should be cleared only after verifying its owner is inactive. In the scenario, verify the original operation stopped before a controlled unlock. The alternative \u2018Force-unlock immediately whenever waiting is inconvenient\u2019 does not address the stated evidence or constraint.",
+      "id": "terraform-11-concept",
+      "title": "State locking \u00b7 concept",
+      "type": "concept",
+      "question": "What does state locking help prevent?",
+      "options": [
+        "Force-unlocking is always safe while another apply runs",
+        "Force-unlock immediately whenever waiting is inconvenient",
+        "Concurrent writers corrupting the same state workflow",
+        "Locking prevents every manual cloud-console edit"
+      ],
+      "correct": [
+        2
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "terraform",
+      "objective": "Explain state locking and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "State locking \u2014 primary reference",
+          "url": "https://developer.hashicorp.com/terraform/language"
+        }
+      ],
+      "tags": [
+        "terraform",
+        "state-locking"
+      ],
+      "takeaway": "A lock should be cleared only after verifying its owner is inactive.",
+      "explanation": "Concurrent writers corrupting the same state workflow. A lock should be cleared only after verifying its owner is inactive. In the scenario, verify the original operation stopped before a controlled unlock. The alternative \u2018Force-unlock immediately whenever waiting is inconvenient\u2019 does not address the stated evidence or constraint.",
+      "id": "terraform-11-scenario",
+      "title": "State locking \u00b7 scenario",
+      "type": "scenario",
+      "question": "An apply is blocked by a lock after a runner interruption. What is the best next step?",
+      "options": [
+        "Force-unlocking is always safe while another apply runs",
+        "Verify the original operation stopped before a controlled unlock",
+        "Force-unlock immediately whenever waiting is inconvenient",
+        "Locking prevents every manual cloud-console edit"
+      ],
+      "correct": [
+        1
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "terraform",
+      "objective": "Explain state locking and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "State locking \u2014 primary reference",
+          "url": "https://developer.hashicorp.com/terraform/language"
+        }
+      ],
+      "tags": [
+        "terraform",
+        "state-locking"
+      ],
+      "takeaway": "A lock should be cleared only after verifying its owner is inactive.",
+      "explanation": "Concurrent writers corrupting the same state workflow. A lock should be cleared only after verifying its owner is inactive. In the scenario, verify the original operation stopped before a controlled unlock. The alternative \u2018Force-unlock immediately whenever waiting is inconvenient\u2019 does not address the stated evidence or constraint.",
+      "id": "terraform-11-principles",
+      "title": "State locking \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing state locking, which TWO statements are sound operational principles?",
+      "options": [
+        "Concurrent writers corrupting the same state workflow",
+        "A lock should be cleared only after verifying its owner is inactive",
+        "Locking prevents every manual cloud-console edit",
+        "Force-unlocking is always safe while another apply runs"
+      ],
+      "correct": [
+        0,
+        1
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "terraform",
+      "objective": "Explain state locking and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "State locking \u2014 primary reference",
+          "url": "https://developer.hashicorp.com/terraform/language"
+        }
+      ],
+      "tags": [
+        "terraform",
+        "state-locking"
+      ],
+      "takeaway": "A lock should be cleared only after verifying its owner is inactive.",
+      "explanation": "Concurrent writers corrupting the same state workflow. A lock should be cleared only after verifying its owner is inactive. In the scenario, verify the original operation stopped before a controlled unlock. The alternative \u2018Force-unlock immediately whenever waiting is inconvenient\u2019 does not address the stated evidence or constraint.",
+      "id": "terraform-11-interview",
+      "title": "State locking \u00b7 interview",
+      "type": "interview",
+      "question": "Explain a safe response to an apparently stale state lock.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "Concurrent writers corrupting the same state workflow. A lock should be cleared only after verifying its owner is inactive. A practical response is: Verify the original operation stopped before a controlled unlock. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that locking prevents every manual cloud-console edit.",
+      "answerChecklist": [
+        "Concurrent writers corrupting the same state workflow",
+        "A lock should be cleared only after verifying its owner is inactive",
+        "Verify the original operation stopped before a controlled unlock",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "An apply is blocked by a lock after a runner interruption. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "terraform",
+      "objective": "Explain sensitive values and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Sensitive values \u2014 primary reference",
+          "url": "https://developer.hashicorp.com/terraform/language"
+        }
+      ],
+      "tags": [
+        "terraform",
+        "sensitive-values"
+      ],
+      "takeaway": "Sensitive marking alone does not encrypt stored state.",
+      "explanation": "Redact it from ordinary user-facing output. Sensitive marking alone does not encrypt stored state. In the scenario, restrict and remediate exposure and secure the state storage. The alternative \u2018Rely only on the sensitive annotation for encryption\u2019 does not address the stated evidence or constraint.",
+      "id": "terraform-12-concept",
+      "title": "Sensitive values \u00b7 concept",
+      "type": "concept",
+      "question": "What does marking a value sensitive generally do?",
+      "options": [
+        "Rely only on the sensitive annotation for encryption",
+        "Redact it from ordinary user-facing output",
+        "It removes every occurrence from state automatically",
+        "It makes sharing the state file safe with everyone"
+      ],
+      "correct": [
+        1
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "terraform",
+      "objective": "Explain sensitive values and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Sensitive values \u2014 primary reference",
+          "url": "https://developer.hashicorp.com/terraform/language"
+        }
+      ],
+      "tags": [
+        "terraform",
+        "sensitive-values"
+      ],
+      "takeaway": "Sensitive marking alone does not encrypt stored state.",
+      "explanation": "Redact it from ordinary user-facing output. Sensitive marking alone does not encrypt stored state. In the scenario, restrict and remediate exposure and secure the state storage. The alternative \u2018Rely only on the sensitive annotation for encryption\u2019 does not address the stated evidence or constraint.",
+      "id": "terraform-12-scenario",
+      "title": "Sensitive values \u00b7 scenario",
+      "type": "scenario",
+      "question": "A team commits state believing sensitive values were removed. What is the best next step?",
+      "options": [
+        "Restrict and remediate exposure and secure the state storage",
+        "Rely only on the sensitive annotation for encryption",
+        "It removes every occurrence from state automatically",
+        "It makes sharing the state file safe with everyone"
+      ],
+      "correct": [
+        0
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "terraform",
+      "objective": "Explain sensitive values and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Sensitive values \u2014 primary reference",
+          "url": "https://developer.hashicorp.com/terraform/language"
+        }
+      ],
+      "tags": [
+        "terraform",
+        "sensitive-values"
+      ],
+      "takeaway": "Sensitive marking alone does not encrypt stored state.",
+      "explanation": "Redact it from ordinary user-facing output. Sensitive marking alone does not encrypt stored state. In the scenario, restrict and remediate exposure and secure the state storage. The alternative \u2018Rely only on the sensitive annotation for encryption\u2019 does not address the stated evidence or constraint.",
+      "id": "terraform-12-principles",
+      "title": "Sensitive values \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing sensitive values, which TWO statements are sound operational principles?",
+      "options": [
+        "Sensitive marking alone does not encrypt stored state",
+        "It removes every occurrence from state automatically",
+        "It makes sharing the state file safe with everyone",
+        "Redact it from ordinary user-facing output"
+      ],
+      "correct": [
+        0,
+        3
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "terraform",
+      "objective": "Explain sensitive values and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Sensitive values \u2014 primary reference",
+          "url": "https://developer.hashicorp.com/terraform/language"
+        }
+      ],
+      "tags": [
+        "terraform",
+        "sensitive-values"
+      ],
+      "takeaway": "Sensitive marking alone does not encrypt stored state.",
+      "explanation": "Redact it from ordinary user-facing output. Sensitive marking alone does not encrypt stored state. In the scenario, restrict and remediate exposure and secure the state storage. The alternative \u2018Rely only on the sensitive annotation for encryption\u2019 does not address the stated evidence or constraint.",
+      "id": "terraform-12-interview",
+      "title": "Sensitive values \u00b7 interview",
+      "type": "interview",
+      "question": "Explain output redaction versus secret storage protection.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "Redact it from ordinary user-facing output. Sensitive marking alone does not encrypt stored state. A practical response is: Restrict and remediate exposure and secure the state storage. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that it removes every occurrence from state automatically.",
+      "answerChecklist": [
+        "Redact it from ordinary user-facing output",
+        "Sensitive marking alone does not encrypt stored state",
+        "Restrict and remediate exposure and secure the state storage",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "A team commits state believing sensitive values were removed. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "terraform",
+      "objective": "Explain resource addresses and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Resource addresses \u2014 primary reference",
+          "url": "https://developer.hashicorp.com/terraform/language"
+        }
+      ],
+      "tags": [
+        "terraform",
+        "resource-addresses"
+      ],
+      "takeaway": "Changing a key can appear as removal and creation.",
+      "explanation": "Keys form part of resource instance identity. Changing a key can appear as removal and creation. In the scenario, review address migration and use an appropriate moved mapping. The alternative \u2018Apply the rename without reviewing the replacement\u2019 does not address the stated evidence or constraint.",
+      "id": "terraform-13-concept",
+      "title": "Resource addresses \u00b7 concept",
+      "type": "concept",
+      "question": "Why do stable for_each keys matter?",
+      "options": [
+        "Keys form part of resource instance identity",
+        "Keys only affect display order",
+        "Renaming keys never changes resource addresses",
+        "Apply the rename without reviewing the replacement"
+      ],
+      "correct": [
+        0
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "terraform",
+      "objective": "Explain resource addresses and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Resource addresses \u2014 primary reference",
+          "url": "https://developer.hashicorp.com/terraform/language"
+        }
+      ],
+      "tags": [
+        "terraform",
+        "resource-addresses"
+      ],
+      "takeaway": "Changing a key can appear as removal and creation.",
+      "explanation": "Keys form part of resource instance identity. Changing a key can appear as removal and creation. In the scenario, review address migration and use an appropriate moved mapping. The alternative \u2018Apply the rename without reviewing the replacement\u2019 does not address the stated evidence or constraint.",
+      "id": "terraform-13-scenario",
+      "title": "Resource addresses \u00b7 scenario",
+      "type": "scenario",
+      "question": "Renaming a map key proposes destroying a live object. What is the best next step?",
+      "options": [
+        "Apply the rename without reviewing the replacement",
+        "Keys only affect display order",
+        "Renaming keys never changes resource addresses",
+        "Review address migration and use an appropriate moved mapping"
+      ],
+      "correct": [
+        3
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "terraform",
+      "objective": "Explain resource addresses and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Resource addresses \u2014 primary reference",
+          "url": "https://developer.hashicorp.com/terraform/language"
+        }
+      ],
+      "tags": [
+        "terraform",
+        "resource-addresses"
+      ],
+      "takeaway": "Changing a key can appear as removal and creation.",
+      "explanation": "Keys form part of resource instance identity. Changing a key can appear as removal and creation. In the scenario, review address migration and use an appropriate moved mapping. The alternative \u2018Apply the rename without reviewing the replacement\u2019 does not address the stated evidence or constraint.",
+      "id": "terraform-13-principles",
+      "title": "Resource addresses \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing resource addresses, which TWO statements are sound operational principles?",
+      "options": [
+        "Keys only affect display order",
+        "Renaming keys never changes resource addresses",
+        "Keys form part of resource instance identity",
+        "Changing a key can appear as removal and creation"
+      ],
+      "correct": [
+        2,
+        3
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "terraform",
+      "objective": "Explain resource addresses and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Resource addresses \u2014 primary reference",
+          "url": "https://developer.hashicorp.com/terraform/language"
+        }
+      ],
+      "tags": [
+        "terraform",
+        "resource-addresses"
+      ],
+      "takeaway": "Changing a key can appear as removal and creation.",
+      "explanation": "Keys form part of resource instance identity. Changing a key can appear as removal and creation. In the scenario, review address migration and use an appropriate moved mapping. The alternative \u2018Apply the rename without reviewing the replacement\u2019 does not address the stated evidence or constraint.",
+      "id": "terraform-13-interview",
+      "title": "Resource addresses \u00b7 interview",
+      "type": "interview",
+      "question": "Explain stable identity when designing for_each inputs.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "Keys form part of resource instance identity. Changing a key can appear as removal and creation. A practical response is: Review address migration and use an appropriate moved mapping. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that keys only affect display order.",
+      "answerChecklist": [
+        "Keys form part of resource instance identity",
+        "Changing a key can appear as removal and creation",
+        "Review address migration and use an appropriate moved mapping",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "Renaming a map key proposes destroying a live object. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "terraform",
+      "objective": "Explain count indexing and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Count indexing \u2014 primary reference",
+          "url": "https://developer.hashicorp.com/terraform/language"
+        }
+      ],
+      "tags": [
+        "terraform",
+        "count-indexing"
+      ],
+      "takeaway": "Stable semantic keys can reduce unintended identity changes.",
+      "explanation": "Later numeric indices can shift their resource associations. Stable semantic keys can reduce unintended identity changes. In the scenario, review index shifts and migrate toward stable keys where appropriate. The alternative \u2018Assume only the first instance can be affected\u2019 does not address the stated evidence or constraint.",
+      "id": "terraform-14-concept",
+      "title": "Count indexing \u00b7 concept",
+      "type": "concept",
+      "question": "What risk comes from removing an item in a count-indexed list?",
+      "options": [
+        "Count indices are permanently tied to object names",
+        "Removing one list item can never affect later instances",
+        "Assume only the first instance can be affected",
+        "Later numeric indices can shift their resource associations"
+      ],
+      "correct": [
+        3
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "terraform",
+      "objective": "Explain count indexing and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Count indexing \u2014 primary reference",
+          "url": "https://developer.hashicorp.com/terraform/language"
+        }
+      ],
+      "tags": [
+        "terraform",
+        "count-indexing"
+      ],
+      "takeaway": "Stable semantic keys can reduce unintended identity changes.",
+      "explanation": "Later numeric indices can shift their resource associations. Stable semantic keys can reduce unintended identity changes. In the scenario, review index shifts and migrate toward stable keys where appropriate. The alternative \u2018Assume only the first instance can be affected\u2019 does not address the stated evidence or constraint.",
+      "id": "terraform-14-scenario",
+      "title": "Count indexing \u00b7 scenario",
+      "type": "scenario",
+      "question": "Removing the first subnet name causes several unexpected changes. What is the best next step?",
+      "options": [
+        "Count indices are permanently tied to object names",
+        "Removing one list item can never affect later instances",
+        "Review index shifts and migrate toward stable keys where appropriate",
+        "Assume only the first instance can be affected"
+      ],
+      "correct": [
+        2
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "terraform",
+      "objective": "Explain count indexing and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Count indexing \u2014 primary reference",
+          "url": "https://developer.hashicorp.com/terraform/language"
+        }
+      ],
+      "tags": [
+        "terraform",
+        "count-indexing"
+      ],
+      "takeaway": "Stable semantic keys can reduce unintended identity changes.",
+      "explanation": "Later numeric indices can shift their resource associations. Stable semantic keys can reduce unintended identity changes. In the scenario, review index shifts and migrate toward stable keys where appropriate. The alternative \u2018Assume only the first instance can be affected\u2019 does not address the stated evidence or constraint.",
+      "id": "terraform-14-principles",
+      "title": "Count indexing \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing count indexing, which TWO statements are sound operational principles?",
+      "options": [
+        "Removing one list item can never affect later instances",
+        "Later numeric indices can shift their resource associations",
+        "Stable semantic keys can reduce unintended identity changes",
+        "Count indices are permanently tied to object names"
+      ],
+      "correct": [
+        1,
+        2
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "terraform",
+      "objective": "Explain count indexing and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Count indexing \u2014 primary reference",
+          "url": "https://developer.hashicorp.com/terraform/language"
+        }
+      ],
+      "tags": [
+        "terraform",
+        "count-indexing"
+      ],
+      "takeaway": "Stable semantic keys can reduce unintended identity changes.",
+      "explanation": "Later numeric indices can shift their resource associations. Stable semantic keys can reduce unintended identity changes. In the scenario, review index shifts and migrate toward stable keys where appropriate. The alternative \u2018Assume only the first instance can be affected\u2019 does not address the stated evidence or constraint.",
+      "id": "terraform-14-interview",
+      "title": "Count indexing \u00b7 interview",
+      "type": "interview",
+      "question": "Compare count and for_each for long-lived infrastructure.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "Later numeric indices can shift their resource associations. Stable semantic keys can reduce unintended identity changes. A practical response is: Review index shifts and migrate toward stable keys where appropriate. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that count indices are permanently tied to object names.",
+      "answerChecklist": [
+        "Later numeric indices can shift their resource associations",
+        "Stable semantic keys can reduce unintended identity changes",
+        "Review index shifts and migrate toward stable keys where appropriate",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "Removing the first subnet name causes several unexpected changes. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "terraform",
+      "objective": "Explain dependencies and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Dependencies \u2014 primary reference",
+          "url": "https://developer.hashicorp.com/terraform/language"
+        }
+      ],
+      "tags": [
+        "terraform",
+        "dependencies"
+      ],
+      "takeaway": "Explicit depends_on is for dependencies not represented by normal references.",
+      "explanation": "References between resource values form graph edges. Explicit depends_on is for dependencies not represented by normal references. In the scenario, represent the dependency explicitly and explain why it is needed. The alternative \u2018Rename files to force a desired execution sequence\u2019 does not address the stated evidence or constraint.",
+      "id": "terraform-15-concept",
+      "title": "Dependencies \u00b7 concept",
+      "type": "concept",
+      "question": "How does Terraform infer many resource dependencies?",
+      "options": [
+        "Every resource must have a manual depends_on list",
+        "Rename files to force a desired execution sequence",
+        "References between resource values form graph edges",
+        "File ordering determines every resource execution order"
+      ],
+      "correct": [
+        2
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "terraform",
+      "objective": "Explain dependencies and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Dependencies \u2014 primary reference",
+          "url": "https://developer.hashicorp.com/terraform/language"
+        }
+      ],
+      "tags": [
+        "terraform",
+        "dependencies"
+      ],
+      "takeaway": "Explicit depends_on is for dependencies not represented by normal references.",
+      "explanation": "References between resource values form graph edges. Explicit depends_on is for dependencies not represented by normal references. In the scenario, represent the dependency explicitly and explain why it is needed. The alternative \u2018Rename files to force a desired execution sequence\u2019 does not address the stated evidence or constraint.",
+      "id": "terraform-15-scenario",
+      "title": "Dependencies \u00b7 scenario",
+      "type": "scenario",
+      "question": "A resource requires a hidden prerequisite not expressed by an input reference. What is the best next step?",
+      "options": [
+        "Every resource must have a manual depends_on list",
+        "Represent the dependency explicitly and explain why it is needed",
+        "Rename files to force a desired execution sequence",
+        "File ordering determines every resource execution order"
+      ],
+      "correct": [
+        1
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "terraform",
+      "objective": "Explain dependencies and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Dependencies \u2014 primary reference",
+          "url": "https://developer.hashicorp.com/terraform/language"
+        }
+      ],
+      "tags": [
+        "terraform",
+        "dependencies"
+      ],
+      "takeaway": "Explicit depends_on is for dependencies not represented by normal references.",
+      "explanation": "References between resource values form graph edges. Explicit depends_on is for dependencies not represented by normal references. In the scenario, represent the dependency explicitly and explain why it is needed. The alternative \u2018Rename files to force a desired execution sequence\u2019 does not address the stated evidence or constraint.",
+      "id": "terraform-15-principles",
+      "title": "Dependencies \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing dependencies, which TWO statements are sound operational principles?",
+      "options": [
+        "References between resource values form graph edges",
+        "Explicit depends_on is for dependencies not represented by normal references",
+        "File ordering determines every resource execution order",
+        "Every resource must have a manual depends_on list"
+      ],
+      "correct": [
+        0,
+        1
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "terraform",
+      "objective": "Explain dependencies and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Dependencies \u2014 primary reference",
+          "url": "https://developer.hashicorp.com/terraform/language"
+        }
+      ],
+      "tags": [
+        "terraform",
+        "dependencies"
+      ],
+      "takeaway": "Explicit depends_on is for dependencies not represented by normal references.",
+      "explanation": "References between resource values form graph edges. Explicit depends_on is for dependencies not represented by normal references. In the scenario, represent the dependency explicitly and explain why it is needed. The alternative \u2018Rename files to force a desired execution sequence\u2019 does not address the stated evidence or constraint.",
+      "id": "terraform-15-interview",
+      "title": "Dependencies \u00b7 interview",
+      "type": "interview",
+      "question": "Explain implicit versus explicit Terraform dependencies.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "References between resource values form graph edges. Explicit depends_on is for dependencies not represented by normal references. A practical response is: Represent the dependency explicitly and explain why it is needed. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that file ordering determines every resource execution order.",
+      "answerChecklist": [
+        "References between resource values form graph edges",
+        "Explicit depends_on is for dependencies not represented by normal references",
+        "Represent the dependency explicitly and explain why it is needed",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "A resource requires a hidden prerequisite not expressed by an input reference. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "terraform",
+      "objective": "Explain data sources and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Data sources \u2014 primary reference",
+          "url": "https://developer.hashicorp.com/terraform/language"
+        }
+      ],
+      "tags": [
+        "terraform",
+        "data-sources"
+      ],
+      "takeaway": "Reading an object is different from declaring ownership of its lifecycle.",
+      "explanation": "Read information about objects or service data. Reading an object is different from declaring ownership of its lifecycle. In the scenario, use an appropriate data lookup or explicit input. The alternative \u2018Declare a duplicate network resource to discover its identifier\u2019 does not address the stated evidence or constraint.",
+      "id": "terraform-16-concept",
+      "title": "Data sources \u00b7 concept",
+      "type": "concept",
+      "question": "What is a data source typically used for?",
+      "options": [
+        "Declare a duplicate network resource to discover its identifier",
+        "Read information about objects or service data",
+        "Every data source creates the referenced object",
+        "A data source automatically imports objects into managed state addresses"
+      ],
+      "correct": [
+        1
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "terraform",
+      "objective": "Explain data sources and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Data sources \u2014 primary reference",
+          "url": "https://developer.hashicorp.com/terraform/language"
+        }
+      ],
+      "tags": [
+        "terraform",
+        "data-sources"
+      ],
+      "takeaway": "Reading an object is different from declaring ownership of its lifecycle.",
+      "explanation": "Read information about objects or service data. Reading an object is different from declaring ownership of its lifecycle. In the scenario, use an appropriate data lookup or explicit input. The alternative \u2018Declare a duplicate network resource to discover its identifier\u2019 does not address the stated evidence or constraint.",
+      "id": "terraform-16-scenario",
+      "title": "Data sources \u00b7 scenario",
+      "type": "scenario",
+      "question": "A module needs an existing network identifier without managing that network. What is the best next step?",
+      "options": [
+        "Use an appropriate data lookup or explicit input",
+        "Declare a duplicate network resource to discover its identifier",
+        "Every data source creates the referenced object",
+        "A data source automatically imports objects into managed state addresses"
+      ],
+      "correct": [
+        0
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "terraform",
+      "objective": "Explain data sources and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Data sources \u2014 primary reference",
+          "url": "https://developer.hashicorp.com/terraform/language"
+        }
+      ],
+      "tags": [
+        "terraform",
+        "data-sources"
+      ],
+      "takeaway": "Reading an object is different from declaring ownership of its lifecycle.",
+      "explanation": "Read information about objects or service data. Reading an object is different from declaring ownership of its lifecycle. In the scenario, use an appropriate data lookup or explicit input. The alternative \u2018Declare a duplicate network resource to discover its identifier\u2019 does not address the stated evidence or constraint.",
+      "id": "terraform-16-principles",
+      "title": "Data sources \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing data sources, which TWO statements are sound operational principles?",
+      "options": [
+        "Reading an object is different from declaring ownership of its lifecycle",
+        "Every data source creates the referenced object",
+        "A data source automatically imports objects into managed state addresses",
+        "Read information about objects or service data"
+      ],
+      "correct": [
+        0,
+        3
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "terraform",
+      "objective": "Explain data sources and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Data sources \u2014 primary reference",
+          "url": "https://developer.hashicorp.com/terraform/language"
+        }
+      ],
+      "tags": [
+        "terraform",
+        "data-sources"
+      ],
+      "takeaway": "Reading an object is different from declaring ownership of its lifecycle.",
+      "explanation": "Read information about objects or service data. Reading an object is different from declaring ownership of its lifecycle. In the scenario, use an appropriate data lookup or explicit input. The alternative \u2018Declare a duplicate network resource to discover its identifier\u2019 does not address the stated evidence or constraint.",
+      "id": "terraform-16-interview",
+      "title": "Data sources \u00b7 interview",
+      "type": "interview",
+      "question": "Explain how you reference externally managed infrastructure.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "Read information about objects or service data. Reading an object is different from declaring ownership of its lifecycle. A practical response is: Use an appropriate data lookup or explicit input. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that every data source creates the referenced object.",
+      "answerChecklist": [
+        "Read information about objects or service data",
+        "Reading an object is different from declaring ownership of its lifecycle",
+        "Use an appropriate data lookup or explicit input",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "A module needs an existing network identifier without managing that network. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "terraform",
+      "objective": "Explain import and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Import \u2014 primary reference",
+          "url": "https://developer.hashicorp.com/terraform/language"
+        }
+      ],
+      "tags": [
+        "terraform",
+        "import"
+      ],
+      "takeaway": "Configuration still needs to match intended management behavior.",
+      "explanation": "A mapping from an existing remote object to a resource address. Configuration still needs to match intended management behavior. In the scenario, prepare configuration import the object and review the resulting plan. The alternative \u2018Assume import alone proves the configuration is complete\u2019 does not address the stated evidence or constraint.",
+      "id": "terraform-17-concept",
+      "title": "Import \u00b7 concept",
+      "type": "concept",
+      "question": "What does importing an existing resource establish?",
+      "options": [
+        "A mapping from an existing remote object to a resource address",
+        "Import guarantees a subsequent plan has no changes",
+        "Import automatically discovers every dependent resource",
+        "Assume import alone proves the configuration is complete"
+      ],
+      "correct": [
+        0
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "terraform",
+      "objective": "Explain import and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Import \u2014 primary reference",
+          "url": "https://developer.hashicorp.com/terraform/language"
+        }
+      ],
+      "tags": [
+        "terraform",
+        "import"
+      ],
+      "takeaway": "Configuration still needs to match intended management behavior.",
+      "explanation": "A mapping from an existing remote object to a resource address. Configuration still needs to match intended management behavior. In the scenario, prepare configuration import the object and review the resulting plan. The alternative \u2018Assume import alone proves the configuration is complete\u2019 does not address the stated evidence or constraint.",
+      "id": "terraform-17-scenario",
+      "title": "Import \u00b7 scenario",
+      "type": "scenario",
+      "question": "A manually created database must become managed infrastructure. What is the best next step?",
+      "options": [
+        "Assume import alone proves the configuration is complete",
+        "Import guarantees a subsequent plan has no changes",
+        "Import automatically discovers every dependent resource",
+        "Prepare configuration import the object and review the resulting plan"
+      ],
+      "correct": [
+        3
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "terraform",
+      "objective": "Explain import and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Import \u2014 primary reference",
+          "url": "https://developer.hashicorp.com/terraform/language"
+        }
+      ],
+      "tags": [
+        "terraform",
+        "import"
+      ],
+      "takeaway": "Configuration still needs to match intended management behavior.",
+      "explanation": "A mapping from an existing remote object to a resource address. Configuration still needs to match intended management behavior. In the scenario, prepare configuration import the object and review the resulting plan. The alternative \u2018Assume import alone proves the configuration is complete\u2019 does not address the stated evidence or constraint.",
+      "id": "terraform-17-principles",
+      "title": "Import \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing import, which TWO statements are sound operational principles?",
+      "options": [
+        "Import guarantees a subsequent plan has no changes",
+        "Import automatically discovers every dependent resource",
+        "A mapping from an existing remote object to a resource address",
+        "Configuration still needs to match intended management behavior"
+      ],
+      "correct": [
+        2,
+        3
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "terraform",
+      "objective": "Explain import and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Import \u2014 primary reference",
+          "url": "https://developer.hashicorp.com/terraform/language"
+        }
+      ],
+      "tags": [
+        "terraform",
+        "import"
+      ],
+      "takeaway": "Configuration still needs to match intended management behavior.",
+      "explanation": "A mapping from an existing remote object to a resource address. Configuration still needs to match intended management behavior. In the scenario, prepare configuration import the object and review the resulting plan. The alternative \u2018Assume import alone proves the configuration is complete\u2019 does not address the stated evidence or constraint.",
+      "id": "terraform-17-interview",
+      "title": "Import \u00b7 interview",
+      "type": "interview",
+      "question": "Explain a safe adoption workflow for existing infrastructure.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "A mapping from an existing remote object to a resource address. Configuration still needs to match intended management behavior. A practical response is: Prepare configuration import the object and review the resulting plan. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that import guarantees a subsequent plan has no changes.",
+      "answerChecklist": [
+        "A mapping from an existing remote object to a resource address",
+        "Configuration still needs to match intended management behavior",
+        "Prepare configuration import the object and review the resulting plan",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "A manually created database must become managed infrastructure. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "terraform",
+      "objective": "Explain moved blocks and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Moved blocks \u2014 primary reference",
+          "url": "https://developer.hashicorp.com/terraform/language"
+        }
+      ],
+      "tags": [
+        "terraform",
+        "moved-blocks"
+      ],
+      "takeaway": "Address migration can preserve an existing object's identity.",
+      "explanation": "An intentional resource address change. Address migration can preserve an existing object's identity. In the scenario, describe the address move and verify the plan avoids unintended replacement. The alternative \u2018Delete state entries and recreate the module blindly\u2019 does not address the stated evidence or constraint.",
+      "id": "terraform-18-concept",
+      "title": "Moved blocks \u00b7 concept",
+      "type": "concept",
+      "question": "What can a moved block communicate?",
+      "options": [
+        "It automatically copies data between unrelated databases",
+        "It is equivalent to destroying and recreating every resource",
+        "Delete state entries and recreate the module blindly",
+        "An intentional resource address change"
+      ],
+      "correct": [
+        3
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "terraform",
+      "objective": "Explain moved blocks and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Moved blocks \u2014 primary reference",
+          "url": "https://developer.hashicorp.com/terraform/language"
+        }
+      ],
+      "tags": [
+        "terraform",
+        "moved-blocks"
+      ],
+      "takeaway": "Address migration can preserve an existing object's identity.",
+      "explanation": "An intentional resource address change. Address migration can preserve an existing object's identity. In the scenario, describe the address move and verify the plan avoids unintended replacement. The alternative \u2018Delete state entries and recreate the module blindly\u2019 does not address the stated evidence or constraint.",
+      "id": "terraform-18-scenario",
+      "title": "Moved blocks \u00b7 scenario",
+      "type": "scenario",
+      "question": "A refactor moves a resource into a child module. What is the best next step?",
+      "options": [
+        "It automatically copies data between unrelated databases",
+        "It is equivalent to destroying and recreating every resource",
+        "Describe the address move and verify the plan avoids unintended replacement",
+        "Delete state entries and recreate the module blindly"
+      ],
+      "correct": [
+        2
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "terraform",
+      "objective": "Explain moved blocks and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Moved blocks \u2014 primary reference",
+          "url": "https://developer.hashicorp.com/terraform/language"
+        }
+      ],
+      "tags": [
+        "terraform",
+        "moved-blocks"
+      ],
+      "takeaway": "Address migration can preserve an existing object's identity.",
+      "explanation": "An intentional resource address change. Address migration can preserve an existing object's identity. In the scenario, describe the address move and verify the plan avoids unintended replacement. The alternative \u2018Delete state entries and recreate the module blindly\u2019 does not address the stated evidence or constraint.",
+      "id": "terraform-18-principles",
+      "title": "Moved blocks \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing moved blocks, which TWO statements are sound operational principles?",
+      "options": [
+        "It is equivalent to destroying and recreating every resource",
+        "An intentional resource address change",
+        "Address migration can preserve an existing object's identity",
+        "It automatically copies data between unrelated databases"
+      ],
+      "correct": [
+        1,
+        2
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "terraform",
+      "objective": "Explain moved blocks and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Moved blocks \u2014 primary reference",
+          "url": "https://developer.hashicorp.com/terraform/language"
+        }
+      ],
+      "tags": [
+        "terraform",
+        "moved-blocks"
+      ],
+      "takeaway": "Address migration can preserve an existing object's identity.",
+      "explanation": "An intentional resource address change. Address migration can preserve an existing object's identity. In the scenario, describe the address move and verify the plan avoids unintended replacement. The alternative \u2018Delete state entries and recreate the module blindly\u2019 does not address the stated evidence or constraint.",
+      "id": "terraform-18-interview",
+      "title": "Moved blocks \u00b7 interview",
+      "type": "interview",
+      "question": "Explain how you refactor Terraform without recreating resources.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "An intentional resource address change. Address migration can preserve an existing object's identity. A practical response is: Describe the address move and verify the plan avoids unintended replacement. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that it automatically copies data between unrelated databases.",
+      "answerChecklist": [
+        "An intentional resource address change",
+        "Address migration can preserve an existing object's identity",
+        "Describe the address move and verify the plan avoids unintended replacement",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "A refactor moves a resource into a child module. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "terraform",
+      "objective": "Explain lifecycle protection and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Lifecycle protection \u2014 primary reference",
+          "url": "https://developer.hashicorp.com/terraform/language"
+        }
+      ],
+      "tags": [
+        "terraform",
+        "lifecycle-protection"
+      ],
+      "takeaway": "Remote authorization and backups remain necessary.",
+      "explanation": "It is a configuration safeguard rather than universal deletion protection. Remote authorization and backups remain necessary. In the scenario, add appropriate service-level protection and recovery controls. The alternative \u2018Treat the Terraform setting as the only data-safety control\u2019 does not address the stated evidence or constraint.",
+      "id": "terraform-19-concept",
+      "title": "Lifecycle protection \u00b7 concept",
+      "type": "concept",
+      "question": "What is a limitation of prevent_destroy?",
+      "options": [
+        "It guarantees data recovery after operator deletion",
+        "Treat the Terraform setting as the only data-safety control",
+        "It is a configuration safeguard rather than universal deletion protection",
+        "It prevents deletion through every external API"
+      ],
+      "correct": [
+        2
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "terraform",
+      "objective": "Explain lifecycle protection and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Lifecycle protection \u2014 primary reference",
+          "url": "https://developer.hashicorp.com/terraform/language"
+        }
+      ],
+      "tags": [
+        "terraform",
+        "lifecycle-protection"
+      ],
+      "takeaway": "Remote authorization and backups remain necessary.",
+      "explanation": "It is a configuration safeguard rather than universal deletion protection. Remote authorization and backups remain necessary. In the scenario, add appropriate service-level protection and recovery controls. The alternative \u2018Treat the Terraform setting as the only data-safety control\u2019 does not address the stated evidence or constraint.",
+      "id": "terraform-19-scenario",
+      "title": "Lifecycle protection \u00b7 scenario",
+      "type": "scenario",
+      "question": "A critical database has prevent_destroy but administrators can delete it externally. What is the best next step?",
+      "options": [
+        "It guarantees data recovery after operator deletion",
+        "Add appropriate service-level protection and recovery controls",
+        "Treat the Terraform setting as the only data-safety control",
+        "It prevents deletion through every external API"
+      ],
+      "correct": [
+        1
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "terraform",
+      "objective": "Explain lifecycle protection and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Lifecycle protection \u2014 primary reference",
+          "url": "https://developer.hashicorp.com/terraform/language"
+        }
+      ],
+      "tags": [
+        "terraform",
+        "lifecycle-protection"
+      ],
+      "takeaway": "Remote authorization and backups remain necessary.",
+      "explanation": "It is a configuration safeguard rather than universal deletion protection. Remote authorization and backups remain necessary. In the scenario, add appropriate service-level protection and recovery controls. The alternative \u2018Treat the Terraform setting as the only data-safety control\u2019 does not address the stated evidence or constraint.",
+      "id": "terraform-19-principles",
+      "title": "Lifecycle protection \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing lifecycle protection, which TWO statements are sound operational principles?",
+      "options": [
+        "It is a configuration safeguard rather than universal deletion protection",
+        "Remote authorization and backups remain necessary",
+        "It prevents deletion through every external API",
+        "It guarantees data recovery after operator deletion"
+      ],
+      "correct": [
+        0,
+        1
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "terraform",
+      "objective": "Explain lifecycle protection and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Lifecycle protection \u2014 primary reference",
+          "url": "https://developer.hashicorp.com/terraform/language"
+        }
+      ],
+      "tags": [
+        "terraform",
+        "lifecycle-protection"
+      ],
+      "takeaway": "Remote authorization and backups remain necessary.",
+      "explanation": "It is a configuration safeguard rather than universal deletion protection. Remote authorization and backups remain necessary. In the scenario, add appropriate service-level protection and recovery controls. The alternative \u2018Treat the Terraform setting as the only data-safety control\u2019 does not address the stated evidence or constraint.",
+      "id": "terraform-19-interview",
+      "title": "Lifecycle protection \u00b7 interview",
+      "type": "interview",
+      "question": "Explain layered protection for a Terraform-managed database.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "It is a configuration safeguard rather than universal deletion protection. Remote authorization and backups remain necessary. A practical response is: Add appropriate service-level protection and recovery controls. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that it prevents deletion through every external API.",
+      "answerChecklist": [
+        "It is a configuration safeguard rather than universal deletion protection",
+        "Remote authorization and backups remain necessary",
+        "Add appropriate service-level protection and recovery controls",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "A critical database has prevent_destroy but administrators can delete it externally. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "terraform",
+      "objective": "Explain ignored changes and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Ignored changes \u2014 primary reference",
+          "url": "https://developer.hashicorp.com/terraform/language"
+        }
+      ],
+      "tags": [
+        "terraform",
+        "ignored-changes"
+      ],
+      "takeaway": "Broad ignores can hide meaningful configuration drift.",
+      "explanation": "It delegates selected differences away from normal reconciliation. Broad ignores can hide meaningful configuration drift. In the scenario, narrow the ignored attributes and review ownership boundaries. The alternative \u2018Ignore every attribute to make all plans green\u2019 does not address the stated evidence or constraint.",
+      "id": "terraform-20-concept",
+      "title": "Ignored changes \u00b7 concept",
+      "type": "concept",
+      "question": "What trade-off does ignore_changes introduce?",
+      "options": [
+        "Ignore every attribute to make all plans green",
+        "It delegates selected differences away from normal reconciliation",
+        "It makes ignored attributes immutable in the remote service",
+        "It guarantees no drift exists on the resource"
+      ],
+      "correct": [
+        1
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "terraform",
+      "objective": "Explain ignored changes and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Ignored changes \u2014 primary reference",
+          "url": "https://developer.hashicorp.com/terraform/language"
+        }
+      ],
+      "tags": [
+        "terraform",
+        "ignored-changes"
+      ],
+      "takeaway": "Broad ignores can hide meaningful configuration drift.",
+      "explanation": "It delegates selected differences away from normal reconciliation. Broad ignores can hide meaningful configuration drift. In the scenario, narrow the ignored attributes and review ownership boundaries. The alternative \u2018Ignore every attribute to make all plans green\u2019 does not address the stated evidence or constraint.",
+      "id": "terraform-20-scenario",
+      "title": "Ignored changes \u00b7 scenario",
+      "type": "scenario",
+      "question": "A broad lifecycle ignore hides an unexpected security setting change. What is the best next step?",
+      "options": [
+        "Narrow the ignored attributes and review ownership boundaries",
+        "Ignore every attribute to make all plans green",
+        "It makes ignored attributes immutable in the remote service",
+        "It guarantees no drift exists on the resource"
+      ],
+      "correct": [
+        0
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "terraform",
+      "objective": "Explain ignored changes and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Ignored changes \u2014 primary reference",
+          "url": "https://developer.hashicorp.com/terraform/language"
+        }
+      ],
+      "tags": [
+        "terraform",
+        "ignored-changes"
+      ],
+      "takeaway": "Broad ignores can hide meaningful configuration drift.",
+      "explanation": "It delegates selected differences away from normal reconciliation. Broad ignores can hide meaningful configuration drift. In the scenario, narrow the ignored attributes and review ownership boundaries. The alternative \u2018Ignore every attribute to make all plans green\u2019 does not address the stated evidence or constraint.",
+      "id": "terraform-20-principles",
+      "title": "Ignored changes \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing ignored changes, which TWO statements are sound operational principles?",
+      "options": [
+        "Broad ignores can hide meaningful configuration drift",
+        "It makes ignored attributes immutable in the remote service",
+        "It guarantees no drift exists on the resource",
+        "It delegates selected differences away from normal reconciliation"
+      ],
+      "correct": [
+        0,
+        3
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "terraform",
+      "objective": "Explain ignored changes and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Ignored changes \u2014 primary reference",
+          "url": "https://developer.hashicorp.com/terraform/language"
+        }
+      ],
+      "tags": [
+        "terraform",
+        "ignored-changes"
+      ],
+      "takeaway": "Broad ignores can hide meaningful configuration drift.",
+      "explanation": "It delegates selected differences away from normal reconciliation. Broad ignores can hide meaningful configuration drift. In the scenario, narrow the ignored attributes and review ownership boundaries. The alternative \u2018Ignore every attribute to make all plans green\u2019 does not address the stated evidence or constraint.",
+      "id": "terraform-20-interview",
+      "title": "Ignored changes \u00b7 interview",
+      "type": "interview",
+      "question": "Explain when ignore_changes is justified and how to prevent blind spots.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "It delegates selected differences away from normal reconciliation. Broad ignores can hide meaningful configuration drift. A practical response is: Narrow the ignored attributes and review ownership boundaries. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that it makes ignored attributes immutable in the remote service.",
+      "answerChecklist": [
+        "It delegates selected differences away from normal reconciliation",
+        "Broad ignores can hide meaningful configuration drift",
+        "Narrow the ignored attributes and review ownership boundaries",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "A broad lifecycle ignore hides an unexpected security setting change. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "terraform",
+      "objective": "Explain replacement order and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Replacement order \u2014 primary reference",
+          "url": "https://developer.hashicorp.com/terraform/language"
+        }
+      ],
+      "tags": [
+        "terraform",
+        "replacement-order"
+      ],
+      "takeaway": "Name uniqueness quotas and dependency behavior can limit this approach.",
+      "explanation": "Create a replacement before destroying the old object. Name uniqueness quotas and dependency behavior can limit this approach. In the scenario, review naming capacity and migration constraints. The alternative \u2018Assume create_before_destroy overrides service restrictions\u2019 does not address the stated evidence or constraint.",
+      "id": "terraform-21-concept",
+      "title": "Replacement order \u00b7 concept",
+      "type": "concept",
+      "question": "What does create_before_destroy try to change?",
+      "options": [
+        "Create a replacement before destroying the old object",
+        "It guarantees zero downtime for every resource",
+        "It bypasses all provider quotas",
+        "Assume create_before_destroy overrides service restrictions"
+      ],
+      "correct": [
+        0
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "terraform",
+      "objective": "Explain replacement order and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Replacement order \u2014 primary reference",
+          "url": "https://developer.hashicorp.com/terraform/language"
+        }
+      ],
+      "tags": [
+        "terraform",
+        "replacement-order"
+      ],
+      "takeaway": "Name uniqueness quotas and dependency behavior can limit this approach.",
+      "explanation": "Create a replacement before destroying the old object. Name uniqueness quotas and dependency behavior can limit this approach. In the scenario, review naming capacity and migration constraints. The alternative \u2018Assume create_before_destroy overrides service restrictions\u2019 does not address the stated evidence or constraint.",
+      "id": "terraform-21-scenario",
+      "title": "Replacement order \u00b7 scenario",
+      "type": "scenario",
+      "question": "A replacement cannot coexist because the service requires a unique fixed name. What is the best next step?",
+      "options": [
+        "Assume create_before_destroy overrides service restrictions",
+        "It guarantees zero downtime for every resource",
+        "It bypasses all provider quotas",
+        "Review naming capacity and migration constraints"
+      ],
+      "correct": [
+        3
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "terraform",
+      "objective": "Explain replacement order and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Replacement order \u2014 primary reference",
+          "url": "https://developer.hashicorp.com/terraform/language"
+        }
+      ],
+      "tags": [
+        "terraform",
+        "replacement-order"
+      ],
+      "takeaway": "Name uniqueness quotas and dependency behavior can limit this approach.",
+      "explanation": "Create a replacement before destroying the old object. Name uniqueness quotas and dependency behavior can limit this approach. In the scenario, review naming capacity and migration constraints. The alternative \u2018Assume create_before_destroy overrides service restrictions\u2019 does not address the stated evidence or constraint.",
+      "id": "terraform-21-principles",
+      "title": "Replacement order \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing replacement order, which TWO statements are sound operational principles?",
+      "options": [
+        "It guarantees zero downtime for every resource",
+        "It bypasses all provider quotas",
+        "Create a replacement before destroying the old object",
+        "Name uniqueness quotas and dependency behavior can limit this approach"
+      ],
+      "correct": [
+        2,
+        3
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "terraform",
+      "objective": "Explain replacement order and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Replacement order \u2014 primary reference",
+          "url": "https://developer.hashicorp.com/terraform/language"
+        }
+      ],
+      "tags": [
+        "terraform",
+        "replacement-order"
+      ],
+      "takeaway": "Name uniqueness quotas and dependency behavior can limit this approach.",
+      "explanation": "Create a replacement before destroying the old object. Name uniqueness quotas and dependency behavior can limit this approach. In the scenario, review naming capacity and migration constraints. The alternative \u2018Assume create_before_destroy overrides service restrictions\u2019 does not address the stated evidence or constraint.",
+      "id": "terraform-21-interview",
+      "title": "Replacement order \u00b7 interview",
+      "type": "interview",
+      "question": "Explain when replacement ordering does and does not preserve availability.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "Create a replacement before destroying the old object. Name uniqueness quotas and dependency behavior can limit this approach. A practical response is: Review naming capacity and migration constraints. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that it guarantees zero downtime for every resource.",
+      "answerChecklist": [
+        "Create a replacement before destroying the old object",
+        "Name uniqueness quotas and dependency behavior can limit this approach",
+        "Review naming capacity and migration constraints",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "A replacement cannot coexist because the service requires a unique fixed name. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "terraform",
+      "objective": "Explain targeted applies and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Targeted applies \u2014 primary reference",
+          "url": "https://developer.hashicorp.com/terraform/language"
+        }
+      ],
+      "tags": [
+        "terraform",
+        "targeted-applies"
+      ],
+      "takeaway": "Exceptional targeted work should be followed by a full plan review.",
+      "explanation": "Targeting can leave the overall configuration only partially reconciled. Exceptional targeted work should be followed by a full plan review. In the scenario, run a full plan to inspect remaining differences. The alternative \u2018Declare the entire infrastructure converged without checking\u2019 does not address the stated evidence or constraint.",
+      "id": "terraform-22-concept",
+      "title": "Targeted applies \u00b7 concept",
+      "type": "concept",
+      "question": "Why avoid routine broad reliance on -target?",
+      "options": [
+        "Targeting always applies every dependent change in the whole configuration",
+        "A successful target proves the entire stack matches configuration",
+        "Declare the entire infrastructure converged without checking",
+        "Targeting can leave the overall configuration only partially reconciled"
+      ],
+      "correct": [
+        3
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "terraform",
+      "objective": "Explain targeted applies and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Targeted applies \u2014 primary reference",
+          "url": "https://developer.hashicorp.com/terraform/language"
+        }
+      ],
+      "tags": [
+        "terraform",
+        "targeted-applies"
+      ],
+      "takeaway": "Exceptional targeted work should be followed by a full plan review.",
+      "explanation": "Targeting can leave the overall configuration only partially reconciled. Exceptional targeted work should be followed by a full plan review. In the scenario, run a full plan to inspect remaining differences. The alternative \u2018Declare the entire infrastructure converged without checking\u2019 does not address the stated evidence or constraint.",
+      "id": "terraform-22-scenario",
+      "title": "Targeted applies \u00b7 scenario",
+      "type": "scenario",
+      "question": "An emergency targeted apply completes. What is the best next step?",
+      "options": [
+        "Targeting always applies every dependent change in the whole configuration",
+        "A successful target proves the entire stack matches configuration",
+        "Run a full plan to inspect remaining differences",
+        "Declare the entire infrastructure converged without checking"
+      ],
+      "correct": [
+        2
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "terraform",
+      "objective": "Explain targeted applies and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Targeted applies \u2014 primary reference",
+          "url": "https://developer.hashicorp.com/terraform/language"
+        }
+      ],
+      "tags": [
+        "terraform",
+        "targeted-applies"
+      ],
+      "takeaway": "Exceptional targeted work should be followed by a full plan review.",
+      "explanation": "Targeting can leave the overall configuration only partially reconciled. Exceptional targeted work should be followed by a full plan review. In the scenario, run a full plan to inspect remaining differences. The alternative \u2018Declare the entire infrastructure converged without checking\u2019 does not address the stated evidence or constraint.",
+      "id": "terraform-22-principles",
+      "title": "Targeted applies \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing targeted applies, which TWO statements are sound operational principles?",
+      "options": [
+        "A successful target proves the entire stack matches configuration",
+        "Targeting can leave the overall configuration only partially reconciled",
+        "Exceptional targeted work should be followed by a full plan review",
+        "Targeting always applies every dependent change in the whole configuration"
+      ],
+      "correct": [
+        1,
+        2
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "terraform",
+      "objective": "Explain targeted applies and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Targeted applies \u2014 primary reference",
+          "url": "https://developer.hashicorp.com/terraform/language"
+        }
+      ],
+      "tags": [
+        "terraform",
+        "targeted-applies"
+      ],
+      "takeaway": "Exceptional targeted work should be followed by a full plan review.",
+      "explanation": "Targeting can leave the overall configuration only partially reconciled. Exceptional targeted work should be followed by a full plan review. In the scenario, run a full plan to inspect remaining differences. The alternative \u2018Declare the entire infrastructure converged without checking\u2019 does not address the stated evidence or constraint.",
+      "id": "terraform-22-interview",
+      "title": "Targeted applies \u00b7 interview",
+      "type": "interview",
+      "question": "Explain the appropriate limits of targeted Terraform operations.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "Targeting can leave the overall configuration only partially reconciled. Exceptional targeted work should be followed by a full plan review. A practical response is: Run a full plan to inspect remaining differences. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that targeting always applies every dependent change in the whole configuration.",
+      "answerChecklist": [
+        "Targeting can leave the overall configuration only partially reconciled",
+        "Exceptional targeted work should be followed by a full plan review",
+        "Run a full plan to inspect remaining differences",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "An emergency targeted apply completes. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "terraform",
+      "objective": "Explain provisioners and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Provisioners \u2014 primary reference",
+          "url": "https://developer.hashicorp.com/terraform/language"
+        }
+      ],
+      "tags": [
+        "terraform",
+        "provisioners"
+      ],
+      "takeaway": "Provisioners can introduce imperative side effects that are harder to track.",
+      "explanation": "Native resources model lifecycle and changes more explicitly. Provisioners can introduce imperative side effects that are harder to track. In the scenario, use image or configuration tooling and explicit lifecycle ownership. The alternative \u2018Add more untracked shell steps without failure handling\u2019 does not address the stated evidence or constraint.",
+      "id": "terraform-23-concept",
+      "title": "Provisioners \u00b7 concept",
+      "type": "concept",
+      "question": "Why prefer native resources over provisioners where practical?",
+      "options": [
+        "Provisioner failure always rolls back all remote side effects",
+        "Add more untracked shell steps without failure handling",
+        "Native resources model lifecycle and changes more explicitly",
+        "Provisioners make every shell command idempotent"
+      ],
+      "correct": [
+        2
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "terraform",
+      "objective": "Explain provisioners and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Provisioners \u2014 primary reference",
+          "url": "https://developer.hashicorp.com/terraform/language"
+        }
+      ],
+      "tags": [
+        "terraform",
+        "provisioners"
+      ],
+      "takeaway": "Provisioners can introduce imperative side effects that are harder to track.",
+      "explanation": "Native resources model lifecycle and changes more explicitly. Provisioners can introduce imperative side effects that are harder to track. In the scenario, use image or configuration tooling and explicit lifecycle ownership. The alternative \u2018Add more untracked shell steps without failure handling\u2019 does not address the stated evidence or constraint.",
+      "id": "terraform-23-scenario",
+      "title": "Provisioners \u00b7 scenario",
+      "type": "scenario",
+      "question": "A shell provisioner leaves partially configured hosts on failure. What is the best next step?",
+      "options": [
+        "Provisioner failure always rolls back all remote side effects",
+        "Use image or configuration tooling and explicit lifecycle ownership",
+        "Add more untracked shell steps without failure handling",
+        "Provisioners make every shell command idempotent"
+      ],
+      "correct": [
+        1
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "terraform",
+      "objective": "Explain provisioners and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Provisioners \u2014 primary reference",
+          "url": "https://developer.hashicorp.com/terraform/language"
+        }
+      ],
+      "tags": [
+        "terraform",
+        "provisioners"
+      ],
+      "takeaway": "Provisioners can introduce imperative side effects that are harder to track.",
+      "explanation": "Native resources model lifecycle and changes more explicitly. Provisioners can introduce imperative side effects that are harder to track. In the scenario, use image or configuration tooling and explicit lifecycle ownership. The alternative \u2018Add more untracked shell steps without failure handling\u2019 does not address the stated evidence or constraint.",
+      "id": "terraform-23-principles",
+      "title": "Provisioners \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing provisioners, which TWO statements are sound operational principles?",
+      "options": [
+        "Native resources model lifecycle and changes more explicitly",
+        "Provisioners can introduce imperative side effects that are harder to track",
+        "Provisioners make every shell command idempotent",
+        "Provisioner failure always rolls back all remote side effects"
+      ],
+      "correct": [
+        0,
+        1
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "terraform",
+      "objective": "Explain provisioners and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Provisioners \u2014 primary reference",
+          "url": "https://developer.hashicorp.com/terraform/language"
+        }
+      ],
+      "tags": [
+        "terraform",
+        "provisioners"
+      ],
+      "takeaway": "Provisioners can introduce imperative side effects that are harder to track.",
+      "explanation": "Native resources model lifecycle and changes more explicitly. Provisioners can introduce imperative side effects that are harder to track. In the scenario, use image or configuration tooling and explicit lifecycle ownership. The alternative \u2018Add more untracked shell steps without failure handling\u2019 does not address the stated evidence or constraint.",
+      "id": "terraform-23-interview",
+      "title": "Provisioners \u00b7 interview",
+      "type": "interview",
+      "question": "Explain how you reduce brittle imperative steps in infrastructure provisioning.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "Native resources model lifecycle and changes more explicitly. Provisioners can introduce imperative side effects that are harder to track. A practical response is: Use image or configuration tooling and explicit lifecycle ownership. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that provisioners make every shell command idempotent.",
+      "answerChecklist": [
+        "Native resources model lifecycle and changes more explicitly",
+        "Provisioners can introduce imperative side effects that are harder to track",
+        "Use image or configuration tooling and explicit lifecycle ownership",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "A shell provisioner leaves partially configured hosts on failure. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "terraform",
+      "objective": "Explain workspace boundaries and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Workspace boundaries \u2014 primary reference",
+          "url": "https://developer.hashicorp.com/terraform/language"
+        }
+      ],
+      "tags": [
+        "terraform",
+        "workspace-boundaries"
+      ],
+      "takeaway": "Strong environment isolation may need separate backends and access boundaries.",
+      "explanation": "They separate state instances but do not inherently isolate credentials or permissions. Strong environment isolation may need separate backends and access boundaries. In the scenario, separate access controls and backend boundaries according to risk. The alternative \u2018Assume workspace naming is a security boundary\u2019 does not address the stated evidence or constraint.",
+      "id": "terraform-24-concept",
+      "title": "Workspace boundaries \u00b7 concept",
+      "type": "concept",
+      "question": "What is a limitation of CLI workspaces as environment isolation?",
+      "options": [
+        "Assume workspace naming is a security boundary",
+        "They separate state instances but do not inherently isolate credentials or permissions",
+        "Each workspace automatically creates a new cloud account",
+        "Workspace selection alone prevents production credential misuse"
+      ],
+      "correct": [
+        1
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "terraform",
+      "objective": "Explain workspace boundaries and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Workspace boundaries \u2014 primary reference",
+          "url": "https://developer.hashicorp.com/terraform/language"
+        }
+      ],
+      "tags": [
+        "terraform",
+        "workspace-boundaries"
+      ],
+      "takeaway": "Strong environment isolation may need separate backends and access boundaries.",
+      "explanation": "They separate state instances but do not inherently isolate credentials or permissions. Strong environment isolation may need separate backends and access boundaries. In the scenario, separate access controls and backend boundaries according to risk. The alternative \u2018Assume workspace naming is a security boundary\u2019 does not address the stated evidence or constraint.",
+      "id": "terraform-24-scenario",
+      "title": "Workspace boundaries \u00b7 scenario",
+      "type": "scenario",
+      "question": "A developer workspace can still authenticate with production-wide credentials. What is the best next step?",
+      "options": [
+        "Separate access controls and backend boundaries according to risk",
+        "Assume workspace naming is a security boundary",
+        "Each workspace automatically creates a new cloud account",
+        "Workspace selection alone prevents production credential misuse"
+      ],
+      "correct": [
+        0
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "terraform",
+      "objective": "Explain workspace boundaries and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Workspace boundaries \u2014 primary reference",
+          "url": "https://developer.hashicorp.com/terraform/language"
+        }
+      ],
+      "tags": [
+        "terraform",
+        "workspace-boundaries"
+      ],
+      "takeaway": "Strong environment isolation may need separate backends and access boundaries.",
+      "explanation": "They separate state instances but do not inherently isolate credentials or permissions. Strong environment isolation may need separate backends and access boundaries. In the scenario, separate access controls and backend boundaries according to risk. The alternative \u2018Assume workspace naming is a security boundary\u2019 does not address the stated evidence or constraint.",
+      "id": "terraform-24-principles",
+      "title": "Workspace boundaries \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing workspace boundaries, which TWO statements are sound operational principles?",
+      "options": [
+        "Strong environment isolation may need separate backends and access boundaries",
+        "Each workspace automatically creates a new cloud account",
+        "Workspace selection alone prevents production credential misuse",
+        "They separate state instances but do not inherently isolate credentials or permissions"
+      ],
+      "correct": [
+        0,
+        3
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "terraform",
+      "objective": "Explain workspace boundaries and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Workspace boundaries \u2014 primary reference",
+          "url": "https://developer.hashicorp.com/terraform/language"
+        }
+      ],
+      "tags": [
+        "terraform",
+        "workspace-boundaries"
+      ],
+      "takeaway": "Strong environment isolation may need separate backends and access boundaries.",
+      "explanation": "They separate state instances but do not inherently isolate credentials or permissions. Strong environment isolation may need separate backends and access boundaries. In the scenario, separate access controls and backend boundaries according to risk. The alternative \u2018Assume workspace naming is a security boundary\u2019 does not address the stated evidence or constraint.",
+      "id": "terraform-24-interview",
+      "title": "Workspace boundaries \u00b7 interview",
+      "type": "interview",
+      "question": "Explain environment isolation beyond workspace names.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "They separate state instances but do not inherently isolate credentials or permissions. Strong environment isolation may need separate backends and access boundaries. A practical response is: Separate access controls and backend boundaries according to risk. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that each workspace automatically creates a new cloud account.",
+      "answerChecklist": [
+        "They separate state instances but do not inherently isolate credentials or permissions",
+        "Strong environment isolation may need separate backends and access boundaries",
+        "Separate access controls and backend boundaries according to risk",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "A developer workspace can still authenticate with production-wide credentials. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "terraform",
+      "objective": "Explain saved plans and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Saved plans \u2014 primary reference",
+          "url": "https://developer.hashicorp.com/terraform/language"
+        }
+      ],
+      "tags": [
+        "terraform",
+        "saved-plans"
+      ],
+      "takeaway": "Apply should use the reviewed artifact under controlled conditions.",
+      "explanation": "It can contain sensitive configuration and state information. Apply should use the reviewed artifact under controlled conditions. In the scenario, restrict artifact access and handle potential secret exposure. The alternative \u2018Treat plans as harmless plain documentation\u2019 does not address the stated evidence or constraint.",
+      "id": "terraform-25-concept",
+      "title": "Saved plans \u00b7 concept",
+      "type": "concept",
+      "question": "Why protect a saved plan file?",
+      "options": [
+        "It can contain sensitive configuration and state information",
+        "Plan files contain no secrets by design",
+        "Any old plan is guaranteed valid indefinitely",
+        "Treat plans as harmless plain documentation"
+      ],
+      "correct": [
+        0
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "terraform",
+      "objective": "Explain saved plans and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Saved plans \u2014 primary reference",
+          "url": "https://developer.hashicorp.com/terraform/language"
+        }
+      ],
+      "tags": [
+        "terraform",
+        "saved-plans"
+      ],
+      "takeaway": "Apply should use the reviewed artifact under controlled conditions.",
+      "explanation": "It can contain sensitive configuration and state information. Apply should use the reviewed artifact under controlled conditions. In the scenario, restrict artifact access and handle potential secret exposure. The alternative \u2018Treat plans as harmless plain documentation\u2019 does not address the stated evidence or constraint.",
+      "id": "terraform-25-scenario",
+      "title": "Saved plans \u00b7 scenario",
+      "type": "scenario",
+      "question": "A pipeline uploads a plan artifact to a public location. What is the best next step?",
+      "options": [
+        "Treat plans as harmless plain documentation",
+        "Plan files contain no secrets by design",
+        "Any old plan is guaranteed valid indefinitely",
+        "Restrict artifact access and handle potential secret exposure"
+      ],
+      "correct": [
+        3
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "terraform",
+      "objective": "Explain saved plans and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Saved plans \u2014 primary reference",
+          "url": "https://developer.hashicorp.com/terraform/language"
+        }
+      ],
+      "tags": [
+        "terraform",
+        "saved-plans"
+      ],
+      "takeaway": "Apply should use the reviewed artifact under controlled conditions.",
+      "explanation": "It can contain sensitive configuration and state information. Apply should use the reviewed artifact under controlled conditions. In the scenario, restrict artifact access and handle potential secret exposure. The alternative \u2018Treat plans as harmless plain documentation\u2019 does not address the stated evidence or constraint.",
+      "id": "terraform-25-principles",
+      "title": "Saved plans \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing saved plans, which TWO statements are sound operational principles?",
+      "options": [
+        "Plan files contain no secrets by design",
+        "Any old plan is guaranteed valid indefinitely",
+        "It can contain sensitive configuration and state information",
+        "Apply should use the reviewed artifact under controlled conditions"
+      ],
+      "correct": [
+        2,
+        3
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "terraform",
+      "objective": "Explain saved plans and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Saved plans \u2014 primary reference",
+          "url": "https://developer.hashicorp.com/terraform/language"
+        }
+      ],
+      "tags": [
+        "terraform",
+        "saved-plans"
+      ],
+      "takeaway": "Apply should use the reviewed artifact under controlled conditions.",
+      "explanation": "It can contain sensitive configuration and state information. Apply should use the reviewed artifact under controlled conditions. In the scenario, restrict artifact access and handle potential secret exposure. The alternative \u2018Treat plans as harmless plain documentation\u2019 does not address the stated evidence or constraint.",
+      "id": "terraform-25-interview",
+      "title": "Saved plans \u00b7 interview",
+      "type": "interview",
+      "question": "Explain secure review and promotion of saved Terraform plans.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "It can contain sensitive configuration and state information. Apply should use the reviewed artifact under controlled conditions. A practical response is: Restrict artifact access and handle potential secret exposure. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that plan files contain no secrets by design.",
+      "answerChecklist": [
+        "It can contain sensitive configuration and state information",
+        "Apply should use the reviewed artifact under controlled conditions",
+        "Restrict artifact access and handle potential secret exposure",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "A pipeline uploads a plan artifact to a public location. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "terraform",
+      "objective": "Explain drift policy and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Drift policy \u2014 primary reference",
+          "url": "https://developer.hashicorp.com/terraform/language"
+        }
+      ],
+      "tags": [
+        "terraform",
+        "drift-policy"
+      ],
+      "takeaway": "Blind reconciliation can undo an emergency fix.",
+      "explanation": "Decide whether to adopt or revert the change based on intent. Blind reconciliation can undo an emergency fix. In the scenario, review the reason and reconcile configuration deliberately. The alternative \u2018Apply the old configuration immediately during the active incident\u2019 does not address the stated evidence or constraint.",
+      "id": "terraform-26-concept",
+      "title": "Drift policy \u00b7 concept",
+      "type": "concept",
+      "question": "What should happen after detecting a manual production change?",
+      "options": [
+        "All manual changes must be reverted without investigation",
+        "Drift means Terraform state is always corrupted",
+        "Apply the old configuration immediately during the active incident",
+        "Decide whether to adopt or revert the change based on intent"
+      ],
+      "correct": [
+        3
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "terraform",
+      "objective": "Explain drift policy and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Drift policy \u2014 primary reference",
+          "url": "https://developer.hashicorp.com/terraform/language"
+        }
+      ],
+      "tags": [
+        "terraform",
+        "drift-policy"
+      ],
+      "takeaway": "Blind reconciliation can undo an emergency fix.",
+      "explanation": "Decide whether to adopt or revert the change based on intent. Blind reconciliation can undo an emergency fix. In the scenario, review the reason and reconcile configuration deliberately. The alternative \u2018Apply the old configuration immediately during the active incident\u2019 does not address the stated evidence or constraint.",
+      "id": "terraform-26-scenario",
+      "title": "Drift policy \u00b7 scenario",
+      "type": "scenario",
+      "question": "An emergency firewall rule differs from versioned configuration. What is the best next step?",
+      "options": [
+        "All manual changes must be reverted without investigation",
+        "Drift means Terraform state is always corrupted",
+        "Review the reason and reconcile configuration deliberately",
+        "Apply the old configuration immediately during the active incident"
+      ],
+      "correct": [
+        2
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "terraform",
+      "objective": "Explain drift policy and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Drift policy \u2014 primary reference",
+          "url": "https://developer.hashicorp.com/terraform/language"
+        }
+      ],
+      "tags": [
+        "terraform",
+        "drift-policy"
+      ],
+      "takeaway": "Blind reconciliation can undo an emergency fix.",
+      "explanation": "Decide whether to adopt or revert the change based on intent. Blind reconciliation can undo an emergency fix. In the scenario, review the reason and reconcile configuration deliberately. The alternative \u2018Apply the old configuration immediately during the active incident\u2019 does not address the stated evidence or constraint.",
+      "id": "terraform-26-principles",
+      "title": "Drift policy \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing drift policy, which TWO statements are sound operational principles?",
+      "options": [
+        "Drift means Terraform state is always corrupted",
+        "Decide whether to adopt or revert the change based on intent",
+        "Blind reconciliation can undo an emergency fix",
+        "All manual changes must be reverted without investigation"
+      ],
+      "correct": [
+        1,
+        2
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "terraform",
+      "objective": "Explain drift policy and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Drift policy \u2014 primary reference",
+          "url": "https://developer.hashicorp.com/terraform/language"
+        }
+      ],
+      "tags": [
+        "terraform",
+        "drift-policy"
+      ],
+      "takeaway": "Blind reconciliation can undo an emergency fix.",
+      "explanation": "Decide whether to adopt or revert the change based on intent. Blind reconciliation can undo an emergency fix. In the scenario, review the reason and reconcile configuration deliberately. The alternative \u2018Apply the old configuration immediately during the active incident\u2019 does not address the stated evidence or constraint.",
+      "id": "terraform-26-interview",
+      "title": "Drift policy \u00b7 interview",
+      "type": "interview",
+      "question": "Explain how emergency changes return to infrastructure-as-code control.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "Decide whether to adopt or revert the change based on intent. Blind reconciliation can undo an emergency fix. A practical response is: Review the reason and reconcile configuration deliberately. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that all manual changes must be reverted without investigation.",
+      "answerChecklist": [
+        "Decide whether to adopt or revert the change based on intent",
+        "Blind reconciliation can undo an emergency fix",
+        "Review the reason and reconcile configuration deliberately",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "An emergency firewall rule differs from versioned configuration. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "terraform",
+      "objective": "Explain state splitting and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "State splitting \u2014 primary reference",
+          "url": "https://developer.hashicorp.com/terraform/language"
+        }
+      ],
+      "tags": [
+        "terraform",
+        "state-splitting"
+      ],
+      "takeaway": "Cross-state dependencies need explicit interface and sequencing decisions.",
+      "explanation": "Reduce coupling access scope and change blast radius. Cross-state dependencies need explicit interface and sequencing decisions. In the scenario, evaluate boundaries by lifecycle ownership and risk. The alternative \u2018Split randomly without considering shared dependencies\u2019 does not address the stated evidence or constraint.",
+      "id": "terraform-27-concept",
+      "title": "State splitting \u00b7 concept",
+      "type": "concept",
+      "question": "Why split infrastructure into multiple state boundaries?",
+      "options": [
+        "Every individual attribute should have its own state",
+        "Split randomly without considering shared dependencies",
+        "Reduce coupling access scope and change blast radius",
+        "More state files automatically remove all dependencies"
+      ],
+      "correct": [
+        2
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "terraform",
+      "objective": "Explain state splitting and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "State splitting \u2014 primary reference",
+          "url": "https://developer.hashicorp.com/terraform/language"
+        }
+      ],
+      "tags": [
+        "terraform",
+        "state-splitting"
+      ],
+      "takeaway": "Cross-state dependencies need explicit interface and sequencing decisions.",
+      "explanation": "Reduce coupling access scope and change blast radius. Cross-state dependencies need explicit interface and sequencing decisions. In the scenario, evaluate boundaries by lifecycle ownership and risk. The alternative \u2018Split randomly without considering shared dependencies\u2019 does not address the stated evidence or constraint.",
+      "id": "terraform-27-scenario",
+      "title": "State splitting \u00b7 scenario",
+      "type": "scenario",
+      "question": "A small application change routinely locks a huge shared stack. What is the best next step?",
+      "options": [
+        "Every individual attribute should have its own state",
+        "Evaluate boundaries by lifecycle ownership and risk",
+        "Split randomly without considering shared dependencies",
+        "More state files automatically remove all dependencies"
+      ],
+      "correct": [
+        1
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "terraform",
+      "objective": "Explain state splitting and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "State splitting \u2014 primary reference",
+          "url": "https://developer.hashicorp.com/terraform/language"
+        }
+      ],
+      "tags": [
+        "terraform",
+        "state-splitting"
+      ],
+      "takeaway": "Cross-state dependencies need explicit interface and sequencing decisions.",
+      "explanation": "Reduce coupling access scope and change blast radius. Cross-state dependencies need explicit interface and sequencing decisions. In the scenario, evaluate boundaries by lifecycle ownership and risk. The alternative \u2018Split randomly without considering shared dependencies\u2019 does not address the stated evidence or constraint.",
+      "id": "terraform-27-principles",
+      "title": "State splitting \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing state splitting, which TWO statements are sound operational principles?",
+      "options": [
+        "Reduce coupling access scope and change blast radius",
+        "Cross-state dependencies need explicit interface and sequencing decisions",
+        "More state files automatically remove all dependencies",
+        "Every individual attribute should have its own state"
+      ],
+      "correct": [
+        0,
+        1
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "terraform",
+      "objective": "Explain state splitting and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "State splitting \u2014 primary reference",
+          "url": "https://developer.hashicorp.com/terraform/language"
+        }
+      ],
+      "tags": [
+        "terraform",
+        "state-splitting"
+      ],
+      "takeaway": "Cross-state dependencies need explicit interface and sequencing decisions.",
+      "explanation": "Reduce coupling access scope and change blast radius. Cross-state dependencies need explicit interface and sequencing decisions. In the scenario, evaluate boundaries by lifecycle ownership and risk. The alternative \u2018Split randomly without considering shared dependencies\u2019 does not address the stated evidence or constraint.",
+      "id": "terraform-27-interview",
+      "title": "State splitting \u00b7 interview",
+      "type": "interview",
+      "question": "Explain how you would choose Terraform state boundaries.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "Reduce coupling access scope and change blast radius. Cross-state dependencies need explicit interface and sequencing decisions. A practical response is: Evaluate boundaries by lifecycle ownership and risk. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that more state files automatically remove all dependencies.",
+      "answerChecklist": [
+        "Reduce coupling access scope and change blast radius",
+        "Cross-state dependencies need explicit interface and sequencing decisions",
+        "Evaluate boundaries by lifecycle ownership and risk",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "A small application change routinely locks a huge shared stack. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "terraform",
+      "objective": "Explain partial failure and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Partial failure \u2014 primary reference",
+          "url": "https://developer.hashicorp.com/terraform/language"
+        }
+      ],
+      "tags": [
+        "terraform",
+        "partial-failure"
+      ],
+      "takeaway": "The next step is to inspect state and actual resources before retrying.",
+      "explanation": "Some resources may have changed successfully before failure. The next step is to inspect state and actual resources before retrying. In the scenario, inspect completed changes and review a fresh plan. The alternative \u2018Assume nothing changed and launch unrelated manual cleanup\u2019 does not address the stated evidence or constraint.",
+      "id": "terraform-28-concept",
+      "title": "Partial failure \u00b7 concept",
+      "type": "concept",
+      "question": "What can a failed apply leave behind?",
+      "options": [
+        "Assume nothing changed and launch unrelated manual cleanup",
+        "Some resources may have changed successfully before failure",
+        "Every failed apply automatically rolls back all changes",
+        "A failed apply means no API operation occurred"
+      ],
+      "correct": [
+        1
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "terraform",
+      "objective": "Explain partial failure and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Partial failure \u2014 primary reference",
+          "url": "https://developer.hashicorp.com/terraform/language"
+        }
+      ],
+      "tags": [
+        "terraform",
+        "partial-failure"
+      ],
+      "takeaway": "The next step is to inspect state and actual resources before retrying.",
+      "explanation": "Some resources may have changed successfully before failure. The next step is to inspect state and actual resources before retrying. In the scenario, inspect completed changes and review a fresh plan. The alternative \u2018Assume nothing changed and launch unrelated manual cleanup\u2019 does not address the stated evidence or constraint.",
+      "id": "terraform-28-scenario",
+      "title": "Partial failure \u00b7 scenario",
+      "type": "scenario",
+      "question": "An apply fails halfway through a network rollout. What is the best next step?",
+      "options": [
+        "Inspect completed changes and review a fresh plan",
+        "Assume nothing changed and launch unrelated manual cleanup",
+        "Every failed apply automatically rolls back all changes",
+        "A failed apply means no API operation occurred"
+      ],
+      "correct": [
+        0
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "terraform",
+      "objective": "Explain partial failure and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Partial failure \u2014 primary reference",
+          "url": "https://developer.hashicorp.com/terraform/language"
+        }
+      ],
+      "tags": [
+        "terraform",
+        "partial-failure"
+      ],
+      "takeaway": "The next step is to inspect state and actual resources before retrying.",
+      "explanation": "Some resources may have changed successfully before failure. The next step is to inspect state and actual resources before retrying. In the scenario, inspect completed changes and review a fresh plan. The alternative \u2018Assume nothing changed and launch unrelated manual cleanup\u2019 does not address the stated evidence or constraint.",
+      "id": "terraform-28-principles",
+      "title": "Partial failure \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing partial failure, which TWO statements are sound operational principles?",
+      "options": [
+        "The next step is to inspect state and actual resources before retrying",
+        "Every failed apply automatically rolls back all changes",
+        "A failed apply means no API operation occurred",
+        "Some resources may have changed successfully before failure"
+      ],
+      "correct": [
+        0,
+        3
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "terraform",
+      "objective": "Explain partial failure and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Partial failure \u2014 primary reference",
+          "url": "https://developer.hashicorp.com/terraform/language"
+        }
+      ],
+      "tags": [
+        "terraform",
+        "partial-failure"
+      ],
+      "takeaway": "The next step is to inspect state and actual resources before retrying.",
+      "explanation": "Some resources may have changed successfully before failure. The next step is to inspect state and actual resources before retrying. In the scenario, inspect completed changes and review a fresh plan. The alternative \u2018Assume nothing changed and launch unrelated manual cleanup\u2019 does not address the stated evidence or constraint.",
+      "id": "terraform-28-interview",
+      "title": "Partial failure \u00b7 interview",
+      "type": "interview",
+      "question": "Explain recovery from a partially completed Terraform apply.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "Some resources may have changed successfully before failure. The next step is to inspect state and actual resources before retrying. A practical response is: Inspect completed changes and review a fresh plan. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that every failed apply automatically rolls back all changes.",
+      "answerChecklist": [
+        "Some resources may have changed successfully before failure",
+        "The next step is to inspect state and actual resources before retrying",
+        "Inspect completed changes and review a fresh plan",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "An apply fails halfway through a network rollout. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "terraform",
+      "objective": "Explain provider upgrades and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Provider upgrades \u2014 primary reference",
+          "url": "https://developer.hashicorp.com/terraform/language"
+        }
+      ],
+      "tags": [
+        "terraform",
+        "provider-upgrades"
+      ],
+      "takeaway": "Schema changes may affect existing resources without configuration edits.",
+      "explanation": "Review migration guidance and plans in a representative environment. Schema changes may affect existing resources without configuration edits. In the scenario, investigate release changes and test a controlled migration. The alternative \u2018Approve all replacements because the configuration text is unchanged\u2019 does not address the stated evidence or constraint.",
+      "id": "terraform-29-concept",
+      "title": "Provider upgrades \u00b7 concept",
+      "type": "concept",
+      "question": "How should a major provider upgrade be evaluated?",
+      "options": [
+        "Review migration guidance and plans in a representative environment",
+        "A major version change can never affect resource behavior",
+        "The lock file replaces all upgrade testing",
+        "Approve all replacements because the configuration text is unchanged"
+      ],
+      "correct": [
+        0
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "terraform",
+      "objective": "Explain provider upgrades and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Provider upgrades \u2014 primary reference",
+          "url": "https://developer.hashicorp.com/terraform/language"
+        }
+      ],
+      "tags": [
+        "terraform",
+        "provider-upgrades"
+      ],
+      "takeaway": "Schema changes may affect existing resources without configuration edits.",
+      "explanation": "Review migration guidance and plans in a representative environment. Schema changes may affect existing resources without configuration edits. In the scenario, investigate release changes and test a controlled migration. The alternative \u2018Approve all replacements because the configuration text is unchanged\u2019 does not address the stated evidence or constraint.",
+      "id": "terraform-29-scenario",
+      "title": "Provider upgrades \u00b7 scenario",
+      "type": "scenario",
+      "question": "A new provider version proposes unexpected replacements. What is the best next step?",
+      "options": [
+        "Approve all replacements because the configuration text is unchanged",
+        "A major version change can never affect resource behavior",
+        "The lock file replaces all upgrade testing",
+        "Investigate release changes and test a controlled migration"
+      ],
+      "correct": [
+        3
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "terraform",
+      "objective": "Explain provider upgrades and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Provider upgrades \u2014 primary reference",
+          "url": "https://developer.hashicorp.com/terraform/language"
+        }
+      ],
+      "tags": [
+        "terraform",
+        "provider-upgrades"
+      ],
+      "takeaway": "Schema changes may affect existing resources without configuration edits.",
+      "explanation": "Review migration guidance and plans in a representative environment. Schema changes may affect existing resources without configuration edits. In the scenario, investigate release changes and test a controlled migration. The alternative \u2018Approve all replacements because the configuration text is unchanged\u2019 does not address the stated evidence or constraint.",
+      "id": "terraform-29-principles",
+      "title": "Provider upgrades \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing provider upgrades, which TWO statements are sound operational principles?",
+      "options": [
+        "A major version change can never affect resource behavior",
+        "The lock file replaces all upgrade testing",
+        "Review migration guidance and plans in a representative environment",
+        "Schema changes may affect existing resources without configuration edits"
+      ],
+      "correct": [
+        2,
+        3
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "terraform",
+      "objective": "Explain provider upgrades and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Provider upgrades \u2014 primary reference",
+          "url": "https://developer.hashicorp.com/terraform/language"
+        }
+      ],
+      "tags": [
+        "terraform",
+        "provider-upgrades"
+      ],
+      "takeaway": "Schema changes may affect existing resources without configuration edits.",
+      "explanation": "Review migration guidance and plans in a representative environment. Schema changes may affect existing resources without configuration edits. In the scenario, investigate release changes and test a controlled migration. The alternative \u2018Approve all replacements because the configuration text is unchanged\u2019 does not address the stated evidence or constraint.",
+      "id": "terraform-29-interview",
+      "title": "Provider upgrades \u00b7 interview",
+      "type": "interview",
+      "question": "Explain a provider upgrade strategy for a production estate.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "Review migration guidance and plans in a representative environment. Schema changes may affect existing resources without configuration edits. A practical response is: Investigate release changes and test a controlled migration. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that a major version change can never affect resource behavior.",
+      "answerChecklist": [
+        "Review migration guidance and plans in a representative environment",
+        "Schema changes may affect existing resources without configuration edits",
+        "Investigate release changes and test a controlled migration",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "A new provider version proposes unexpected replacements. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "terraform",
+      "objective": "Explain policy checks and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Policy checks \u2014 primary reference",
+          "url": "https://developer.hashicorp.com/terraform/language"
+        }
+      ],
+      "tags": [
+        "terraform",
+        "policy-checks"
+      ],
+      "takeaway": "Policy checks complement plan review rather than proving all runtime behavior.",
+      "explanation": "Reject changes that violate defined infrastructure rules. Policy checks complement plan review rather than proving all runtime behavior. In the scenario, block the unsafe exposure and explain the required exception process. The alternative \u2018Rely solely on a successful syntax validation\u2019 does not address the stated evidence or constraint.",
+      "id": "terraform-30-concept",
+      "title": "Policy checks \u00b7 concept",
+      "type": "concept",
+      "question": "What role can policy checks play in Terraform delivery?",
+      "options": [
+        "Passing policy guarantees no outage can occur",
+        "Policy checks eliminate the need for access control",
+        "Rely solely on a successful syntax validation",
+        "Reject changes that violate defined infrastructure rules"
+      ],
+      "correct": [
+        3
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "terraform",
+      "objective": "Explain policy checks and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Policy checks \u2014 primary reference",
+          "url": "https://developer.hashicorp.com/terraform/language"
+        }
+      ],
+      "tags": [
+        "terraform",
+        "policy-checks"
+      ],
+      "takeaway": "Policy checks complement plan review rather than proving all runtime behavior.",
+      "explanation": "Reject changes that violate defined infrastructure rules. Policy checks complement plan review rather than proving all runtime behavior. In the scenario, block the unsafe exposure and explain the required exception process. The alternative \u2018Rely solely on a successful syntax validation\u2019 does not address the stated evidence or constraint.",
+      "id": "terraform-30-scenario",
+      "title": "Policy checks \u00b7 scenario",
+      "type": "scenario",
+      "question": "A plan opens a sensitive service to the Internet. What is the best next step?",
+      "options": [
+        "Passing policy guarantees no outage can occur",
+        "Policy checks eliminate the need for access control",
+        "Block the unsafe exposure and explain the required exception process",
+        "Rely solely on a successful syntax validation"
+      ],
+      "correct": [
+        2
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "terraform",
+      "objective": "Explain policy checks and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Policy checks \u2014 primary reference",
+          "url": "https://developer.hashicorp.com/terraform/language"
+        }
+      ],
+      "tags": [
+        "terraform",
+        "policy-checks"
+      ],
+      "takeaway": "Policy checks complement plan review rather than proving all runtime behavior.",
+      "explanation": "Reject changes that violate defined infrastructure rules. Policy checks complement plan review rather than proving all runtime behavior. In the scenario, block the unsafe exposure and explain the required exception process. The alternative \u2018Rely solely on a successful syntax validation\u2019 does not address the stated evidence or constraint.",
+      "id": "terraform-30-principles",
+      "title": "Policy checks \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing policy checks, which TWO statements are sound operational principles?",
+      "options": [
+        "Policy checks eliminate the need for access control",
+        "Reject changes that violate defined infrastructure rules",
+        "Policy checks complement plan review rather than proving all runtime behavior",
+        "Passing policy guarantees no outage can occur"
+      ],
+      "correct": [
+        1,
+        2
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "terraform",
+      "objective": "Explain policy checks and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Policy checks \u2014 primary reference",
+          "url": "https://developer.hashicorp.com/terraform/language"
+        }
+      ],
+      "tags": [
+        "terraform",
+        "policy-checks"
+      ],
+      "takeaway": "Policy checks complement plan review rather than proving all runtime behavior.",
+      "explanation": "Reject changes that violate defined infrastructure rules. Policy checks complement plan review rather than proving all runtime behavior. In the scenario, block the unsafe exposure and explain the required exception process. The alternative \u2018Rely solely on a successful syntax validation\u2019 does not address the stated evidence or constraint.",
+      "id": "terraform-30-interview",
+      "title": "Policy checks \u00b7 interview",
+      "type": "interview",
+      "question": "Explain how you would combine validation policy review and runtime verification.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "Reject changes that violate defined infrastructure rules. Policy checks complement plan review rather than proving all runtime behavior. A practical response is: Block the unsafe exposure and explain the required exception process. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that passing policy guarantees no outage can occur.",
+      "answerChecklist": [
+        "Reject changes that violate defined infrastructure rules",
+        "Policy checks complement plan review rather than proving all runtime behavior",
+        "Block the unsafe exposure and explain the required exception process",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "A plan opens a sensitive service to the Internet. Explain the evidence that would change your decision."
+      ]
+    }
+  ]
+}

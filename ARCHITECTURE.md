@@ -207,3 +207,13 @@ Passing structural tests is necessary but not sufficient. Each subject bank also
 - All eight module destinations and the roadmap work by mouse and keyboard.
 - Every completed subject meets the 120-question minimum and passes content validation plus editorial review.
 - The full Playwright suite passes on the PR, and the published GitHub Pages site is smoke-tested after deployment.
+
+## Multi-subject implementation addendum (October 2026)
+
+The runtime now loads `data/subjects.json`, then independently loads each subject's question and learning packs. Eleven subjects are active. New packs contain 30 competency sets: 90 scored questions plus 30 self-reviewed interviews, with 30 short lessons each. Kubernetes retains its 120 scored questions and four interviews. Related variants reinforce a competency; counts are not counts of independent competencies.
+
+The subject catalog and learning-library subject selector use loaded manifest entries. Every learning item is assigned its pack subject at load time; the old Kubernetes topic shortcut is removed so a Kubernetes filter cannot expose other subjects. Search is local to the selected learning module. Partial download failures exclude the failed pack and display a warning; total failure leaves the start action disabled with reload recovery.
+
+The legacy bank remains archived but is not included in runtime pools. Session scoring, option shuffling, review, export and existing Kubernetes identifiers remain intact. All scored modes exclude interview prompts. Dedicated command and debugging content remains Kubernetes-only and is described explicitly in the UI.
+
+`content/` and `scripts/build-subject-packs.py` provide reproducible editorial source for the ten new tracks. CI checks source/output consistency and full catalog invariants. Pages copies every JSON pack and runs browser regressions before deployment.

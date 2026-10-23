@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#101c2b">
-  <meta name="description" content="Build DevOps and SRE interview readiness with guided learning, practice questions, exam simulation, and realistic Kubernetes troubleshooting scenarios.">
+  <meta name="description" content="Build DevOps and SRE interview readiness with guided learning, practice questions, exam simulation, and troubleshooting across eleven infrastructure subjects.">
   <title>DevOps &amp; SRE Lab — Learn. Practise. Be interview-ready.</title>
   <link rel="stylesheet" href="styles.css">
   <script defer src="questions.js"></script>
@@ -52,6 +52,13 @@
           </aside>
         </div>
 
+        <section class="subject-catalog" aria-labelledby="catalog-title">
+          <div class="section-heading"><div><span class="section-kicker">YOUR INFRASTRUCTURE TOOLKIT</span><h2 id="catalog-title">Choose your next skill</h2><p id="catalog-count" aria-live="polite">Loading subject tracks…</p></div><div class="field catalog-search"><label for="subject-search">Find a subject</label><input id="subject-search" type="search" placeholder="Linux, AWS, networking…" autocomplete="off"></div></div>
+          <p id="catalog-warning" class="availability-note" role="status" hidden></p>
+          <div id="subject-grid" class="subject-grid"></div>
+          <p class="catalog-note">New tracks use 30 competency sets, each with concept, scenario, multi-select and interview practice. Interview prompts are self-reviewed, never auto-scored.</p>
+        </section>
+
         <section class="progress-overview" aria-label="Your learning progress">
           <div class="progress-intro"><span class="section-kicker">YOUR PRACTICE</span><h2>Small steps add up.</h2><p>Your recent sessions help you spot what to revisit.</p></div>
           <div class="stat-tile"><span class="stat-label">Sessions</span><strong id="stat-attempts">0</strong><span class="stat-foot">completed</span></div>
@@ -85,7 +92,7 @@
               <div class="card-heading"><div><span class="section-kicker">SESSION SETTINGS</span><h3>Make it yours</h3></div><span class="settings-mark" aria-hidden="true">☷</span></div>
               <div class="field-grid">
                 <div class="field"><label for="level-select">Difficulty</label><select id="level-select"><option value="easy">Easy</option><option value="medium">Medium</option><option value="mediumHard">Medium hard</option><option value="hard">Hard</option></select><small id="level-help">Build confidence with the essentials.</small></div>
-                <div class="field"><label for="topic-select">Technical subject</label><select id="topic-select"><option value="all">All available subjects</option></select><small id="topic-help">Focused Kubernetes content is curated first.</small></div>
+                <div class="field"><label for="topic-select">Technical subject</label><select id="topic-select"><option value="all">All available subjects</option></select><small id="topic-help">Choose a subject with scored questions and self-reviewed interview prompts.</small></div>
                 <div class="field"><label for="type-select">Question type</label><select id="type-select"><option value="all">All question types</option><option value="concept">Core concepts</option><option value="scenario">Troubleshooting scenarios</option><option value="command">Command interpretation</option><option value="multi-select">Select all that apply</option><option value="trade-off">Trade-offs and design</option><option value="interview">Open-ended interview prompts</option></select><small>Use this to target one interview skill.</small></div>
                 <div class="field"><label for="count-select">Question count</label><select id="count-select"><option value="10">10 questions</option><option value="20" selected>20 questions</option><option value="30">30 questions</option><option value="all">All available questions</option></select><small id="count-help">The app never invents questions to fill a set.</small></div>
               </div>
@@ -147,6 +154,7 @@
           <button type="button" data-module="interviews">Interview prompts</button>
           <button type="button" data-module="followups">Follow-ups</button>
         </nav>
+        <div class="library-filters"><div class="field"><label for="learning-topic">Subject</label><select id="learning-topic"></select></div><div class="field"><label for="learning-search">Search this module</label><input id="learning-search" type="search" placeholder="Find a concept or scenario…" autocomplete="off"></div></div>
         <div id="learning-content-count" class="availability-note" aria-live="polite"></div>
         <div class="learning-browser">
           <div id="learning-content-list" class="learning-content-list" aria-label="Available learning content"></div>
@@ -234,3 +242,4 @@
   </div>
 </body>
 </html>
+

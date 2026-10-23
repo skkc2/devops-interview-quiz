@@ -1,0 +1,3733 @@
+{
+  "schemaVersion": 1,
+  "subject": "SRE & incident response",
+  "levels": [
+    "easy",
+    "medium",
+    "mediumHard",
+    "hard"
+  ],
+  "description": "30 competency sets: 90 scored questions and 30 self-reviewed interview prompts. Related questions intentionally reinforce a competency from different angles.",
+  "questions": [
+    {
+      "level": "easy",
+      "topic": "sre",
+      "objective": "Explain slis and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "SLIs \u2014 primary reference",
+          "url": "https://sre.google/workbook/implementing-slos/"
+        }
+      ],
+      "tags": [
+        "sre",
+        "slis"
+      ],
+      "takeaway": "Choose a measurement population and a precise definition.",
+      "explanation": "An aspect of service behavior experienced by users. Choose a measurement population and a precise definition. In the scenario, define a checkout success indicator from eligible requests. The alternative \u2018Declare the service healthy solely from low CPU\u2019 does not address the stated evidence or constraint.",
+      "id": "sre-01-concept",
+      "title": "SLIs \u00b7 concept",
+      "type": "concept",
+      "question": "What does an SLI measure?",
+      "options": [
+        "An aspect of service behavior experienced by users",
+        "An SLI is always a contractual penalty",
+        "An SLI is simply the number of on-call engineers",
+        "Declare the service healthy solely from low CPU"
+      ],
+      "correct": [
+        0
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "sre",
+      "objective": "Explain slis and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "SLIs \u2014 primary reference",
+          "url": "https://sre.google/workbook/implementing-slos/"
+        }
+      ],
+      "tags": [
+        "sre",
+        "slis"
+      ],
+      "takeaway": "Choose a measurement population and a precise definition.",
+      "explanation": "An aspect of service behavior experienced by users. Choose a measurement population and a precise definition. In the scenario, define a checkout success indicator from eligible requests. The alternative \u2018Declare the service healthy solely from low CPU\u2019 does not address the stated evidence or constraint.",
+      "id": "sre-01-scenario",
+      "title": "SLIs \u00b7 scenario",
+      "type": "scenario",
+      "question": "A dashboard tracks CPU but users report failed checkouts. What is the best next step?",
+      "options": [
+        "Declare the service healthy solely from low CPU",
+        "An SLI is always a contractual penalty",
+        "An SLI is simply the number of on-call engineers",
+        "Define a checkout success indicator from eligible requests"
+      ],
+      "correct": [
+        3
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "sre",
+      "objective": "Explain slis and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "SLIs \u2014 primary reference",
+          "url": "https://sre.google/workbook/implementing-slos/"
+        }
+      ],
+      "tags": [
+        "sre",
+        "slis"
+      ],
+      "takeaway": "Choose a measurement population and a precise definition.",
+      "explanation": "An aspect of service behavior experienced by users. Choose a measurement population and a precise definition. In the scenario, define a checkout success indicator from eligible requests. The alternative \u2018Declare the service healthy solely from low CPU\u2019 does not address the stated evidence or constraint.",
+      "id": "sre-01-principles",
+      "title": "SLIs \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing slis, which TWO statements are sound operational principles?",
+      "options": [
+        "An SLI is always a contractual penalty",
+        "An SLI is simply the number of on-call engineers",
+        "An aspect of service behavior experienced by users",
+        "Choose a measurement population and a precise definition"
+      ],
+      "correct": [
+        2,
+        3
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "sre",
+      "objective": "Explain slis and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "SLIs \u2014 primary reference",
+          "url": "https://sre.google/workbook/implementing-slos/"
+        }
+      ],
+      "tags": [
+        "sre",
+        "slis"
+      ],
+      "takeaway": "Choose a measurement population and a precise definition.",
+      "explanation": "An aspect of service behavior experienced by users. Choose a measurement population and a precise definition. In the scenario, define a checkout success indicator from eligible requests. The alternative \u2018Declare the service healthy solely from low CPU\u2019 does not address the stated evidence or constraint.",
+      "id": "sre-01-interview",
+      "title": "SLIs \u00b7 interview",
+      "type": "interview",
+      "question": "Explain how you would define a user-centered checkout SLI.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "An aspect of service behavior experienced by users. Choose a measurement population and a precise definition. A practical response is: Define a checkout success indicator from eligible requests. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that an SLI is always a contractual penalty.",
+      "answerChecklist": [
+        "An aspect of service behavior experienced by users",
+        "Choose a measurement population and a precise definition",
+        "Define a checkout success indicator from eligible requests",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "A dashboard tracks CPU but users report failed checkouts. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "sre",
+      "objective": "Explain slos and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "SLOs \u2014 primary reference",
+          "url": "https://sre.google/workbook/implementing-slos/"
+        }
+      ],
+      "tags": [
+        "sre",
+        "slos"
+      ],
+      "takeaway": "Targets should reflect user needs and business trade-offs.",
+      "explanation": "A target for an SLI over a defined window. Targets should reflect user needs and business trade-offs. In the scenario, agree on a measurable target and evaluation window. The alternative \u2018Choose 100 percent without considering cost or feasibility\u2019 does not address the stated evidence or constraint.",
+      "id": "sre-02-concept",
+      "title": "SLOs \u00b7 concept",
+      "type": "concept",
+      "question": "What does an SLO specify?",
+      "options": [
+        "An SLO guarantees that outages cannot happen",
+        "An SLO must always be exactly 100 percent",
+        "Choose 100 percent without considering cost or feasibility",
+        "A target for an SLI over a defined window"
+      ],
+      "correct": [
+        3
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "sre",
+      "objective": "Explain slos and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "SLOs \u2014 primary reference",
+          "url": "https://sre.google/workbook/implementing-slos/"
+        }
+      ],
+      "tags": [
+        "sre",
+        "slos"
+      ],
+      "takeaway": "Targets should reflect user needs and business trade-offs.",
+      "explanation": "A target for an SLI over a defined window. Targets should reflect user needs and business trade-offs. In the scenario, agree on a measurable target and evaluation window. The alternative \u2018Choose 100 percent without considering cost or feasibility\u2019 does not address the stated evidence or constraint.",
+      "id": "sre-02-scenario",
+      "title": "SLOs \u00b7 scenario",
+      "type": "scenario",
+      "question": "Teams argue over whether current reliability is sufficient. What is the best next step?",
+      "options": [
+        "An SLO guarantees that outages cannot happen",
+        "An SLO must always be exactly 100 percent",
+        "Agree on a measurable target and evaluation window",
+        "Choose 100 percent without considering cost or feasibility"
+      ],
+      "correct": [
+        2
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "sre",
+      "objective": "Explain slos and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "SLOs \u2014 primary reference",
+          "url": "https://sre.google/workbook/implementing-slos/"
+        }
+      ],
+      "tags": [
+        "sre",
+        "slos"
+      ],
+      "takeaway": "Targets should reflect user needs and business trade-offs.",
+      "explanation": "A target for an SLI over a defined window. Targets should reflect user needs and business trade-offs. In the scenario, agree on a measurable target and evaluation window. The alternative \u2018Choose 100 percent without considering cost or feasibility\u2019 does not address the stated evidence or constraint.",
+      "id": "sre-02-principles",
+      "title": "SLOs \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing slos, which TWO statements are sound operational principles?",
+      "options": [
+        "An SLO must always be exactly 100 percent",
+        "A target for an SLI over a defined window",
+        "Targets should reflect user needs and business trade-offs",
+        "An SLO guarantees that outages cannot happen"
+      ],
+      "correct": [
+        1,
+        2
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "sre",
+      "objective": "Explain slos and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "SLOs \u2014 primary reference",
+          "url": "https://sre.google/workbook/implementing-slos/"
+        }
+      ],
+      "tags": [
+        "sre",
+        "slos"
+      ],
+      "takeaway": "Targets should reflect user needs and business trade-offs.",
+      "explanation": "A target for an SLI over a defined window. Targets should reflect user needs and business trade-offs. In the scenario, agree on a measurable target and evaluation window. The alternative \u2018Choose 100 percent without considering cost or feasibility\u2019 does not address the stated evidence or constraint.",
+      "id": "sre-02-interview",
+      "title": "SLOs \u00b7 interview",
+      "type": "interview",
+      "question": "Explain how you would negotiate a realistic SLO.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "A target for an SLI over a defined window. Targets should reflect user needs and business trade-offs. A practical response is: Agree on a measurable target and evaluation window. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that an SLO guarantees that outages cannot happen.",
+      "answerChecklist": [
+        "A target for an SLI over a defined window",
+        "Targets should reflect user needs and business trade-offs",
+        "Agree on a measurable target and evaluation window",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "Teams argue over whether current reliability is sufficient. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "sre",
+      "objective": "Explain error budgets and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Error budgets \u2014 primary reference",
+          "url": "https://sre.google/workbook/implementing-slos/"
+        }
+      ],
+      "tags": [
+        "sre",
+        "error-budgets"
+      ],
+      "takeaway": "Budget policy connects reliability performance to release decisions.",
+      "explanation": "The allowed unreliability implied by an SLO. Budget policy connects reliability performance to release decisions. In the scenario, apply the agreed reliability policy and prioritize stabilization. The alternative \u2018Continue risky releases because the monthly average may recover\u2019 does not address the stated evidence or constraint.",
+      "id": "sre-03-concept",
+      "title": "Error budgets \u00b7 concept",
+      "type": "concept",
+      "question": "What is an error budget?",
+      "options": [
+        "It means every outage below the limit should be ignored",
+        "Continue risky releases because the monthly average may recover",
+        "The allowed unreliability implied by an SLO",
+        "It is a budget for buying monitoring software"
+      ],
+      "correct": [
+        2
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "sre",
+      "objective": "Explain error budgets and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Error budgets \u2014 primary reference",
+          "url": "https://sre.google/workbook/implementing-slos/"
+        }
+      ],
+      "tags": [
+        "sre",
+        "error-budgets"
+      ],
+      "takeaway": "Budget policy connects reliability performance to release decisions.",
+      "explanation": "The allowed unreliability implied by an SLO. Budget policy connects reliability performance to release decisions. In the scenario, apply the agreed reliability policy and prioritize stabilization. The alternative \u2018Continue risky releases because the monthly average may recover\u2019 does not address the stated evidence or constraint.",
+      "id": "sre-03-scenario",
+      "title": "Error budgets \u00b7 scenario",
+      "type": "scenario",
+      "question": "A service exhausts its error budget during repeated risky releases. What is the best next step?",
+      "options": [
+        "It means every outage below the limit should be ignored",
+        "Apply the agreed reliability policy and prioritize stabilization",
+        "Continue risky releases because the monthly average may recover",
+        "It is a budget for buying monitoring software"
+      ],
+      "correct": [
+        1
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "sre",
+      "objective": "Explain error budgets and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Error budgets \u2014 primary reference",
+          "url": "https://sre.google/workbook/implementing-slos/"
+        }
+      ],
+      "tags": [
+        "sre",
+        "error-budgets"
+      ],
+      "takeaway": "Budget policy connects reliability performance to release decisions.",
+      "explanation": "The allowed unreliability implied by an SLO. Budget policy connects reliability performance to release decisions. In the scenario, apply the agreed reliability policy and prioritize stabilization. The alternative \u2018Continue risky releases because the monthly average may recover\u2019 does not address the stated evidence or constraint.",
+      "id": "sre-03-principles",
+      "title": "Error budgets \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing error budgets, which TWO statements are sound operational principles?",
+      "options": [
+        "The allowed unreliability implied by an SLO",
+        "Budget policy connects reliability performance to release decisions",
+        "It is a budget for buying monitoring software",
+        "It means every outage below the limit should be ignored"
+      ],
+      "correct": [
+        0,
+        1
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "sre",
+      "objective": "Explain error budgets and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Error budgets \u2014 primary reference",
+          "url": "https://sre.google/workbook/implementing-slos/"
+        }
+      ],
+      "tags": [
+        "sre",
+        "error-budgets"
+      ],
+      "takeaway": "Budget policy connects reliability performance to release decisions.",
+      "explanation": "The allowed unreliability implied by an SLO. Budget policy connects reliability performance to release decisions. In the scenario, apply the agreed reliability policy and prioritize stabilization. The alternative \u2018Continue risky releases because the monthly average may recover\u2019 does not address the stated evidence or constraint.",
+      "id": "sre-03-interview",
+      "title": "Error budgets \u00b7 interview",
+      "type": "interview",
+      "question": "Explain how an error-budget policy changes engineering priorities.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "The allowed unreliability implied by an SLO. Budget policy connects reliability performance to release decisions. A practical response is: Apply the agreed reliability policy and prioritize stabilization. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that it is a budget for buying monitoring software.",
+      "answerChecklist": [
+        "The allowed unreliability implied by an SLO",
+        "Budget policy connects reliability performance to release decisions",
+        "Apply the agreed reliability policy and prioritize stabilization",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "A service exhausts its error budget during repeated risky releases. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "sre",
+      "objective": "Explain incident roles and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Incident roles \u2014 primary reference",
+          "url": "https://sre.google/workbook/incident-response/"
+        }
+      ],
+      "tags": [
+        "sre",
+        "incident-roles"
+      ],
+      "takeaway": "Coordination can be separate from hands-on diagnosis.",
+      "explanation": "To coordinate decisions roles and communication. Coordination can be separate from hands-on diagnosis. In the scenario, establish coordination and track owners of mitigation actions. The alternative \u2018Allow simultaneous untracked fixes to maximize activity\u2019 does not address the stated evidence or constraint.",
+      "id": "sre-04-concept",
+      "title": "Incident roles \u00b7 concept",
+      "type": "concept",
+      "question": "Why assign an incident commander?",
+      "options": [
+        "Allow simultaneous untracked fixes to maximize activity",
+        "To coordinate decisions roles and communication",
+        "The commander must personally execute every command",
+        "Only the most senior developer may communicate updates"
+      ],
+      "correct": [
+        1
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "sre",
+      "objective": "Explain incident roles and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Incident roles \u2014 primary reference",
+          "url": "https://sre.google/workbook/incident-response/"
+        }
+      ],
+      "tags": [
+        "sre",
+        "incident-roles"
+      ],
+      "takeaway": "Coordination can be separate from hands-on diagnosis.",
+      "explanation": "To coordinate decisions roles and communication. Coordination can be separate from hands-on diagnosis. In the scenario, establish coordination and track owners of mitigation actions. The alternative \u2018Allow simultaneous untracked fixes to maximize activity\u2019 does not address the stated evidence or constraint.",
+      "id": "sre-04-scenario",
+      "title": "Incident roles \u00b7 scenario",
+      "type": "scenario",
+      "question": "Several responders make conflicting production changes. What is the best next step?",
+      "options": [
+        "Establish coordination and track owners of mitigation actions",
+        "Allow simultaneous untracked fixes to maximize activity",
+        "The commander must personally execute every command",
+        "Only the most senior developer may communicate updates"
+      ],
+      "correct": [
+        0
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "sre",
+      "objective": "Explain incident roles and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Incident roles \u2014 primary reference",
+          "url": "https://sre.google/workbook/incident-response/"
+        }
+      ],
+      "tags": [
+        "sre",
+        "incident-roles"
+      ],
+      "takeaway": "Coordination can be separate from hands-on diagnosis.",
+      "explanation": "To coordinate decisions roles and communication. Coordination can be separate from hands-on diagnosis. In the scenario, establish coordination and track owners of mitigation actions. The alternative \u2018Allow simultaneous untracked fixes to maximize activity\u2019 does not address the stated evidence or constraint.",
+      "id": "sre-04-principles",
+      "title": "Incident roles \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing incident roles, which TWO statements are sound operational principles?",
+      "options": [
+        "Coordination can be separate from hands-on diagnosis",
+        "The commander must personally execute every command",
+        "Only the most senior developer may communicate updates",
+        "To coordinate decisions roles and communication"
+      ],
+      "correct": [
+        0,
+        3
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "sre",
+      "objective": "Explain incident roles and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Incident roles \u2014 primary reference",
+          "url": "https://sre.google/workbook/incident-response/"
+        }
+      ],
+      "tags": [
+        "sre",
+        "incident-roles"
+      ],
+      "takeaway": "Coordination can be separate from hands-on diagnosis.",
+      "explanation": "To coordinate decisions roles and communication. Coordination can be separate from hands-on diagnosis. In the scenario, establish coordination and track owners of mitigation actions. The alternative \u2018Allow simultaneous untracked fixes to maximize activity\u2019 does not address the stated evidence or constraint.",
+      "id": "sre-04-interview",
+      "title": "Incident roles \u00b7 interview",
+      "type": "interview",
+      "question": "Explain how you would organize the first minutes of a major incident.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "To coordinate decisions roles and communication. Coordination can be separate from hands-on diagnosis. A practical response is: Establish coordination and track owners of mitigation actions. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that the commander must personally execute every command.",
+      "answerChecklist": [
+        "To coordinate decisions roles and communication",
+        "Coordination can be separate from hands-on diagnosis",
+        "Establish coordination and track owners of mitigation actions",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "Several responders make conflicting production changes. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "sre",
+      "objective": "Explain mitigation and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Mitigation \u2014 primary reference",
+          "url": "https://sre.google/workbook/incident-response/"
+        }
+      ],
+      "tags": [
+        "sre",
+        "mitigation"
+      ],
+      "takeaway": "Root-cause investigation can continue after stabilization.",
+      "explanation": "Reduce impact while preserving useful evidence. Root-cause investigation can continue after stabilization. In the scenario, evaluate and execute the known rollback while monitoring recovery. The alternative \u2018Wait for a complete causal proof before reducing impact\u2019 does not address the stated evidence or constraint.",
+      "id": "sre-05-concept",
+      "title": "Mitigation \u00b7 concept",
+      "type": "concept",
+      "question": "What is the immediate priority during an active user-impacting outage?",
+      "options": [
+        "Reduce impact while preserving useful evidence",
+        "A full root-cause report must precede every mitigation",
+        "Collecting every possible log is more important than restoring service",
+        "Wait for a complete causal proof before reducing impact"
+      ],
+      "correct": [
+        0
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "sre",
+      "objective": "Explain mitigation and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Mitigation \u2014 primary reference",
+          "url": "https://sre.google/workbook/incident-response/"
+        }
+      ],
+      "tags": [
+        "sre",
+        "mitigation"
+      ],
+      "takeaway": "Root-cause investigation can continue after stabilization.",
+      "explanation": "Reduce impact while preserving useful evidence. Root-cause investigation can continue after stabilization. In the scenario, evaluate and execute the known rollback while monitoring recovery. The alternative \u2018Wait for a complete causal proof before reducing impact\u2019 does not address the stated evidence or constraint.",
+      "id": "sre-05-scenario",
+      "title": "Mitigation \u00b7 scenario",
+      "type": "scenario",
+      "question": "A recent release is strongly correlated with failures and rollback is safe. What is the best next step?",
+      "options": [
+        "Wait for a complete causal proof before reducing impact",
+        "A full root-cause report must precede every mitigation",
+        "Collecting every possible log is more important than restoring service",
+        "Evaluate and execute the known rollback while monitoring recovery"
+      ],
+      "correct": [
+        3
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "sre",
+      "objective": "Explain mitigation and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Mitigation \u2014 primary reference",
+          "url": "https://sre.google/workbook/incident-response/"
+        }
+      ],
+      "tags": [
+        "sre",
+        "mitigation"
+      ],
+      "takeaway": "Root-cause investigation can continue after stabilization.",
+      "explanation": "Reduce impact while preserving useful evidence. Root-cause investigation can continue after stabilization. In the scenario, evaluate and execute the known rollback while monitoring recovery. The alternative \u2018Wait for a complete causal proof before reducing impact\u2019 does not address the stated evidence or constraint.",
+      "id": "sre-05-principles",
+      "title": "Mitigation \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing mitigation, which TWO statements are sound operational principles?",
+      "options": [
+        "A full root-cause report must precede every mitigation",
+        "Collecting every possible log is more important than restoring service",
+        "Reduce impact while preserving useful evidence",
+        "Root-cause investigation can continue after stabilization"
+      ],
+      "correct": [
+        2,
+        3
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "sre",
+      "objective": "Explain mitigation and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Mitigation \u2014 primary reference",
+          "url": "https://sre.google/workbook/incident-response/"
+        }
+      ],
+      "tags": [
+        "sre",
+        "mitigation"
+      ],
+      "takeaway": "Root-cause investigation can continue after stabilization.",
+      "explanation": "Reduce impact while preserving useful evidence. Root-cause investigation can continue after stabilization. In the scenario, evaluate and execute the known rollback while monitoring recovery. The alternative \u2018Wait for a complete causal proof before reducing impact\u2019 does not address the stated evidence or constraint.",
+      "id": "sre-05-interview",
+      "title": "Mitigation \u00b7 interview",
+      "type": "interview",
+      "question": "Explain when rollback is a better first step than live debugging.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "Reduce impact while preserving useful evidence. Root-cause investigation can continue after stabilization. A practical response is: Evaluate and execute the known rollback while monitoring recovery. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that a full root-cause report must precede every mitigation.",
+      "answerChecklist": [
+        "Reduce impact while preserving useful evidence",
+        "Root-cause investigation can continue after stabilization",
+        "Evaluate and execute the known rollback while monitoring recovery",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "A recent release is strongly correlated with failures and rollback is safe. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "sre",
+      "objective": "Explain postmortems and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Postmortems \u2014 primary reference",
+          "url": "https://sre.google/workbook/postmortem-culture/"
+        }
+      ],
+      "tags": [
+        "sre",
+        "postmortems"
+      ],
+      "takeaway": "Useful actions have owners and verifiable outcomes.",
+      "explanation": "Learn how system conditions enabled an incident. Useful actions have owners and verifiable outcomes. In the scenario, create specific owned improvements and track completion. The alternative \u2018Publish another report that only says be more careful\u2019 does not address the stated evidence or constraint.",
+      "id": "sre-06-concept",
+      "title": "Postmortems \u00b7 concept",
+      "type": "concept",
+      "question": "What is the purpose of a blameless postmortem?",
+      "options": [
+        "Blameless means avoiding any discussion of decisions",
+        "The goal is to identify one person to punish",
+        "Publish another report that only says be more careful",
+        "Learn how system conditions enabled an incident"
+      ],
+      "correct": [
+        3
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "sre",
+      "objective": "Explain postmortems and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Postmortems \u2014 primary reference",
+          "url": "https://sre.google/workbook/postmortem-culture/"
+        }
+      ],
+      "tags": [
+        "sre",
+        "postmortems"
+      ],
+      "takeaway": "Useful actions have owners and verifiable outcomes.",
+      "explanation": "Learn how system conditions enabled an incident. Useful actions have owners and verifiable outcomes. In the scenario, create specific owned improvements and track completion. The alternative \u2018Publish another report that only says be more careful\u2019 does not address the stated evidence or constraint.",
+      "id": "sre-06-scenario",
+      "title": "Postmortems \u00b7 scenario",
+      "type": "scenario",
+      "question": "The same outage recurs after a report with vague recommendations. What is the best next step?",
+      "options": [
+        "Blameless means avoiding any discussion of decisions",
+        "The goal is to identify one person to punish",
+        "Create specific owned improvements and track completion",
+        "Publish another report that only says be more careful"
+      ],
+      "correct": [
+        2
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "sre",
+      "objective": "Explain postmortems and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Postmortems \u2014 primary reference",
+          "url": "https://sre.google/workbook/postmortem-culture/"
+        }
+      ],
+      "tags": [
+        "sre",
+        "postmortems"
+      ],
+      "takeaway": "Useful actions have owners and verifiable outcomes.",
+      "explanation": "Learn how system conditions enabled an incident. Useful actions have owners and verifiable outcomes. In the scenario, create specific owned improvements and track completion. The alternative \u2018Publish another report that only says be more careful\u2019 does not address the stated evidence or constraint.",
+      "id": "sre-06-principles",
+      "title": "Postmortems \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing postmortems, which TWO statements are sound operational principles?",
+      "options": [
+        "The goal is to identify one person to punish",
+        "Learn how system conditions enabled an incident",
+        "Useful actions have owners and verifiable outcomes",
+        "Blameless means avoiding any discussion of decisions"
+      ],
+      "correct": [
+        1,
+        2
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "sre",
+      "objective": "Explain postmortems and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Postmortems \u2014 primary reference",
+          "url": "https://sre.google/workbook/postmortem-culture/"
+        }
+      ],
+      "tags": [
+        "sre",
+        "postmortems"
+      ],
+      "takeaway": "Useful actions have owners and verifiable outcomes.",
+      "explanation": "Learn how system conditions enabled an incident. Useful actions have owners and verifiable outcomes. In the scenario, create specific owned improvements and track completion. The alternative \u2018Publish another report that only says be more careful\u2019 does not address the stated evidence or constraint.",
+      "id": "sre-06-interview",
+      "title": "Postmortems \u00b7 interview",
+      "type": "interview",
+      "question": "Explain how a postmortem should change the system.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "Learn how system conditions enabled an incident. Useful actions have owners and verifiable outcomes. A practical response is: Create specific owned improvements and track completion. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that blameless means avoiding any discussion of decisions.",
+      "answerChecklist": [
+        "Learn how system conditions enabled an incident",
+        "Useful actions have owners and verifiable outcomes",
+        "Create specific owned improvements and track completion",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "The same outage recurs after a report with vague recommendations. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "sre",
+      "objective": "Explain toil and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Toil \u2014 primary reference",
+          "url": "https://sre.google/workbook/eliminating-toil/"
+        }
+      ],
+      "tags": [
+        "sre",
+        "toil"
+      ],
+      "takeaway": "Not all valuable operational work is toil.",
+      "explanation": "Repetitive operational work that scales with service growth. Not all valuable operational work is toil. In the scenario, measure the repetition and evaluate safe automation. The alternative \u2018Automate without understanding the workflow or failure cases\u2019 does not address the stated evidence or constraint.",
+      "id": "sre-07-concept",
+      "title": "Toil \u00b7 concept",
+      "type": "concept",
+      "question": "Which work best matches SRE toil?",
+      "options": [
+        "Toil is any task involving a terminal",
+        "Automate without understanding the workflow or failure cases",
+        "Repetitive operational work that scales with service growth",
+        "Every manual task is necessarily worthless"
+      ],
+      "correct": [
+        2
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "sre",
+      "objective": "Explain toil and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Toil \u2014 primary reference",
+          "url": "https://sre.google/workbook/eliminating-toil/"
+        }
+      ],
+      "tags": [
+        "sre",
+        "toil"
+      ],
+      "takeaway": "Not all valuable operational work is toil.",
+      "explanation": "Repetitive operational work that scales with service growth. Not all valuable operational work is toil. In the scenario, measure the repetition and evaluate safe automation. The alternative \u2018Automate without understanding the workflow or failure cases\u2019 does not address the stated evidence or constraint.",
+      "id": "sre-07-scenario",
+      "title": "Toil \u00b7 scenario",
+      "type": "scenario",
+      "question": "Engineers manually perform the same routine provisioning each day. What is the best next step?",
+      "options": [
+        "Toil is any task involving a terminal",
+        "Measure the repetition and evaluate safe automation",
+        "Automate without understanding the workflow or failure cases",
+        "Every manual task is necessarily worthless"
+      ],
+      "correct": [
+        1
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "sre",
+      "objective": "Explain toil and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Toil \u2014 primary reference",
+          "url": "https://sre.google/workbook/eliminating-toil/"
+        }
+      ],
+      "tags": [
+        "sre",
+        "toil"
+      ],
+      "takeaway": "Not all valuable operational work is toil.",
+      "explanation": "Repetitive operational work that scales with service growth. Not all valuable operational work is toil. In the scenario, measure the repetition and evaluate safe automation. The alternative \u2018Automate without understanding the workflow or failure cases\u2019 does not address the stated evidence or constraint.",
+      "id": "sre-07-principles",
+      "title": "Toil \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing toil, which TWO statements are sound operational principles?",
+      "options": [
+        "Repetitive operational work that scales with service growth",
+        "Not all valuable operational work is toil",
+        "Every manual task is necessarily worthless",
+        "Toil is any task involving a terminal"
+      ],
+      "correct": [
+        0,
+        1
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "sre",
+      "objective": "Explain toil and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Toil \u2014 primary reference",
+          "url": "https://sre.google/workbook/eliminating-toil/"
+        }
+      ],
+      "tags": [
+        "sre",
+        "toil"
+      ],
+      "takeaway": "Not all valuable operational work is toil.",
+      "explanation": "Repetitive operational work that scales with service growth. Not all valuable operational work is toil. In the scenario, measure the repetition and evaluate safe automation. The alternative \u2018Automate without understanding the workflow or failure cases\u2019 does not address the stated evidence or constraint.",
+      "id": "sre-07-interview",
+      "title": "Toil \u00b7 interview",
+      "type": "interview",
+      "question": "Explain how you would identify and reduce a source of toil.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "Repetitive operational work that scales with service growth. Not all valuable operational work is toil. A practical response is: Measure the repetition and evaluate safe automation. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that every manual task is necessarily worthless.",
+      "answerChecklist": [
+        "Repetitive operational work that scales with service growth",
+        "Not all valuable operational work is toil",
+        "Measure the repetition and evaluate safe automation",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "Engineers manually perform the same routine provisioning each day. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "sre",
+      "objective": "Explain runbooks and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Runbooks \u2014 primary reference",
+          "url": "https://sre.google/sre-book/reliable-product-launches/"
+        }
+      ],
+      "tags": [
+        "sre",
+        "runbooks"
+      ],
+      "takeaway": "Runbooks need ownership and periodic validation.",
+      "explanation": "Clear symptoms evidence actions and escalation criteria. Runbooks need ownership and periodic validation. In the scenario, validate the procedure and add bounded steps with stop conditions. The alternative \u2018Assume every documented command remains safe forever\u2019 does not address the stated evidence or constraint.",
+      "id": "sre-08-concept",
+      "title": "Runbooks \u00b7 concept",
+      "type": "concept",
+      "question": "What makes a runbook useful during an incident?",
+      "options": [
+        "Assume every documented command remains safe forever",
+        "Clear symptoms evidence actions and escalation criteria",
+        "A long untested command list is sufficient",
+        "Runbooks should omit rollback and safety constraints"
+      ],
+      "correct": [
+        1
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "sre",
+      "objective": "Explain runbooks and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Runbooks \u2014 primary reference",
+          "url": "https://sre.google/sre-book/reliable-product-launches/"
+        }
+      ],
+      "tags": [
+        "sre",
+        "runbooks"
+      ],
+      "takeaway": "Runbooks need ownership and periodic validation.",
+      "explanation": "Clear symptoms evidence actions and escalation criteria. Runbooks need ownership and periodic validation. In the scenario, validate the procedure and add bounded steps with stop conditions. The alternative \u2018Assume every documented command remains safe forever\u2019 does not address the stated evidence or constraint.",
+      "id": "sre-08-scenario",
+      "title": "Runbooks \u00b7 scenario",
+      "type": "scenario",
+      "question": "A responder follows an old procedure and worsens an outage. What is the best next step?",
+      "options": [
+        "Validate the procedure and add bounded steps with stop conditions",
+        "Assume every documented command remains safe forever",
+        "A long untested command list is sufficient",
+        "Runbooks should omit rollback and safety constraints"
+      ],
+      "correct": [
+        0
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "sre",
+      "objective": "Explain runbooks and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Runbooks \u2014 primary reference",
+          "url": "https://sre.google/sre-book/reliable-product-launches/"
+        }
+      ],
+      "tags": [
+        "sre",
+        "runbooks"
+      ],
+      "takeaway": "Runbooks need ownership and periodic validation.",
+      "explanation": "Clear symptoms evidence actions and escalation criteria. Runbooks need ownership and periodic validation. In the scenario, validate the procedure and add bounded steps with stop conditions. The alternative \u2018Assume every documented command remains safe forever\u2019 does not address the stated evidence or constraint.",
+      "id": "sre-08-principles",
+      "title": "Runbooks \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing runbooks, which TWO statements are sound operational principles?",
+      "options": [
+        "Runbooks need ownership and periodic validation",
+        "A long untested command list is sufficient",
+        "Runbooks should omit rollback and safety constraints",
+        "Clear symptoms evidence actions and escalation criteria"
+      ],
+      "correct": [
+        0,
+        3
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "sre",
+      "objective": "Explain runbooks and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Runbooks \u2014 primary reference",
+          "url": "https://sre.google/sre-book/reliable-product-launches/"
+        }
+      ],
+      "tags": [
+        "sre",
+        "runbooks"
+      ],
+      "takeaway": "Runbooks need ownership and periodic validation.",
+      "explanation": "Clear symptoms evidence actions and escalation criteria. Runbooks need ownership and periodic validation. In the scenario, validate the procedure and add bounded steps with stop conditions. The alternative \u2018Assume every documented command remains safe forever\u2019 does not address the stated evidence or constraint.",
+      "id": "sre-08-interview",
+      "title": "Runbooks \u00b7 interview",
+      "type": "interview",
+      "question": "Explain how you would test and maintain an operational runbook.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "Clear symptoms evidence actions and escalation criteria. Runbooks need ownership and periodic validation. A practical response is: Validate the procedure and add bounded steps with stop conditions. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that a long untested command list is sufficient.",
+      "answerChecklist": [
+        "Clear symptoms evidence actions and escalation criteria",
+        "Runbooks need ownership and periodic validation",
+        "Validate the procedure and add bounded steps with stop conditions",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "A responder follows an old procedure and worsens an outage. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "sre",
+      "objective": "Explain burn rate and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Burn rate \u2014 primary reference",
+          "url": "https://sre.google/workbook/alerting-on-slos/"
+        }
+      ],
+      "tags": [
+        "sre",
+        "burn-rate"
+      ],
+      "takeaway": "Burn rate must be interpreted with its measurement window.",
+      "explanation": "Budget is being consumed faster than the sustainable SLO rate. Burn rate must be interpreted with its measurement window. In the scenario, evaluate multiwindow burn-rate alerts against meaningful budget consumption. The alternative \u2018Page on every isolated failed request\u2019 does not address the stated evidence or constraint.",
+      "id": "sre-09-concept",
+      "title": "Burn rate \u00b7 concept",
+      "type": "concept",
+      "question": "What does an error-budget burn rate greater than one indicate?",
+      "options": [
+        "Budget is being consumed faster than the sustainable SLO rate",
+        "It always means the entire budget is already exhausted",
+        "It measures only CPU utilization",
+        "Page on every isolated failed request"
+      ],
+      "correct": [
+        0
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "sre",
+      "objective": "Explain burn rate and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Burn rate \u2014 primary reference",
+          "url": "https://sre.google/workbook/alerting-on-slos/"
+        }
+      ],
+      "tags": [
+        "sre",
+        "burn-rate"
+      ],
+      "takeaway": "Burn rate must be interpreted with its measurement window.",
+      "explanation": "Budget is being consumed faster than the sustainable SLO rate. Burn rate must be interpreted with its measurement window. In the scenario, evaluate multiwindow burn-rate alerts against meaningful budget consumption. The alternative \u2018Page on every isolated failed request\u2019 does not address the stated evidence or constraint.",
+      "id": "sre-09-scenario",
+      "title": "Burn rate \u00b7 scenario",
+      "type": "scenario",
+      "question": "A brief spike triggers pages despite negligible long-term budget impact. What is the best next step?",
+      "options": [
+        "Page on every isolated failed request",
+        "It always means the entire budget is already exhausted",
+        "It measures only CPU utilization",
+        "Evaluate multiwindow burn-rate alerts against meaningful budget consumption"
+      ],
+      "correct": [
+        3
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "sre",
+      "objective": "Explain burn rate and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Burn rate \u2014 primary reference",
+          "url": "https://sre.google/workbook/alerting-on-slos/"
+        }
+      ],
+      "tags": [
+        "sre",
+        "burn-rate"
+      ],
+      "takeaway": "Burn rate must be interpreted with its measurement window.",
+      "explanation": "Budget is being consumed faster than the sustainable SLO rate. Burn rate must be interpreted with its measurement window. In the scenario, evaluate multiwindow burn-rate alerts against meaningful budget consumption. The alternative \u2018Page on every isolated failed request\u2019 does not address the stated evidence or constraint.",
+      "id": "sre-09-principles",
+      "title": "Burn rate \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing burn rate, which TWO statements are sound operational principles?",
+      "options": [
+        "It always means the entire budget is already exhausted",
+        "It measures only CPU utilization",
+        "Budget is being consumed faster than the sustainable SLO rate",
+        "Burn rate must be interpreted with its measurement window"
+      ],
+      "correct": [
+        2,
+        3
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "sre",
+      "objective": "Explain burn rate and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Burn rate \u2014 primary reference",
+          "url": "https://sre.google/workbook/alerting-on-slos/"
+        }
+      ],
+      "tags": [
+        "sre",
+        "burn-rate"
+      ],
+      "takeaway": "Burn rate must be interpreted with its measurement window.",
+      "explanation": "Budget is being consumed faster than the sustainable SLO rate. Burn rate must be interpreted with its measurement window. In the scenario, evaluate multiwindow burn-rate alerts against meaningful budget consumption. The alternative \u2018Page on every isolated failed request\u2019 does not address the stated evidence or constraint.",
+      "id": "sre-09-interview",
+      "title": "Burn rate \u00b7 interview",
+      "type": "interview",
+      "question": "Explain short and long windows in error-budget alerting.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "Budget is being consumed faster than the sustainable SLO rate. Burn rate must be interpreted with its measurement window. A practical response is: Evaluate multiwindow burn-rate alerts against meaningful budget consumption. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that it always means the entire budget is already exhausted.",
+      "answerChecklist": [
+        "Budget is being consumed faster than the sustainable SLO rate",
+        "Burn rate must be interpreted with its measurement window",
+        "Evaluate multiwindow burn-rate alerts against meaningful budget consumption",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "A brief spike triggers pages despite negligible long-term budget impact. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "sre",
+      "objective": "Explain latency indicators and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Latency indicators \u2014 primary reference",
+          "url": "https://sre.google/workbook/implementing-slos/"
+        }
+      ],
+      "tags": [
+        "sre",
+        "latency-indicators"
+      ],
+      "takeaway": "Latency targets should define thresholds and relevant populations.",
+      "explanation": "A small slow tail can be masked by many fast requests. Latency targets should define thresholds and relevant populations. In the scenario, inspect latency distribution and affected cohorts. The alternative \u2018Dismiss user reports because the mean is unchanged\u2019 does not address the stated evidence or constraint.",
+      "id": "sre-10-concept",
+      "title": "Latency indicators \u00b7 concept",
+      "type": "concept",
+      "question": "Why can average latency hide poor user experience?",
+      "options": [
+        "The average always equals the slowest request",
+        "A low average proves every user is fast",
+        "Dismiss user reports because the mean is unchanged",
+        "A small slow tail can be masked by many fast requests"
+      ],
+      "correct": [
+        3
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "sre",
+      "objective": "Explain latency indicators and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Latency indicators \u2014 primary reference",
+          "url": "https://sre.google/workbook/implementing-slos/"
+        }
+      ],
+      "tags": [
+        "sre",
+        "latency-indicators"
+      ],
+      "takeaway": "Latency targets should define thresholds and relevant populations.",
+      "explanation": "A small slow tail can be masked by many fast requests. Latency targets should define thresholds and relevant populations. In the scenario, inspect latency distribution and affected cohorts. The alternative \u2018Dismiss user reports because the mean is unchanged\u2019 does not address the stated evidence or constraint.",
+      "id": "sre-10-scenario",
+      "title": "Latency indicators \u00b7 scenario",
+      "type": "scenario",
+      "question": "Mean latency is stable but a subset of users sees long delays. What is the best next step?",
+      "options": [
+        "The average always equals the slowest request",
+        "A low average proves every user is fast",
+        "Inspect latency distribution and affected cohorts",
+        "Dismiss user reports because the mean is unchanged"
+      ],
+      "correct": [
+        2
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "sre",
+      "objective": "Explain latency indicators and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Latency indicators \u2014 primary reference",
+          "url": "https://sre.google/workbook/implementing-slos/"
+        }
+      ],
+      "tags": [
+        "sre",
+        "latency-indicators"
+      ],
+      "takeaway": "Latency targets should define thresholds and relevant populations.",
+      "explanation": "A small slow tail can be masked by many fast requests. Latency targets should define thresholds and relevant populations. In the scenario, inspect latency distribution and affected cohorts. The alternative \u2018Dismiss user reports because the mean is unchanged\u2019 does not address the stated evidence or constraint.",
+      "id": "sre-10-principles",
+      "title": "Latency indicators \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing latency indicators, which TWO statements are sound operational principles?",
+      "options": [
+        "A low average proves every user is fast",
+        "A small slow tail can be masked by many fast requests",
+        "Latency targets should define thresholds and relevant populations",
+        "The average always equals the slowest request"
+      ],
+      "correct": [
+        1,
+        2
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "sre",
+      "objective": "Explain latency indicators and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Latency indicators \u2014 primary reference",
+          "url": "https://sre.google/workbook/implementing-slos/"
+        }
+      ],
+      "tags": [
+        "sre",
+        "latency-indicators"
+      ],
+      "takeaway": "Latency targets should define thresholds and relevant populations.",
+      "explanation": "A small slow tail can be masked by many fast requests. Latency targets should define thresholds and relevant populations. In the scenario, inspect latency distribution and affected cohorts. The alternative \u2018Dismiss user reports because the mean is unchanged\u2019 does not address the stated evidence or constraint.",
+      "id": "sre-10-interview",
+      "title": "Latency indicators \u00b7 interview",
+      "type": "interview",
+      "question": "Explain how you would measure tail latency without losing user context.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "A small slow tail can be masked by many fast requests. Latency targets should define thresholds and relevant populations. A practical response is: Inspect latency distribution and affected cohorts. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that the average always equals the slowest request.",
+      "answerChecklist": [
+        "A small slow tail can be masked by many fast requests",
+        "Latency targets should define thresholds and relevant populations",
+        "Inspect latency distribution and affected cohorts",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "Mean latency is stable but a subset of users sees long delays. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "sre",
+      "objective": "Explain alert actionability and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Alert actionability \u2014 primary reference",
+          "url": "https://sre.google/workbook/alerting-on-slos/"
+        }
+      ],
+      "tags": [
+        "sre",
+        "alert-actionability"
+      ],
+      "takeaway": "Nonurgent information can often become a ticket or dashboard.",
+      "explanation": "A human action is needed within a relevant response time. Nonurgent information can often become a ticket or dashboard. In the scenario, review pages for impact urgency and an actionable response. The alternative \u2018Lower every threshold to catch more fluctuations\u2019 does not address the stated evidence or constraint.",
+      "id": "sre-11-concept",
+      "title": "Alert actionability \u00b7 concept",
+      "type": "concept",
+      "question": "What should a paging alert usually imply?",
+      "options": [
+        "More pages always mean better reliability",
+        "Lower every threshold to catch more fluctuations",
+        "A human action is needed within a relevant response time",
+        "Every metric anomaly must page immediately"
+      ],
+      "correct": [
+        2
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "sre",
+      "objective": "Explain alert actionability and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Alert actionability \u2014 primary reference",
+          "url": "https://sre.google/workbook/alerting-on-slos/"
+        }
+      ],
+      "tags": [
+        "sre",
+        "alert-actionability"
+      ],
+      "takeaway": "Nonurgent information can often become a ticket or dashboard.",
+      "explanation": "A human action is needed within a relevant response time. Nonurgent information can often become a ticket or dashboard. In the scenario, review pages for impact urgency and an actionable response. The alternative \u2018Lower every threshold to catch more fluctuations\u2019 does not address the stated evidence or constraint.",
+      "id": "sre-11-scenario",
+      "title": "Alert actionability \u00b7 scenario",
+      "type": "scenario",
+      "question": "Responders receive hundreds of nonactionable overnight alerts. What is the best next step?",
+      "options": [
+        "More pages always mean better reliability",
+        "Review pages for impact urgency and an actionable response",
+        "Lower every threshold to catch more fluctuations",
+        "Every metric anomaly must page immediately"
+      ],
+      "correct": [
+        1
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "sre",
+      "objective": "Explain alert actionability and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Alert actionability \u2014 primary reference",
+          "url": "https://sre.google/workbook/alerting-on-slos/"
+        }
+      ],
+      "tags": [
+        "sre",
+        "alert-actionability"
+      ],
+      "takeaway": "Nonurgent information can often become a ticket or dashboard.",
+      "explanation": "A human action is needed within a relevant response time. Nonurgent information can often become a ticket or dashboard. In the scenario, review pages for impact urgency and an actionable response. The alternative \u2018Lower every threshold to catch more fluctuations\u2019 does not address the stated evidence or constraint.",
+      "id": "sre-11-principles",
+      "title": "Alert actionability \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing alert actionability, which TWO statements are sound operational principles?",
+      "options": [
+        "A human action is needed within a relevant response time",
+        "Nonurgent information can often become a ticket or dashboard",
+        "Every metric anomaly must page immediately",
+        "More pages always mean better reliability"
+      ],
+      "correct": [
+        0,
+        1
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "sre",
+      "objective": "Explain alert actionability and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Alert actionability \u2014 primary reference",
+          "url": "https://sre.google/workbook/alerting-on-slos/"
+        }
+      ],
+      "tags": [
+        "sre",
+        "alert-actionability"
+      ],
+      "takeaway": "Nonurgent information can often become a ticket or dashboard.",
+      "explanation": "A human action is needed within a relevant response time. Nonurgent information can often become a ticket or dashboard. In the scenario, review pages for impact urgency and an actionable response. The alternative \u2018Lower every threshold to catch more fluctuations\u2019 does not address the stated evidence or constraint.",
+      "id": "sre-11-interview",
+      "title": "Alert actionability \u00b7 interview",
+      "type": "interview",
+      "question": "Explain how you would reduce alert fatigue without hiding real failures.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "A human action is needed within a relevant response time. Nonurgent information can often become a ticket or dashboard. A practical response is: Review pages for impact urgency and an actionable response. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that every metric anomaly must page immediately.",
+      "answerChecklist": [
+        "A human action is needed within a relevant response time",
+        "Nonurgent information can often become a ticket or dashboard",
+        "Review pages for impact urgency and an actionable response",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "Responders receive hundreds of nonactionable overnight alerts. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "sre",
+      "objective": "Explain capacity headroom and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Capacity headroom \u2014 primary reference",
+          "url": "https://sre.google/workbook/overload/"
+        }
+      ],
+      "tags": [
+        "sre",
+        "capacity-headroom"
+      ],
+      "takeaway": "Capacity planning should include loss of a failure domain.",
+      "explanation": "To absorb demand variation failures and recovery work. Capacity planning should include loss of a failure domain. In the scenario, evaluate remaining capacity under the failure scenario. The alternative \u2018Size the system only for normal average traffic\u2019 does not address the stated evidence or constraint.",
+      "id": "sre-12-concept",
+      "title": "Capacity headroom \u00b7 concept",
+      "type": "concept",
+      "question": "Why maintain capacity headroom?",
+      "options": [
+        "Size the system only for normal average traffic",
+        "To absorb demand variation failures and recovery work",
+        "Average demand alone is sufficient for all capacity decisions",
+        "Headroom guarantees protection from every overload"
+      ],
+      "correct": [
+        1
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "sre",
+      "objective": "Explain capacity headroom and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Capacity headroom \u2014 primary reference",
+          "url": "https://sre.google/workbook/overload/"
+        }
+      ],
+      "tags": [
+        "sre",
+        "capacity-headroom"
+      ],
+      "takeaway": "Capacity planning should include loss of a failure domain.",
+      "explanation": "To absorb demand variation failures and recovery work. Capacity planning should include loss of a failure domain. In the scenario, evaluate remaining capacity under the failure scenario. The alternative \u2018Size the system only for normal average traffic\u2019 does not address the stated evidence or constraint.",
+      "id": "sre-12-scenario",
+      "title": "Capacity headroom \u00b7 scenario",
+      "type": "scenario",
+      "question": "One zone fails and surviving instances immediately saturate. What is the best next step?",
+      "options": [
+        "Evaluate remaining capacity under the failure scenario",
+        "Size the system only for normal average traffic",
+        "Average demand alone is sufficient for all capacity decisions",
+        "Headroom guarantees protection from every overload"
+      ],
+      "correct": [
+        0
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "sre",
+      "objective": "Explain capacity headroom and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Capacity headroom \u2014 primary reference",
+          "url": "https://sre.google/workbook/overload/"
+        }
+      ],
+      "tags": [
+        "sre",
+        "capacity-headroom"
+      ],
+      "takeaway": "Capacity planning should include loss of a failure domain.",
+      "explanation": "To absorb demand variation failures and recovery work. Capacity planning should include loss of a failure domain. In the scenario, evaluate remaining capacity under the failure scenario. The alternative \u2018Size the system only for normal average traffic\u2019 does not address the stated evidence or constraint.",
+      "id": "sre-12-principles",
+      "title": "Capacity headroom \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing capacity headroom, which TWO statements are sound operational principles?",
+      "options": [
+        "Capacity planning should include loss of a failure domain",
+        "Average demand alone is sufficient for all capacity decisions",
+        "Headroom guarantees protection from every overload",
+        "To absorb demand variation failures and recovery work"
+      ],
+      "correct": [
+        0,
+        3
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "sre",
+      "objective": "Explain capacity headroom and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Capacity headroom \u2014 primary reference",
+          "url": "https://sre.google/workbook/overload/"
+        }
+      ],
+      "tags": [
+        "sre",
+        "capacity-headroom"
+      ],
+      "takeaway": "Capacity planning should include loss of a failure domain.",
+      "explanation": "To absorb demand variation failures and recovery work. Capacity planning should include loss of a failure domain. In the scenario, evaluate remaining capacity under the failure scenario. The alternative \u2018Size the system only for normal average traffic\u2019 does not address the stated evidence or constraint.",
+      "id": "sre-12-interview",
+      "title": "Capacity headroom \u00b7 interview",
+      "type": "interview",
+      "question": "Explain capacity planning for a service that must tolerate one zone failure.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "To absorb demand variation failures and recovery work. Capacity planning should include loss of a failure domain. A practical response is: Evaluate remaining capacity under the failure scenario. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that average demand alone is sufficient for all capacity decisions.",
+      "answerChecklist": [
+        "To absorb demand variation failures and recovery work",
+        "Capacity planning should include loss of a failure domain",
+        "Evaluate remaining capacity under the failure scenario",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "One zone fails and surviving instances immediately saturate. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "sre",
+      "objective": "Explain load shedding and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Load shedding \u2014 primary reference",
+          "url": "https://sre.google/workbook/overload/"
+        }
+      ],
+      "tags": [
+        "sre",
+        "load-shedding"
+      ],
+      "takeaway": "Prioritization and bounded queues can preserve critical traffic.",
+      "explanation": "Reject some work to protect useful service under overload. Prioritization and bounded queues can preserve critical traffic. In the scenario, bound the queue and shed lower-priority work with clear signals. The alternative \u2018Keep every request queued until memory is exhausted\u2019 does not address the stated evidence or constraint.",
+      "id": "sre-13-concept",
+      "title": "Load shedding \u00b7 concept",
+      "type": "concept",
+      "question": "What is the goal of load shedding?",
+      "options": [
+        "Reject some work to protect useful service under overload",
+        "Accepting every request always improves availability",
+        "An infinite queue removes overload risk",
+        "Keep every request queued until memory is exhausted"
+      ],
+      "correct": [
+        0
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "sre",
+      "objective": "Explain load shedding and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Load shedding \u2014 primary reference",
+          "url": "https://sre.google/workbook/overload/"
+        }
+      ],
+      "tags": [
+        "sre",
+        "load-shedding"
+      ],
+      "takeaway": "Prioritization and bounded queues can preserve critical traffic.",
+      "explanation": "Reject some work to protect useful service under overload. Prioritization and bounded queues can preserve critical traffic. In the scenario, bound the queue and shed lower-priority work with clear signals. The alternative \u2018Keep every request queued until memory is exhausted\u2019 does not address the stated evidence or constraint.",
+      "id": "sre-13-scenario",
+      "title": "Load shedding \u00b7 scenario",
+      "type": "scenario",
+      "question": "A backend is overloaded and queues grow without bound. What is the best next step?",
+      "options": [
+        "Keep every request queued until memory is exhausted",
+        "Accepting every request always improves availability",
+        "An infinite queue removes overload risk",
+        "Bound the queue and shed lower-priority work with clear signals"
+      ],
+      "correct": [
+        3
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "sre",
+      "objective": "Explain load shedding and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Load shedding \u2014 primary reference",
+          "url": "https://sre.google/workbook/overload/"
+        }
+      ],
+      "tags": [
+        "sre",
+        "load-shedding"
+      ],
+      "takeaway": "Prioritization and bounded queues can preserve critical traffic.",
+      "explanation": "Reject some work to protect useful service under overload. Prioritization and bounded queues can preserve critical traffic. In the scenario, bound the queue and shed lower-priority work with clear signals. The alternative \u2018Keep every request queued until memory is exhausted\u2019 does not address the stated evidence or constraint.",
+      "id": "sre-13-principles",
+      "title": "Load shedding \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing load shedding, which TWO statements are sound operational principles?",
+      "options": [
+        "Accepting every request always improves availability",
+        "An infinite queue removes overload risk",
+        "Reject some work to protect useful service under overload",
+        "Prioritization and bounded queues can preserve critical traffic"
+      ],
+      "correct": [
+        2,
+        3
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "sre",
+      "objective": "Explain load shedding and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Load shedding \u2014 primary reference",
+          "url": "https://sre.google/workbook/overload/"
+        }
+      ],
+      "tags": [
+        "sre",
+        "load-shedding"
+      ],
+      "takeaway": "Prioritization and bounded queues can preserve critical traffic.",
+      "explanation": "Reject some work to protect useful service under overload. Prioritization and bounded queues can preserve critical traffic. In the scenario, bound the queue and shed lower-priority work with clear signals. The alternative \u2018Keep every request queued until memory is exhausted\u2019 does not address the stated evidence or constraint.",
+      "id": "sre-13-interview",
+      "title": "Load shedding \u00b7 interview",
+      "type": "interview",
+      "question": "Explain a load-shedding policy and how clients should react.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "Reject some work to protect useful service under overload. Prioritization and bounded queues can preserve critical traffic. A practical response is: Bound the queue and shed lower-priority work with clear signals. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that accepting every request always improves availability.",
+      "answerChecklist": [
+        "Reject some work to protect useful service under overload",
+        "Prioritization and bounded queues can preserve critical traffic",
+        "Bound the queue and shed lower-priority work with clear signals",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "A backend is overloaded and queues grow without bound. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "sre",
+      "objective": "Explain backpressure and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Backpressure \u2014 primary reference",
+          "url": "https://sre.google/workbook/overload/"
+        }
+      ],
+      "tags": [
+        "sre",
+        "backpressure"
+      ],
+      "takeaway": "Producer behavior must respond to the signal to be effective.",
+      "explanation": "Downstream capacity constraints to upstream producers. Producer behavior must respond to the signal to be effective. In the scenario, limit producer rate or increase sustainable processing capacity. The alternative \u2018Increase producers while ignoring queue age\u2019 does not address the stated evidence or constraint.",
+      "id": "sre-14-concept",
+      "title": "Backpressure \u00b7 concept",
+      "type": "concept",
+      "question": "What does backpressure communicate?",
+      "options": [
+        "Backpressure creates unlimited downstream capacity",
+        "It means silently dropping every message",
+        "Increase producers while ignoring queue age",
+        "Downstream capacity constraints to upstream producers"
+      ],
+      "correct": [
+        3
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "sre",
+      "objective": "Explain backpressure and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Backpressure \u2014 primary reference",
+          "url": "https://sre.google/workbook/overload/"
+        }
+      ],
+      "tags": [
+        "sre",
+        "backpressure"
+      ],
+      "takeaway": "Producer behavior must respond to the signal to be effective.",
+      "explanation": "Downstream capacity constraints to upstream producers. Producer behavior must respond to the signal to be effective. In the scenario, limit producer rate or increase sustainable processing capacity. The alternative \u2018Increase producers while ignoring queue age\u2019 does not address the stated evidence or constraint.",
+      "id": "sre-14-scenario",
+      "title": "Backpressure \u00b7 scenario",
+      "type": "scenario",
+      "question": "A queue grows faster than workers can drain it. What is the best next step?",
+      "options": [
+        "Backpressure creates unlimited downstream capacity",
+        "It means silently dropping every message",
+        "Limit producer rate or increase sustainable processing capacity",
+        "Increase producers while ignoring queue age"
+      ],
+      "correct": [
+        2
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "sre",
+      "objective": "Explain backpressure and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Backpressure \u2014 primary reference",
+          "url": "https://sre.google/workbook/overload/"
+        }
+      ],
+      "tags": [
+        "sre",
+        "backpressure"
+      ],
+      "takeaway": "Producer behavior must respond to the signal to be effective.",
+      "explanation": "Downstream capacity constraints to upstream producers. Producer behavior must respond to the signal to be effective. In the scenario, limit producer rate or increase sustainable processing capacity. The alternative \u2018Increase producers while ignoring queue age\u2019 does not address the stated evidence or constraint.",
+      "id": "sre-14-principles",
+      "title": "Backpressure \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing backpressure, which TWO statements are sound operational principles?",
+      "options": [
+        "It means silently dropping every message",
+        "Downstream capacity constraints to upstream producers",
+        "Producer behavior must respond to the signal to be effective",
+        "Backpressure creates unlimited downstream capacity"
+      ],
+      "correct": [
+        1,
+        2
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "sre",
+      "objective": "Explain backpressure and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Backpressure \u2014 primary reference",
+          "url": "https://sre.google/workbook/overload/"
+        }
+      ],
+      "tags": [
+        "sre",
+        "backpressure"
+      ],
+      "takeaway": "Producer behavior must respond to the signal to be effective.",
+      "explanation": "Downstream capacity constraints to upstream producers. Producer behavior must respond to the signal to be effective. In the scenario, limit producer rate or increase sustainable processing capacity. The alternative \u2018Increase producers while ignoring queue age\u2019 does not address the stated evidence or constraint.",
+      "id": "sre-14-interview",
+      "title": "Backpressure \u00b7 interview",
+      "type": "interview",
+      "question": "Explain how you would propagate backpressure through a pipeline.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "Downstream capacity constraints to upstream producers. Producer behavior must respond to the signal to be effective. A practical response is: Limit producer rate or increase sustainable processing capacity. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that backpressure creates unlimited downstream capacity.",
+      "answerChecklist": [
+        "Downstream capacity constraints to upstream producers",
+        "Producer behavior must respond to the signal to be effective",
+        "Limit producer rate or increase sustainable processing capacity",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "A queue grows faster than workers can drain it. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "sre",
+      "objective": "Explain retry storms and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Retry storms \u2014 primary reference",
+          "url": "https://sre.google/workbook/overload/"
+        }
+      ],
+      "tags": [
+        "sre",
+        "retry-storms"
+      ],
+      "takeaway": "Retry policies need an end-to-end budget.",
+      "explanation": "Each layer may repeat work already being retried elsewhere. Retry policies need an end-to-end budget. In the scenario, coordinate retry ownership and bound total attempts. The alternative \u2018Increase retry counts independently at every layer\u2019 does not address the stated evidence or constraint.",
+      "id": "sre-15-concept",
+      "title": "Retry storms \u00b7 concept",
+      "type": "concept",
+      "question": "Why can layered retries multiply load?",
+      "options": [
+        "Immediate retries cannot worsen an outage",
+        "Increase retry counts independently at every layer",
+        "Each layer may repeat work already being retried elsewhere",
+        "Retries at every layer always reduce traffic"
+      ],
+      "correct": [
+        2
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "sre",
+      "objective": "Explain retry storms and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Retry storms \u2014 primary reference",
+          "url": "https://sre.google/workbook/overload/"
+        }
+      ],
+      "tags": [
+        "sre",
+        "retry-storms"
+      ],
+      "takeaway": "Retry policies need an end-to-end budget.",
+      "explanation": "Each layer may repeat work already being retried elsewhere. Retry policies need an end-to-end budget. In the scenario, coordinate retry ownership and bound total attempts. The alternative \u2018Increase retry counts independently at every layer\u2019 does not address the stated evidence or constraint.",
+      "id": "sre-15-scenario",
+      "title": "Retry storms \u00b7 scenario",
+      "type": "scenario",
+      "question": "Three service layers each retry failed calls several times. What is the best next step?",
+      "options": [
+        "Immediate retries cannot worsen an outage",
+        "Coordinate retry ownership and bound total attempts",
+        "Increase retry counts independently at every layer",
+        "Retries at every layer always reduce traffic"
+      ],
+      "correct": [
+        1
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "sre",
+      "objective": "Explain retry storms and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Retry storms \u2014 primary reference",
+          "url": "https://sre.google/workbook/overload/"
+        }
+      ],
+      "tags": [
+        "sre",
+        "retry-storms"
+      ],
+      "takeaway": "Retry policies need an end-to-end budget.",
+      "explanation": "Each layer may repeat work already being retried elsewhere. Retry policies need an end-to-end budget. In the scenario, coordinate retry ownership and bound total attempts. The alternative \u2018Increase retry counts independently at every layer\u2019 does not address the stated evidence or constraint.",
+      "id": "sre-15-principles",
+      "title": "Retry storms \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing retry storms, which TWO statements are sound operational principles?",
+      "options": [
+        "Each layer may repeat work already being retried elsewhere",
+        "Retry policies need an end-to-end budget",
+        "Retries at every layer always reduce traffic",
+        "Immediate retries cannot worsen an outage"
+      ],
+      "correct": [
+        0,
+        1
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "sre",
+      "objective": "Explain retry storms and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Retry storms \u2014 primary reference",
+          "url": "https://sre.google/workbook/overload/"
+        }
+      ],
+      "tags": [
+        "sre",
+        "retry-storms"
+      ],
+      "takeaway": "Retry policies need an end-to-end budget.",
+      "explanation": "Each layer may repeat work already being retried elsewhere. Retry policies need an end-to-end budget. In the scenario, coordinate retry ownership and bound total attempts. The alternative \u2018Increase retry counts independently at every layer\u2019 does not address the stated evidence or constraint.",
+      "id": "sre-15-interview",
+      "title": "Retry storms \u00b7 interview",
+      "type": "interview",
+      "question": "Explain how you would prevent retry amplification across services.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "Each layer may repeat work already being retried elsewhere. Retry policies need an end-to-end budget. A practical response is: Coordinate retry ownership and bound total attempts. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that retries at every layer always reduce traffic.",
+      "answerChecklist": [
+        "Each layer may repeat work already being retried elsewhere",
+        "Retry policies need an end-to-end budget",
+        "Coordinate retry ownership and bound total attempts",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "Three service layers each retry failed calls several times. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "sre",
+      "objective": "Explain recovery testing and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Recovery testing \u2014 primary reference",
+          "url": "https://sre.google/sre-book/reliable-product-launches/"
+        }
+      ],
+      "tags": [
+        "sre",
+        "recovery-testing"
+      ],
+      "takeaway": "Backup completion alone does not prove recoverability.",
+      "explanation": "A successful verified restore meeting recovery requirements. Backup completion alone does not prove recoverability. In the scenario, run an isolated restore exercise and verify data and service behavior. The alternative \u2018Declare disaster recovery complete from backup-job status\u2019 does not address the stated evidence or constraint.",
+      "id": "sre-16-concept",
+      "title": "Recovery testing \u00b7 concept",
+      "type": "concept",
+      "question": "What demonstrates that a backup is operationally useful?",
+      "options": [
+        "Declare disaster recovery complete from backup-job status",
+        "A successful verified restore meeting recovery requirements",
+        "A green backup job guarantees any restore will work",
+        "A backup replaces the need for recovery documentation"
+      ],
+      "correct": [
+        1
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "sre",
+      "objective": "Explain recovery testing and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Recovery testing \u2014 primary reference",
+          "url": "https://sre.google/sre-book/reliable-product-launches/"
+        }
+      ],
+      "tags": [
+        "sre",
+        "recovery-testing"
+      ],
+      "takeaway": "Backup completion alone does not prove recoverability.",
+      "explanation": "A successful verified restore meeting recovery requirements. Backup completion alone does not prove recoverability. In the scenario, run an isolated restore exercise and verify data and service behavior. The alternative \u2018Declare disaster recovery complete from backup-job status\u2019 does not address the stated evidence or constraint.",
+      "id": "sre-16-scenario",
+      "title": "Recovery testing \u00b7 scenario",
+      "type": "scenario",
+      "question": "Backups succeed but no one has restored the current application version. What is the best next step?",
+      "options": [
+        "Run an isolated restore exercise and verify data and service behavior",
+        "Declare disaster recovery complete from backup-job status",
+        "A green backup job guarantees any restore will work",
+        "A backup replaces the need for recovery documentation"
+      ],
+      "correct": [
+        0
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "sre",
+      "objective": "Explain recovery testing and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Recovery testing \u2014 primary reference",
+          "url": "https://sre.google/sre-book/reliable-product-launches/"
+        }
+      ],
+      "tags": [
+        "sre",
+        "recovery-testing"
+      ],
+      "takeaway": "Backup completion alone does not prove recoverability.",
+      "explanation": "A successful verified restore meeting recovery requirements. Backup completion alone does not prove recoverability. In the scenario, run an isolated restore exercise and verify data and service behavior. The alternative \u2018Declare disaster recovery complete from backup-job status\u2019 does not address the stated evidence or constraint.",
+      "id": "sre-16-principles",
+      "title": "Recovery testing \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing recovery testing, which TWO statements are sound operational principles?",
+      "options": [
+        "Backup completion alone does not prove recoverability",
+        "A green backup job guarantees any restore will work",
+        "A backup replaces the need for recovery documentation",
+        "A successful verified restore meeting recovery requirements"
+      ],
+      "correct": [
+        0,
+        3
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "sre",
+      "objective": "Explain recovery testing and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Recovery testing \u2014 primary reference",
+          "url": "https://sre.google/sre-book/reliable-product-launches/"
+        }
+      ],
+      "tags": [
+        "sre",
+        "recovery-testing"
+      ],
+      "takeaway": "Backup completion alone does not prove recoverability.",
+      "explanation": "A successful verified restore meeting recovery requirements. Backup completion alone does not prove recoverability. In the scenario, run an isolated restore exercise and verify data and service behavior. The alternative \u2018Declare disaster recovery complete from backup-job status\u2019 does not address the stated evidence or constraint.",
+      "id": "sre-16-interview",
+      "title": "Recovery testing \u00b7 interview",
+      "type": "interview",
+      "question": "Explain a practical restore test and its acceptance criteria.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "A successful verified restore meeting recovery requirements. Backup completion alone does not prove recoverability. A practical response is: Run an isolated restore exercise and verify data and service behavior. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that a green backup job guarantees any restore will work.",
+      "answerChecklist": [
+        "A successful verified restore meeting recovery requirements",
+        "Backup completion alone does not prove recoverability",
+        "Run an isolated restore exercise and verify data and service behavior",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "Backups succeed but no one has restored the current application version. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "sre",
+      "objective": "Explain rto and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "RTO \u2014 primary reference",
+          "url": "https://sre.google/sre-book/reliable-product-launches/"
+        }
+      ],
+      "tags": [
+        "sre",
+        "rto"
+      ],
+      "takeaway": "Recovery dependencies and human steps contribute to elapsed recovery time.",
+      "explanation": "The target duration to restore service after disruption. Recovery dependencies and human steps contribute to elapsed recovery time. In the scenario, exercise the complete dependency chain and revise the plan. The alternative \u2018Time only the database startup step\u2019 does not address the stated evidence or constraint.",
+      "id": "sre-17-concept",
+      "title": "RTO \u00b7 concept",
+      "type": "concept",
+      "question": "What does a recovery time objective describe?",
+      "options": [
+        "The target duration to restore service after disruption",
+        "It specifies the maximum acceptable data-loss window",
+        "It measures average CPU utilization",
+        "Time only the database startup step"
+      ],
+      "correct": [
+        0
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "sre",
+      "objective": "Explain rto and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "RTO \u2014 primary reference",
+          "url": "https://sre.google/sre-book/reliable-product-launches/"
+        }
+      ],
+      "tags": [
+        "sre",
+        "rto"
+      ],
+      "takeaway": "Recovery dependencies and human steps contribute to elapsed recovery time.",
+      "explanation": "The target duration to restore service after disruption. Recovery dependencies and human steps contribute to elapsed recovery time. In the scenario, exercise the complete dependency chain and revise the plan. The alternative \u2018Time only the database startup step\u2019 does not address the stated evidence or constraint.",
+      "id": "sre-17-scenario",
+      "title": "RTO \u00b7 scenario",
+      "type": "scenario",
+      "question": "A recovery plan promises one hour but identity recovery takes two hours. What is the best next step?",
+      "options": [
+        "Time only the database startup step",
+        "It specifies the maximum acceptable data-loss window",
+        "It measures average CPU utilization",
+        "Exercise the complete dependency chain and revise the plan"
+      ],
+      "correct": [
+        3
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "sre",
+      "objective": "Explain rto and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "RTO \u2014 primary reference",
+          "url": "https://sre.google/sre-book/reliable-product-launches/"
+        }
+      ],
+      "tags": [
+        "sre",
+        "rto"
+      ],
+      "takeaway": "Recovery dependencies and human steps contribute to elapsed recovery time.",
+      "explanation": "The target duration to restore service after disruption. Recovery dependencies and human steps contribute to elapsed recovery time. In the scenario, exercise the complete dependency chain and revise the plan. The alternative \u2018Time only the database startup step\u2019 does not address the stated evidence or constraint.",
+      "id": "sre-17-principles",
+      "title": "RTO \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing rto, which TWO statements are sound operational principles?",
+      "options": [
+        "It specifies the maximum acceptable data-loss window",
+        "It measures average CPU utilization",
+        "The target duration to restore service after disruption",
+        "Recovery dependencies and human steps contribute to elapsed recovery time"
+      ],
+      "correct": [
+        2,
+        3
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "sre",
+      "objective": "Explain rto and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "RTO \u2014 primary reference",
+          "url": "https://sre.google/sre-book/reliable-product-launches/"
+        }
+      ],
+      "tags": [
+        "sre",
+        "rto"
+      ],
+      "takeaway": "Recovery dependencies and human steps contribute to elapsed recovery time.",
+      "explanation": "The target duration to restore service after disruption. Recovery dependencies and human steps contribute to elapsed recovery time. In the scenario, exercise the complete dependency chain and revise the plan. The alternative \u2018Time only the database startup step\u2019 does not address the stated evidence or constraint.",
+      "id": "sre-17-interview",
+      "title": "RTO \u00b7 interview",
+      "type": "interview",
+      "question": "Explain how you would validate an end-to-end RTO.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "The target duration to restore service after disruption. Recovery dependencies and human steps contribute to elapsed recovery time. A practical response is: Exercise the complete dependency chain and revise the plan. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that it specifies the maximum acceptable data-loss window.",
+      "answerChecklist": [
+        "The target duration to restore service after disruption",
+        "Recovery dependencies and human steps contribute to elapsed recovery time",
+        "Exercise the complete dependency chain and revise the plan",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "A recovery plan promises one hour but identity recovery takes two hours. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "sre",
+      "objective": "Explain rpo and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "RPO \u2014 primary reference",
+          "url": "https://sre.google/sre-book/reliable-product-launches/"
+        }
+      ],
+      "tags": [
+        "sre",
+        "rpo"
+      ],
+      "takeaway": "Replication lag and backup frequency affect achievable recovery points.",
+      "explanation": "The acceptable data-loss window after a disruption. Replication lag and backup frequency affect achievable recovery points. In the scenario, compare backup and replication behavior with the required loss window. The alternative \u2018Judge success solely by how quickly the server restarted\u2019 does not address the stated evidence or constraint.",
+      "id": "sre-18-concept",
+      "title": "RPO \u00b7 concept",
+      "type": "concept",
+      "question": "What does a recovery point objective describe?",
+      "options": [
+        "It is the maximum allowed service restart time",
+        "Synchronous replication replaces all recovery testing",
+        "Judge success solely by how quickly the server restarted",
+        "The acceptable data-loss window after a disruption"
+      ],
+      "correct": [
+        3
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "sre",
+      "objective": "Explain rpo and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "RPO \u2014 primary reference",
+          "url": "https://sre.google/sre-book/reliable-product-launches/"
+        }
+      ],
+      "tags": [
+        "sre",
+        "rpo"
+      ],
+      "takeaway": "Replication lag and backup frequency affect achievable recovery points.",
+      "explanation": "The acceptable data-loss window after a disruption. Replication lag and backup frequency affect achievable recovery points. In the scenario, compare backup and replication behavior with the required loss window. The alternative \u2018Judge success solely by how quickly the server restarted\u2019 does not address the stated evidence or constraint.",
+      "id": "sre-18-scenario",
+      "title": "RPO \u00b7 scenario",
+      "type": "scenario",
+      "question": "A restore loses six hours of writes despite a one-hour RPO. What is the best next step?",
+      "options": [
+        "It is the maximum allowed service restart time",
+        "Synchronous replication replaces all recovery testing",
+        "Compare backup and replication behavior with the required loss window",
+        "Judge success solely by how quickly the server restarted"
+      ],
+      "correct": [
+        2
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "sre",
+      "objective": "Explain rpo and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "RPO \u2014 primary reference",
+          "url": "https://sre.google/sre-book/reliable-product-launches/"
+        }
+      ],
+      "tags": [
+        "sre",
+        "rpo"
+      ],
+      "takeaway": "Replication lag and backup frequency affect achievable recovery points.",
+      "explanation": "The acceptable data-loss window after a disruption. Replication lag and backup frequency affect achievable recovery points. In the scenario, compare backup and replication behavior with the required loss window. The alternative \u2018Judge success solely by how quickly the server restarted\u2019 does not address the stated evidence or constraint.",
+      "id": "sre-18-principles",
+      "title": "RPO \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing rpo, which TWO statements are sound operational principles?",
+      "options": [
+        "Synchronous replication replaces all recovery testing",
+        "The acceptable data-loss window after a disruption",
+        "Replication lag and backup frequency affect achievable recovery points",
+        "It is the maximum allowed service restart time"
+      ],
+      "correct": [
+        1,
+        2
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "sre",
+      "objective": "Explain rpo and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "RPO \u2014 primary reference",
+          "url": "https://sre.google/sre-book/reliable-product-launches/"
+        }
+      ],
+      "tags": [
+        "sre",
+        "rpo"
+      ],
+      "takeaway": "Replication lag and backup frequency affect achievable recovery points.",
+      "explanation": "The acceptable data-loss window after a disruption. Replication lag and backup frequency affect achievable recovery points. In the scenario, compare backup and replication behavior with the required loss window. The alternative \u2018Judge success solely by how quickly the server restarted\u2019 does not address the stated evidence or constraint.",
+      "id": "sre-18-interview",
+      "title": "RPO \u00b7 interview",
+      "type": "interview",
+      "question": "Explain RPO and how you would measure whether it is achievable.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "The acceptable data-loss window after a disruption. Replication lag and backup frequency affect achievable recovery points. A practical response is: Compare backup and replication behavior with the required loss window. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that it is the maximum allowed service restart time.",
+      "answerChecklist": [
+        "The acceptable data-loss window after a disruption",
+        "Replication lag and backup frequency affect achievable recovery points",
+        "Compare backup and replication behavior with the required loss window",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "A restore loses six hours of writes despite a one-hour RPO. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "sre",
+      "objective": "Explain canary releases and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Canary releases \u2014 primary reference",
+          "url": "https://sre.google/workbook/canarying-releases/"
+        }
+      ],
+      "tags": [
+        "sre",
+        "canary-releases"
+      ],
+      "takeaway": "Canary metrics must represent meaningful user impact.",
+      "explanation": "Limit exposure while comparing a new version with a baseline. Canary metrics must represent meaningful user impact. In the scenario, compare relevant cohorts and stop or roll back the canary. The alternative \u2018Expand the release based only on total request count\u2019 does not address the stated evidence or constraint.",
+      "id": "sre-19-concept",
+      "title": "Canary releases \u00b7 concept",
+      "type": "concept",
+      "question": "Why use a canary rollout?",
+      "options": [
+        "Any one healthy request proves a release is safe",
+        "Expand the release based only on total request count",
+        "Limit exposure while comparing a new version with a baseline",
+        "A canary proves there can be no production defects"
+      ],
+      "correct": [
+        2
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "sre",
+      "objective": "Explain canary releases and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Canary releases \u2014 primary reference",
+          "url": "https://sre.google/workbook/canarying-releases/"
+        }
+      ],
+      "tags": [
+        "sre",
+        "canary-releases"
+      ],
+      "takeaway": "Canary metrics must represent meaningful user impact.",
+      "explanation": "Limit exposure while comparing a new version with a baseline. Canary metrics must represent meaningful user impact. In the scenario, compare relevant cohorts and stop or roll back the canary. The alternative \u2018Expand the release based only on total request count\u2019 does not address the stated evidence or constraint.",
+      "id": "sre-19-scenario",
+      "title": "Canary releases \u00b7 scenario",
+      "type": "scenario",
+      "question": "A new version raises error rates only for one request category. What is the best next step?",
+      "options": [
+        "Any one healthy request proves a release is safe",
+        "Compare relevant cohorts and stop or roll back the canary",
+        "Expand the release based only on total request count",
+        "A canary proves there can be no production defects"
+      ],
+      "correct": [
+        1
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "sre",
+      "objective": "Explain canary releases and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Canary releases \u2014 primary reference",
+          "url": "https://sre.google/workbook/canarying-releases/"
+        }
+      ],
+      "tags": [
+        "sre",
+        "canary-releases"
+      ],
+      "takeaway": "Canary metrics must represent meaningful user impact.",
+      "explanation": "Limit exposure while comparing a new version with a baseline. Canary metrics must represent meaningful user impact. In the scenario, compare relevant cohorts and stop or roll back the canary. The alternative \u2018Expand the release based only on total request count\u2019 does not address the stated evidence or constraint.",
+      "id": "sre-19-principles",
+      "title": "Canary releases \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing canary releases, which TWO statements are sound operational principles?",
+      "options": [
+        "Limit exposure while comparing a new version with a baseline",
+        "Canary metrics must represent meaningful user impact",
+        "A canary proves there can be no production defects",
+        "Any one healthy request proves a release is safe"
+      ],
+      "correct": [
+        0,
+        1
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "sre",
+      "objective": "Explain canary releases and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Canary releases \u2014 primary reference",
+          "url": "https://sre.google/workbook/canarying-releases/"
+        }
+      ],
+      "tags": [
+        "sre",
+        "canary-releases"
+      ],
+      "takeaway": "Canary metrics must represent meaningful user impact.",
+      "explanation": "Limit exposure while comparing a new version with a baseline. Canary metrics must represent meaningful user impact. In the scenario, compare relevant cohorts and stop or roll back the canary. The alternative \u2018Expand the release based only on total request count\u2019 does not address the stated evidence or constraint.",
+      "id": "sre-19-interview",
+      "title": "Canary releases \u00b7 interview",
+      "type": "interview",
+      "question": "Explain canary evaluation and automatic rollback criteria.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "Limit exposure while comparing a new version with a baseline. Canary metrics must represent meaningful user impact. A practical response is: Compare relevant cohorts and stop or roll back the canary. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that a canary proves there can be no production defects.",
+      "answerChecklist": [
+        "Limit exposure while comparing a new version with a baseline",
+        "Canary metrics must represent meaningful user impact",
+        "Compare relevant cohorts and stop or roll back the canary",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "A new version raises error rates only for one request category. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "sre",
+      "objective": "Explain feature flags and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Feature flags \u2014 primary reference",
+          "url": "https://sre.google/workbook/canarying-releases/"
+        }
+      ],
+      "tags": [
+        "sre",
+        "feature-flags"
+      ],
+      "takeaway": "Flags need ownership lifecycle management and tested fallback paths.",
+      "explanation": "Disable a behavior independently of redeploying the whole binary. Flags need ownership lifecycle management and tested fallback paths. In the scenario, disable the flag if its fallback is safe and verify recovery. The alternative \u2018Assume the flag also reverses every data write\u2019 does not address the stated evidence or constraint.",
+      "id": "sre-20-concept",
+      "title": "Feature flags \u00b7 concept",
+      "type": "concept",
+      "question": "What operational benefit can a feature flag provide?",
+      "options": [
+        "Assume the flag also reverses every data write",
+        "Disable a behavior independently of redeploying the whole binary",
+        "Flags automatically undo irreversible data mutations",
+        "A disabled flag guarantees the old database schema is restored"
+      ],
+      "correct": [
+        1
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "sre",
+      "objective": "Explain feature flags and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Feature flags \u2014 primary reference",
+          "url": "https://sre.google/workbook/canarying-releases/"
+        }
+      ],
+      "tags": [
+        "sre",
+        "feature-flags"
+      ],
+      "takeaway": "Flags need ownership lifecycle management and tested fallback paths.",
+      "explanation": "Disable a behavior independently of redeploying the whole binary. Flags need ownership lifecycle management and tested fallback paths. In the scenario, disable the flag if its fallback is safe and verify recovery. The alternative \u2018Assume the flag also reverses every data write\u2019 does not address the stated evidence or constraint.",
+      "id": "sre-20-scenario",
+      "title": "Feature flags \u00b7 scenario",
+      "type": "scenario",
+      "question": "A newly enabled feature causes a dependency overload. What is the best next step?",
+      "options": [
+        "Disable the flag if its fallback is safe and verify recovery",
+        "Assume the flag also reverses every data write",
+        "Flags automatically undo irreversible data mutations",
+        "A disabled flag guarantees the old database schema is restored"
+      ],
+      "correct": [
+        0
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "sre",
+      "objective": "Explain feature flags and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Feature flags \u2014 primary reference",
+          "url": "https://sre.google/workbook/canarying-releases/"
+        }
+      ],
+      "tags": [
+        "sre",
+        "feature-flags"
+      ],
+      "takeaway": "Flags need ownership lifecycle management and tested fallback paths.",
+      "explanation": "Disable a behavior independently of redeploying the whole binary. Flags need ownership lifecycle management and tested fallback paths. In the scenario, disable the flag if its fallback is safe and verify recovery. The alternative \u2018Assume the flag also reverses every data write\u2019 does not address the stated evidence or constraint.",
+      "id": "sre-20-principles",
+      "title": "Feature flags \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing feature flags, which TWO statements are sound operational principles?",
+      "options": [
+        "Flags need ownership lifecycle management and tested fallback paths",
+        "Flags automatically undo irreversible data mutations",
+        "A disabled flag guarantees the old database schema is restored",
+        "Disable a behavior independently of redeploying the whole binary"
+      ],
+      "correct": [
+        0,
+        3
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "sre",
+      "objective": "Explain feature flags and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Feature flags \u2014 primary reference",
+          "url": "https://sre.google/workbook/canarying-releases/"
+        }
+      ],
+      "tags": [
+        "sre",
+        "feature-flags"
+      ],
+      "takeaway": "Flags need ownership lifecycle management and tested fallback paths.",
+      "explanation": "Disable a behavior independently of redeploying the whole binary. Flags need ownership lifecycle management and tested fallback paths. In the scenario, disable the flag if its fallback is safe and verify recovery. The alternative \u2018Assume the flag also reverses every data write\u2019 does not address the stated evidence or constraint.",
+      "id": "sre-20-interview",
+      "title": "Feature flags \u00b7 interview",
+      "type": "interview",
+      "question": "Explain feature-flag rollback limits and cleanup responsibilities.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "Disable a behavior independently of redeploying the whole binary. Flags need ownership lifecycle management and tested fallback paths. A practical response is: Disable the flag if its fallback is safe and verify recovery. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that flags automatically undo irreversible data mutations.",
+      "answerChecklist": [
+        "Disable a behavior independently of redeploying the whole binary",
+        "Flags need ownership lifecycle management and tested fallback paths",
+        "Disable the flag if its fallback is safe and verify recovery",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "A newly enabled feature causes a dependency overload. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "sre",
+      "objective": "Explain dependencies and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Dependencies \u2014 primary reference",
+          "url": "https://sre.google/sre-book/reliable-product-launches/"
+        }
+      ],
+      "tags": [
+        "sre",
+        "dependencies"
+      ],
+      "takeaway": "Dependency health should be understood from the caller's perspective.",
+      "explanation": "Shared dependencies can create correlated failures. Dependency health should be understood from the caller's perspective. In the scenario, investigate the common dependency and caller failure behavior. The alternative \u2018Treat each service outage as unrelated by default\u2019 does not address the stated evidence or constraint.",
+      "id": "sre-21-concept",
+      "title": "Dependencies \u00b7 concept",
+      "type": "concept",
+      "question": "Why map critical service dependencies?",
+      "options": [
+        "Shared dependencies can create correlated failures",
+        "Independent service names guarantee independent failure modes",
+        "A green dependency dashboard proves every caller is healthy",
+        "Treat each service outage as unrelated by default"
+      ],
+      "correct": [
+        0
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "sre",
+      "objective": "Explain dependencies and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Dependencies \u2014 primary reference",
+          "url": "https://sre.google/sre-book/reliable-product-launches/"
+        }
+      ],
+      "tags": [
+        "sre",
+        "dependencies"
+      ],
+      "takeaway": "Dependency health should be understood from the caller's perspective.",
+      "explanation": "Shared dependencies can create correlated failures. Dependency health should be understood from the caller's perspective. In the scenario, investigate the common dependency and caller failure behavior. The alternative \u2018Treat each service outage as unrelated by default\u2019 does not address the stated evidence or constraint.",
+      "id": "sre-21-scenario",
+      "title": "Dependencies \u00b7 scenario",
+      "type": "scenario",
+      "question": "Several services fail after a shared identity system outage. What is the best next step?",
+      "options": [
+        "Treat each service outage as unrelated by default",
+        "Independent service names guarantee independent failure modes",
+        "A green dependency dashboard proves every caller is healthy",
+        "Investigate the common dependency and caller failure behavior"
+      ],
+      "correct": [
+        3
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "sre",
+      "objective": "Explain dependencies and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Dependencies \u2014 primary reference",
+          "url": "https://sre.google/sre-book/reliable-product-launches/"
+        }
+      ],
+      "tags": [
+        "sre",
+        "dependencies"
+      ],
+      "takeaway": "Dependency health should be understood from the caller's perspective.",
+      "explanation": "Shared dependencies can create correlated failures. Dependency health should be understood from the caller's perspective. In the scenario, investigate the common dependency and caller failure behavior. The alternative \u2018Treat each service outage as unrelated by default\u2019 does not address the stated evidence or constraint.",
+      "id": "sre-21-principles",
+      "title": "Dependencies \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing dependencies, which TWO statements are sound operational principles?",
+      "options": [
+        "Independent service names guarantee independent failure modes",
+        "A green dependency dashboard proves every caller is healthy",
+        "Shared dependencies can create correlated failures",
+        "Dependency health should be understood from the caller's perspective"
+      ],
+      "correct": [
+        2,
+        3
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "sre",
+      "objective": "Explain dependencies and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Dependencies \u2014 primary reference",
+          "url": "https://sre.google/sre-book/reliable-product-launches/"
+        }
+      ],
+      "tags": [
+        "sre",
+        "dependencies"
+      ],
+      "takeaway": "Dependency health should be understood from the caller's perspective.",
+      "explanation": "Shared dependencies can create correlated failures. Dependency health should be understood from the caller's perspective. In the scenario, investigate the common dependency and caller failure behavior. The alternative \u2018Treat each service outage as unrelated by default\u2019 does not address the stated evidence or constraint.",
+      "id": "sre-21-interview",
+      "title": "Dependencies \u00b7 interview",
+      "type": "interview",
+      "question": "Explain how dependency mapping changes incident diagnosis.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "Shared dependencies can create correlated failures. Dependency health should be understood from the caller's perspective. A practical response is: Investigate the common dependency and caller failure behavior. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that independent service names guarantee independent failure modes.",
+      "answerChecklist": [
+        "Shared dependencies can create correlated failures",
+        "Dependency health should be understood from the caller's perspective",
+        "Investigate the common dependency and caller failure behavior",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "Several services fail after a shared identity system outage. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "sre",
+      "objective": "Explain graceful degradation and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Graceful degradation \u2014 primary reference",
+          "url": "https://sre.google/sre-book/reliable-product-launches/"
+        }
+      ],
+      "tags": [
+        "sre",
+        "graceful-degradation"
+      ],
+      "takeaway": "Fallback behavior should be explicitly designed and tested.",
+      "explanation": "Preserving important functions when some capabilities fail. Fallback behavior should be explicitly designed and tested. In the scenario, serve checkout with the optional recommendation feature degraded. The alternative \u2018Fail checkout solely because an optional recommendation failed\u2019 does not address the stated evidence or constraint.",
+      "id": "sre-22-concept",
+      "title": "Graceful degradation \u00b7 concept",
+      "type": "concept",
+      "question": "What is graceful degradation?",
+      "options": [
+        "It means reporting success for every failed request",
+        "It guarantees identical behavior during every failure",
+        "Fail checkout solely because an optional recommendation failed",
+        "Preserving important functions when some capabilities fail"
+      ],
+      "correct": [
+        3
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "sre",
+      "objective": "Explain graceful degradation and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Graceful degradation \u2014 primary reference",
+          "url": "https://sre.google/sre-book/reliable-product-launches/"
+        }
+      ],
+      "tags": [
+        "sre",
+        "graceful-degradation"
+      ],
+      "takeaway": "Fallback behavior should be explicitly designed and tested.",
+      "explanation": "Preserving important functions when some capabilities fail. Fallback behavior should be explicitly designed and tested. In the scenario, serve checkout with the optional recommendation feature degraded. The alternative \u2018Fail checkout solely because an optional recommendation failed\u2019 does not address the stated evidence or constraint.",
+      "id": "sre-22-scenario",
+      "title": "Graceful degradation \u00b7 scenario",
+      "type": "scenario",
+      "question": "Recommendations fail but checkout can work without them. What is the best next step?",
+      "options": [
+        "It means reporting success for every failed request",
+        "It guarantees identical behavior during every failure",
+        "Serve checkout with the optional recommendation feature degraded",
+        "Fail checkout solely because an optional recommendation failed"
+      ],
+      "correct": [
+        2
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "sre",
+      "objective": "Explain graceful degradation and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Graceful degradation \u2014 primary reference",
+          "url": "https://sre.google/sre-book/reliable-product-launches/"
+        }
+      ],
+      "tags": [
+        "sre",
+        "graceful-degradation"
+      ],
+      "takeaway": "Fallback behavior should be explicitly designed and tested.",
+      "explanation": "Preserving important functions when some capabilities fail. Fallback behavior should be explicitly designed and tested. In the scenario, serve checkout with the optional recommendation feature degraded. The alternative \u2018Fail checkout solely because an optional recommendation failed\u2019 does not address the stated evidence or constraint.",
+      "id": "sre-22-principles",
+      "title": "Graceful degradation \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing graceful degradation, which TWO statements are sound operational principles?",
+      "options": [
+        "It guarantees identical behavior during every failure",
+        "Preserving important functions when some capabilities fail",
+        "Fallback behavior should be explicitly designed and tested",
+        "It means reporting success for every failed request"
+      ],
+      "correct": [
+        1,
+        2
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "sre",
+      "objective": "Explain graceful degradation and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Graceful degradation \u2014 primary reference",
+          "url": "https://sre.google/sre-book/reliable-product-launches/"
+        }
+      ],
+      "tags": [
+        "sre",
+        "graceful-degradation"
+      ],
+      "takeaway": "Fallback behavior should be explicitly designed and tested.",
+      "explanation": "Preserving important functions when some capabilities fail. Fallback behavior should be explicitly designed and tested. In the scenario, serve checkout with the optional recommendation feature degraded. The alternative \u2018Fail checkout solely because an optional recommendation failed\u2019 does not address the stated evidence or constraint.",
+      "id": "sre-22-interview",
+      "title": "Graceful degradation \u00b7 interview",
+      "type": "interview",
+      "question": "Explain how to distinguish optional from critical dependencies.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "Preserving important functions when some capabilities fail. Fallback behavior should be explicitly designed and tested. A practical response is: Serve checkout with the optional recommendation feature degraded. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that it means reporting success for every failed request.",
+      "answerChecklist": [
+        "Preserving important functions when some capabilities fail",
+        "Fallback behavior should be explicitly designed and tested",
+        "Serve checkout with the optional recommendation feature degraded",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "Recommendations fail but checkout can work without them. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "sre",
+      "objective": "Explain chaos experiments and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Chaos experiments \u2014 primary reference",
+          "url": "https://sre.google/sre-book/reliable-product-launches/"
+        }
+      ],
+      "tags": [
+        "sre",
+        "chaos-experiments"
+      ],
+      "takeaway": "Start with safe scope and measurable steady-state behavior.",
+      "explanation": "A hypothesis limited scope and explicit abort conditions. Start with safe scope and measurable steady-state behavior. In the scenario, define a hypothesis blast radius and stop conditions first. The alternative \u2018Disable several unrelated dependencies at once without monitoring\u2019 does not address the stated evidence or constraint.",
+      "id": "sre-23-concept",
+      "title": "Chaos experiments \u00b7 concept",
+      "type": "concept",
+      "question": "What makes a resilience experiment controlled?",
+      "options": [
+        "A chaos tool removes the need for risk assessment",
+        "Disable several unrelated dependencies at once without monitoring",
+        "A hypothesis limited scope and explicit abort conditions",
+        "Randomly breaking production is sufficient experiment design"
+      ],
+      "correct": [
+        2
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "sre",
+      "objective": "Explain chaos experiments and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Chaos experiments \u2014 primary reference",
+          "url": "https://sre.google/sre-book/reliable-product-launches/"
+        }
+      ],
+      "tags": [
+        "sre",
+        "chaos-experiments"
+      ],
+      "takeaway": "Start with safe scope and measurable steady-state behavior.",
+      "explanation": "A hypothesis limited scope and explicit abort conditions. Start with safe scope and measurable steady-state behavior. In the scenario, define a hypothesis blast radius and stop conditions first. The alternative \u2018Disable several unrelated dependencies at once without monitoring\u2019 does not address the stated evidence or constraint.",
+      "id": "sre-23-scenario",
+      "title": "Chaos experiments \u00b7 scenario",
+      "type": "scenario",
+      "question": "A team proposes an unbounded production failure test. What is the best next step?",
+      "options": [
+        "A chaos tool removes the need for risk assessment",
+        "Define a hypothesis blast radius and stop conditions first",
+        "Disable several unrelated dependencies at once without monitoring",
+        "Randomly breaking production is sufficient experiment design"
+      ],
+      "correct": [
+        1
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "sre",
+      "objective": "Explain chaos experiments and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Chaos experiments \u2014 primary reference",
+          "url": "https://sre.google/sre-book/reliable-product-launches/"
+        }
+      ],
+      "tags": [
+        "sre",
+        "chaos-experiments"
+      ],
+      "takeaway": "Start with safe scope and measurable steady-state behavior.",
+      "explanation": "A hypothesis limited scope and explicit abort conditions. Start with safe scope and measurable steady-state behavior. In the scenario, define a hypothesis blast radius and stop conditions first. The alternative \u2018Disable several unrelated dependencies at once without monitoring\u2019 does not address the stated evidence or constraint.",
+      "id": "sre-23-principles",
+      "title": "Chaos experiments \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing chaos experiments, which TWO statements are sound operational principles?",
+      "options": [
+        "A hypothesis limited scope and explicit abort conditions",
+        "Start with safe scope and measurable steady-state behavior",
+        "Randomly breaking production is sufficient experiment design",
+        "A chaos tool removes the need for risk assessment"
+      ],
+      "correct": [
+        0,
+        1
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "sre",
+      "objective": "Explain chaos experiments and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Chaos experiments \u2014 primary reference",
+          "url": "https://sre.google/sre-book/reliable-product-launches/"
+        }
+      ],
+      "tags": [
+        "sre",
+        "chaos-experiments"
+      ],
+      "takeaway": "Start with safe scope and measurable steady-state behavior.",
+      "explanation": "A hypothesis limited scope and explicit abort conditions. Start with safe scope and measurable steady-state behavior. In the scenario, define a hypothesis blast radius and stop conditions first. The alternative \u2018Disable several unrelated dependencies at once without monitoring\u2019 does not address the stated evidence or constraint.",
+      "id": "sre-23-interview",
+      "title": "Chaos experiments \u00b7 interview",
+      "type": "interview",
+      "question": "Explain how you would design a small resilience experiment.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "A hypothesis limited scope and explicit abort conditions. Start with safe scope and measurable steady-state behavior. A practical response is: Define a hypothesis blast radius and stop conditions first. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that randomly breaking production is sufficient experiment design.",
+      "answerChecklist": [
+        "A hypothesis limited scope and explicit abort conditions",
+        "Start with safe scope and measurable steady-state behavior",
+        "Define a hypothesis blast radius and stop conditions first",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "A team proposes an unbounded production failure test. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "sre",
+      "objective": "Explain incident communication and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Incident communication \u2014 primary reference",
+          "url": "https://sre.google/workbook/incident-response/"
+        }
+      ],
+      "tags": [
+        "sre",
+        "incident-communication"
+      ],
+      "takeaway": "Uncertainty should be stated rather than replaced with invented certainty.",
+      "explanation": "Stakeholders need consistent impact and recovery information. Uncertainty should be stated rather than replaced with invented certainty. In the scenario, assign a communication owner and publish evidence-based updates. The alternative \u2018Promise a recovery time without supporting evidence\u2019 does not address the stated evidence or constraint.",
+      "id": "sre-24-concept",
+      "title": "Incident communication \u00b7 concept",
+      "type": "concept",
+      "question": "Why publish regular incident updates?",
+      "options": [
+        "Promise a recovery time without supporting evidence",
+        "Stakeholders need consistent impact and recovery information",
+        "Only a final root cause is worth communicating",
+        "Every update must promise an exact repair time"
+      ],
+      "correct": [
+        1
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "sre",
+      "objective": "Explain incident communication and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Incident communication \u2014 primary reference",
+          "url": "https://sre.google/workbook/incident-response/"
+        }
+      ],
+      "tags": [
+        "sre",
+        "incident-communication"
+      ],
+      "takeaway": "Uncertainty should be stated rather than replaced with invented certainty.",
+      "explanation": "Stakeholders need consistent impact and recovery information. Uncertainty should be stated rather than replaced with invented certainty. In the scenario, assign a communication owner and publish evidence-based updates. The alternative \u2018Promise a recovery time without supporting evidence\u2019 does not address the stated evidence or constraint.",
+      "id": "sre-24-scenario",
+      "title": "Incident communication \u00b7 scenario",
+      "type": "scenario",
+      "question": "Support receives conflicting guesses from different responders. What is the best next step?",
+      "options": [
+        "Assign a communication owner and publish evidence-based updates",
+        "Promise a recovery time without supporting evidence",
+        "Only a final root cause is worth communicating",
+        "Every update must promise an exact repair time"
+      ],
+      "correct": [
+        0
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "sre",
+      "objective": "Explain incident communication and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Incident communication \u2014 primary reference",
+          "url": "https://sre.google/workbook/incident-response/"
+        }
+      ],
+      "tags": [
+        "sre",
+        "incident-communication"
+      ],
+      "takeaway": "Uncertainty should be stated rather than replaced with invented certainty.",
+      "explanation": "Stakeholders need consistent impact and recovery information. Uncertainty should be stated rather than replaced with invented certainty. In the scenario, assign a communication owner and publish evidence-based updates. The alternative \u2018Promise a recovery time without supporting evidence\u2019 does not address the stated evidence or constraint.",
+      "id": "sre-24-principles",
+      "title": "Incident communication \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing incident communication, which TWO statements are sound operational principles?",
+      "options": [
+        "Uncertainty should be stated rather than replaced with invented certainty",
+        "Only a final root cause is worth communicating",
+        "Every update must promise an exact repair time",
+        "Stakeholders need consistent impact and recovery information"
+      ],
+      "correct": [
+        0,
+        3
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "sre",
+      "objective": "Explain incident communication and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Incident communication \u2014 primary reference",
+          "url": "https://sre.google/workbook/incident-response/"
+        }
+      ],
+      "tags": [
+        "sre",
+        "incident-communication"
+      ],
+      "takeaway": "Uncertainty should be stated rather than replaced with invented certainty.",
+      "explanation": "Stakeholders need consistent impact and recovery information. Uncertainty should be stated rather than replaced with invented certainty. In the scenario, assign a communication owner and publish evidence-based updates. The alternative \u2018Promise a recovery time without supporting evidence\u2019 does not address the stated evidence or constraint.",
+      "id": "sre-24-interview",
+      "title": "Incident communication \u00b7 interview",
+      "type": "interview",
+      "question": "Explain what belongs in a useful incident status update.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "Stakeholders need consistent impact and recovery information. Uncertainty should be stated rather than replaced with invented certainty. A practical response is: Assign a communication owner and publish evidence-based updates. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that only a final root cause is worth communicating.",
+      "answerChecklist": [
+        "Stakeholders need consistent impact and recovery information",
+        "Uncertainty should be stated rather than replaced with invented certainty",
+        "Assign a communication owner and publish evidence-based updates",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "Support receives conflicting guesses from different responders. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "sre",
+      "objective": "Explain slo aggregation and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "SLO aggregation \u2014 primary reference",
+          "url": "https://sre.google/workbook/implementing-slos/"
+        }
+      ],
+      "tags": [
+        "sre",
+        "slo-aggregation"
+      ],
+      "takeaway": "Segmented indicators can complement an overall SLO.",
+      "explanation": "High-volume healthy traffic can mask a failing user segment. Segmented indicators can complement an overall SLO. In the scenario, inspect region and critical-journey indicators alongside the global metric. The alternative \u2018Ignore the outage because the global number is green\u2019 does not address the stated evidence or constraint.",
+      "id": "sre-25-concept",
+      "title": "SLO aggregation \u00b7 concept",
+      "type": "concept",
+      "question": "Why can a global success rate hide important failures?",
+      "options": [
+        "High-volume healthy traffic can mask a failing user segment",
+        "An overall SLO guarantees every region meets the same target",
+        "Low-volume users cannot experience meaningful impact",
+        "Ignore the outage because the global number is green"
+      ],
+      "correct": [
+        0
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "sre",
+      "objective": "Explain slo aggregation and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "SLO aggregation \u2014 primary reference",
+          "url": "https://sre.google/workbook/implementing-slos/"
+        }
+      ],
+      "tags": [
+        "sre",
+        "slo-aggregation"
+      ],
+      "takeaway": "Segmented indicators can complement an overall SLO.",
+      "explanation": "High-volume healthy traffic can mask a failing user segment. Segmented indicators can complement an overall SLO. In the scenario, inspect region and critical-journey indicators alongside the global metric. The alternative \u2018Ignore the outage because the global number is green\u2019 does not address the stated evidence or constraint.",
+      "id": "sre-25-scenario",
+      "title": "SLO aggregation \u00b7 scenario",
+      "type": "scenario",
+      "question": "One region is down but global availability remains above target. What is the best next step?",
+      "options": [
+        "Ignore the outage because the global number is green",
+        "An overall SLO guarantees every region meets the same target",
+        "Low-volume users cannot experience meaningful impact",
+        "Inspect region and critical-journey indicators alongside the global metric"
+      ],
+      "correct": [
+        3
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "sre",
+      "objective": "Explain slo aggregation and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "SLO aggregation \u2014 primary reference",
+          "url": "https://sre.google/workbook/implementing-slos/"
+        }
+      ],
+      "tags": [
+        "sre",
+        "slo-aggregation"
+      ],
+      "takeaway": "Segmented indicators can complement an overall SLO.",
+      "explanation": "High-volume healthy traffic can mask a failing user segment. Segmented indicators can complement an overall SLO. In the scenario, inspect region and critical-journey indicators alongside the global metric. The alternative \u2018Ignore the outage because the global number is green\u2019 does not address the stated evidence or constraint.",
+      "id": "sre-25-principles",
+      "title": "SLO aggregation \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing slo aggregation, which TWO statements are sound operational principles?",
+      "options": [
+        "An overall SLO guarantees every region meets the same target",
+        "Low-volume users cannot experience meaningful impact",
+        "High-volume healthy traffic can mask a failing user segment",
+        "Segmented indicators can complement an overall SLO"
+      ],
+      "correct": [
+        2,
+        3
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "sre",
+      "objective": "Explain slo aggregation and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "SLO aggregation \u2014 primary reference",
+          "url": "https://sre.google/workbook/implementing-slos/"
+        }
+      ],
+      "tags": [
+        "sre",
+        "slo-aggregation"
+      ],
+      "takeaway": "Segmented indicators can complement an overall SLO.",
+      "explanation": "High-volume healthy traffic can mask a failing user segment. Segmented indicators can complement an overall SLO. In the scenario, inspect region and critical-journey indicators alongside the global metric. The alternative \u2018Ignore the outage because the global number is green\u2019 does not address the stated evidence or constraint.",
+      "id": "sre-25-interview",
+      "title": "SLO aggregation \u00b7 interview",
+      "type": "interview",
+      "question": "Explain how you would prevent reliability metrics from masking small cohorts.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "High-volume healthy traffic can mask a failing user segment. Segmented indicators can complement an overall SLO. A practical response is: Inspect region and critical-journey indicators alongside the global metric. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that an overall SLO guarantees every region meets the same target.",
+      "answerChecklist": [
+        "High-volume healthy traffic can mask a failing user segment",
+        "Segmented indicators can complement an overall SLO",
+        "Inspect region and critical-journey indicators alongside the global metric",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "One region is down but global availability remains above target. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "sre",
+      "objective": "Explain overload recovery and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Overload recovery \u2014 primary reference",
+          "url": "https://sre.google/workbook/overload/"
+        }
+      ],
+      "tags": [
+        "sre",
+        "overload-recovery"
+      ],
+      "takeaway": "Recovery should be staged within available capacity.",
+      "explanation": "Retries cache warming and reconnects add demand during recovery. Recovery should be staged within available capacity. In the scenario, ramp traffic and control retries while observing saturation. The alternative \u2018Reconnect every client at the same instant\u2019 does not address the stated evidence or constraint.",
+      "id": "sre-26-concept",
+      "title": "Overload recovery \u00b7 concept",
+      "type": "concept",
+      "question": "Why can recovery traffic worsen an outage?",
+      "options": [
+        "Restarting every instance simultaneously always restores service fastest",
+        "A recovered dependency immediately has unlimited spare capacity",
+        "Reconnect every client at the same instant",
+        "Retries cache warming and reconnects add demand during recovery"
+      ],
+      "correct": [
+        3
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "sre",
+      "objective": "Explain overload recovery and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Overload recovery \u2014 primary reference",
+          "url": "https://sre.google/workbook/overload/"
+        }
+      ],
+      "tags": [
+        "sre",
+        "overload-recovery"
+      ],
+      "takeaway": "Recovery should be staged within available capacity.",
+      "explanation": "Retries cache warming and reconnects add demand during recovery. Recovery should be staged within available capacity. In the scenario, ramp traffic and control retries while observing saturation. The alternative \u2018Reconnect every client at the same instant\u2019 does not address the stated evidence or constraint.",
+      "id": "sre-26-scenario",
+      "title": "Overload recovery \u00b7 scenario",
+      "type": "scenario",
+      "question": "A restored service is overwhelmed by reconnecting clients. What is the best next step?",
+      "options": [
+        "Restarting every instance simultaneously always restores service fastest",
+        "A recovered dependency immediately has unlimited spare capacity",
+        "Ramp traffic and control retries while observing saturation",
+        "Reconnect every client at the same instant"
+      ],
+      "correct": [
+        2
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "sre",
+      "objective": "Explain overload recovery and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Overload recovery \u2014 primary reference",
+          "url": "https://sre.google/workbook/overload/"
+        }
+      ],
+      "tags": [
+        "sre",
+        "overload-recovery"
+      ],
+      "takeaway": "Recovery should be staged within available capacity.",
+      "explanation": "Retries cache warming and reconnects add demand during recovery. Recovery should be staged within available capacity. In the scenario, ramp traffic and control retries while observing saturation. The alternative \u2018Reconnect every client at the same instant\u2019 does not address the stated evidence or constraint.",
+      "id": "sre-26-principles",
+      "title": "Overload recovery \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing overload recovery, which TWO statements are sound operational principles?",
+      "options": [
+        "A recovered dependency immediately has unlimited spare capacity",
+        "Retries cache warming and reconnects add demand during recovery",
+        "Recovery should be staged within available capacity",
+        "Restarting every instance simultaneously always restores service fastest"
+      ],
+      "correct": [
+        1,
+        2
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "sre",
+      "objective": "Explain overload recovery and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Overload recovery \u2014 primary reference",
+          "url": "https://sre.google/workbook/overload/"
+        }
+      ],
+      "tags": [
+        "sre",
+        "overload-recovery"
+      ],
+      "takeaway": "Recovery should be staged within available capacity.",
+      "explanation": "Retries cache warming and reconnects add demand during recovery. Recovery should be staged within available capacity. In the scenario, ramp traffic and control retries while observing saturation. The alternative \u2018Reconnect every client at the same instant\u2019 does not address the stated evidence or constraint.",
+      "id": "sre-26-interview",
+      "title": "Overload recovery \u00b7 interview",
+      "type": "interview",
+      "question": "Explain how you would prevent a thundering herd during recovery.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "Retries cache warming and reconnects add demand during recovery. Recovery should be staged within available capacity. A practical response is: Ramp traffic and control retries while observing saturation. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that restarting every instance simultaneously always restores service fastest.",
+      "answerChecklist": [
+        "Retries cache warming and reconnects add demand during recovery",
+        "Recovery should be staged within available capacity",
+        "Ramp traffic and control retries while observing saturation",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "A restored service is overwhelmed by reconnecting clients. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "sre",
+      "objective": "Explain consistency trade-offs and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Consistency trade-offs \u2014 primary reference",
+          "url": "https://sre.google/sre-book/managing-critical-state/"
+        }
+      ],
+      "tags": [
+        "sre",
+        "consistency-trade-offs"
+      ],
+      "takeaway": "Different operations can require different consistency guarantees.",
+      "explanation": "Failure behavior depends on which guarantees the application needs. Different operations can require different consistency guarantees. In the scenario, prioritize the required correctness guarantee and define failure behavior. The alternative \u2018Return potentially conflicting balances while claiming strict consistency\u2019 does not address the stated evidence or constraint.",
+      "id": "sre-27-concept",
+      "title": "Consistency trade-offs \u00b7 concept",
+      "type": "concept",
+      "question": "Why make consistency requirements explicit?",
+      "options": [
+        "One consistency policy is automatically correct for every feature",
+        "Return potentially conflicting balances while claiming strict consistency",
+        "Failure behavior depends on which guarantees the application needs",
+        "Every distributed operation can always be available and strongly consistent during partitions"
+      ],
+      "correct": [
+        2
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "sre",
+      "objective": "Explain consistency trade-offs and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Consistency trade-offs \u2014 primary reference",
+          "url": "https://sre.google/sre-book/managing-critical-state/"
+        }
+      ],
+      "tags": [
+        "sre",
+        "consistency-trade-offs"
+      ],
+      "takeaway": "Different operations can require different consistency guarantees.",
+      "explanation": "Failure behavior depends on which guarantees the application needs. Different operations can require different consistency guarantees. In the scenario, prioritize the required correctness guarantee and define failure behavior. The alternative \u2018Return potentially conflicting balances while claiming strict consistency\u2019 does not address the stated evidence or constraint.",
+      "id": "sre-27-scenario",
+      "title": "Consistency trade-offs \u00b7 scenario",
+      "type": "scenario",
+      "question": "A partition forces a decision for account-balance updates. What is the best next step?",
+      "options": [
+        "One consistency policy is automatically correct for every feature",
+        "Prioritize the required correctness guarantee and define failure behavior",
+        "Return potentially conflicting balances while claiming strict consistency",
+        "Every distributed operation can always be available and strongly consistent during partitions"
+      ],
+      "correct": [
+        1
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "sre",
+      "objective": "Explain consistency trade-offs and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Consistency trade-offs \u2014 primary reference",
+          "url": "https://sre.google/sre-book/managing-critical-state/"
+        }
+      ],
+      "tags": [
+        "sre",
+        "consistency-trade-offs"
+      ],
+      "takeaway": "Different operations can require different consistency guarantees.",
+      "explanation": "Failure behavior depends on which guarantees the application needs. Different operations can require different consistency guarantees. In the scenario, prioritize the required correctness guarantee and define failure behavior. The alternative \u2018Return potentially conflicting balances while claiming strict consistency\u2019 does not address the stated evidence or constraint.",
+      "id": "sre-27-principles",
+      "title": "Consistency trade-offs \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing consistency trade-offs, which TWO statements are sound operational principles?",
+      "options": [
+        "Failure behavior depends on which guarantees the application needs",
+        "Different operations can require different consistency guarantees",
+        "Every distributed operation can always be available and strongly consistent during partitions",
+        "One consistency policy is automatically correct for every feature"
+      ],
+      "correct": [
+        0,
+        1
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "sre",
+      "objective": "Explain consistency trade-offs and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Consistency trade-offs \u2014 primary reference",
+          "url": "https://sre.google/sre-book/managing-critical-state/"
+        }
+      ],
+      "tags": [
+        "sre",
+        "consistency-trade-offs"
+      ],
+      "takeaway": "Different operations can require different consistency guarantees.",
+      "explanation": "Failure behavior depends on which guarantees the application needs. Different operations can require different consistency guarantees. In the scenario, prioritize the required correctness guarantee and define failure behavior. The alternative \u2018Return potentially conflicting balances while claiming strict consistency\u2019 does not address the stated evidence or constraint.",
+      "id": "sre-27-interview",
+      "title": "Consistency trade-offs \u00b7 interview",
+      "type": "interview",
+      "question": "Explain how business invariants guide partition-time behavior.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "Failure behavior depends on which guarantees the application needs. Different operations can require different consistency guarantees. A practical response is: Prioritize the required correctness guarantee and define failure behavior. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that every distributed operation can always be available and strongly consistent during partitions.",
+      "answerChecklist": [
+        "Failure behavior depends on which guarantees the application needs",
+        "Different operations can require different consistency guarantees",
+        "Prioritize the required correctness guarantee and define failure behavior",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "A partition forces a decision for account-balance updates. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "sre",
+      "objective": "Explain reliability investment and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Reliability investment \u2014 primary reference",
+          "url": "https://sre.google/sre-book/reliable-product-launches/"
+        }
+      ],
+      "tags": [
+        "sre",
+        "reliability-investment"
+      ],
+      "takeaway": "Frequency duration and blast radius all influence value.",
+      "explanation": "By user impact risk and expected reduction of recurring failure. Frequency duration and blast radius all influence value. In the scenario, compare impact and risk before selecting the next engineering project. The alternative \u2018Prioritize solely by the number of alert notifications\u2019 does not address the stated evidence or constraint.",
+      "id": "sre-28-concept",
+      "title": "Reliability investment \u00b7 concept",
+      "type": "concept",
+      "question": "How should reliability work be prioritized?",
+      "options": [
+        "Prioritize solely by the number of alert notifications",
+        "By user impact risk and expected reduction of recurring failure",
+        "The newest monitoring tool is always the highest-value investment",
+        "Only the number of incidents matters regardless of impact"
+      ],
+      "correct": [
+        1
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "sre",
+      "objective": "Explain reliability investment and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Reliability investment \u2014 primary reference",
+          "url": "https://sre.google/sre-book/reliable-product-launches/"
+        }
+      ],
+      "tags": [
+        "sre",
+        "reliability-investment"
+      ],
+      "takeaway": "Frequency duration and blast radius all influence value.",
+      "explanation": "By user impact risk and expected reduction of recurring failure. Frequency duration and blast radius all influence value. In the scenario, compare impact and risk before selecting the next engineering project. The alternative \u2018Prioritize solely by the number of alert notifications\u2019 does not address the stated evidence or constraint.",
+      "id": "sre-28-scenario",
+      "title": "Reliability investment \u00b7 scenario",
+      "type": "scenario",
+      "question": "A rare failure affects all customers while frequent minor alerts affect none. What is the best next step?",
+      "options": [
+        "Compare impact and risk before selecting the next engineering project",
+        "Prioritize solely by the number of alert notifications",
+        "The newest monitoring tool is always the highest-value investment",
+        "Only the number of incidents matters regardless of impact"
+      ],
+      "correct": [
+        0
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "sre",
+      "objective": "Explain reliability investment and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Reliability investment \u2014 primary reference",
+          "url": "https://sre.google/sre-book/reliable-product-launches/"
+        }
+      ],
+      "tags": [
+        "sre",
+        "reliability-investment"
+      ],
+      "takeaway": "Frequency duration and blast radius all influence value.",
+      "explanation": "By user impact risk and expected reduction of recurring failure. Frequency duration and blast radius all influence value. In the scenario, compare impact and risk before selecting the next engineering project. The alternative \u2018Prioritize solely by the number of alert notifications\u2019 does not address the stated evidence or constraint.",
+      "id": "sre-28-principles",
+      "title": "Reliability investment \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing reliability investment, which TWO statements are sound operational principles?",
+      "options": [
+        "Frequency duration and blast radius all influence value",
+        "The newest monitoring tool is always the highest-value investment",
+        "Only the number of incidents matters regardless of impact",
+        "By user impact risk and expected reduction of recurring failure"
+      ],
+      "correct": [
+        0,
+        3
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "sre",
+      "objective": "Explain reliability investment and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Reliability investment \u2014 primary reference",
+          "url": "https://sre.google/sre-book/reliable-product-launches/"
+        }
+      ],
+      "tags": [
+        "sre",
+        "reliability-investment"
+      ],
+      "takeaway": "Frequency duration and blast radius all influence value.",
+      "explanation": "By user impact risk and expected reduction of recurring failure. Frequency duration and blast radius all influence value. In the scenario, compare impact and risk before selecting the next engineering project. The alternative \u2018Prioritize solely by the number of alert notifications\u2019 does not address the stated evidence or constraint.",
+      "id": "sre-28-interview",
+      "title": "Reliability investment \u00b7 interview",
+      "type": "interview",
+      "question": "Explain how you would choose between two reliability improvement projects.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "By user impact risk and expected reduction of recurring failure. Frequency duration and blast radius all influence value. A practical response is: Compare impact and risk before selecting the next engineering project. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that the newest monitoring tool is always the highest-value investment.",
+      "answerChecklist": [
+        "By user impact risk and expected reduction of recurring failure",
+        "Frequency duration and blast radius all influence value",
+        "Compare impact and risk before selecting the next engineering project",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "A rare failure affects all customers while frequent minor alerts affect none. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "sre",
+      "objective": "Explain incident metrics and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Incident metrics \u2014 primary reference",
+          "url": "https://sre.google/workbook/postmortem-culture/"
+        }
+      ],
+      "tags": [
+        "sre",
+        "incident-metrics"
+      ],
+      "takeaway": "Metrics need stable definitions and contextual interpretation.",
+      "explanation": "It can hide distribution incident severity and changing classification. Metrics need stable definitions and contextual interpretation. In the scenario, audit definitions and inspect distributions by comparable incident class. The alternative \u2018Celebrate the average without checking the underlying population\u2019 does not address the stated evidence or constraint.",
+      "id": "sre-29-concept",
+      "title": "Incident metrics \u00b7 concept",
+      "type": "concept",
+      "question": "Why is a single average recovery time insufficient?",
+      "options": [
+        "It can hide distribution incident severity and changing classification",
+        "A lower average always proves every incident class improved",
+        "Removing slow incidents from the dataset improves actual reliability",
+        "Celebrate the average without checking the underlying population"
+      ],
+      "correct": [
+        0
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "sre",
+      "objective": "Explain incident metrics and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Incident metrics \u2014 primary reference",
+          "url": "https://sre.google/workbook/postmortem-culture/"
+        }
+      ],
+      "tags": [
+        "sre",
+        "incident-metrics"
+      ],
+      "takeaway": "Metrics need stable definitions and contextual interpretation.",
+      "explanation": "It can hide distribution incident severity and changing classification. Metrics need stable definitions and contextual interpretation. In the scenario, audit definitions and inspect distributions by comparable incident class. The alternative \u2018Celebrate the average without checking the underlying population\u2019 does not address the stated evidence or constraint.",
+      "id": "sre-29-scenario",
+      "title": "Incident metrics \u00b7 scenario",
+      "type": "scenario",
+      "question": "A dashboard improves after severe incidents are reclassified away. What is the best next step?",
+      "options": [
+        "Celebrate the average without checking the underlying population",
+        "A lower average always proves every incident class improved",
+        "Removing slow incidents from the dataset improves actual reliability",
+        "Audit definitions and inspect distributions by comparable incident class"
+      ],
+      "correct": [
+        3
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "sre",
+      "objective": "Explain incident metrics and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Incident metrics \u2014 primary reference",
+          "url": "https://sre.google/workbook/postmortem-culture/"
+        }
+      ],
+      "tags": [
+        "sre",
+        "incident-metrics"
+      ],
+      "takeaway": "Metrics need stable definitions and contextual interpretation.",
+      "explanation": "It can hide distribution incident severity and changing classification. Metrics need stable definitions and contextual interpretation. In the scenario, audit definitions and inspect distributions by comparable incident class. The alternative \u2018Celebrate the average without checking the underlying population\u2019 does not address the stated evidence or constraint.",
+      "id": "sre-29-principles",
+      "title": "Incident metrics \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing incident metrics, which TWO statements are sound operational principles?",
+      "options": [
+        "A lower average always proves every incident class improved",
+        "Removing slow incidents from the dataset improves actual reliability",
+        "It can hide distribution incident severity and changing classification",
+        "Metrics need stable definitions and contextual interpretation"
+      ],
+      "correct": [
+        2,
+        3
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "sre",
+      "objective": "Explain incident metrics and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Incident metrics \u2014 primary reference",
+          "url": "https://sre.google/workbook/postmortem-culture/"
+        }
+      ],
+      "tags": [
+        "sre",
+        "incident-metrics"
+      ],
+      "takeaway": "Metrics need stable definitions and contextual interpretation.",
+      "explanation": "It can hide distribution incident severity and changing classification. Metrics need stable definitions and contextual interpretation. In the scenario, audit definitions and inspect distributions by comparable incident class. The alternative \u2018Celebrate the average without checking the underlying population\u2019 does not address the stated evidence or constraint.",
+      "id": "sre-29-interview",
+      "title": "Incident metrics \u00b7 interview",
+      "type": "interview",
+      "question": "Explain pitfalls in measuring incident response performance.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "It can hide distribution incident severity and changing classification. Metrics need stable definitions and contextual interpretation. A practical response is: Audit definitions and inspect distributions by comparable incident class. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that a lower average always proves every incident class improved.",
+      "answerChecklist": [
+        "It can hide distribution incident severity and changing classification",
+        "Metrics need stable definitions and contextual interpretation",
+        "Audit definitions and inspect distributions by comparable incident class",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "A dashboard improves after severe incidents are reclassified away. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "sre",
+      "objective": "Explain safe automation and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Safe automation \u2014 primary reference",
+          "url": "https://sre.google/workbook/eliminating-toil/"
+        }
+      ],
+      "tags": [
+        "sre",
+        "safe-automation"
+      ],
+      "takeaway": "Automation can amplify mistakes as quickly as successful actions.",
+      "explanation": "Bounded scope verification and a safe stop or rollback path. Automation can amplify mistakes as quickly as successful actions. In the scenario, add evidence-based guards cooldowns and post-action checks. The alternative \u2018Run the restart loop faster to force recovery\u2019 does not address the stated evidence or constraint.",
+      "id": "sre-30-concept",
+      "title": "Safe automation \u00b7 concept",
+      "type": "concept",
+      "question": "What should high-impact remediation automation include?",
+      "options": [
+        "Automated actions are inherently safer than manual actions",
+        "A successful command exit code guarantees user recovery",
+        "Run the restart loop faster to force recovery",
+        "Bounded scope verification and a safe stop or rollback path"
+      ],
+      "correct": [
+        3
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "sre",
+      "objective": "Explain safe automation and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Safe automation \u2014 primary reference",
+          "url": "https://sre.google/workbook/eliminating-toil/"
+        }
+      ],
+      "tags": [
+        "sre",
+        "safe-automation"
+      ],
+      "takeaway": "Automation can amplify mistakes as quickly as successful actions.",
+      "explanation": "Bounded scope verification and a safe stop or rollback path. Automation can amplify mistakes as quickly as successful actions. In the scenario, add evidence-based guards cooldowns and post-action checks. The alternative \u2018Run the restart loop faster to force recovery\u2019 does not address the stated evidence or constraint.",
+      "id": "sre-30-scenario",
+      "title": "Safe automation \u00b7 scenario",
+      "type": "scenario",
+      "question": "An automated restart loop repeatedly disrupts healthy instances. What is the best next step?",
+      "options": [
+        "Automated actions are inherently safer than manual actions",
+        "A successful command exit code guarantees user recovery",
+        "Add evidence-based guards cooldowns and post-action checks",
+        "Run the restart loop faster to force recovery"
+      ],
+      "correct": [
+        2
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "sre",
+      "objective": "Explain safe automation and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Safe automation \u2014 primary reference",
+          "url": "https://sre.google/workbook/eliminating-toil/"
+        }
+      ],
+      "tags": [
+        "sre",
+        "safe-automation"
+      ],
+      "takeaway": "Automation can amplify mistakes as quickly as successful actions.",
+      "explanation": "Bounded scope verification and a safe stop or rollback path. Automation can amplify mistakes as quickly as successful actions. In the scenario, add evidence-based guards cooldowns and post-action checks. The alternative \u2018Run the restart loop faster to force recovery\u2019 does not address the stated evidence or constraint.",
+      "id": "sre-30-principles",
+      "title": "Safe automation \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing safe automation, which TWO statements are sound operational principles?",
+      "options": [
+        "A successful command exit code guarantees user recovery",
+        "Bounded scope verification and a safe stop or rollback path",
+        "Automation can amplify mistakes as quickly as successful actions",
+        "Automated actions are inherently safer than manual actions"
+      ],
+      "correct": [
+        1,
+        2
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "sre",
+      "objective": "Explain safe automation and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Safe automation \u2014 primary reference",
+          "url": "https://sre.google/workbook/eliminating-toil/"
+        }
+      ],
+      "tags": [
+        "sre",
+        "safe-automation"
+      ],
+      "takeaway": "Automation can amplify mistakes as quickly as successful actions.",
+      "explanation": "Bounded scope verification and a safe stop or rollback path. Automation can amplify mistakes as quickly as successful actions. In the scenario, add evidence-based guards cooldowns and post-action checks. The alternative \u2018Run the restart loop faster to force recovery\u2019 does not address the stated evidence or constraint.",
+      "id": "sre-30-interview",
+      "title": "Safe automation \u00b7 interview",
+      "type": "interview",
+      "question": "Explain how you would design and validate automated remediation.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "Bounded scope verification and a safe stop or rollback path. Automation can amplify mistakes as quickly as successful actions. A practical response is: Add evidence-based guards cooldowns and post-action checks. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that automated actions are inherently safer than manual actions.",
+      "answerChecklist": [
+        "Bounded scope verification and a safe stop or rollback path",
+        "Automation can amplify mistakes as quickly as successful actions",
+        "Add evidence-based guards cooldowns and post-action checks",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "An automated restart loop repeatedly disrupts healthy instances. Explain the evidence that would change your decision."
+      ]
+    }
+  ]
+}

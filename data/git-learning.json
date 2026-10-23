@@ -1,0 +1,817 @@
+{
+  "subject": "git",
+  "lessons": [
+    {
+      "id": "git-lesson-01",
+      "topic": "git",
+      "title": "Working tree",
+      "summary": "The checked-out files being edited.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Uncommitted changes are distinct from committed history."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A developer wants to know which local files changed. Inspect git status and the relevant diff."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "It is always identical to the latest commit. This is not a sound assumption; the checked-out files being edited."
+        }
+      ],
+      "takeaway": "Uncommitted changes are distinct from committed history.",
+      "references": [
+        {
+          "title": "Working tree \u2014 primary reference",
+          "url": "https://git-scm.com/docs/git-status"
+        }
+      ]
+    },
+    {
+      "id": "git-lesson-02",
+      "topic": "git",
+      "title": "Staging",
+      "summary": "The proposed contents of the next commit.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Staging selected changes supports focused commits."
+        },
+        {
+          "heading": "Apply it",
+          "body": "One file contains unrelated fixes that should be separate commits. Stage relevant hunks and review the staged diff."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "Staging automatically pushes changes to the remote. This is not a sound assumption; the proposed contents of the next commit."
+        }
+      ],
+      "takeaway": "Staging selected changes supports focused commits.",
+      "references": [
+        {
+          "title": "Staging \u2014 primary reference",
+          "url": "https://git-scm.com/docs/git-add"
+        }
+      ]
+    },
+    {
+      "id": "git-lesson-03",
+      "topic": "git",
+      "title": "Commits",
+      "summary": "A snapshot with metadata and parent relationships.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Commit identifiers change when commit contents or metadata change."
+        },
+        {
+          "heading": "Apply it",
+          "body": "An amended commit has a different hash despite similar files. Recognize that amended metadata creates a new commit object."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "A commit is only a mutable branch name. This is not a sound assumption; a snapshot with metadata and parent relationships."
+        }
+      ],
+      "takeaway": "Commit identifiers change when commit contents or metadata change.",
+      "references": [
+        {
+          "title": "Commits \u2014 primary reference",
+          "url": "https://git-scm.com/docs/git-commit"
+        }
+      ]
+    },
+    {
+      "id": "git-lesson-04",
+      "topic": "git",
+      "title": "Branches",
+      "summary": "A movable reference to a commit.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Creating a branch does not copy an entire independent repository."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A new local branch is invisible to teammates. Push the intended branch reference when ready to share."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "A branch is a separate physical copy of every historical file. This is not a sound assumption; a movable reference to a commit."
+        }
+      ],
+      "takeaway": "Creating a branch does not copy an entire independent repository.",
+      "references": [
+        {
+          "title": "Branches \u2014 primary reference",
+          "url": "https://git-scm.com/docs/git-branch"
+        }
+      ]
+    },
+    {
+      "id": "git-lesson-05",
+      "topic": "git",
+      "title": "Fetch",
+      "summary": "Download remote objects and update remote-tracking references.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Fetching does not itself merge changes into the current branch."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A developer wants to inspect remote changes before integration. Fetch and compare the relevant references."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "Fetch automatically discards every local modification. This is not a sound assumption; download remote objects and update remote-tracking references."
+        }
+      ],
+      "takeaway": "Fetching does not itself merge changes into the current branch.",
+      "references": [
+        {
+          "title": "Fetch \u2014 primary reference",
+          "url": "https://git-scm.com/docs/git-fetch"
+        }
+      ]
+    },
+    {
+      "id": "git-lesson-06",
+      "topic": "git",
+      "title": "Merge",
+      "summary": "A commit joining multiple lines of history.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Merge conflict resolution must preserve intended behavior."
+        },
+        {
+          "heading": "Apply it",
+          "body": "Two branches merge cleanly but their combined behavior breaks tests. Run integration checks and inspect the interacting changes."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "Every merge rewrites all existing commits. This is not a sound assumption; a commit joining multiple lines of history."
+        }
+      ],
+      "takeaway": "Merge conflict resolution must preserve intended behavior.",
+      "references": [
+        {
+          "title": "Merge \u2014 primary reference",
+          "url": "https://git-scm.com/docs/git-merge"
+        }
+      ]
+    },
+    {
+      "id": "git-lesson-07",
+      "topic": "git",
+      "title": "Ignore rules",
+      "summary": "It does not automatically untrack files already committed.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Sensitive files should be excluded before entering history."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A credential was committed before an ignore rule was added. Rotate the credential and handle repository exposure deliberately."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "Adding a secret to gitignore removes it from all past commits. This is not a sound assumption; it does not automatically untrack files already committed."
+        }
+      ],
+      "takeaway": "Sensitive files should be excluded before entering history.",
+      "references": [
+        {
+          "title": "Ignore rules \u2014 primary reference",
+          "url": "https://git-scm.com/docs/gitignore"
+        }
+      ]
+    },
+    {
+      "id": "git-lesson-08",
+      "topic": "git",
+      "title": "Diffs",
+      "summary": "The exact changes intended for the next commit.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Generated or unrelated changes deserve deliberate review."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A commit includes a local debug setting accidentally. Inspect and unstage the unintended change."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "Only filenames matter when reviewing a commit. This is not a sound assumption; the exact changes intended for the next commit."
+        }
+      ],
+      "takeaway": "Generated or unrelated changes deserve deliberate review.",
+      "references": [
+        {
+          "title": "Diffs \u2014 primary reference",
+          "url": "https://git-scm.com/docs/git-diff"
+        }
+      ]
+    },
+    {
+      "id": "git-lesson-09",
+      "topic": "git",
+      "title": "Rebase",
+      "summary": "Replay commits onto a different base with new identities.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Rewriting shared history requires coordination."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A developer rebases commits others have already based work on. Coordinate the rewrite and recovery expectations before publishing."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "Rebase preserves every replayed commit hash unchanged. This is not a sound assumption; replay commits onto a different base with new identities."
+        }
+      ],
+      "takeaway": "Rewriting shared history requires coordination.",
+      "references": [
+        {
+          "title": "Rebase \u2014 primary reference",
+          "url": "https://git-scm.com/docs/git-rebase"
+        }
+      ]
+    },
+    {
+      "id": "git-lesson-10",
+      "topic": "git",
+      "title": "Revert",
+      "summary": "A new commit that reverses selected changes.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Reverting can preserve published history."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A bad change is already on a shared production branch. Create and verify a reversal appropriate to the deployed change."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "Revert erases the original commit from every clone. This is not a sound assumption; a new commit that reverses selected changes."
+        }
+      ],
+      "takeaway": "Reverting can preserve published history.",
+      "references": [
+        {
+          "title": "Revert \u2014 primary reference",
+          "url": "https://git-scm.com/docs/git-revert"
+        }
+      ]
+    },
+    {
+      "id": "git-lesson-11",
+      "topic": "git",
+      "title": "Reset",
+      "summary": "It can discard tracked working-tree and index changes.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Inspect and preserve needed work before destructive local operations."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A developer wants to remove one commit but has valuable uncommitted edits. Preserve the edits and choose the appropriate history operation."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "A hard reset always saves every uncommitted edit. This is not a sound assumption; it can discard tracked working-tree and index changes."
+        }
+      ],
+      "takeaway": "Inspect and preserve needed work before destructive local operations.",
+      "references": [
+        {
+          "title": "Reset \u2014 primary reference",
+          "url": "https://git-scm.com/docs/git-reset"
+        }
+      ]
+    },
+    {
+      "id": "git-lesson-12",
+      "topic": "git",
+      "title": "Cherry-pick",
+      "summary": "Apply selected commit changes onto the current branch.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Dependencies of the selected change may need separate consideration."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A hotfix is needed without unrelated feature work. Check dependencies and apply only the verified fix."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "Cherry-pick always imports the entire source branch. This is not a sound assumption; apply selected commit changes onto the current branch."
+        }
+      ],
+      "takeaway": "Dependencies of the selected change may need separate consideration.",
+      "references": [
+        {
+          "title": "Cherry-pick \u2014 primary reference",
+          "url": "https://git-scm.com/docs/git-cherry-pick"
+        }
+      ]
+    },
+    {
+      "id": "git-lesson-13",
+      "topic": "git",
+      "title": "Conflict resolution",
+      "summary": "The intended combined behavior of both changes.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Tests and domain understanding matter beyond removing markers."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A conflict affects a security check modified on both branches. Understand both changes and test the merged behavior."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "Choosing one side everywhere always preserves intent. This is not a sound assumption; the intended combined behavior of both changes."
+        }
+      ],
+      "takeaway": "Tests and domain understanding matter beyond removing markers.",
+      "references": [
+        {
+          "title": "Conflict resolution \u2014 primary reference",
+          "url": "https://git-scm.com/docs/git-merge"
+        }
+      ]
+    },
+    {
+      "id": "git-lesson-14",
+      "topic": "git",
+      "title": "Reflog",
+      "summary": "Recent local reference movements and otherwise hard-to-find commits.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Reflog availability is local and subject to retention."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A branch pointer was accidentally moved away from recent work. Inspect the local reflog and recover the intended commit reference."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "Reflog is a permanent shared backup of all repository data. This is not a sound assumption; recent local reference movements and otherwise hard-to-find commits."
+        }
+      ],
+      "takeaway": "Reflog availability is local and subject to retention.",
+      "references": [
+        {
+          "title": "Reflog \u2014 primary reference",
+          "url": "https://git-scm.com/docs/git-reflog"
+        }
+      ]
+    },
+    {
+      "id": "git-lesson-15",
+      "topic": "git",
+      "title": "Bisect",
+      "summary": "A commit associated with a change between known good and bad revisions.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "A reliable reproducible test is essential."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A regression appeared somewhere in many recent commits. Define a reliable test and narrow the introducing revision."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "Bisect proves a single commit is the complete root cause in every case. This is not a sound assumption; a commit associated with a change between known good and bad revisions."
+        }
+      ],
+      "takeaway": "A reliable reproducible test is essential.",
+      "references": [
+        {
+          "title": "Bisect \u2014 primary reference",
+          "url": "https://git-scm.com/docs/git-bisect"
+        }
+      ]
+    },
+    {
+      "id": "git-lesson-16",
+      "topic": "git",
+      "title": "Force with lease",
+      "summary": "Reject a rewrite when the remote reference differs from the expected value.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "It still rewrites history and requires deliberate coordination."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A rewritten branch must be published without overwriting unseen remote work. Check the expected remote state and use a controlled lease."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "It guarantees no collaborator can ever be affected. This is not a sound assumption; reject a rewrite when the remote reference differs from the expected value."
+        }
+      ],
+      "takeaway": "It still rewrites history and requires deliberate coordination.",
+      "references": [
+        {
+          "title": "Force with lease \u2014 primary reference",
+          "url": "https://git-scm.com/docs/git-push"
+        }
+      ]
+    },
+    {
+      "id": "git-lesson-17",
+      "topic": "git",
+      "title": "Continuous integration",
+      "summary": "Detect integration problems early through repeatable validation.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Checks should exercise meaningful behavior not just syntax."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A change passes lint but breaks a user workflow. Add a meaningful behavioral regression check."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "A green build proves the software has no defects. This is not a sound assumption; detect integration problems early through repeatable validation."
+        }
+      ],
+      "takeaway": "Checks should exercise meaningful behavior not just syntax.",
+      "references": [
+        {
+          "title": "Continuous integration \u2014 primary reference",
+          "url": "https://docs.github.com/en/actions"
+        }
+      ]
+    },
+    {
+      "id": "git-lesson-18",
+      "topic": "git",
+      "title": "Artifacts",
+      "summary": "Reduce differences caused by rebuilding during promotion.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Artifact identity and provenance should be recorded."
+        },
+        {
+          "heading": "Apply it",
+          "body": "Production differs from staging after separate rebuilds. Promote the verified immutable artifact with traceable metadata."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "Rebuilding the same source always produces identical bytes. This is not a sound assumption; reduce differences caused by rebuilding during promotion."
+        }
+      ],
+      "takeaway": "Artifact identity and provenance should be recorded.",
+      "references": [
+        {
+          "title": "Artifacts \u2014 primary reference",
+          "url": "https://docs.github.com/en/actions"
+        }
+      ]
+    },
+    {
+      "id": "git-lesson-19",
+      "topic": "git",
+      "title": "CI secrets",
+      "summary": "It can execute arbitrary code in the runner context.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Secret access should follow the trust level of the workflow trigger."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A workflow runs contributor code with deployment credentials. Separate untrusted validation from privileged deployment."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "Any pull request from a public fork is inherently trusted. This is not a sound assumption; it can execute arbitrary code in the runner context."
+        }
+      ],
+      "takeaway": "Secret access should follow the trust level of the workflow trigger.",
+      "references": [
+        {
+          "title": "CI secrets \u2014 primary reference",
+          "url": "https://docs.github.com/en/actions"
+        }
+      ]
+    },
+    {
+      "id": "git-lesson-20",
+      "topic": "git",
+      "title": "Dependency pinning",
+      "summary": "Reduce surprise changes in third-party execution inputs.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Pinned versions still need a deliberate update process."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A third-party action changes behavior unexpectedly. Review and pin the intended immutable revision then manage updates."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "Pinning guarantees absence of vulnerabilities forever. This is not a sound assumption; reduce surprise changes in third-party execution inputs."
+        }
+      ],
+      "takeaway": "Pinned versions still need a deliberate update process.",
+      "references": [
+        {
+          "title": "Dependency pinning \u2014 primary reference",
+          "url": "https://docs.github.com/en/actions"
+        }
+      ]
+    },
+    {
+      "id": "git-lesson-21",
+      "topic": "git",
+      "title": "Caching",
+      "summary": "Reusing stale or incompatible dependencies or outputs.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Cache keys should reflect relevant inputs and trust boundaries."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A pipeline passes with cache but fails on a clean runner. Inspect cached assumptions and test clean reproducibility."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "A cache hit proves the build output is correct. This is not a sound assumption; reusing stale or incompatible dependencies or outputs."
+        }
+      ],
+      "takeaway": "Cache keys should reflect relevant inputs and trust boundaries.",
+      "references": [
+        {
+          "title": "Caching \u2014 primary reference",
+          "url": "https://docs.github.com/en/actions"
+        }
+      ]
+    },
+    {
+      "id": "git-lesson-22",
+      "topic": "git",
+      "title": "Deployment gates",
+      "summary": "Required validation and authorization conditions are satisfied.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Gates need clear ownership and useful evidence."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A deployment is awaiting approval but the test artifact is missing. Require the relevant verified artifact and checks before release."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "A manual click alone proves a release is safe. This is not a sound assumption; required validation and authorization conditions are satisfied."
+        }
+      ],
+      "takeaway": "Gates need clear ownership and useful evidence.",
+      "references": [
+        {
+          "title": "Deployment gates \u2014 primary reference",
+          "url": "https://docs.github.com/en/actions"
+        }
+      ]
+    },
+    {
+      "id": "git-lesson-23",
+      "topic": "git",
+      "title": "Rollback",
+      "summary": "Data or external side effects may be incompatible with the old code.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Rollback plans must include state and schema compatibility."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A deployment performs an irreversible schema migration. Use a planned compatible migration or verified recovery path."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "Reverting a commit reverses all database writes automatically. This is not a sound assumption; data or external side effects may be incompatible with the old code."
+        }
+      ],
+      "takeaway": "Rollback plans must include state and schema compatibility.",
+      "references": [
+        {
+          "title": "Rollback \u2014 primary reference",
+          "url": "https://sre.google/workbook/canarying-releases/"
+        }
+      ]
+    },
+    {
+      "id": "git-lesson-24",
+      "topic": "git",
+      "title": "Concurrency controls",
+      "summary": "Prevent overlapping changes to the same environment.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Cancellation policy should consider partially applied operations."
+        },
+        {
+          "heading": "Apply it",
+          "body": "Two releases concurrently modify the same infrastructure. Coordinate deployment ownership and inspect any partial changes."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "Parallel deployment always improves safety. This is not a sound assumption; prevent overlapping changes to the same environment."
+        }
+      ],
+      "takeaway": "Cancellation policy should consider partially applied operations.",
+      "references": [
+        {
+          "title": "Concurrency controls \u2014 primary reference",
+          "url": "https://docs.github.com/en/actions"
+        }
+      ]
+    },
+    {
+      "id": "git-lesson-25",
+      "topic": "git",
+      "title": "OIDC federation",
+      "summary": "Obtain short-lived credentials tied to workflow identity.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Trust conditions should constrain repository branch and environment."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A cloud role trusts any repository in an organization. Narrow the federated identity conditions to intended workloads."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "Federation means every workflow should get administrator access. This is not a sound assumption; obtain short-lived credentials tied to workflow identity."
+        }
+      ],
+      "takeaway": "Trust conditions should constrain repository branch and environment.",
+      "references": [
+        {
+          "title": "OIDC federation \u2014 primary reference",
+          "url": "https://docs.github.com/en/actions"
+        }
+      ]
+    },
+    {
+      "id": "git-lesson-26",
+      "topic": "git",
+      "title": "Monorepo checks",
+      "summary": "Indirect dependencies can be missed by simplistic file filters.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Check selection should model relevant dependency relationships."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A shared library change skips downstream application tests. Include dependent components in the validation selection."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "A change outside one directory can never affect that component. This is not a sound assumption; indirect dependencies can be missed by simplistic file filters."
+        }
+      ],
+      "takeaway": "Check selection should model relevant dependency relationships.",
+      "references": [
+        {
+          "title": "Monorepo checks \u2014 primary reference",
+          "url": "https://docs.github.com/en/actions"
+        }
+      ]
+    },
+    {
+      "id": "git-lesson-27",
+      "topic": "git",
+      "title": "Release tags",
+      "summary": "Trace a release to an intended source or artifact identity.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Tag protection and verification help preserve release meaning."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A release tag is moved after artifacts were published. Investigate the identity mismatch and preserve an auditable release trail."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "Every tag is intrinsically immutable and unforgeable. This is not a sound assumption; trace a release to an intended source or artifact identity."
+        }
+      ],
+      "takeaway": "Tag protection and verification help preserve release meaning.",
+      "references": [
+        {
+          "title": "Release tags \u2014 primary reference",
+          "url": "https://git-scm.com/docs/git-tag"
+        }
+      ]
+    },
+    {
+      "id": "git-lesson-28",
+      "topic": "git",
+      "title": "Flaky tests",
+      "summary": "They weaken confidence that failures indicate real regressions.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Track and fix nondeterminism rather than normalizing blind retries."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A team reruns failed tests repeatedly without investigation. Record failure patterns and isolate the nondeterministic cause."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "Retrying until green proves correctness. This is not a sound assumption; they weaken confidence that failures indicate real regressions."
+        }
+      ],
+      "takeaway": "Track and fix nondeterminism rather than normalizing blind retries.",
+      "references": [
+        {
+          "title": "Flaky tests \u2014 primary reference",
+          "url": "https://sre.google/workbook/canarying-releases/"
+        }
+      ]
+    },
+    {
+      "id": "git-lesson-29",
+      "topic": "git",
+      "title": "Branch protection",
+      "summary": "Defined review and status-check requirements before integration.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Rules should match the actual delivery risk and trusted actors."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A required test is accidentally made optional on the release branch. Restore the intended gate and verify the effective rule behavior."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "Branch protection proves all merged code is bug-free. This is not a sound assumption; defined review and status-check requirements before integration."
+        }
+      ],
+      "takeaway": "Rules should match the actual delivery risk and trusted actors.",
+      "references": [
+        {
+          "title": "Branch protection \u2014 primary reference",
+          "url": "https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/about-protected-branches"
+        }
+      ]
+    },
+    {
+      "id": "git-lesson-30",
+      "topic": "git",
+      "title": "Supply-chain evidence",
+      "summary": "Which inputs and process produced the artifact.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Provenance is evidence to verify against a trust policy."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A binary's source revision and build workflow cannot be established. Require traceable build evidence and verify artifact identity."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "Provenance replaces all vulnerability assessment. This is not a sound assumption; which inputs and process produced the artifact."
+        }
+      ],
+      "takeaway": "Provenance is evidence to verify against a trust policy.",
+      "references": [
+        {
+          "title": "Supply-chain evidence \u2014 primary reference",
+          "url": "https://docs.github.com/en/actions"
+        }
+      ]
+    }
+  ],
+  "commands": [],
+  "debugging": []
+}

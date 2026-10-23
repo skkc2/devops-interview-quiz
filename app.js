@@ -15,13 +15,14 @@
   const FLAG_KEY = "opslab-saved-questions-v1";
   const state = {level:"easy",topic:"kubernetes",type:"all",count:"all",mode:"learn",timed:false,questions:[],answers:[],submitted:[],ratings:{},flags:new Set(),index:0,remaining:0,timer:null,startedAt:0,finished:false,sessionId:0,reviewFilter:"all",reviewSavedOnly:false,forcedQuestionIds:null,session:null};
   let curated = [];
-  let legacy = {};
+  let subjects = [];
+  let learningSearch = "";
   let learning = null;
   let activeModule = "concepts";
   let selectedContentId = null;
   const MODULE_META = {
-    concepts:{title:"Concepts",description:"Build mental models for the core Kubernetes objects and how they relate."},
-    commands:{title:"Commands",description:"Use safe, focused kubectl commands and learn how to interpret their output."},
+    concepts:{title:"Concepts",description:"Build mental models across your selected subject and connect them to operational decisions."},
+    commands:{title:"Commands",description:"Browse available command guides. Dedicated command guides currently cover Kubernetes; other subjects include operational reasoning in Concepts and Scenarios."},
     scenarios:{title:"Scenarios",description:"Work through realistic symptoms and choose evidence-based next steps."},
     debugging:{title:"Debugging",description:"Follow diagnostic steps from symptom to evidence, likely cause and safe next action."},
     timed:{title:"Timed drills",description:"Configure an exam-style session with a real eligible question count and timer."},
@@ -65,24 +66,19 @@
     document.querySelectorAll(".screen").forEach(el=>{const active=el.id===name+"-screen";el.classList.toggle("is-active",active);el.hidden=!active;});
     window.scrollTo({top:0,behavior:window.matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth"});
   }
-  function normaliseLegacy(){
-    const rows=[];
-    const map={beginner:"easy",intermediate:"medium",advanced:"mediumHard"};
-    Object.entries(legacy||{}).forEach(([oldLevel,groups])=>{
-      const level=map[oldLevel]||oldLevel;
-      if(!LEVELS.some(l=>l.id===level))return;
-      Object.entries(groups||{}).forEach(([topic,list])=>{
-        if(topic==="kubernetes" || !Array.isArray(list))return;
-        list.forEach((old,i)=>{
-          if(!old || !Array.isArray(old.options) || !Number.isInteger(old.correct))return;
-          rows.push({id:"legacy-"+level+"-"+topic+"-"+i,level,topic,type:"concept",title:old.question,question:old.question,objective:"Check the fundamentals, then explain how you would verify this in a real environment.",options:old.options,correct:[old.correct],explanation:old.explanation||"This legacy question checks a foundational concept. Verify the command or behaviour against the current official documentation, then practise it in a safe lab.",takeaway:"Do not stop at recalling the answer: explain why it is correct and how you would validate it.",references:[],tags:["legacy"],legacy:true});
-        });
-      });
-    });
-    return rows;
+  function renderCatalog(){
+    const query=$("subject-search").value.trim().toLowerCase();
+    const visible=subjects.filter(s=>s.label.toLowerCase().includes(query));
+    $("catalog-count").textContent=subjects.length+" subjects · "+curated.filter(q=>!isInterview(q)).length.toLocaleString()+" scored questions · "+curated.filter(isInterview).length+" interview prompts";
+    $("subject-grid").innerHTML=visible.length?visible.map(subject=>{
+      const rows=curated.filter(q=>q.topic===subject.id), scored=rows.filter(q=>!isInterview(q)).length;
+      const selected=state.topic===subject.id;
+      const saved=rows.filter(q=>state.flags.has(q.id)).length;
+      return '<button type="button" class="subject-card '+(selected?'selected':'')+'" data-subject="'+esc(subject.id)+'" aria-pressed="'+selected+'"><span class="subject-card-top"><span class="subject-symbol" aria-hidden="true">'+esc(subject.label.slice(0,2).toUpperCase())+'</span><span>'+rows.length+' items</span></span><strong>'+esc(subject.label)+'</strong><span>'+scored+' scored · '+(rows.length-scored)+' interview</span><small>'+saved+' saved for review · 4 difficulties</small></button>';
+    }).join(""):'<p class="empty-state">No matching subjects. Try Linux, AWS, SRE or networking.</p>';
   }
   function poolForSetup(){
-    let all=curated.concat(normaliseLegacy());
+    let all=curated;
     if(Array.isArray(state.forcedQuestionIds)){
       all=all.filter(q=>state.forcedQuestionIds.includes(q.id));
       if(state.mode==="interview")return all.filter(isInterview);
@@ -102,19 +98,17 @@
     document.querySelectorAll("[data-mode]").forEach(btn=>{const selected=btn.dataset.mode===state.mode;btn.classList.toggle("selected",selected);btn.setAttribute("aria-pressed",String(selected));});
     const learnMode=state.mode==="learn";
     const reviewSelection=Array.isArray(state.forcedQuestionIds);
-    const allTopics=new Set(learnMode?["kubernetes"]:curated.concat(normaliseLegacy()).map(q=>q.topic));
-    if(learnMode)state.topic="kubernetes";
-    else if(state.topic!=="all"&&!allTopics.has(state.topic))state.topic="all";
-    $("topic-select").innerHTML=(learnMode?'':'<option value="all">All available subjects</option>')+[...allTopics].sort((a,b)=>topicLabel(a).localeCompare(topicLabel(b))).map(t=>'<option value="'+esc(t)+'">'+esc(topicLabel(t))+(learnMode?' (curated)':'')+'</option>').join("");
+    const allTopics=new Set(curated.map(q=>q.topic));
+    if(state.topic!=="all"&&!allTopics.has(state.topic))state.topic="all";
+    $("topic-select").innerHTML='<option value="all">All available subjects</option>'+[...allTopics].sort((a,b)=>topicLabel(a).localeCompare(topicLabel(b))).map(t=>'<option value="'+esc(t)+'">'+esc(topicLabel(t))+(learnMode?' (curated)':'')+'</option>').join("");
     $("topic-select").value=state.topic;
     $("level-select").parentElement.hidden=learnMode||reviewSelection;
-    $("topic-select").parentElement.hidden=learnMode||reviewSelection;
+    $("topic-select").parentElement.hidden=reviewSelection;
     $("type-select").disabled=learnMode;
     $("type-select").title=learnMode?"Learn opens the subject learning library. Use the module navigation to choose content.":"Filter eligible questions by type.";
     $("type-select").parentElement.hidden=learnMode||reviewSelection;
     $("count-select").parentElement.hidden=learnMode;
-    $("count-select").parentElement.hidden=learnMode;
-    const availablePool=curated.concat(normaliseLegacy()).filter(q=>reviewSelection?state.forcedQuestionIds.includes(q.id):(q.level===state.level&&(state.topic==="all"||q.topic===state.topic)));
+    const availablePool=curated.filter(q=>reviewSelection?state.forcedQuestionIds.includes(q.id):(q.level===state.level&&(state.topic==="all"||q.topic===state.topic)));
     const eligible=availablePool.filter(q=>{
       if(state.mode==="interview")return isInterview(q);
       if(state.mode==="practice"||state.mode==="exam")return !isInterview(q);
@@ -140,8 +134,8 @@
     if(state.mode==="exam"&&!state.timed){$("timer-control").querySelector("strong").textContent="Run without a timer";$("timer-control").querySelector("small").textContent="Turn on a timer for exam pacing.";}
     else{$("timer-control").querySelector("strong").textContent="Run with a timer";$("timer-control").querySelector("small").textContent="Useful for exam pacing and interview pressure.";}
     if(learnMode){
-      const lessons=state.topic==="all"?(learning?.lessons||[]):(learning?.lessons||[]).filter(x=>state.topic==="kubernetes");
-      const commands=state.topic==="all"?(learning?.commands||[]):(learning?.commands||[]).filter(x=>state.topic==="kubernetes");
+      const lessons=state.topic==="all"?(learning?.lessons||[]):(learning?.lessons||[]).filter(x=>x.topic===state.topic);
+      const commands=state.topic==="all"?(learning?.commands||[]):(learning?.commands||[]).filter(x=>x.topic===state.topic);
       $("available-count").textContent=lessons.length+" lessons and "+commands.length+" command guides available in the curated learning library";
       $("start-quiz").disabled=!learning;
       $("start-quiz").innerHTML='Open learning library <span aria-hidden="true">→</span>';
@@ -150,19 +144,22 @@
       $("available-count").textContent=reviewSelection?count+" saved questions selected":count+" questions match your session";
       $("start-quiz").disabled=count===0||(state.count!=="all"&&Number(state.count)>count);
       $("start-quiz").innerHTML='Start session <span aria-hidden="true">→</span>';
-      $("setup-message").textContent=count===0?(reviewSelection?"No saved graded questions are available for practice yet. Save a graded question first.":state.mode==="interview"?"No interview prompts match these filters yet. Try Kubernetes or clear the question type.":"No questions match these filters. Choose another subject, difficulty or type."):state.count!=="all"&&Number(state.count)>count?"Only "+count+" questions match these filters. Choose a smaller count or broaden your filters.":reviewSelection?"This session is limited to your saved questions.":"";
+      $("setup-message").textContent=count===0?(reviewSelection?"No saved graded questions are available for practice yet. Save a graded question first.":state.mode==="interview"?"No interview prompts match these filters yet. Choose another subject or clear the question type.":"No questions match these filters. Choose another subject, difficulty or type."):state.count!=="all"&&Number(state.count)>count?"Only "+count+" questions match these filters. Choose a smaller count or broaden your filters.":reviewSelection?"This session is limited to your saved questions.":"";
     }
-    $("topic-help").textContent=state.topic==="all"?"Kubernetes is the first curated track; legacy topics remain available.":state.topic==="kubernetes"?"Curated questions include official documentation references.":"Legacy questions are available here; content depth varies by subject.";
+    const topicQuestions=curated.filter(q=>state.topic==="all"||q.topic===state.topic);
+    const graded=topicQuestions.filter(q=>!isInterview(q)).length;
+    $("topic-help").textContent=graded+" scored questions · "+(topicQuestions.length-graded)+" self-reviewed interview prompts across all difficulties.";
+    renderCatalog();
     renderHistory();
   }
   function learningItemsForModule(module){
-    const topicOK=item=>state.topic==="all"||state.topic==="kubernetes"||item.topic===state.topic;
+    const topicOK=item=>state.topic==="all"||item.topic===state.topic;
     if(module==="concepts")return (learning?.lessons||[]).filter(topicOK);
     if(module==="commands")return (learning?.commands||[]).filter(topicOK);
     if(module==="scenarios")return curated.filter(q=>q.type==="scenario"&&topicOK(q));
     if(module==="debugging")return (learning?.debugging||[]).filter(topicOK);
     if(module==="review"){
-      const all=curated.concat(normaliseLegacy());
+      const all=curated;
       return all.filter(q=>state.flags.has(q.id)&&topicOK(q));
     }
     if(module==="interviews")return curated.filter(q=>isInterview(q)&&topicOK(q));
@@ -182,9 +179,12 @@
       btn.classList.toggle("selected",active);
       btn.setAttribute("aria-current",active?"page":"false");
     });
-    const items=learningItemsForModule(activeModule);
+    $("learning-topic").innerHTML='<option value="all">All available subjects</option>'+subjects.map(s=>'<option value="'+esc(s.id)+'">'+esc(s.label)+'</option>').join("");
+    $("learning-topic").value=state.topic;
+    const query=learningSearch.trim().toLowerCase();
+    const items=learningItemsForModule(activeModule).filter(item=>!query||[item.title,item.question,item.summary,item.objective,item.symptom,item.command].filter(Boolean).join(" ").toLowerCase().includes(query));
     $("learning-content-count").textContent=items.length+" "+(activeModule==="concepts"?"lessons":activeModule==="commands"?"command guides":activeModule==="debugging"?"playbooks":activeModule==="review"?"saved questions":activeModule==="interviews"?"interview prompts":activeModule==="scenarios"?"scenarios":"available action")+" available";
-    $("learning-content-list").innerHTML=items.length?items.map(item=>'<button type="button" class="learning-item '+(item.id===selectedContentId?"selected":"")+'" data-content-id="'+esc(item.id)+'"><strong>'+esc(item.title||item.question||"Learning item")+'</strong><small>'+esc(item.summary||item.objective||item.symptom||topicLabel(item.topic||"kubernetes"))+'</small></button>').join(""):'<div class="empty-state"><strong>No items here yet.</strong><p>Try Kubernetes or another learning module. This section will show a count only when matching content exists.</p></div>';
+    $("learning-content-list").innerHTML=items.length?items.map(item=>'<button type="button" class="learning-item '+(item.id===selectedContentId?"selected":"")+'" data-content-id="'+esc(item.id)+'"><strong>'+esc(item.title||item.question||"Learning item")+'</strong><small>'+esc(item.summary||item.objective||item.symptom||topicLabel(item.topic||"kubernetes"))+'</small></button>').join(""):'<div class="empty-state"><strong>No items here yet.</strong><p>Clear your search or choose another module. Concepts, Scenarios and Interview prompts are available for every subject. Dedicated command guides and debugging playbooks currently cover Kubernetes.</p></div>';
     if(!items.length){$("learning-content-detail").innerHTML='<p class="empty-state">No content matches this module and subject selection yet.</p>';selectedContentId=null;return;}
     let item=items.find(x=>x.id===selectedContentId)||items[0];
     selectedContentId=item.id;
@@ -217,15 +217,15 @@
     }
     detail.innerHTML='<div class="learning-detail-overline">'+esc(MODULE_META[module].title)+' · '+esc(topicLabel(item.topic||"kubernetes"))+'</div><h2>'+esc(item.title||item.question||"Learning item")+'</h2>'+body+(refs?'<section class="lesson-section"><h3>References</h3><ul>'+refs+'</ul></section>':"");
     if(module==="commands"&&$("copy-learning-command"))$("copy-learning-command").addEventListener("click",()=>{const text=item.command;if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text).then(()=>{$("copy-learning-command").textContent="Copied";}).catch(()=>{$("copy-learning-command").textContent="Copy unavailable";});}else{$("copy-learning-command").textContent="Copy unavailable";}});
-    if(module==="scenarios"&&$("practice-this-scenario"))$("practice-this-scenario").addEventListener("click",()=>{state.mode="practice";state.type="scenario";state.level=item.level||state.level;setScreen("home");renderSetup();$("setup-panel").scrollIntoView({behavior:"smooth"});});
-    if(module==="interviews"&&$("practise-interview-prompt"))$("practise-interview-prompt").addEventListener("click",()=>{state.mode="interview";state.type="interview";state.level=item.level||state.level;state.count="all";setScreen("home");renderSetup();$("setup-panel").scrollIntoView({behavior:"smooth"});});
+    if(module==="scenarios"&&$("practice-this-scenario"))$("practice-this-scenario").addEventListener("click",()=>{state.topic=item.topic;state.mode="practice";state.type="scenario";state.level=item.level||state.level;setScreen("home");renderSetup();$("setup-panel").scrollIntoView({behavior:"smooth"});});
+    if(module==="interviews"&&$("practise-interview-prompt"))$("practise-interview-prompt").addEventListener("click",()=>{state.topic=item.topic;state.mode="interview";state.type="interview";state.level=item.level||state.level;state.count="all";setScreen("home");renderSetup();$("setup-panel").scrollIntoView({behavior:"smooth"});});
     if(module==="review"&&$("practice-saved-questions"))$("practice-saved-questions").addEventListener("click",()=>{state.forcedQuestionIds=[...state.flags];state.mode="practice";state.topic="all";state.type="all";state.count="all";setScreen("home");renderSetup();$("setup-panel").scrollIntoView({behavior:"smooth"});});
     if(module==="timed"&&$("configure-timed-drill"))$("configure-timed-drill").addEventListener("click",()=>{state.mode="exam";state.timed=true;state.type="all";setScreen("home");renderSetup();$("setup-panel").scrollIntoView({behavior:"smooth"});});
     if(module==="followups"&&$("practice-followup"))$("practice-followup").addEventListener("click",()=>{state.mode="interview";state.type="interview";state.count="all";setScreen("home");renderSetup();$("setup-panel").scrollIntoView({behavior:"smooth"});});
   }
   function openLearningModule(module){
     activeModule=MODULE_META[module]?module:"concepts";
-    selectedContentId=null;
+    selectedContentId=null;learningSearch="";$("learning-search").value="";
     renderLearningModule(activeModule);
     setScreen("learning");
   }
@@ -450,6 +450,10 @@
     clearInterval(state.timer);state.timer=null;state.finished=false;state.mode="learn";state.type="all";state.topic="kubernetes";state.count="all";state.timed=false;state.reviewSavedOnly=false;state.forcedQuestionIds=null;renderSetup();setScreen("home");
   }
   function wire(){
+    $("subject-search").addEventListener("input",renderCatalog);
+    $("subject-grid").addEventListener("click",e=>{const card=e.target.closest("[data-subject]");if(!card)return;state.topic=card.dataset.subject;state.forcedQuestionIds=null;renderSetup();$("setup-panel").scrollIntoView({behavior:window.matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth"});$("topic-select").focus({preventScroll:true});});
+    $("learning-topic").addEventListener("change",e=>{state.topic=e.target.value;selectedContentId=null;renderLearningModule(activeModule);});
+    $("learning-search").addEventListener("input",e=>{learningSearch=e.target.value;selectedContentId=null;renderLearningModule(activeModule);});
     $("jump-to-setup").addEventListener("click",()=>$("setup-panel").scrollIntoView({behavior:"smooth"}));
     document.querySelectorAll("[data-module]").forEach(btn=>btn.addEventListener("click",()=>openLearningModule(btn.dataset.module)));
     $("learning-content-list").addEventListener("click",e=>{const btn=e.target.closest("[data-content-id]");if(!btn)return;selectedContentId=btn.dataset.contentId;renderLearningModule(activeModule);});
@@ -488,17 +492,35 @@
   async function init(){
     loadHistory();wire();
     try{
-      const [response,learningResponse]=await Promise.all([fetch("data/kubernetes.json"),fetch("data/kubernetes-learning.json")]);
-      if(!response.ok)throw new Error("Kubernetes question data returned HTTP "+response.status);
-      if(!learningResponse.ok)throw new Error("Kubernetes learning content returned HTTP "+learningResponse.status);
-      const data=await response.json();
-      learning=await learningResponse.json();
-      if(!data||!Array.isArray(data.questions))throw new Error("The Kubernetes question bank is not in the expected format.");
-      if(!learning||!Array.isArray(learning.lessons)||!Array.isArray(learning.commands)||!Array.isArray(learning.debugging))throw new Error("The Kubernetes learning library is not in the expected format.");
-      curated=data.questions;
-      legacy=window.DevOpsQuizBank||{};
-      const valid=curated.every(q=>q.id&&LEVELS.some(l=>l.id===q.level)&&q.topic==="kubernetes"&&q.type&&typeof q.question==="string"&&typeof q.explanation==="string"&&typeof q.takeaway==="string"&&Array.isArray(q.options)&&Array.isArray(q.correct));
-      if(!valid)throw new Error("Some curated questions are missing required fields.");
+      async function readJSON(path){
+        const response=await fetch(path);
+        if(!response.ok)throw new Error(path+" returned HTTP "+response.status);
+        return response.json();
+      }
+      const manifest=await readJSON("data/subjects.json");
+      if(!manifest||!Array.isArray(manifest.subjects)||!manifest.subjects.length)throw new Error("The subject catalog is invalid.");
+      const ids=new Set();
+      for(const subject of manifest.subjects){
+        if(!subject.id||ids.has(subject.id)||!/^data\/[a-z-]+\.json$/.test(subject.questions)||!/^data\/[a-z-]+\.json$/.test(subject.learning))throw new Error("Invalid or duplicate subject catalog entry.");
+        ids.add(subject.id);
+      }
+      const loaded=await Promise.allSettled(manifest.subjects.map(async subject=>{
+        const [pack,library]=await Promise.all([readJSON(subject.questions),readJSON(subject.learning)]);
+        if(!Array.isArray(pack.questions)||!pack.questions.length||!pack.questions.every(q=>q.id&&q.topic===subject.id&&LEVELS.some(l=>l.id===q.level)&&TYPE_LABELS[q.type]&&Array.isArray(q.options)&&Array.isArray(q.correct)))throw new Error(subject.label+" has invalid questions.");
+        if(!library||!["lessons","commands","debugging"].every(key=>Array.isArray(library[key])))throw new Error(subject.label+" has invalid learning content.");
+        return {subject,pack,library};
+      }));
+      learning={lessons:[],commands:[],debugging:[]};
+      const failed=[];
+      loaded.forEach((result,index)=>{
+        if(result.status!=="fulfilled"){failed.push(manifest.subjects[index].label);return;}
+        const {subject,pack,library}=result.value;
+        subjects.push(subject);curated.push(...pack.questions);
+        for(const key of ["lessons","commands","debugging"])learning[key].push(...library[key].map(item=>({...item,topic:subject.id})));
+      });
+      if(!subjects.length)throw new Error("No subject packs could be loaded. Check your connection and retry.");
+      if(new Set(curated.map(q=>q.id)).size!==curated.length)throw new Error("Question identifiers must be unique across subjects.");
+      if(failed.length){$("catalog-warning").hidden=false;$("catalog-warning").textContent="Unavailable subjects: "+failed.join(", ")+". Other subjects are ready. Reload to retry.";}
       renderSetup();setScreen("home");
     }catch(err){
       $("app-error").hidden=false;$("app-error-message").textContent=err.message+" If you opened index.html directly, start a local static server and reload.";

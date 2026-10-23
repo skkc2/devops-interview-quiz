@@ -1,0 +1,3733 @@
+{
+  "schemaVersion": 1,
+  "subject": "Observability",
+  "levels": [
+    "easy",
+    "medium",
+    "mediumHard",
+    "hard"
+  ],
+  "description": "30 competency sets: 90 scored questions and 30 self-reviewed interview prompts. Related questions intentionally reinforce a competency from different angles.",
+  "questions": [
+    {
+      "level": "easy",
+      "topic": "observability",
+      "objective": "Explain metrics and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Metrics \u2014 primary reference",
+          "url": "https://prometheus.io/docs/concepts/metric_types/"
+        }
+      ],
+      "tags": [
+        "observability",
+        "metrics"
+      ],
+      "takeaway": "Metric dimensions affect both usefulness and storage cost.",
+      "explanation": "Aggregated measurements of system behavior over time. Metric dimensions affect both usefulness and storage cost. In the scenario, instrument suitable counters and derive rates with clear dimensions. The alternative \u2018Store every request body as a metric label\u2019 does not address the stated evidence or constraint.",
+      "id": "observability-01-concept",
+      "title": "Metrics \u00b7 concept",
+      "type": "concept",
+      "question": "What are metrics best suited to represent?",
+      "options": [
+        "Aggregated measurements of system behavior over time",
+        "Every metric is a complete individual request record",
+        "Metrics automatically explain every root cause",
+        "Store every request body as a metric label"
+      ],
+      "correct": [
+        0
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "observability",
+      "objective": "Explain metrics and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Metrics \u2014 primary reference",
+          "url": "https://prometheus.io/docs/concepts/metric_types/"
+        }
+      ],
+      "tags": [
+        "observability",
+        "metrics"
+      ],
+      "takeaway": "Metric dimensions affect both usefulness and storage cost.",
+      "explanation": "Aggregated measurements of system behavior over time. Metric dimensions affect both usefulness and storage cost. In the scenario, instrument suitable counters and derive rates with clear dimensions. The alternative \u2018Store every request body as a metric label\u2019 does not address the stated evidence or constraint.",
+      "id": "observability-01-scenario",
+      "title": "Metrics \u00b7 scenario",
+      "type": "scenario",
+      "question": "A team needs to track request rate and error ratio over time. What is the best next step?",
+      "options": [
+        "Store every request body as a metric label",
+        "Every metric is a complete individual request record",
+        "Metrics automatically explain every root cause",
+        "Instrument suitable counters and derive rates with clear dimensions"
+      ],
+      "correct": [
+        3
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "observability",
+      "objective": "Explain metrics and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Metrics \u2014 primary reference",
+          "url": "https://prometheus.io/docs/concepts/metric_types/"
+        }
+      ],
+      "tags": [
+        "observability",
+        "metrics"
+      ],
+      "takeaway": "Metric dimensions affect both usefulness and storage cost.",
+      "explanation": "Aggregated measurements of system behavior over time. Metric dimensions affect both usefulness and storage cost. In the scenario, instrument suitable counters and derive rates with clear dimensions. The alternative \u2018Store every request body as a metric label\u2019 does not address the stated evidence or constraint.",
+      "id": "observability-01-principles",
+      "title": "Metrics \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing metrics, which TWO statements are sound operational principles?",
+      "options": [
+        "Every metric is a complete individual request record",
+        "Metrics automatically explain every root cause",
+        "Aggregated measurements of system behavior over time",
+        "Metric dimensions affect both usefulness and storage cost"
+      ],
+      "correct": [
+        2,
+        3
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "observability",
+      "objective": "Explain metrics and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Metrics \u2014 primary reference",
+          "url": "https://prometheus.io/docs/concepts/metric_types/"
+        }
+      ],
+      "tags": [
+        "observability",
+        "metrics"
+      ],
+      "takeaway": "Metric dimensions affect both usefulness and storage cost.",
+      "explanation": "Aggregated measurements of system behavior over time. Metric dimensions affect both usefulness and storage cost. In the scenario, instrument suitable counters and derive rates with clear dimensions. The alternative \u2018Store every request body as a metric label\u2019 does not address the stated evidence or constraint.",
+      "id": "observability-01-interview",
+      "title": "Metrics \u00b7 interview",
+      "type": "interview",
+      "question": "Explain a metric design for service request health.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "Aggregated measurements of system behavior over time. Metric dimensions affect both usefulness and storage cost. A practical response is: Instrument suitable counters and derive rates with clear dimensions. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that every metric is a complete individual request record.",
+      "answerChecklist": [
+        "Aggregated measurements of system behavior over time",
+        "Metric dimensions affect both usefulness and storage cost",
+        "Instrument suitable counters and derive rates with clear dimensions",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "A team needs to track request rate and error ratio over time. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "observability",
+      "objective": "Explain logs and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Logs \u2014 primary reference",
+          "url": "https://opentelemetry.io/docs/concepts/observability-primer/"
+        }
+      ],
+      "tags": [
+        "observability",
+        "logs"
+      ],
+      "takeaway": "Structured fields make filtering and correlation more reliable.",
+      "explanation": "Discrete event records with contextual detail. Structured fields make filtering and correlation more reliable. In the scenario, use structured operation identifiers and relevant error fields. The alternative \u2018Rely only on free-form messages with inconsistent wording\u2019 does not address the stated evidence or constraint.",
+      "id": "observability-02-concept",
+      "title": "Logs \u00b7 concept",
+      "type": "concept",
+      "question": "What do logs commonly provide?",
+      "options": [
+        "Logs always provide an unbiased statistical sample",
+        "Every log line automatically has a valid trace identifier",
+        "Rely only on free-form messages with inconsistent wording",
+        "Discrete event records with contextual detail"
+      ],
+      "correct": [
+        3
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "observability",
+      "objective": "Explain logs and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Logs \u2014 primary reference",
+          "url": "https://opentelemetry.io/docs/concepts/observability-primer/"
+        }
+      ],
+      "tags": [
+        "observability",
+        "logs"
+      ],
+      "takeaway": "Structured fields make filtering and correlation more reliable.",
+      "explanation": "Discrete event records with contextual detail. Structured fields make filtering and correlation more reliable. In the scenario, use structured operation identifiers and relevant error fields. The alternative \u2018Rely only on free-form messages with inconsistent wording\u2019 does not address the stated evidence or constraint.",
+      "id": "observability-02-scenario",
+      "title": "Logs \u00b7 scenario",
+      "type": "scenario",
+      "question": "Incident diagnosis requires finding failures for one operation. What is the best next step?",
+      "options": [
+        "Logs always provide an unbiased statistical sample",
+        "Every log line automatically has a valid trace identifier",
+        "Use structured operation identifiers and relevant error fields",
+        "Rely only on free-form messages with inconsistent wording"
+      ],
+      "correct": [
+        2
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "observability",
+      "objective": "Explain logs and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Logs \u2014 primary reference",
+          "url": "https://opentelemetry.io/docs/concepts/observability-primer/"
+        }
+      ],
+      "tags": [
+        "observability",
+        "logs"
+      ],
+      "takeaway": "Structured fields make filtering and correlation more reliable.",
+      "explanation": "Discrete event records with contextual detail. Structured fields make filtering and correlation more reliable. In the scenario, use structured operation identifiers and relevant error fields. The alternative \u2018Rely only on free-form messages with inconsistent wording\u2019 does not address the stated evidence or constraint.",
+      "id": "observability-02-principles",
+      "title": "Logs \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing logs, which TWO statements are sound operational principles?",
+      "options": [
+        "Every log line automatically has a valid trace identifier",
+        "Discrete event records with contextual detail",
+        "Structured fields make filtering and correlation more reliable",
+        "Logs always provide an unbiased statistical sample"
+      ],
+      "correct": [
+        1,
+        2
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "observability",
+      "objective": "Explain logs and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Logs \u2014 primary reference",
+          "url": "https://opentelemetry.io/docs/concepts/observability-primer/"
+        }
+      ],
+      "tags": [
+        "observability",
+        "logs"
+      ],
+      "takeaway": "Structured fields make filtering and correlation more reliable.",
+      "explanation": "Discrete event records with contextual detail. Structured fields make filtering and correlation more reliable. In the scenario, use structured operation identifiers and relevant error fields. The alternative \u2018Rely only on free-form messages with inconsistent wording\u2019 does not address the stated evidence or constraint.",
+      "id": "observability-02-interview",
+      "title": "Logs \u00b7 interview",
+      "type": "interview",
+      "question": "Explain useful structured logging for operational diagnosis.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "Discrete event records with contextual detail. Structured fields make filtering and correlation more reliable. A practical response is: Use structured operation identifiers and relevant error fields. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that logs always provide an unbiased statistical sample.",
+      "answerChecklist": [
+        "Discrete event records with contextual detail",
+        "Structured fields make filtering and correlation more reliable",
+        "Use structured operation identifiers and relevant error fields",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "Incident diagnosis requires finding failures for one operation. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "observability",
+      "objective": "Explain traces and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Traces \u2014 primary reference",
+          "url": "https://opentelemetry.io/docs/concepts/observability-primer/"
+        }
+      ],
+      "tags": [
+        "observability",
+        "traces"
+      ],
+      "takeaway": "Trace propagation is needed to connect work across boundaries.",
+      "explanation": "Related spans representing work across a request path. Trace propagation is needed to connect work across boundaries. In the scenario, verify context propagation across the relevant boundaries. The alternative \u2018Assume the tracing backend can infer every missing relationship\u2019 does not address the stated evidence or constraint.",
+      "id": "observability-03-concept",
+      "title": "Traces \u00b7 concept",
+      "type": "concept",
+      "question": "What does a distributed trace describe?",
+      "options": [
+        "Tracing automatically works across every library without instrumentation",
+        "Assume the tracing backend can infer every missing relationship",
+        "Related spans representing work across a request path",
+        "Every trace contains all requests ever processed"
+      ],
+      "correct": [
+        2
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "observability",
+      "objective": "Explain traces and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Traces \u2014 primary reference",
+          "url": "https://opentelemetry.io/docs/concepts/observability-primer/"
+        }
+      ],
+      "tags": [
+        "observability",
+        "traces"
+      ],
+      "takeaway": "Trace propagation is needed to connect work across boundaries.",
+      "explanation": "Related spans representing work across a request path. Trace propagation is needed to connect work across boundaries. In the scenario, verify context propagation across the relevant boundaries. The alternative \u2018Assume the tracing backend can infer every missing relationship\u2019 does not address the stated evidence or constraint.",
+      "id": "observability-03-scenario",
+      "title": "Traces \u00b7 scenario",
+      "type": "scenario",
+      "question": "A request crosses services but appears as disconnected traces. What is the best next step?",
+      "options": [
+        "Tracing automatically works across every library without instrumentation",
+        "Verify context propagation across the relevant boundaries",
+        "Assume the tracing backend can infer every missing relationship",
+        "Every trace contains all requests ever processed"
+      ],
+      "correct": [
+        1
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "observability",
+      "objective": "Explain traces and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Traces \u2014 primary reference",
+          "url": "https://opentelemetry.io/docs/concepts/observability-primer/"
+        }
+      ],
+      "tags": [
+        "observability",
+        "traces"
+      ],
+      "takeaway": "Trace propagation is needed to connect work across boundaries.",
+      "explanation": "Related spans representing work across a request path. Trace propagation is needed to connect work across boundaries. In the scenario, verify context propagation across the relevant boundaries. The alternative \u2018Assume the tracing backend can infer every missing relationship\u2019 does not address the stated evidence or constraint.",
+      "id": "observability-03-principles",
+      "title": "Traces \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing traces, which TWO statements are sound operational principles?",
+      "options": [
+        "Related spans representing work across a request path",
+        "Trace propagation is needed to connect work across boundaries",
+        "Every trace contains all requests ever processed",
+        "Tracing automatically works across every library without instrumentation"
+      ],
+      "correct": [
+        0,
+        1
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "observability",
+      "objective": "Explain traces and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Traces \u2014 primary reference",
+          "url": "https://opentelemetry.io/docs/concepts/observability-primer/"
+        }
+      ],
+      "tags": [
+        "observability",
+        "traces"
+      ],
+      "takeaway": "Trace propagation is needed to connect work across boundaries.",
+      "explanation": "Related spans representing work across a request path. Trace propagation is needed to connect work across boundaries. In the scenario, verify context propagation across the relevant boundaries. The alternative \u2018Assume the tracing backend can infer every missing relationship\u2019 does not address the stated evidence or constraint.",
+      "id": "observability-03-interview",
+      "title": "Traces \u00b7 interview",
+      "type": "interview",
+      "question": "Explain distributed trace context propagation.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "Related spans representing work across a request path. Trace propagation is needed to connect work across boundaries. A practical response is: Verify context propagation across the relevant boundaries. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that every trace contains all requests ever processed.",
+      "answerChecklist": [
+        "Related spans representing work across a request path",
+        "Trace propagation is needed to connect work across boundaries",
+        "Verify context propagation across the relevant boundaries",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "A request crosses services but appears as disconnected traces. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "observability",
+      "objective": "Explain counters and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Counters \u2014 primary reference",
+          "url": "https://prometheus.io/docs/concepts/metric_types/"
+        }
+      ],
+      "tags": [
+        "observability",
+        "counters"
+      ],
+      "takeaway": "Rate calculations must account for resets.",
+      "explanation": "It accumulates events and may reset when its producer restarts. Rate calculations must account for resets. In the scenario, use an appropriate reset-aware rate calculation. The alternative \u2018Interpret the drop as a negative number of user requests\u2019 does not address the stated evidence or constraint.",
+      "id": "observability-04-concept",
+      "title": "Counters \u00b7 concept",
+      "type": "concept",
+      "question": "What is a typical property of a counter?",
+      "options": [
+        "Interpret the drop as a negative number of user requests",
+        "It accumulates events and may reset when its producer restarts",
+        "A counter is intended to fluctuate freely with current temperature",
+        "A decreasing raw counter always means negative traffic"
+      ],
+      "correct": [
+        1
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "observability",
+      "objective": "Explain counters and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Counters \u2014 primary reference",
+          "url": "https://prometheus.io/docs/concepts/metric_types/"
+        }
+      ],
+      "tags": [
+        "observability",
+        "counters"
+      ],
+      "takeaway": "Rate calculations must account for resets.",
+      "explanation": "It accumulates events and may reset when its producer restarts. Rate calculations must account for resets. In the scenario, use an appropriate reset-aware rate calculation. The alternative \u2018Interpret the drop as a negative number of user requests\u2019 does not address the stated evidence or constraint.",
+      "id": "observability-04-scenario",
+      "title": "Counters \u00b7 scenario",
+      "type": "scenario",
+      "question": "A service restart makes the raw request counter fall. What is the best next step?",
+      "options": [
+        "Use an appropriate reset-aware rate calculation",
+        "Interpret the drop as a negative number of user requests",
+        "A counter is intended to fluctuate freely with current temperature",
+        "A decreasing raw counter always means negative traffic"
+      ],
+      "correct": [
+        0
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "observability",
+      "objective": "Explain counters and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Counters \u2014 primary reference",
+          "url": "https://prometheus.io/docs/concepts/metric_types/"
+        }
+      ],
+      "tags": [
+        "observability",
+        "counters"
+      ],
+      "takeaway": "Rate calculations must account for resets.",
+      "explanation": "It accumulates events and may reset when its producer restarts. Rate calculations must account for resets. In the scenario, use an appropriate reset-aware rate calculation. The alternative \u2018Interpret the drop as a negative number of user requests\u2019 does not address the stated evidence or constraint.",
+      "id": "observability-04-principles",
+      "title": "Counters \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing counters, which TWO statements are sound operational principles?",
+      "options": [
+        "Rate calculations must account for resets",
+        "A counter is intended to fluctuate freely with current temperature",
+        "A decreasing raw counter always means negative traffic",
+        "It accumulates events and may reset when its producer restarts"
+      ],
+      "correct": [
+        0,
+        3
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "observability",
+      "objective": "Explain counters and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Counters \u2014 primary reference",
+          "url": "https://prometheus.io/docs/concepts/metric_types/"
+        }
+      ],
+      "tags": [
+        "observability",
+        "counters"
+      ],
+      "takeaway": "Rate calculations must account for resets.",
+      "explanation": "It accumulates events and may reset when its producer restarts. Rate calculations must account for resets. In the scenario, use an appropriate reset-aware rate calculation. The alternative \u2018Interpret the drop as a negative number of user requests\u2019 does not address the stated evidence or constraint.",
+      "id": "observability-04-interview",
+      "title": "Counters \u00b7 interview",
+      "type": "interview",
+      "question": "Explain counters and reset-aware rate calculations.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "It accumulates events and may reset when its producer restarts. Rate calculations must account for resets. A practical response is: Use an appropriate reset-aware rate calculation. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that a counter is intended to fluctuate freely with current temperature.",
+      "answerChecklist": [
+        "It accumulates events and may reset when its producer restarts",
+        "Rate calculations must account for resets",
+        "Use an appropriate reset-aware rate calculation",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "A service restart makes the raw request counter fall. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "observability",
+      "objective": "Explain gauges and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Gauges \u2014 primary reference",
+          "url": "https://prometheus.io/docs/concepts/metric_types/"
+        }
+      ],
+      "tags": [
+        "observability",
+        "gauges"
+      ],
+      "takeaway": "A gauge snapshot does not automatically describe all events between samples.",
+      "explanation": "A value that can rise or fall such as queue depth. A gauge snapshot does not automatically describe all events between samples. In the scenario, review sampling and complementary event or age measurements. The alternative \u2018Assume sampled queue depth captures every transient spike\u2019 does not address the stated evidence or constraint.",
+      "id": "observability-05-concept",
+      "title": "Gauges \u00b7 concept",
+      "type": "concept",
+      "question": "What does a gauge commonly represent?",
+      "options": [
+        "A value that can rise or fall such as queue depth",
+        "Gauges must only increase forever",
+        "A gauge always counts total requests since process start",
+        "Assume sampled queue depth captures every transient spike"
+      ],
+      "correct": [
+        0
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "observability",
+      "objective": "Explain gauges and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Gauges \u2014 primary reference",
+          "url": "https://prometheus.io/docs/concepts/metric_types/"
+        }
+      ],
+      "tags": [
+        "observability",
+        "gauges"
+      ],
+      "takeaway": "A gauge snapshot does not automatically describe all events between samples.",
+      "explanation": "A value that can rise or fall such as queue depth. A gauge snapshot does not automatically describe all events between samples. In the scenario, review sampling and complementary event or age measurements. The alternative \u2018Assume sampled queue depth captures every transient spike\u2019 does not address the stated evidence or constraint.",
+      "id": "observability-05-scenario",
+      "title": "Gauges \u00b7 scenario",
+      "type": "scenario",
+      "question": "A queue briefly spikes between scrape intervals. What is the best next step?",
+      "options": [
+        "Assume sampled queue depth captures every transient spike",
+        "Gauges must only increase forever",
+        "A gauge always counts total requests since process start",
+        "Review sampling and complementary event or age measurements"
+      ],
+      "correct": [
+        3
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "observability",
+      "objective": "Explain gauges and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Gauges \u2014 primary reference",
+          "url": "https://prometheus.io/docs/concepts/metric_types/"
+        }
+      ],
+      "tags": [
+        "observability",
+        "gauges"
+      ],
+      "takeaway": "A gauge snapshot does not automatically describe all events between samples.",
+      "explanation": "A value that can rise or fall such as queue depth. A gauge snapshot does not automatically describe all events between samples. In the scenario, review sampling and complementary event or age measurements. The alternative \u2018Assume sampled queue depth captures every transient spike\u2019 does not address the stated evidence or constraint.",
+      "id": "observability-05-principles",
+      "title": "Gauges \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing gauges, which TWO statements are sound operational principles?",
+      "options": [
+        "Gauges must only increase forever",
+        "A gauge always counts total requests since process start",
+        "A value that can rise or fall such as queue depth",
+        "A gauge snapshot does not automatically describe all events between samples"
+      ],
+      "correct": [
+        2,
+        3
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "observability",
+      "objective": "Explain gauges and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Gauges \u2014 primary reference",
+          "url": "https://prometheus.io/docs/concepts/metric_types/"
+        }
+      ],
+      "tags": [
+        "observability",
+        "gauges"
+      ],
+      "takeaway": "A gauge snapshot does not automatically describe all events between samples.",
+      "explanation": "A value that can rise or fall such as queue depth. A gauge snapshot does not automatically describe all events between samples. In the scenario, review sampling and complementary event or age measurements. The alternative \u2018Assume sampled queue depth captures every transient spike\u2019 does not address the stated evidence or constraint.",
+      "id": "observability-05-interview",
+      "title": "Gauges \u00b7 interview",
+      "type": "interview",
+      "question": "Explain gauge limitations and useful complementary metrics.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "A value that can rise or fall such as queue depth. A gauge snapshot does not automatically describe all events between samples. A practical response is: Review sampling and complementary event or age measurements. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that gauges must only increase forever.",
+      "answerChecklist": [
+        "A value that can rise or fall such as queue depth",
+        "A gauge snapshot does not automatically describe all events between samples",
+        "Review sampling and complementary event or age measurements",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "A queue briefly spikes between scrape intervals. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "observability",
+      "objective": "Explain histograms and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Histograms \u2014 primary reference",
+          "url": "https://prometheus.io/docs/practices/histograms/"
+        }
+      ],
+      "tags": [
+        "observability",
+        "histograms"
+      ],
+      "takeaway": "Bucket design affects useful resolution around important thresholds.",
+      "explanation": "A distribution of observations using buckets or supported histogram structures. Bucket design affects useful resolution around important thresholds. In the scenario, choose resolution around the operational threshold. The alternative \u2018Assume a coarse bucket gives exact threshold compliance\u2019 does not address the stated evidence or constraint.",
+      "id": "observability-06-concept",
+      "title": "Histograms \u00b7 concept",
+      "type": "concept",
+      "question": "What does a histogram capture?",
+      "options": [
+        "A histogram is only a single average",
+        "Any histogram gives exact arbitrary percentiles without approximation",
+        "Assume a coarse bucket gives exact threshold compliance",
+        "A distribution of observations using buckets or supported histogram structures"
+      ],
+      "correct": [
+        3
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "observability",
+      "objective": "Explain histograms and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Histograms \u2014 primary reference",
+          "url": "https://prometheus.io/docs/practices/histograms/"
+        }
+      ],
+      "tags": [
+        "observability",
+        "histograms"
+      ],
+      "takeaway": "Bucket design affects useful resolution around important thresholds.",
+      "explanation": "A distribution of observations using buckets or supported histogram structures. Bucket design affects useful resolution around important thresholds. In the scenario, choose resolution around the operational threshold. The alternative \u2018Assume a coarse bucket gives exact threshold compliance\u2019 does not address the stated evidence or constraint.",
+      "id": "observability-06-scenario",
+      "title": "Histograms \u00b7 scenario",
+      "type": "scenario",
+      "question": "A latency SLO threshold lies inside a very wide bucket. What is the best next step?",
+      "options": [
+        "A histogram is only a single average",
+        "Any histogram gives exact arbitrary percentiles without approximation",
+        "Choose resolution around the operational threshold",
+        "Assume a coarse bucket gives exact threshold compliance"
+      ],
+      "correct": [
+        2
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "observability",
+      "objective": "Explain histograms and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Histograms \u2014 primary reference",
+          "url": "https://prometheus.io/docs/practices/histograms/"
+        }
+      ],
+      "tags": [
+        "observability",
+        "histograms"
+      ],
+      "takeaway": "Bucket design affects useful resolution around important thresholds.",
+      "explanation": "A distribution of observations using buckets or supported histogram structures. Bucket design affects useful resolution around important thresholds. In the scenario, choose resolution around the operational threshold. The alternative \u2018Assume a coarse bucket gives exact threshold compliance\u2019 does not address the stated evidence or constraint.",
+      "id": "observability-06-principles",
+      "title": "Histograms \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing histograms, which TWO statements are sound operational principles?",
+      "options": [
+        "Any histogram gives exact arbitrary percentiles without approximation",
+        "A distribution of observations using buckets or supported histogram structures",
+        "Bucket design affects useful resolution around important thresholds",
+        "A histogram is only a single average"
+      ],
+      "correct": [
+        1,
+        2
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "observability",
+      "objective": "Explain histograms and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Histograms \u2014 primary reference",
+          "url": "https://prometheus.io/docs/practices/histograms/"
+        }
+      ],
+      "tags": [
+        "observability",
+        "histograms"
+      ],
+      "takeaway": "Bucket design affects useful resolution around important thresholds.",
+      "explanation": "A distribution of observations using buckets or supported histogram structures. Bucket design affects useful resolution around important thresholds. In the scenario, choose resolution around the operational threshold. The alternative \u2018Assume a coarse bucket gives exact threshold compliance\u2019 does not address the stated evidence or constraint.",
+      "id": "observability-06-interview",
+      "title": "Histograms \u00b7 interview",
+      "type": "interview",
+      "question": "Explain histogram design for latency SLOs.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "A distribution of observations using buckets or supported histogram structures. Bucket design affects useful resolution around important thresholds. A practical response is: Choose resolution around the operational threshold. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that a histogram is only a single average.",
+      "answerChecklist": [
+        "A distribution of observations using buckets or supported histogram structures",
+        "Bucket design affects useful resolution around important thresholds",
+        "Choose resolution around the operational threshold",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "A latency SLO threshold lies inside a very wide bucket. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "observability",
+      "objective": "Explain labels and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Labels \u2014 primary reference",
+          "url": "https://prometheus.io/docs/practices/naming/"
+        }
+      ],
+      "tags": [
+        "observability",
+        "labels"
+      ],
+      "takeaway": "Unbounded identifiers can create major cost and reliability problems.",
+      "explanation": "Each unique label combination can create another time series. Unbounded identifiers can create major cost and reliability problems. In the scenario, remove unbounded labels and use logs or traces for per-request identity. The alternative \u2018Increase label length limits instead of reducing cardinality\u2019 does not address the stated evidence or constraint.",
+      "id": "observability-07-concept",
+      "title": "Labels \u00b7 concept",
+      "type": "concept",
+      "question": "Why limit metric label cardinality?",
+      "options": [
+        "Labels have no effect on storage or query cost",
+        "Increase label length limits instead of reducing cardinality",
+        "Each unique label combination can create another time series",
+        "User IDs are always safe low-cardinality metric labels"
+      ],
+      "correct": [
+        2
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "observability",
+      "objective": "Explain labels and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Labels \u2014 primary reference",
+          "url": "https://prometheus.io/docs/practices/naming/"
+        }
+      ],
+      "tags": [
+        "observability",
+        "labels"
+      ],
+      "takeaway": "Unbounded identifiers can create major cost and reliability problems.",
+      "explanation": "Each unique label combination can create another time series. Unbounded identifiers can create major cost and reliability problems. In the scenario, remove unbounded labels and use logs or traces for per-request identity. The alternative \u2018Increase label length limits instead of reducing cardinality\u2019 does not address the stated evidence or constraint.",
+      "id": "observability-07-scenario",
+      "title": "Labels \u00b7 scenario",
+      "type": "scenario",
+      "question": "A metric adds a request ID label and series count explodes. What is the best next step?",
+      "options": [
+        "Labels have no effect on storage or query cost",
+        "Remove unbounded labels and use logs or traces for per-request identity",
+        "Increase label length limits instead of reducing cardinality",
+        "User IDs are always safe low-cardinality metric labels"
+      ],
+      "correct": [
+        1
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "observability",
+      "objective": "Explain labels and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Labels \u2014 primary reference",
+          "url": "https://prometheus.io/docs/practices/naming/"
+        }
+      ],
+      "tags": [
+        "observability",
+        "labels"
+      ],
+      "takeaway": "Unbounded identifiers can create major cost and reliability problems.",
+      "explanation": "Each unique label combination can create another time series. Unbounded identifiers can create major cost and reliability problems. In the scenario, remove unbounded labels and use logs or traces for per-request identity. The alternative \u2018Increase label length limits instead of reducing cardinality\u2019 does not address the stated evidence or constraint.",
+      "id": "observability-07-principles",
+      "title": "Labels \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing labels, which TWO statements are sound operational principles?",
+      "options": [
+        "Each unique label combination can create another time series",
+        "Unbounded identifiers can create major cost and reliability problems",
+        "User IDs are always safe low-cardinality metric labels",
+        "Labels have no effect on storage or query cost"
+      ],
+      "correct": [
+        0,
+        1
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "observability",
+      "objective": "Explain labels and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Labels \u2014 primary reference",
+          "url": "https://prometheus.io/docs/practices/naming/"
+        }
+      ],
+      "tags": [
+        "observability",
+        "labels"
+      ],
+      "takeaway": "Unbounded identifiers can create major cost and reliability problems.",
+      "explanation": "Each unique label combination can create another time series. Unbounded identifiers can create major cost and reliability problems. In the scenario, remove unbounded labels and use logs or traces for per-request identity. The alternative \u2018Increase label length limits instead of reducing cardinality\u2019 does not address the stated evidence or constraint.",
+      "id": "observability-07-interview",
+      "title": "Labels \u00b7 interview",
+      "type": "interview",
+      "question": "Explain where high-cardinality request context belongs.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "Each unique label combination can create another time series. Unbounded identifiers can create major cost and reliability problems. A practical response is: Remove unbounded labels and use logs or traces for per-request identity. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that user IDs are always safe low-cardinality metric labels.",
+      "answerChecklist": [
+        "Each unique label combination can create another time series",
+        "Unbounded identifiers can create major cost and reliability problems",
+        "Remove unbounded labels and use logs or traces for per-request identity",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "A metric adds a request ID label and series count explodes. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "observability",
+      "objective": "Explain dashboards and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Dashboards \u2014 primary reference",
+          "url": "https://sre.google/workbook/monitoring/"
+        }
+      ],
+      "tags": [
+        "observability",
+        "dashboards"
+      ],
+      "takeaway": "Clear units windows and aggregation prevent misinterpretation.",
+      "explanation": "It supports specific questions about service behavior and impact. Clear units windows and aggregation prevent misinterpretation. In the scenario, label units and queries and organize around operational questions. The alternative \u2018Add more unlabeled charts\u2019 does not address the stated evidence or constraint.",
+      "id": "observability-08-concept",
+      "title": "Dashboards \u00b7 concept",
+      "type": "concept",
+      "question": "What makes a dashboard operationally useful?",
+      "options": [
+        "Add more unlabeled charts",
+        "It supports specific questions about service behavior and impact",
+        "More panels always mean better incident response",
+        "A dashboard replaces all alerting and investigation"
+      ],
+      "correct": [
+        1
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "observability",
+      "objective": "Explain dashboards and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Dashboards \u2014 primary reference",
+          "url": "https://sre.google/workbook/monitoring/"
+        }
+      ],
+      "tags": [
+        "observability",
+        "dashboards"
+      ],
+      "takeaway": "Clear units windows and aggregation prevent misinterpretation.",
+      "explanation": "It supports specific questions about service behavior and impact. Clear units windows and aggregation prevent misinterpretation. In the scenario, label units and queries and organize around operational questions. The alternative \u2018Add more unlabeled charts\u2019 does not address the stated evidence or constraint.",
+      "id": "observability-08-scenario",
+      "title": "Dashboards \u00b7 scenario",
+      "type": "scenario",
+      "question": "Responders cannot tell whether a graph shows totals or rates. What is the best next step?",
+      "options": [
+        "Label units and queries and organize around operational questions",
+        "Add more unlabeled charts",
+        "More panels always mean better incident response",
+        "A dashboard replaces all alerting and investigation"
+      ],
+      "correct": [
+        0
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "observability",
+      "objective": "Explain dashboards and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Dashboards \u2014 primary reference",
+          "url": "https://sre.google/workbook/monitoring/"
+        }
+      ],
+      "tags": [
+        "observability",
+        "dashboards"
+      ],
+      "takeaway": "Clear units windows and aggregation prevent misinterpretation.",
+      "explanation": "It supports specific questions about service behavior and impact. Clear units windows and aggregation prevent misinterpretation. In the scenario, label units and queries and organize around operational questions. The alternative \u2018Add more unlabeled charts\u2019 does not address the stated evidence or constraint.",
+      "id": "observability-08-principles",
+      "title": "Dashboards \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing dashboards, which TWO statements are sound operational principles?",
+      "options": [
+        "Clear units windows and aggregation prevent misinterpretation",
+        "More panels always mean better incident response",
+        "A dashboard replaces all alerting and investigation",
+        "It supports specific questions about service behavior and impact"
+      ],
+      "correct": [
+        0,
+        3
+      ]
+    },
+    {
+      "level": "easy",
+      "topic": "observability",
+      "objective": "Explain dashboards and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Dashboards \u2014 primary reference",
+          "url": "https://sre.google/workbook/monitoring/"
+        }
+      ],
+      "tags": [
+        "observability",
+        "dashboards"
+      ],
+      "takeaway": "Clear units windows and aggregation prevent misinterpretation.",
+      "explanation": "It supports specific questions about service behavior and impact. Clear units windows and aggregation prevent misinterpretation. In the scenario, label units and queries and organize around operational questions. The alternative \u2018Add more unlabeled charts\u2019 does not address the stated evidence or constraint.",
+      "id": "observability-08-interview",
+      "title": "Dashboards \u00b7 interview",
+      "type": "interview",
+      "question": "Explain how you design an incident-focused dashboard.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "It supports specific questions about service behavior and impact. Clear units windows and aggregation prevent misinterpretation. A practical response is: Label units and queries and organize around operational questions. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that more panels always mean better incident response.",
+      "answerChecklist": [
+        "It supports specific questions about service behavior and impact",
+        "Clear units windows and aggregation prevent misinterpretation",
+        "Label units and queries and organize around operational questions",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "Responders cannot tell whether a graph shows totals or rates. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "observability",
+      "objective": "Explain rate before aggregation and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Rate before aggregation \u2014 primary reference",
+          "url": "https://prometheus.io/docs/querying/functions/"
+        }
+      ],
+      "tags": [
+        "observability",
+        "rate-before-aggregation"
+      ],
+      "takeaway": "Counter identity matters when instances restart independently.",
+      "explanation": "Per-series reset detection can be lost after combining counters. Counter identity matters when instances restart independently. In the scenario, compute reset-aware rates per counter series before aggregation. The alternative \u2018Treat the aggregate raw counter as one uninterrupted process\u2019 does not address the stated evidence or constraint.",
+      "id": "observability-09-concept",
+      "title": "Rate before aggregation \u00b7 concept",
+      "type": "concept",
+      "question": "Why often calculate counter rates before summing series?",
+      "options": [
+        "Per-series reset detection can be lost after combining counters",
+        "Summing raw counters always preserves every reset correctly",
+        "Rate calculations are only valid for gauges",
+        "Treat the aggregate raw counter as one uninterrupted process"
+      ],
+      "correct": [
+        0
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "observability",
+      "objective": "Explain rate before aggregation and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Rate before aggregation \u2014 primary reference",
+          "url": "https://prometheus.io/docs/querying/functions/"
+        }
+      ],
+      "tags": [
+        "observability",
+        "rate-before-aggregation"
+      ],
+      "takeaway": "Counter identity matters when instances restart independently.",
+      "explanation": "Per-series reset detection can be lost after combining counters. Counter identity matters when instances restart independently. In the scenario, compute reset-aware rates per counter series before aggregation. The alternative \u2018Treat the aggregate raw counter as one uninterrupted process\u2019 does not address the stated evidence or constraint.",
+      "id": "observability-09-scenario",
+      "title": "Rate before aggregation \u00b7 scenario",
+      "type": "scenario",
+      "question": "One instance restarts and an aggregate traffic graph spikes incorrectly. What is the best next step?",
+      "options": [
+        "Treat the aggregate raw counter as one uninterrupted process",
+        "Summing raw counters always preserves every reset correctly",
+        "Rate calculations are only valid for gauges",
+        "Compute reset-aware rates per counter series before aggregation"
+      ],
+      "correct": [
+        3
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "observability",
+      "objective": "Explain rate before aggregation and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Rate before aggregation \u2014 primary reference",
+          "url": "https://prometheus.io/docs/querying/functions/"
+        }
+      ],
+      "tags": [
+        "observability",
+        "rate-before-aggregation"
+      ],
+      "takeaway": "Counter identity matters when instances restart independently.",
+      "explanation": "Per-series reset detection can be lost after combining counters. Counter identity matters when instances restart independently. In the scenario, compute reset-aware rates per counter series before aggregation. The alternative \u2018Treat the aggregate raw counter as one uninterrupted process\u2019 does not address the stated evidence or constraint.",
+      "id": "observability-09-principles",
+      "title": "Rate before aggregation \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing rate before aggregation, which TWO statements are sound operational principles?",
+      "options": [
+        "Summing raw counters always preserves every reset correctly",
+        "Rate calculations are only valid for gauges",
+        "Per-series reset detection can be lost after combining counters",
+        "Counter identity matters when instances restart independently"
+      ],
+      "correct": [
+        2,
+        3
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "observability",
+      "objective": "Explain rate before aggregation and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Rate before aggregation \u2014 primary reference",
+          "url": "https://prometheus.io/docs/querying/functions/"
+        }
+      ],
+      "tags": [
+        "observability",
+        "rate-before-aggregation"
+      ],
+      "takeaway": "Counter identity matters when instances restart independently.",
+      "explanation": "Per-series reset detection can be lost after combining counters. Counter identity matters when instances restart independently. In the scenario, compute reset-aware rates per counter series before aggregation. The alternative \u2018Treat the aggregate raw counter as one uninterrupted process\u2019 does not address the stated evidence or constraint.",
+      "id": "observability-09-interview",
+      "title": "Rate before aggregation \u00b7 interview",
+      "type": "interview",
+      "question": "Explain counter reset handling across multiple instances.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "Per-series reset detection can be lost after combining counters. Counter identity matters when instances restart independently. A practical response is: Compute reset-aware rates per counter series before aggregation. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that summing raw counters always preserves every reset correctly.",
+      "answerChecklist": [
+        "Per-series reset detection can be lost after combining counters",
+        "Counter identity matters when instances restart independently",
+        "Compute reset-aware rates per counter series before aggregation",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "One instance restarts and an aggregate traffic graph spikes incorrectly. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "observability",
+      "objective": "Explain percentiles and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Percentiles \u2014 primary reference",
+          "url": "https://prometheus.io/docs/practices/histograms/"
+        }
+      ],
+      "tags": [
+        "observability",
+        "percentiles"
+      ],
+      "takeaway": "Aggregate compatible distributions before estimating fleet quantiles.",
+      "explanation": "An average of quantiles is not the quantile of the combined distribution. Aggregate compatible distributions before estimating fleet quantiles. In the scenario, aggregate suitable histogram data for the desired population. The alternative \u2018Average the two p99 numbers and call it exact\u2019 does not address the stated evidence or constraint.",
+      "id": "observability-10-concept",
+      "title": "Percentiles \u00b7 concept",
+      "type": "concept",
+      "question": "Why should you avoid averaging instance p99 values?",
+      "options": [
+        "The average of p99 values is always the fleet p99",
+        "Every instance contributes identical traffic volume",
+        "Average the two p99 numbers and call it exact",
+        "An average of quantiles is not the quantile of the combined distribution"
+      ],
+      "correct": [
+        3
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "observability",
+      "objective": "Explain percentiles and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Percentiles \u2014 primary reference",
+          "url": "https://prometheus.io/docs/practices/histograms/"
+        }
+      ],
+      "tags": [
+        "observability",
+        "percentiles"
+      ],
+      "takeaway": "Aggregate compatible distributions before estimating fleet quantiles.",
+      "explanation": "An average of quantiles is not the quantile of the combined distribution. Aggregate compatible distributions before estimating fleet quantiles. In the scenario, aggregate suitable histogram data for the desired population. The alternative \u2018Average the two p99 numbers and call it exact\u2019 does not address the stated evidence or constraint.",
+      "id": "observability-10-scenario",
+      "title": "Percentiles \u00b7 scenario",
+      "type": "scenario",
+      "question": "Two instances have very different traffic and latency distributions. What is the best next step?",
+      "options": [
+        "The average of p99 values is always the fleet p99",
+        "Every instance contributes identical traffic volume",
+        "Aggregate suitable histogram data for the desired population",
+        "Average the two p99 numbers and call it exact"
+      ],
+      "correct": [
+        2
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "observability",
+      "objective": "Explain percentiles and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Percentiles \u2014 primary reference",
+          "url": "https://prometheus.io/docs/practices/histograms/"
+        }
+      ],
+      "tags": [
+        "observability",
+        "percentiles"
+      ],
+      "takeaway": "Aggregate compatible distributions before estimating fleet quantiles.",
+      "explanation": "An average of quantiles is not the quantile of the combined distribution. Aggregate compatible distributions before estimating fleet quantiles. In the scenario, aggregate suitable histogram data for the desired population. The alternative \u2018Average the two p99 numbers and call it exact\u2019 does not address the stated evidence or constraint.",
+      "id": "observability-10-principles",
+      "title": "Percentiles \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing percentiles, which TWO statements are sound operational principles?",
+      "options": [
+        "Every instance contributes identical traffic volume",
+        "An average of quantiles is not the quantile of the combined distribution",
+        "Aggregate compatible distributions before estimating fleet quantiles",
+        "The average of p99 values is always the fleet p99"
+      ],
+      "correct": [
+        1,
+        2
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "observability",
+      "objective": "Explain percentiles and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Percentiles \u2014 primary reference",
+          "url": "https://prometheus.io/docs/practices/histograms/"
+        }
+      ],
+      "tags": [
+        "observability",
+        "percentiles"
+      ],
+      "takeaway": "Aggregate compatible distributions before estimating fleet quantiles.",
+      "explanation": "An average of quantiles is not the quantile of the combined distribution. Aggregate compatible distributions before estimating fleet quantiles. In the scenario, aggregate suitable histogram data for the desired population. The alternative \u2018Average the two p99 numbers and call it exact\u2019 does not address the stated evidence or constraint.",
+      "id": "observability-10-interview",
+      "title": "Percentiles \u00b7 interview",
+      "type": "interview",
+      "question": "Explain fleet-level latency percentiles.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "An average of quantiles is not the quantile of the combined distribution. Aggregate compatible distributions before estimating fleet quantiles. A practical response is: Aggregate suitable histogram data for the desired population. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that the average of p99 values is always the fleet p99.",
+      "answerChecklist": [
+        "An average of quantiles is not the quantile of the combined distribution",
+        "Aggregate compatible distributions before estimating fleet quantiles",
+        "Aggregate suitable histogram data for the desired population",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "Two instances have very different traffic and latency distributions. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "observability",
+      "objective": "Explain missing data and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Missing data \u2014 primary reference",
+          "url": "https://prometheus.io/docs/querying/functions/"
+        }
+      ],
+      "tags": [
+        "observability",
+        "missing-data"
+      ],
+      "takeaway": "Missing-data policy should match the alert's intended meaning.",
+      "explanation": "Absence can mean collection or service failure rather than zero activity. Missing-data policy should match the alert's intended meaning. In the scenario, monitor collection health and define explicit missing-data behavior. The alternative \u2018Interpret the empty series as perfect success\u2019 does not address the stated evidence or constraint.",
+      "id": "observability-11-concept",
+      "title": "Missing data \u00b7 concept",
+      "type": "concept",
+      "question": "Why distinguish missing samples from zero values?",
+      "options": [
+        "Missing metrics always mean the application is healthy",
+        "Interpret the empty series as perfect success",
+        "Absence can mean collection or service failure rather than zero activity",
+        "No samples always prove no errors occurred"
+      ],
+      "correct": [
+        2
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "observability",
+      "objective": "Explain missing data and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Missing data \u2014 primary reference",
+          "url": "https://prometheus.io/docs/querying/functions/"
+        }
+      ],
+      "tags": [
+        "observability",
+        "missing-data"
+      ],
+      "takeaway": "Missing-data policy should match the alert's intended meaning.",
+      "explanation": "Absence can mean collection or service failure rather than zero activity. Missing-data policy should match the alert's intended meaning. In the scenario, monitor collection health and define explicit missing-data behavior. The alternative \u2018Interpret the empty series as perfect success\u2019 does not address the stated evidence or constraint.",
+      "id": "observability-11-scenario",
+      "title": "Missing data \u00b7 scenario",
+      "type": "scenario",
+      "question": "An error-rate alert goes quiet when scraping stops. What is the best next step?",
+      "options": [
+        "Missing metrics always mean the application is healthy",
+        "Monitor collection health and define explicit missing-data behavior",
+        "Interpret the empty series as perfect success",
+        "No samples always prove no errors occurred"
+      ],
+      "correct": [
+        1
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "observability",
+      "objective": "Explain missing data and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Missing data \u2014 primary reference",
+          "url": "https://prometheus.io/docs/querying/functions/"
+        }
+      ],
+      "tags": [
+        "observability",
+        "missing-data"
+      ],
+      "takeaway": "Missing-data policy should match the alert's intended meaning.",
+      "explanation": "Absence can mean collection or service failure rather than zero activity. Missing-data policy should match the alert's intended meaning. In the scenario, monitor collection health and define explicit missing-data behavior. The alternative \u2018Interpret the empty series as perfect success\u2019 does not address the stated evidence or constraint.",
+      "id": "observability-11-principles",
+      "title": "Missing data \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing missing data, which TWO statements are sound operational principles?",
+      "options": [
+        "Absence can mean collection or service failure rather than zero activity",
+        "Missing-data policy should match the alert's intended meaning",
+        "No samples always prove no errors occurred",
+        "Missing metrics always mean the application is healthy"
+      ],
+      "correct": [
+        0,
+        1
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "observability",
+      "objective": "Explain missing data and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Missing data \u2014 primary reference",
+          "url": "https://prometheus.io/docs/querying/functions/"
+        }
+      ],
+      "tags": [
+        "observability",
+        "missing-data"
+      ],
+      "takeaway": "Missing-data policy should match the alert's intended meaning.",
+      "explanation": "Absence can mean collection or service failure rather than zero activity. Missing-data policy should match the alert's intended meaning. In the scenario, monitor collection health and define explicit missing-data behavior. The alternative \u2018Interpret the empty series as perfect success\u2019 does not address the stated evidence or constraint.",
+      "id": "observability-11-interview",
+      "title": "Missing data \u00b7 interview",
+      "type": "interview",
+      "question": "Explain how monitoring should handle missing telemetry.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "Absence can mean collection or service failure rather than zero activity. Missing-data policy should match the alert's intended meaning. A practical response is: Monitor collection health and define explicit missing-data behavior. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that no samples always prove no errors occurred.",
+      "answerChecklist": [
+        "Absence can mean collection or service failure rather than zero activity",
+        "Missing-data policy should match the alert's intended meaning",
+        "Monitor collection health and define explicit missing-data behavior",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "An error-rate alert goes quiet when scraping stops. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "observability",
+      "objective": "Explain scrape health and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Scrape health \u2014 primary reference",
+          "url": "https://sre.google/workbook/monitoring/"
+        }
+      ],
+      "tags": [
+        "observability",
+        "scrape-health"
+      ],
+      "takeaway": "The cause may be target failure or a collection-path problem.",
+      "explanation": "The collector could not obtain the expected metrics response. The cause may be target failure or a collection-path problem. In the scenario, inspect scrape errors and distinguish telemetry reachability from service behavior. The alternative \u2018Declare a complete user outage from scrape status alone\u2019 does not address the stated evidence or constraint.",
+      "id": "observability-12-concept",
+      "title": "Scrape health \u00b7 concept",
+      "type": "concept",
+      "question": "What does a failed metrics scrape indicate?",
+      "options": [
+        "Declare a complete user outage from scrape status alone",
+        "The collector could not obtain the expected metrics response",
+        "It always proves all user requests failed",
+        "It always proves only the monitoring system failed"
+      ],
+      "correct": [
+        1
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "observability",
+      "objective": "Explain scrape health and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Scrape health \u2014 primary reference",
+          "url": "https://sre.google/workbook/monitoring/"
+        }
+      ],
+      "tags": [
+        "observability",
+        "scrape-health"
+      ],
+      "takeaway": "The cause may be target failure or a collection-path problem.",
+      "explanation": "The collector could not obtain the expected metrics response. The cause may be target failure or a collection-path problem. In the scenario, inspect scrape errors and distinguish telemetry reachability from service behavior. The alternative \u2018Declare a complete user outage from scrape status alone\u2019 does not address the stated evidence or constraint.",
+      "id": "observability-12-scenario",
+      "title": "Scrape health \u00b7 scenario",
+      "type": "scenario",
+      "question": "A target scrape fails while user traffic still succeeds. What is the best next step?",
+      "options": [
+        "Inspect scrape errors and distinguish telemetry reachability from service behavior",
+        "Declare a complete user outage from scrape status alone",
+        "It always proves all user requests failed",
+        "It always proves only the monitoring system failed"
+      ],
+      "correct": [
+        0
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "observability",
+      "objective": "Explain scrape health and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Scrape health \u2014 primary reference",
+          "url": "https://sre.google/workbook/monitoring/"
+        }
+      ],
+      "tags": [
+        "observability",
+        "scrape-health"
+      ],
+      "takeaway": "The cause may be target failure or a collection-path problem.",
+      "explanation": "The collector could not obtain the expected metrics response. The cause may be target failure or a collection-path problem. In the scenario, inspect scrape errors and distinguish telemetry reachability from service behavior. The alternative \u2018Declare a complete user outage from scrape status alone\u2019 does not address the stated evidence or constraint.",
+      "id": "observability-12-principles",
+      "title": "Scrape health \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing scrape health, which TWO statements are sound operational principles?",
+      "options": [
+        "The cause may be target failure or a collection-path problem",
+        "It always proves all user requests failed",
+        "It always proves only the monitoring system failed",
+        "The collector could not obtain the expected metrics response"
+      ],
+      "correct": [
+        0,
+        3
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "observability",
+      "objective": "Explain scrape health and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Scrape health \u2014 primary reference",
+          "url": "https://sre.google/workbook/monitoring/"
+        }
+      ],
+      "tags": [
+        "observability",
+        "scrape-health"
+      ],
+      "takeaway": "The cause may be target failure or a collection-path problem.",
+      "explanation": "The collector could not obtain the expected metrics response. The cause may be target failure or a collection-path problem. In the scenario, inspect scrape errors and distinguish telemetry reachability from service behavior. The alternative \u2018Declare a complete user outage from scrape status alone\u2019 does not address the stated evidence or constraint.",
+      "id": "observability-12-interview",
+      "title": "Scrape health \u00b7 interview",
+      "type": "interview",
+      "question": "Explain target monitoring versus user-visible availability.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "The collector could not obtain the expected metrics response. The cause may be target failure or a collection-path problem. A practical response is: Inspect scrape errors and distinguish telemetry reachability from service behavior. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that it always proves all user requests failed.",
+      "answerChecklist": [
+        "The collector could not obtain the expected metrics response",
+        "The cause may be target failure or a collection-path problem",
+        "Inspect scrape errors and distinguish telemetry reachability from service behavior",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "A target scrape fails while user traffic still succeeds. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "observability",
+      "objective": "Explain recording rules and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Recording rules \u2014 primary reference",
+          "url": "https://prometheus.io/docs/configuration/recording_rules/"
+        }
+      ],
+      "tags": [
+        "observability",
+        "recording-rules"
+      ],
+      "takeaway": "Rule correctness and evaluation cost still need review.",
+      "explanation": "Precompute useful derived time series for repeated queries. Rule correctness and evaluation cost still need review. In the scenario, evaluate a suitable precomputed rule and validate its semantics. The alternative \u2018Duplicate the same expensive query across more panels\u2019 does not address the stated evidence or constraint.",
+      "id": "observability-13-concept",
+      "title": "Recording rules \u00b7 concept",
+      "type": "concept",
+      "question": "What is a common use of recording rules?",
+      "options": [
+        "Precompute useful derived time series for repeated queries",
+        "Recording rules automatically make incorrect queries correct",
+        "They preserve every raw event forever",
+        "Duplicate the same expensive query across more panels"
+      ],
+      "correct": [
+        0
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "observability",
+      "objective": "Explain recording rules and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Recording rules \u2014 primary reference",
+          "url": "https://prometheus.io/docs/configuration/recording_rules/"
+        }
+      ],
+      "tags": [
+        "observability",
+        "recording-rules"
+      ],
+      "takeaway": "Rule correctness and evaluation cost still need review.",
+      "explanation": "Precompute useful derived time series for repeated queries. Rule correctness and evaluation cost still need review. In the scenario, evaluate a suitable precomputed rule and validate its semantics. The alternative \u2018Duplicate the same expensive query across more panels\u2019 does not address the stated evidence or constraint.",
+      "id": "observability-13-scenario",
+      "title": "Recording rules \u00b7 scenario",
+      "type": "scenario",
+      "question": "A frequently used expensive dashboard query overloads the backend. What is the best next step?",
+      "options": [
+        "Duplicate the same expensive query across more panels",
+        "Recording rules automatically make incorrect queries correct",
+        "They preserve every raw event forever",
+        "Evaluate a suitable precomputed rule and validate its semantics"
+      ],
+      "correct": [
+        3
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "observability",
+      "objective": "Explain recording rules and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Recording rules \u2014 primary reference",
+          "url": "https://prometheus.io/docs/configuration/recording_rules/"
+        }
+      ],
+      "tags": [
+        "observability",
+        "recording-rules"
+      ],
+      "takeaway": "Rule correctness and evaluation cost still need review.",
+      "explanation": "Precompute useful derived time series for repeated queries. Rule correctness and evaluation cost still need review. In the scenario, evaluate a suitable precomputed rule and validate its semantics. The alternative \u2018Duplicate the same expensive query across more panels\u2019 does not address the stated evidence or constraint.",
+      "id": "observability-13-principles",
+      "title": "Recording rules \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing recording rules, which TWO statements are sound operational principles?",
+      "options": [
+        "Recording rules automatically make incorrect queries correct",
+        "They preserve every raw event forever",
+        "Precompute useful derived time series for repeated queries",
+        "Rule correctness and evaluation cost still need review"
+      ],
+      "correct": [
+        2,
+        3
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "observability",
+      "objective": "Explain recording rules and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Recording rules \u2014 primary reference",
+          "url": "https://prometheus.io/docs/configuration/recording_rules/"
+        }
+      ],
+      "tags": [
+        "observability",
+        "recording-rules"
+      ],
+      "takeaway": "Rule correctness and evaluation cost still need review.",
+      "explanation": "Precompute useful derived time series for repeated queries. Rule correctness and evaluation cost still need review. In the scenario, evaluate a suitable precomputed rule and validate its semantics. The alternative \u2018Duplicate the same expensive query across more panels\u2019 does not address the stated evidence or constraint.",
+      "id": "observability-13-interview",
+      "title": "Recording rules \u00b7 interview",
+      "type": "interview",
+      "question": "Explain when precomputation helps observability queries.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "Precompute useful derived time series for repeated queries. Rule correctness and evaluation cost still need review. A practical response is: Evaluate a suitable precomputed rule and validate its semantics. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that recording rules automatically make incorrect queries correct.",
+      "answerChecklist": [
+        "Precompute useful derived time series for repeated queries",
+        "Rule correctness and evaluation cost still need review",
+        "Evaluate a suitable precomputed rule and validate its semantics",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "A frequently used expensive dashboard query overloads the backend. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "observability",
+      "objective": "Explain alert duration and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Alert duration \u2014 primary reference",
+          "url": "https://prometheus.io/docs/configuration/alerting_rules/"
+        }
+      ],
+      "tags": [
+        "observability",
+        "alert-duration"
+      ],
+      "takeaway": "Long delays can also postpone detection of genuine incidents.",
+      "explanation": "Pages caused by brief threshold crossings. Long delays can also postpone detection of genuine incidents. In the scenario, tune duration with impact and detection-time requirements. The alternative \u2018Set an arbitrarily long delay to hide all alerts\u2019 does not address the stated evidence or constraint.",
+      "id": "observability-14-concept",
+      "title": "Alert duration \u00b7 concept",
+      "type": "concept",
+      "question": "What does a sustained-condition alert delay help reduce?",
+      "options": [
+        "Any delay always improves every alert",
+        "A delay changes the underlying metric value",
+        "Set an arbitrarily long delay to hide all alerts",
+        "Pages caused by brief threshold crossings"
+      ],
+      "correct": [
+        3
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "observability",
+      "objective": "Explain alert duration and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Alert duration \u2014 primary reference",
+          "url": "https://prometheus.io/docs/configuration/alerting_rules/"
+        }
+      ],
+      "tags": [
+        "observability",
+        "alert-duration"
+      ],
+      "takeaway": "Long delays can also postpone detection of genuine incidents.",
+      "explanation": "Pages caused by brief threshold crossings. Long delays can also postpone detection of genuine incidents. In the scenario, tune duration with impact and detection-time requirements. The alternative \u2018Set an arbitrarily long delay to hide all alerts\u2019 does not address the stated evidence or constraint.",
+      "id": "observability-14-scenario",
+      "title": "Alert duration \u00b7 scenario",
+      "type": "scenario",
+      "question": "An alert pages repeatedly on harmless short spikes. What is the best next step?",
+      "options": [
+        "Any delay always improves every alert",
+        "A delay changes the underlying metric value",
+        "Tune duration with impact and detection-time requirements",
+        "Set an arbitrarily long delay to hide all alerts"
+      ],
+      "correct": [
+        2
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "observability",
+      "objective": "Explain alert duration and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Alert duration \u2014 primary reference",
+          "url": "https://prometheus.io/docs/configuration/alerting_rules/"
+        }
+      ],
+      "tags": [
+        "observability",
+        "alert-duration"
+      ],
+      "takeaway": "Long delays can also postpone detection of genuine incidents.",
+      "explanation": "Pages caused by brief threshold crossings. Long delays can also postpone detection of genuine incidents. In the scenario, tune duration with impact and detection-time requirements. The alternative \u2018Set an arbitrarily long delay to hide all alerts\u2019 does not address the stated evidence or constraint.",
+      "id": "observability-14-principles",
+      "title": "Alert duration \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing alert duration, which TWO statements are sound operational principles?",
+      "options": [
+        "A delay changes the underlying metric value",
+        "Pages caused by brief threshold crossings",
+        "Long delays can also postpone detection of genuine incidents",
+        "Any delay always improves every alert"
+      ],
+      "correct": [
+        1,
+        2
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "observability",
+      "objective": "Explain alert duration and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Alert duration \u2014 primary reference",
+          "url": "https://prometheus.io/docs/configuration/alerting_rules/"
+        }
+      ],
+      "tags": [
+        "observability",
+        "alert-duration"
+      ],
+      "takeaway": "Long delays can also postpone detection of genuine incidents.",
+      "explanation": "Pages caused by brief threshold crossings. Long delays can also postpone detection of genuine incidents. In the scenario, tune duration with impact and detection-time requirements. The alternative \u2018Set an arbitrarily long delay to hide all alerts\u2019 does not address the stated evidence or constraint.",
+      "id": "observability-14-interview",
+      "title": "Alert duration \u00b7 interview",
+      "type": "interview",
+      "question": "Explain alert persistence windows and detection trade-offs.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "Pages caused by brief threshold crossings. Long delays can also postpone detection of genuine incidents. A practical response is: Tune duration with impact and detection-time requirements. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that any delay always improves every alert.",
+      "answerChecklist": [
+        "Pages caused by brief threshold crossings",
+        "Long delays can also postpone detection of genuine incidents",
+        "Tune duration with impact and detection-time requirements",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "An alert pages repeatedly on harmless short spikes. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "observability",
+      "objective": "Explain alert grouping and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Alert grouping \u2014 primary reference",
+          "url": "https://prometheus.io/docs/alerting/latest/alertmanager/"
+        }
+      ],
+      "tags": [
+        "observability",
+        "alert-grouping"
+      ],
+      "takeaway": "Grouping must preserve enough context to identify affected services.",
+      "explanation": "Reduce duplicated notifications about the same operational event. Grouping must preserve enough context to identify affected services. In the scenario, group correlated notifications and identify the likely shared incident. The alternative \u2018Create a separate incident for every identical symptom automatically\u2019 does not address the stated evidence or constraint.",
+      "id": "observability-15-concept",
+      "title": "Alert grouping \u00b7 concept",
+      "type": "concept",
+      "question": "Why group related alerts?",
+      "options": [
+        "Every alert should page independently regardless of shared cause",
+        "Create a separate incident for every identical symptom automatically",
+        "Reduce duplicated notifications about the same operational event",
+        "Grouping means discarding all but one underlying signal forever"
+      ],
+      "correct": [
+        2
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "observability",
+      "objective": "Explain alert grouping and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Alert grouping \u2014 primary reference",
+          "url": "https://prometheus.io/docs/alerting/latest/alertmanager/"
+        }
+      ],
+      "tags": [
+        "observability",
+        "alert-grouping"
+      ],
+      "takeaway": "Grouping must preserve enough context to identify affected services.",
+      "explanation": "Reduce duplicated notifications about the same operational event. Grouping must preserve enough context to identify affected services. In the scenario, group correlated notifications and identify the likely shared incident. The alternative \u2018Create a separate incident for every identical symptom automatically\u2019 does not address the stated evidence or constraint.",
+      "id": "observability-15-scenario",
+      "title": "Alert grouping \u00b7 scenario",
+      "type": "scenario",
+      "question": "One dependency outage causes dozens of similar pages. What is the best next step?",
+      "options": [
+        "Every alert should page independently regardless of shared cause",
+        "Group correlated notifications and identify the likely shared incident",
+        "Create a separate incident for every identical symptom automatically",
+        "Grouping means discarding all but one underlying signal forever"
+      ],
+      "correct": [
+        1
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "observability",
+      "objective": "Explain alert grouping and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Alert grouping \u2014 primary reference",
+          "url": "https://prometheus.io/docs/alerting/latest/alertmanager/"
+        }
+      ],
+      "tags": [
+        "observability",
+        "alert-grouping"
+      ],
+      "takeaway": "Grouping must preserve enough context to identify affected services.",
+      "explanation": "Reduce duplicated notifications about the same operational event. Grouping must preserve enough context to identify affected services. In the scenario, group correlated notifications and identify the likely shared incident. The alternative \u2018Create a separate incident for every identical symptom automatically\u2019 does not address the stated evidence or constraint.",
+      "id": "observability-15-principles",
+      "title": "Alert grouping \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing alert grouping, which TWO statements are sound operational principles?",
+      "options": [
+        "Reduce duplicated notifications about the same operational event",
+        "Grouping must preserve enough context to identify affected services",
+        "Grouping means discarding all but one underlying signal forever",
+        "Every alert should page independently regardless of shared cause"
+      ],
+      "correct": [
+        0,
+        1
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "observability",
+      "objective": "Explain alert grouping and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Alert grouping \u2014 primary reference",
+          "url": "https://prometheus.io/docs/alerting/latest/alertmanager/"
+        }
+      ],
+      "tags": [
+        "observability",
+        "alert-grouping"
+      ],
+      "takeaway": "Grouping must preserve enough context to identify affected services.",
+      "explanation": "Reduce duplicated notifications about the same operational event. Grouping must preserve enough context to identify affected services. In the scenario, group correlated notifications and identify the likely shared incident. The alternative \u2018Create a separate incident for every identical symptom automatically\u2019 does not address the stated evidence or constraint.",
+      "id": "observability-15-interview",
+      "title": "Alert grouping \u00b7 interview",
+      "type": "interview",
+      "question": "Explain useful alert grouping without losing scope.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "Reduce duplicated notifications about the same operational event. Grouping must preserve enough context to identify affected services. A practical response is: Group correlated notifications and identify the likely shared incident. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that grouping means discarding all but one underlying signal forever.",
+      "answerChecklist": [
+        "Reduce duplicated notifications about the same operational event",
+        "Grouping must preserve enough context to identify affected services",
+        "Group correlated notifications and identify the likely shared incident",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "One dependency outage causes dozens of similar pages. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "observability",
+      "objective": "Explain alert inhibition and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Alert inhibition \u2014 primary reference",
+          "url": "https://prometheus.io/docs/alerting/latest/alertmanager/"
+        }
+      ],
+      "tags": [
+        "observability",
+        "alert-inhibition"
+      ],
+      "takeaway": "Rules must avoid hiding unrelated genuine incidents.",
+      "explanation": "Suppress lower-level notifications when a related higher-level condition applies. Rules must avoid hiding unrelated genuine incidents. In the scenario, use carefully scoped inhibition while retaining evidence. The alternative \u2018Suppress all service alerts globally whenever any host fails\u2019 does not address the stated evidence or constraint.",
+      "id": "observability-16-concept",
+      "title": "Alert inhibition \u00b7 concept",
+      "type": "concept",
+      "question": "What is alert inhibition used for?",
+      "options": [
+        "Suppress all service alerts globally whenever any host fails",
+        "Suppress lower-level notifications when a related higher-level condition applies",
+        "Inhibition deletes the underlying metric data",
+        "It proves every suppressed symptom has no user impact"
+      ],
+      "correct": [
+        1
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "observability",
+      "objective": "Explain alert inhibition and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Alert inhibition \u2014 primary reference",
+          "url": "https://prometheus.io/docs/alerting/latest/alertmanager/"
+        }
+      ],
+      "tags": [
+        "observability",
+        "alert-inhibition"
+      ],
+      "takeaway": "Rules must avoid hiding unrelated genuine incidents.",
+      "explanation": "Suppress lower-level notifications when a related higher-level condition applies. Rules must avoid hiding unrelated genuine incidents. In the scenario, use carefully scoped inhibition while retaining evidence. The alternative \u2018Suppress all service alerts globally whenever any host fails\u2019 does not address the stated evidence or constraint.",
+      "id": "observability-16-scenario",
+      "title": "Alert inhibition \u00b7 scenario",
+      "type": "scenario",
+      "question": "A host-down event triggers many derivative service alerts. What is the best next step?",
+      "options": [
+        "Use carefully scoped inhibition while retaining evidence",
+        "Suppress all service alerts globally whenever any host fails",
+        "Inhibition deletes the underlying metric data",
+        "It proves every suppressed symptom has no user impact"
+      ],
+      "correct": [
+        0
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "observability",
+      "objective": "Explain alert inhibition and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Alert inhibition \u2014 primary reference",
+          "url": "https://prometheus.io/docs/alerting/latest/alertmanager/"
+        }
+      ],
+      "tags": [
+        "observability",
+        "alert-inhibition"
+      ],
+      "takeaway": "Rules must avoid hiding unrelated genuine incidents.",
+      "explanation": "Suppress lower-level notifications when a related higher-level condition applies. Rules must avoid hiding unrelated genuine incidents. In the scenario, use carefully scoped inhibition while retaining evidence. The alternative \u2018Suppress all service alerts globally whenever any host fails\u2019 does not address the stated evidence or constraint.",
+      "id": "observability-16-principles",
+      "title": "Alert inhibition \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing alert inhibition, which TWO statements are sound operational principles?",
+      "options": [
+        "Rules must avoid hiding unrelated genuine incidents",
+        "Inhibition deletes the underlying metric data",
+        "It proves every suppressed symptom has no user impact",
+        "Suppress lower-level notifications when a related higher-level condition applies"
+      ],
+      "correct": [
+        0,
+        3
+      ]
+    },
+    {
+      "level": "medium",
+      "topic": "observability",
+      "objective": "Explain alert inhibition and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Alert inhibition \u2014 primary reference",
+          "url": "https://prometheus.io/docs/alerting/latest/alertmanager/"
+        }
+      ],
+      "tags": [
+        "observability",
+        "alert-inhibition"
+      ],
+      "takeaway": "Rules must avoid hiding unrelated genuine incidents.",
+      "explanation": "Suppress lower-level notifications when a related higher-level condition applies. Rules must avoid hiding unrelated genuine incidents. In the scenario, use carefully scoped inhibition while retaining evidence. The alternative \u2018Suppress all service alerts globally whenever any host fails\u2019 does not address the stated evidence or constraint.",
+      "id": "observability-16-interview",
+      "title": "Alert inhibition \u00b7 interview",
+      "type": "interview",
+      "question": "Explain scoped alert inhibition and its risks.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "Suppress lower-level notifications when a related higher-level condition applies. Rules must avoid hiding unrelated genuine incidents. A practical response is: Use carefully scoped inhibition while retaining evidence. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that inhibition deletes the underlying metric data.",
+      "answerChecklist": [
+        "Suppress lower-level notifications when a related higher-level condition applies",
+        "Rules must avoid hiding unrelated genuine incidents",
+        "Use carefully scoped inhibition while retaining evidence",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "A host-down event triggers many derivative service alerts. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "observability",
+      "objective": "Explain sampling and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Sampling \u2014 primary reference",
+          "url": "https://opentelemetry.io/docs/concepts/sampling/"
+        }
+      ],
+      "tags": [
+        "observability",
+        "sampling"
+      ],
+      "takeaway": "Sampling policy affects which questions retained traces can answer.",
+      "explanation": "Reduce volume at the cost of retaining only part of traffic. Sampling policy affects which questions retained traces can answer. In the scenario, review sampling policy and error-retention requirements. The alternative \u2018Claim the failures never occurred because no trace was retained\u2019 does not address the stated evidence or constraint.",
+      "id": "observability-17-concept",
+      "title": "Sampling \u00b7 concept",
+      "type": "concept",
+      "question": "What is a trade-off of trace sampling?",
+      "options": [
+        "Reduce volume at the cost of retaining only part of traffic",
+        "Sampled traces are automatically a complete record of every error",
+        "Sampling removes all instrumentation overhead",
+        "Claim the failures never occurred because no trace was retained"
+      ],
+      "correct": [
+        0
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "observability",
+      "objective": "Explain sampling and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Sampling \u2014 primary reference",
+          "url": "https://opentelemetry.io/docs/concepts/sampling/"
+        }
+      ],
+      "tags": [
+        "observability",
+        "sampling"
+      ],
+      "takeaway": "Sampling policy affects which questions retained traces can answer.",
+      "explanation": "Reduce volume at the cost of retaining only part of traffic. Sampling policy affects which questions retained traces can answer. In the scenario, review sampling policy and error-retention requirements. The alternative \u2018Claim the failures never occurred because no trace was retained\u2019 does not address the stated evidence or constraint.",
+      "id": "observability-17-scenario",
+      "title": "Sampling \u00b7 scenario",
+      "type": "scenario",
+      "question": "Rare failures are absent from a low-rate head-sampled dataset. What is the best next step?",
+      "options": [
+        "Claim the failures never occurred because no trace was retained",
+        "Sampled traces are automatically a complete record of every error",
+        "Sampling removes all instrumentation overhead",
+        "Review sampling policy and error-retention requirements"
+      ],
+      "correct": [
+        3
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "observability",
+      "objective": "Explain sampling and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Sampling \u2014 primary reference",
+          "url": "https://opentelemetry.io/docs/concepts/sampling/"
+        }
+      ],
+      "tags": [
+        "observability",
+        "sampling"
+      ],
+      "takeaway": "Sampling policy affects which questions retained traces can answer.",
+      "explanation": "Reduce volume at the cost of retaining only part of traffic. Sampling policy affects which questions retained traces can answer. In the scenario, review sampling policy and error-retention requirements. The alternative \u2018Claim the failures never occurred because no trace was retained\u2019 does not address the stated evidence or constraint.",
+      "id": "observability-17-principles",
+      "title": "Sampling \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing sampling, which TWO statements are sound operational principles?",
+      "options": [
+        "Sampled traces are automatically a complete record of every error",
+        "Sampling removes all instrumentation overhead",
+        "Reduce volume at the cost of retaining only part of traffic",
+        "Sampling policy affects which questions retained traces can answer"
+      ],
+      "correct": [
+        2,
+        3
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "observability",
+      "objective": "Explain sampling and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Sampling \u2014 primary reference",
+          "url": "https://opentelemetry.io/docs/concepts/sampling/"
+        }
+      ],
+      "tags": [
+        "observability",
+        "sampling"
+      ],
+      "takeaway": "Sampling policy affects which questions retained traces can answer.",
+      "explanation": "Reduce volume at the cost of retaining only part of traffic. Sampling policy affects which questions retained traces can answer. In the scenario, review sampling policy and error-retention requirements. The alternative \u2018Claim the failures never occurred because no trace was retained\u2019 does not address the stated evidence or constraint.",
+      "id": "observability-17-interview",
+      "title": "Sampling \u00b7 interview",
+      "type": "interview",
+      "question": "Explain trace sampling bias and operational goals.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "Reduce volume at the cost of retaining only part of traffic. Sampling policy affects which questions retained traces can answer. A practical response is: Review sampling policy and error-retention requirements. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that sampled traces are automatically a complete record of every error.",
+      "answerChecklist": [
+        "Reduce volume at the cost of retaining only part of traffic",
+        "Sampling policy affects which questions retained traces can answer",
+        "Review sampling policy and error-retention requirements",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "Rare failures are absent from a low-rate head-sampled dataset. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "observability",
+      "objective": "Explain tail sampling and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Tail sampling \u2014 primary reference",
+          "url": "https://opentelemetry.io/docs/concepts/sampling/"
+        }
+      ],
+      "tags": [
+        "observability",
+        "tail-sampling"
+      ],
+      "takeaway": "Buffering completeness and decision latency introduce operational costs.",
+      "explanation": "Decisions can use information collected about a trace after processing. Buffering completeness and decision latency introduce operational costs. In the scenario, evaluate tail sampling with capacity and completeness constraints. The alternative \u2018Assume a tail-sampling switch has no collector resource impact\u2019 does not address the stated evidence or constraint.",
+      "id": "observability-18-concept",
+      "title": "Tail sampling \u00b7 concept",
+      "type": "concept",
+      "question": "What distinguishes tail-based trace sampling?",
+      "options": [
+        "Tail sampling requires no memory or coordination",
+        "It guarantees every span arrives before the decision",
+        "Assume a tail-sampling switch has no collector resource impact",
+        "Decisions can use information collected about a trace after processing"
+      ],
+      "correct": [
+        3
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "observability",
+      "objective": "Explain tail sampling and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Tail sampling \u2014 primary reference",
+          "url": "https://opentelemetry.io/docs/concepts/sampling/"
+        }
+      ],
+      "tags": [
+        "observability",
+        "tail-sampling"
+      ],
+      "takeaway": "Buffering completeness and decision latency introduce operational costs.",
+      "explanation": "Decisions can use information collected about a trace after processing. Buffering completeness and decision latency introduce operational costs. In the scenario, evaluate tail sampling with capacity and completeness constraints. The alternative \u2018Assume a tail-sampling switch has no collector resource impact\u2019 does not address the stated evidence or constraint.",
+      "id": "observability-18-scenario",
+      "title": "Tail sampling \u00b7 scenario",
+      "type": "scenario",
+      "question": "A team wants to retain slow and failed traces preferentially. What is the best next step?",
+      "options": [
+        "Tail sampling requires no memory or coordination",
+        "It guarantees every span arrives before the decision",
+        "Evaluate tail sampling with capacity and completeness constraints",
+        "Assume a tail-sampling switch has no collector resource impact"
+      ],
+      "correct": [
+        2
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "observability",
+      "objective": "Explain tail sampling and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Tail sampling \u2014 primary reference",
+          "url": "https://opentelemetry.io/docs/concepts/sampling/"
+        }
+      ],
+      "tags": [
+        "observability",
+        "tail-sampling"
+      ],
+      "takeaway": "Buffering completeness and decision latency introduce operational costs.",
+      "explanation": "Decisions can use information collected about a trace after processing. Buffering completeness and decision latency introduce operational costs. In the scenario, evaluate tail sampling with capacity and completeness constraints. The alternative \u2018Assume a tail-sampling switch has no collector resource impact\u2019 does not address the stated evidence or constraint.",
+      "id": "observability-18-principles",
+      "title": "Tail sampling \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing tail sampling, which TWO statements are sound operational principles?",
+      "options": [
+        "It guarantees every span arrives before the decision",
+        "Decisions can use information collected about a trace after processing",
+        "Buffering completeness and decision latency introduce operational costs",
+        "Tail sampling requires no memory or coordination"
+      ],
+      "correct": [
+        1,
+        2
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "observability",
+      "objective": "Explain tail sampling and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Tail sampling \u2014 primary reference",
+          "url": "https://opentelemetry.io/docs/concepts/sampling/"
+        }
+      ],
+      "tags": [
+        "observability",
+        "tail-sampling"
+      ],
+      "takeaway": "Buffering completeness and decision latency introduce operational costs.",
+      "explanation": "Decisions can use information collected about a trace after processing. Buffering completeness and decision latency introduce operational costs. In the scenario, evaluate tail sampling with capacity and completeness constraints. The alternative \u2018Assume a tail-sampling switch has no collector resource impact\u2019 does not address the stated evidence or constraint.",
+      "id": "observability-18-interview",
+      "title": "Tail sampling \u00b7 interview",
+      "type": "interview",
+      "question": "Explain head versus tail sampling trade-offs.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "Decisions can use information collected about a trace after processing. Buffering completeness and decision latency introduce operational costs. A practical response is: Evaluate tail sampling with capacity and completeness constraints. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that tail sampling requires no memory or coordination.",
+      "answerChecklist": [
+        "Decisions can use information collected about a trace after processing",
+        "Buffering completeness and decision latency introduce operational costs",
+        "Evaluate tail sampling with capacity and completeness constraints",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "A team wants to retain slow and failed traces preferentially. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "observability",
+      "objective": "Explain context propagation and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Context propagation \u2014 primary reference",
+          "url": "https://opentelemetry.io/docs/concepts/context-propagation/"
+        }
+      ],
+      "tags": [
+        "observability",
+        "context-propagation"
+      ],
+      "takeaway": "Message metadata and instrumentation need deliberate propagation.",
+      "explanation": "Context may not be carried through queues or task boundaries automatically. Message metadata and instrumentation need deliberate propagation. In the scenario, propagate the appropriate trace context through supported message metadata. The alternative \u2018Assume synchronous instrumentation handles every queue boundary\u2019 does not address the stated evidence or constraint.",
+      "id": "observability-19-concept",
+      "title": "Context propagation \u00b7 concept",
+      "type": "concept",
+      "question": "Why can asynchronous work break trace continuity?",
+      "options": [
+        "A message ID always equals a distributed trace ID",
+        "Assume synchronous instrumentation handles every queue boundary",
+        "Context may not be carried through queues or task boundaries automatically",
+        "Thread-local context automatically crosses every process and queue"
+      ],
+      "correct": [
+        2
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "observability",
+      "objective": "Explain context propagation and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Context propagation \u2014 primary reference",
+          "url": "https://opentelemetry.io/docs/concepts/context-propagation/"
+        }
+      ],
+      "tags": [
+        "observability",
+        "context-propagation"
+      ],
+      "takeaway": "Message metadata and instrumentation need deliberate propagation.",
+      "explanation": "Context may not be carried through queues or task boundaries automatically. Message metadata and instrumentation need deliberate propagation. In the scenario, propagate the appropriate trace context through supported message metadata. The alternative \u2018Assume synchronous instrumentation handles every queue boundary\u2019 does not address the stated evidence or constraint.",
+      "id": "observability-19-scenario",
+      "title": "Context propagation \u00b7 scenario",
+      "type": "scenario",
+      "question": "A queued worker starts unrelated traces for each job. What is the best next step?",
+      "options": [
+        "A message ID always equals a distributed trace ID",
+        "Propagate the appropriate trace context through supported message metadata",
+        "Assume synchronous instrumentation handles every queue boundary",
+        "Thread-local context automatically crosses every process and queue"
+      ],
+      "correct": [
+        1
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "observability",
+      "objective": "Explain context propagation and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Context propagation \u2014 primary reference",
+          "url": "https://opentelemetry.io/docs/concepts/context-propagation/"
+        }
+      ],
+      "tags": [
+        "observability",
+        "context-propagation"
+      ],
+      "takeaway": "Message metadata and instrumentation need deliberate propagation.",
+      "explanation": "Context may not be carried through queues or task boundaries automatically. Message metadata and instrumentation need deliberate propagation. In the scenario, propagate the appropriate trace context through supported message metadata. The alternative \u2018Assume synchronous instrumentation handles every queue boundary\u2019 does not address the stated evidence or constraint.",
+      "id": "observability-19-principles",
+      "title": "Context propagation \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing context propagation, which TWO statements are sound operational principles?",
+      "options": [
+        "Context may not be carried through queues or task boundaries automatically",
+        "Message metadata and instrumentation need deliberate propagation",
+        "Thread-local context automatically crosses every process and queue",
+        "A message ID always equals a distributed trace ID"
+      ],
+      "correct": [
+        0,
+        1
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "observability",
+      "objective": "Explain context propagation and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Context propagation \u2014 primary reference",
+          "url": "https://opentelemetry.io/docs/concepts/context-propagation/"
+        }
+      ],
+      "tags": [
+        "observability",
+        "context-propagation"
+      ],
+      "takeaway": "Message metadata and instrumentation need deliberate propagation.",
+      "explanation": "Context may not be carried through queues or task boundaries automatically. Message metadata and instrumentation need deliberate propagation. In the scenario, propagate the appropriate trace context through supported message metadata. The alternative \u2018Assume synchronous instrumentation handles every queue boundary\u2019 does not address the stated evidence or constraint.",
+      "id": "observability-19-interview",
+      "title": "Context propagation \u00b7 interview",
+      "type": "interview",
+      "question": "Explain tracing asynchronous workflows.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "Context may not be carried through queues or task boundaries automatically. Message metadata and instrumentation need deliberate propagation. A practical response is: Propagate the appropriate trace context through supported message metadata. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that thread-local context automatically crosses every process and queue.",
+      "answerChecklist": [
+        "Context may not be carried through queues or task boundaries automatically",
+        "Message metadata and instrumentation need deliberate propagation",
+        "Propagate the appropriate trace context through supported message metadata",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "A queued worker starts unrelated traces for each job. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "observability",
+      "objective": "Explain correlation and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Correlation \u2014 primary reference",
+          "url": "https://opentelemetry.io/docs/concepts/context-propagation/"
+        }
+      ],
+      "tags": [
+        "observability",
+        "correlation"
+      ],
+      "takeaway": "Correlation requires consistent identifiers and suitable access controls.",
+      "explanation": "Shared identifiers connect detailed events to request paths. Correlation requires consistent identifiers and suitable access controls. In the scenario, include relevant trace or operation identifiers in structured logs. The alternative \u2018Copy sensitive payloads into every log to aid searching\u2019 does not address the stated evidence or constraint.",
+      "id": "observability-20-concept",
+      "title": "Correlation \u00b7 concept",
+      "type": "concept",
+      "question": "How can logs and traces complement each other?",
+      "options": [
+        "Copy sensitive payloads into every log to aid searching",
+        "Shared identifiers connect detailed events to request paths",
+        "A timestamp alone always uniquely identifies a distributed request",
+        "Every log line must contain the full request payload"
+      ],
+      "correct": [
+        1
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "observability",
+      "objective": "Explain correlation and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Correlation \u2014 primary reference",
+          "url": "https://opentelemetry.io/docs/concepts/context-propagation/"
+        }
+      ],
+      "tags": [
+        "observability",
+        "correlation"
+      ],
+      "takeaway": "Correlation requires consistent identifiers and suitable access controls.",
+      "explanation": "Shared identifiers connect detailed events to request paths. Correlation requires consistent identifiers and suitable access controls. In the scenario, include relevant trace or operation identifiers in structured logs. The alternative \u2018Copy sensitive payloads into every log to aid searching\u2019 does not address the stated evidence or constraint.",
+      "id": "observability-20-scenario",
+      "title": "Correlation \u00b7 scenario",
+      "type": "scenario",
+      "question": "An error log is difficult to connect to a slow request. What is the best next step?",
+      "options": [
+        "Include relevant trace or operation identifiers in structured logs",
+        "Copy sensitive payloads into every log to aid searching",
+        "A timestamp alone always uniquely identifies a distributed request",
+        "Every log line must contain the full request payload"
+      ],
+      "correct": [
+        0
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "observability",
+      "objective": "Explain correlation and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Correlation \u2014 primary reference",
+          "url": "https://opentelemetry.io/docs/concepts/context-propagation/"
+        }
+      ],
+      "tags": [
+        "observability",
+        "correlation"
+      ],
+      "takeaway": "Correlation requires consistent identifiers and suitable access controls.",
+      "explanation": "Shared identifiers connect detailed events to request paths. Correlation requires consistent identifiers and suitable access controls. In the scenario, include relevant trace or operation identifiers in structured logs. The alternative \u2018Copy sensitive payloads into every log to aid searching\u2019 does not address the stated evidence or constraint.",
+      "id": "observability-20-principles",
+      "title": "Correlation \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing correlation, which TWO statements are sound operational principles?",
+      "options": [
+        "Correlation requires consistent identifiers and suitable access controls",
+        "A timestamp alone always uniquely identifies a distributed request",
+        "Every log line must contain the full request payload",
+        "Shared identifiers connect detailed events to request paths"
+      ],
+      "correct": [
+        0,
+        3
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "observability",
+      "objective": "Explain correlation and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Correlation \u2014 primary reference",
+          "url": "https://opentelemetry.io/docs/concepts/context-propagation/"
+        }
+      ],
+      "tags": [
+        "observability",
+        "correlation"
+      ],
+      "takeaway": "Correlation requires consistent identifiers and suitable access controls.",
+      "explanation": "Shared identifiers connect detailed events to request paths. Correlation requires consistent identifiers and suitable access controls. In the scenario, include relevant trace or operation identifiers in structured logs. The alternative \u2018Copy sensitive payloads into every log to aid searching\u2019 does not address the stated evidence or constraint.",
+      "id": "observability-20-interview",
+      "title": "Correlation \u00b7 interview",
+      "type": "interview",
+      "question": "Explain useful safe correlation across telemetry signals.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "Shared identifiers connect detailed events to request paths. Correlation requires consistent identifiers and suitable access controls. A practical response is: Include relevant trace or operation identifiers in structured logs. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that a timestamp alone always uniquely identifies a distributed request.",
+      "answerChecklist": [
+        "Shared identifiers connect detailed events to request paths",
+        "Correlation requires consistent identifiers and suitable access controls",
+        "Include relevant trace or operation identifiers in structured logs",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "An error log is difficult to connect to a slow request. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "observability",
+      "objective": "Explain sensitive telemetry and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Sensitive telemetry \u2014 primary reference",
+          "url": "https://opentelemetry.io/docs/security/"
+        }
+      ],
+      "tags": [
+        "observability",
+        "sensitive-telemetry"
+      ],
+      "takeaway": "Collection controls retention and access policy all matter.",
+      "explanation": "Logs traces and labels can become secondary stores of private data. Collection controls retention and access policy all matter. In the scenario, stop or redact collection and address existing exposure. The alternative \u2018Hide one dashboard while retaining unrestricted raw secrets\u2019 does not address the stated evidence or constraint.",
+      "id": "observability-21-concept",
+      "title": "Sensitive telemetry \u00b7 concept",
+      "type": "concept",
+      "question": "Why minimize sensitive data in telemetry?",
+      "options": [
+        "Logs traces and labels can become secondary stores of private data",
+        "Observability data is automatically exempt from privacy requirements",
+        "Masking a dashboard removes secrets from stored raw data",
+        "Hide one dashboard while retaining unrestricted raw secrets"
+      ],
+      "correct": [
+        0
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "observability",
+      "objective": "Explain sensitive telemetry and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Sensitive telemetry \u2014 primary reference",
+          "url": "https://opentelemetry.io/docs/security/"
+        }
+      ],
+      "tags": [
+        "observability",
+        "sensitive-telemetry"
+      ],
+      "takeaway": "Collection controls retention and access policy all matter.",
+      "explanation": "Logs traces and labels can become secondary stores of private data. Collection controls retention and access policy all matter. In the scenario, stop or redact collection and address existing exposure. The alternative \u2018Hide one dashboard while retaining unrestricted raw secrets\u2019 does not address the stated evidence or constraint.",
+      "id": "observability-21-scenario",
+      "title": "Sensitive telemetry \u00b7 scenario",
+      "type": "scenario",
+      "question": "Request headers containing credentials are exported in traces. What is the best next step?",
+      "options": [
+        "Hide one dashboard while retaining unrestricted raw secrets",
+        "Observability data is automatically exempt from privacy requirements",
+        "Masking a dashboard removes secrets from stored raw data",
+        "Stop or redact collection and address existing exposure"
+      ],
+      "correct": [
+        3
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "observability",
+      "objective": "Explain sensitive telemetry and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Sensitive telemetry \u2014 primary reference",
+          "url": "https://opentelemetry.io/docs/security/"
+        }
+      ],
+      "tags": [
+        "observability",
+        "sensitive-telemetry"
+      ],
+      "takeaway": "Collection controls retention and access policy all matter.",
+      "explanation": "Logs traces and labels can become secondary stores of private data. Collection controls retention and access policy all matter. In the scenario, stop or redact collection and address existing exposure. The alternative \u2018Hide one dashboard while retaining unrestricted raw secrets\u2019 does not address the stated evidence or constraint.",
+      "id": "observability-21-principles",
+      "title": "Sensitive telemetry \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing sensitive telemetry, which TWO statements are sound operational principles?",
+      "options": [
+        "Observability data is automatically exempt from privacy requirements",
+        "Masking a dashboard removes secrets from stored raw data",
+        "Logs traces and labels can become secondary stores of private data",
+        "Collection controls retention and access policy all matter"
+      ],
+      "correct": [
+        2,
+        3
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "observability",
+      "objective": "Explain sensitive telemetry and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Sensitive telemetry \u2014 primary reference",
+          "url": "https://opentelemetry.io/docs/security/"
+        }
+      ],
+      "tags": [
+        "observability",
+        "sensitive-telemetry"
+      ],
+      "takeaway": "Collection controls retention and access policy all matter.",
+      "explanation": "Logs traces and labels can become secondary stores of private data. Collection controls retention and access policy all matter. In the scenario, stop or redact collection and address existing exposure. The alternative \u2018Hide one dashboard while retaining unrestricted raw secrets\u2019 does not address the stated evidence or constraint.",
+      "id": "observability-21-interview",
+      "title": "Sensitive telemetry \u00b7 interview",
+      "type": "interview",
+      "question": "Explain protecting sensitive data in instrumentation.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "Logs traces and labels can become secondary stores of private data. Collection controls retention and access policy all matter. A practical response is: Stop or redact collection and address existing exposure. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that observability data is automatically exempt from privacy requirements.",
+      "answerChecklist": [
+        "Logs traces and labels can become secondary stores of private data",
+        "Collection controls retention and access policy all matter",
+        "Stop or redact collection and address existing exposure",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "Request headers containing credentials are exported in traces. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "observability",
+      "objective": "Explain retention and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Retention \u2014 primary reference",
+          "url": "https://opentelemetry.io/docs/security/"
+        }
+      ],
+      "tags": [
+        "observability",
+        "retention"
+      ],
+      "takeaway": "Different signal types may justify different retention periods.",
+      "explanation": "Balance operational investigation requirements cost and data sensitivity. Different signal types may justify different retention periods. In the scenario, review investigation windows and set deliberate tiered retention. The alternative \u2018Disable all deletion without estimating cost or exposure\u2019 does not address the stated evidence or constraint.",
+      "id": "observability-22-concept",
+      "title": "Retention \u00b7 concept",
+      "type": "concept",
+      "question": "How should telemetry retention be chosen?",
+      "options": [
+        "All telemetry should be kept forever regardless of sensitivity",
+        "Short retention always improves every investigation",
+        "Disable all deletion without estimating cost or exposure",
+        "Balance operational investigation requirements cost and data sensitivity"
+      ],
+      "correct": [
+        3
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "observability",
+      "objective": "Explain retention and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Retention \u2014 primary reference",
+          "url": "https://opentelemetry.io/docs/security/"
+        }
+      ],
+      "tags": [
+        "observability",
+        "retention"
+      ],
+      "takeaway": "Different signal types may justify different retention periods.",
+      "explanation": "Balance operational investigation requirements cost and data sensitivity. Different signal types may justify different retention periods. In the scenario, review investigation windows and set deliberate tiered retention. The alternative \u2018Disable all deletion without estimating cost or exposure\u2019 does not address the stated evidence or constraint.",
+      "id": "observability-22-scenario",
+      "title": "Retention \u00b7 scenario",
+      "type": "scenario",
+      "question": "Incident analysis needs data already removed by an overly short policy. What is the best next step?",
+      "options": [
+        "All telemetry should be kept forever regardless of sensitivity",
+        "Short retention always improves every investigation",
+        "Review investigation windows and set deliberate tiered retention",
+        "Disable all deletion without estimating cost or exposure"
+      ],
+      "correct": [
+        2
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "observability",
+      "objective": "Explain retention and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Retention \u2014 primary reference",
+          "url": "https://opentelemetry.io/docs/security/"
+        }
+      ],
+      "tags": [
+        "observability",
+        "retention"
+      ],
+      "takeaway": "Different signal types may justify different retention periods.",
+      "explanation": "Balance operational investigation requirements cost and data sensitivity. Different signal types may justify different retention periods. In the scenario, review investigation windows and set deliberate tiered retention. The alternative \u2018Disable all deletion without estimating cost or exposure\u2019 does not address the stated evidence or constraint.",
+      "id": "observability-22-principles",
+      "title": "Retention \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing retention, which TWO statements are sound operational principles?",
+      "options": [
+        "Short retention always improves every investigation",
+        "Balance operational investigation requirements cost and data sensitivity",
+        "Different signal types may justify different retention periods",
+        "All telemetry should be kept forever regardless of sensitivity"
+      ],
+      "correct": [
+        1,
+        2
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "observability",
+      "objective": "Explain retention and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Retention \u2014 primary reference",
+          "url": "https://opentelemetry.io/docs/security/"
+        }
+      ],
+      "tags": [
+        "observability",
+        "retention"
+      ],
+      "takeaway": "Different signal types may justify different retention periods.",
+      "explanation": "Balance operational investigation requirements cost and data sensitivity. Different signal types may justify different retention periods. In the scenario, review investigation windows and set deliberate tiered retention. The alternative \u2018Disable all deletion without estimating cost or exposure\u2019 does not address the stated evidence or constraint.",
+      "id": "observability-22-interview",
+      "title": "Retention \u00b7 interview",
+      "type": "interview",
+      "question": "Explain a practical telemetry retention policy.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "Balance operational investigation requirements cost and data sensitivity. Different signal types may justify different retention periods. A practical response is: Review investigation windows and set deliberate tiered retention. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that all telemetry should be kept forever regardless of sensitivity.",
+      "answerChecklist": [
+        "Balance operational investigation requirements cost and data sensitivity",
+        "Different signal types may justify different retention periods",
+        "Review investigation windows and set deliberate tiered retention",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "Incident analysis needs data already removed by an overly short policy. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "observability",
+      "objective": "Explain telemetry pipelines and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Telemetry pipelines \u2014 primary reference",
+          "url": "https://opentelemetry.io/docs/collector/"
+        }
+      ],
+      "tags": [
+        "observability",
+        "telemetry-pipelines"
+      ],
+      "takeaway": "Buffers retries and drop behavior need explicit monitoring.",
+      "explanation": "Delivery delay or loss when telemetry production exceeds processing capacity. Buffers retries and drop behavior need explicit monitoring. In the scenario, inspect collector queues drops and downstream capacity. The alternative \u2018Assume no recorded errors means no errors occurred\u2019 does not address the stated evidence or constraint.",
+      "id": "observability-23-concept",
+      "title": "Telemetry pipelines \u00b7 concept",
+      "type": "concept",
+      "question": "What can collector backpressure affect?",
+      "options": [
+        "A healthy application proves telemetry delivery is healthy",
+        "Assume no recorded errors means no errors occurred",
+        "Delivery delay or loss when telemetry production exceeds processing capacity",
+        "Collectors have infinite buffering by default"
+      ],
+      "correct": [
+        2
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "observability",
+      "objective": "Explain telemetry pipelines and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Telemetry pipelines \u2014 primary reference",
+          "url": "https://opentelemetry.io/docs/collector/"
+        }
+      ],
+      "tags": [
+        "observability",
+        "telemetry-pipelines"
+      ],
+      "takeaway": "Buffers retries and drop behavior need explicit monitoring.",
+      "explanation": "Delivery delay or loss when telemetry production exceeds processing capacity. Buffers retries and drop behavior need explicit monitoring. In the scenario, inspect collector queues drops and downstream capacity. The alternative \u2018Assume no recorded errors means no errors occurred\u2019 does not address the stated evidence or constraint.",
+      "id": "observability-23-scenario",
+      "title": "Telemetry pipelines \u00b7 scenario",
+      "type": "scenario",
+      "question": "Telemetry disappears during peak load while applications still run. What is the best next step?",
+      "options": [
+        "A healthy application proves telemetry delivery is healthy",
+        "Inspect collector queues drops and downstream capacity",
+        "Assume no recorded errors means no errors occurred",
+        "Collectors have infinite buffering by default"
+      ],
+      "correct": [
+        1
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "observability",
+      "objective": "Explain telemetry pipelines and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Telemetry pipelines \u2014 primary reference",
+          "url": "https://opentelemetry.io/docs/collector/"
+        }
+      ],
+      "tags": [
+        "observability",
+        "telemetry-pipelines"
+      ],
+      "takeaway": "Buffers retries and drop behavior need explicit monitoring.",
+      "explanation": "Delivery delay or loss when telemetry production exceeds processing capacity. Buffers retries and drop behavior need explicit monitoring. In the scenario, inspect collector queues drops and downstream capacity. The alternative \u2018Assume no recorded errors means no errors occurred\u2019 does not address the stated evidence or constraint.",
+      "id": "observability-23-principles",
+      "title": "Telemetry pipelines \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing telemetry pipelines, which TWO statements are sound operational principles?",
+      "options": [
+        "Delivery delay or loss when telemetry production exceeds processing capacity",
+        "Buffers retries and drop behavior need explicit monitoring",
+        "Collectors have infinite buffering by default",
+        "A healthy application proves telemetry delivery is healthy"
+      ],
+      "correct": [
+        0,
+        1
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "observability",
+      "objective": "Explain telemetry pipelines and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Telemetry pipelines \u2014 primary reference",
+          "url": "https://opentelemetry.io/docs/collector/"
+        }
+      ],
+      "tags": [
+        "observability",
+        "telemetry-pipelines"
+      ],
+      "takeaway": "Buffers retries and drop behavior need explicit monitoring.",
+      "explanation": "Delivery delay or loss when telemetry production exceeds processing capacity. Buffers retries and drop behavior need explicit monitoring. In the scenario, inspect collector queues drops and downstream capacity. The alternative \u2018Assume no recorded errors means no errors occurred\u2019 does not address the stated evidence or constraint.",
+      "id": "observability-23-interview",
+      "title": "Telemetry pipelines \u00b7 interview",
+      "type": "interview",
+      "question": "Explain observing the observability pipeline itself.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "Delivery delay or loss when telemetry production exceeds processing capacity. Buffers retries and drop behavior need explicit monitoring. A practical response is: Inspect collector queues drops and downstream capacity. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that collectors have infinite buffering by default.",
+      "answerChecklist": [
+        "Delivery delay or loss when telemetry production exceeds processing capacity",
+        "Buffers retries and drop behavior need explicit monitoring",
+        "Inspect collector queues drops and downstream capacity",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "Telemetry disappears during peak load while applications still run. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "observability",
+      "objective": "Explain resource identity and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Resource identity \u2014 primary reference",
+          "url": "https://opentelemetry.io/docs/concepts/resources/"
+        }
+      ],
+      "tags": [
+        "observability",
+        "resource-identity"
+      ],
+      "takeaway": "Inconsistent identity makes cross-signal queries unreliable.",
+      "explanation": "Identify the service environment and instance producing telemetry. Inconsistent identity makes cross-signal queries unreliable. In the scenario, standardize service and environment attributes. The alternative \u2018Rely on guessing the environment from timestamp patterns\u2019 does not address the stated evidence or constraint.",
+      "id": "observability-24-concept",
+      "title": "Resource identity \u00b7 concept",
+      "type": "concept",
+      "question": "Why use consistent resource attributes?",
+      "options": [
+        "Rely on guessing the environment from timestamp patterns",
+        "Identify the service environment and instance producing telemetry",
+        "Every exporter automatically knows the correct deployment environment",
+        "Service names should change randomly on each process start"
+      ],
+      "correct": [
+        1
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "observability",
+      "objective": "Explain resource identity and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Resource identity \u2014 primary reference",
+          "url": "https://opentelemetry.io/docs/concepts/resources/"
+        }
+      ],
+      "tags": [
+        "observability",
+        "resource-identity"
+      ],
+      "takeaway": "Inconsistent identity makes cross-signal queries unreliable.",
+      "explanation": "Identify the service environment and instance producing telemetry. Inconsistent identity makes cross-signal queries unreliable. In the scenario, standardize service and environment attributes. The alternative \u2018Rely on guessing the environment from timestamp patterns\u2019 does not address the stated evidence or constraint.",
+      "id": "observability-24-scenario",
+      "title": "Resource identity \u00b7 scenario",
+      "type": "scenario",
+      "question": "Production and staging telemetry appear under indistinguishable identities. What is the best next step?",
+      "options": [
+        "Standardize service and environment attributes",
+        "Rely on guessing the environment from timestamp patterns",
+        "Every exporter automatically knows the correct deployment environment",
+        "Service names should change randomly on each process start"
+      ],
+      "correct": [
+        0
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "observability",
+      "objective": "Explain resource identity and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Resource identity \u2014 primary reference",
+          "url": "https://opentelemetry.io/docs/concepts/resources/"
+        }
+      ],
+      "tags": [
+        "observability",
+        "resource-identity"
+      ],
+      "takeaway": "Inconsistent identity makes cross-signal queries unreliable.",
+      "explanation": "Identify the service environment and instance producing telemetry. Inconsistent identity makes cross-signal queries unreliable. In the scenario, standardize service and environment attributes. The alternative \u2018Rely on guessing the environment from timestamp patterns\u2019 does not address the stated evidence or constraint.",
+      "id": "observability-24-principles",
+      "title": "Resource identity \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing resource identity, which TWO statements are sound operational principles?",
+      "options": [
+        "Inconsistent identity makes cross-signal queries unreliable",
+        "Every exporter automatically knows the correct deployment environment",
+        "Service names should change randomly on each process start",
+        "Identify the service environment and instance producing telemetry"
+      ],
+      "correct": [
+        0,
+        3
+      ]
+    },
+    {
+      "level": "mediumHard",
+      "topic": "observability",
+      "objective": "Explain resource identity and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Resource identity \u2014 primary reference",
+          "url": "https://opentelemetry.io/docs/concepts/resources/"
+        }
+      ],
+      "tags": [
+        "observability",
+        "resource-identity"
+      ],
+      "takeaway": "Inconsistent identity makes cross-signal queries unreliable.",
+      "explanation": "Identify the service environment and instance producing telemetry. Inconsistent identity makes cross-signal queries unreliable. In the scenario, standardize service and environment attributes. The alternative \u2018Rely on guessing the environment from timestamp patterns\u2019 does not address the stated evidence or constraint.",
+      "id": "observability-24-interview",
+      "title": "Resource identity \u00b7 interview",
+      "type": "interview",
+      "question": "Explain resource identity conventions for observability.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "Identify the service environment and instance producing telemetry. Inconsistent identity makes cross-signal queries unreliable. A practical response is: Standardize service and environment attributes. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that every exporter automatically knows the correct deployment environment.",
+      "answerChecklist": [
+        "Identify the service environment and instance producing telemetry",
+        "Inconsistent identity makes cross-signal queries unreliable",
+        "Standardize service and environment attributes",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "Production and staging telemetry appear under indistinguishable identities. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "observability",
+      "objective": "Explain clock skew and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Clock skew \u2014 primary reference",
+          "url": "https://sre.google/workbook/monitoring/"
+        }
+      ],
+      "tags": [
+        "observability",
+        "clock-skew"
+      ],
+      "takeaway": "Trace relationships and measured durations provide context beyond wall time.",
+      "explanation": "Timestamps across hosts may imply a misleading event order. Trace relationships and measured durations provide context beyond wall time. In the scenario, inspect time synchronization and causal identifiers. The alternative \u2018Assume the application traveled backward in execution order\u2019 does not address the stated evidence or constraint.",
+      "id": "observability-25-concept",
+      "title": "Clock skew \u00b7 concept",
+      "type": "concept",
+      "question": "How can clock skew affect distributed investigation?",
+      "options": [
+        "Timestamps across hosts may imply a misleading event order",
+        "Wall timestamps always establish exact causal order",
+        "Clock skew can never affect log correlation",
+        "Assume the application traveled backward in execution order"
+      ],
+      "correct": [
+        0
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "observability",
+      "objective": "Explain clock skew and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Clock skew \u2014 primary reference",
+          "url": "https://sre.google/workbook/monitoring/"
+        }
+      ],
+      "tags": [
+        "observability",
+        "clock-skew"
+      ],
+      "takeaway": "Trace relationships and measured durations provide context beyond wall time.",
+      "explanation": "Timestamps across hosts may imply a misleading event order. Trace relationships and measured durations provide context beyond wall time. In the scenario, inspect time synchronization and causal identifiers. The alternative \u2018Assume the application traveled backward in execution order\u2019 does not address the stated evidence or constraint.",
+      "id": "observability-25-scenario",
+      "title": "Clock skew \u00b7 scenario",
+      "type": "scenario",
+      "question": "A downstream log appears earlier than the upstream request. What is the best next step?",
+      "options": [
+        "Assume the application traveled backward in execution order",
+        "Wall timestamps always establish exact causal order",
+        "Clock skew can never affect log correlation",
+        "Inspect time synchronization and causal identifiers"
+      ],
+      "correct": [
+        3
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "observability",
+      "objective": "Explain clock skew and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Clock skew \u2014 primary reference",
+          "url": "https://sre.google/workbook/monitoring/"
+        }
+      ],
+      "tags": [
+        "observability",
+        "clock-skew"
+      ],
+      "takeaway": "Trace relationships and measured durations provide context beyond wall time.",
+      "explanation": "Timestamps across hosts may imply a misleading event order. Trace relationships and measured durations provide context beyond wall time. In the scenario, inspect time synchronization and causal identifiers. The alternative \u2018Assume the application traveled backward in execution order\u2019 does not address the stated evidence or constraint.",
+      "id": "observability-25-principles",
+      "title": "Clock skew \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing clock skew, which TWO statements are sound operational principles?",
+      "options": [
+        "Wall timestamps always establish exact causal order",
+        "Clock skew can never affect log correlation",
+        "Timestamps across hosts may imply a misleading event order",
+        "Trace relationships and measured durations provide context beyond wall time"
+      ],
+      "correct": [
+        2,
+        3
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "observability",
+      "objective": "Explain clock skew and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Clock skew \u2014 primary reference",
+          "url": "https://sre.google/workbook/monitoring/"
+        }
+      ],
+      "tags": [
+        "observability",
+        "clock-skew"
+      ],
+      "takeaway": "Trace relationships and measured durations provide context beyond wall time.",
+      "explanation": "Timestamps across hosts may imply a misleading event order. Trace relationships and measured durations provide context beyond wall time. In the scenario, inspect time synchronization and causal identifiers. The alternative \u2018Assume the application traveled backward in execution order\u2019 does not address the stated evidence or constraint.",
+      "id": "observability-25-interview",
+      "title": "Clock skew \u00b7 interview",
+      "type": "interview",
+      "question": "Explain clock-related pitfalls in distributed traces and logs.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "Timestamps across hosts may imply a misleading event order. Trace relationships and measured durations provide context beyond wall time. A practical response is: Inspect time synchronization and causal identifiers. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that wall timestamps always establish exact causal order.",
+      "answerChecklist": [
+        "Timestamps across hosts may imply a misleading event order",
+        "Trace relationships and measured durations provide context beyond wall time",
+        "Inspect time synchronization and causal identifiers",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "A downstream log appears earlier than the upstream request. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "observability",
+      "objective": "Explain red signals and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "RED signals \u2014 primary reference",
+          "url": "https://sre.google/workbook/monitoring/"
+        }
+      ],
+      "tags": [
+        "observability",
+        "red-signals"
+      ],
+      "takeaway": "Resource saturation signals can complement request-centric indicators.",
+      "explanation": "Rate errors and duration. Resource saturation signals can complement request-centric indicators. In the scenario, measure traffic error behavior and latency with clear request definitions. The alternative \u2018Monitor only machine uptime\u2019 does not address the stated evidence or constraint.",
+      "id": "observability-26-concept",
+      "title": "RED signals \u00b7 concept",
+      "type": "concept",
+      "question": "What does RED focus on for request-driven services?",
+      "options": [
+        "RED means only disk capacity and host uptime",
+        "RED metrics automatically identify every root cause",
+        "Monitor only machine uptime",
+        "Rate errors and duration"
+      ],
+      "correct": [
+        3
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "observability",
+      "objective": "Explain red signals and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "RED signals \u2014 primary reference",
+          "url": "https://sre.google/workbook/monitoring/"
+        }
+      ],
+      "tags": [
+        "observability",
+        "red-signals"
+      ],
+      "takeaway": "Resource saturation signals can complement request-centric indicators.",
+      "explanation": "Rate errors and duration. Resource saturation signals can complement request-centric indicators. In the scenario, measure traffic error behavior and latency with clear request definitions. The alternative \u2018Monitor only machine uptime\u2019 does not address the stated evidence or constraint.",
+      "id": "observability-26-scenario",
+      "title": "RED signals \u00b7 scenario",
+      "type": "scenario",
+      "question": "A service needs an initial user-impact dashboard. What is the best next step?",
+      "options": [
+        "RED means only disk capacity and host uptime",
+        "RED metrics automatically identify every root cause",
+        "Measure traffic error behavior and latency with clear request definitions",
+        "Monitor only machine uptime"
+      ],
+      "correct": [
+        2
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "observability",
+      "objective": "Explain red signals and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "RED signals \u2014 primary reference",
+          "url": "https://sre.google/workbook/monitoring/"
+        }
+      ],
+      "tags": [
+        "observability",
+        "red-signals"
+      ],
+      "takeaway": "Resource saturation signals can complement request-centric indicators.",
+      "explanation": "Rate errors and duration. Resource saturation signals can complement request-centric indicators. In the scenario, measure traffic error behavior and latency with clear request definitions. The alternative \u2018Monitor only machine uptime\u2019 does not address the stated evidence or constraint.",
+      "id": "observability-26-principles",
+      "title": "RED signals \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing red signals, which TWO statements are sound operational principles?",
+      "options": [
+        "RED metrics automatically identify every root cause",
+        "Rate errors and duration",
+        "Resource saturation signals can complement request-centric indicators",
+        "RED means only disk capacity and host uptime"
+      ],
+      "correct": [
+        1,
+        2
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "observability",
+      "objective": "Explain red signals and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "RED signals \u2014 primary reference",
+          "url": "https://sre.google/workbook/monitoring/"
+        }
+      ],
+      "tags": [
+        "observability",
+        "red-signals"
+      ],
+      "takeaway": "Resource saturation signals can complement request-centric indicators.",
+      "explanation": "Rate errors and duration. Resource saturation signals can complement request-centric indicators. In the scenario, measure traffic error behavior and latency with clear request definitions. The alternative \u2018Monitor only machine uptime\u2019 does not address the stated evidence or constraint.",
+      "id": "observability-26-interview",
+      "title": "RED signals \u00b7 interview",
+      "type": "interview",
+      "question": "Explain RED monitoring and its limits.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "Rate errors and duration. Resource saturation signals can complement request-centric indicators. A practical response is: Measure traffic error behavior and latency with clear request definitions. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that rED means only disk capacity and host uptime.",
+      "answerChecklist": [
+        "Rate errors and duration",
+        "Resource saturation signals can complement request-centric indicators",
+        "Measure traffic error behavior and latency with clear request definitions",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "A service needs an initial user-impact dashboard. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "observability",
+      "objective": "Explain use signals and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "USE signals \u2014 primary reference",
+          "url": "https://sre.google/workbook/monitoring/"
+        }
+      ],
+      "tags": [
+        "observability",
+        "use-signals"
+      ],
+      "takeaway": "Resource analysis complements service-level symptoms.",
+      "explanation": "Utilization saturation and errors. Resource analysis complements service-level symptoms. In the scenario, inspect saturation and errors as well as utilization. The alternative \u2018Dismiss the queue because utilization is below 100 percent\u2019 does not address the stated evidence or constraint.",
+      "id": "observability-27-concept",
+      "title": "USE signals \u00b7 concept",
+      "type": "concept",
+      "question": "What does USE examine for resources?",
+      "options": [
+        "Utilization and queue saturation are always identical",
+        "Dismiss the queue because utilization is below 100 percent",
+        "Utilization saturation and errors",
+        "USE is a substitute for every user-facing SLI"
+      ],
+      "correct": [
+        2
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "observability",
+      "objective": "Explain use signals and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "USE signals \u2014 primary reference",
+          "url": "https://sre.google/workbook/monitoring/"
+        }
+      ],
+      "tags": [
+        "observability",
+        "use-signals"
+      ],
+      "takeaway": "Resource analysis complements service-level symptoms.",
+      "explanation": "Utilization saturation and errors. Resource analysis complements service-level symptoms. In the scenario, inspect saturation and errors as well as utilization. The alternative \u2018Dismiss the queue because utilization is below 100 percent\u2019 does not address the stated evidence or constraint.",
+      "id": "observability-27-scenario",
+      "title": "USE signals \u00b7 scenario",
+      "type": "scenario",
+      "question": "A device shows moderate utilization but growing queues. What is the best next step?",
+      "options": [
+        "Utilization and queue saturation are always identical",
+        "Inspect saturation and errors as well as utilization",
+        "Dismiss the queue because utilization is below 100 percent",
+        "USE is a substitute for every user-facing SLI"
+      ],
+      "correct": [
+        1
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "observability",
+      "objective": "Explain use signals and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "USE signals \u2014 primary reference",
+          "url": "https://sre.google/workbook/monitoring/"
+        }
+      ],
+      "tags": [
+        "observability",
+        "use-signals"
+      ],
+      "takeaway": "Resource analysis complements service-level symptoms.",
+      "explanation": "Utilization saturation and errors. Resource analysis complements service-level symptoms. In the scenario, inspect saturation and errors as well as utilization. The alternative \u2018Dismiss the queue because utilization is below 100 percent\u2019 does not address the stated evidence or constraint.",
+      "id": "observability-27-principles",
+      "title": "USE signals \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing use signals, which TWO statements are sound operational principles?",
+      "options": [
+        "Utilization saturation and errors",
+        "Resource analysis complements service-level symptoms",
+        "USE is a substitute for every user-facing SLI",
+        "Utilization and queue saturation are always identical"
+      ],
+      "correct": [
+        0,
+        1
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "observability",
+      "objective": "Explain use signals and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "USE signals \u2014 primary reference",
+          "url": "https://sre.google/workbook/monitoring/"
+        }
+      ],
+      "tags": [
+        "observability",
+        "use-signals"
+      ],
+      "takeaway": "Resource analysis complements service-level symptoms.",
+      "explanation": "Utilization saturation and errors. Resource analysis complements service-level symptoms. In the scenario, inspect saturation and errors as well as utilization. The alternative \u2018Dismiss the queue because utilization is below 100 percent\u2019 does not address the stated evidence or constraint.",
+      "id": "observability-27-interview",
+      "title": "USE signals \u00b7 interview",
+      "type": "interview",
+      "question": "Explain the difference between utilization and saturation.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "Utilization saturation and errors. Resource analysis complements service-level symptoms. A practical response is: Inspect saturation and errors as well as utilization. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that uSE is a substitute for every user-facing SLI.",
+      "answerChecklist": [
+        "Utilization saturation and errors",
+        "Resource analysis complements service-level symptoms",
+        "Inspect saturation and errors as well as utilization",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "A device shows moderate utilization but growing queues. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "observability",
+      "objective": "Explain synthetic checks and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Synthetic checks \u2014 primary reference",
+          "url": "https://sre.google/workbook/monitoring/"
+        }
+      ],
+      "tags": [
+        "observability",
+        "synthetic-checks"
+      ],
+      "takeaway": "Synthetic coverage is limited to what the check actually exercises.",
+      "explanation": "Active checks of selected user journeys or endpoints. Synthetic coverage is limited to what the check actually exercises. In the scenario, add a representative checkout check with safe test data. The alternative \u2018Declare the whole application healthy from the homepage alone\u2019 does not address the stated evidence or constraint.",
+      "id": "observability-28-concept",
+      "title": "Synthetic checks \u00b7 concept",
+      "type": "concept",
+      "question": "What can synthetic monitoring provide?",
+      "options": [
+        "Declare the whole application healthy from the homepage alone",
+        "Active checks of selected user journeys or endpoints",
+        "One successful synthetic proves every user path works",
+        "Synthetic traffic automatically reproduces every customer environment"
+      ],
+      "correct": [
+        1
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "observability",
+      "objective": "Explain synthetic checks and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Synthetic checks \u2014 primary reference",
+          "url": "https://sre.google/workbook/monitoring/"
+        }
+      ],
+      "tags": [
+        "observability",
+        "synthetic-checks"
+      ],
+      "takeaway": "Synthetic coverage is limited to what the check actually exercises.",
+      "explanation": "Active checks of selected user journeys or endpoints. Synthetic coverage is limited to what the check actually exercises. In the scenario, add a representative checkout check with safe test data. The alternative \u2018Declare the whole application healthy from the homepage alone\u2019 does not address the stated evidence or constraint.",
+      "id": "observability-28-scenario",
+      "title": "Synthetic checks \u00b7 scenario",
+      "type": "scenario",
+      "question": "A homepage check passes while checkout is broken. What is the best next step?",
+      "options": [
+        "Add a representative checkout check with safe test data",
+        "Declare the whole application healthy from the homepage alone",
+        "One successful synthetic proves every user path works",
+        "Synthetic traffic automatically reproduces every customer environment"
+      ],
+      "correct": [
+        0
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "observability",
+      "objective": "Explain synthetic checks and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Synthetic checks \u2014 primary reference",
+          "url": "https://sre.google/workbook/monitoring/"
+        }
+      ],
+      "tags": [
+        "observability",
+        "synthetic-checks"
+      ],
+      "takeaway": "Synthetic coverage is limited to what the check actually exercises.",
+      "explanation": "Active checks of selected user journeys or endpoints. Synthetic coverage is limited to what the check actually exercises. In the scenario, add a representative checkout check with safe test data. The alternative \u2018Declare the whole application healthy from the homepage alone\u2019 does not address the stated evidence or constraint.",
+      "id": "observability-28-principles",
+      "title": "Synthetic checks \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing synthetic checks, which TWO statements are sound operational principles?",
+      "options": [
+        "Synthetic coverage is limited to what the check actually exercises",
+        "One successful synthetic proves every user path works",
+        "Synthetic traffic automatically reproduces every customer environment",
+        "Active checks of selected user journeys or endpoints"
+      ],
+      "correct": [
+        0,
+        3
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "observability",
+      "objective": "Explain synthetic checks and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Synthetic checks \u2014 primary reference",
+          "url": "https://sre.google/workbook/monitoring/"
+        }
+      ],
+      "tags": [
+        "observability",
+        "synthetic-checks"
+      ],
+      "takeaway": "Synthetic coverage is limited to what the check actually exercises.",
+      "explanation": "Active checks of selected user journeys or endpoints. Synthetic coverage is limited to what the check actually exercises. In the scenario, add a representative checkout check with safe test data. The alternative \u2018Declare the whole application healthy from the homepage alone\u2019 does not address the stated evidence or constraint.",
+      "id": "observability-28-interview",
+      "title": "Synthetic checks \u00b7 interview",
+      "type": "interview",
+      "question": "Explain useful synthetic coverage and its blind spots.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "Active checks of selected user journeys or endpoints. Synthetic coverage is limited to what the check actually exercises. A practical response is: Add a representative checkout check with safe test data. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that one successful synthetic proves every user path works.",
+      "answerChecklist": [
+        "Active checks of selected user journeys or endpoints",
+        "Synthetic coverage is limited to what the check actually exercises",
+        "Add a representative checkout check with safe test data",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "A homepage check passes while checkout is broken. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "observability",
+      "objective": "Explain instrumentation cost and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Instrumentation cost \u2014 primary reference",
+          "url": "https://opentelemetry.io/docs/collector/"
+        }
+      ],
+      "tags": [
+        "observability",
+        "instrumentation-cost"
+      ],
+      "takeaway": "Sampling batching and cardinality controls can reduce cost.",
+      "explanation": "Telemetry collection can consume CPU memory network and storage. Sampling batching and cardinality controls can reduce cost. In the scenario, measure overhead and tune collection to preserve useful evidence. The alternative \u2018Enable every possible event without capacity planning\u2019 does not address the stated evidence or constraint.",
+      "id": "observability-29-concept",
+      "title": "Instrumentation cost \u00b7 concept",
+      "type": "concept",
+      "question": "Why measure instrumentation overhead?",
+      "options": [
+        "Telemetry collection can consume CPU memory network and storage",
+        "Instrumentation has zero performance impact by definition",
+        "More telemetry always improves reliability regardless of overhead",
+        "Enable every possible event without capacity planning"
+      ],
+      "correct": [
+        0
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "observability",
+      "objective": "Explain instrumentation cost and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Instrumentation cost \u2014 primary reference",
+          "url": "https://opentelemetry.io/docs/collector/"
+        }
+      ],
+      "tags": [
+        "observability",
+        "instrumentation-cost"
+      ],
+      "takeaway": "Sampling batching and cardinality controls can reduce cost.",
+      "explanation": "Telemetry collection can consume CPU memory network and storage. Sampling batching and cardinality controls can reduce cost. In the scenario, measure overhead and tune collection to preserve useful evidence. The alternative \u2018Enable every possible event without capacity planning\u2019 does not address the stated evidence or constraint.",
+      "id": "observability-29-scenario",
+      "title": "Instrumentation cost \u00b7 scenario",
+      "type": "scenario",
+      "question": "Detailed tracing adds material latency under peak load. What is the best next step?",
+      "options": [
+        "Enable every possible event without capacity planning",
+        "Instrumentation has zero performance impact by definition",
+        "More telemetry always improves reliability regardless of overhead",
+        "Measure overhead and tune collection to preserve useful evidence"
+      ],
+      "correct": [
+        3
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "observability",
+      "objective": "Explain instrumentation cost and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Instrumentation cost \u2014 primary reference",
+          "url": "https://opentelemetry.io/docs/collector/"
+        }
+      ],
+      "tags": [
+        "observability",
+        "instrumentation-cost"
+      ],
+      "takeaway": "Sampling batching and cardinality controls can reduce cost.",
+      "explanation": "Telemetry collection can consume CPU memory network and storage. Sampling batching and cardinality controls can reduce cost. In the scenario, measure overhead and tune collection to preserve useful evidence. The alternative \u2018Enable every possible event without capacity planning\u2019 does not address the stated evidence or constraint.",
+      "id": "observability-29-principles",
+      "title": "Instrumentation cost \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing instrumentation cost, which TWO statements are sound operational principles?",
+      "options": [
+        "Instrumentation has zero performance impact by definition",
+        "More telemetry always improves reliability regardless of overhead",
+        "Telemetry collection can consume CPU memory network and storage",
+        "Sampling batching and cardinality controls can reduce cost"
+      ],
+      "correct": [
+        2,
+        3
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "observability",
+      "objective": "Explain instrumentation cost and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Instrumentation cost \u2014 primary reference",
+          "url": "https://opentelemetry.io/docs/collector/"
+        }
+      ],
+      "tags": [
+        "observability",
+        "instrumentation-cost"
+      ],
+      "takeaway": "Sampling batching and cardinality controls can reduce cost.",
+      "explanation": "Telemetry collection can consume CPU memory network and storage. Sampling batching and cardinality controls can reduce cost. In the scenario, measure overhead and tune collection to preserve useful evidence. The alternative \u2018Enable every possible event without capacity planning\u2019 does not address the stated evidence or constraint.",
+      "id": "observability-29-interview",
+      "title": "Instrumentation cost \u00b7 interview",
+      "type": "interview",
+      "question": "Explain observability value versus instrumentation cost.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "Telemetry collection can consume CPU memory network and storage. Sampling batching and cardinality controls can reduce cost. A practical response is: Measure overhead and tune collection to preserve useful evidence. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that instrumentation has zero performance impact by definition.",
+      "answerChecklist": [
+        "Telemetry collection can consume CPU memory network and storage",
+        "Sampling batching and cardinality controls can reduce cost",
+        "Measure overhead and tune collection to preserve useful evidence",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "Detailed tracing adds material latency under peak load. Explain the evidence that would change your decision."
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "observability",
+      "objective": "Explain evidence and causality and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Evidence and causality \u2014 primary reference",
+          "url": "https://sre.google/workbook/monitoring/"
+        }
+      ],
+      "tags": [
+        "observability",
+        "evidence-and-causality"
+      ],
+      "takeaway": "Hypotheses need supporting evidence and controlled verification where possible.",
+      "explanation": "Simultaneous changes do not prove one caused the other. Hypotheses need supporting evidence and controlled verification where possible. In the scenario, test a plausible causal hypothesis using traces changes and dependency evidence. The alternative \u2018Declare CPU the root cause solely from visual correlation\u2019 does not address the stated evidence or constraint.",
+      "id": "observability-30-concept",
+      "title": "Evidence and causality \u00b7 concept",
+      "type": "concept",
+      "question": "Why distinguish correlation from causation in dashboards?",
+      "options": [
+        "Two aligned graph spikes prove a causal relationship",
+        "A dashboard can replace all knowledge of system dependencies",
+        "Declare CPU the root cause solely from visual correlation",
+        "Simultaneous changes do not prove one caused the other"
+      ],
+      "correct": [
+        3
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "observability",
+      "objective": "Explain evidence and causality and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Evidence and causality \u2014 primary reference",
+          "url": "https://sre.google/workbook/monitoring/"
+        }
+      ],
+      "tags": [
+        "observability",
+        "evidence-and-causality"
+      ],
+      "takeaway": "Hypotheses need supporting evidence and controlled verification where possible.",
+      "explanation": "Simultaneous changes do not prove one caused the other. Hypotheses need supporting evidence and controlled verification where possible. In the scenario, test a plausible causal hypothesis using traces changes and dependency evidence. The alternative \u2018Declare CPU the root cause solely from visual correlation\u2019 does not address the stated evidence or constraint.",
+      "id": "observability-30-scenario",
+      "title": "Evidence and causality \u00b7 scenario",
+      "type": "scenario",
+      "question": "Latency and CPU rise together after a release. What is the best next step?",
+      "options": [
+        "Two aligned graph spikes prove a causal relationship",
+        "A dashboard can replace all knowledge of system dependencies",
+        "Test a plausible causal hypothesis using traces changes and dependency evidence",
+        "Declare CPU the root cause solely from visual correlation"
+      ],
+      "correct": [
+        2
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "observability",
+      "objective": "Explain evidence and causality and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Evidence and causality \u2014 primary reference",
+          "url": "https://sre.google/workbook/monitoring/"
+        }
+      ],
+      "tags": [
+        "observability",
+        "evidence-and-causality"
+      ],
+      "takeaway": "Hypotheses need supporting evidence and controlled verification where possible.",
+      "explanation": "Simultaneous changes do not prove one caused the other. Hypotheses need supporting evidence and controlled verification where possible. In the scenario, test a plausible causal hypothesis using traces changes and dependency evidence. The alternative \u2018Declare CPU the root cause solely from visual correlation\u2019 does not address the stated evidence or constraint.",
+      "id": "observability-30-principles",
+      "title": "Evidence and causality \u00b7 principles",
+      "type": "multi-select",
+      "question": "When reviewing evidence and causality, which TWO statements are sound operational principles?",
+      "options": [
+        "A dashboard can replace all knowledge of system dependencies",
+        "Simultaneous changes do not prove one caused the other",
+        "Hypotheses need supporting evidence and controlled verification where possible",
+        "Two aligned graph spikes prove a causal relationship"
+      ],
+      "correct": [
+        1,
+        2
+      ]
+    },
+    {
+      "level": "hard",
+      "topic": "observability",
+      "objective": "Explain evidence and causality and apply it to an operational decision.",
+      "references": [
+        {
+          "title": "Evidence and causality \u2014 primary reference",
+          "url": "https://sre.google/workbook/monitoring/"
+        }
+      ],
+      "tags": [
+        "observability",
+        "evidence-and-causality"
+      ],
+      "takeaway": "Hypotheses need supporting evidence and controlled verification where possible.",
+      "explanation": "Simultaneous changes do not prove one caused the other. Hypotheses need supporting evidence and controlled verification where possible. In the scenario, test a plausible causal hypothesis using traces changes and dependency evidence. The alternative \u2018Declare CPU the root cause solely from visual correlation\u2019 does not address the stated evidence or constraint.",
+      "id": "observability-30-interview",
+      "title": "Evidence and causality \u00b7 interview",
+      "type": "interview",
+      "question": "Explain how you move from correlated signals to a defensible diagnosis.",
+      "options": [],
+      "correct": [],
+      "sampleAnswer": "Simultaneous changes do not prove one caused the other. Hypotheses need supporting evidence and controlled verification where possible. A practical response is: Test a plausible causal hypothesis using traces changes and dependency evidence. I would record the initial evidence, make the smallest scoped change needed, and compare the same measurements afterward. I would not assume that two aligned graph spikes prove a causal relationship.",
+      "answerChecklist": [
+        "Simultaneous changes do not prove one caused the other",
+        "Hypotheses need supporting evidence and controlled verification where possible",
+        "Test a plausible causal hypothesis using traces changes and dependency evidence",
+        "Explain how you would verify the outcome and stop if it worsens."
+      ],
+      "followUps": [
+        "Latency and CPU rise together after a release. Explain the evidence that would change your decision."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,817 @@
+{
+  "subject": "aws",
+  "lessons": [
+    {
+      "id": "aws-lesson-01",
+      "topic": "aws",
+      "title": "Regions",
+      "summary": "A geographic area containing multiple Availability Zones.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Regional service availability and requirements should be verified."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A recovery plan assumes resources exist in a second Region. Inventory regional dependencies and explicitly provision the recovery environment."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "Every Region shares one physical data center. This is not a sound assumption; a geographic area containing multiple Availability Zones."
+        }
+      ],
+      "takeaway": "Regional service availability and requirements should be verified.",
+      "references": [
+        {
+          "title": "Regions \u2014 primary reference",
+          "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/welcome.html"
+        }
+      ]
+    },
+    {
+      "id": "aws-lesson-02",
+      "topic": "aws",
+      "title": "Availability Zones",
+      "summary": "Reduce exposure to a single zone failure.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Applications still need sufficient surviving capacity."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A zone outage removes half the service capacity. Verify surviving capacity and cross-zone application behavior."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "Two instances in one zone guarantee zone-failure tolerance. This is not a sound assumption; reduce exposure to a single zone failure."
+        }
+      ],
+      "takeaway": "Applications still need sufficient surviving capacity.",
+      "references": [
+        {
+          "title": "Availability Zones \u2014 primary reference",
+          "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/welcome.html"
+        }
+      ]
+    },
+    {
+      "id": "aws-lesson-03",
+      "topic": "aws",
+      "title": "IAM roles",
+      "summary": "Reduce dependence on embedded long-lived access keys.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Role permissions should match the workload's required actions."
+        },
+        {
+          "heading": "Apply it",
+          "body": "An application image contains a long-lived AWS access key. Use an appropriate workload role and rotate the exposed key."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "Roles always grant administrator access. This is not a sound assumption; reduce dependence on embedded long-lived access keys."
+        }
+      ],
+      "takeaway": "Role permissions should match the workload's required actions.",
+      "references": [
+        {
+          "title": "IAM roles \u2014 primary reference",
+          "url": "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html"
+        }
+      ]
+    },
+    {
+      "id": "aws-lesson-04",
+      "topic": "aws",
+      "title": "Least privilege",
+      "summary": "Allow only required actions on intended resources under appropriate conditions.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Explicit denies can override otherwise allowed actions."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A service can delete unrelated production resources. Narrow actions resources and conditions after verifying actual needs."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "An allow statement always overrides every explicit deny. This is not a sound assumption; allow only required actions on intended resources under appropriate conditions."
+        }
+      ],
+      "takeaway": "Explicit denies can override otherwise allowed actions.",
+      "references": [
+        {
+          "title": "Least privilege \u2014 primary reference",
+          "url": "https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies.html"
+        }
+      ]
+    },
+    {
+      "id": "aws-lesson-05",
+      "topic": "aws",
+      "title": "S3 storage",
+      "summary": "Object storage addressed through buckets and object keys.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Object storage differs from a local POSIX filesystem."
+        },
+        {
+          "heading": "Apply it",
+          "body": "An application assumes S3 supports local filesystem locking semantics. Review the object API and redesign the storage interaction appropriately."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "An S3 bucket is automatically a mounted block device. This is not a sound assumption; object storage addressed through buckets and object keys."
+        }
+      ],
+      "takeaway": "Object storage differs from a local POSIX filesystem.",
+      "references": [
+        {
+          "title": "S3 storage \u2014 primary reference",
+          "url": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/Welcome.html"
+        }
+      ]
+    },
+    {
+      "id": "aws-lesson-06",
+      "topic": "aws",
+      "title": "EBS",
+      "summary": "Block storage for EC2 workloads.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Volume durability does not replace independent backups."
+        },
+        {
+          "heading": "Apply it",
+          "body": "An EC2 database needs recoverable persistent block storage. Choose suitable volumes and implement tested snapshot or backup recovery."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "An EBS volume is automatically a global shared filesystem. This is not a sound assumption; block storage for EC2 workloads."
+        }
+      ],
+      "takeaway": "Volume durability does not replace independent backups.",
+      "references": [
+        {
+          "title": "EBS \u2014 primary reference",
+          "url": "https://docs.aws.amazon.com/ebs/latest/userguide/what-is-ebs.html"
+        }
+      ]
+    },
+    {
+      "id": "aws-lesson-07",
+      "topic": "aws",
+      "title": "Security groups",
+      "summary": "Stateful rules allow specified traffic for associated resources.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Rules should be scoped to required sources and ports."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A database security group allows inbound traffic from everywhere. Restrict sources to intended application identities or network ranges."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "Security groups are stateless subnet-wide deny lists. This is not a sound assumption; stateful rules allow specified traffic for associated resources."
+        }
+      ],
+      "takeaway": "Rules should be scoped to required sources and ports.",
+      "references": [
+        {
+          "title": "Security groups \u2014 primary reference",
+          "url": "https://docs.aws.amazon.com/vpc/latest/userguide/vpc-security-groups.html"
+        }
+      ]
+    },
+    {
+      "id": "aws-lesson-08",
+      "topic": "aws",
+      "title": "VPC subnets",
+      "summary": "A route to an Internet Gateway supports direct Internet routing.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Instances also need appropriate addressing and security controls for reachability."
+        },
+        {
+          "heading": "Apply it",
+          "body": "An instance in a public subnet cannot reach the Internet. Inspect addressing route table gateway and security controls."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "A subnet name containing public automatically provides Internet access. This is not a sound assumption; a route to an Internet Gateway supports direct Internet routing."
+        }
+      ],
+      "takeaway": "Instances also need appropriate addressing and security controls for reachability.",
+      "references": [
+        {
+          "title": "VPC subnets \u2014 primary reference",
+          "url": "https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Subnets.html"
+        }
+      ]
+    },
+    {
+      "id": "aws-lesson-09",
+      "topic": "aws",
+      "title": "NAT gateways",
+      "summary": "Allow private-subnet workloads to initiate suitable outbound connections.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Outbound NAT does not by itself publish inbound application access."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A private workload needs outbound IPv4 access without a public address. Configure an appropriate NAT path and verify routes and security."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "A NAT gateway is an inbound application load balancer. This is not a sound assumption; allow private-subnet workloads to initiate suitable outbound connections."
+        }
+      ],
+      "takeaway": "Outbound NAT does not by itself publish inbound application access.",
+      "references": [
+        {
+          "title": "NAT gateways \u2014 primary reference",
+          "url": "https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html"
+        }
+      ]
+    },
+    {
+      "id": "aws-lesson-10",
+      "topic": "aws",
+      "title": "VPC endpoints",
+      "summary": "Provide a private connectivity path without relying on ordinary Internet egress.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Endpoint type policies DNS and service support affect behavior."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A private workload must access S3 without the planned NAT path. Evaluate the suitable endpoint and verify routing and authorization."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "Every endpoint supports every AWS service identically. This is not a sound assumption; provide a private connectivity path without relying on ordinary Internet egress."
+        }
+      ],
+      "takeaway": "Endpoint type policies DNS and service support affect behavior.",
+      "references": [
+        {
+          "title": "VPC endpoints \u2014 primary reference",
+          "url": "https://docs.aws.amazon.com/vpc/latest/privatelink/concepts.html"
+        }
+      ]
+    },
+    {
+      "id": "aws-lesson-11",
+      "topic": "aws",
+      "title": "Application Load Balancers",
+      "summary": "Application-layer routing for protocols such as HTTP.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Healthy target selection depends on configured checks."
+        },
+        {
+          "heading": "Apply it",
+          "body": "An ALB reports no healthy targets after deployment. Inspect target registration health-check settings and application responses."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "An ALB automatically makes every database query healthy. This is not a sound assumption; application-layer routing for protocols such as HTTP."
+        }
+      ],
+      "takeaway": "Healthy target selection depends on configured checks.",
+      "references": [
+        {
+          "title": "Application Load Balancers \u2014 primary reference",
+          "url": "https://docs.aws.amazon.com/elasticloadbalancing/latest/application/introduction.html"
+        }
+      ]
+    },
+    {
+      "id": "aws-lesson-12",
+      "topic": "aws",
+      "title": "Auto Scaling",
+      "summary": "A metric and target aligned with workload capacity needs.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Scaling requires warm-up time and downstream capacity."
+        },
+        {
+          "heading": "Apply it",
+          "body": "Queue age grows while worker CPU remains low due to slow external calls. Choose a workload-relevant signal and investigate the dependency bottleneck."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "Adding instances instantly fixes every bottleneck. This is not a sound assumption; a metric and target aligned with workload capacity needs."
+        }
+      ],
+      "takeaway": "Scaling requires warm-up time and downstream capacity.",
+      "references": [
+        {
+          "title": "Auto Scaling \u2014 primary reference",
+          "url": "https://docs.aws.amazon.com/autoscaling/ec2/userguide/what-is-amazon-ec2-auto-scaling.html"
+        }
+      ]
+    },
+    {
+      "id": "aws-lesson-13",
+      "topic": "aws",
+      "title": "CloudWatch metrics",
+      "summary": "Time-series measurements identified by namespace and dimensions.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Resolution aggregation and dimensions influence interpretation."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A dashboard combines different dimensions and hides one unhealthy instance. Inspect dimensions and aggregation alongside per-resource evidence."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "Every metric point is a complete application trace. This is not a sound assumption; time-series measurements identified by namespace and dimensions."
+        }
+      ],
+      "takeaway": "Resolution aggregation and dimensions influence interpretation.",
+      "references": [
+        {
+          "title": "CloudWatch metrics \u2014 primary reference",
+          "url": "https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/WhatIsCloudWatch.html"
+        }
+      ]
+    },
+    {
+      "id": "aws-lesson-14",
+      "topic": "aws",
+      "title": "CloudTrail",
+      "summary": "AWS API activity and associated identity context.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Coverage and event configuration must match the required audit use case."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A resource was deleted and the responsible API caller is unknown. Inspect relevant audit events and confirm event coverage."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "CloudTrail is a replacement for all application logs. This is not a sound assumption; aWS API activity and associated identity context."
+        }
+      ],
+      "takeaway": "Coverage and event configuration must match the required audit use case.",
+      "references": [
+        {
+          "title": "CloudTrail \u2014 primary reference",
+          "url": "https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-user-guide.html"
+        }
+      ]
+    },
+    {
+      "id": "aws-lesson-15",
+      "topic": "aws",
+      "title": "Shared responsibility",
+      "summary": "AWS and customers own different security responsibilities.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Customer configuration data and identity controls remain important."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A public bucket exposes sensitive customer data. Correct customer-controlled access and investigate the exposure."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "AWS automatically secures every customer IAM policy. This is not a sound assumption; aWS and customers own different security responsibilities."
+        }
+      ],
+      "takeaway": "Customer configuration data and identity controls remain important.",
+      "references": [
+        {
+          "title": "Shared responsibility \u2014 primary reference",
+          "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/welcome.html"
+        }
+      ]
+    },
+    {
+      "id": "aws-lesson-16",
+      "topic": "aws",
+      "title": "S3 versioning",
+      "summary": "Accidental overwrites or deletions when prior versions remain available.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Versioning still needs lifecycle cost and access considerations."
+        },
+        {
+          "heading": "Apply it",
+          "body": "An object was overwritten with incorrect content. Inspect retained versions and restore the intended one safely."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "Versioning guarantees protection from every authorized destructive action. This is not a sound assumption; accidental overwrites or deletions when prior versions remain available."
+        }
+      ],
+      "takeaway": "Versioning still needs lifecycle cost and access considerations.",
+      "references": [
+        {
+          "title": "S3 versioning \u2014 primary reference",
+          "url": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/Welcome.html"
+        }
+      ]
+    },
+    {
+      "id": "aws-lesson-17",
+      "topic": "aws",
+      "title": "RDS availability",
+      "summary": "Improve availability through managed standby and failover mechanisms.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Availability features do not replace application reconnect behavior and backups."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A database failover occurs and clients retain broken connections. Verify reconnect handling timeouts and recovery behavior."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "Every standby is automatically a readable scaling replica. This is not a sound assumption; improve availability through managed standby and failover mechanisms."
+        }
+      ],
+      "takeaway": "Availability features do not replace application reconnect behavior and backups.",
+      "references": [
+        {
+          "title": "RDS availability \u2014 primary reference",
+          "url": "https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.MultiAZ.html"
+        }
+      ]
+    },
+    {
+      "id": "aws-lesson-18",
+      "topic": "aws",
+      "title": "Read replicas",
+      "summary": "Offload eligible reads or support specific replication use cases.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Replication lag can affect freshness of reads."
+        },
+        {
+          "heading": "Apply it",
+          "body": "Users read stale data immediately after a write. Review consistency requirements and route freshness-sensitive reads appropriately."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "All replicas always provide immediately current writes. This is not a sound assumption; offload eligible reads or support specific replication use cases."
+        }
+      ],
+      "takeaway": "Replication lag can affect freshness of reads.",
+      "references": [
+        {
+          "title": "Read replicas \u2014 primary reference",
+          "url": "https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_ReadRepl.html"
+        }
+      ]
+    },
+    {
+      "id": "aws-lesson-19",
+      "topic": "aws",
+      "title": "Lambda retries",
+      "summary": "Event sources and retries can deliver work more than once.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Handlers should use idempotent operations for duplicate-sensitive effects."
+        },
+        {
+          "heading": "Apply it",
+          "body": "An event triggers the same order action twice. Use an operation identity and durable deduplication strategy."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "Every Lambda event source guarantees exactly one execution. This is not a sound assumption; event sources and retries can deliver work more than once."
+        }
+      ],
+      "takeaway": "Handlers should use idempotent operations for duplicate-sensitive effects.",
+      "references": [
+        {
+          "title": "Lambda retries \u2014 primary reference",
+          "url": "https://docs.aws.amazon.com/lambda/latest/dg/best-practices.html"
+        }
+      ]
+    },
+    {
+      "id": "aws-lesson-20",
+      "topic": "aws",
+      "title": "SQS visibility",
+      "summary": "How long a received message is hidden from other consumers before deletion or expiry.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Processing longer than visibility can lead to duplicate concurrent work."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A long-running worker sees the same message processed elsewhere. Adjust or extend visibility appropriately and keep processing idempotent."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "Receiving a message permanently deletes it. This is not a sound assumption; how long a received message is hidden from other consumers before deletion or expiry."
+        }
+      ],
+      "takeaway": "Processing longer than visibility can lead to duplicate concurrent work.",
+      "references": [
+        {
+          "title": "SQS visibility \u2014 primary reference",
+          "url": "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-visibility-timeout.html"
+        }
+      ]
+    },
+    {
+      "id": "aws-lesson-21",
+      "topic": "aws",
+      "title": "Dead-letter queues",
+      "summary": "Isolate repeatedly failing messages for investigation and recovery.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Redrive needs care to avoid replaying the same failure at scale."
+        },
+        {
+          "heading": "Apply it",
+          "body": "Poison messages repeatedly fail and block useful processing. Inspect failures route them appropriately and define a controlled redrive."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "A dead-letter queue automatically fixes malformed messages. This is not a sound assumption; isolate repeatedly failing messages for investigation and recovery."
+        }
+      ],
+      "takeaway": "Redrive needs care to avoid replaying the same failure at scale.",
+      "references": [
+        {
+          "title": "Dead-letter queues \u2014 primary reference",
+          "url": "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-dead-letter-queues.html"
+        }
+      ]
+    },
+    {
+      "id": "aws-lesson-22",
+      "topic": "aws",
+      "title": "DynamoDB keys",
+      "summary": "It affects data distribution and access patterns.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "A highly concentrated key can create a hot workload."
+        },
+        {
+          "heading": "Apply it",
+          "body": "Most requests target one popular key and experience throttling. Inspect access concentration and redesign or shard the hot pattern where justified."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "Every partition key provides identical performance for every access pattern. This is not a sound assumption; it affects data distribution and access patterns."
+        }
+      ],
+      "takeaway": "A highly concentrated key can create a hot workload.",
+      "references": [
+        {
+          "title": "DynamoDB keys \u2014 primary reference",
+          "url": "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/bp-partition-key-design.html"
+        }
+      ]
+    },
+    {
+      "id": "aws-lesson-23",
+      "topic": "aws",
+      "title": "KMS controls",
+      "summary": "Key policies and applicable identity permissions govern key use.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Encryption does not eliminate the need to control decrypt permissions."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A workload can read object metadata but cannot decrypt the encrypted object. Inspect the key policy identity permissions and encryption context."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "Any user can decrypt data merely because it is encrypted. This is not a sound assumption; key policies and applicable identity permissions govern key use."
+        }
+      ],
+      "takeaway": "Encryption does not eliminate the need to control decrypt permissions.",
+      "references": [
+        {
+          "title": "KMS controls \u2014 primary reference",
+          "url": "https://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html"
+        }
+      ]
+    },
+    {
+      "id": "aws-lesson-24",
+      "topic": "aws",
+      "title": "Secrets rotation",
+      "summary": "Consumers must obtain and use the updated credential correctly.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Rotation should include validation and recovery behavior."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A rotated database credential breaks clients using a cached old value. Refresh consumer credentials and verify the rotation integration."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "Changing a secret automatically updates every application cache. This is not a sound assumption; consumers must obtain and use the updated credential correctly."
+        }
+      ],
+      "takeaway": "Rotation should include validation and recovery behavior.",
+      "references": [
+        {
+          "title": "Secrets rotation \u2014 primary reference",
+          "url": "https://docs.aws.amazon.com/secretsmanager/latest/userguide/rotating-secrets.html"
+        }
+      ]
+    },
+    {
+      "id": "aws-lesson-25",
+      "topic": "aws",
+      "title": "Route 53 failover",
+      "summary": "Resolver caching and client behavior affect switchover timing.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Health checks must reflect the intended service failure conditions."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A failover record changes but some clients still reach the old endpoint. Inspect TTLs caches and client reconnect behavior."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "DNS failover moves every established TCP connection instantly. This is not a sound assumption; resolver caching and client behavior affect switchover timing."
+        }
+      ],
+      "takeaway": "Health checks must reflect the intended service failure conditions.",
+      "references": [
+        {
+          "title": "Route 53 failover \u2014 primary reference",
+          "url": "https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/dns-failover.html"
+        }
+      ]
+    },
+    {
+      "id": "aws-lesson-26",
+      "topic": "aws",
+      "title": "CloudFront caching",
+      "summary": "Different responses must not incorrectly share one cache entry.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Cache keys and origin behavior need deliberate alignment."
+        },
+        {
+          "heading": "Apply it",
+          "body": "One user's personalized response appears for another user. Disable unsafe caching and correct cache-key and response policy."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "A cache always knows which cookies are security-sensitive. This is not a sound assumption; different responses must not incorrectly share one cache entry."
+        }
+      ],
+      "takeaway": "Cache keys and origin behavior need deliberate alignment.",
+      "references": [
+        {
+          "title": "CloudFront caching \u2014 primary reference",
+          "url": "https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/controlling-the-cache-key.html"
+        }
+      ]
+    },
+    {
+      "id": "aws-lesson-27",
+      "topic": "aws",
+      "title": "Cross-account access",
+      "summary": "The role trust relationship and caller authorization.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Trusting an account is distinct from granting every possible action."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A pipeline cannot assume a deployment role in another account. Inspect trust policy caller permissions and required conditions."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "A role name alone authorizes any external caller. This is not a sound assumption; the role trust relationship and caller authorization."
+        }
+      ],
+      "takeaway": "Trusting an account is distinct from granting every possible action.",
+      "references": [
+        {
+          "title": "Cross-account access \u2014 primary reference",
+          "url": "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html"
+        }
+      ]
+    },
+    {
+      "id": "aws-lesson-28",
+      "topic": "aws",
+      "title": "Service quotas",
+      "summary": "Quota limits can block scaling even when the design is otherwise valid.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Quota increases and regional differences may require advance preparation."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A surge triggers scaling but new capacity is rejected at a quota. Inspect the relevant quota and plan capacity or approved increases."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "Auto Scaling bypasses every service quota. This is not a sound assumption; quota limits can block scaling even when the design is otherwise valid."
+        }
+      ],
+      "takeaway": "Quota increases and regional differences may require advance preparation.",
+      "references": [
+        {
+          "title": "Service quotas \u2014 primary reference",
+          "url": "https://docs.aws.amazon.com/servicequotas/latest/userguide/intro.html"
+        }
+      ]
+    },
+    {
+      "id": "aws-lesson-29",
+      "topic": "aws",
+      "title": "Cost attribution",
+      "summary": "Connect spend to accountable services and teams.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Cost optimization should preserve required reliability and security."
+        },
+        {
+          "heading": "Apply it",
+          "body": "An unexplained bill increase follows a new deployment. Attribute usage to resources and compare with workload changes."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "The lowest bill always represents the best architecture. This is not a sound assumption; connect spend to accountable services and teams."
+        }
+      ],
+      "takeaway": "Cost optimization should preserve required reliability and security.",
+      "references": [
+        {
+          "title": "Cost attribution \u2014 primary reference",
+          "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/welcome.html"
+        }
+      ]
+    },
+    {
+      "id": "aws-lesson-30",
+      "topic": "aws",
+      "title": "Disaster recovery",
+      "summary": "Tested recovery of data identities dependencies and traffic handling.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Recovery objectives must be measured in realistic exercises."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A regional exercise fails because required secrets and quotas are missing. Test the full recovery dependency chain and remediate gaps."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "Copying one machine image proves full regional recovery. This is not a sound assumption; tested recovery of data identities dependencies and traffic handling."
+        }
+      ],
+      "takeaway": "Recovery objectives must be measured in realistic exercises.",
+      "references": [
+        {
+          "title": "Disaster recovery \u2014 primary reference",
+          "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/welcome.html"
+        }
+      ]
+    }
+  ],
+  "commands": [],
+  "debugging": []
+}

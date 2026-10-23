@@ -1,0 +1,817 @@
+{
+  "subject": "networking",
+  "lessons": [
+    {
+      "id": "networking-lesson-01",
+      "topic": "networking",
+      "title": "TCP delivery",
+      "summary": "Reliable ordered delivery within a connection.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "TCP does not preserve application message boundaries."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A receiver assumes one read contains one complete application message. Implement explicit message framing and handle partial reads."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "Every send corresponds to exactly one receive. This is not a sound assumption; reliable ordered delivery within a connection."
+        }
+      ],
+      "takeaway": "TCP does not preserve application message boundaries.",
+      "references": [
+        {
+          "title": "TCP delivery \u2014 primary reference",
+          "url": "https://www.rfc-editor.org/rfc/rfc9293.html"
+        }
+      ]
+    },
+    {
+      "id": "networking-lesson-02",
+      "topic": "networking",
+      "title": "UDP semantics",
+      "summary": "UDP preserves datagram boundaries without built-in reliable delivery.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Applications must handle loss or duplication when their protocol requires it."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A telemetry collector sees gaps in UDP sequence numbers. Measure loss and decide whether application reliability is required."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "UDP retransmits every lost datagram automatically. This is not a sound assumption; uDP preserves datagram boundaries without built-in reliable delivery."
+        }
+      ],
+      "takeaway": "Applications must handle loss or duplication when their protocol requires it.",
+      "references": [
+        {
+          "title": "UDP semantics \u2014 primary reference",
+          "url": "https://www.rfc-editor.org/rfc/rfc768.html"
+        }
+      ]
+    },
+    {
+      "id": "networking-lesson-03",
+      "topic": "networking",
+      "title": "DNS records",
+      "summary": "An IPv4 address for a DNS name.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "AAAA records carry IPv6 addresses."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A client resolves only IPv4 while the intended endpoint is IPv6-only. Check the AAAA record and client IPv6 connectivity."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "An A record contains a TCP port. This is not a sound assumption; an IPv4 address for a DNS name."
+        }
+      ],
+      "takeaway": "AAAA records carry IPv6 addresses.",
+      "references": [
+        {
+          "title": "DNS records \u2014 primary reference",
+          "url": "https://www.rfc-editor.org/rfc/rfc1035.html"
+        }
+      ]
+    },
+    {
+      "id": "networking-lesson-04",
+      "topic": "networking",
+      "title": "DNS caching",
+      "summary": "How long a resolver may cache that record.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Lowering TTL before a change does not retroactively expire existing caches."
+        },
+        {
+          "heading": "Apply it",
+          "body": "Some clients still reach the old address just after a DNS change. Check prior TTLs and resolver caches before declaring the update failed."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "Changing a record instantly flushes every resolver cache. This is not a sound assumption; how long a resolver may cache that record."
+        }
+      ],
+      "takeaway": "Lowering TTL before a change does not retroactively expire existing caches.",
+      "references": [
+        {
+          "title": "DNS caching \u2014 primary reference",
+          "url": "https://www.rfc-editor.org/rfc/rfc1035.html"
+        }
+      ]
+    },
+    {
+      "id": "networking-lesson-05",
+      "topic": "networking",
+      "title": "Subnets",
+      "summary": "The number of network-prefix bits in the address.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Longer prefixes describe smaller address ranges."
+        },
+        {
+          "heading": "Apply it",
+          "body": "Two hosts believed to share a subnet cannot communicate directly. Compare their addresses prefix lengths and interface configuration."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "A larger prefix length always means more host addresses. This is not a sound assumption; the number of network-prefix bits in the address."
+        }
+      ],
+      "takeaway": "Longer prefixes describe smaller address ranges.",
+      "references": [
+        {
+          "title": "Subnets \u2014 primary reference",
+          "url": "https://www.rfc-editor.org/rfc/rfc4632.html"
+        }
+      ]
+    },
+    {
+      "id": "networking-lesson-06",
+      "topic": "networking",
+      "title": "Default routes",
+      "summary": "When no more specific matching route is selected.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Longest-prefix matching favors a more specific matching route."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A host reaches its local subnet but cannot reach external networks. Inspect the selected route and default gateway reachability."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "The default route overrides every more specific route. This is not a sound assumption; when no more specific matching route is selected."
+        }
+      ],
+      "takeaway": "Longest-prefix matching favors a more specific matching route.",
+      "references": [
+        {
+          "title": "Default routes \u2014 primary reference",
+          "url": "https://www.rfc-editor.org/rfc/rfc4632.html"
+        }
+      ]
+    },
+    {
+      "id": "networking-lesson-07",
+      "topic": "networking",
+      "title": "ARP",
+      "summary": "An IPv4 address to a link-layer address.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "ARP is scoped to the local broadcast domain."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A host cannot reach a same-subnet peer and its neighbor entry stays incomplete. Check local-link connectivity addressing and neighbor discovery evidence."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "ARP resolves domain names through recursive DNS. This is not a sound assumption; an IPv4 address to a link-layer address."
+        }
+      ],
+      "takeaway": "ARP is scoped to the local broadcast domain.",
+      "references": [
+        {
+          "title": "ARP \u2014 primary reference",
+          "url": "https://www.rfc-editor.org/rfc/rfc826.html"
+        }
+      ]
+    },
+    {
+      "id": "networking-lesson-08",
+      "topic": "networking",
+      "title": "Ports",
+      "summary": "Source and destination addresses and ports.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "A listening port alone does not prove application health."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A port accepts connections but requests fail immediately. Check application behavior after connection establishment."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "A destination port uniquely identifies every connection globally. This is not a sound assumption; source and destination addresses and ports."
+        }
+      ],
+      "takeaway": "A listening port alone does not prove application health.",
+      "references": [
+        {
+          "title": "Ports \u2014 primary reference",
+          "url": "https://www.rfc-editor.org/rfc/rfc9293.html"
+        }
+      ]
+    },
+    {
+      "id": "networking-lesson-09",
+      "topic": "networking",
+      "title": "TCP handshake",
+      "summary": "Transport-level connection state between endpoints.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "It does not prove that a later TLS or application exchange will succeed."
+        },
+        {
+          "heading": "Apply it",
+          "body": "TCP connects quickly but HTTPS fails afterward. Inspect the TLS handshake and application-layer error separately."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "It proves the server certificate is trusted. This is not a sound assumption; transport-level connection state between endpoints."
+        }
+      ],
+      "takeaway": "It does not prove that a later TLS or application exchange will succeed.",
+      "references": [
+        {
+          "title": "TCP handshake \u2014 primary reference",
+          "url": "https://www.rfc-editor.org/rfc/rfc9293.html"
+        }
+      ]
+    },
+    {
+      "id": "networking-lesson-10",
+      "topic": "networking",
+      "title": "TLS identity",
+      "summary": "Accepting a certificate for a different service identity.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "A trusted issuer alone is insufficient if the hostname does not match."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A client reports a certificate hostname mismatch. Check the requested hostname certificate names and server selection."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "Any certificate from a trusted issuer matches every hostname. This is not a sound assumption; accepting a certificate for a different service identity."
+        }
+      ],
+      "takeaway": "A trusted issuer alone is insufficient if the hostname does not match.",
+      "references": [
+        {
+          "title": "TLS identity \u2014 primary reference",
+          "url": "https://www.rfc-editor.org/rfc/rfc8446.html"
+        }
+      ]
+    },
+    {
+      "id": "networking-lesson-11",
+      "topic": "networking",
+      "title": "HTTP status",
+      "summary": "The server is currently unable to handle the request.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "An HTTP response means communication reached an HTTP-speaking component."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A load balancer returns 503 while targets are marked unhealthy. Inspect target health and the reason each backend fails checks."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "It proves DNS resolution failed. This is not a sound assumption; the server is currently unable to handle the request."
+        }
+      ],
+      "takeaway": "An HTTP response means communication reached an HTTP-speaking component.",
+      "references": [
+        {
+          "title": "HTTP status \u2014 primary reference",
+          "url": "https://www.rfc-editor.org/rfc/rfc9110.html"
+        }
+      ]
+    },
+    {
+      "id": "networking-lesson-12",
+      "topic": "networking",
+      "title": "NAT state",
+      "summary": "Translation devices have finite state and port resources.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Existing successful connections do not prove capacity for unlimited new ones."
+        },
+        {
+          "heading": "Apply it",
+          "body": "New outbound connections fail during a connection-rate spike. Inspect translation state port allocation and connection reuse."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "NAT creates infinitely many source ports. This is not a sound assumption; translation devices have finite state and port resources."
+        }
+      ],
+      "takeaway": "Existing successful connections do not prove capacity for unlimited new ones.",
+      "references": [
+        {
+          "title": "NAT state \u2014 primary reference",
+          "url": "https://www.rfc-editor.org/rfc/rfc3022.html"
+        }
+      ]
+    },
+    {
+      "id": "networking-lesson-13",
+      "topic": "networking",
+      "title": "Firewall direction",
+      "summary": "Stateful filtering can track established flow state.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Stateless rules may require explicit rules for return traffic."
+        },
+        {
+          "heading": "Apply it",
+          "body": "Requests leave a subnet but stateless rules reject the replies. Check return-path rules including ephemeral destination ports."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "Stateless filtering always remembers connection state. This is not a sound assumption; stateful filtering can track established flow state."
+        }
+      ],
+      "takeaway": "Stateless rules may require explicit rules for return traffic.",
+      "references": [
+        {
+          "title": "Firewall direction \u2014 primary reference",
+          "url": "https://docs.aws.amazon.com/vpc/latest/userguide/vpc-network-acls.html"
+        }
+      ]
+    },
+    {
+      "id": "networking-lesson-14",
+      "topic": "networking",
+      "title": "MTU",
+      "summary": "Large packets may fail while small exchanges succeed.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Blocked path-MTU feedback can create difficult size-dependent failures."
+        },
+        {
+          "heading": "Apply it",
+          "body": "Small requests work but larger responses stall on a tunneled path. Investigate path MTU fragmentation behavior and necessary ICMP feedback."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "MTU sets the maximum number of concurrent TCP connections. This is not a sound assumption; large packets may fail while small exchanges succeed."
+        }
+      ],
+      "takeaway": "Blocked path-MTU feedback can create difficult size-dependent failures.",
+      "references": [
+        {
+          "title": "MTU \u2014 primary reference",
+          "url": "https://www.rfc-editor.org/rfc/rfc1191.html"
+        }
+      ]
+    },
+    {
+      "id": "networking-lesson-15",
+      "topic": "networking",
+      "title": "Packet loss",
+      "summary": "Retransmission recovery can increase request completion time.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Loss location and timing matter more than one isolated counter."
+        },
+        {
+          "heading": "Apply it",
+          "body": "Latency worsens during bursts and retransmissions rise. Measure loss and congestion along the actual affected path."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "Any lost packet proves the destination application crashed. This is not a sound assumption; retransmission recovery can increase request completion time."
+        }
+      ],
+      "takeaway": "Loss location and timing matter more than one isolated counter.",
+      "references": [
+        {
+          "title": "Packet loss \u2014 primary reference",
+          "url": "https://www.rfc-editor.org/rfc/rfc5681.html"
+        }
+      ]
+    },
+    {
+      "id": "networking-lesson-16",
+      "topic": "networking",
+      "title": "DNS negative caching",
+      "summary": "Resolvers may cache a prior negative response.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Negative-cache lifetime can differ from the new record's TTL."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A hostname was queried before it existed and still fails at one resolver. Inspect the cached negative response and authoritative answer."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "NXDOMAIN responses can never be cached. This is not a sound assumption; resolvers may cache a prior negative response."
+        }
+      ],
+      "takeaway": "Negative-cache lifetime can differ from the new record's TTL.",
+      "references": [
+        {
+          "title": "DNS negative caching \u2014 primary reference",
+          "url": "https://www.rfc-editor.org/rfc/rfc9520.html"
+        }
+      ]
+    },
+    {
+      "id": "networking-lesson-17",
+      "topic": "networking",
+      "title": "Keepalive",
+      "summary": "It does not prove that the application can process a request.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Application-level health checks test behavior beyond transport state."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A connection stays established while the application worker is deadlocked. Use a meaningful application check and bounded request deadlines."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "A keepalive response guarantees every database query will succeed. This is not a sound assumption; it does not prove that the application can process a request."
+        }
+      ],
+      "takeaway": "Application-level health checks test behavior beyond transport state.",
+      "references": [
+        {
+          "title": "Keepalive \u2014 primary reference",
+          "url": "https://www.rfc-editor.org/rfc/rfc9293.html"
+        }
+      ]
+    },
+    {
+      "id": "networking-lesson-18",
+      "topic": "networking",
+      "title": "Connection pooling",
+      "summary": "It reduces repeated connection setup overhead.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Pools need bounded size idle handling and timeout policy."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A service creates a new TLS connection for every short request. Measure setup cost and evaluate a bounded reusable connection pool."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "A pool eliminates every network failure. This is not a sound assumption; it reduces repeated connection setup overhead."
+        }
+      ],
+      "takeaway": "Pools need bounded size idle handling and timeout policy.",
+      "references": [
+        {
+          "title": "Connection pooling \u2014 primary reference",
+          "url": "https://www.rfc-editor.org/rfc/rfc7230.html"
+        }
+      ]
+    },
+    {
+      "id": "networking-lesson-19",
+      "topic": "networking",
+      "title": "Load balancing",
+      "summary": "HTTP-level fields such as host and path.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "TLS termination placement affects which component can inspect HTTP content."
+        },
+        {
+          "heading": "Apply it",
+          "body": "Two applications share an address but require routing by URL path. Use appropriate HTTP-aware routing at a component that can inspect the request."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "An L4 balancer always parses every HTTP path. This is not a sound assumption; hTTP-level fields such as host and path."
+        }
+      ],
+      "takeaway": "TLS termination placement affects which component can inspect HTTP content.",
+      "references": [
+        {
+          "title": "Load balancing \u2014 primary reference",
+          "url": "https://www.rfc-editor.org/rfc/rfc9110.html"
+        }
+      ]
+    },
+    {
+      "id": "networking-lesson-20",
+      "topic": "networking",
+      "title": "Proxy headers",
+      "summary": "Clients can forge headers unless a trusted proxy controls them.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "The trusted proxy boundary must be configured explicitly."
+        },
+        {
+          "heading": "Apply it",
+          "body": "An access rule accepts a forged forwarding header from a direct client. Restrict trusted proxies and sanitize forwarding metadata."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "Any X-Forwarded-For value proves the original client identity. This is not a sound assumption; clients can forge headers unless a trusted proxy controls them."
+        }
+      ],
+      "takeaway": "The trusted proxy boundary must be configured explicitly.",
+      "references": [
+        {
+          "title": "Proxy headers \u2014 primary reference",
+          "url": "https://www.rfc-editor.org/rfc/rfc9110.html"
+        }
+      ]
+    },
+    {
+      "id": "networking-lesson-21",
+      "topic": "networking",
+      "title": "Retries",
+      "summary": "They increase offered load while capacity may already be impaired.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Retry budgets backoff and jitter help control amplification."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A dependency slows and callers launch synchronized repeated requests. Bound retries and use backoff with jitter while measuring load."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "Every failed request should be retried immediately forever. This is not a sound assumption; they increase offered load while capacity may already be impaired."
+        }
+      ],
+      "takeaway": "Retry budgets backoff and jitter help control amplification.",
+      "references": [
+        {
+          "title": "Retries \u2014 primary reference",
+          "url": "https://sre.google/sre-book/handling-overload/"
+        }
+      ]
+    },
+    {
+      "id": "networking-lesson-22",
+      "topic": "networking",
+      "title": "Timeout budgets",
+      "summary": "Downstream work should fit within the caller's remaining budget.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "A timeout does not prove the server performed no side effect."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A payment request times out and the client is about to repeat it. Check idempotency and operation status before repeating a write."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "Every layer should wait longer than its caller indefinitely. This is not a sound assumption; downstream work should fit within the caller's remaining budget."
+        }
+      ],
+      "takeaway": "A timeout does not prove the server performed no side effect.",
+      "references": [
+        {
+          "title": "Timeout budgets \u2014 primary reference",
+          "url": "https://sre.google/sre-book/handling-overload/"
+        }
+      ]
+    },
+    {
+      "id": "networking-lesson-23",
+      "topic": "networking",
+      "title": "Asymmetric routing",
+      "summary": "Return traffic may bypass the device holding the connection state.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Both forward and reverse paths matter when stateful devices are involved."
+        },
+        {
+          "heading": "Apply it",
+          "body": "Packets reach the server but replies take a different firewall path and disappear. Trace both directions and inspect stateful-device routing."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "Only the forward route matters for TCP connectivity. This is not a sound assumption; return traffic may bypass the device holding the connection state."
+        }
+      ],
+      "takeaway": "Both forward and reverse paths matter when stateful devices are involved.",
+      "references": [
+        {
+          "title": "Asymmetric routing \u2014 primary reference",
+          "url": "https://docs.aws.amazon.com/vpc/latest/userguide/vpc-network-acls.html"
+        }
+      ]
+    },
+    {
+      "id": "networking-lesson-24",
+      "topic": "networking",
+      "title": "Anycast",
+      "summary": "Multiple locations advertise reachability for the same address.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Routing chooses a path rather than an application-level session scheduler."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A route change moves traffic to another anycast location. Check route convergence and whether session state tolerates location changes."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "Anycast guarantees all requests from a user reach one process forever. This is not a sound assumption; multiple locations advertise reachability for the same address."
+        }
+      ],
+      "takeaway": "Routing chooses a path rather than an application-level session scheduler.",
+      "references": [
+        {
+          "title": "Anycast \u2014 primary reference",
+          "url": "https://www.rfc-editor.org/rfc/rfc4786.html"
+        }
+      ]
+    },
+    {
+      "id": "networking-lesson-25",
+      "topic": "networking",
+      "title": "BGP policy",
+      "summary": "Policy and path attributes guide route selection.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "The selected route need not be the path with lowest measured latency."
+        },
+        {
+          "heading": "Apply it",
+          "body": "Traffic follows an unexpected provider path despite a nearby alternative. Inspect route advertisements and policy attributes."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "BGP continuously measures application response time for every route. This is not a sound assumption; policy and path attributes guide route selection."
+        }
+      ],
+      "takeaway": "The selected route need not be the path with lowest measured latency.",
+      "references": [
+        {
+          "title": "BGP policy \u2014 primary reference",
+          "url": "https://www.rfc-editor.org/rfc/rfc4271.html"
+        }
+      ]
+    },
+    {
+      "id": "networking-lesson-26",
+      "topic": "networking",
+      "title": "IPv6 neighbor discovery",
+      "summary": "ICMPv6 Neighbor Discovery.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Blocking all ICMPv6 can break essential IPv6 operation."
+        },
+        {
+          "heading": "Apply it",
+          "body": "IPv6 communication breaks after a blanket ICMPv6 deny rule. Review required Neighbor Discovery and path-MTU control traffic."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "IPv6 uses IPv4 ARP broadcasts unchanged. This is not a sound assumption; iCMPv6 Neighbor Discovery."
+        }
+      ],
+      "takeaway": "Blocking all ICMPv6 can break essential IPv6 operation.",
+      "references": [
+        {
+          "title": "IPv6 neighbor discovery \u2014 primary reference",
+          "url": "https://www.rfc-editor.org/rfc/rfc4861.html"
+        }
+      ]
+    },
+    {
+      "id": "networking-lesson-27",
+      "topic": "networking",
+      "title": "TCP TIME_WAIT",
+      "summary": "It helps handle delayed segments and the final close exchange.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Large TIME_WAIT counts need context rather than automatic deletion."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A busy client creates many short connections and accumulates TIME_WAIT sockets. Inspect connection churn port capacity and reuse patterns."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "TIME_WAIT means every socket is actively processing requests. This is not a sound assumption; it helps handle delayed segments and the final close exchange."
+        }
+      ],
+      "takeaway": "Large TIME_WAIT counts need context rather than automatic deletion.",
+      "references": [
+        {
+          "title": "TCP TIME_WAIT \u2014 primary reference",
+          "url": "https://www.rfc-editor.org/rfc/rfc9293.html"
+        }
+      ]
+    },
+    {
+      "id": "networking-lesson-28",
+      "topic": "networking",
+      "title": "Queueing",
+      "summary": "Packets wait longer before transmission under sustained congestion.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "More buffering can trade packet loss for queueing delay."
+        },
+        {
+          "heading": "Apply it",
+          "body": "Throughput looks stable but interactive latency climbs during bulk transfers. Measure queueing delay and evaluate traffic management."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "Increasing every buffer always lowers latency. This is not a sound assumption; packets wait longer before transmission under sustained congestion."
+        }
+      ],
+      "takeaway": "More buffering can trade packet loss for queueing delay.",
+      "references": [
+        {
+          "title": "Queueing \u2014 primary reference",
+          "url": "https://www.rfc-editor.org/rfc/rfc5681.html"
+        }
+      ]
+    },
+    {
+      "id": "networking-lesson-29",
+      "topic": "networking",
+      "title": "TLS termination",
+      "summary": "The proxy can access plaintext application traffic.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Encryption to the backend is a separate connection policy."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A compliance requirement covers traffic between the proxy and backend. Verify and configure encryption on the backend connection too."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "Terminating TLS automatically encrypts the backend hop. This is not a sound assumption; the proxy can access plaintext application traffic."
+        }
+      ],
+      "takeaway": "Encryption to the backend is a separate connection policy.",
+      "references": [
+        {
+          "title": "TLS termination \u2014 primary reference",
+          "url": "https://www.rfc-editor.org/rfc/rfc8446.html"
+        }
+      ]
+    },
+    {
+      "id": "networking-lesson-30",
+      "topic": "networking",
+      "title": "Idempotency",
+      "summary": "Repeated requests can avoid duplicating the intended effect.",
+      "sections": [
+        {
+          "heading": "How it works",
+          "body": "Idempotency keys need scoped storage and a retention policy."
+        },
+        {
+          "heading": "Apply it",
+          "body": "A client may retry an order after losing the response. Reuse an operation identifier and check recorded outcomes."
+        },
+        {
+          "heading": "Misconception to challenge",
+          "body": "Every HTTP POST is automatically idempotent. This is not a sound assumption; repeated requests can avoid duplicating the intended effect."
+        }
+      ],
+      "takeaway": "Idempotency keys need scoped storage and a retention policy.",
+      "references": [
+        {
+          "title": "Idempotency \u2014 primary reference",
+          "url": "https://www.rfc-editor.org/rfc/rfc9110.html"
+        }
+      ]
+    }
+  ],
+  "commands": [],
+  "debugging": []
+}

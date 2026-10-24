@@ -1014,6 +1014,348 @@
           "url": "https://docs.docker.com/reference/cli/docker/"
         }
       ]
+    },
+    {
+      "id": "docker-command-13",
+      "topic": "docker",
+      "title": "Client and server versions",
+      "command": "docker version",
+      "kind": "Shell command",
+      "definition": "Reports Docker client and daemon versions and API compatibility.",
+      "purpose": "Identify whether a command mismatch comes from the client or selected daemon.",
+      "environment": "Read-only; confirm the intended context before diagnosing a remote daemon.",
+      "expectedOutput": "Client: Version ... Server: Engine Version ...",
+      "interpretation": "Client and Server are distinct sections; a missing server section can indicate connection failure.",
+      "safety": "Read-only; confirm the intended context before diagnosing a remote daemon.",
+      "references": [
+        {
+          "title": "Client and server versions \u2014 primary documentation",
+          "url": "https://docs.docker.com/reference/cli/docker/"
+        }
+      ]
+    },
+    {
+      "id": "docker-command-14",
+      "topic": "docker",
+      "title": "Context selection evidence",
+      "command": "docker context ls",
+      "kind": "Shell command",
+      "definition": "Lists configured Docker endpoints and the active context.",
+      "purpose": "Avoid inspecting or changing the wrong host.",
+      "environment": "Read-only; endpoint names alone do not prove environment ownership.",
+      "expectedOutput": "NAME DESCRIPTION DOCKER ENDPOINT",
+      "interpretation": "The asterisk marks the current context; Docker Endpoint identifies the daemon connection.",
+      "safety": "Read-only; endpoint names alone do not prove environment ownership.",
+      "references": [
+        {
+          "title": "Context selection evidence \u2014 primary documentation",
+          "url": "https://docs.docker.com/reference/cli/docker/"
+        }
+      ]
+    },
+    {
+      "id": "docker-command-15",
+      "topic": "docker",
+      "title": "Image inventory",
+      "command": "docker image ls --digests",
+      "kind": "Shell command",
+      "definition": "Lists local image references and recorded digests.",
+      "purpose": "Compare cached artifacts with the intended release identity.",
+      "environment": "Read-only; several tags can refer to one image.",
+      "expectedOutput": "REPOSITORY TAG DIGEST IMAGE ID CREATED SIZE",
+      "interpretation": "REPOSITORY and TAG are names; DIGEST is content identity when available and can be absent for local builds.",
+      "safety": "Read-only; several tags can refer to one image.",
+      "references": [
+        {
+          "title": "Image inventory \u2014 primary documentation",
+          "url": "https://docs.docker.com/reference/cli/docker/"
+        }
+      ]
+    },
+    {
+      "id": "docker-command-16",
+      "topic": "docker",
+      "title": "Image layer history",
+      "command": "docker image history --no-trunc IMAGE",
+      "kind": "Shell command",
+      "definition": "Displays the image's layer history and build-command metadata.",
+      "purpose": "Investigate image growth or accidentally embedded build data.",
+      "environment": "Read-only but may reveal secrets embedded in old build arguments or instructions; protect output.",
+      "expectedOutput": "IMAGE CREATED CREATED BY SIZE COMMENT",
+      "interpretation": "CREATED BY describes recorded build instructions; SIZE is layer contribution, not necessarily unique disk usage.",
+      "safety": "Read-only but may reveal secrets embedded in old build arguments or instructions; protect output.",
+      "references": [
+        {
+          "title": "Image layer history \u2014 primary documentation",
+          "url": "https://docs.docker.com/reference/cli/docker/"
+        }
+      ]
+    },
+    {
+      "id": "docker-command-17",
+      "topic": "docker",
+      "title": "Build a tagged image",
+      "command": "docker build --tag app:review .",
+      "kind": "Shell command",
+      "definition": "Builds an image from the selected context and Dockerfile.",
+      "purpose": "Produce a repeatable candidate artifact from reviewed inputs.",
+      "environment": "Executes Dockerfile instructions and can use network/build resources. Review context exclusions and base images first.",
+      "expectedOutput": "Successfully tagged app:review",
+      "interpretation": "Step output shows build stages and cache use; the final tag identifies the local result, not registry publication.",
+      "safety": "Executes Dockerfile instructions and can use network/build resources. Review context exclusions and base images first.",
+      "references": [
+        {
+          "title": "Build a tagged image \u2014 primary documentation",
+          "url": "https://docs.docker.com/reference/cli/docker/"
+        }
+      ]
+    },
+    {
+      "id": "docker-command-18",
+      "topic": "docker",
+      "title": "Build with a secret mount",
+      "command": "docker build --secret id=registry_token,src=TOKEN_FILE --tag app:review .",
+      "kind": "Shell command",
+      "definition": "Makes a file available to BuildKit secret mounts during a build.",
+      "purpose": "Allow authenticated build steps without copying the credential into image layers.",
+      "environment": "Uses a local credential. Review Dockerfile handling, permissions and logs; never substitute ARG for a secret blindly.",
+      "expectedOutput": "Build completed; image tagged app:review",
+      "interpretation": "The Dockerfile must consume the matching secret ID; a successful build does not prove application code avoided logging it.",
+      "safety": "Uses a local credential. Review Dockerfile handling, permissions and logs; never substitute ARG for a secret blindly.",
+      "references": [
+        {
+          "title": "Build with a secret mount \u2014 primary documentation",
+          "url": "https://docs.docker.com/reference/cli/docker/"
+        }
+      ]
+    },
+    {
+      "id": "docker-command-19",
+      "topic": "docker",
+      "title": "Run an isolated local test",
+      "command": "docker run --rm --name app-check -p 127.0.0.1:8080:8080 IMAGE",
+      "kind": "Shell command",
+      "definition": "Starts a disposable container with one loopback-bound published port.",
+      "purpose": "Check a candidate service locally before deployment.",
+      "environment": "Runs image code and binds a local port. Use a trusted image and avoid production credentials/data.",
+      "expectedOutput": "Application listening on 8080",
+      "interpretation": "The foreground output is application stdout/stderr; --rm removes this container after exit, not every external volume.",
+      "safety": "Runs image code and binds a local port. Use a trusted image and avoid production credentials/data.",
+      "references": [
+        {
+          "title": "Run an isolated local test \u2014 primary documentation",
+          "url": "https://docs.docker.com/reference/cli/docker/"
+        }
+      ]
+    },
+    {
+      "id": "docker-command-20",
+      "topic": "docker",
+      "title": "Container process list",
+      "command": "docker top CONTAINER",
+      "kind": "Shell command",
+      "definition": "Displays processes running in a container from the daemon's perspective.",
+      "purpose": "Inspect wrappers and child processes without requiring ps inside the image.",
+      "environment": "Read-only; process arguments can reveal sensitive values.",
+      "expectedOutput": "UID PID PPID C STIME TTY TIME CMD",
+      "interpretation": "PID/PPID identify process relationships; displayed identifiers may correspond to host process IDs.",
+      "safety": "Read-only; process arguments can reveal sensitive values.",
+      "references": [
+        {
+          "title": "Container process list \u2014 primary documentation",
+          "url": "https://docs.docker.com/reference/cli/docker/"
+        }
+      ]
+    },
+    {
+      "id": "docker-command-21",
+      "topic": "docker",
+      "title": "Execute a diagnostic",
+      "command": "docker exec CONTAINER id",
+      "kind": "Shell command",
+      "definition": "Runs id in an already-running container.",
+      "purpose": "Check the identity used by an exec process in the container context.",
+      "environment": "The command is read-only, but exec permits arbitrary actions. Confirm container and avoid dumping secret environments.",
+      "expectedOutput": "uid=1000(app) gid=1000(app)",
+      "interpretation": "uid, gid and groups describe this process; application processes may deliberately use different identities.",
+      "safety": "The command is read-only, but exec permits arbitrary actions. Confirm container and avoid dumping secret environments.",
+      "references": [
+        {
+          "title": "Execute a diagnostic \u2014 primary documentation",
+          "url": "https://docs.docker.com/reference/cli/docker/"
+        }
+      ]
+    },
+    {
+      "id": "docker-command-22",
+      "topic": "docker",
+      "title": "Graceful container stop",
+      "command": "docker stop --time 30 CONTAINER",
+      "kind": "Shell command",
+      "definition": "Requests termination and allows a bounded grace period before forced stopping.",
+      "purpose": "Give a service time to drain and flush during an approved shutdown.",
+      "environment": "Stops a workload. Check availability, stop signal, data handling and restart expectations first.",
+      "expectedOutput": "CONTAINER",
+      "interpretation": "The printed container name confirms completion of the stop operation; inspect exit state and application evidence.",
+      "safety": "Stops a workload. Check availability, stop signal, data handling and restart expectations first.",
+      "references": [
+        {
+          "title": "Graceful container stop \u2014 primary documentation",
+          "url": "https://docs.docker.com/reference/cli/docker/"
+        }
+      ]
+    },
+    {
+      "id": "docker-command-23",
+      "topic": "docker",
+      "title": "Copy a diagnostic file",
+      "command": "docker cp CONTAINER:/var/log/app/diagnostic.txt ./diagnostic.txt",
+      "kind": "Shell command",
+      "definition": "Copies a selected file from a container to the local filesystem.",
+      "purpose": "Preserve a scoped diagnostic artifact before container replacement.",
+      "environment": "Writes a local file and may expose confidential data. Choose a protected destination and a narrow path.",
+      "expectedOutput": "No output on success",
+      "interpretation": "No output normally means the copy succeeded; inspect destination size and content separately.",
+      "safety": "Writes a local file and may expose confidential data. Choose a protected destination and a narrow path.",
+      "references": [
+        {
+          "title": "Copy a diagnostic file \u2014 primary documentation",
+          "url": "https://docs.docker.com/reference/cli/docker/"
+        }
+      ]
+    },
+    {
+      "id": "docker-command-24",
+      "topic": "docker",
+      "title": "Filesystem changes",
+      "command": "docker diff CONTAINER",
+      "kind": "Shell command",
+      "definition": "Lists paths changed in the container's writable layer.",
+      "purpose": "Investigate runtime modifications not represented in the image.",
+      "environment": "Read-only; this is not a full backup or a content diff.",
+      "expectedOutput": "C /etc/app.conf",
+      "interpretation": "A means added, C changed and D deleted; mounted-volume contents are outside this writable-layer diff.",
+      "safety": "Read-only; this is not a full backup or a content diff.",
+      "references": [
+        {
+          "title": "Filesystem changes \u2014 primary documentation",
+          "url": "https://docs.docker.com/reference/cli/docker/"
+        }
+      ]
+    },
+    {
+      "id": "docker-command-25",
+      "topic": "docker",
+      "title": "Daemon event stream",
+      "command": "docker events --since 10m --until 0s",
+      "kind": "Shell command",
+      "definition": "Displays recent daemon events over a bounded interval ending now.",
+      "purpose": "Correlate starts, exits and health transitions with an incident.",
+      "environment": "Read-only event observation; daemon event history is not a durable audit archive.",
+      "expectedOutput": "container die ... exitCode=1",
+      "interpretation": "Each event has a timestamp, object type, action and attributes; retained history may be limited.",
+      "safety": "Read-only event observation; daemon event history is not a durable audit archive.",
+      "references": [
+        {
+          "title": "Daemon event stream \u2014 primary documentation",
+          "url": "https://docs.docker.com/reference/cli/docker/"
+        }
+      ]
+    },
+    {
+      "id": "docker-command-26",
+      "topic": "docker",
+      "title": "Network inventory",
+      "command": "docker network ls",
+      "kind": "Shell command",
+      "definition": "Lists networks known to the selected Docker daemon.",
+      "purpose": "Check intended bridge/network names before inspecting membership.",
+      "environment": "Read-only; inspect individual networks to see actual attached containers.",
+      "expectedOutput": "NETWORK ID NAME DRIVER SCOPE",
+      "interpretation": "DRIVER identifies the network implementation; SCOPE describes its visibility.",
+      "safety": "Read-only; inspect individual networks to see actual attached containers.",
+      "references": [
+        {
+          "title": "Network inventory \u2014 primary documentation",
+          "url": "https://docs.docker.com/reference/cli/docker/"
+        }
+      ]
+    },
+    {
+      "id": "docker-command-27",
+      "topic": "docker",
+      "title": "Volume inventory",
+      "command": "docker volume ls",
+      "kind": "Shell command",
+      "definition": "Lists named volumes known to the daemon.",
+      "purpose": "Inventory persistent storage before deployment or cleanup.",
+      "environment": "Read-only; do not infer disposability from absence of a running container.",
+      "expectedOutput": "DRIVER VOLUME NAME",
+      "interpretation": "DRIVER and VOLUME NAME identify storage objects; a listed volume is not proof of a valid backup.",
+      "safety": "Read-only; do not infer disposability from absence of a running container.",
+      "references": [
+        {
+          "title": "Volume inventory \u2014 primary documentation",
+          "url": "https://docs.docker.com/reference/cli/docker/"
+        }
+      ]
+    },
+    {
+      "id": "docker-command-28",
+      "topic": "docker",
+      "title": "Compose bounded logs",
+      "command": "docker compose logs --since 10m --tail 100 SERVICE",
+      "kind": "Shell command",
+      "definition": "Reads recent logs for one service in a Compose project.",
+      "purpose": "Investigate a startup failure without dumping every service's history.",
+      "environment": "Read-only; verify Compose project/files and protect secret-bearing output.",
+      "expectedOutput": "api-1  error: connection refused",
+      "interpretation": "Prefixes identify service/container instances; --tail limits each container's retained lines.",
+      "safety": "Read-only; verify Compose project/files and protect secret-bearing output.",
+      "references": [
+        {
+          "title": "Compose bounded logs \u2014 primary documentation",
+          "url": "https://docs.docker.com/reference/cli/docker/"
+        }
+      ]
+    },
+    {
+      "id": "docker-command-29",
+      "topic": "docker",
+      "title": "Compose deployment",
+      "command": "docker compose up -d SERVICE",
+      "kind": "Shell command",
+      "definition": "Creates or reconciles a selected Compose service and its required dependencies.",
+      "purpose": "Apply a reviewed local or single-host application configuration.",
+      "environment": "Mutates workloads and may recreate containers. Review resolved config, images, volumes and availability first.",
+      "expectedOutput": "Container project-api-1 Started",
+      "interpretation": "Started or Recreated reports lifecycle changes; inspect health and application behavior afterward.",
+      "safety": "Mutates workloads and may recreate containers. Review resolved config, images, volumes and availability first.",
+      "references": [
+        {
+          "title": "Compose deployment \u2014 primary documentation",
+          "url": "https://docs.docker.com/reference/cli/docker/"
+        }
+      ]
+    },
+    {
+      "id": "docker-command-30",
+      "topic": "docker",
+      "title": "Export an image archive",
+      "command": "docker image save --output app-image.tar IMAGE",
+      "kind": "Shell command",
+      "definition": "Writes image layers and metadata to a local archive.",
+      "purpose": "Transfer a specific image to an approved offline environment.",
+      "environment": "Writes potentially large and sensitive image data; ensure adequate disk space and artifact access controls.",
+      "expectedOutput": "app-image.tar created",
+      "interpretation": "The archive is an image artifact, not a container data-volume backup. Verify its digest and destination size separately.",
+      "safety": "Writes potentially large and sensitive image data; ensure adequate disk space and artifact access controls.",
+      "references": [
+        {
+          "title": "Export an image archive \u2014 primary documentation",
+          "url": "https://docs.docker.com/reference/cli/docker/"
+        }
+      ]
     }
   ],
   "debugging": [

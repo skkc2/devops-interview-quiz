@@ -766,7 +766,7 @@
       "topic": "observability",
       "title": "Aggregated throughput",
       "command": "sum by (job) (rate(http_requests_total[5m]))",
-      "kind": "Shell command",
+      "kind": "PromQL query",
       "definition": "Aggregates per-series request rates by service job.",
       "purpose": "Compare service traffic without averaging raw counters.",
       "environment": "PromQL; label names and counting semantics must match instrumentation.",
@@ -776,7 +776,7 @@
       "references": [
         {
           "title": "Aggregated throughput \u2014 primary documentation",
-          "url": "https://man7.org/linux/man-pages/"
+          "url": "https://prometheus.io/docs/prometheus/latest/querying/functions/"
         }
       ]
     },
@@ -947,6 +947,234 @@
       "references": [
         {
           "title": "Metrics endpoint sample \u2014 primary documentation",
+          "url": "https://curl.se/docs/manpage.html"
+        }
+      ]
+    },
+    {
+      "id": "observability-command-13",
+      "topic": "observability",
+      "title": "Metric series count",
+      "command": "count(http_requests_total)",
+      "kind": "PromQL query",
+      "definition": "Counts currently selected time series for a metric.",
+      "purpose": "Check whether instrumentation changes increase active series unexpectedly.",
+      "environment": "PromQL in a compatible backend; the metric name is illustrative. Compare with normal label dimensions and ingestion statistics.",
+      "expectedOutput": "240",
+      "interpretation": "The result is series count, not requests. Stale or absent series are excluded from the current instant vector.",
+      "safety": "PromQL in a compatible backend; the metric name is illustrative. Compare with normal label dimensions and ingestion statistics.",
+      "references": [
+        {
+          "title": "Metric series count \u2014 primary documentation",
+          "url": "https://prometheus.io/docs/prometheus/latest/querying/functions/"
+        }
+      ]
+    },
+    {
+      "id": "observability-command-14",
+      "topic": "observability",
+      "title": "Cardinality by service",
+      "command": "count by (job) (http_requests_total)",
+      "kind": "PromQL query",
+      "definition": "Counts selected series grouped by job.",
+      "purpose": "Locate which service contributes to a cardinality increase.",
+      "environment": "PromQL; adapt the grouping label to your instrumentation and avoid unbounded investigative queries.",
+      "expectedOutput": "{job=\"api\"} 180",
+      "interpretation": "Each output sample is one job with its active series count; it is not traffic volume.",
+      "safety": "PromQL; adapt the grouping label to your instrumentation and avoid unbounded investigative queries.",
+      "references": [
+        {
+          "title": "Cardinality by service \u2014 primary documentation",
+          "url": "https://prometheus.io/docs/prometheus/latest/querying/functions/"
+        }
+      ]
+    },
+    {
+      "id": "observability-command-15",
+      "topic": "observability",
+      "title": "Recent counter increase",
+      "command": "increase(http_requests_total{job=\"api\"}[1h])",
+      "kind": "PromQL query",
+      "definition": "Estimates counter increase over one hour with reset handling.",
+      "purpose": "Estimate request volume over a bounded investigation window.",
+      "environment": "PromQL; sufficient samples and scrape coverage are required. This is not a billing-grade exact event ledger.",
+      "expectedOutput": "{job=\"api\",status=\"200\"} 12500",
+      "interpretation": "Values can be fractional because of extrapolation; each input series produces its own increase.",
+      "safety": "PromQL; sufficient samples and scrape coverage are required. This is not a billing-grade exact event ledger.",
+      "references": [
+        {
+          "title": "Recent counter increase \u2014 primary documentation",
+          "url": "https://prometheus.io/docs/prometheus/latest/querying/functions/"
+        }
+      ]
+    },
+    {
+      "id": "observability-command-16",
+      "topic": "observability",
+      "title": "Peak queue depth",
+      "command": "max_over_time(queue_depth{queue=\"orders\"}[30m])",
+      "kind": "PromQL query",
+      "definition": "Returns the largest sampled gauge value in the window.",
+      "purpose": "Find a sampled backlog peak that is hidden by the current value.",
+      "environment": "PromQL; queue_depth is an example gauge. Missing short spikes require better instrumentation or sampling.",
+      "expectedOutput": "{queue=\"orders\"} 450",
+      "interpretation": "The maximum is over collected samples, not every moment between scrapes.",
+      "safety": "PromQL; queue_depth is an example gauge. Missing short spikes require better instrumentation or sampling.",
+      "references": [
+        {
+          "title": "Peak queue depth \u2014 primary documentation",
+          "url": "https://prometheus.io/docs/prometheus/latest/querying/functions/"
+        }
+      ]
+    },
+    {
+      "id": "observability-command-17",
+      "topic": "observability",
+      "title": "Queue trend",
+      "command": "deriv(queue_depth{queue=\"orders\"}[10m])",
+      "kind": "PromQL query",
+      "definition": "Estimates the per-second slope of a gauge using regression.",
+      "purpose": "Check whether a backlog is growing or draining over a window.",
+      "environment": "PromQL for float gauge samples; choose a window long enough to reduce short-term noise.",
+      "expectedOutput": "{queue=\"orders\"} 2.5",
+      "interpretation": "Positive values mean increasing sampled depth; negative values mean decreasing depth. This is not a counter rate.",
+      "safety": "PromQL for float gauge samples; choose a window long enough to reduce short-term noise.",
+      "references": [
+        {
+          "title": "Queue trend \u2014 primary documentation",
+          "url": "https://prometheus.io/docs/prometheus/latest/querying/functions/"
+        }
+      ]
+    },
+    {
+      "id": "observability-command-18",
+      "topic": "observability",
+      "title": "Scrape sample volume",
+      "command": "scrape_samples_post_metric_relabeling{job=\"api\"}",
+      "kind": "PromQL query",
+      "definition": "Reads the number of samples retained from each scrape after metric relabeling.",
+      "purpose": "Investigate a sudden instrumentation payload increase.",
+      "environment": "PromQL over Prometheus-generated scrape metrics; adapt target labels.",
+      "expectedOutput": "{job=\"api\",instance=\"api-1:8080\"} 350",
+      "interpretation": "Each value is a sample count per target scrape, not the cumulative number stored over time.",
+      "safety": "PromQL over Prometheus-generated scrape metrics; adapt target labels.",
+      "references": [
+        {
+          "title": "Scrape sample volume \u2014 primary documentation",
+          "url": "https://prometheus.io/docs/prometheus/latest/querying/functions/"
+        }
+      ]
+    },
+    {
+      "id": "observability-command-19",
+      "topic": "observability",
+      "title": "Scrape latency",
+      "command": "scrape_duration_seconds{job=\"api\"}",
+      "kind": "PromQL query",
+      "definition": "Reads the duration of recent target scrapes.",
+      "purpose": "Find targets approaching the configured scrape timeout.",
+      "environment": "PromQL; a slow scrape may reflect exporter cost, network delay or target pressure.",
+      "expectedOutput": "{job=\"api\",instance=\"api-1:8080\"} 0.42",
+      "interpretation": "Values are seconds per target; compare with its timeout and scrape interval.",
+      "safety": "PromQL; a slow scrape may reflect exporter cost, network delay or target pressure.",
+      "references": [
+        {
+          "title": "Scrape latency \u2014 primary documentation",
+          "url": "https://prometheus.io/docs/prometheus/latest/querying/functions/"
+        }
+      ]
+    },
+    {
+      "id": "observability-command-20",
+      "topic": "observability",
+      "title": "Sample freshness",
+      "command": "time() - timestamp(up{job=\"api\"})",
+      "kind": "PromQL query",
+      "definition": "Computes the age in seconds of the selected up sample.",
+      "purpose": "Inspect freshness of existing scrape-health samples.",
+      "environment": "PromQL; combine with absent-series checks and configured lookback/staleness behavior.",
+      "expectedOutput": "{job=\"api\",instance=\"api-1:8080\"} 12",
+      "interpretation": "A larger age indicates an older selected sample; missing/stale series may disappear rather than yield a large age.",
+      "safety": "PromQL; combine with absent-series checks and configured lookback/staleness behavior.",
+      "references": [
+        {
+          "title": "Sample freshness \u2014 primary documentation",
+          "url": "https://prometheus.io/docs/prometheus/latest/querying/functions/"
+        }
+      ]
+    },
+    {
+      "id": "observability-command-21",
+      "topic": "observability",
+      "title": "Latency threshold fraction",
+      "command": "sum(rate(http_request_duration_seconds_bucket{job=\"api\",le=\"0.3\"}[5m])) / sum(rate(http_request_duration_seconds_count{job=\"api\"}[5m]))",
+      "kind": "PromQL query",
+      "definition": "Calculates the fraction of sampled requests at or below 300 ms using a classic histogram.",
+      "purpose": "Evaluate a latency threshold directly when a matching bucket exists.",
+      "environment": "PromQL; requires the exact 0.3 bucket, consistent units and matching populations. Missing buckets are not zero compliance.",
+      "expectedOutput": "0.97",
+      "interpretation": "A result of 0.97 means 97% of requests counted in this population met the threshold; zero traffic needs explicit handling.",
+      "safety": "PromQL; requires the exact 0.3 bucket, consistent units and matching populations. Missing buckets are not zero compliance.",
+      "references": [
+        {
+          "title": "Latency threshold fraction \u2014 primary documentation",
+          "url": "https://prometheus.io/docs/prometheus/latest/querying/functions/"
+        }
+      ]
+    },
+    {
+      "id": "observability-command-22",
+      "topic": "observability",
+      "title": "Largest error contributors",
+      "command": "topk(5, sum by (service) (rate(http_requests_total{status=~\"5..\"}[5m])))",
+      "kind": "PromQL query",
+      "definition": "Ranks services by recent server-error rate.",
+      "purpose": "Identify the largest error-volume contributors during triage.",
+      "environment": "PromQL; service and status labels are illustrative. Inspect ratios and user impact as well.",
+      "expectedOutput": "{service=\"checkout\"} 8.2",
+      "interpretation": "Values are errors per second, not error percentages; high-traffic services can dominate the ranking.",
+      "safety": "PromQL; service and status labels are illustrative. Inspect ratios and user impact as well.",
+      "references": [
+        {
+          "title": "Largest error contributors \u2014 primary documentation",
+          "url": "https://prometheus.io/docs/prometheus/latest/querying/functions/"
+        }
+      ]
+    },
+    {
+      "id": "observability-command-23",
+      "topic": "observability",
+      "title": "Prometheus instant API query",
+      "command": "curl -fsS --get --data-urlencode 'query=up' http://127.0.0.1:9090/api/v1/query",
+      "kind": "Shell command",
+      "definition": "Queries the Prometheus HTTP API for an instant-vector expression.",
+      "purpose": "Inspect structured query results when building a diagnostic script.",
+      "environment": "Read-only HTTP request to a local trusted endpoint; configure authentication safely if required.",
+      "expectedOutput": "{\"status\":\"success\",\"data\":{\"resultType\":\"vector\",\"result\":[...]}}",
+      "interpretation": "Check status, resultType and result; sample values are encoded as timestamp/value pairs. HTTP success alone is not application health.",
+      "safety": "Read-only HTTP request to a local trusted endpoint; configure authentication safely if required.",
+      "references": [
+        {
+          "title": "Prometheus instant API query \u2014 primary documentation",
+          "url": "https://curl.se/docs/manpage.html"
+        }
+      ]
+    },
+    {
+      "id": "observability-command-24",
+      "topic": "observability",
+      "title": "Prometheus rule API",
+      "command": "curl -fsS http://127.0.0.1:9090/api/v1/rules",
+      "kind": "Shell command",
+      "definition": "Retrieves loaded recording and alerting rule status.",
+      "purpose": "Investigate rule evaluation errors or differences from a configuration file.",
+      "environment": "Read-only query; protect internal alert labels and use the intended Prometheus instance.",
+      "expectedOutput": "\"health\":\"ok\",\"lastError\":\"\"",
+      "interpretation": "Groups contain rules; health and lastError describe evaluation, while alert state is a separate property.",
+      "safety": "Read-only query; protect internal alert labels and use the intended Prometheus instance.",
+      "references": [
+        {
+          "title": "Prometheus rule API \u2014 primary documentation",
           "url": "https://curl.se/docs/manpage.html"
         }
       ]

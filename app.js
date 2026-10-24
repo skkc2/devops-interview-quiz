@@ -298,11 +298,16 @@
     $("question-progress").max=state.questions.length;$("question-progress").value=state.index+1;
     $("quiz-mode-pill").textContent=MODE_LABELS[state.mode];$("quiz-level-pill").textContent=Array.isArray(state.forcedQuestionIds)?"Saved review":levelMeta().label;$("quiz-topic-pill").textContent=topicLabel(q.topic);
     $("question-type-pill").textContent=TYPE_LABELS[q.type]||"Knowledge check";$("question-level-pill").textContent=(q.level||state.level).toUpperCase();
-    $("question-title").textContent=q.title||q.question;
+    // Titles are catalog labels, never substitutes for the actual question.
+    // Authored paragraphs separate the operational context from the final ask.
+    const promptParts=q.question.split(/\n\s*\n/);
+    const prompt=promptParts.pop();
+    const context=[q.context,...promptParts].filter(Boolean).join("\n\n");
+    $("question-title").textContent=prompt;
     $("question-objective").querySelector("p").textContent=q.objective||"Check your understanding, then explain the reasoning.";
-    $("question-context").textContent=q.context||"";$("question-context").hidden=!q.context;
+    $("question-context").textContent=context;$("question-context").hidden=!context;
     $("question-code").hidden=!q.code;$("question-code").querySelector("code").textContent=q.code||"";
-    $("selection-hint").textContent=isMulti(q)?"Select every correct answer, then check your selection.":isInterview(q)?"Use the notes field to structure an answer, or speak your response out loud.":"Choose the best answer, then check your reasoning.";
+    $("selection-hint").textContent=isMulti(q)?"Select exactly "+correctSet(q).length+" answers, then check your selection.":isInterview(q)?"Use the notes field to structure an answer, or speak your response out loud.":"Choose one answer, then check your reasoning.";
     $("answer-options").hidden=isInterview(q);
     $("answer-options").innerHTML=isInterview(q)?"":q.options.map((opt,i)=>{
       const selected=Array.isArray(state.answers[state.index])?state.answers[state.index].includes(i):state.answers[state.index]===i;
@@ -439,13 +444,13 @@
       if(interview){answer='<p><strong>Self-rating:</strong> '+esc(({1:"Needs work",2:"Getting there",3:"Interview ready"})[state.ratings[q.id]]||"Not rated")+'</p><details><summary>Compare with a strong answer</summary><p>'+esc(q.sampleAnswer||q.takeaway||q.explanation)+'</p>'+(q.answerChecklist||[]).map(x=>'<p>□ '+esc(x)+'</p>').join("")+'</details>';}
       else if(isMulti(q)){answer='<p class="review-answer">Correct choices: '+correctSet(q).map(idx=>esc(String.fromCharCode(65+idx)+". "+q.options[idx])).join(" · ")+'</p>';}
       else {answer='<p class="review-answer">Correct answer: '+esc(q.options[correctSet(q)[0]]||"Not available")+'</p>';}
-      return '<article class="review-card"><div class="review-card-top"><span>'+esc(topicLabel(q.topic))+' · '+esc(TYPE_LABELS[q.type]||q.type)+'</span><strong class="'+cls+'">'+esc(label)+'</strong></div><h3>'+(i+1)+'. '+esc(q.title||q.question)+'</h3><p>'+esc(q.explanation||"Review the official documentation and practise the concept.")+'</p>'+answer+'<p class="review-takeaway"><strong>Remember:</strong> '+esc(q.takeaway||"Explain how you would verify this in a real environment.")+'</p><div class="reference-links">'+htmlRefs(q)+'</div></article>';
+      return '<article class="review-card"><div class="review-card-top"><span>'+esc(topicLabel(q.topic))+' · '+esc(TYPE_LABELS[q.type]||q.type)+'</span><strong class="'+cls+'">'+esc(label)+'</strong></div><h3>'+(i+1)+'. '+esc(q.title||q.question)+'</h3><p class="review-prompt">'+esc([q.context,q.question].filter(Boolean).join('\n\n'))+'</p><p>'+esc(q.explanation||"Review the official documentation and practise the concept.")+'</p>'+answer+'<p class="review-takeaway"><strong>Remember:</strong> '+esc(q.takeaway||"Explain how you would verify this in a real environment.")+'</p><div class="reference-links">'+htmlRefs(q)+'</div></article>';
     }).join(""):'<p class="empty-state">No questions match this review filter. Try another filter or save a question during the session.</p>';
   }
   function exportReview(){
     const lines=["OpsLab — session review","Mode: "+MODE_LABELS[state.mode],"Difficulty: "+levelMeta().label,"Topic: "+topicLabel(state.topic==="all"?"Mixed topics":state.topic),"Date: "+new Date().toLocaleString(),"",""];
     state.questions.forEach((q,i)=>{
-      lines.push((i+1)+". "+(q.title||q.question), "Type: "+(TYPE_LABELS[q.type]||q.type), "Your answer: "+(isInterview(q)?(state.answers[i]||"(no notes)"):(Array.isArray(state.answers[i])?state.answers[i].map(idx=>q.options[idx]).join("; "):Number.isInteger(state.answers[i])?q.options[state.answers[i]]:"(unanswered)")));
+      lines.push((i+1)+". "+[q.context,q.question].filter(Boolean).join("\n\n"), "Type: "+(TYPE_LABELS[q.type]||q.type), "Your answer: "+(isInterview(q)?(state.answers[i]||"(no notes)"):(Array.isArray(state.answers[i])?state.answers[i].map(idx=>q.options[idx]).join("; "):Number.isInteger(state.answers[i])?q.options[state.answers[i]]:"(unanswered)")));
       if(!isInterview(q))lines.push("Correct answer: "+(isMulti(q)?correctSet(q).map(idx=>q.options[idx]).join("; "):q.options[correctSet(q)[0]]));
       if(isInterview(q))lines.push("Self-rating: "+(({1:"Needs work",2:"Getting there",3:"Interview ready"})[state.ratings[q.id]]||"Not rated"),"Example answer: "+(q.sampleAnswer||""));
       lines.push("Explanation: "+(q.explanation||""),"Takeaway: "+(q.takeaway||""),"References: "+(q.references||[]).map(r=>r.url).join(", "),"");

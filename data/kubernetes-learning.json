@@ -1062,6 +1062,538 @@
           "url": "https://kubernetes.io/docs/reference/kubectl/quick-reference/"
         }
       ]
+    },
+    {
+      "id": "kubernetes-command-13",
+      "topic": "kubernetes",
+      "title": "Available contexts",
+      "command": "kubectl config get-contexts",
+      "kind": "Shell command",
+      "definition": "Lists kubeconfig contexts and their cluster, identity and namespace associations.",
+      "purpose": "Confirm the intended target before selecting a context.",
+      "environment": "Read-only local configuration inspection; do not assume a familiar name proves production identity.",
+      "expectedOutput": "CURRENT NAME CLUSTER AUTHINFO NAMESPACE",
+      "interpretation": "The asterisk marks the current context; the namespace column can be empty, meaning default behavior.",
+      "safety": "Read-only local configuration inspection; do not assume a familiar name proves production identity.",
+      "references": [
+        {
+          "title": "Available contexts \u2014 primary documentation",
+          "url": "https://kubernetes.io/docs/reference/kubectl/quick-reference/"
+        }
+      ]
+    },
+    {
+      "id": "kubernetes-command-14",
+      "topic": "kubernetes",
+      "title": "API discovery",
+      "command": "kubectl api-resources --namespaced=true",
+      "kind": "Shell command",
+      "definition": "Lists discoverable namespaced resource types.",
+      "purpose": "Find the API name and short names for an unfamiliar object.",
+      "environment": "Read-only; requires cluster discovery access.",
+      "expectedOutput": "NAME SHORTNAMES APIVERSION NAMESPACED KIND",
+      "interpretation": "APIVERSION gives group/version; KIND is the object kind. Availability depends on the server and permissions.",
+      "safety": "Read-only; requires cluster discovery access.",
+      "references": [
+        {
+          "title": "API discovery \u2014 primary documentation",
+          "url": "https://kubernetes.io/docs/reference/kubectl/quick-reference/"
+        }
+      ]
+    },
+    {
+      "id": "kubernetes-command-15",
+      "topic": "kubernetes",
+      "title": "Field documentation",
+      "command": "kubectl explain deployment.spec.strategy",
+      "kind": "Shell command",
+      "definition": "Displays schema documentation for a resource field.",
+      "purpose": "Check supported rollout strategy fields before editing a manifest.",
+      "environment": "Read-only; schema follows the server API version, not every controller-specific behavior.",
+      "expectedOutput": "KIND: Deployment ... FIELD: strategy",
+      "interpretation": "FIELD and DESCRIPTION explain the selected schema path; nested FIELDS list valid properties.",
+      "safety": "Read-only; schema follows the server API version, not every controller-specific behavior.",
+      "references": [
+        {
+          "title": "Field documentation \u2014 primary documentation",
+          "url": "https://kubernetes.io/docs/reference/kubectl/quick-reference/"
+        }
+      ]
+    },
+    {
+      "id": "kubernetes-command-16",
+      "topic": "kubernetes",
+      "title": "Node placement view",
+      "command": "kubectl get nodes -o wide",
+      "kind": "Shell command",
+      "definition": "Lists nodes with status, versions and addresses.",
+      "purpose": "Identify which node or version group is involved in a failure.",
+      "environment": "Read-only; node addresses may be sensitive infrastructure information.",
+      "expectedOutput": "NAME STATUS ROLES AGE VERSION INTERNAL-IP",
+      "interpretation": "STATUS summarizes readiness; INTERNAL-IP and VERSION help correlate the affected node. Ready is not proof of all workload health.",
+      "safety": "Read-only; node addresses may be sensitive infrastructure information.",
+      "references": [
+        {
+          "title": "Node placement view \u2014 primary documentation",
+          "url": "https://kubernetes.io/docs/reference/kubectl/quick-reference/"
+        }
+      ]
+    },
+    {
+      "id": "kubernetes-command-17",
+      "topic": "kubernetes",
+      "title": "Node pressure detail",
+      "command": "kubectl describe node NODE",
+      "kind": "Shell command",
+      "definition": "Displays node conditions, capacity, allocations and events.",
+      "purpose": "Investigate scheduling failures or node-level evictions.",
+      "environment": "Read-only; replace NODE and correlate timestamps with the incident.",
+      "expectedOutput": "Conditions: MemoryPressure=True",
+      "interpretation": "Conditions identify pressure; Allocated resources summarizes requests and limits, not current usage.",
+      "safety": "Read-only; replace NODE and correlate timestamps with the incident.",
+      "references": [
+        {
+          "title": "Node pressure detail \u2014 primary documentation",
+          "url": "https://kubernetes.io/docs/reference/kubectl/quick-reference/"
+        }
+      ]
+    },
+    {
+      "id": "kubernetes-command-18",
+      "topic": "kubernetes",
+      "title": "Deployment manifest view",
+      "command": "kubectl get deployment APP -n NAMESPACE -o yaml",
+      "kind": "Shell command",
+      "definition": "Retrieves the live Deployment specification and status.",
+      "purpose": "Compare desired rollout settings with the object actually stored in the API.",
+      "environment": "Read-only; output can include configuration values, so redact before sharing.",
+      "expectedOutput": "spec: replicas: 3",
+      "interpretation": "spec is desired configuration; status reports controller observations. managedFields can be verbose.",
+      "safety": "Read-only; output can include configuration values, so redact before sharing.",
+      "references": [
+        {
+          "title": "Deployment manifest view \u2014 primary documentation",
+          "url": "https://kubernetes.io/docs/reference/kubectl/quick-reference/"
+        }
+      ]
+    },
+    {
+      "id": "kubernetes-command-19",
+      "topic": "kubernetes",
+      "title": "Rollout revisions",
+      "command": "kubectl rollout history deployment/APP -n NAMESPACE",
+      "kind": "Shell command",
+      "definition": "Lists retained Deployment rollout revisions.",
+      "purpose": "Establish which revision is available before considering recovery.",
+      "environment": "Read-only; retained history depends on controller settings.",
+      "expectedOutput": "REVISION CHANGE-CAUSE",
+      "interpretation": "REVISION is rollout history, not a Git commit; change-cause may be absent.",
+      "safety": "Read-only; retained history depends on controller settings.",
+      "references": [
+        {
+          "title": "Rollout revisions \u2014 primary documentation",
+          "url": "https://kubernetes.io/docs/reference/kubectl/quick-reference/"
+        }
+      ]
+    },
+    {
+      "id": "kubernetes-command-20",
+      "topic": "kubernetes",
+      "title": "Review manifest changes",
+      "command": "kubectl diff -f deployment.yaml",
+      "kind": "Shell command",
+      "definition": "Compares the proposed manifest with live resources.",
+      "purpose": "Review additions, removals and field changes before applying.",
+      "environment": "Does not persist the objects, but contacts the API and may invoke dry-run admission; protect secret-bearing diffs.",
+      "expectedOutput": "- replicas: 2 / + replicas: 3",
+      "interpretation": "Diff prefixes identify changed lines; exit 0 means no differences, 1 means differences, and higher values signal errors.",
+      "safety": "Does not persist the objects, but contacts the API and may invoke dry-run admission; protect secret-bearing diffs.",
+      "references": [
+        {
+          "title": "Review manifest changes \u2014 primary documentation",
+          "url": "https://kubernetes.io/docs/reference/kubectl/quick-reference/"
+        }
+      ]
+    },
+    {
+      "id": "kubernetes-command-21",
+      "topic": "kubernetes",
+      "title": "Server validation",
+      "command": "kubectl apply --dry-run=server -f deployment.yaml",
+      "kind": "Shell command",
+      "definition": "Runs server-side validation and dry-run admission without persisting the change.",
+      "purpose": "Check whether the intended API server accepts a manifest.",
+      "environment": "Requires applicable permissions; confirm context and webhook dry-run support.",
+      "expectedOutput": "deployment.apps/api configured (server dry run)",
+      "interpretation": "A dry-run success means this request was accepted at that moment; it does not demonstrate runtime readiness.",
+      "safety": "Requires applicable permissions; confirm context and webhook dry-run support.",
+      "references": [
+        {
+          "title": "Server validation \u2014 primary documentation",
+          "url": "https://kubernetes.io/docs/reference/kubectl/quick-reference/"
+        }
+      ]
+    },
+    {
+      "id": "kubernetes-command-22",
+      "topic": "kubernetes",
+      "title": "Apply reviewed manifest",
+      "command": "kubectl apply -f deployment.yaml",
+      "kind": "Shell command",
+      "definition": "Creates or updates resources from a manifest using apply semantics.",
+      "purpose": "Deploy an already reviewed desired configuration.",
+      "environment": "Mutates the cluster. Review diff, namespace, field ownership and recovery procedure first.",
+      "expectedOutput": "deployment.apps/api configured",
+      "interpretation": "created, configured or unchanged describe the API operation; follow with rollout and service checks.",
+      "safety": "Mutates the cluster. Review diff, namespace, field ownership and recovery procedure first.",
+      "references": [
+        {
+          "title": "Apply reviewed manifest \u2014 primary documentation",
+          "url": "https://kubernetes.io/docs/reference/kubectl/quick-reference/"
+        }
+      ]
+    },
+    {
+      "id": "kubernetes-command-23",
+      "topic": "kubernetes",
+      "title": "Scale replicas",
+      "command": "kubectl scale deployment/APP -n NAMESPACE --replicas=5",
+      "kind": "Shell command",
+      "definition": "Changes a workload's desired replica count.",
+      "purpose": "Perform an approved capacity adjustment.",
+      "environment": "Mutates desired state; HPA or GitOps reconciliation may overwrite this setting.",
+      "expectedOutput": "deployment.apps/api scaled",
+      "interpretation": "The scaled message confirms the request, not five ready replicas; inspect rollout and available capacity afterward.",
+      "safety": "Mutates desired state; HPA or GitOps reconciliation may overwrite this setting.",
+      "references": [
+        {
+          "title": "Scale replicas \u2014 primary documentation",
+          "url": "https://kubernetes.io/docs/reference/kubectl/quick-reference/"
+        }
+      ]
+    },
+    {
+      "id": "kubernetes-command-24",
+      "topic": "kubernetes",
+      "title": "Rollback revision",
+      "command": "kubectl rollout undo deployment/APP -n NAMESPACE --to-revision=REVISION",
+      "kind": "Shell command",
+      "definition": "Requests restoration of a retained Deployment revision.",
+      "purpose": "Recover from a verified bad rollout when the old version remains compatible.",
+      "environment": "Mutates workload version; inspect history, database compatibility and external configuration first.",
+      "expectedOutput": "deployment.apps/api rolled back",
+      "interpretation": "rolled back confirms the update request; monitor rollout status and user impact to verify recovery.",
+      "safety": "Mutates workload version; inspect history, database compatibility and external configuration first.",
+      "references": [
+        {
+          "title": "Rollback revision \u2014 primary documentation",
+          "url": "https://kubernetes.io/docs/reference/kubectl/quick-reference/"
+        }
+      ]
+    },
+    {
+      "id": "kubernetes-command-25",
+      "topic": "kubernetes",
+      "title": "Restart deployment",
+      "command": "kubectl rollout restart deployment/APP -n NAMESPACE",
+      "kind": "Shell command",
+      "definition": "Changes the Pod template annotation to trigger a fresh rollout.",
+      "purpose": "Restart Pods after an approved configuration or operational change.",
+      "environment": "Mutates workload state and can disrupt traffic; inspect capacity and rollout settings first.",
+      "expectedOutput": "deployment.apps/api restarted",
+      "interpretation": "restarted means the template changed; readiness and availability still depend on the rollout strategy.",
+      "safety": "Mutates workload state and can disrupt traffic; inspect capacity and rollout settings first.",
+      "references": [
+        {
+          "title": "Restart deployment \u2014 primary documentation",
+          "url": "https://kubernetes.io/docs/reference/kubectl/quick-reference/"
+        }
+      ]
+    },
+    {
+      "id": "kubernetes-command-26",
+      "topic": "kubernetes",
+      "title": "HPA conditions",
+      "command": "kubectl describe hpa HPA -n NAMESPACE",
+      "kind": "Shell command",
+      "definition": "Shows autoscaler targets, observed metrics and decision conditions.",
+      "purpose": "Diagnose why replicas do not follow demand.",
+      "environment": "Read-only; metrics availability and resource requests affect CPU utilization calculations.",
+      "expectedOutput": "ScalingActive False FailedGetResourceMetric",
+      "interpretation": "Compare current/target metrics with min/max replicas; Conditions and Events explain unavailable metrics or limits.",
+      "safety": "Read-only; metrics availability and resource requests affect CPU utilization calculations.",
+      "references": [
+        {
+          "title": "HPA conditions \u2014 primary documentation",
+          "url": "https://kubernetes.io/docs/reference/kubectl/quick-reference/"
+        }
+      ]
+    },
+    {
+      "id": "kubernetes-command-27",
+      "topic": "kubernetes",
+      "title": "Quota usage",
+      "command": "kubectl describe resourcequota -n NAMESPACE",
+      "kind": "Shell command",
+      "definition": "Lists namespace quota usage against hard limits.",
+      "purpose": "Explain admission failures when new objects exceed the namespace budget.",
+      "environment": "Read-only; quota is different from available node capacity.",
+      "expectedOutput": "requests.cpu 8 8",
+      "interpretation": "Used and Hard compare consumed and permitted quantities by resource.",
+      "safety": "Read-only; quota is different from available node capacity.",
+      "references": [
+        {
+          "title": "Quota usage \u2014 primary documentation",
+          "url": "https://kubernetes.io/docs/reference/kubectl/quick-reference/"
+        }
+      ]
+    },
+    {
+      "id": "kubernetes-command-28",
+      "topic": "kubernetes",
+      "title": "Limit defaults",
+      "command": "kubectl get limitrange -n NAMESPACE -o yaml",
+      "kind": "Shell command",
+      "definition": "Displays namespace defaults and constraints on resource settings.",
+      "purpose": "Find values applied or enforced when workloads omit requests or limits.",
+      "environment": "Read-only; inspect actual admitted Pod settings as well.",
+      "expectedOutput": "type: Container defaultRequest: cpu: 100m",
+      "interpretation": "default and defaultRequest are injected defaults; min/max constrain permitted values.",
+      "safety": "Read-only; inspect actual admitted Pod settings as well.",
+      "references": [
+        {
+          "title": "Limit defaults \u2014 primary documentation",
+          "url": "https://kubernetes.io/docs/reference/kubectl/quick-reference/"
+        }
+      ]
+    },
+    {
+      "id": "kubernetes-command-29",
+      "topic": "kubernetes",
+      "title": "Storage provisioning detail",
+      "command": "kubectl describe pvc CLAIM -n NAMESPACE",
+      "kind": "Shell command",
+      "definition": "Shows claim status, selected storage class and provisioning events.",
+      "purpose": "Investigate Pending claims and mount dependencies.",
+      "environment": "Read-only; avoid deleting a claim as a diagnostic shortcut.",
+      "expectedOutput": "Status: Pending ... WaitForFirstConsumer",
+      "interpretation": "Events can identify topology, provisioning or capacity issues; Bound does not prove a successful application mount.",
+      "safety": "Read-only; avoid deleting a claim as a diagnostic shortcut.",
+      "references": [
+        {
+          "title": "Storage provisioning detail \u2014 primary documentation",
+          "url": "https://kubernetes.io/docs/reference/kubectl/quick-reference/"
+        }
+      ]
+    },
+    {
+      "id": "kubernetes-command-30",
+      "topic": "kubernetes",
+      "title": "Storage class settings",
+      "command": "kubectl get storageclass -o yaml",
+      "kind": "Shell command",
+      "definition": "Lists provisioners and storage provisioning policies.",
+      "purpose": "Check binding mode, reclaim policy and expansion support.",
+      "environment": "Read-only; backend and CSI driver support must also be checked.",
+      "expectedOutput": "volumeBindingMode: WaitForFirstConsumer",
+      "interpretation": "volumeBindingMode affects timing; allowVolumeExpansion is only one prerequisite for growth.",
+      "safety": "Read-only; backend and CSI driver support must also be checked.",
+      "references": [
+        {
+          "title": "Storage class settings \u2014 primary documentation",
+          "url": "https://kubernetes.io/docs/reference/kubectl/quick-reference/"
+        }
+      ]
+    },
+    {
+      "id": "kubernetes-command-31",
+      "topic": "kubernetes",
+      "title": "Network policy scope",
+      "command": "kubectl get networkpolicy -n NAMESPACE -o yaml",
+      "kind": "Shell command",
+      "definition": "Displays policy selectors, peers, ports and policy types.",
+      "purpose": "Review which Pods and traffic directions a policy covers.",
+      "environment": "Read-only; enforcement requires a supporting network plugin.",
+      "expectedOutput": "policyTypes: [Ingress, Egress]",
+      "interpretation": "podSelector selects destination policy subjects; ingress/egress describe allowed rules. Multiple policies combine additively.",
+      "safety": "Read-only; enforcement requires a supporting network plugin.",
+      "references": [
+        {
+          "title": "Network policy scope \u2014 primary documentation",
+          "url": "https://kubernetes.io/docs/reference/kubectl/quick-reference/"
+        }
+      ]
+    },
+    {
+      "id": "kubernetes-command-32",
+      "topic": "kubernetes",
+      "title": "Namespace permissions",
+      "command": "kubectl get rolebindings -n NAMESPACE -o yaml",
+      "kind": "Shell command",
+      "definition": "Shows bindings between identities and namespaced role references.",
+      "purpose": "Investigate how a workload receives API permissions.",
+      "environment": "Read-only; this is not a complete effective-permission calculation by itself.",
+      "expectedOutput": "roleRef: kind: Role name: reader",
+      "interpretation": "subjects names identities; roleRef names a Role or ClusterRole. Read the referenced rules and other bindings too.",
+      "safety": "Read-only; this is not a complete effective-permission calculation by itself.",
+      "references": [
+        {
+          "title": "Namespace permissions \u2014 primary documentation",
+          "url": "https://kubernetes.io/docs/reference/kubectl/quick-reference/"
+        }
+      ]
+    },
+    {
+      "id": "kubernetes-command-33",
+      "topic": "kubernetes",
+      "title": "Pod placement field",
+      "command": "kubectl get pod POD -n NAMESPACE -o jsonpath='{.spec.nodeName}'",
+      "kind": "Shell command",
+      "definition": "Prints the assigned node field from one Pod.",
+      "purpose": "Distinguish unscheduled work from node-side startup trouble.",
+      "environment": "Read-only; no trailing newline may be printed by JSONPath output.",
+      "expectedOutput": "worker-3",
+      "interpretation": "A node name means assignment exists; empty output can mean the scheduler has not assigned a node.",
+      "safety": "Read-only; no trailing newline may be printed by JSONPath output.",
+      "references": [
+        {
+          "title": "Pod placement field \u2014 primary documentation",
+          "url": "https://kubernetes.io/docs/reference/kubectl/quick-reference/"
+        }
+      ]
+    },
+    {
+      "id": "kubernetes-command-34",
+      "topic": "kubernetes",
+      "title": "Inspect inside a container",
+      "command": "kubectl exec POD -n NAMESPACE -c CONTAINER -- printenv APP_MODE",
+      "kind": "Shell command",
+      "definition": "Runs a command inside a chosen container.",
+      "purpose": "Check one non-secret runtime setting in the actual application environment.",
+      "environment": "Exec can perform arbitrary changes with container permissions. This example reads one value; do not dump all secrets.",
+      "expectedOutput": "production",
+      "interpretation": "Everything after -- is the container command; stdout is its output and absence may mean the variable is unset.",
+      "safety": "Exec can perform arbitrary changes with container permissions. This example reads one value; do not dump all secrets.",
+      "references": [
+        {
+          "title": "Inspect inside a container \u2014 primary documentation",
+          "url": "https://kubernetes.io/docs/reference/kubectl/quick-reference/"
+        }
+      ]
+    },
+    {
+      "id": "kubernetes-command-35",
+      "topic": "kubernetes",
+      "title": "Local service tunnel",
+      "command": "kubectl port-forward -n NAMESPACE service/SERVICE 8080:80 --address=127.0.0.1",
+      "kind": "Shell command",
+      "definition": "Forwards a local port through the API connection to a selected backend.",
+      "purpose": "Test a service endpoint without publishing a new external listener.",
+      "environment": "Creates a live local tunnel and requires permissions; stop with Ctrl-C. It does not test the normal external network path.",
+      "expectedOutput": "Forwarding from 127.0.0.1:8080 -> 8080",
+      "interpretation": "8080 is local and 80 is the Service port. Forwarding output confirms setup, not application correctness.",
+      "safety": "Creates a live local tunnel and requires permissions; stop with Ctrl-C. It does not test the normal external network path.",
+      "references": [
+        {
+          "title": "Local service tunnel \u2014 primary documentation",
+          "url": "https://kubernetes.io/docs/reference/kubectl/quick-reference/"
+        }
+      ]
+    },
+    {
+      "id": "kubernetes-command-36",
+      "topic": "kubernetes",
+      "title": "Temporary debug container",
+      "command": "kubectl debug -n NAMESPACE POD -it --image=APPROVED_DEBUG_IMAGE --target=CONTAINER",
+      "kind": "Shell command",
+      "definition": "Adds an ephemeral debugging container to a running Pod.",
+      "purpose": "Inspect a minimal workload that lacks diagnostic tools.",
+      "environment": "Mutates the Pod's ephemeral-container configuration; use an approved image and scoped incident access.",
+      "expectedOutput": "Defaulting debug container name to debugger-...",
+      "interpretation": "The image must provide suitable tools; --target requests the target process namespace when supported by the runtime.",
+      "safety": "Mutates the Pod's ephemeral-container configuration; use an approved image and scoped incident access.",
+      "references": [
+        {
+          "title": "Temporary debug container \u2014 primary documentation",
+          "url": "https://kubernetes.io/docs/reference/kubectl/quick-reference/"
+        }
+      ]
+    },
+    {
+      "id": "kubernetes-command-37",
+      "topic": "kubernetes",
+      "title": "Disruption budget detail",
+      "command": "kubectl describe pdb BUDGET -n NAMESPACE",
+      "kind": "Shell command",
+      "definition": "Displays healthy counts and permitted voluntary disruptions.",
+      "purpose": "Understand an eviction blocked by a PodDisruptionBudget.",
+      "environment": "Read-only; a PDB does not guarantee protection from involuntary node failures.",
+      "expectedOutput": "Allowed disruptions: 0",
+      "interpretation": "Allowed disruptions is the current eviction allowance; healthy counts depend on selected Pods.",
+      "safety": "Read-only; a PDB does not guarantee protection from involuntary node failures.",
+      "references": [
+        {
+          "title": "Disruption budget detail \u2014 primary documentation",
+          "url": "https://kubernetes.io/docs/reference/kubectl/quick-reference/"
+        }
+      ]
+    },
+    {
+      "id": "kubernetes-command-38",
+      "topic": "kubernetes",
+      "title": "Cordon node",
+      "command": "kubectl cordon NODE",
+      "kind": "Shell command",
+      "definition": "Marks a node unschedulable for ordinary new scheduling.",
+      "purpose": "Prepare a node for an approved maintenance workflow.",
+      "environment": "Mutates scheduling availability; verify spare capacity and the intended node first.",
+      "expectedOutput": "node/worker-3 cordoned",
+      "interpretation": "cordoned confirms the node flag; existing Pods are not evicted by this command.",
+      "safety": "Mutates scheduling availability; verify spare capacity and the intended node first.",
+      "references": [
+        {
+          "title": "Cordon node \u2014 primary documentation",
+          "url": "https://kubernetes.io/docs/reference/kubectl/quick-reference/"
+        }
+      ]
+    },
+    {
+      "id": "kubernetes-command-39",
+      "topic": "kubernetes",
+      "title": "Drain with eviction",
+      "command": "kubectl drain NODE --ignore-daemonsets --timeout=10m",
+      "kind": "Shell command",
+      "definition": "Evicts eligible Pods from a node while respecting normal eviction controls.",
+      "purpose": "Move workloads away before planned node maintenance.",
+      "environment": "Disruptive operation: review capacity, PDBs and local storage. Do not add force or data-deletion flags to bypass unexplained blockers.",
+      "expectedOutput": "node/worker-3 drained",
+      "interpretation": "Errors identify blockers such as PDBs, unmanaged Pods or local data. A timeout is not proof the node is empty.",
+      "safety": "Disruptive operation: review capacity, PDBs and local storage. Do not add force or data-deletion flags to bypass unexplained blockers.",
+      "references": [
+        {
+          "title": "Drain with eviction \u2014 primary documentation",
+          "url": "https://kubernetes.io/docs/reference/kubectl/quick-reference/"
+        }
+      ]
+    },
+    {
+      "id": "kubernetes-command-40",
+      "topic": "kubernetes",
+      "title": "Restore scheduling",
+      "command": "kubectl uncordon NODE",
+      "kind": "Shell command",
+      "definition": "Clears the node's unschedulable flag.",
+      "purpose": "Return a verified healthy node to scheduling after maintenance.",
+      "environment": "Mutates scheduling state; complete node-health checks before returning capacity.",
+      "expectedOutput": "node/worker-3 uncordoned",
+      "interpretation": "uncordoned means scheduling is enabled; it does not prove all node services or workload paths are healthy.",
+      "safety": "Mutates scheduling state; complete node-health checks before returning capacity.",
+      "references": [
+        {
+          "title": "Restore scheduling \u2014 primary documentation",
+          "url": "https://kubernetes.io/docs/reference/kubectl/quick-reference/"
+        }
+      ]
     }
   ],
   "debugging": [

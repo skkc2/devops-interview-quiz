@@ -40,7 +40,7 @@ These are automated interaction tests, not a full manual usability or accessibil
 
 ## Multi-subject regression coverage
 
-Run `node scripts/validate-subjects.js` and `python3 scripts/build-subject-packs.py --check` in addition to the original checks. The catalog gate validates all 11 manifest entries, 1,020 scored items, 330 interviews, 330 lessons, 132 command guides and 110 scenarios, cross-pack ID uniqueness, per-subject prompt uniqueness, reference host allowlists and answer shape. Reproducibility checks do not write generated output.
+Run `node scripts/validate-subjects.js` and `python3 scripts/build-subject-packs.py --check` in addition to the original checks. The catalog gate validates all 11 manifest entries, 1,020 scored items, 330 interviews, 330 lessons, 348 command guides and 110 scenarios, cross-pack ID uniqueness, per-subject prompt uniqueness, reference host allowlists and answer shape. Reproducibility checks do not write generated output.
 
 The Chromium suite additionally covers all ten new subjects in Learn/Practice/Exam/Interview, exact available counts, subject-card search, learning search and subject isolation, partial and total pack-download failure with recovery, unavailable browser storage, and 390px mobile overflow. Existing tests cover scoring modes, multi-select interaction, saved review, timers, navigation and exports.
 

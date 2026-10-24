@@ -78,7 +78,7 @@ class OpsLabBrowserTests(unittest.TestCase):
         expect(self.page.locator("#learning-content-list .learning-item")).to_have_count(30)
         self.page.locator('#learning-module-nav [data-module="commands"]').click()
         expect(self.page.locator("#learning-title")).to_have_text("Commands")
-        expect(self.page.locator("#learning-content-list .learning-item")).to_have_count(12)
+        expect(self.page.locator("#learning-content-list .learning-item")).to_have_count(40)
         expect(self.page.locator("#learning-content-detail")).to_contain_text("kubectl config current-context")
         self.page.locator("#back-from-learning").click()
         self.choose_mode("practice")
@@ -388,7 +388,7 @@ class OpsLabBrowserTests(unittest.TestCase):
         for subject in ("kubernetes", "linux", "networking", "sre", "systems", "aws", "terraform", "docker", "ansible", "git", "observability"):
             with self.subTest(subject=subject):
                 self.page.locator("#learning-topic").select_option(subject)
-                for module, count in (("concepts", 30), ("commands", 12), ("scenarios", 10), ("interviews", 30)):
+                for module, count in (("concepts", 30), ("commands", {"kubernetes":40,"linux":40,"networking":40,"sre":24,"observability":24}.get(subject,30)), ("scenarios", 10), ("interviews", 30)):
                     self.page.locator(f'#learning-module-nav [data-module="{module}"]').click()
                     expect(self.page.locator("#learning-content-list .learning-item")).to_have_count(count)
                     detail = self.page.locator("#learning-content-detail")
@@ -424,6 +424,52 @@ class OpsLabBrowserTests(unittest.TestCase):
         expect(self.page.locator("#learning-content-detail")).to_be_in_viewport()
         expect(self.page.locator("#learning-content-detail")).to_be_focused()
         self.assertFalse(self.page.evaluate("document.documentElement.scrollWidth > innerWidth"))
+
+    def test_full_question_and_context_visible_for_every_subject_and_type(self):
+        import json
+        import re
+        self.page.emulate_media(reduced_motion="reduce")
+        for subject in json.loads((ROOT / "data/subjects.json").read_text())["subjects"]:
+            bank = json.loads((ROOT / subject["questions"]).read_text())["questions"]
+            for kind in ("concept", "scenario", "multi-select", "interview"):
+                with self.subTest(subject=subject["id"], kind=kind):
+                    self.page.goto(BASE_URL, wait_until="networkidle")
+                    self.choose_mode("interview" if kind == "interview" else "practice")
+                    self.page.locator("#topic-select").select_option(subject["id"])
+                    self.page.locator("#type-select").select_option(kind)
+                    self.start()
+                    prompt = self.page.locator("#question-title").text_content()
+                    context = self.page.locator("#question-context").text_content()
+                    candidates = []
+                    for q in bank:
+                        parts = re.split(r"\n\s*\n", q["question"])
+                        expected_context = "\n\n".join(x for x in [q.get("context"), *parts[:-1]] if x)
+                        if prompt == parts[-1] and context == expected_context:
+                            candidates.append(q)
+                    self.assertEqual(len(candidates), 1, "Visible context and ask must identify the actual question")
+                    q = candidates[0]
+                    self.assertNotEqual(prompt, q["title"])
+                    expect(self.page.locator("#question-title")).to_be_visible()
+                    if context:
+                        expect(self.page.locator("#question-context")).to_be_visible()
+                    if kind == "multi-select":
+                        expect(self.page.locator("#selection-hint")).to_contain_text(f"exactly {len(q['correct'])} answers")
+
+    def test_mobile_practice_question_and_review_retain_full_prompt(self):
+        self.page.set_viewport_size({"width":390,"height":844})
+        self.choose_mode("practice")
+        self.page.locator("#topic-select").select_option("linux")
+        self.page.locator("#type-select").select_option("concept")
+        self.page.locator("#count-select").select_option("5")
+        self.start()
+        prompt = self.page.locator("#question-title").text_content()
+        context = self.page.locator("#question-context").text_content()
+        self.assertGreater(len(context), 80)
+        self.assertFalse(self.page.evaluate("document.documentElement.scrollWidth > innerWidth"))
+        self.page.locator('[data-jump="4"]').click()
+        self.page.locator("#finish-quiz").click()
+        expect(self.page.locator("#review-list")).to_contain_text(prompt)
+        expect(self.page.locator("#review-list")).to_contain_text(context)
 
 
 if __name__ == "__main__":

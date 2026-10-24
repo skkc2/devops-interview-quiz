@@ -1002,6 +1002,348 @@
           "url": "https://developer.hashicorp.com/terraform/cli/commands"
         }
       ]
+    },
+    {
+      "id": "terraform-command-13",
+      "topic": "terraform",
+      "title": "CLI version and platform",
+      "command": "terraform version",
+      "kind": "Shell command",
+      "definition": "Reports Terraform and selected provider versions.",
+      "purpose": "Establish the exact toolchain behind a differing plan or CI failure.",
+      "environment": "Read-only; compare the version with project constraints and the CI runner.",
+      "expectedOutput": "Terraform v1.x.x on linux_amd64",
+      "interpretation": "The Terraform version and platform describe the executable; provider versions may appear for the initialized directory.",
+      "safety": "Read-only; compare the version with project constraints and the CI runner.",
+      "references": [
+        {
+          "title": "CLI version and platform \u2014 primary documentation",
+          "url": "https://developer.hashicorp.com/terraform/cli/commands"
+        }
+      ]
+    },
+    {
+      "id": "terraform-command-14",
+      "topic": "terraform",
+      "title": "Machine-readable validation",
+      "command": "terraform validate -json",
+      "kind": "Shell command",
+      "definition": "Checks configuration and emits structured diagnostics.",
+      "purpose": "Integrate syntax and internal-consistency checks into CI.",
+      "environment": "Requires initialization for referenced providers/modules; no infrastructure changes are applied.",
+      "expectedOutput": "{\"valid\":true,\"error_count\":0}",
+      "interpretation": "valid is a boolean; diagnostics include severity, summary and source range. This does not validate remote runtime behavior.",
+      "safety": "Requires initialization for referenced providers/modules; no infrastructure changes are applied.",
+      "references": [
+        {
+          "title": "Machine-readable validation \u2014 primary documentation",
+          "url": "https://developer.hashicorp.com/terraform/cli/commands"
+        }
+      ]
+    },
+    {
+      "id": "terraform-command-15",
+      "topic": "terraform",
+      "title": "Detect planned changes",
+      "command": "terraform plan -detailed-exitcode",
+      "kind": "Shell command",
+      "definition": "Creates a plan with distinct exit codes for changes and errors.",
+      "purpose": "Let CI distinguish a clean plan from actionable drift.",
+      "environment": "Reads remote state and may acquire a lock; confirm workspace, backend and credentials.",
+      "expectedOutput": "Plan: 1 to add, 0 to change, 0 to destroy.",
+      "interpretation": "Exit 0 means no changes, 1 means error, and 2 means changes. Do not treat 2 as an execution failure automatically.",
+      "safety": "Reads remote state and may acquire a lock; confirm workspace, backend and credentials.",
+      "references": [
+        {
+          "title": "Detect planned changes \u2014 primary documentation",
+          "url": "https://developer.hashicorp.com/terraform/cli/commands"
+        }
+      ]
+    },
+    {
+      "id": "terraform-command-16",
+      "topic": "terraform",
+      "title": "Plan with environment inputs",
+      "command": "terraform plan -var-file=staging.tfvars",
+      "kind": "Shell command",
+      "definition": "Plans using an explicit variable file.",
+      "purpose": "Review the effect of a chosen environment's inputs.",
+      "environment": "May reveal sensitive values if not marked; verify backend and credentials separately from the variable file.",
+      "expectedOutput": "Plan: 0 to add, 1 to change, 0 to destroy.",
+      "interpretation": "The resource diff reflects merged inputs and configuration; the filename alone does not enforce environment isolation.",
+      "safety": "May reveal sensitive values if not marked; verify backend and credentials separately from the variable file.",
+      "references": [
+        {
+          "title": "Plan with environment inputs \u2014 primary documentation",
+          "url": "https://developer.hashicorp.com/terraform/cli/commands"
+        }
+      ]
+    },
+    {
+      "id": "terraform-command-17",
+      "topic": "terraform",
+      "title": "Controlled provider upgrade",
+      "command": "terraform init -upgrade",
+      "kind": "Shell command",
+      "definition": "Reinitializes dependencies while considering newer versions within configured constraints.",
+      "purpose": "Evaluate an intentional provider/module dependency update.",
+      "environment": "Changes local dependency selections and lock file; perform in a reviewable branch and honor project version policy.",
+      "expectedOutput": "Terraform has made some changes to the provider dependency selections...",
+      "interpretation": "Inspect changed lock selections and a subsequent plan; initialization success does not establish resource compatibility.",
+      "safety": "Changes local dependency selections and lock file; perform in a reviewable branch and honor project version policy.",
+      "references": [
+        {
+          "title": "Controlled provider upgrade \u2014 primary documentation",
+          "url": "https://developer.hashicorp.com/terraform/cli/commands"
+        }
+      ]
+    },
+    {
+      "id": "terraform-command-18",
+      "topic": "terraform",
+      "title": "Backend reconfiguration",
+      "command": "terraform init -reconfigure",
+      "kind": "Shell command",
+      "definition": "Reinitializes backend configuration without migrating prior state automatically.",
+      "purpose": "Connect a working directory to an intentionally chosen existing backend.",
+      "environment": "Can point subsequent operations at different state. Verify destination and expected state before planning; do not confuse with state migration.",
+      "expectedOutput": "Successfully configured the backend...",
+      "interpretation": "Backend configured successfully refers to the new configuration, not proof that the expected resource state is present.",
+      "safety": "Can point subsequent operations at different state. Verify destination and expected state before planning; do not confuse with state migration.",
+      "references": [
+        {
+          "title": "Backend reconfiguration \u2014 primary documentation",
+          "url": "https://developer.hashicorp.com/terraform/cli/commands"
+        }
+      ]
+    },
+    {
+      "id": "terraform-command-19",
+      "topic": "terraform",
+      "title": "Lock selections for platforms",
+      "command": "terraform providers lock -platform=linux_amd64 -platform=darwin_arm64",
+      "kind": "Shell command",
+      "definition": "Records provider checksums for selected execution platforms.",
+      "purpose": "Prepare a shared lock file for reviewed developer and CI environments.",
+      "environment": "Writes the lock file and contacts registries; inspect changes and keep provider constraints intentional.",
+      "expectedOutput": "Obtained provider checksums for linux_amd64",
+      "interpretation": "The lock file gains hashes for the requested platforms; unsupported provider platforms cause errors.",
+      "safety": "Writes the lock file and contacts registries; inspect changes and keep provider constraints intentional.",
+      "references": [
+        {
+          "title": "Lock selections for platforms \u2014 primary documentation",
+          "url": "https://developer.hashicorp.com/terraform/cli/commands"
+        }
+      ]
+    },
+    {
+      "id": "terraform-command-20",
+      "topic": "terraform",
+      "title": "Provider dependency tree",
+      "command": "terraform providers schema -json",
+      "kind": "Shell command",
+      "definition": "Exports the initialized providers' configuration and resource schemas.",
+      "purpose": "Inspect supported attributes for tooling or version comparisons.",
+      "environment": "Read-only local/schema inspection after initialization; schema is not a complete behavioral contract.",
+      "expectedOutput": "{\"format_version\":\"1.0\",\"provider_schemas\":{...}}",
+      "interpretation": "provider_schemas maps provider addresses to blocks; required, optional and computed describe schema roles.",
+      "safety": "Read-only local/schema inspection after initialization; schema is not a complete behavioral contract.",
+      "references": [
+        {
+          "title": "Provider dependency tree \u2014 primary documentation",
+          "url": "https://developer.hashicorp.com/terraform/cli/commands"
+        }
+      ]
+    },
+    {
+      "id": "terraform-command-21",
+      "topic": "terraform",
+      "title": "Dependency graph",
+      "command": "terraform graph",
+      "kind": "Shell command",
+      "definition": "Prints the configuration dependency graph in DOT format.",
+      "purpose": "Inspect ordering or unexpected coupling between resources.",
+      "environment": "Read-only; labels can reveal infrastructure names. Graph output is not an execution success report.",
+      "expectedOutput": "digraph { ... }",
+      "interpretation": "Directed edges express dependency relationships; feed DOT to a graph viewer if needed.",
+      "safety": "Read-only; labels can reveal infrastructure names. Graph output is not an execution success report.",
+      "references": [
+        {
+          "title": "Dependency graph \u2014 primary documentation",
+          "url": "https://developer.hashicorp.com/terraform/cli/commands"
+        }
+      ]
+    },
+    {
+      "id": "terraform-command-22",
+      "topic": "terraform",
+      "title": "Expression console",
+      "command": "terraform console",
+      "kind": "Shell command",
+      "definition": "Opens an interactive evaluator for Terraform expressions.",
+      "purpose": "Test transformations and inspect expression results before editing configuration.",
+      "environment": "Interactive and may access state; avoid displaying secrets or evaluating against the wrong workspace.",
+      "expectedOutput": "> length([\"a\", \"b\"]) / 2",
+      "interpretation": "Enter an expression and read its typed result; exit leaves the console. Expressions can expose values loaded from state.",
+      "safety": "Interactive and may access state; avoid displaying secrets or evaluating against the wrong workspace.",
+      "references": [
+        {
+          "title": "Expression console \u2014 primary documentation",
+          "url": "https://developer.hashicorp.com/terraform/cli/commands"
+        }
+      ]
+    },
+    {
+      "id": "terraform-command-23",
+      "topic": "terraform",
+      "title": "Structured outputs",
+      "command": "terraform output -json",
+      "kind": "Shell command",
+      "definition": "Emits root-module outputs as JSON metadata and values.",
+      "purpose": "Feed verified outputs into downstream automation.",
+      "environment": "Read-only but potentially secret-bearing; restrict logs and files containing this output.",
+      "expectedOutput": "{\"endpoint\":{\"sensitive\":false,\"type\":\"string\",\"value\":\"...\"}}",
+      "interpretation": "Each output includes type, value and sensitive status. JSON output can include sensitive values in plaintext.",
+      "safety": "Read-only but potentially secret-bearing; restrict logs and files containing this output.",
+      "references": [
+        {
+          "title": "Structured outputs \u2014 primary documentation",
+          "url": "https://developer.hashicorp.com/terraform/cli/commands"
+        }
+      ]
+    },
+    {
+      "id": "terraform-command-24",
+      "topic": "terraform",
+      "title": "Structured saved plan",
+      "command": "terraform show -json tfplan",
+      "kind": "Shell command",
+      "definition": "Converts a saved plan into machine-readable JSON.",
+      "purpose": "Inspect actions or run policy analysis on the exact reviewed plan.",
+      "environment": "Read-only conversion; protect plan and output artifacts with appropriate access and retention.",
+      "expectedOutput": "\"actions\": [\"update\"]",
+      "interpretation": "resource_changes contains planned actions; before/after values may include secrets even when the CLI redacts them.",
+      "safety": "Read-only conversion; protect plan and output artifacts with appropriate access and retention.",
+      "references": [
+        {
+          "title": "Structured saved plan \u2014 primary documentation",
+          "url": "https://developer.hashicorp.com/terraform/cli/commands"
+        }
+      ]
+    },
+    {
+      "id": "terraform-command-25",
+      "topic": "terraform",
+      "title": "Workspace inventory",
+      "command": "terraform workspace list",
+      "kind": "Shell command",
+      "definition": "Lists CLI workspaces known to the current backend.",
+      "purpose": "Check available state partitions before selecting one.",
+      "environment": "Read-only; backend configuration determines the workspace list.",
+      "expectedOutput": "* default / staging",
+      "interpretation": "The asterisk marks the active workspace; names do not enforce separate credentials or security boundaries.",
+      "safety": "Read-only; backend configuration determines the workspace list.",
+      "references": [
+        {
+          "title": "Workspace inventory \u2014 primary documentation",
+          "url": "https://developer.hashicorp.com/terraform/cli/commands"
+        }
+      ]
+    },
+    {
+      "id": "terraform-command-26",
+      "topic": "terraform",
+      "title": "Select an existing workspace",
+      "command": "terraform workspace select staging",
+      "kind": "Shell command",
+      "definition": "Switches the working directory to an existing workspace.",
+      "purpose": "Choose the intended state partition before planning.",
+      "environment": "Changes local workspace selection and affects later operations; verify the backend and expected resources.",
+      "expectedOutput": "Switched to workspace \"staging\".",
+      "interpretation": "The selected message confirms the name, not its safety or credentials. Run workspace show and a reviewable plan afterward.",
+      "safety": "Changes local workspace selection and affects later operations; verify the backend and expected resources.",
+      "references": [
+        {
+          "title": "Select an existing workspace \u2014 primary documentation",
+          "url": "https://developer.hashicorp.com/terraform/cli/commands"
+        }
+      ]
+    },
+    {
+      "id": "terraform-command-27",
+      "topic": "terraform",
+      "title": "State backup export",
+      "command": "terraform state pull",
+      "kind": "Shell command",
+      "definition": "Writes the current state snapshot to standard output.",
+      "purpose": "Take a controlled diagnostic backup before state operations.",
+      "environment": "Reads backend state. Save only to a protected destination and follow the backend's backup policy.",
+      "expectedOutput": "{\"version\":4,\"serial\":42,\"lineage\":\"...\"}",
+      "interpretation": "JSON includes lineage and serial plus resource data; it is not a user-friendly inventory and may contain secrets.",
+      "safety": "Reads backend state. Save only to a protected destination and follow the backend's backup policy.",
+      "references": [
+        {
+          "title": "State backup export \u2014 primary documentation",
+          "url": "https://developer.hashicorp.com/terraform/cli/commands"
+        }
+      ]
+    },
+    {
+      "id": "terraform-command-28",
+      "topic": "terraform",
+      "title": "Import existing infrastructure",
+      "command": "terraform import 'aws_instance.web' INSTANCE_ID",
+      "kind": "Shell command",
+      "definition": "Associates an existing object with a resource address in state.",
+      "purpose": "Bring a verified existing resource under management without creating a duplicate.",
+      "environment": "Mutates state, not a complete configuration authoring workflow. Back up state, confirm identity and import support first.",
+      "expectedOutput": "Import successful!",
+      "interpretation": "Import success means the association was recorded; review configuration and the next plan for unintended changes.",
+      "safety": "Mutates state, not a complete configuration authoring workflow. Back up state, confirm identity and import support first.",
+      "references": [
+        {
+          "title": "Import existing infrastructure \u2014 primary documentation",
+          "url": "https://developer.hashicorp.com/terraform/cli/commands"
+        }
+      ]
+    },
+    {
+      "id": "terraform-command-29",
+      "topic": "terraform",
+      "title": "Unlock abandoned operation",
+      "command": "terraform force-unlock LOCK_ID",
+      "kind": "Shell command",
+      "definition": "Requests removal of a lock associated with a failed operation.",
+      "purpose": "Recover access only after confirming no legitimate writer remains.",
+      "environment": "High-impact coordination change. Never use to bypass an active operation; verify backend, lock owner and job termination.",
+      "expectedOutput": "Terraform state has been successfully unlocked!",
+      "interpretation": "The prompt names the lock ID; successful unlock does not roll back a partial apply.",
+      "safety": "High-impact coordination change. Never use to bypass an active operation; verify backend, lock owner and job termination.",
+      "references": [
+        {
+          "title": "Unlock abandoned operation \u2014 primary documentation",
+          "url": "https://developer.hashicorp.com/terraform/cli/commands"
+        }
+      ]
+    },
+    {
+      "id": "terraform-command-30",
+      "topic": "terraform",
+      "title": "Module tests",
+      "command": "terraform test",
+      "kind": "Shell command",
+      "definition": "Runs test files defined for the configuration or module.",
+      "purpose": "Exercise assertions about plans or provisioned resources in a controlled environment.",
+      "environment": "Tests can create real billable infrastructure by default; use an isolated authorized account and inspect test run commands first.",
+      "expectedOutput": "Success! 2 passed, 0 failed.",
+      "interpretation": "Run results identify passing/failing assertions; inspect cleanup messages for resources left behind.",
+      "safety": "Tests can create real billable infrastructure by default; use an isolated authorized account and inspect test run commands first.",
+      "references": [
+        {
+          "title": "Module tests \u2014 primary documentation",
+          "url": "https://developer.hashicorp.com/terraform/cli/commands"
+        }
+      ]
     }
   ],
   "debugging": [

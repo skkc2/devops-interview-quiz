@@ -1066,6 +1066,538 @@
           "url": "https://man7.org/linux/man-pages/"
         }
       ]
+    },
+    {
+      "id": "linux-command-13",
+      "topic": "linux",
+      "title": "List metadata",
+      "command": "ls -lah /srv/app",
+      "kind": "Shell command",
+      "definition": "Lists directory entries with mode, owner, size and modification time.",
+      "purpose": "Compare visible file attributes during access or deployment checks.",
+      "environment": "Read-only; listing a directory requires access to it and does not prove every file is readable.",
+      "expectedOutput": "-rw-r----- 1 app readers 4.0K Oct 23 10:00 config.yml",
+      "interpretation": "The first character is file type; the next nine are permission bits. -a includes dotfiles; sizes are readable units.",
+      "safety": "Read-only; listing a directory requires access to it and does not prove every file is readable.",
+      "references": [
+        {
+          "title": "List metadata \u2014 primary documentation",
+          "url": "https://man7.org/linux/man-pages/"
+        }
+      ]
+    },
+    {
+      "id": "linux-command-14",
+      "topic": "linux",
+      "title": "Precise file metadata",
+      "command": "stat /srv/app/config.yml",
+      "kind": "Shell command",
+      "definition": "Reports inode metadata and timestamps for a filesystem object.",
+      "purpose": "Check ownership, permissions, link count and actual allocated storage.",
+      "environment": "Read-only; use the intended path and distinguish metadata change from content modification.",
+      "expectedOutput": "Size: 4096 Blocks: 8 Links: 1",
+      "interpretation": "Size is logical length; Blocks reports allocated blocks. Access, Modify and Change are different timestamps.",
+      "safety": "Read-only; use the intended path and distinguish metadata change from content modification.",
+      "references": [
+        {
+          "title": "Precise file metadata \u2014 primary documentation",
+          "url": "https://man7.org/linux/man-pages/"
+        }
+      ]
+    },
+    {
+      "id": "linux-command-15",
+      "topic": "linux",
+      "title": "Directory usage",
+      "command": "du -xhd1 /var",
+      "kind": "Shell command",
+      "definition": "Totals allocated space beneath a directory one level deep.",
+      "purpose": "Find which directory contributes to a full filesystem.",
+      "environment": "Read-only but can generate substantial I/O; permissions can prevent a complete scan. GNU du syntax.",
+      "expectedOutput": "1.2G /var/log",
+      "interpretation": "-x stays on one filesystem; -d1 limits display depth. Totals can differ from df for open deleted files and filesystem metadata.",
+      "safety": "Read-only but can generate substantial I/O; permissions can prevent a complete scan. GNU du syntax.",
+      "references": [
+        {
+          "title": "Directory usage \u2014 primary documentation",
+          "url": "https://man7.org/linux/man-pages/"
+        }
+      ]
+    },
+    {
+      "id": "linux-command-16",
+      "topic": "linux",
+      "title": "Find old files",
+      "command": "find /var/log/app -xdev -type f -mtime +7 -print",
+      "kind": "Shell command",
+      "definition": "Finds regular files whose modification age exceeds the specified day boundary.",
+      "purpose": "Inventory retention candidates before deciding what to remove.",
+      "environment": "Read-only example; inspect results and retention requirements before adding any deleting action.",
+      "expectedOutput": "/var/log/app/worker.log.9",
+      "interpretation": "-xdev avoids other mounted filesystems; -mtime counts rounded 24-hour periods. Output is matching paths, not deletion confirmation.",
+      "safety": "Read-only example; inspect results and retention requirements before adding any deleting action.",
+      "references": [
+        {
+          "title": "Find old files \u2014 primary documentation",
+          "url": "https://man7.org/linux/man-pages/"
+        }
+      ]
+    },
+    {
+      "id": "linux-command-17",
+      "topic": "linux",
+      "title": "Search log context",
+      "command": "grep -n -C 2 -- 'ERROR' /var/log/app.log",
+      "kind": "Shell command",
+      "definition": "Finds matching lines and nearby context in a text file.",
+      "purpose": "Locate an error with enough surrounding information to interpret it.",
+      "environment": "Read-only; logs may contain sensitive fields. A missing match can mean wrong time window or file.",
+      "expectedOutput": "42:ERROR connection refused",
+      "interpretation": "-n prints line numbers; -C 2 adds two lines on each side. -- ends option parsing.",
+      "safety": "Read-only; logs may contain sensitive fields. A missing match can mean wrong time window or file.",
+      "references": [
+        {
+          "title": "Search log context \u2014 primary documentation",
+          "url": "https://man7.org/linux/man-pages/"
+        }
+      ]
+    },
+    {
+      "id": "linux-command-18",
+      "topic": "linux",
+      "title": "Follow rotating logs",
+      "command": "tail -F /var/log/app.log",
+      "kind": "Shell command",
+      "definition": "Displays the end of a file and follows its name across replacement.",
+      "purpose": "Observe new messages from an application that rotates log files.",
+      "environment": "Read-only; stop with Ctrl-C and protect sensitive log output.",
+      "expectedOutput": "2026-10-23T10:00:00Z worker ready",
+      "interpretation": "-F follows by name and retries if the path disappears; new lines are live output, not a complete incident history.",
+      "safety": "Read-only; stop with Ctrl-C and protect sensitive log output.",
+      "references": [
+        {
+          "title": "Follow rotating logs \u2014 primary documentation",
+          "url": "https://man7.org/linux/man-pages/"
+        }
+      ]
+    },
+    {
+      "id": "linux-command-19",
+      "topic": "linux",
+      "title": "Bounded file inspection",
+      "command": "head -n 20 /etc/services",
+      "kind": "Shell command",
+      "definition": "Prints the first twenty lines of a file.",
+      "purpose": "Inspect a file format without dumping the entire file to the terminal.",
+      "environment": "Read-only; do not use indiscriminately on secret files.",
+      "expectedOutput": "# Network services",
+      "interpretation": "-n sets the line count; output preserves the selected lines, including comments.",
+      "safety": "Read-only; do not use indiscriminately on secret files.",
+      "references": [
+        {
+          "title": "Bounded file inspection \u2014 primary documentation",
+          "url": "https://man7.org/linux/man-pages/"
+        }
+      ]
+    },
+    {
+      "id": "linux-command-20",
+      "topic": "linux",
+      "title": "Interactive file reading",
+      "command": "less /var/log/app.log",
+      "kind": "Shell command",
+      "definition": "Opens a pager for navigating text without editing it.",
+      "purpose": "Read a large log and search for a known incident marker.",
+      "environment": "Read-only viewing; the pager may offer shell features, so it is not a security sandbox.",
+      "expectedOutput": "Pager showing log lines",
+      "interpretation": "Use /pattern to search, n for the next match and q to quit; position is within the opened file.",
+      "safety": "Read-only viewing; the pager may offer shell features, so it is not a security sandbox.",
+      "references": [
+        {
+          "title": "Interactive file reading \u2014 primary documentation",
+          "url": "https://man7.org/linux/man-pages/"
+        }
+      ]
+    },
+    {
+      "id": "linux-command-21",
+      "topic": "linux",
+      "title": "ACL inspection",
+      "command": "getfacl /srv/app/config.yml",
+      "kind": "Shell command",
+      "definition": "Displays POSIX access-control entries and their effective permissions.",
+      "purpose": "Diagnose access that cannot be explained by mode bits alone.",
+      "environment": "Read-only; ACL tooling and filesystem support must be installed.",
+      "expectedOutput": "user:analyst:rw- #effective:r--",
+      "interpretation": "Named-user and group-class entries can be limited by mask; an effective comment shows the resulting rights.",
+      "safety": "Read-only; ACL tooling and filesystem support must be installed.",
+      "references": [
+        {
+          "title": "ACL inspection \u2014 primary documentation",
+          "url": "https://man7.org/linux/man-pages/"
+        }
+      ]
+    },
+    {
+      "id": "linux-command-22",
+      "topic": "linux",
+      "title": "Scoped permission change",
+      "command": "chmod u=rw,g=r,o= /srv/app/config.yml",
+      "kind": "Shell command",
+      "definition": "Sets explicit owner, group and other permission bits on one file.",
+      "purpose": "Apply a reviewed file-access policy without recursive broad changes.",
+      "environment": "Mutates file permissions; verify file identity, intended owner/group and parent traversal first.",
+      "expectedOutput": "No output on success; stat shows 640",
+      "interpretation": "No output normally means success; inspect with stat afterward. This example sets mode 640.",
+      "safety": "Mutates file permissions; verify file identity, intended owner/group and parent traversal first.",
+      "references": [
+        {
+          "title": "Scoped permission change \u2014 primary documentation",
+          "url": "https://man7.org/linux/man-pages/"
+        }
+      ]
+    },
+    {
+      "id": "linux-command-23",
+      "topic": "linux",
+      "title": "Scoped ownership change",
+      "command": "chown app:readers /srv/app/config.yml",
+      "kind": "Shell command",
+      "definition": "Changes the owner and group of a selected filesystem object.",
+      "purpose": "Align a file with an approved service identity and access group.",
+      "environment": "Requires authority to change ownership; affects access and can clear special mode bits. Avoid recursive use without review.",
+      "expectedOutput": "No output on success",
+      "interpretation": "app is the owner and readers is the group; success is normally silent. Verify with stat or ls.",
+      "safety": "Requires authority to change ownership; affects access and can clear special mode bits. Avoid recursive use without review.",
+      "references": [
+        {
+          "title": "Scoped ownership change \u2014 primary documentation",
+          "url": "https://man7.org/linux/man-pages/"
+        }
+      ]
+    },
+    {
+      "id": "linux-command-24",
+      "topic": "linux",
+      "title": "Resolve a link",
+      "command": "readlink -f /srv/app/current",
+      "kind": "Shell command",
+      "definition": "Resolves links and prints a canonicalized path.",
+      "purpose": "Find the release directory selected by a deployment link.",
+      "environment": "Read-only; -f behavior is GNU/coreutils-style and does not prove the application has reloaded the target.",
+      "expectedOutput": "/srv/app/releases/2026-10-23",
+      "interpretation": "The output is the resolved path, not the contents of the target; missing path components can cause failure.",
+      "safety": "Read-only; -f behavior is GNU/coreutils-style and does not prove the application has reloaded the target.",
+      "references": [
+        {
+          "title": "Resolve a link \u2014 primary documentation",
+          "url": "https://man7.org/linux/man-pages/"
+        }
+      ]
+    },
+    {
+      "id": "linux-command-25",
+      "topic": "linux",
+      "title": "Process lookup",
+      "command": "pgrep -af 'worker'",
+      "kind": "Shell command",
+      "definition": "Lists processes whose full command line matches an expression.",
+      "purpose": "Find candidate processes before inspecting identity or sending signals.",
+      "environment": "Read-only; verify the result and process start time. Arguments may contain sensitive data.",
+      "expectedOutput": "2481 /usr/bin/worker --config /etc/app.yml",
+      "interpretation": "Each row begins with a PID followed by its command line; a substring can match unrelated processes.",
+      "safety": "Read-only; verify the result and process start time. Arguments may contain sensitive data.",
+      "references": [
+        {
+          "title": "Process lookup \u2014 primary documentation",
+          "url": "https://man7.org/linux/man-pages/"
+        }
+      ]
+    },
+    {
+      "id": "linux-command-26",
+      "topic": "linux",
+      "title": "Graceful termination",
+      "command": "kill -TERM PID",
+      "kind": "Shell command",
+      "definition": "Sends a termination request to one process.",
+      "purpose": "Allow a process to perform its supported shutdown handling.",
+      "environment": "Changes process state; confirm identity, ownership and service-manager restart policy before use.",
+      "expectedOutput": "No output on successful signal delivery",
+      "interpretation": "Replace PID with a verified current process ID. A successful send does not prove cleanup or exit has completed.",
+      "safety": "Changes process state; confirm identity, ownership and service-manager restart policy before use.",
+      "references": [
+        {
+          "title": "Graceful termination \u2014 primary documentation",
+          "url": "https://man7.org/linux/man-pages/"
+        }
+      ]
+    },
+    {
+      "id": "linux-command-27",
+      "topic": "linux",
+      "title": "Live process view",
+      "command": "top -p PID",
+      "kind": "Shell command",
+      "definition": "Shows repeated resource and state information for a selected process.",
+      "purpose": "Observe whether demand or state changes while reproducing a problem.",
+      "environment": "Read-only inspection; some interactive keys can change priorities or send signals, so use deliberately.",
+      "expectedOutput": "PID USER PR NI VIRT RES SHR S %CPU %MEM TIME+ COMMAND",
+      "interpretation": "%CPU describes CPU use over sampling intervals; RES is resident memory. Press q to exit.",
+      "safety": "Read-only inspection; some interactive keys can change priorities or send signals, so use deliberately.",
+      "references": [
+        {
+          "title": "Live process view \u2014 primary documentation",
+          "url": "https://man7.org/linux/man-pages/"
+        }
+      ]
+    },
+    {
+      "id": "linux-command-28",
+      "topic": "linux",
+      "title": "Per-process activity",
+      "command": "pidstat -p PID 1 5",
+      "kind": "Shell command",
+      "definition": "Samples CPU-related activity for one process five times.",
+      "purpose": "Correlate a specific process with an incident instead of relying on host averages.",
+      "environment": "Read-only; requires sysstat. Replace PID and compare with workload timing.",
+      "expectedOutput": "UID PID %usr %system %guest %wait %CPU CPU Command",
+      "interpretation": "Each interval reports the selected PID; %CPU and CPU indicate use and execution CPU. PID may exit during sampling.",
+      "safety": "Read-only; requires sysstat. Replace PID and compare with workload timing.",
+      "references": [
+        {
+          "title": "Per-process activity \u2014 primary documentation",
+          "url": "https://man7.org/linux/man-pages/"
+        }
+      ]
+    },
+    {
+      "id": "linux-command-29",
+      "topic": "linux",
+      "title": "Storage latency",
+      "command": "iostat -xz 1 5",
+      "kind": "Shell command",
+      "definition": "Reports extended device I/O statistics at one-second intervals.",
+      "purpose": "Investigate storage delay and queueing during a slowdown.",
+      "environment": "Read-only; requires sysstat. The first report covers since boot unless configured otherwise.",
+      "expectedOutput": "Device r/s w/s r_await w_await aqu-sz %util",
+      "interpretation": "await is average I/O completion time; aqu-sz is average queue length. %util alone is not a universal saturation limit for parallel devices.",
+      "safety": "Read-only; requires sysstat. The first report covers since boot unless configured otherwise.",
+      "references": [
+        {
+          "title": "Storage latency \u2014 primary documentation",
+          "url": "https://man7.org/linux/man-pages/"
+        }
+      ]
+    },
+    {
+      "id": "linux-command-30",
+      "topic": "linux",
+      "title": "Pressure stalls",
+      "command": "cat /proc/pressure/memory",
+      "kind": "Shell command",
+      "definition": "Reads Linux pressure-stall information for memory.",
+      "purpose": "Check whether memory contention is delaying runnable work.",
+      "environment": "Read-only; requires a kernel exposing PSI. Host and cgroup scope are different.",
+      "expectedOutput": "some avg10=2.00 avg60=0.80 avg300=0.20 total=123456",
+      "interpretation": "some measures intervals with at least one task stalled; full measures all non-idle tasks stalled. avg10/60/300 are percentage windows.",
+      "safety": "Read-only; requires a kernel exposing PSI. Host and cgroup scope are different.",
+      "references": [
+        {
+          "title": "Pressure stalls \u2014 primary documentation",
+          "url": "https://man7.org/linux/man-pages/"
+        }
+      ]
+    },
+    {
+      "id": "linux-command-31",
+      "topic": "linux",
+      "title": "Process descriptor limits",
+      "command": "cat /proc/PID/limits",
+      "kind": "Shell command",
+      "definition": "Displays the running process's resource limits.",
+      "purpose": "Check the effective open-file limit rather than assuming the interactive shell's limit applies.",
+      "environment": "Read-only; replace PID. Visibility depends on procfs permissions and process lifetime.",
+      "expectedOutput": "Max open files 1024 4096 files",
+      "interpretation": "Max open files has soft and hard limits; the soft limit is the active boundary for normal allocation.",
+      "safety": "Read-only; replace PID. Visibility depends on procfs permissions and process lifetime.",
+      "references": [
+        {
+          "title": "Process descriptor limits \u2014 primary documentation",
+          "url": "https://man7.org/linux/man-pages/"
+        }
+      ]
+    },
+    {
+      "id": "linux-command-32",
+      "topic": "linux",
+      "title": "Process file descriptors",
+      "command": "ls -l /proc/PID/fd",
+      "kind": "Shell command",
+      "definition": "Lists a process's open descriptor links.",
+      "purpose": "Inspect whether sockets, files or pipes dominate descriptor usage.",
+      "environment": "Read-only; access may be restricted. The process can open or close descriptors while you inspect it.",
+      "expectedOutput": "7 -> socket:[12345]",
+      "interpretation": "Each filename is a descriptor number; the link target identifies the opened object, sometimes marked deleted.",
+      "safety": "Read-only; access may be restricted. The process can open or close descriptors while you inspect it.",
+      "references": [
+        {
+          "title": "Process file descriptors \u2014 primary documentation",
+          "url": "https://man7.org/linux/man-pages/"
+        }
+      ]
+    },
+    {
+      "id": "linux-command-33",
+      "topic": "linux",
+      "title": "Trace selected calls",
+      "command": "strace -f -e trace=file -p PID",
+      "kind": "Shell command",
+      "definition": "Attaches a syscall tracer and follows child processes for file-related calls.",
+      "purpose": "Find pathname failures such as ENOENT or EACCES when logs are insufficient.",
+      "environment": "Diagnostic attachment can slow the target and reveal paths; obtain incident authority and keep the capture brief.",
+      "expectedOutput": "openat(..., \"/etc/app.yml\", O_RDONLY) = -1 EACCES",
+      "interpretation": "A call's return value and errno show the kernel result; unfinished calls may be blocked rather than failed.",
+      "safety": "Diagnostic attachment can slow the target and reveal paths; obtain incident authority and keep the capture brief.",
+      "references": [
+        {
+          "title": "Trace selected calls \u2014 primary documentation",
+          "url": "https://man7.org/linux/man-pages/"
+        }
+      ]
+    },
+    {
+      "id": "linux-command-34",
+      "topic": "linux",
+      "title": "User and group lookup",
+      "command": "getent passwd app",
+      "kind": "Shell command",
+      "definition": "Queries the system account database for an account.",
+      "purpose": "Check the UID, primary GID, home and shell associated with a service name.",
+      "environment": "Read-only; results may come from local files or a configured directory service.",
+      "expectedOutput": "app:x:1001:1001:Application:/srv/app:/usr/sbin/nologin",
+      "interpretation": "Colon-separated fields include name, password placeholder, UID, GID, description, home and shell.",
+      "safety": "Read-only; results may come from local files or a configured directory service.",
+      "references": [
+        {
+          "title": "User and group lookup \u2014 primary documentation",
+          "url": "https://man7.org/linux/man-pages/"
+        }
+      ]
+    },
+    {
+      "id": "linux-command-35",
+      "topic": "linux",
+      "title": "File capabilities",
+      "command": "getcap /usr/local/bin/app",
+      "kind": "Shell command",
+      "definition": "Displays file-based Linux capabilities attached to an executable.",
+      "purpose": "Review privileges granted outside normal owner/group mode bits.",
+      "environment": "Read-only; requires capability tools. Review the complete privilege model, not this one output alone.",
+      "expectedOutput": "/usr/local/bin/app cap_net_bind_service=ep",
+      "interpretation": "The capability list and flags describe enabled file capabilities; empty output can mean none are set.",
+      "safety": "Read-only; requires capability tools. Review the complete privilege model, not this one output alone.",
+      "references": [
+        {
+          "title": "File capabilities \u2014 primary documentation",
+          "url": "https://man7.org/linux/man-pages/"
+        }
+      ]
+    },
+    {
+      "id": "linux-command-36",
+      "topic": "linux",
+      "title": "Archive inventory",
+      "command": "tar -tf backup.tar",
+      "kind": "Shell command",
+      "definition": "Lists members of an archive without extracting them.",
+      "purpose": "Inspect backup contents and path names before a restore.",
+      "environment": "Read-only; review paths and trusted origin before extraction, especially with elevated privileges.",
+      "expectedOutput": "srv/app/config.yml",
+      "interpretation": "-t lists and -f selects the archive file. Output shows member names, not a verified successful application restore.",
+      "safety": "Read-only; review paths and trusted origin before extraction, especially with elevated privileges.",
+      "references": [
+        {
+          "title": "Archive inventory \u2014 primary documentation",
+          "url": "https://man7.org/linux/man-pages/"
+        }
+      ]
+    },
+    {
+      "id": "linux-command-37",
+      "topic": "linux",
+      "title": "Checksum verification",
+      "command": "sha256sum artifact.tar",
+      "kind": "Shell command",
+      "definition": "Computes a SHA-256 digest of a file.",
+      "purpose": "Compare an artifact with an independently trusted expected digest.",
+      "environment": "Read-only; obtain the expected checksum from an authenticated source.",
+      "expectedOutput": "HEX_DIGEST  artifact.tar",
+      "interpretation": "The first field is the hex digest and the second is the filename; equal digests support byte identity, not publisher trust by themselves.",
+      "safety": "Read-only; obtain the expected checksum from an authenticated source.",
+      "references": [
+        {
+          "title": "Checksum verification \u2014 primary documentation",
+          "url": "https://man7.org/linux/man-pages/"
+        }
+      ]
+    },
+    {
+      "id": "linux-command-38",
+      "topic": "linux",
+      "title": "Structured JSON inspection",
+      "command": "jq '.status' response.json",
+      "kind": "Shell command",
+      "definition": "Selects a field from a JSON document.",
+      "purpose": "Read a structured API result without unreliable text slicing.",
+      "environment": "Read-only; jq must be installed. Avoid printing credential fields into shared logs.",
+      "expectedOutput": "{\"phase\":\"Ready\"}",
+      "interpretation": "Objects and arrays remain structured; null can mean the selected field is absent. Invalid JSON causes an error.",
+      "safety": "Read-only; jq must be installed. Avoid printing credential fields into shared logs.",
+      "references": [
+        {
+          "title": "Structured JSON inspection \u2014 primary documentation",
+          "url": "https://man7.org/linux/man-pages/"
+        }
+      ]
+    },
+    {
+      "id": "linux-command-39",
+      "topic": "linux",
+      "title": "Line and byte counts",
+      "command": "wc -l -c /var/log/app.log",
+      "kind": "Shell command",
+      "definition": "Counts newline characters and bytes in a file.",
+      "purpose": "Measure a text file's size and line growth during investigation.",
+      "environment": "Read-only; reading a large active file adds I/O and is only a point-in-time observation.",
+      "expectedOutput": "2500 180000 /var/log/app.log",
+      "interpretation": "The first numeric column is line count and the second is bytes; a final unterminated line affects interpretation.",
+      "safety": "Read-only; reading a large active file adds I/O and is only a point-in-time observation.",
+      "references": [
+        {
+          "title": "Line and byte counts \u2014 primary documentation",
+          "url": "https://man7.org/linux/man-pages/"
+        }
+      ]
+    },
+    {
+      "id": "linux-command-40",
+      "topic": "linux",
+      "title": "Command discovery",
+      "command": "command -v python3",
+      "kind": "Shell command",
+      "definition": "Reports how the current shell resolves a command name.",
+      "purpose": "Compare interactive and scheduled-job PATH behavior.",
+      "environment": "Read-only shell builtin; run in the same environment as the failing job.",
+      "expectedOutput": "/usr/bin/python3",
+      "interpretation": "A path identifies the executable found; no output with failure status means no matching command was resolved.",
+      "safety": "Read-only shell builtin; run in the same environment as the failing job.",
+      "references": [
+        {
+          "title": "Command discovery \u2014 primary documentation",
+          "url": "https://man7.org/linux/man-pages/"
+        }
+      ]
     }
   ],
   "debugging": [

@@ -1002,6 +1002,538 @@
           "url": "https://man7.org/linux/man-pages/"
         }
       ]
+    },
+    {
+      "id": "networking-command-13",
+      "topic": "networking",
+      "title": "Interface counters",
+      "command": "ip -s link show dev eth0",
+      "kind": "Shell command",
+      "definition": "Shows link state and interface packet counters.",
+      "purpose": "Check for receive/transmit errors or drops on the affected interface.",
+      "environment": "Read-only Linux iproute2 command; replace eth0 with the actual interface.",
+      "expectedOutput": "RX: bytes packets errors dropped missed mcast",
+      "interpretation": "Compare RX/TX errors and dropped counters over time; cumulative totals alone do not locate the cause.",
+      "safety": "Read-only Linux iproute2 command; replace eth0 with the actual interface.",
+      "references": [
+        {
+          "title": "Interface counters \u2014 primary documentation",
+          "url": "https://man7.org/linux/man-pages/"
+        }
+      ]
+    },
+    {
+      "id": "networking-command-14",
+      "topic": "networking",
+      "title": "IPv4 route table",
+      "command": "ip -4 route show table main",
+      "kind": "Shell command",
+      "definition": "Lists routes in the main IPv4 routing table.",
+      "purpose": "Inspect next hops and prefixes used for ordinary routing.",
+      "environment": "Read-only; policy routing may select other tables.",
+      "expectedOutput": "default via 192.0.2.1 dev eth0",
+      "interpretation": "default covers unmatched destinations; via is the next hop and dev is the outgoing interface.",
+      "safety": "Read-only; policy routing may select other tables.",
+      "references": [
+        {
+          "title": "IPv4 route table \u2014 primary documentation",
+          "url": "https://man7.org/linux/man-pages/"
+        }
+      ]
+    },
+    {
+      "id": "networking-command-15",
+      "topic": "networking",
+      "title": "Policy routing rules",
+      "command": "ip rule show",
+      "kind": "Shell command",
+      "definition": "Lists rules that choose routing tables or actions.",
+      "purpose": "Investigate paths that cannot be explained by the main route table.",
+      "environment": "Read-only; correlate selected rules with the relevant packet source and mark.",
+      "expectedOutput": "32766: from all lookup main",
+      "interpretation": "Lower numeric priorities are examined first; selectors can depend on source address, marks or other attributes.",
+      "safety": "Read-only; correlate selected rules with the relevant packet source and mark.",
+      "references": [
+        {
+          "title": "Policy routing rules \u2014 primary documentation",
+          "url": "https://man7.org/linux/man-pages/"
+        }
+      ]
+    },
+    {
+      "id": "networking-command-16",
+      "topic": "networking",
+      "title": "IPv6 route selection",
+      "command": "ip -6 route get 2001:db8::10",
+      "kind": "Shell command",
+      "definition": "Asks the kernel which route it would use for an IPv6 destination.",
+      "purpose": "Check IPv6 source address and next hop separately from IPv4.",
+      "environment": "Read-only; documentation addresses are placeholders and do not represent reachable test targets.",
+      "expectedOutput": "2001:db8::10 via fe80::1 dev eth0 src 2001:db8::2",
+      "interpretation": "via identifies a router and dev the interface; an unreachable error means no usable route was selected.",
+      "safety": "Read-only; documentation addresses are placeholders and do not represent reachable test targets.",
+      "references": [
+        {
+          "title": "IPv6 route selection \u2014 primary documentation",
+          "url": "https://man7.org/linux/man-pages/"
+        }
+      ]
+    },
+    {
+      "id": "networking-command-17",
+      "topic": "networking",
+      "title": "IPv6 neighbors",
+      "command": "ip -6 neigh show",
+      "kind": "Shell command",
+      "definition": "Lists IPv6 neighbor cache entries.",
+      "purpose": "Inspect local-neighbor resolution when IPv6 traffic fails.",
+      "environment": "Read-only; investigate link and ICMPv6 behavior rather than flushing caches reflexively.",
+      "expectedOutput": "fe80::1 dev eth0 lladdr 02:00:00:00:00:01 router STALE",
+      "interpretation": "REACHABLE and STALE are normal states; INCOMPLETE or FAILED can indicate unsuccessful resolution.",
+      "safety": "Read-only; investigate link and ICMPv6 behavior rather than flushing caches reflexively.",
+      "references": [
+        {
+          "title": "IPv6 neighbors \u2014 primary documentation",
+          "url": "https://man7.org/linux/man-pages/"
+        }
+      ]
+    },
+    {
+      "id": "networking-command-18",
+      "topic": "networking",
+      "title": "Bounded reachability test",
+      "command": "ping -c 4 -W 2 192.0.2.10",
+      "kind": "Shell command",
+      "definition": "Sends a limited set of ICMP echo requests.",
+      "purpose": "Measure basic reachability and response timing to an authorized endpoint.",
+      "environment": "Sends network traffic; replace the example address and respect networks that filter ICMP.",
+      "expectedOutput": "4 packets transmitted, 4 received, 0% packet loss",
+      "interpretation": "Packet loss and RTT summarize replies to these probes; no reply does not prove TCP service failure.",
+      "safety": "Sends network traffic; replace the example address and respect networks that filter ICMP.",
+      "references": [
+        {
+          "title": "Bounded reachability test \u2014 primary documentation",
+          "url": "https://man7.org/linux/man-pages/"
+        }
+      ]
+    },
+    {
+      "id": "networking-command-19",
+      "topic": "networking",
+      "title": "Path MTU investigation",
+      "command": "tracepath -n 192.0.2.10",
+      "kind": "Shell command",
+      "definition": "Probes a path and reports discovered path-MTU information.",
+      "purpose": "Investigate a tunnel or packet-size-related connectivity issue.",
+      "environment": "Sends probes; requires tracepath. Results describe the probed path and may differ from application traffic.",
+      "expectedOutput": "1: 192.0.2.1 pmtu 1500",
+      "interpretation": "pmtu reports an observed path-MTU estimate; missing hops may reflect filtered probes.",
+      "safety": "Sends probes; requires tracepath. Results describe the probed path and may differ from application traffic.",
+      "references": [
+        {
+          "title": "Path MTU investigation \u2014 primary documentation",
+          "url": "https://man7.org/linux/man-pages/"
+        }
+      ]
+    },
+    {
+      "id": "networking-command-20",
+      "topic": "networking",
+      "title": "Repeated hop statistics",
+      "command": "mtr --report --report-cycles 10 --no-dns example.com",
+      "kind": "Shell command",
+      "definition": "Collects a bounded report of hop responses and timing.",
+      "purpose": "Compare path behavior during an authorized connectivity investigation.",
+      "environment": "Sends repeated probes; use a real authorized target and avoid treating every nonresponsive router as a fault.",
+      "expectedOutput": "HOST Loss% Snt Last Avg Best Wrst StDev",
+      "interpretation": "Loss% at an intermediate hop alone can reflect probe deprioritization; examine whether loss persists to the destination.",
+      "safety": "Sends repeated probes; use a real authorized target and avoid treating every nonresponsive router as a fault.",
+      "references": [
+        {
+          "title": "Repeated hop statistics \u2014 primary documentation",
+          "url": "https://man7.org/linux/man-pages/"
+        }
+      ]
+    },
+    {
+      "id": "networking-command-21",
+      "topic": "networking",
+      "title": "TCP port probe",
+      "command": "nc -vz -w 3 192.0.2.10 443",
+      "kind": "Shell command",
+      "definition": "Attempts a TCP connection without sending an application payload.",
+      "purpose": "Check whether a specific host and port accepts a connection.",
+      "environment": "OpenBSD-style netcat syntax; probe only authorized targets. TLS and application health remain untested.",
+      "expectedOutput": "Connection to 192.0.2.10 443 port [tcp/https] succeeded!",
+      "interpretation": "Succeeded confirms transport acceptance only; refused and timed out imply different failure paths.",
+      "safety": "OpenBSD-style netcat syntax; probe only authorized targets. TLS and application health remain untested.",
+      "references": [
+        {
+          "title": "TCP port probe \u2014 primary documentation",
+          "url": "https://man7.org/linux/man-pages/"
+        }
+      ]
+    },
+    {
+      "id": "networking-command-22",
+      "topic": "networking",
+      "title": "UDP listener view",
+      "command": "ss -lunp",
+      "kind": "Shell command",
+      "definition": "Lists listening UDP sockets with numeric endpoints.",
+      "purpose": "Verify a UDP receiver's local binding.",
+      "environment": "Read-only; process details may require elevated visibility.",
+      "expectedOutput": "UNCONN 0 0 0.0.0.0:8125 0.0.0.0:*",
+      "interpretation": "Local Address:Port shows the interface scope; UDP has no TCP-style established handshake.",
+      "safety": "Read-only; process details may require elevated visibility.",
+      "references": [
+        {
+          "title": "UDP listener view \u2014 primary documentation",
+          "url": "https://man7.org/linux/man-pages/"
+        }
+      ]
+    },
+    {
+      "id": "networking-command-23",
+      "topic": "networking",
+      "title": "Socket summary",
+      "command": "ss -s",
+      "kind": "Shell command",
+      "definition": "Summarizes socket counts by protocol and state.",
+      "purpose": "Assess connection churn and resource pressure before inspecting individual sockets.",
+      "environment": "Read-only; compare with trends and ephemeral-port capacity.",
+      "expectedOutput": "TCP: 120 (estab 40, closed 60, orphaned 0, timewait 60)",
+      "interpretation": "TCP totals distinguish established, closed and timewait counts; counts are not request throughput.",
+      "safety": "Read-only; compare with trends and ephemeral-port capacity.",
+      "references": [
+        {
+          "title": "Socket summary \u2014 primary documentation",
+          "url": "https://man7.org/linux/man-pages/"
+        }
+      ]
+    },
+    {
+      "id": "networking-command-24",
+      "topic": "networking",
+      "title": "Connection tracking totals",
+      "command": "conntrack -S",
+      "kind": "Shell command",
+      "definition": "Displays connection-tracking statistics from the kernel.",
+      "purpose": "Investigate state-table allocation failures on a Linux firewall or NAT host.",
+      "environment": "Read-only but usually privileged; requires conntrack-tools and an applicable netfilter setup.",
+      "expectedOutput": "cpu=0 found=0 invalid=2 insert_failed=0 drop=0",
+      "interpretation": "Counters such as insert_failed and drop need time-correlated interpretation; cumulative values may include old incidents.",
+      "safety": "Read-only but usually privileged; requires conntrack-tools and an applicable netfilter setup.",
+      "references": [
+        {
+          "title": "Connection tracking totals \u2014 primary documentation",
+          "url": "https://man7.org/linux/man-pages/"
+        }
+      ]
+    },
+    {
+      "id": "networking-command-25",
+      "topic": "networking",
+      "title": "Firewall ruleset review",
+      "command": "nft list ruleset",
+      "kind": "Shell command",
+      "definition": "Prints the active nftables ruleset.",
+      "purpose": "Trace filtering and NAT logic before making rule changes.",
+      "environment": "Read-only and often requires privilege; rules can disclose internal network policy.",
+      "expectedOutput": "table inet filter { chain input { ... } }",
+      "interpretation": "Tables contain chains and hooks; rule order and verdicts determine processing. Counters appear only when configured.",
+      "safety": "Read-only and often requires privilege; rules can disclose internal network policy.",
+      "references": [
+        {
+          "title": "Firewall ruleset review \u2014 primary documentation",
+          "url": "https://man7.org/linux/man-pages/"
+        }
+      ]
+    },
+    {
+      "id": "networking-command-26",
+      "topic": "networking",
+      "title": "Link negotiation",
+      "command": "ethtool eth0",
+      "kind": "Shell command",
+      "definition": "Reports supported link modes and negotiated link properties.",
+      "purpose": "Check speed, duplex and carrier when physical-link behavior is suspect.",
+      "environment": "Read-only form; support varies by driver and virtual interface.",
+      "expectedOutput": "Speed: 1000Mb/s Duplex: Full Link detected: yes",
+      "interpretation": "Speed and Duplex describe negotiation; Link detected indicates carrier, not end-to-end service reachability.",
+      "safety": "Read-only form; support varies by driver and virtual interface.",
+      "references": [
+        {
+          "title": "Link negotiation \u2014 primary documentation",
+          "url": "https://man7.org/linux/man-pages/"
+        }
+      ]
+    },
+    {
+      "id": "networking-command-27",
+      "topic": "networking",
+      "title": "Driver counters",
+      "command": "ethtool -S eth0",
+      "kind": "Shell command",
+      "definition": "Displays driver-specific network interface statistics.",
+      "purpose": "Find hardware or queue errors not exposed in the generic interface summary.",
+      "environment": "Read-only; consult the device/driver documentation before interpreting a nonzero counter.",
+      "expectedOutput": "rx_crc_errors: 0",
+      "interpretation": "Counter names and units vary by driver; compare changes during the affected interval.",
+      "safety": "Read-only; consult the device/driver documentation before interpreting a nonzero counter.",
+      "references": [
+        {
+          "title": "Driver counters \u2014 primary documentation",
+          "url": "https://man7.org/linux/man-pages/"
+        }
+      ]
+    },
+    {
+      "id": "networking-command-28",
+      "topic": "networking",
+      "title": "Network namespace inventory",
+      "command": "ip netns list",
+      "kind": "Shell command",
+      "definition": "Lists named network namespaces known to iproute2.",
+      "purpose": "Identify separate network contexts for a scoped investigation.",
+      "environment": "Read-only; absence here does not mean no network namespaces exist.",
+      "expectedOutput": "blue (id: 0)",
+      "interpretation": "Each line is a namespace name, optionally with an identifier; unnamed container namespaces may not appear.",
+      "safety": "Read-only; absence here does not mean no network namespaces exist.",
+      "references": [
+        {
+          "title": "Network namespace inventory \u2014 primary documentation",
+          "url": "https://man7.org/linux/man-pages/"
+        }
+      ]
+    },
+    {
+      "id": "networking-command-29",
+      "topic": "networking",
+      "title": "Namespace route inspection",
+      "command": "ip netns exec NAMESPACE ip route show",
+      "kind": "Shell command",
+      "definition": "Runs a route inspection inside a named network namespace.",
+      "purpose": "Compare the failing workload's route view with the host's.",
+      "environment": "Usually requires privilege. The selected command is read-only, but netns exec can run arbitrary commands.",
+      "expectedOutput": "default via 10.0.0.1 dev veth0",
+      "interpretation": "Output is that namespace's routing table; host routes may differ completely.",
+      "safety": "Usually requires privilege. The selected command is read-only, but netns exec can run arbitrary commands.",
+      "references": [
+        {
+          "title": "Namespace route inspection \u2014 primary documentation",
+          "url": "https://man7.org/linux/man-pages/"
+        }
+      ]
+    },
+    {
+      "id": "networking-command-30",
+      "topic": "networking",
+      "title": "IPv6 DNS lookup",
+      "command": "dig example.com AAAA",
+      "kind": "Shell command",
+      "definition": "Queries DNS for IPv6 address records.",
+      "purpose": "Separate missing IPv6 records from client routing or listener problems.",
+      "environment": "Read-only query traffic; returned documentation values are illustrative.",
+      "expectedOutput": "example.com. 300 IN AAAA 2001:db8::10",
+      "interpretation": "ANSWER contains AAAA records and TTLs; status and authority sections explain empty or negative responses.",
+      "safety": "Read-only query traffic; returned documentation values are illustrative.",
+      "references": [
+        {
+          "title": "IPv6 DNS lookup \u2014 primary documentation",
+          "url": "https://man7.org/linux/man-pages/"
+        }
+      ]
+    },
+    {
+      "id": "networking-command-31",
+      "topic": "networking",
+      "title": "Authoritative DNS servers",
+      "command": "dig example.com NS",
+      "kind": "Shell command",
+      "definition": "Queries the name-server records for a domain.",
+      "purpose": "Identify authoritative DNS infrastructure during delegation checks.",
+      "environment": "Read-only DNS traffic; a recursive answer may be cached.",
+      "expectedOutput": "example.com. 3600 IN NS ns1.example.com.",
+      "interpretation": "NS records name servers, not necessarily their addresses; compare parent delegation and authoritative responses if needed.",
+      "safety": "Read-only DNS traffic; a recursive answer may be cached.",
+      "references": [
+        {
+          "title": "Authoritative DNS servers \u2014 primary documentation",
+          "url": "https://man7.org/linux/man-pages/"
+        }
+      ]
+    },
+    {
+      "id": "networking-command-32",
+      "topic": "networking",
+      "title": "DNS negative-response context",
+      "command": "dig missing.example.com SOA",
+      "kind": "Shell command",
+      "definition": "Queries a name and displays DNS response status and authority data.",
+      "purpose": "Inspect the evidence behind a cached negative answer.",
+      "environment": "Read-only; distinguish NXDOMAIN from NOERROR with an empty answer.",
+      "expectedOutput": "status: NXDOMAIN ... AUTHORITY SECTION ... SOA",
+      "interpretation": "NXDOMAIN means the name does not exist in that answer; an SOA in AUTHORITY contributes to negative caching semantics.",
+      "safety": "Read-only; distinguish NXDOMAIN from NOERROR with an empty answer.",
+      "references": [
+        {
+          "title": "DNS negative-response context \u2014 primary documentation",
+          "url": "https://man7.org/linux/man-pages/"
+        }
+      ]
+    },
+    {
+      "id": "networking-command-33",
+      "topic": "networking",
+      "title": "DNS over TCP",
+      "command": "dig +tcp example.com A",
+      "kind": "Shell command",
+      "definition": "Sends a DNS lookup using TCP instead of the usual UDP transport.",
+      "purpose": "Compare behavior when DNS responses are truncated or a network permits only one transport.",
+      "environment": "Sends DNS traffic; use the same resolver when comparing transports.",
+      "expectedOutput": "Query time: 12 msec; SERVER: 192.0.2.53#53",
+      "interpretation": "The answer and status should be interpreted normally; transport success does not prove UDP works.",
+      "safety": "Sends DNS traffic; use the same resolver when comparing transports.",
+      "references": [
+        {
+          "title": "DNS over TCP \u2014 primary documentation",
+          "url": "https://man7.org/linux/man-pages/"
+        }
+      ]
+    },
+    {
+      "id": "networking-command-34",
+      "topic": "networking",
+      "title": "System resolver status",
+      "command": "resolvectl status",
+      "kind": "Shell command",
+      "definition": "Displays systemd-resolved global and per-link resolver settings.",
+      "purpose": "Find which DNS servers and routing domains apply to a host.",
+      "environment": "Read-only; applies only where systemd-resolved manages resolution.",
+      "expectedOutput": "Link 2 (eth0): DNS Servers: 192.0.2.53",
+      "interpretation": "Current DNS Server and DNS Domains are per-link context; split DNS can send names to different servers.",
+      "safety": "Read-only; applies only where systemd-resolved manages resolution.",
+      "references": [
+        {
+          "title": "System resolver status \u2014 primary documentation",
+          "url": "https://man7.org/linux/man-pages/"
+        }
+      ]
+    },
+    {
+      "id": "networking-command-35",
+      "topic": "networking",
+      "title": "Resolver cache statistics",
+      "command": "resolvectl statistics",
+      "kind": "Shell command",
+      "definition": "Shows systemd-resolved query and cache statistics.",
+      "purpose": "Check whether local caching may be relevant to repeated lookup behavior.",
+      "environment": "Read-only; available only with systemd-resolved.",
+      "expectedOutput": "Current Cache Size: 12 Cache Hits: 100 Cache Misses: 20",
+      "interpretation": "Cache Hits and Cache Misses are aggregate counts, not proof that one hostname has a particular cached value.",
+      "safety": "Read-only; available only with systemd-resolved.",
+      "references": [
+        {
+          "title": "Resolver cache statistics \u2014 primary documentation",
+          "url": "https://man7.org/linux/man-pages/"
+        }
+      ]
+    },
+    {
+      "id": "networking-command-36",
+      "topic": "networking",
+      "title": "Verbose HTTP exchange",
+      "command": "curl -v --max-time 10 https://example.com/health",
+      "kind": "Shell command",
+      "definition": "Performs an HTTPS request with connection and protocol diagnostics.",
+      "purpose": "Locate whether failure occurs at DNS, TCP, TLS or HTTP handling.",
+      "environment": "Sends a request; verbose output may reveal headers. Do not include production tokens in shared traces.",
+      "expectedOutput": "< HTTP/2 200",
+      "interpretation": "Lines beginning with > are sent headers and < received headers; TLS errors can occur before an HTTP status exists.",
+      "safety": "Sends a request; verbose output may reveal headers. Do not include production tokens in shared traces.",
+      "references": [
+        {
+          "title": "Verbose HTTP exchange \u2014 primary documentation",
+          "url": "https://curl.se/docs/manpage.html"
+        }
+      ]
+    },
+    {
+      "id": "networking-command-37",
+      "topic": "networking",
+      "title": "Test a chosen HTTPS endpoint",
+      "command": "curl --resolve example.com:443:192.0.2.10 --max-time 10 https://example.com/health",
+      "kind": "Shell command",
+      "definition": "Overrides name-to-address resolution for one host/port while retaining the URL hostname.",
+      "purpose": "Test a candidate backend before changing DNS.",
+      "environment": "Sends traffic to the selected address; use authorized real values. Do not disable certificate validation to hide failures.",
+      "expectedOutput": "HTTP response body from the selected endpoint",
+      "interpretation": "The connection uses the supplied IP while Host and TLS hostname checks use example.com; status is the backend response.",
+      "safety": "Sends traffic to the selected address; use authorized real values. Do not disable certificate validation to hide failures.",
+      "references": [
+        {
+          "title": "Test a chosen HTTPS endpoint \u2014 primary documentation",
+          "url": "https://curl.se/docs/manpage.html"
+        }
+      ]
+    },
+    {
+      "id": "networking-command-38",
+      "topic": "networking",
+      "title": "Inspect certificate metadata",
+      "command": "openssl x509 -in server.pem -noout -subject -issuer -dates",
+      "kind": "Shell command",
+      "definition": "Reads identity, issuer and validity dates from a PEM certificate.",
+      "purpose": "Inspect a certificate file before deployment or during expiry diagnosis.",
+      "environment": "Read-only local inspection; use separate verification for chain trust and SAN hostname matching.",
+      "expectedOutput": "notAfter=Nov 23 10:00:00 2026 GMT",
+      "interpretation": "notBefore/notAfter delimit validity; subject and issuer alone do not establish trust or hostname coverage.",
+      "safety": "Read-only local inspection; use separate verification for chain trust and SAN hostname matching.",
+      "references": [
+        {
+          "title": "Inspect certificate metadata \u2014 primary documentation",
+          "url": "https://docs.openssl.org/master/man1/openssl-s_client/"
+        }
+      ]
+    },
+    {
+      "id": "networking-command-39",
+      "topic": "networking",
+      "title": "Read a packet capture",
+      "command": "tcpdump -nn -r capture.pcap -c 20",
+      "kind": "Shell command",
+      "definition": "Decodes a limited number of packets from a saved capture.",
+      "purpose": "Review protocol endpoints and flags without generating new traffic.",
+      "environment": "Read-only file parsing; captures may contain sensitive payloads and should be handled as incident evidence.",
+      "expectedOutput": "10:00:00 IP 192.0.2.2.53000 > 192.0.2.10.443: Flags [S]",
+      "interpretation": "-nn prevents name/service translation; timestamps and TCP flags describe observed packets, not necessarily complete conversations.",
+      "safety": "Read-only file parsing; captures may contain sensitive payloads and should be handled as incident evidence.",
+      "references": [
+        {
+          "title": "Read a packet capture \u2014 primary documentation",
+          "url": "https://man7.org/linux/man-pages/"
+        }
+      ]
+    },
+    {
+      "id": "networking-command-40",
+      "topic": "networking",
+      "title": "Capture TCP resets",
+      "command": "tcpdump -ni eth0 -c 20 'tcp[tcpflags] & tcp-rst != 0'",
+      "kind": "Shell command",
+      "definition": "Captures a bounded set of TCP reset packets on an interface.",
+      "purpose": "Identify endpoints actively resetting connections.",
+      "environment": "Passive capture often requires privilege. Scope to the incident and protect captured data.",
+      "expectedOutput": "192.0.2.10.443 > 192.0.2.2.53000: Flags [R.]",
+      "interpretation": "Flags [R] or [R.] show resets; source address identifies the observed sender, which may be a middlebox.",
+      "safety": "Passive capture often requires privilege. Scope to the incident and protect captured data.",
+      "references": [
+        {
+          "title": "Capture TCP resets \u2014 primary documentation",
+          "url": "https://man7.org/linux/man-pages/"
+        }
+      ]
     }
   ],
   "debugging": [

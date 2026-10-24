@@ -64,3 +64,6 @@
 @media(max-width:760px){.learning-content-list{max-height:260px}.subject-grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:20px 8px}.subject-symbol{width:60px;height:60px}.library-filters{grid-template-columns:1fr}.catalog-search{min-width:0;width:100%}.subject-catalog .section-heading{flex-wrap:wrap}}
 @media(max-width:420px){.subject-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
 @media(prefers-reduced-motion:reduce){.subject-symbol{transition:none}.subject-card:hover .subject-symbol{transform:none}}
+
+/* Keep authored case paragraphs readable in study and review views. */
+.learning-summary,.review-prompt{white-space:pre-line}.question-context{font-size:15px;line-height:1.7;color:var(--ink-soft);max-width:78ch}.question-card h1{font-size:clamp(21px,2.4vw,28px);line-height:1.4}

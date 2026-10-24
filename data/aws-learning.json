@@ -998,6 +998,348 @@
           "url": "https://docs.aws.amazon.com/cli/latest/reference/"
         }
       ]
+    },
+    {
+      "id": "aws-command-13",
+      "topic": "aws",
+      "title": "Configuration source",
+      "command": "aws configure list",
+      "kind": "Shell command",
+      "definition": "Displays resolved CLI configuration values and their sources.",
+      "purpose": "Find an unexpected profile, region or credential source before calling other APIs.",
+      "environment": "Read-only; do not share even masked credential diagnostics unnecessarily.",
+      "expectedOutput": "Name Value Type Location",
+      "interpretation": "Type and Location explain where each value came from; keys are masked but account identity still needs STS verification.",
+      "safety": "Read-only; do not share even masked credential diagnostics unnecessarily.",
+      "references": [
+        {
+          "title": "Configuration source \u2014 primary documentation",
+          "url": "https://docs.aws.amazon.com/cli/latest/reference/"
+        }
+      ]
+    },
+    {
+      "id": "aws-command-14",
+      "topic": "aws",
+      "title": "Available profiles",
+      "command": "aws configure list-profiles",
+      "kind": "Shell command",
+      "definition": "Lists named profiles in local AWS configuration.",
+      "purpose": "Choose the intended configuration context for a task.",
+      "environment": "Read-only local inspection. Use --profile explicitly on subsequent commands when needed.",
+      "expectedOutput": "staging / production",
+      "interpretation": "Each line is a profile name, not proof of current authentication or account identity.",
+      "safety": "Read-only local inspection. Use --profile explicitly on subsequent commands when needed.",
+      "references": [
+        {
+          "title": "Available profiles \u2014 primary documentation",
+          "url": "https://docs.aws.amazon.com/cli/latest/reference/"
+        }
+      ]
+    },
+    {
+      "id": "aws-command-15",
+      "topic": "aws",
+      "title": "SSO session login",
+      "command": "aws sso login --profile PROFILE",
+      "kind": "Shell command",
+      "definition": "Starts the configured IAM Identity Center authentication flow.",
+      "purpose": "Obtain a normal CLI session for an authorized profile.",
+      "environment": "Authentication action; use your own authorized account and configured profile. Never paste tokens into shared logs.",
+      "expectedOutput": "Successfully logged into Start URL...",
+      "interpretation": "Follow the displayed device/browser flow; successful login caches session material locally but does not validate every service permission.",
+      "safety": "Authentication action; use your own authorized account and configured profile. Never paste tokens into shared logs.",
+      "references": [
+        {
+          "title": "SSO session login \u2014 primary documentation",
+          "url": "https://docs.aws.amazon.com/cli/latest/reference/"
+        }
+      ]
+    },
+    {
+      "id": "aws-command-16",
+      "topic": "aws",
+      "title": "Instance status checks",
+      "command": "aws ec2 describe-instance-status --instance-ids INSTANCE_ID --include-all-instances",
+      "kind": "Shell command",
+      "definition": "Retrieves EC2 system and instance status checks.",
+      "purpose": "Separate host/platform health from guest operating-system health.",
+      "environment": "Read-only API call; set intended account/Region and ensure EC2 describe permissions.",
+      "expectedOutput": "\"SystemStatus\":{\"Status\":\"ok\"}",
+      "interpretation": "SystemStatus and InstanceStatus have separate checks; passed checks do not prove the application works.",
+      "safety": "Read-only API call; set intended account/Region and ensure EC2 describe permissions.",
+      "references": [
+        {
+          "title": "Instance status checks \u2014 primary documentation",
+          "url": "https://docs.aws.amazon.com/cli/latest/reference/"
+        }
+      ]
+    },
+    {
+      "id": "aws-command-17",
+      "topic": "aws",
+      "title": "Network interface detail",
+      "command": "aws ec2 describe-network-interfaces --network-interface-ids ENI_ID",
+      "kind": "Shell command",
+      "definition": "Retrieves interface addresses, attachments and associated groups.",
+      "purpose": "Trace the actual network attachment of an affected workload.",
+      "environment": "Read-only; output contains internal addressing. Verify Region and interface identity.",
+      "expectedOutput": "\"SubnetId\":\"subnet-...\",\"Status\":\"in-use\"",
+      "interpretation": "PrivateIpAddresses, SubnetId, Groups and Attachment identify addressing and placement.",
+      "safety": "Read-only; output contains internal addressing. Verify Region and interface identity.",
+      "references": [
+        {
+          "title": "Network interface detail \u2014 primary documentation",
+          "url": "https://docs.aws.amazon.com/cli/latest/reference/"
+        }
+      ]
+    },
+    {
+      "id": "aws-command-18",
+      "topic": "aws",
+      "title": "Subnet ACL rules",
+      "command": "aws ec2 describe-network-acls --filters Name=association.subnet-id,Values=SUBNET_ID",
+      "kind": "Shell command",
+      "definition": "Lists network ACLs associated with a subnet.",
+      "purpose": "Check stateless filtering on both request and return paths.",
+      "environment": "Read-only; evaluate ephemeral return ports and both directions with the actual traffic flow.",
+      "expectedOutput": "\"RuleAction\":\"allow\",\"Egress\":false",
+      "interpretation": "Entries include RuleNumber, Egress, action and port range; lower matching rule numbers take precedence.",
+      "safety": "Read-only; evaluate ephemeral return ports and both directions with the actual traffic flow.",
+      "references": [
+        {
+          "title": "Subnet ACL rules \u2014 primary documentation",
+          "url": "https://docs.aws.amazon.com/cli/latest/reference/"
+        }
+      ]
+    },
+    {
+      "id": "aws-command-19",
+      "topic": "aws",
+      "title": "NAT gateway state",
+      "command": "aws ec2 describe-nat-gateways --nat-gateway-ids NAT_ID",
+      "kind": "Shell command",
+      "definition": "Retrieves NAT gateway state, subnet and addressing.",
+      "purpose": "Check whether a planned outbound translation path exists and is available.",
+      "environment": "Read-only; correlate with routing, metrics and the originating subnet.",
+      "expectedOutput": "\"State\":\"available\"",
+      "interpretation": "State describes the gateway lifecycle; available does not prove route tables or destination access are correct.",
+      "safety": "Read-only; correlate with routing, metrics and the originating subnet.",
+      "references": [
+        {
+          "title": "NAT gateway state \u2014 primary documentation",
+          "url": "https://docs.aws.amazon.com/cli/latest/reference/"
+        }
+      ]
+    },
+    {
+      "id": "aws-command-20",
+      "topic": "aws",
+      "title": "VPC endpoint policy",
+      "command": "aws ec2 describe-vpc-endpoints --vpc-endpoint-ids ENDPOINT_ID",
+      "kind": "Shell command",
+      "definition": "Retrieves endpoint configuration, associations and policy.",
+      "purpose": "Investigate private access to an AWS service.",
+      "environment": "Read-only; endpoint policy is only one part of authorization.",
+      "expectedOutput": "\"VpcEndpointType\":\"Gateway\",\"State\":\"available\"",
+      "interpretation": "ServiceName and VpcEndpointType identify the service/path; route tables or network interfaces depend on endpoint type.",
+      "safety": "Read-only; endpoint policy is only one part of authorization.",
+      "references": [
+        {
+          "title": "VPC endpoint policy \u2014 primary documentation",
+          "url": "https://docs.aws.amazon.com/cli/latest/reference/"
+        }
+      ]
+    },
+    {
+      "id": "aws-command-21",
+      "topic": "aws",
+      "title": "Object metadata",
+      "command": "aws s3api head-object --bucket BUCKET --key KEY",
+      "kind": "Shell command",
+      "definition": "Retrieves metadata for one object without downloading its body.",
+      "purpose": "Check object size, version information and encryption metadata.",
+      "environment": "Read-only; requires relevant access. Denial does not establish whether the object exists.",
+      "expectedOutput": "\"ContentLength\":4096,\"ServerSideEncryption\":\"aws:kms\"",
+      "interpretation": "ContentLength is bytes; ETag is not universally a plain MD5 checksum, especially for multipart or encrypted uploads.",
+      "safety": "Read-only; requires relevant access. Denial does not establish whether the object exists.",
+      "references": [
+        {
+          "title": "Object metadata \u2014 primary documentation",
+          "url": "https://docs.aws.amazon.com/cli/latest/reference/"
+        }
+      ]
+    },
+    {
+      "id": "aws-command-22",
+      "topic": "aws",
+      "title": "Retained object versions",
+      "command": "aws s3api list-object-versions --bucket BUCKET --prefix KEY",
+      "kind": "Shell command",
+      "definition": "Lists retained versions and delete markers matching a prefix.",
+      "purpose": "Identify a recovery candidate after accidental overwrite or deletion.",
+      "environment": "Read-only; inspect the exact key and retained version before any restoration.",
+      "expectedOutput": "\"Versions\":[{\"Key\":\"config.json\",\"VersionId\":\"...\"}]",
+      "interpretation": "VersionId, IsLatest and LastModified distinguish versions; prefix can match more than one exact object key.",
+      "safety": "Read-only; inspect the exact key and retained version before any restoration.",
+      "references": [
+        {
+          "title": "Retained object versions \u2014 primary documentation",
+          "url": "https://docs.aws.amazon.com/cli/latest/reference/"
+        }
+      ]
+    },
+    {
+      "id": "aws-command-23",
+      "topic": "aws",
+      "title": "Bucket public-access guardrails",
+      "command": "aws s3api get-public-access-block --bucket BUCKET",
+      "kind": "Shell command",
+      "definition": "Retrieves bucket-level Block Public Access settings.",
+      "purpose": "Review guardrails during an exposure investigation.",
+      "environment": "Read-only; this output alone is not a complete effective-access audit.",
+      "expectedOutput": "\"BlockPublicPolicy\":true",
+      "interpretation": "Four booleans describe controls on public ACLs and policies; account-level controls and access policies also matter.",
+      "safety": "Read-only; this output alone is not a complete effective-access audit.",
+      "references": [
+        {
+          "title": "Bucket public-access guardrails \u2014 primary documentation",
+          "url": "https://docs.aws.amazon.com/cli/latest/reference/"
+        }
+      ]
+    },
+    {
+      "id": "aws-command-24",
+      "topic": "aws",
+      "title": "Bucket encryption defaults",
+      "command": "aws s3api get-bucket-encryption --bucket BUCKET",
+      "kind": "Shell command",
+      "definition": "Reads the bucket's default server-side encryption configuration.",
+      "purpose": "Check the encryption policy applied to new uploads by default.",
+      "environment": "Read-only; defaults do not retroactively prove the encryption state of every existing object.",
+      "expectedOutput": "\"SSEAlgorithm\":\"aws:kms\"",
+      "interpretation": "SSEAlgorithm identifies the configured mechanism; KMS settings may name a key.",
+      "safety": "Read-only; defaults do not retroactively prove the encryption state of every existing object.",
+      "references": [
+        {
+          "title": "Bucket encryption defaults \u2014 primary documentation",
+          "url": "https://docs.aws.amazon.com/cli/latest/reference/"
+        }
+      ]
+    },
+    {
+      "id": "aws-command-25",
+      "topic": "aws",
+      "title": "Database instance configuration",
+      "command": "aws rds describe-db-instances --db-instance-identifier DB_ID",
+      "kind": "Shell command",
+      "definition": "Retrieves RDS instance state and configuration.",
+      "purpose": "Inspect availability, endpoint and backup settings during diagnosis.",
+      "environment": "Read-only; available does not prove client connectivity or query correctness.",
+      "expectedOutput": "\"DBInstanceStatus\":\"available\",\"MultiAZ\":true",
+      "interpretation": "DBInstanceStatus is lifecycle state; Endpoint, MultiAZ and BackupRetentionPeriod describe separate properties.",
+      "safety": "Read-only; available does not prove client connectivity or query correctness.",
+      "references": [
+        {
+          "title": "Database instance configuration \u2014 primary documentation",
+          "url": "https://docs.aws.amazon.com/cli/latest/reference/"
+        }
+      ]
+    },
+    {
+      "id": "aws-command-26",
+      "topic": "aws",
+      "title": "Lambda configuration",
+      "command": "aws lambda get-function-configuration --function-name FUNCTION_NAME",
+      "kind": "Shell command",
+      "definition": "Reads a function's runtime, limits and execution configuration.",
+      "purpose": "Investigate timeout, memory or deployment configuration changes.",
+      "environment": "Read-only but output may contain environment variables. Protect secrets and verify function version/alias context.",
+      "expectedOutput": "\"Timeout\":30,\"MemorySize\":512",
+      "interpretation": "Timeout is seconds; MemorySize is MB; LastUpdateStatus reports configuration update progress.",
+      "safety": "Read-only but output may contain environment variables. Protect secrets and verify function version/alias context.",
+      "references": [
+        {
+          "title": "Lambda configuration \u2014 primary documentation",
+          "url": "https://docs.aws.amazon.com/cli/latest/reference/"
+        }
+      ]
+    },
+    {
+      "id": "aws-command-27",
+      "topic": "aws",
+      "title": "DynamoDB table state",
+      "command": "aws dynamodb describe-table --table-name TABLE_NAME",
+      "kind": "Shell command",
+      "definition": "Retrieves table metadata, key schema and capacity-mode information.",
+      "purpose": "Check the intended schema and resource state during throttling investigation.",
+      "environment": "Read-only; inspect metrics for actual hot-key or throughput behavior.",
+      "expectedOutput": "\"TableStatus\":\"ACTIVE\"",
+      "interpretation": "TableStatus describes lifecycle; KeySchema names partition/sort keys. ItemCount is an approximate periodically updated value.",
+      "safety": "Read-only; inspect metrics for actual hot-key or throughput behavior.",
+      "references": [
+        {
+          "title": "DynamoDB table state \u2014 primary documentation",
+          "url": "https://docs.aws.amazon.com/cli/latest/reference/"
+        }
+      ]
+    },
+    {
+      "id": "aws-command-28",
+      "topic": "aws",
+      "title": "Encryption key metadata",
+      "command": "aws kms describe-key --key-id KEY_ID",
+      "kind": "Shell command",
+      "definition": "Retrieves KMS key metadata without performing decryption.",
+      "purpose": "Check key state, origin and intended usage.",
+      "environment": "Read-only; an enabled key can still deny a caller through policy or conditions.",
+      "expectedOutput": "\"KeyState\":\"Enabled\",\"KeyUsage\":\"ENCRYPT_DECRYPT\"",
+      "interpretation": "KeyState can be Enabled, Disabled or another lifecycle state; KeyUsage identifies permitted operation class.",
+      "safety": "Read-only; an enabled key can still deny a caller through policy or conditions.",
+      "references": [
+        {
+          "title": "Encryption key metadata \u2014 primary documentation",
+          "url": "https://docs.aws.amazon.com/cli/latest/reference/"
+        }
+      ]
+    },
+    {
+      "id": "aws-command-29",
+      "topic": "aws",
+      "title": "Secret rotation metadata",
+      "command": "aws secretsmanager describe-secret --secret-id SECRET_ID",
+      "kind": "Shell command",
+      "definition": "Retrieves secret metadata without the secret value.",
+      "purpose": "Check rotation settings and version staging during credential incidents.",
+      "environment": "Read-only metadata; do not use get-secret-value merely to diagnose staging information.",
+      "expectedOutput": "\"RotationEnabled\":true",
+      "interpretation": "RotationEnabled and VersionIdsToStages show configuration and version labels, not whether every consumer refreshed.",
+      "safety": "Read-only metadata; do not use get-secret-value merely to diagnose staging information.",
+      "references": [
+        {
+          "title": "Secret rotation metadata \u2014 primary documentation",
+          "url": "https://docs.aws.amazon.com/cli/latest/reference/"
+        }
+      ]
+    },
+    {
+      "id": "aws-command-30",
+      "topic": "aws",
+      "title": "DNS record inventory",
+      "command": "aws route53 list-resource-record-sets --hosted-zone-id ZONE_ID",
+      "kind": "Shell command",
+      "definition": "Lists DNS record sets in a hosted zone.",
+      "purpose": "Check configured routing records before comparing resolver answers.",
+      "environment": "Read-only; the hosted zone may be public or private. Configuration is not proof all caches updated.",
+      "expectedOutput": "\"Name\":\"api.example.com.\",\"Type\":\"A\"",
+      "interpretation": "Name, Type and TTL identify records; alias targets use different fields and do not expose a normal record TTL here.",
+      "safety": "Read-only; the hosted zone may be public or private. Configuration is not proof all caches updated.",
+      "references": [
+        {
+          "title": "DNS record inventory \u2014 primary documentation",
+          "url": "https://docs.aws.amazon.com/cli/latest/reference/"
+        }
+      ]
     }
   ],
   "debugging": [

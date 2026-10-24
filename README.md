@@ -28,7 +28,7 @@ The four difficulty bands progress from foundations to operational trade-offs. N
 ## Learning experience
 
 - Compact circular subject icons with accessible labels, keyboard focus and direct subject selection. The catalog shows total scored/interview counts; session setup shows the selected subject counts.
-- **Learn:** every subject has 30 core concepts, 12 command/query guides, 10 worked scenarios and 30 interview prompts. Search the library and switch subjects without returning to setup.
+- **Learn:** every subject has 30 core concepts, 24–40 command/query guides, 10 worked scenarios and 30 interview prompts. Search the library and switch subjects without returning to setup.
 - **Practice:** randomized questions and answer ordering, immediate explanations, keyboard shortcuts and saved review.
 - **Exam:** scored items only; optional timer and explanations withheld until review.
 - **Interview:** written notes, answer outlines, checklists and self-ratings without a fabricated score.
@@ -38,7 +38,7 @@ The four difficulty bands progress from foundations to operational trade-offs. N
 
 The original `questions.js` bank is retained as an archive and validated for compatibility, but is no longer loaded into active sessions. Existing curated Kubernetes question IDs remain unchanged. Old legacy bookmarks are not migrated into the new packs.
 
-The library totals **330 concepts, 132 command/query guides and 110 worked troubleshooting cases**. These cover a core curriculum, not every possible command or product feature. Command output is illustrative; replace placeholders and check the documented environment before use.
+The library totals **330 concepts, 348 command/query guides and 110 worked troubleshooting cases**. These cover a core curriculum, not every possible command or product feature. Command output is illustrative; replace placeholders and check the documented environment before use.
 
 ## Run locally
 
@@ -103,3 +103,11 @@ The expected site is https://skkc2.github.io/devops-interview-quiz/. Use the dep
 This is a study aid, not an official certification simulator. Pair exercises with hands-on labs and version-appropriate documentation. Clearing browser storage removes local progress. Do not enter production secrets or sensitive incident data into notes.
 
 No license was present in the original repository; this change does not invent a licensing grant.
+
+### Practice question clarity and command coverage
+
+Practice, exam and interview sessions display the actual question, with operational context above the specific ask. Short topic titles are only catalog labels. Multi-select prompts state the required answer count; review cards and exported notes retain the full prompt.
+
+The wording review covers all 1,350 active items: 1,250 revised prompts and 100 retained Kubernetes prompts that already stated a specific situation and task. Question IDs and answer mappings are preserved. Authored contexts and the per-question review inventory live in `content/review/`.
+
+Command coverage is 40 each for Kubernetes, Linux and Networking; 30 each for AWS, Terraform, Docker, Ansible, Git & CI/CD and Systems administration; and 24 operational command/query guides each for SRE and Observability. These are curated workflows, not an exhaustive listing of every flag. Each guide explains purpose, output, prerequisites and whether the operation changes state.

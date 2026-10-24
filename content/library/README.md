@@ -5,7 +5,7 @@ Content was drafted for every subject before the UI integration. The source is i
 Each of the eleven subjects has:
 
 - 30 concept lessons: a definition, an explanation of behavior, and an optional related command.
-- 12 core command/query guides: what it is, why to use it, flag/output interpretation, illustrative output, and execution context.
+- 24–40 command/query guides: what it is, why to use it, flag/output interpretation, illustrative output, and execution context.
 - 10 worked troubleshooting cases: symptom, diagnostic evidence, conditional fix, and recovery verification.
 - 30 interview questions with a follow-up and answer guidance. These are original practice questions modeled on practical interview competencies, not claims about questions asked by a named employer.
 

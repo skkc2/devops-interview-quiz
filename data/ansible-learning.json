@@ -994,6 +994,348 @@
           "url": "https://docs.ansible.com/ansible/latest/command_guide/command_line_tools.html"
         }
       ]
+    },
+    {
+      "id": "ansible-command-13",
+      "topic": "ansible",
+      "title": "Ansible version and paths",
+      "command": "ansible --version",
+      "kind": "Shell command",
+      "definition": "Reports ansible-core version and active configuration paths.",
+      "purpose": "Reproduce differences between a developer workstation and CI.",
+      "environment": "Read-only; does not contact inventory hosts.",
+      "expectedOutput": "ansible [core VERSION] config file = /project/ansible.cfg",
+      "interpretation": "config file, module paths and Python version explain the controller environment.",
+      "safety": "Read-only; does not contact inventory hosts.",
+      "references": [
+        {
+          "title": "Ansible version and paths \u2014 primary documentation",
+          "url": "https://docs.ansible.com/ansible/latest/command_guide/command_line_tools.html"
+        }
+      ]
+    },
+    {
+      "id": "ansible-command-14",
+      "topic": "ansible",
+      "title": "Changed configuration settings",
+      "command": "ansible-config dump --only-changed",
+      "kind": "Shell command",
+      "definition": "Displays non-default effective Ansible configuration.",
+      "purpose": "Find an unexpected inventory, connection or privilege setting.",
+      "environment": "Read-only controller inspection; output can expose internal paths or configuration values.",
+      "expectedOutput": "DEFAULT_HOST_LIST(/project/ansible.cfg) = ...",
+      "interpretation": "Entries show setting names and origins where supported; environment variables can override file values.",
+      "safety": "Read-only controller inspection; output can expose internal paths or configuration values.",
+      "references": [
+        {
+          "title": "Changed configuration settings \u2014 primary documentation",
+          "url": "https://docs.ansible.com/ansible/latest/command_guide/command_line_tools.html"
+        }
+      ]
+    },
+    {
+      "id": "ansible-command-15",
+      "topic": "ansible",
+      "title": "Configuration source file",
+      "command": "ansible-config view",
+      "kind": "Shell command",
+      "definition": "Prints the active Ansible configuration file.",
+      "purpose": "Inspect project configuration without guessing which file is in use.",
+      "environment": "Read-only; configuration may include sensitive paths or plugin settings.",
+      "expectedOutput": "[defaults] ...",
+      "interpretation": "This is file content, not every resolved environment override; compare with dump for effective values.",
+      "safety": "Read-only; configuration may include sensitive paths or plugin settings.",
+      "references": [
+        {
+          "title": "Configuration source file \u2014 primary documentation",
+          "url": "https://docs.ansible.com/ansible/latest/command_guide/command_line_tools.html"
+        }
+      ]
+    },
+    {
+      "id": "ansible-command-16",
+      "topic": "ansible",
+      "title": "Full resolved inventory",
+      "command": "ansible-inventory -i inventory.yml --list",
+      "kind": "Shell command",
+      "definition": "Outputs resolved inventory as structured JSON.",
+      "purpose": "Inspect groups and host variables before applying a play.",
+      "environment": "Read-only host inspection, but inventory plugins can call external APIs; protect exported variables.",
+      "expectedOutput": "{\"_meta\":{\"hostvars\":{...}},\"web\":{\"hosts\":[...]}}",
+      "interpretation": "_meta.hostvars contains host variables; groups contain hosts and children. Dynamically supplied variables may include secrets.",
+      "safety": "Read-only host inspection, but inventory plugins can call external APIs; protect exported variables.",
+      "references": [
+        {
+          "title": "Full resolved inventory \u2014 primary documentation",
+          "url": "https://docs.ansible.com/ansible/latest/command_guide/command_line_tools.html"
+        }
+      ]
+    },
+    {
+      "id": "ansible-command-17",
+      "topic": "ansible",
+      "title": "Host pattern preview",
+      "command": "ansible -i inventory.yml 'web:&staging' --list-hosts",
+      "kind": "Shell command",
+      "definition": "Shows hosts matching the intersection of two groups.",
+      "purpose": "Validate a narrowed target pattern before remote execution.",
+      "environment": "Read-only inventory resolution; keep the shell quotes around the pattern.",
+      "expectedOutput": "hosts (2): web-staging-1 web-staging-2",
+      "interpretation": "The count and names are the resolved target set; group names alone are not an access control.",
+      "safety": "Read-only inventory resolution; keep the shell quotes around the pattern.",
+      "references": [
+        {
+          "title": "Host pattern preview \u2014 primary documentation",
+          "url": "https://docs.ansible.com/ansible/latest/command_guide/command_line_tools.html"
+        }
+      ]
+    },
+    {
+      "id": "ansible-command-18",
+      "topic": "ansible",
+      "title": "Module inventory",
+      "command": "ansible-doc --list",
+      "kind": "Shell command",
+      "definition": "Lists modules discoverable by the controller.",
+      "purpose": "Find available modules and identify missing collections.",
+      "environment": "Read-only; collection paths and versions affect results.",
+      "expectedOutput": "ansible.builtin.copy Copy files to remote locations",
+      "interpretation": "Each line names a module and brief description; presence does not guarantee remote requirements are installed.",
+      "safety": "Read-only; collection paths and versions affect results.",
+      "references": [
+        {
+          "title": "Module inventory \u2014 primary documentation",
+          "url": "https://docs.ansible.com/ansible/latest/command_guide/command_line_tools.html"
+        }
+      ]
+    },
+    {
+      "id": "ansible-command-19",
+      "topic": "ansible",
+      "title": "Module task examples",
+      "command": "ansible-doc --snippet ansible.builtin.service",
+      "kind": "Shell command",
+      "definition": "Prints a task-oriented parameter skeleton for a module.",
+      "purpose": "Start from documented parameter names rather than guessing syntax.",
+      "environment": "Read-only; a generated snippet is not a tested production task.",
+      "expectedOutput": "- name: ... ansible.builtin.service: ...",
+      "interpretation": "Commented fields describe options; required fields must still be supplied and examples reviewed.",
+      "safety": "Read-only; a generated snippet is not a tested production task.",
+      "references": [
+        {
+          "title": "Module task examples \u2014 primary documentation",
+          "url": "https://docs.ansible.com/ansible/latest/command_guide/command_line_tools.html"
+        }
+      ]
+    },
+    {
+      "id": "ansible-command-20",
+      "topic": "ansible",
+      "title": "Collection installation",
+      "command": "ansible-galaxy collection install -r requirements.yml",
+      "kind": "Shell command",
+      "definition": "Installs collections declared in a requirements file.",
+      "purpose": "Reproduce reviewed automation dependencies on a clean controller.",
+      "environment": "Downloads executable automation content; use reviewed trusted collections and version constraints.",
+      "expectedOutput": "Installing 'namespace.collection:VERSION'",
+      "interpretation": "Installation messages name collection versions and destination paths; inspect the requirements file for intended pins.",
+      "safety": "Downloads executable automation content; use reviewed trusted collections and version constraints.",
+      "references": [
+        {
+          "title": "Collection installation \u2014 primary documentation",
+          "url": "https://docs.ansible.com/ansible/latest/command_guide/command_line_tools.html"
+        }
+      ]
+    },
+    {
+      "id": "ansible-command-21",
+      "topic": "ansible",
+      "title": "Collection metadata",
+      "command": "ansible-galaxy collection list --format json",
+      "kind": "Shell command",
+      "definition": "Emits installed collection versions as JSON.",
+      "purpose": "Record the automation toolchain in a CI diagnostic artifact.",
+      "environment": "Read-only; inspect actual search order if duplicate versions exist.",
+      "expectedOutput": "{\"/path/collections\":{\"namespace.collection\":{\"version\":\"...\"}}}",
+      "interpretation": "Paths group installed collections and their versions; multiple paths may contain different versions.",
+      "safety": "Read-only; inspect actual search order if duplicate versions exist.",
+      "references": [
+        {
+          "title": "Collection metadata \u2014 primary documentation",
+          "url": "https://docs.ansible.com/ansible/latest/command_guide/command_line_tools.html"
+        }
+      ]
+    },
+    {
+      "id": "ansible-command-22",
+      "topic": "ansible",
+      "title": "Role installation",
+      "command": "ansible-galaxy role install -r roles/requirements.yml",
+      "kind": "Shell command",
+      "definition": "Installs role dependencies from a declared requirements file.",
+      "purpose": "Set up a reproducible role-based project.",
+      "environment": "Downloads executable task content; use reviewed sources and pins.",
+      "expectedOutput": "- extracting role_name to roles/role_name",
+      "interpretation": "Messages identify installed role versions or revisions; an unpinned source can change later.",
+      "safety": "Downloads executable task content; use reviewed sources and pins.",
+      "references": [
+        {
+          "title": "Role installation \u2014 primary documentation",
+          "url": "https://docs.ansible.com/ansible/latest/command_guide/command_line_tools.html"
+        }
+      ]
+    },
+    {
+      "id": "ansible-command-23",
+      "topic": "ansible",
+      "title": "Encrypt a variable file",
+      "command": "ansible-vault encrypt group_vars/all/secrets.yml",
+      "kind": "Shell command",
+      "definition": "Encrypts a plaintext variable file with Vault.",
+      "purpose": "Protect stored secret content before committing it.",
+      "environment": "Mutates the file and prompts for a Vault secret. Keep secure recovery access and rotate already-exposed credentials.",
+      "expectedOutput": "Encryption successful",
+      "interpretation": "The encrypted file begins with a Vault header; successful encryption does not remove prior plaintext history or logs.",
+      "safety": "Mutates the file and prompts for a Vault secret. Keep secure recovery access and rotate already-exposed credentials.",
+      "references": [
+        {
+          "title": "Encrypt a variable file \u2014 primary documentation",
+          "url": "https://docs.ansible.com/ansible/latest/command_guide/command_line_tools.html"
+        }
+      ]
+    },
+    {
+      "id": "ansible-command-24",
+      "topic": "ansible",
+      "title": "View encrypted content",
+      "command": "ansible-vault view group_vars/all/secrets.yml",
+      "kind": "Shell command",
+      "definition": "Decrypts a Vault file for display without rewriting it.",
+      "purpose": "Inspect authorized secret content when necessary.",
+      "environment": "Sensitive read; use a private terminal and never redirect the output into shared CI logs.",
+      "expectedOutput": "Decrypted YAML displayed on the terminal",
+      "interpretation": "Output is plaintext, not masked values; the command's success only confirms decryption.",
+      "safety": "Sensitive read; use a private terminal and never redirect the output into shared CI logs.",
+      "references": [
+        {
+          "title": "View encrypted content \u2014 primary documentation",
+          "url": "https://docs.ansible.com/ansible/latest/command_guide/command_line_tools.html"
+        }
+      ]
+    },
+    {
+      "id": "ansible-command-25",
+      "topic": "ansible",
+      "title": "Edit encrypted content",
+      "command": "ansible-vault edit group_vars/all/secrets.yml",
+      "kind": "Shell command",
+      "definition": "Opens decrypted content in an editor and re-encrypts on save.",
+      "purpose": "Maintain an authorized Vault-protected variable file.",
+      "environment": "Mutates secrets; secure editor swap/backup handling and use the intended Vault identity.",
+      "expectedOutput": "Vault file saved after editor exit",
+      "interpretation": "The editor shows plaintext during editing; inspect the final file header after saving.",
+      "safety": "Mutates secrets; secure editor swap/backup handling and use the intended Vault identity.",
+      "references": [
+        {
+          "title": "Edit encrypted content \u2014 primary documentation",
+          "url": "https://docs.ansible.com/ansible/latest/command_guide/command_line_tools.html"
+        }
+      ]
+    },
+    {
+      "id": "ansible-command-26",
+      "topic": "ansible",
+      "title": "Change Vault encryption key",
+      "command": "ansible-vault rekey group_vars/all/secrets.yml",
+      "kind": "Shell command",
+      "definition": "Re-encrypts a Vault file using a new Vault secret.",
+      "purpose": "Rotate access to stored encrypted content.",
+      "environment": "Mutates encryption; update authorized consumers securely and preserve a recovery path.",
+      "expectedOutput": "Rekey successful",
+      "interpretation": "Rekey successful refers to the file encryption key, not the application credentials stored inside.",
+      "safety": "Mutates encryption; update authorized consumers securely and preserve a recovery path.",
+      "references": [
+        {
+          "title": "Change Vault encryption key \u2014 primary documentation",
+          "url": "https://docs.ansible.com/ansible/latest/command_guide/command_line_tools.html"
+        }
+      ]
+    },
+    {
+      "id": "ansible-command-27",
+      "topic": "ansible",
+      "title": "Canary execution",
+      "command": "ansible-playbook -i inventory.yml site.yml --limit CANARY",
+      "kind": "Shell command",
+      "definition": "Runs the playbook on the explicitly limited host pattern.",
+      "purpose": "Apply a reviewed change to a small representative target set.",
+      "environment": "Mutates remote hosts according to all selected tasks. Preview hosts and check availability before execution.",
+      "expectedOutput": "CANARY : ok=12 changed=2 unreachable=0 failed=0",
+      "interpretation": "PLAY RECAP shows ok, changed, unreachable and failed; zero failed is not a substitute for service postconditions.",
+      "safety": "Mutates remote hosts according to all selected tasks. Preview hosts and check availability before execution.",
+      "references": [
+        {
+          "title": "Canary execution \u2014 primary documentation",
+          "url": "https://docs.ansible.com/ansible/latest/command_guide/command_line_tools.html"
+        }
+      ]
+    },
+    {
+      "id": "ansible-command-28",
+      "topic": "ansible",
+      "title": "Privilege-scoped execution",
+      "command": "ansible-playbook -i inventory.yml maintenance.yml --limit CANARY --ask-become-pass",
+      "kind": "Shell command",
+      "definition": "Runs a reviewed maintenance play and prompts for an escalation password where become is configured.",
+      "purpose": "Use an interactive authorized privilege path without putting passwords in shell arguments.",
+      "environment": "May change privileged host state. Use task-scoped become and protect the interactive session.",
+      "expectedOutput": "BECOME password: then task results",
+      "interpretation": "Escalation applies according to the play/task settings; a prompt does not mean every task should run as root.",
+      "safety": "May change privileged host state. Use task-scoped become and protect the interactive session.",
+      "references": [
+        {
+          "title": "Privilege-scoped execution \u2014 primary documentation",
+          "url": "https://docs.ansible.com/ansible/latest/command_guide/command_line_tools.html"
+        }
+      ]
+    },
+    {
+      "id": "ansible-command-29",
+      "topic": "ansible",
+      "title": "Validate tagged path",
+      "command": "ansible-playbook -i inventory.yml site.yml --tags deploy --list-tasks",
+      "kind": "Shell command",
+      "definition": "Lists tasks selected for a tagged execution path.",
+      "purpose": "Check whether prerequisites are omitted before a partial rollout.",
+      "environment": "Read-only planning aid; test the selected path in a representative environment.",
+      "expectedOutput": "tasks: ... TAGS: [deploy]",
+      "interpretation": "The task list reflects tag selection; dynamic includes may not reveal every runtime task in this preview.",
+      "safety": "Read-only planning aid; test the selected path in a representative environment.",
+      "references": [
+        {
+          "title": "Validate tagged path \u2014 primary documentation",
+          "url": "https://docs.ansible.com/ansible/latest/command_guide/command_line_tools.html"
+        }
+      ]
+    },
+    {
+      "id": "ansible-command-30",
+      "topic": "ansible",
+      "title": "Read-only remote command",
+      "command": "ansible -i inventory.yml CANARY -m ansible.builtin.command -a 'uptime'",
+      "kind": "Shell command",
+      "definition": "Runs uptime on a deliberately scoped remote target.",
+      "purpose": "Verify connection context and inspect current load without a shell pipeline.",
+      "environment": "Connects to hosts; the example is read-only, but command can execute arbitrary actions. Use a verified host pattern.",
+      "expectedOutput": "CANARY CHANGED rc=0 ... load average ...",
+      "interpretation": "stdout contains remote uptime/load; Ansible command may report CHANGED despite this command being observational.",
+      "safety": "Connects to hosts; the example is read-only, but command can execute arbitrary actions. Use a verified host pattern.",
+      "references": [
+        {
+          "title": "Read-only remote command \u2014 primary documentation",
+          "url": "https://docs.ansible.com/ansible/latest/command_guide/command_line_tools.html"
+        }
+      ]
     }
   ],
   "debugging": [

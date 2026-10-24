@@ -83,7 +83,7 @@
       "topic": "kubernetes",
       "type": "command",
       "title": "List Pods cluster-wide",
-      "question": "Your current context points to one namespace. Which command lists Pods across all namespaces?",
+      "question": "You are investigating whether a rollout created Pods in an unexpected namespace. Your kubeconfig currently selects only one namespace. Which command lists Pods across all namespaces?",
       "objective": "Interpret the scope flag without changing the active context.",
       "options": [
         "kubectl get pods -A",
@@ -148,7 +148,7 @@
       "topic": "kubernetes",
       "type": "multi-select",
       "title": "ConfigMaps and Secrets",
-      "question": "Select the TWO accurate statements about Kubernetes configuration objects.",
+      "question": "An application needs ordinary configuration values and credentials supplied separately from its image. The team is choosing Kubernetes configuration objects.\n\nWhich TWO statements correctly describe ConfigMaps and Secrets? Select exactly two answers.",
       "objective": "Separate non-confidential configuration from sensitive values.",
       "options": [
         "ConfigMaps are intended for non-confidential configuration.",
@@ -274,7 +274,7 @@
       "topic": "kubernetes",
       "type": "multi-select",
       "title": "CPU and memory semantics",
-      "question": "Choose all THREE generally correct statements about container requests and limits.",
+      "question": "A team is setting CPU and memory requests and limits for containers sharing cluster nodes. The settings affect both scheduling and runtime behavior.\n\nWhich THREE statements correctly describe those resource controls? Select exactly three answers.",
       "objective": "Separate scheduling, CPU enforcement and memory enforcement.",
       "options": [
         "The scheduler uses requests when selecting a node.",
@@ -475,7 +475,7 @@
       "topic": "kubernetes",
       "type": "multi-select",
       "title": "Taints, tolerations and placement",
-      "question": "Choose all THREE statements that correctly describe taints, tolerations and placement.",
+      "question": "A cluster has a dedicated node pool with taints and labels. Workloads use tolerations and placement rules to control where they may run.\n\nWhich THREE statements correctly describe taints, tolerations and placement? Select exactly three answers.",
       "objective": "Separate permission to land on a node from positive placement rules.",
       "options": [
         "A matching toleration lets a Pod tolerate a taint but does not force placement there.",
@@ -489,7 +489,7 @@
         2
       ],
       "explanation": "Taints repel Pods without matching tolerations. A toleration removes that scheduling barrier but is not a placement instruction; use nodeSelector or affinity to target nodes. Other constraints and capacity still apply.",
-      "takeaway": "Toleration means “allowed here,” not “must run here.”",
+      "takeaway": "Toleration means \u201callowed here,\u201d not \u201cmust run here.\u201d",
       "references": [
         {
           "title": "Taints and tolerations",
@@ -675,7 +675,7 @@
       "topic": "kubernetes",
       "type": "multi-select",
       "title": "NetworkPolicy behaviour",
-      "question": "Choose all THREE correct statements about NetworkPolicy behaviour.",
+      "question": "An operator is designing Pod-to-Pod traffic restrictions using NetworkPolicy in a cluster whose network plugin supports policy enforcement.\n\nWhich THREE statements correctly describe how those policies control traffic? Select exactly three answers.",
       "objective": "Think about selected Pods, traffic directions and enforcement.",
       "options": [
         "A policy applies to Pods selected by its podSelector in the policy's namespace.",
@@ -784,7 +784,7 @@
       "topic": "kubernetes",
       "type": "concept",
       "title": "Secret storage and least privilege",
-      "question": "Which is the safest general statement about Kubernetes Secret objects?",
+      "question": "A production application needs a database credential. The team plans to store it in a Kubernetes Secret and must assess storage and access protections.\n\nWhich statement correctly describes the security requirements that still apply?",
       "objective": "Separate the API object's intent from actual storage and access controls.",
       "options": [
         "Secret values are safe to expose because they are base64 encoded",
@@ -796,7 +796,7 @@
         2
       ],
       "explanation": "Secrets are the API object for sensitive data, but base64 is not encryption. Access depends on API/RBAC permissions and workload use. Encryption at rest must be checked against the cluster's actual configuration.",
-      "takeaway": "Do not equate “stored in a Secret” with “fully protected.” Review RBAC, encryption, exposure paths and rotation.",
+      "takeaway": "Do not equate \u201cstored in a Secret\u201d with \u201cfully protected.\u201d Review RBAC, encryption, exposure paths and rotation.",
       "references": [
         {
           "title": "Secrets",
@@ -818,12 +818,12 @@
       "topic": "kubernetes",
       "type": "interview",
       "title": "Explain Pod, Deployment and Service",
-      "question": "In an interview, explain the difference between a Pod, a Deployment and a Service. Give an example of when each is needed.",
+      "question": "You are deploying a stateless HTTP API with three instances and a stable internal endpoint.\n\nExplain the different responsibilities of a Pod, a Deployment and a Service in this design. Describe how they cooperate when one application instance is replaced.",
       "objective": "Structure the answer by responsibility, then connect the objects in a realistic deployment.",
       "options": [],
       "correct": [],
       "explanation": "A strong answer separates execution, desired-state management and network discovery. A Service is not a Pod controller and a Deployment does not give clients a stable endpoint.",
-      "takeaway": "A typical flow is Deployment → ReplicaSet → Pods, with a Service selecting matching ready Pods.",
+      "takeaway": "A typical flow is Deployment \u2192 ReplicaSet \u2192 Pods, with a Service selecting matching ready Pods.",
       "references": [
         {
           "title": "Deployments",
@@ -896,7 +896,7 @@
       "options": [],
       "correct": [],
       "explanation": "A structured diagnosis checks selectors and labels, Pod readiness, EndpointSlices, then service port/targetPort and network path. Tests should distinguish DNS failure from refusal, timeout or application errors.",
-      "takeaway": "Trace the path: client DNS → Service port → backend endpoint → Pod port → application dependencies.",
+      "takeaway": "Trace the path: client DNS \u2192 Service port \u2192 backend endpoint \u2192 Pod port \u2192 application dependencies.",
       "references": [
         {
           "title": "Services",
@@ -986,7 +986,7 @@
         0
       ],
       "explanation": "Namespaces scope names and organise resources; they do not create separate clusters or automatically enforce network isolation.",
-      "takeaway": "Remember: namespace scope — Namespaces scope names and organise resources; they do not create separate clusters or automatically enforce network isolation.",
+      "takeaway": "Remember: namespace scope \u2014 Namespaces scope names and organise resources; they do not create separate clusters or automatically enforce network isolation.",
       "references": [
         {
           "title": "Namespaces",
@@ -1016,7 +1016,7 @@
         0
       ],
       "explanation": "A Deployment manages ReplicaSets, and the ReplicaSet controller creates or removes Pods toward the desired count. A Service does not maintain replicas.",
-      "takeaway": "Remember: replicaset responsibility — A Deployment manages ReplicaSets, and the ReplicaSet controller creates or removes Pods toward the desired count. A Service does not maintain replicas.",
+      "takeaway": "Remember: replicaset responsibility \u2014 A Deployment manages ReplicaSets, and the ReplicaSet controller creates or removes Pods toward the desired count. A Service does not maintain replicas.",
       "references": [
         {
           "title": "Deployments",
@@ -1046,7 +1046,7 @@
         0
       ],
       "explanation": "StatefulSets provide stable ordinal identities and can associate stable storage with replicas, but do not replace database replication or backups.",
-      "takeaway": "Remember: statefulset identity — StatefulSets provide stable ordinal identities and can associate stable storage with replicas, but do not replace database replication or backups.",
+      "takeaway": "Remember: statefulset identity \u2014 StatefulSets provide stable ordinal identities and can associate stable storage with replicas, but do not replace database replication or backups.",
       "references": [
         {
           "title": "StatefulSets",
@@ -1076,7 +1076,7 @@
         0
       ],
       "explanation": "A Job tracks completion of finite work and retries according to its configuration. A Deployment is for continuously running application workloads.",
-      "takeaway": "Remember: run a finite task — A Job tracks completion of finite work and retries according to its configuration. A Deployment is for continuously running application workloads.",
+      "takeaway": "Remember: run a finite task \u2014 A Job tracks completion of finite work and retries according to its configuration. A Deployment is for continuously running application workloads.",
       "references": [
         {
           "title": "Jobs",
@@ -1106,7 +1106,7 @@
         0
       ],
       "explanation": "A DaemonSet manages a Pod on each node matching placement constraints; taints, selectors, affinity and resources still affect eligibility.",
-      "takeaway": "Remember: one pod per eligible node — A DaemonSet manages a Pod on each node matching placement constraints; taints, selectors, affinity and resources still affect eligibility.",
+      "takeaway": "Remember: one pod per eligible node \u2014 A DaemonSet manages a Pod on each node matching placement constraints; taints, selectors, affinity and resources still affect eligibility.",
       "references": [
         {
           "title": "DaemonSets",
@@ -1136,7 +1136,7 @@
         0
       ],
       "explanation": "Service selectors use labels on Pods in the Service namespace. Names and port values do not create selector matches.",
-      "takeaway": "Remember: service discovery labels — Service selectors use labels on Pods in the Service namespace. Names and port values do not create selector matches.",
+      "takeaway": "Remember: service discovery labels \u2014 Service selectors use labels on Pods in the Service namespace. Names and port values do not create selector matches.",
       "references": [
         {
           "title": "Services",
@@ -1166,7 +1166,7 @@
         0
       ],
       "explanation": "`kubectl get deployments -n payments` lists Deployments in that namespace without changing live state.",
-      "takeaway": "Remember: list deployments in a namespace — `kubectl get deployments -n payments` lists Deployments in that namespace without changing live state.",
+      "takeaway": "Remember: list deployments in a namespace \u2014 `kubectl get deployments -n payments` lists Deployments in that namespace without changing live state.",
       "references": [
         {
           "title": "kubectl reference",
@@ -1197,7 +1197,7 @@
         0
       ],
       "explanation": "`describe service` reports selector and port configuration and can show endpoint-related clues; it does not execute inside a container.",
-      "takeaway": "Remember: inspect service details — `describe service` reports selector and port configuration and can show endpoint-related clues; it does not execute inside a container.",
+      "takeaway": "Remember: inspect service details \u2014 `describe service` reports selector and port configuration and can show endpoint-related clues; it does not execute inside a container.",
       "references": [
         {
           "title": "Debugging Services",
@@ -1228,7 +1228,7 @@
         0
       ],
       "explanation": "`kubectl rollout status` waits for a rollout to complete or report failure/timeout. `rollout undo` instead requests a rollback.",
-      "takeaway": "Remember: wait for rollout status — `kubectl rollout status` waits for a rollout to complete or report failure/timeout. `rollout undo` instead requests a rollback.",
+      "takeaway": "Remember: wait for rollout status \u2014 `kubectl rollout status` waits for a rollout to complete or report failure/timeout. `rollout undo` instead requests a rollback.",
       "references": [
         {
           "title": "Deployments",
@@ -1259,7 +1259,7 @@
         0
       ],
       "explanation": "`kubectl logs -f` follows container logs; `-c` selects a container and `-n` scopes the namespace.",
-      "takeaway": "Remember: follow container logs — `kubectl logs -f` follows container logs; `-c` selects a container and `-n` scopes the namespace.",
+      "takeaway": "Remember: follow container logs \u2014 `kubectl logs -f` follows container logs; `-c` selects a container and `-n` scopes the namespace.",
       "references": [
         {
           "title": "Debugging Pods",
@@ -1278,7 +1278,7 @@
       "topic": "kubernetes",
       "type": "command",
       "title": "Explain a Pod field",
-      "question": "You are unsure what a Pod spec field means and want schema-oriented help. Which command inspects resource fields?",
+      "question": "You are authoring a Pod manifest and need the API schema description of a field before choosing its value. Which kubectl command provides resource-field documentation?",
       "objective": "Explain a Pod field: identify the correct Kubernetes behaviour, command or operational response.",
       "options": [
         "kubectl explain pod.spec",
@@ -1290,7 +1290,7 @@
         0
       ],
       "explanation": "`kubectl explain` prints descriptions for resource fields using API schema information, which can vary with API/server version.",
-      "takeaway": "Remember: explain a pod field — `kubectl explain` prints descriptions for resource fields using API schema information, which can vary with API/server version.",
+      "takeaway": "Remember: explain a pod field \u2014 `kubectl explain` prints descriptions for resource fields using API schema information, which can vary with API/server version.",
       "references": [
         {
           "title": "kubectl reference",
@@ -1321,7 +1321,7 @@
         0
       ],
       "explanation": "`kubectl scale` changes the desired replica count. In a declarative workflow, also align the source of truth so reconciliation does not revert it.",
-      "takeaway": "Remember: scale a deployment — `kubectl scale` changes the desired replica count. In a declarative workflow, also align the source of truth so reconciliation does not revert it.",
+      "takeaway": "Remember: scale a deployment \u2014 `kubectl scale` changes the desired replica count. In a declarative workflow, also align the source of truth so reconciliation does not revert it.",
       "references": [
         {
           "title": "Deployments",
@@ -1340,7 +1340,7 @@
       "topic": "kubernetes",
       "type": "command",
       "title": "Read active context",
-      "question": "Before a change, you need to confirm the selected kubeconfig context. Which command prints its name?",
+      "question": "You have kubeconfig access to staging and production. Before any change, which command prints the context currently selected by kubectl?",
       "objective": "Read active context: identify the correct Kubernetes behaviour, command or operational response.",
       "options": [
         "kubectl config current-context",
@@ -1352,7 +1352,7 @@
         0
       ],
       "explanation": "`kubectl config current-context` prints the selected context, but verify namespace, permissions and cluster purpose before mutation.",
-      "takeaway": "Remember: read active context — `kubectl config current-context` prints the selected context, but verify namespace, permissions and cluster purpose before mutation.",
+      "takeaway": "Remember: read active context \u2014 `kubectl config current-context` prints the selected context, but verify namespace, permissions and cluster purpose before mutation.",
       "references": [
         {
           "title": "Configure access to multiple clusters",
@@ -1383,7 +1383,7 @@
         0
       ],
       "explanation": "Service `port` is client-facing; `targetPort` directs traffic to a backend endpoint port and can be numeric or named.",
-      "takeaway": "Remember: service port mapping — Service `port` is client-facing; `targetPort` directs traffic to a backend endpoint port and can be numeric or named.",
+      "takeaway": "Remember: service port mapping \u2014 Service `port` is client-facing; `targetPort` directs traffic to a backend endpoint port and can be numeric or named.",
       "references": [
         {
           "title": "Services",
@@ -1413,7 +1413,7 @@
         0
       ],
       "explanation": "ClusterIP exposes a Service at an internal cluster IP. NodePort and LoadBalancer add exposure mechanisms; ExternalName maps the Service name to DNS.",
-      "takeaway": "Remember: internal service type — ClusterIP exposes a Service at an internal cluster IP. NodePort and LoadBalancer add exposure mechanisms; ExternalName maps the Service name to DNS.",
+      "takeaway": "Remember: internal service type \u2014 ClusterIP exposes a Service at an internal cluster IP. NodePort and LoadBalancer add exposure mechanisms; ExternalName maps the Service name to DNS.",
       "references": [
         {
           "title": "Services",
@@ -1431,7 +1431,7 @@
       "topic": "kubernetes",
       "type": "multi-select",
       "title": "Labels are selection metadata",
-      "question": "Select the TWO true statements about Kubernetes labels.",
+      "question": "A team uses metadata to group application Pods and lets Services select their backends from that metadata.\n\nWhich TWO statements correctly describe Kubernetes labels in this workflow? Select exactly two answers.",
       "objective": "Labels are selection metadata: identify the correct Kubernetes behaviour, command or operational response.",
       "options": [
         "Label selectors can identify groups of objects",
@@ -1444,7 +1444,7 @@
         1
       ],
       "explanation": "Labels are key-value metadata for selection and organisation. They are not globally unique identifiers and do not change image fields by themselves.",
-      "takeaway": "Remember: labels are selection metadata — Labels are key-value metadata for selection and organisation. They are not globally unique identifiers and do not change image fields by themselves.",
+      "takeaway": "Remember: labels are selection metadata \u2014 Labels are key-value metadata for selection and organisation. They are not globally unique identifiers and do not change image fields by themselves.",
       "references": [
         {
           "title": "Services",
@@ -1462,7 +1462,7 @@
       "topic": "kubernetes",
       "type": "multi-select",
       "title": "Service port vocabulary",
-      "question": "Select the TWO correct statements about common Service ports.",
+      "question": "An application listens on TCP port 8080 inside its Pods. A Service exposes port 80 and forwards requests to those backends.\n\nWhich TWO statements correctly describe the roles of Service ports? Select exactly two answers.",
       "objective": "Service port vocabulary: identify the correct Kubernetes behaviour, command or operational response.",
       "options": [
         "`port` is exposed by the Service",
@@ -1475,7 +1475,7 @@
         1
       ],
       "explanation": "`port` and `targetPort` serve different purposes. `containerPort` is metadata and is not a firewall; a numeric targetPort can work without a containerPort declaration.",
-      "takeaway": "Remember: service port vocabulary — `port` and `targetPort` serve different purposes. `containerPort` is metadata and is not a firewall; a numeric targetPort can work without a containerPort declaration.",
+      "takeaway": "Remember: service port vocabulary \u2014 `port` and `targetPort` serve different purposes. `containerPort` is metadata and is not a firewall; a numeric targetPort can work without a containerPort declaration.",
       "references": [
         {
           "title": "Services",
@@ -1493,7 +1493,7 @@
       "topic": "kubernetes",
       "type": "multi-select",
       "title": "ConfigMap uses",
-      "question": "Select the TWO appropriate uses of a ConfigMap.",
+      "question": "An application has non-secret settings that should be managed separately from its container image. The team is evaluating a ConfigMap.\n\nWhich TWO options are appropriate uses of that object? Select exactly two answers.",
       "objective": "ConfigMap uses: identify the correct Kubernetes behaviour, command or operational response.",
       "options": [
         "Store non-confidential application settings",
@@ -1506,7 +1506,7 @@
         1
       ],
       "explanation": "ConfigMaps hold non-confidential data and can be consumed as environment variables or mounted files. They are not Secret storage and changes do not universally restart applications.",
-      "takeaway": "Remember: configmap uses — ConfigMaps hold non-confidential data and can be consumed as environment variables or mounted files. They are not Secret storage and changes do not universally restart applications.",
+      "takeaway": "Remember: configmap uses \u2014 ConfigMaps hold non-confidential data and can be consumed as environment variables or mounted files. They are not Secret storage and changes do not universally restart applications.",
       "references": [
         {
           "title": "ConfigMaps",
@@ -1536,7 +1536,7 @@
         0
       ],
       "explanation": "A reviewed manifest captures intended state and supports reproducible changes; teams should also manage drift and multiple writers deliberately.",
-      "takeaway": "Remember: declarative manifest workflow — A reviewed manifest captures intended state and supports reproducible changes; teams should also manage drift and multiple writers deliberately.",
+      "takeaway": "Remember: declarative manifest workflow \u2014 A reviewed manifest captures intended state and supports reproducible changes; teams should also manage drift and multiple writers deliberately.",
       "references": [
         {
           "title": "Declarative configuration",
@@ -1566,7 +1566,7 @@
         0
       ],
       "explanation": "ClusterIP is the standard internal Service type. External exposure adds reachability and operational responsibilities that should meet an explicit need.",
-      "takeaway": "Remember: internal service exposure — ClusterIP is the standard internal Service type. External exposure adds reachability and operational responsibilities that should meet an explicit need.",
+      "takeaway": "Remember: internal service exposure \u2014 ClusterIP is the standard internal Service type. External exposure adds reachability and operational responsibilities that should meet an explicit need.",
       "references": [
         {
           "title": "Services",
@@ -1596,7 +1596,7 @@
         0
       ],
       "explanation": "Selector mismatch or a lack of ready matching Pods commonly leaves a Service without usable endpoints. Inspect labels and readiness before altering networking.",
-      "takeaway": "Remember: service has no backends — Selector mismatch or a lack of ready matching Pods commonly leaves a Service without usable endpoints. Inspect labels and readiness before altering networking.",
+      "takeaway": "Remember: service has no backends \u2014 Selector mismatch or a lack of ready matching Pods commonly leaves a Service without usable endpoints. Inspect labels and readiness before altering networking.",
       "references": [
         {
           "title": "Debugging Services",
@@ -1626,7 +1626,7 @@
         0
       ],
       "explanation": "Short Service names resolve relative to the caller namespace. Namespace-qualified names are used for cross-namespace lookups.",
-      "takeaway": "Remember: cross-namespace dns — Short Service names resolve relative to the caller namespace. Namespace-qualified names are used for cross-namespace lookups.",
+      "takeaway": "Remember: cross-namespace dns \u2014 Short Service names resolve relative to the caller namespace. Namespace-qualified names are used for cross-namespace lookups.",
       "references": [
         {
           "title": "DNS for Services and Pods",
@@ -1656,7 +1656,7 @@
         0
       ],
       "explanation": "A Job models finite work and tracks completion. A Deployment instead maintains continuously running application Pods.",
-      "takeaway": "Remember: choose controller for completed work — A Job models finite work and tracks completion. A Deployment instead maintains continuously running application Pods.",
+      "takeaway": "Remember: choose controller for completed work \u2014 A Job models finite work and tracks completion. A Deployment instead maintains continuously running application Pods.",
       "references": [
         {
           "title": "Jobs",
@@ -1686,7 +1686,7 @@
         0
       ],
       "explanation": "A failed readiness probe leaves the process running but marks the Pod unready for Service routing. Liveness failures trigger restart behavior.",
-      "takeaway": "Remember: alive but not ready — A failed readiness probe leaves the process running but marks the Pod unready for Service routing. Liveness failures trigger restart behavior.",
+      "takeaway": "Remember: alive but not ready \u2014 A failed readiness probe leaves the process running but marks the Pod unready for Service routing. Liveness failures trigger restart behavior.",
       "references": [
         {
           "title": "Liveness, readiness and startup probes",
@@ -1716,7 +1716,7 @@
         0
       ],
       "explanation": "`kubectl rollout undo` reverts a Deployment to a prior revision when history is available; verify restored version and regression cause.",
-      "takeaway": "Remember: deployment rollback history — `kubectl rollout undo` reverts a Deployment to a prior revision when history is available; verify restored version and regression cause.",
+      "takeaway": "Remember: deployment rollback history \u2014 `kubectl rollout undo` reverts a Deployment to a prior revision when history is available; verify restored version and regression cause.",
       "references": [
         {
           "title": "Deployments and rollback",
@@ -1734,7 +1734,7 @@
       "topic": "kubernetes",
       "type": "concept",
       "title": "PDB and voluntary disruption",
-      "question": "A PodDisruptionBudget is configured for a replicated app. Which event does it primarily regulate?",
+      "question": "A replicated application uses a PodDisruptionBudget during planned maintenance. You need to understand which disruption path that budget regulates. Which event does it primarily constrain?",
       "objective": "PDB and voluntary disruption: identify the correct Kubernetes behaviour, command or operational response.",
       "options": [
         "Voluntary evictions that respect disruption budgets",
@@ -1746,7 +1746,7 @@
         0
       ],
       "explanation": "PDBs limit certain voluntary disruptions such as eligible evictions. They do not prevent involuntary failures or directly set replicas.",
-      "takeaway": "Remember: pdb and voluntary disruption — PDBs limit certain voluntary disruptions such as eligible evictions. They do not prevent involuntary failures or directly set replicas.",
+      "takeaway": "Remember: pdb and voluntary disruption \u2014 PDBs limit certain voluntary disruptions such as eligible evictions. They do not prevent involuntary failures or directly set replicas.",
       "references": [
         {
           "title": "Pod disruptions",
@@ -1764,7 +1764,7 @@
       "topic": "kubernetes",
       "type": "concept",
       "title": "HPA utilization needs",
-      "question": "An HPA scales on CPU utilization. What else is typically required for utilization to be calculated meaningfully?",
+      "question": "An HPA uses average CPU utilization as a percentage target. Application metrics alone do not show a usable utilization percentage. What is typically required for that calculation?",
       "objective": "HPA utilization needs: identify the correct Kubernetes behaviour, command or operational response.",
       "options": [
         "CPU requests for relevant containers and a working metrics pipeline",
@@ -1776,7 +1776,7 @@
         0
       ],
       "explanation": "CPU utilization is evaluated relative to CPU requests, and HPA relies on current metrics from a functioning resource metrics pipeline.",
-      "takeaway": "Remember: hpa utilization needs — CPU utilization is evaluated relative to CPU requests, and HPA relies on current metrics from a functioning resource metrics pipeline.",
+      "takeaway": "Remember: hpa utilization needs \u2014 CPU utilization is evaluated relative to CPU requests, and HPA relies on current metrics from a functioning resource metrics pipeline.",
       "references": [
         {
           "title": "Horizontal Pod Autoscaling",
@@ -1806,7 +1806,7 @@
         0
       ],
       "explanation": "`kubectl rollout history` displays revisions when recorded; detail and retention depend on rollout history settings.",
-      "takeaway": "Remember: inspect rollout history — `kubectl rollout history` displays revisions when recorded; detail and retention depend on rollout history settings.",
+      "takeaway": "Remember: inspect rollout history \u2014 `kubectl rollout history` displays revisions when recorded; detail and retention depend on rollout history settings.",
       "references": [
         {
           "title": "Deployments and rollback",
@@ -1837,7 +1837,7 @@
         0
       ],
       "explanation": "The common kubectl pattern sorts Events by `.metadata.creationTimestamp`. Events may be aggregated or expire, so combine them with current status and logs.",
-      "takeaway": "Remember: sort recent events — The common kubectl pattern sorts Events by `.metadata.creationTimestamp`. Events may be aggregated or expire, so combine them with current status and logs.",
+      "takeaway": "Remember: sort recent events \u2014 The common kubectl pattern sorts Events by `.metadata.creationTimestamp`. Events may be aggregated or expire, so combine them with current status and logs.",
       "references": [
         {
           "title": "kubectl reference",
@@ -1868,7 +1868,7 @@
         0
       ],
       "explanation": "Pod Events often reveal a bad tag, authentication issue, missing image or registry/network problem. A container that never started cannot be inspected with exec.",
-      "takeaway": "Remember: imagepullbackoff first step — Pod Events often reveal a bad tag, authentication issue, missing image or registry/network problem. A container that never started cannot be inspected with exec.",
+      "takeaway": "Remember: imagepullbackoff first step \u2014 Pod Events often reveal a bad tag, authentication issue, missing image or registry/network problem. A container that never started cannot be inspected with exec.",
       "references": [
         {
           "title": "Debugging Pods",
@@ -1899,7 +1899,7 @@
         0
       ],
       "explanation": "An in-cluster test evaluates DNS, routing and policies from a similar network context. An external test answers a different question.",
-      "takeaway": "Remember: test service from workload context — An in-cluster test evaluates DNS, routing and policies from a similar network context. An external test answers a different question.",
+      "takeaway": "Remember: test service from workload context \u2014 An in-cluster test evaluates DNS, routing and policies from a similar network context. An external test answers a different question.",
       "references": [
         {
           "title": "Debugging Services",
@@ -1929,7 +1929,7 @@
         0
       ],
       "explanation": "`describe hpa` shows reported metrics, replica counts and conditions that can explain missing metrics or scaling constraints.",
-      "takeaway": "Remember: inspect hpa state — `describe hpa` shows reported metrics, replica counts and conditions that can explain missing metrics or scaling constraints.",
+      "takeaway": "Remember: inspect hpa state \u2014 `describe hpa` shows reported metrics, replica counts and conditions that can explain missing metrics or scaling constraints.",
       "references": [
         {
           "title": "Horizontal Pod Autoscaling",
@@ -1960,7 +1960,7 @@
         0
       ],
       "explanation": "A NoSchedule taint prevents placement of non-tolerating Pods. A toleration permits consideration but does not force placement or bypass other scheduling checks.",
-      "takeaway": "Remember: taint blocks scheduling — A NoSchedule taint prevents placement of non-tolerating Pods. A toleration permits consideration but does not force placement or bypass other scheduling checks.",
+      "takeaway": "Remember: taint blocks scheduling \u2014 A NoSchedule taint prevents placement of non-tolerating Pods. A toleration permits consideration but does not force placement or bypass other scheduling checks.",
       "references": [
         {
           "title": "Taints and tolerations",
@@ -1990,7 +1990,7 @@
         0
       ],
       "explanation": "A pending claim can indicate provisioning errors, unsupported parameters, quota or topology issues; delayed binding can also wait for consuming Pod scheduling.",
-      "takeaway": "Remember: pvc stays pending — A pending claim can indicate provisioning errors, unsupported parameters, quota or topology issues; delayed binding can also wait for consuming Pod scheduling.",
+      "takeaway": "Remember: pvc stays pending \u2014 A pending claim can indicate provisioning errors, unsupported parameters, quota or topology issues; delayed binding can also wait for consuming Pod scheduling.",
       "references": [
         {
           "title": "Persistent volumes",
@@ -2020,7 +2020,7 @@
         0
       ],
       "explanation": "Overly broad or overlapping selectors can include unintended Pods. Compare selectors with actual labels and endpoints before altering networking.",
-      "takeaway": "Remember: service routes to unexpected pods — Overly broad or overlapping selectors can include unintended Pods. Compare selectors with actual labels and endpoints before altering networking.",
+      "takeaway": "Remember: service routes to unexpected pods \u2014 Overly broad or overlapping selectors can include unintended Pods. Compare selectors with actual labels and endpoints before altering networking.",
       "references": [
         {
           "title": "Services",
@@ -2050,7 +2050,7 @@
         0
       ],
       "explanation": "Environment variables remain fixed for a container process; mounted Secret volumes update eventually, but apps may need to reload or restart. Gather evidence before repeated changes.",
-      "takeaway": "Remember: crashloop after secret rotation — Environment variables remain fixed for a container process; mounted Secret volumes update eventually, but apps may need to reload or restart. Gather evidence before repeated changes.",
+      "takeaway": "Remember: crashloop after secret rotation \u2014 Environment variables remain fixed for a container process; mounted Secret volumes update eventually, but apps may need to reload or restart. Gather evidence before repeated changes.",
       "references": [
         {
           "title": "Secrets",
@@ -2068,7 +2068,7 @@
       "topic": "kubernetes",
       "type": "multi-select",
       "title": "Verify a successful rollout",
-      "question": "Select the TWO useful checks before declaring a Deployment rollout successful.",
+      "question": "An operator has submitted a new Deployment version. The API accepted the update, but the team must decide whether the application rollout actually succeeded.\n\nWhich TWO checks provide useful evidence before declaring success? Select exactly two answers.",
       "objective": "Verify a successful rollout: identify the correct Kubernetes behaviour, command or operational response.",
       "options": [
         "Confirm `kubectl rollout status` completed",
@@ -2081,7 +2081,7 @@
         1
       ],
       "explanation": "Rollout status reflects controller progress, while readiness and application-level checks confirm that the service can serve requests.",
-      "takeaway": "Remember: verify a successful rollout — Rollout status reflects controller progress, while readiness and application-level checks confirm that the service can serve requests.",
+      "takeaway": "Remember: verify a successful rollout \u2014 Rollout status reflects controller progress, while readiness and application-level checks confirm that the service can serve requests.",
       "references": [
         {
           "title": "Deployments",
@@ -2099,7 +2099,7 @@
       "topic": "kubernetes",
       "type": "multi-select",
       "title": "NetworkPolicy prerequisites",
-      "question": "Select the TWO correct statements about NetworkPolicy.",
+      "question": "A team is restricting network access to a set of Pods. Several NetworkPolicy objects may select the same workload.\n\nWhich TWO statements correctly describe NetworkPolicy behavior? Select exactly two answers.",
       "objective": "NetworkPolicy prerequisites: identify the correct Kubernetes behaviour, command or operational response.",
       "options": [
         "Policies select Pods and describe allowed ingress/egress traffic",
@@ -2112,7 +2112,7 @@
         1
       ],
       "explanation": "NetworkPolicy describes allowed traffic, but a compatible plugin must enforce it. Policies do not inherently encrypt traffic and namespace scope affects selectors.",
-      "takeaway": "Remember: networkpolicy prerequisites — NetworkPolicy describes allowed traffic, but a compatible plugin must enforce it. Policies do not inherently encrypt traffic and namespace scope affects selectors.",
+      "takeaway": "Remember: networkpolicy prerequisites \u2014 NetworkPolicy describes allowed traffic, but a compatible plugin must enforce it. Policies do not inherently encrypt traffic and namespace scope affects selectors.",
       "references": [
         {
           "title": "Network Policies",
@@ -2130,7 +2130,7 @@
       "topic": "kubernetes",
       "type": "multi-select",
       "title": "Requests and limits",
-      "question": "Choose the TWO accurate statements about container resource settings.",
+      "question": "A container has CPU and memory settings in its Pod specification. The team is investigating both placement failures and behavior under runtime demand.\n\nWhich TWO statements correctly describe container resource settings? Select exactly two answers.",
       "objective": "Requests and limits: identify the correct Kubernetes behaviour, command or operational response.",
       "options": [
         "CPU limits can throttle a process",
@@ -2143,7 +2143,7 @@
         1
       ],
       "explanation": "Requests affect scheduling/accounting; CPU limits can throttle and memory-limit violations can terminate a container. Requests are not hard maxima.",
-      "takeaway": "Remember: requests and limits — Requests affect scheduling/accounting; CPU limits can throttle and memory-limit violations can terminate a container. Requests are not hard maxima.",
+      "takeaway": "Remember: requests and limits \u2014 Requests affect scheduling/accounting; CPU limits can throttle and memory-limit violations can terminate a container. Requests are not hard maxima.",
       "references": [
         {
           "title": "Resource management",
@@ -2174,7 +2174,7 @@
         0
       ],
       "explanation": "A PDB constrains voluntary disruptions but cannot create another healthy replica. One replica can still fail or be impossible to evict without violating the budget.",
-      "takeaway": "Remember: pdb is not redundancy — A PDB constrains voluntary disruptions but cannot create another healthy replica. One replica can still fail or be impossible to evict without violating the budget.",
+      "takeaway": "Remember: pdb is not redundancy \u2014 A PDB constrains voluntary disruptions but cannot create another healthy replica. One replica can still fail or be impossible to evict without violating the budget.",
       "references": [
         {
           "title": "Pod disruptions",
@@ -2204,7 +2204,7 @@
         0
       ],
       "explanation": "CPU-only autoscaling reacts to CPU utilization, not every demand signal; extra replicas can worsen pressure on a rate-limited dependency.",
-      "takeaway": "Remember: cpu-only scaling signal — CPU-only autoscaling reacts to CPU utilization, not every demand signal; extra replicas can worsen pressure on a rate-limited dependency.",
+      "takeaway": "Remember: cpu-only scaling signal \u2014 CPU-only autoscaling reacts to CPU utilization, not every demand signal; extra replicas can worsen pressure on a rate-limited dependency.",
       "references": [
         {
           "title": "Horizontal Pod Autoscaling",
@@ -2234,7 +2234,7 @@
         0
       ],
       "explanation": "Updating a Secret does not rewrite a running process's environment; plan controlled restarts or another reload-capable consumption mechanism.",
-      "takeaway": "Remember: secret via environment variable — Updating a Secret does not rewrite a running process's environment; plan controlled restarts or another reload-capable consumption mechanism.",
+      "takeaway": "Remember: secret via environment variable \u2014 Updating a Secret does not rewrite a running process's environment; plan controlled restarts or another reload-capable consumption mechanism.",
       "references": [
         {
           "title": "Secrets",
@@ -2264,7 +2264,7 @@
         0
       ],
       "explanation": "Readiness tests only its configured check; a shallow check can leave a Pod ready despite user-visible failure.",
-      "takeaway": "Remember: readiness passes but users see errors — Readiness tests only its configured check; a shallow check can leave a Pod ready despite user-visible failure.",
+      "takeaway": "Remember: readiness passes but users see errors \u2014 Readiness tests only its configured check; a shallow check can leave a Pod ready despite user-visible failure.",
       "references": [
         {
           "title": "Liveness, readiness and startup probes",
@@ -2294,7 +2294,7 @@
         0
       ],
       "explanation": "The rollout can pause when new Pods are unavailable and maxUnavailable prevents reducing availability. Inspect probes, events and rollout conditions.",
-      "takeaway": "Remember: deployment rollout stalled — The rollout can pause when new Pods are unavailable and maxUnavailable prevents reducing availability. Inspect probes, events and rollout conditions.",
+      "takeaway": "Remember: deployment rollout stalled \u2014 The rollout can pause when new Pods are unavailable and maxUnavailable prevents reducing availability. Inspect probes, events and rollout conditions.",
       "references": [
         {
           "title": "Deployments",
@@ -2324,7 +2324,7 @@
         0
       ],
       "explanation": "ResourceQuota limits aggregate consumption or object counts in a namespace. More replicas may worsen rejection, so inspect usage and requests.",
-      "takeaway": "Remember: namespace quota rejection — ResourceQuota limits aggregate consumption or object counts in a namespace. More replicas may worsen rejection, so inspect usage and requests.",
+      "takeaway": "Remember: namespace quota rejection \u2014 ResourceQuota limits aggregate consumption or object counts in a namespace. More replicas may worsen rejection, so inspect usage and requests.",
       "references": [
         {
           "title": "Resource quotas",
@@ -2354,7 +2354,7 @@
         0
       ],
       "explanation": "`kubectl diff -f` compares live configuration to what would be applied; review output and context before mutating resources.",
-      "takeaway": "Remember: preview a manifest change — `kubectl diff -f` compares live configuration to what would be applied; review output and context before mutating resources.",
+      "takeaway": "Remember: preview a manifest change \u2014 `kubectl diff -f` compares live configuration to what would be applied; review output and context before mutating resources.",
       "references": [
         {
           "title": "Declarative configuration",
@@ -2385,7 +2385,7 @@
         0
       ],
       "explanation": "Kubernetes does not universally signal applications to reload configuration. Environment-variable consumers need a new process to receive changed values.",
-      "takeaway": "Remember: configmap changed but app uses old config — Kubernetes does not universally signal applications to reload configuration. Environment-variable consumers need a new process to receive changed values.",
+      "takeaway": "Remember: configmap changed but app uses old config \u2014 Kubernetes does not universally signal applications to reload configuration. Environment-variable consumers need a new process to receive changed values.",
       "references": [
         {
           "title": "ConfigMaps",
@@ -2415,7 +2415,7 @@
         0
       ],
       "explanation": "EndpointSlices represent subsets of network endpoints and support scalable endpoint data management for Services.",
-      "takeaway": "Remember: endpointslice purpose — EndpointSlices represent subsets of network endpoints and support scalable endpoint data management for Services.",
+      "takeaway": "Remember: endpointslice purpose \u2014 EndpointSlices represent subsets of network endpoints and support scalable endpoint data management for Services.",
       "references": [
         {
           "title": "Services",
@@ -2445,7 +2445,7 @@
         0
       ],
       "explanation": "Topology spread constraints express how matching Pods should spread over domains such as zones/nodes, subject to constraints and eligible capacity.",
-      "takeaway": "Remember: topology spread constraints — Topology spread constraints express how matching Pods should spread over domains such as zones/nodes, subject to constraints and eligible capacity.",
+      "takeaway": "Remember: topology spread constraints \u2014 Topology spread constraints express how matching Pods should spread over domains such as zones/nodes, subject to constraints and eligible capacity.",
       "references": [
         {
           "title": "Topology spread constraints",
@@ -2475,7 +2475,7 @@
         0
       ],
       "explanation": "Priority affects scheduling order; preemption can remove lower-priority Pods but cannot create capacity or bypass all other constraints.",
-      "takeaway": "Remember: priority and preemption — Priority affects scheduling order; preemption can remove lower-priority Pods but cannot create capacity or bypass all other constraints.",
+      "takeaway": "Remember: priority and preemption \u2014 Priority affects scheduling order; preemption can remove lower-priority Pods but cannot create capacity or bypass all other constraints.",
       "references": [
         {
           "title": "Pod priority and preemption",
@@ -2505,7 +2505,7 @@
         0
       ],
       "explanation": "Admission controllers can validate or mutate API requests before persistence, after authentication and authorization. Enabled policies depend on cluster configuration.",
-      "takeaway": "Remember: admission controller role — Admission controllers can validate or mutate API requests before persistence, after authentication and authorization. Enabled policies depend on cluster configuration.",
+      "takeaway": "Remember: admission controller role \u2014 Admission controllers can validate or mutate API requests before persistence, after authentication and authorization. Enabled policies depend on cluster configuration.",
       "references": [
         {
           "title": "Admission controllers",
@@ -2535,7 +2535,7 @@
         0
       ],
       "explanation": "`-o jsonpath` evaluates a template against resource data; `.spec.nodeName` identifies the assigned node and may be empty before scheduling.",
-      "takeaway": "Remember: inspect assigned node — `-o jsonpath` evaluates a template against resource data; `.spec.nodeName` identifies the assigned node and may be empty before scheduling.",
+      "takeaway": "Remember: inspect assigned node \u2014 `-o jsonpath` evaluates a template against resource data; `.spec.nodeName` identifies the assigned node and may be empty before scheduling.",
       "references": [
         {
           "title": "kubectl JSONPath",
@@ -2566,7 +2566,7 @@
         0
       ],
       "explanation": "`kubectl patch` applies a patch type supported by the resource. It is imperative and should be verified and reconciled with the source of truth.",
-      "takeaway": "Remember: patch a narrow field — `kubectl patch` applies a patch type supported by the resource. It is imperative and should be verified and reconciled with the source of truth.",
+      "takeaway": "Remember: patch a narrow field \u2014 `kubectl patch` applies a patch type supported by the resource. It is imperative and should be verified and reconciled with the source of truth.",
       "references": [
         {
           "title": "Update API objects with patch",
@@ -2597,7 +2597,7 @@
         0
       ],
       "explanation": "Failure isolated to one topology domain suggests local dependencies, capacity, configuration or networking. Compare failing Pods with healthy peers.",
-      "takeaway": "Remember: readiness fails in one zone — Failure isolated to one topology domain suggests local dependencies, capacity, configuration or networking. Compare failing Pods with healthy peers.",
+      "takeaway": "Remember: readiness fails in one zone \u2014 Failure isolated to one topology domain suggests local dependencies, capacity, configuration or networking. Compare failing Pods with healthy peers.",
       "references": [
         {
           "title": "Debugging Pods",
@@ -2627,7 +2627,7 @@
         0
       ],
       "explanation": "Publishing an application metric does not guarantee Kubernetes can query it as a custom metric. Check adapter/API registration, metric labels, target mapping and HPA conditions.",
-      "takeaway": "Remember: hpa has unknown custom metrics — Publishing an application metric does not guarantee Kubernetes can query it as a custom metric. Check adapter/API registration, metric labels, target mapping and HPA conditions.",
+      "takeaway": "Remember: hpa has unknown custom metrics \u2014 Publishing an application metric does not guarantee Kubernetes can query it as a custom metric. Check adapter/API registration, metric labels, target mapping and HPA conditions.",
       "references": [
         {
           "title": "Horizontal Pod Autoscaling",
@@ -2657,7 +2657,7 @@
         0
       ],
       "explanation": "A blocked drain may indicate too few healthy replicas or a strict budget. Inspect health and maintenance intent before changing policy.",
-      "takeaway": "Remember: eviction blocked by pdb — A blocked drain may indicate too few healthy replicas or a strict budget. Inspect health and maintenance intent before changing policy.",
+      "takeaway": "Remember: eviction blocked by pdb \u2014 A blocked drain may indicate too few healthy replicas or a strict budget. Inspect health and maintenance intent before changing policy.",
       "references": [
         {
           "title": "Pod disruptions",
@@ -2687,7 +2687,7 @@
         0
       ],
       "explanation": "A finalizer signals cleanup must finish before final deletion. If the controller is unavailable or cleanup fails, the object may stay Terminating.",
-      "takeaway": "Remember: finalizer blocks deletion — A finalizer signals cleanup must finish before final deletion. If the controller is unavailable or cleanup fails, the object may stay Terminating.",
+      "takeaway": "Remember: finalizer blocks deletion \u2014 A finalizer signals cleanup must finish before final deletion. If the controller is unavailable or cleanup fails, the object may stay Terminating.",
       "references": [
         {
           "title": "Finalizers",
@@ -2705,7 +2705,7 @@
       "topic": "kubernetes",
       "type": "multi-select",
       "title": "Diagnose node pressure",
-      "question": "Select the TWO useful evidence sources when Pods are evicted due to node resource pressure.",
+      "question": "Several Pods were evicted while a node reported resource pressure. You need to establish the limiting resource and the workloads involved.\n\nWhich TWO evidence sources are useful for that investigation? Select exactly two answers.",
       "objective": "Diagnose node pressure: identify the correct Kubernetes behaviour, command or operational response.",
       "options": [
         "Node conditions and Events showing pressure/eviction",
@@ -2718,7 +2718,7 @@
         1
       ],
       "explanation": "Node conditions/events identify memory, disk or PID pressure; resource usage and Pod requests help explain which workloads and thresholds were involved.",
-      "takeaway": "Remember: diagnose node pressure — Node conditions/events identify memory, disk or PID pressure; resource usage and Pod requests help explain which workloads and thresholds were involved.",
+      "takeaway": "Remember: diagnose node pressure \u2014 Node conditions/events identify memory, disk or PID pressure; resource usage and Pod requests help explain which workloads and thresholds were involved.",
       "references": [
         {
           "title": "Nodes",
@@ -2736,7 +2736,7 @@
       "topic": "kubernetes",
       "type": "multi-select",
       "title": "Least-privilege ServiceAccount",
-      "question": "Select the TWO practices that support least-privilege workload API access.",
+      "question": "An application needs to read selected Kubernetes API resources using its workload identity. It should not receive unrelated administration privileges.\n\nWhich TWO practices support least-privilege access? Select exactly two answers.",
       "objective": "Least-privilege ServiceAccount: identify the correct Kubernetes behaviour, command or operational response.",
       "options": [
         "Grant only the Roles and permissions the workload needs",
@@ -2749,7 +2749,7 @@
         1
       ],
       "explanation": "Use appropriately scoped identities and roles. Broad cluster-admin bindings expand blast radius, and namespaces do not replace authorization.",
-      "takeaway": "Remember: least-privilege serviceaccount — Use appropriately scoped identities and roles. Broad cluster-admin bindings expand blast radius, and namespaces do not replace authorization.",
+      "takeaway": "Remember: least-privilege serviceaccount \u2014 Use appropriately scoped identities and roles. Broad cluster-admin bindings expand blast radius, and namespaces do not replace authorization.",
       "references": [
         {
           "title": "RBAC good practices",
@@ -2767,7 +2767,7 @@
       "topic": "kubernetes",
       "type": "multi-select",
       "title": "PVC binding and durability",
-      "question": "Select the TWO accurate statements about PVCs and StorageClasses.",
+      "question": "A stateful application requests storage using a PVC. The cluster uses StorageClasses and a provisioner, and storage placement can interact with scheduling.\n\nWhich TWO statements correctly describe this workflow? Select exactly two answers.",
       "objective": "PVC binding and durability: identify the correct Kubernetes behaviour, command or operational response.",
       "options": [
         "A PVC can remain Pending when no compatible volume/provisioning path is available",
@@ -2780,7 +2780,7 @@
         1
       ],
       "explanation": "A claim needs a compatible volume or successful provisioning. Topology and binding policies affect placement; persistence is not a backup guarantee.",
-      "takeaway": "Remember: pvc binding and durability — A claim needs a compatible volume or successful provisioning. Topology and binding policies affect placement; persistence is not a backup guarantee.",
+      "takeaway": "Remember: pvc binding and durability \u2014 A claim needs a compatible volume or successful provisioning. Topology and binding policies affect placement; persistence is not a backup guarantee.",
       "references": [
         {
           "title": "Persistent volumes",
@@ -2810,7 +2810,7 @@
         0
       ],
       "explanation": "Readiness changes routing. If all replicas use one shared transient check, the service can become unready even when degraded responses remain useful.",
-      "takeaway": "Remember: probe checks shared dependency — Readiness changes routing. If all replicas use one shared transient check, the service can become unready even when degraded responses remain useful.",
+      "takeaway": "Remember: probe checks shared dependency \u2014 Readiness changes routing. If all replicas use one shared transient check, the service can become unready even when degraded responses remain useful.",
       "references": [
         {
           "title": "Liveness, readiness and startup probes",
@@ -2840,7 +2840,7 @@
         0
       ],
       "explanation": "DaemonSets reconcile one Pod per eligible node. Deployments maintain desired replica counts without guaranteeing node-level coverage.",
-      "takeaway": "Remember: daemonset versus deployment — DaemonSets reconcile one Pod per eligible node. Deployments maintain desired replica counts without guaranteeing node-level coverage.",
+      "takeaway": "Remember: daemonset versus deployment \u2014 DaemonSets reconcile one Pod per eligible node. Deployments maintain desired replica counts without guaranteeing node-level coverage.",
       "references": [
         {
           "title": "DaemonSets",
@@ -2870,7 +2870,7 @@
         0
       ],
       "explanation": "Kubernetes grants a shutdown window; an app that needs longer may be killed before draining finishes. Hook execution consumes part of the termination window.",
-      "takeaway": "Remember: graceful termination budget — Kubernetes grants a shutdown window; an app that needs longer may be killed before draining finishes. Hook execution consumes part of the termination window.",
+      "takeaway": "Remember: graceful termination budget \u2014 Kubernetes grants a shutdown window; an app that needs longer may be killed before draining finishes. Hook execution consumes part of the termination window.",
       "references": [
         {
           "title": "Pod termination",
@@ -2900,7 +2900,7 @@
         0
       ],
       "explanation": "HPA can raise desired replicas, but Pod admission can fail when namespace quota is exhausted. Plan approved headroom for required scale.",
-      "takeaway": "Remember: quota versus autoscaling — HPA can raise desired replicas, but Pod admission can fail when namespace quota is exhausted. Plan approved headroom for required scale.",
+      "takeaway": "Remember: quota versus autoscaling \u2014 HPA can raise desired replicas, but Pod admission can fail when namespace quota is exhausted. Plan approved headroom for required scale.",
       "references": [
         {
           "title": "Resource quotas",
@@ -2918,7 +2918,7 @@
       "topic": "kubernetes",
       "type": "command",
       "title": "Observe node resource metrics",
-      "question": "You need a quick view of current CPU and memory use on nodes. Which command is intended for resource metrics?",
+      "question": "During a capacity investigation, the resource metrics API is available and you need a quick snapshot of current node CPU and memory usage. Which kubectl command provides it?",
       "objective": "Observe node resource metrics: identify the correct Kubernetes behaviour, command or operational response.",
       "options": [
         "kubectl top nodes",
@@ -2930,7 +2930,7 @@
         0
       ],
       "explanation": "`kubectl top nodes` uses the resource metrics API and requires a working metrics pipeline; it is not historical monitoring.",
-      "takeaway": "Remember: observe node resource metrics — `kubectl top nodes` uses the resource metrics API and requires a working metrics pipeline; it is not historical monitoring.",
+      "takeaway": "Remember: observe node resource metrics \u2014 `kubectl top nodes` uses the resource metrics API and requires a working metrics pipeline; it is not historical monitoring.",
       "references": [
         {
           "title": "Resource metrics pipeline",
@@ -2961,7 +2961,7 @@
         0
       ],
       "explanation": "A network plugin must enforce NetworkPolicy. Then verify Pod/namespace selectors, ports and peers; policy-object existence alone does not prove enforcement.",
-      "takeaway": "Remember: networkpolicy appears ineffective — A network plugin must enforce NetworkPolicy. Then verify Pod/namespace selectors, ports and peers; policy-object existence alone does not prove enforcement.",
+      "takeaway": "Remember: networkpolicy appears ineffective \u2014 A network plugin must enforce NetworkPolicy. Then verify Pod/namespace selectors, ports and peers; policy-object existence alone does not prove enforcement.",
       "references": [
         {
           "title": "Network Policies",
@@ -2991,7 +2991,7 @@
         0
       ],
       "explanation": "Stable StatefulSet identity does not guarantee volume attachment succeeds; backend state, topology, access modes and stale attachments can block mounting.",
-      "takeaway": "Remember: statefulset volume mount fails — Stable StatefulSet identity does not guarantee volume attachment succeeds; backend state, topology, access modes and stale attachments can block mounting.",
+      "takeaway": "Remember: statefulset volume mount fails \u2014 Stable StatefulSet identity does not guarantee volume attachment succeeds; backend state, topology, access modes and stale attachments can block mounting.",
       "references": [
         {
           "title": "Debugging Persistent Volumes",
@@ -3021,7 +3021,7 @@
         0
       ],
       "explanation": "Pod Security Standards define profiles; Pod Security Admission can enforce configured namespace levels and should be tested against workload requirements.",
-      "takeaway": "Remember: pod security standards — Pod Security Standards define profiles; Pod Security Admission can enforce configured namespace levels and should be tested against workload requirements.",
+      "takeaway": "Remember: pod security standards \u2014 Pod Security Standards define profiles; Pod Security Admission can enforce configured namespace levels and should be tested against workload requirements.",
       "references": [
         {
           "title": "Pod Security Standards",
@@ -3051,7 +3051,7 @@
         0
       ],
       "explanation": "`kubectl auth can-i` checks a verb/resource decision for an identity; impersonation itself requires permission, and the result does not prove networking works.",
-      "takeaway": "Remember: check rbac permission — `kubectl auth can-i` checks a verb/resource decision for an identity; impersonation itself requires permission, and the result does not prove networking works.",
+      "takeaway": "Remember: check rbac permission \u2014 `kubectl auth can-i` checks a verb/resource decision for an identity; impersonation itself requires permission, and the result does not prove networking works.",
       "references": [
         {
           "title": "RBAC",
@@ -3082,7 +3082,7 @@
         0
       ],
       "explanation": "A strict topology spread policy can make placement unschedulable when eligible capacity cannot satisfy maxSkew; looser rules improve placement but weaken distribution.",
-      "takeaway": "Remember: strict topology spread — A strict topology spread policy can make placement unschedulable when eligible capacity cannot satisfy maxSkew; looser rules improve placement but weaken distribution.",
+      "takeaway": "Remember: strict topology spread \u2014 A strict topology spread policy can make placement unschedulable when eligible capacity cannot satisfy maxSkew; looser rules improve placement but weaken distribution.",
       "references": [
         {
           "title": "Topology spread constraints",
@@ -3112,7 +3112,7 @@
         0
       ],
       "explanation": "PDB describe output reports selector, health counts and allowed disruptions where available. Compare these with actual Pod readiness and replicas.",
-      "takeaway": "Remember: inspect pdb allowance — PDB describe output reports selector, health counts and allowed disruptions where available. Compare these with actual Pod readiness and replicas.",
+      "takeaway": "Remember: inspect pdb allowance \u2014 PDB describe output reports selector, health counts and allowed disruptions where available. Compare these with actual Pod readiness and replicas.",
       "references": [
         {
           "title": "Pod disruptions",
@@ -3143,7 +3143,7 @@
         0
       ],
       "explanation": "Required Pod affinity depends on matching Pod labels in the namespaces and topology domains the rule selects. Similar labels elsewhere do not necessarily satisfy the rule.",
-      "takeaway": "Remember: pod affinity selector mismatch — Required Pod affinity depends on matching Pod labels in the namespaces and topology domains the rule selects. Similar labels elsewhere do not necessarily satisfy the rule.",
+      "takeaway": "Remember: pod affinity selector mismatch \u2014 Required Pod affinity depends on matching Pod labels in the namespaces and topology domains the rule selects. Similar labels elsewhere do not necessarily satisfy the rule.",
       "references": [
         {
           "title": "Assigning Pods to nodes",
@@ -3173,7 +3173,7 @@
         0
       ],
       "explanation": "The API server validates/admit requests and persists objects; controllers reconcile desired state, followed by scheduling and node/runtime actions.",
-      "takeaway": "Remember: persistence versus reconciliation — The API server validates/admit requests and persists objects; controllers reconcile desired state, followed by scheduling and node/runtime actions.",
+      "takeaway": "Remember: persistence versus reconciliation \u2014 The API server validates/admit requests and persists objects; controllers reconcile desired state, followed by scheduling and node/runtime actions.",
       "references": [
         {
           "title": "Controller pattern",
@@ -3191,7 +3191,7 @@
       "topic": "kubernetes",
       "type": "concept",
       "title": "etcd recovery planning",
-      "question": "A cluster administrator is planning etcd maintenance. Which principle is most important for recovery?",
+      "question": "A cluster administrator is preparing maintenance on etcd, which stores cluster API data. Recovery must be possible if the maintenance fails. Which preparation is most important?",
       "objective": "etcd recovery planning: identify the correct Kubernetes behaviour, command or operational response.",
       "options": [
         "Validate backups and a tested restore procedure, then follow version-appropriate maintenance guidance",
@@ -3203,7 +3203,7 @@
         0
       ],
       "explanation": "etcd stores Kubernetes API state; application replicas do not replace etcd backups. Membership changes affect quorum and require documented procedures.",
-      "takeaway": "Remember: etcd recovery planning — etcd stores Kubernetes API state; application replicas do not replace etcd backups. Membership changes affect quorum and require documented procedures.",
+      "takeaway": "Remember: etcd recovery planning \u2014 etcd stores Kubernetes API state; application replicas do not replace etcd backups. Membership changes affect quorum and require documented procedures.",
       "references": [
         {
           "title": "Operating etcd clusters",
@@ -3233,7 +3233,7 @@
         0
       ],
       "explanation": "Encryption at rest protects configured stored API data; key handling, authorization, backups and external copies remain security responsibilities.",
-      "takeaway": "Remember: encryption at rest limits — Encryption at rest protects configured stored API data; key handling, authorization, backups and external copies remain security responsibilities.",
+      "takeaway": "Remember: encryption at rest limits \u2014 Encryption at rest protects configured stored API data; key handling, authorization, backups and external copies remain security responsibilities.",
       "references": [
         {
           "title": "Encrypting API data at rest",
@@ -3263,7 +3263,7 @@
         0
       ],
       "explanation": "`kubectl get csr` lists CertificateSigningRequest objects; approval and signing depend on signer, authorisation and cluster workflow.",
-      "takeaway": "Remember: inspect certificate requests — `kubectl get csr` lists CertificateSigningRequest objects; approval and signing depend on signer, authorisation and cluster workflow.",
+      "takeaway": "Remember: inspect certificate requests \u2014 `kubectl get csr` lists CertificateSigningRequest objects; approval and signing depend on signer, authorisation and cluster workflow.",
       "references": [
         {
           "title": "CertificateSigningRequests",
@@ -3294,7 +3294,7 @@
         0
       ],
       "explanation": "An unset `spec.nodeName` on a Pending Pod suggests it has not been bound to a node. Inspect scheduling events, scheduler health, capacity and constraints.",
-      "takeaway": "Remember: api accepts but pods never schedule — An unset `spec.nodeName` on a Pending Pod suggests it has not been bound to a node. Inspect scheduling events, scheduler health, capacity and constraints.",
+      "takeaway": "Remember: api accepts but pods never schedule \u2014 An unset `spec.nodeName` on a Pending Pod suggests it has not been bound to a node. Inspect scheduling events, scheduler health, capacity and constraints.",
       "references": [
         {
           "title": "Kube-scheduler",
@@ -3324,7 +3324,7 @@
         0
       ],
       "explanation": "After binding, the kubelet and container runtime start containers. Registry reachability, credentials and node/runtime events become relevant.",
-      "takeaway": "Remember: scheduled pod cannot start image — After binding, the kubelet and container runtime start containers. Registry reachability, credentials and node/runtime events become relevant.",
+      "takeaway": "Remember: scheduled pod cannot start image \u2014 After binding, the kubelet and container runtime start containers. Registry reachability, credentials and node/runtime events become relevant.",
       "references": [
         {
           "title": "kubelet reference",
@@ -3354,7 +3354,7 @@
         0
       ],
       "explanation": "Successful DNS narrows the issue. Inspect Service routing, endpoints, targetPort and a process listening on the expected socket; policy/path issues may still matter.",
-      "takeaway": "Remember: dns works but connection is refused — Successful DNS narrows the issue. Inspect Service routing, endpoints, targetPort and a process listening on the expected socket; policy/path issues may still matter.",
+      "takeaway": "Remember: dns works but connection is refused \u2014 Successful DNS narrows the issue. Inspect Service routing, endpoints, targetPort and a process listening on the expected socket; policy/path issues may still matter.",
       "references": [
         {
           "title": "Debugging Services",
@@ -3384,7 +3384,7 @@
         0
       ],
       "explanation": "Deployment selector changes are constrained by API immutability. Repeating the same apply will not fix it; assess ownership, labels and downtime if replacement is required.",
-      "takeaway": "Remember: immutable deployment selector — Deployment selector changes are constrained by API immutability. Repeating the same apply will not fix it; assess ownership, labels and downtime if replacement is required.",
+      "takeaway": "Remember: immutable deployment selector \u2014 Deployment selector changes are constrained by API immutability. Repeating the same apply will not fix it; assess ownership, labels and downtime if replacement is required.",
       "references": [
         {
           "title": "Deployments",
@@ -3402,7 +3402,7 @@
       "topic": "kubernetes",
       "type": "multi-select",
       "title": "Incident evidence",
-      "question": "During an incident, select the TWO evidence sources that help distinguish a rollout regression from node pressure.",
+      "question": "An application becomes unhealthy shortly after a rollout, but some affected Pods also share a node experiencing resource pressure. The cause is not yet established.\n\nWhich TWO evidence sources help distinguish a release regression from node-related failures? Select exactly two answers.",
       "objective": "Incident evidence: identify the correct Kubernetes behaviour, command or operational response.",
       "options": [
         "Deployment/ReplicaSet history and rollout conditions",
@@ -3415,7 +3415,7 @@
         1
       ],
       "explanation": "A rollout timeline identifies revision changes; node events and termination states help identify pressure or eviction. Correlate timestamps instead of treating either as sole proof.",
-      "takeaway": "Remember: incident evidence — A rollout timeline identifies revision changes; node events and termination states help identify pressure or eviction. Correlate timestamps instead of treating either as sole proof.",
+      "takeaway": "Remember: incident evidence \u2014 A rollout timeline identifies revision changes; node events and termination states help identify pressure or eviction. Correlate timestamps instead of treating either as sole proof.",
       "references": [
         {
           "title": "Deployments",
@@ -3433,7 +3433,7 @@
       "topic": "kubernetes",
       "type": "multi-select",
       "title": "Reduce RBAC blast radius",
-      "question": "Select the TWO changes most likely to reduce blast radius from a compromised workload ServiceAccount.",
+      "question": "A workload ServiceAccount may have been compromised. The team is reviewing its effective API permissions to reduce the scope of resources an attacker could affect.\n\nWhich TWO changes most directly reduce that scope? Select exactly two answers.",
       "objective": "Reduce RBAC blast radius: identify the correct Kubernetes behaviour, command or operational response.",
       "options": [
         "Replace wildcards with required verbs/resources",
@@ -3446,7 +3446,7 @@
         1
       ],
       "explanation": "Specific verbs/resources and scoped grants limit access. Namespace names do not replace review of effective permissions or impersonation paths.",
-      "takeaway": "Remember: reduce rbac blast radius — Specific verbs/resources and scoped grants limit access. Namespace names do not replace review of effective permissions or impersonation paths.",
+      "takeaway": "Remember: reduce rbac blast radius \u2014 Specific verbs/resources and scoped grants limit access. Namespace names do not replace review of effective permissions or impersonation paths.",
       "references": [
         {
           "title": "RBAC good practices",
@@ -3476,7 +3476,7 @@
         0
       ],
       "explanation": "A zero-unavailable rollout may need surge Pods. If quota blocks creation, rollout stalls; changing strategy may trade availability for capacity and needs explicit assessment.",
-      "takeaway": "Remember: surge capacity versus quota — A zero-unavailable rollout may need surge Pods. If quota blocks creation, rollout stalls; changing strategy may trade availability for capacity and needs explicit assessment.",
+      "takeaway": "Remember: surge capacity versus quota \u2014 A zero-unavailable rollout may need surge Pods. If quota blocks creation, rollout stalls; changing strategy may trade availability for capacity and needs explicit assessment.",
       "references": [
         {
           "title": "Deployments",
@@ -3506,7 +3506,7 @@
         0
       ],
       "explanation": "Enforcement can reject violating create/update requests. Audit violations, validate workload changes and progressively enforce to preserve deployment/remediation paths.",
-      "takeaway": "Remember: security policy migration — Enforcement can reject violating create/update requests. Audit violations, validate workload changes and progressively enforce to preserve deployment/remediation paths.",
+      "takeaway": "Remember: security policy migration \u2014 Enforcement can reject violating create/update requests. Audit violations, validate workload changes and progressively enforce to preserve deployment/remediation paths.",
       "references": [
         {
           "title": "Pod Security Standards",
@@ -3536,7 +3536,7 @@
         0
       ],
       "explanation": "Default-deny may block DNS and required Service traffic until matching rules allow it; enforcement and selectors depend on plugin and policy configuration.",
-      "takeaway": "Remember: default-deny policy design — Default-deny may block DNS and required Service traffic until matching rules allow it; enforcement and selectors depend on plugin and policy configuration.",
+      "takeaway": "Remember: default-deny policy design \u2014 Default-deny may block DNS and required Service traffic until matching rules allow it; enforcement and selectors depend on plugin and policy configuration.",
       "references": [
         {
           "title": "Network Policies",
@@ -3566,7 +3566,7 @@
         0
       ],
       "explanation": "Audit policy can record identity, verb, resource and request/response metadata based on configured level; availability and retention depend on cluster settings.",
-      "takeaway": "Remember: investigate api audit record — Audit policy can record identity, verb, resource and request/response metadata based on configured level; availability and retention depend on cluster settings.",
+      "takeaway": "Remember: investigate api audit record \u2014 Audit policy can record identity, verb, resource and request/response metadata based on configured level; availability and retention depend on cluster settings.",
       "references": [
         {
           "title": "Auditing",
@@ -3596,7 +3596,7 @@
         0
       ],
       "explanation": "Garbage collection follows owner references and propagation policy; finalizers may delay removal, so inspect ownership and cleanup behavior.",
-      "takeaway": "Remember: dependent object remains — Garbage collection follows owner references and propagation policy; finalizers may delay removal, so inspect ownership and cleanup behavior.",
+      "takeaway": "Remember: dependent object remains \u2014 Garbage collection follows owner references and propagation policy; finalizers may delay removal, so inspect ownership and cleanup behavior.",
       "references": [
         {
           "title": "Garbage collection",
@@ -3626,7 +3626,7 @@
         0
       ],
       "explanation": "Failure handling depends on detection, taints, eviction, controllers and budgets. A process does not move to another node with its memory intact.",
-      "takeaway": "Remember: node notready availability — Failure handling depends on detection, taints, eviction, controllers and budgets. A process does not move to another node with its memory intact.",
+      "takeaway": "Remember: node notready availability \u2014 Failure handling depends on detection, taints, eviction, controllers and budgets. A process does not move to another node with its memory intact.",
       "references": [
         {
           "title": "Nodes",
@@ -3656,7 +3656,7 @@
         0
       ],
       "explanation": "Endpoint transitions interact with readiness, shutdown and client connections; an endpoint record does not prove requests drain cleanly.",
-      "takeaway": "Remember: endpoint transition during termination — Endpoint transitions interact with readiness, shutdown and client connections; an endpoint record does not prove requests drain cleanly.",
+      "takeaway": "Remember: endpoint transition during termination \u2014 Endpoint transitions interact with readiness, shutdown and client connections; an endpoint record does not prove requests drain cleanly.",
       "references": [
         {
           "title": "Pod lifecycle",
@@ -3686,7 +3686,7 @@
         0
       ],
       "explanation": "CronJob `Forbid` skips a scheduled Job while the prior Job is running; `Allow` permits overlap and `Replace` terminates the current Job in favour of the new one.",
-      "takeaway": "Remember: cronjob concurrency policy — CronJob `Forbid` skips a scheduled Job while the prior Job is running; `Allow` permits overlap and `Replace` terminates the current Job in favour of the new one.",
+      "takeaway": "Remember: cronjob concurrency policy \u2014 CronJob `Forbid` skips a scheduled Job while the prior Job is running; `Allow` permits overlap and `Replace` terminates the current Job in favour of the new one.",
       "references": [
         {
           "title": "CronJobs",
@@ -3716,7 +3716,7 @@
         0
       ],
       "explanation": "`kubectl top` depends on the resource metrics API, while application monitoring may use another pipeline. Diagnose the APIService/metrics path rather than inferring app health.",
-      "takeaway": "Remember: resource metrics api unavailable — `kubectl top` depends on the resource metrics API, while application monitoring may use another pipeline. Diagnose the APIService/metrics path rather than inferring app health.",
+      "takeaway": "Remember: resource metrics api unavailable \u2014 `kubectl top` depends on the resource metrics API, while application monitoring may use another pipeline. Diagnose the APIService/metrics path rather than inferring app health.",
       "references": [
         {
           "title": "Resource metrics pipeline",
@@ -3746,7 +3746,7 @@
         0
       ],
       "explanation": "Ephemeral containers support targeted troubleshooting of running Pods but have limitations and should follow security/audit controls.",
-      "takeaway": "Remember: ephemeral debugging containers — Ephemeral containers support targeted troubleshooting of running Pods but have limitations and should follow security/audit controls.",
+      "takeaway": "Remember: ephemeral debugging containers \u2014 Ephemeral containers support targeted troubleshooting of running Pods but have limitations and should follow security/audit controls.",
       "references": [
         {
           "title": "Ephemeral containers",
@@ -3776,7 +3776,7 @@
         0
       ],
       "explanation": "PVC expansion depends on StorageClass/provisioner and storage backend capabilities; filesystem expansion and restart needs vary by volume type.",
-      "takeaway": "Remember: persistent volume expansion — PVC expansion depends on StorageClass/provisioner and storage backend capabilities; filesystem expansion and restart needs vary by volume type.",
+      "takeaway": "Remember: persistent volume expansion \u2014 PVC expansion depends on StorageClass/provisioner and storage backend capabilities; filesystem expansion and restart needs vary by volume type.",
       "references": [
         {
           "title": "Storage classes",
@@ -3806,7 +3806,7 @@
         0
       ],
       "explanation": "Higher audit levels can capture request/response bodies depending on policy, improving investigations while increasing volume and possible sensitive-data retention.",
-      "takeaway": "Remember: audit verbosity and sensitive data — Higher audit levels can capture request/response bodies depending on policy, improving investigations while increasing volume and possible sensitive-data retention.",
+      "takeaway": "Remember: audit verbosity and sensitive data \u2014 Higher audit levels can capture request/response bodies depending on policy, improving investigations while increasing volume and possible sensitive-data retention.",
       "references": [
         {
           "title": "Auditing",
@@ -3836,7 +3836,7 @@
         0
       ],
       "explanation": "Secrets are namespaced and the Pod must reference the right object, key and volume setup. Pod Events often report missing references or mount errors.",
-      "takeaway": "Remember: secret volume mount failure — Secrets are namespaced and the Pod must reference the right object, key and volume setup. Pod Events often report missing references or mount errors.",
+      "takeaway": "Remember: secret volume mount failure \u2014 Secrets are namespaced and the Pod must reference the right object, key and volume setup. Pod Events often report missing references or mount errors.",
       "references": [
         {
           "title": "Secrets",
@@ -3866,7 +3866,7 @@
         0
       ],
       "explanation": "Admission rejection is returned by the API request and may identify the policy or validation issue. If no Pod exists, runtime logs and probes cannot explain it.",
-      "takeaway": "Remember: investigate admission rejection — Admission rejection is returned by the API request and may identify the policy or validation issue. If no Pod exists, runtime logs and probes cannot explain it.",
+      "takeaway": "Remember: investigate admission rejection \u2014 Admission rejection is returned by the API request and may identify the policy or validation issue. If no Pod exists, runtime logs and probes cannot explain it.",
       "references": [
         {
           "title": "Admission controllers",
@@ -3880,4 +3880,3 @@
     }
   ]
 }
-

@@ -73,7 +73,8 @@ for (const subject of manifest.subjects) {
     for(const concept of pack.questions.filter(q=>q.type==='concept')) {
       const prefix=concept.id.replace(/-concept$/, '');
       const check=pack.questions.find(q=>q.id===prefix+'-principles');
-      assert.ok(check.question.startsWith(concept.question), prefix+': multi-select must retain the factual context');
+      assert.equal(check.question.split('\n\n')[0],concept.question.split('\n\n')[0],prefix+': shared operational context');
+      assert.equal((check.question.match(/\?/g)||[]).length,1,prefix+': one explicit multi-select ask');
 
     }
   }
@@ -93,3 +94,12 @@ const original=read('content/kubernetes-bank.json');
 const current=read('data/kubernetes.json');
 for(const q of original.questions) assert.deepEqual(current.questions.find(x=>x.id===q.id),q,'Existing Kubernetes item changed');
 console.log(`Catalog validated: ${graded} scored + ${interviews} interview prompts, ${lessons} lessons.`);
+const audit=read('content/review/question-audit.json');
+const crypto=require('node:crypto');
+assert.equal(audit.questions.length,1350);
+const audited=new Map(audit.questions.map(x=>[x.id,x]));
+assert.equal(audited.size,1350);
+for(const subject of manifest.subjects) for(const q of read(subject.questions).questions){
+  assert.equal(audited.get(q.id)?.promptSha256,crypto.createHash('sha256').update(q.question).digest('hex'),q.id+': stale prompt review');
+}
+console.log('All 1,350 prompts match the recorded wording review.');

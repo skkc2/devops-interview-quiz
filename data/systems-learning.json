@@ -1022,6 +1022,348 @@
           "url": "https://www.sudo.ws/docs/man/visudo.man/"
         }
       ]
+    },
+    {
+      "id": "systems-command-13",
+      "topic": "systems",
+      "title": "Effective unit properties",
+      "command": "systemctl show APP.service -p MainPID -p ActiveState -p SubState -p ExecMainStatus",
+      "kind": "Shell command",
+      "definition": "Displays selected runtime properties for a systemd unit.",
+      "purpose": "Read machine-oriented evidence of process state and exit status.",
+      "environment": "Read-only; a live PID can still serve failed requests.",
+      "expectedOutput": "ActiveState=active SubState=running MainPID=2481",
+      "interpretation": "MainPID is the tracked process; ActiveState/SubState describe unit state. ExecMainStatus is not an HTTP health result.",
+      "safety": "Read-only; a live PID can still serve failed requests.",
+      "references": [
+        {
+          "title": "Effective unit properties \u2014 primary documentation",
+          "url": "https://www.freedesktop.org/software/systemd/man/latest/systemctl.html"
+        }
+      ]
+    },
+    {
+      "id": "systems-command-14",
+      "topic": "systems",
+      "title": "Boot enablement",
+      "command": "systemctl is-enabled APP.service",
+      "kind": "Shell command",
+      "definition": "Reports whether unit installation relationships enable activation.",
+      "purpose": "Investigate why a manually started service does not return after boot.",
+      "environment": "Read-only; enablement does not mean currently running.",
+      "expectedOutput": "enabled",
+      "interpretation": "enabled, disabled, static and masked have different meanings; static units may start through dependencies.",
+      "safety": "Read-only; enablement does not mean currently running.",
+      "references": [
+        {
+          "title": "Boot enablement \u2014 primary documentation",
+          "url": "https://www.freedesktop.org/software/systemd/man/latest/systemctl.html"
+        }
+      ]
+    },
+    {
+      "id": "systems-command-15",
+      "topic": "systems",
+      "title": "Unit dependencies",
+      "command": "systemctl list-dependencies APP.service --all",
+      "kind": "Shell command",
+      "definition": "Lists unit dependencies known to the manager.",
+      "purpose": "Inspect the activation relationships of a service.",
+      "environment": "Read-only; use unit properties to inspect ordering details when needed.",
+      "expectedOutput": "APP.service ... network.target",
+      "interpretation": "Tree structure shows related units; activation dependencies differ from explicit ordering constraints.",
+      "safety": "Read-only; use unit properties to inspect ordering details when needed.",
+      "references": [
+        {
+          "title": "Unit dependencies \u2014 primary documentation",
+          "url": "https://www.freedesktop.org/software/systemd/man/latest/systemctl.html"
+        }
+      ]
+    },
+    {
+      "id": "systems-command-16",
+      "topic": "systems",
+      "title": "Reload manager configuration",
+      "command": "systemctl daemon-reload",
+      "kind": "Shell command",
+      "definition": "Reloads unit definitions and regenerates the manager dependency view.",
+      "purpose": "Make edited unit files or drop-ins visible to systemd.",
+      "environment": "Changes the manager's configuration view. Validate unit edits and use the separate intended service action afterward.",
+      "expectedOutput": "No output on success",
+      "interpretation": "Success is normally silent; it does not itself restart the service or reload application configuration.",
+      "safety": "Changes the manager's configuration view. Validate unit edits and use the separate intended service action afterward.",
+      "references": [
+        {
+          "title": "Reload manager configuration \u2014 primary documentation",
+          "url": "https://www.freedesktop.org/software/systemd/man/latest/systemctl.html"
+        }
+      ]
+    },
+    {
+      "id": "systems-command-17",
+      "topic": "systems",
+      "title": "Reload application configuration",
+      "command": "systemctl reload APP.service",
+      "kind": "Shell command",
+      "definition": "Requests the unit's configured reload operation.",
+      "purpose": "Activate a supported application configuration change without a full restart.",
+      "environment": "Mutates application state and requires unit reload support. Validate configuration before invoking.",
+      "expectedOutput": "No output on success",
+      "interpretation": "A successful job means the reload command completed; verify actual loaded configuration and service behavior.",
+      "safety": "Mutates application state and requires unit reload support. Validate configuration before invoking.",
+      "references": [
+        {
+          "title": "Reload application configuration \u2014 primary documentation",
+          "url": "https://www.freedesktop.org/software/systemd/man/latest/systemctl.html"
+        }
+      ]
+    },
+    {
+      "id": "systems-command-18",
+      "topic": "systems",
+      "title": "Controlled service restart",
+      "command": "systemctl restart APP.service",
+      "kind": "Shell command",
+      "definition": "Stops and starts a unit according to its configuration.",
+      "purpose": "Apply an approved change that requires a new process.",
+      "environment": "Disrupts a workload; verify dependency impact, capacity and recovery access first.",
+      "expectedOutput": "No output on success",
+      "interpretation": "Successful exit indicates the start job completed under unit semantics; inspect logs and endpoint health afterward.",
+      "safety": "Disrupts a workload; verify dependency impact, capacity and recovery access first.",
+      "references": [
+        {
+          "title": "Controlled service restart \u2014 primary documentation",
+          "url": "https://www.freedesktop.org/software/systemd/man/latest/systemctl.html"
+        }
+      ]
+    },
+    {
+      "id": "systems-command-19",
+      "topic": "systems",
+      "title": "Enable a service",
+      "command": "systemctl enable APP.service",
+      "kind": "Shell command",
+      "definition": "Creates installation links according to the unit's Install section.",
+      "purpose": "Configure intended activation relationships such as boot startup.",
+      "environment": "Mutates host activation policy; inspect the unit and intended target first.",
+      "expectedOutput": "Created symlink ...multi-user.target.wants/...",
+      "interpretation": "Created symlink messages identify changed links. This command without --now does not start the unit.",
+      "safety": "Mutates host activation policy; inspect the unit and intended target first.",
+      "references": [
+        {
+          "title": "Enable a service \u2014 primary documentation",
+          "url": "https://www.freedesktop.org/software/systemd/man/latest/systemctl.html"
+        }
+      ]
+    },
+    {
+      "id": "systems-command-20",
+      "topic": "systems",
+      "title": "Historical boot logs",
+      "command": "journalctl --list-boots",
+      "kind": "Shell command",
+      "definition": "Lists boots represented in the journal.",
+      "purpose": "Find the boot index or ID for a failure before a reboot.",
+      "environment": "Read-only; availability depends on journal persistence and retention.",
+      "expectedOutput": "-1 BOOT_ID DATE DATE",
+      "interpretation": "0 is the current boot; negative offsets refer to earlier retained boots. Start/end timestamps delimit retained evidence.",
+      "safety": "Read-only; availability depends on journal persistence and retention.",
+      "references": [
+        {
+          "title": "Historical boot logs \u2014 primary documentation",
+          "url": "https://www.freedesktop.org/software/systemd/man/latest/journalctl.html"
+        }
+      ]
+    },
+    {
+      "id": "systems-command-21",
+      "topic": "systems",
+      "title": "Previous boot errors",
+      "command": "journalctl -b -1 -p warning --no-pager",
+      "kind": "Shell command",
+      "definition": "Reads warning-and-higher-priority entries from the previous retained boot.",
+      "purpose": "Investigate why a host failed before it restarted.",
+      "environment": "Read-only; log content may be sensitive and should be shared selectively.",
+      "expectedOutput": "kernel: device error ...",
+      "interpretation": "-b -1 selects the prior boot; -p warning includes more severe priorities. Missing records may reflect retention limits.",
+      "safety": "Read-only; log content may be sensitive and should be shared selectively.",
+      "references": [
+        {
+          "title": "Previous boot errors \u2014 primary documentation",
+          "url": "https://www.freedesktop.org/software/systemd/man/latest/journalctl.html"
+        }
+      ]
+    },
+    {
+      "id": "systems-command-22",
+      "topic": "systems",
+      "title": "Journal disk usage",
+      "command": "journalctl --disk-usage",
+      "kind": "Shell command",
+      "definition": "Reports disk space used by journal files.",
+      "purpose": "Assess whether journaling contributes to filesystem pressure.",
+      "environment": "Read-only; inspect retention policy before deleting evidence.",
+      "expectedOutput": "Archived and active journals take up 1.2G in the file system.",
+      "interpretation": "The total describes journal storage, not all logs under /var/log.",
+      "safety": "Read-only; inspect retention policy before deleting evidence.",
+      "references": [
+        {
+          "title": "Journal disk usage \u2014 primary documentation",
+          "url": "https://www.freedesktop.org/software/systemd/man/latest/journalctl.html"
+        }
+      ]
+    },
+    {
+      "id": "systems-command-23",
+      "topic": "systems",
+      "title": "User scheduled tasks",
+      "command": "crontab -l",
+      "kind": "Shell command",
+      "definition": "Lists the current user's cron entries.",
+      "purpose": "Compare scheduler command paths, timing and environment assumptions.",
+      "environment": "Read-only; inspect the correct account. System timers and /etc/cron* are separate sources.",
+      "expectedOutput": "0 2 * * * /usr/local/bin/backup",
+      "interpretation": "Each non-comment entry begins with schedule fields followed by the command; this is not every user's schedule.",
+      "safety": "Read-only; inspect the correct account. System timers and /etc/cron* are separate sources.",
+      "references": [
+        {
+          "title": "User scheduled tasks \u2014 primary documentation",
+          "url": "https://man7.org/linux/man-pages/"
+        }
+      ]
+    },
+    {
+      "id": "systems-command-24",
+      "topic": "systems",
+      "title": "Time source tracking",
+      "command": "chronyc tracking",
+      "kind": "Shell command",
+      "definition": "Reports chrony's clock synchronization state and estimates.",
+      "purpose": "Investigate clock drift affecting authentication or logs.",
+      "environment": "Read-only; applies to hosts using chronyd and should be correlated with source status.",
+      "expectedOutput": "Leap status: Normal",
+      "interpretation": "Reference ID names the source; System time and Last offset describe offsets. Leap status indicates synchronization condition.",
+      "safety": "Read-only; applies to hosts using chronyd and should be correlated with source status.",
+      "references": [
+        {
+          "title": "Time source tracking \u2014 primary documentation",
+          "url": "https://man7.org/linux/man-pages/"
+        }
+      ]
+    },
+    {
+      "id": "systems-command-25",
+      "topic": "systems",
+      "title": "Block device identifiers",
+      "command": "blkid /dev/DEVICE",
+      "kind": "Shell command",
+      "definition": "Probes filesystem identifiers for a selected block device.",
+      "purpose": "Check UUID and filesystem type before editing mount configuration.",
+      "environment": "Read-only probe, often privileged; never infer that an unrecognized device is empty or safe to format.",
+      "expectedOutput": "UUID=\"...\" TYPE=\"ext4\"",
+      "interpretation": "UUID is filesystem identity; TYPE describes the detected format. Verify the physical/logical device selection separately.",
+      "safety": "Read-only probe, often privileged; never infer that an unrecognized device is empty or safe to format.",
+      "references": [
+        {
+          "title": "Block device identifiers \u2014 primary documentation",
+          "url": "https://man7.org/linux/man-pages/"
+        }
+      ]
+    },
+    {
+      "id": "systems-command-26",
+      "topic": "systems",
+      "title": "Volume group capacity",
+      "command": "vgs",
+      "kind": "Shell command",
+      "definition": "Summarizes LVM volume groups and free physical capacity.",
+      "purpose": "Determine whether a logical volume can be extended within its group.",
+      "environment": "Read-only; requires LVM tooling and suitable device visibility.",
+      "expectedOutput": "VG #PV #LV #SN Attr VSize VFree",
+      "interpretation": "VSize is group capacity and VFree is unallocated space; neither reports free filesystem bytes.",
+      "safety": "Read-only; requires LVM tooling and suitable device visibility.",
+      "references": [
+        {
+          "title": "Volume group capacity \u2014 primary documentation",
+          "url": "https://man7.org/linux/man-pages/"
+        }
+      ]
+    },
+    {
+      "id": "systems-command-27",
+      "topic": "systems",
+      "title": "Logical volume layout",
+      "command": "lvs -o lv_name,vg_name,lv_size,lv_attr,devices",
+      "kind": "Shell command",
+      "definition": "Displays logical volumes, attributes and backing devices.",
+      "purpose": "Map an application volume to underlying LVM storage.",
+      "environment": "Read-only; special layouts such as thin pools require additional capacity checks.",
+      "expectedOutput": "LV VG LSize Attr Devices",
+      "interpretation": "LSize is block volume capacity; Attr encodes volume properties. Filesystem growth is a separate concern.",
+      "safety": "Read-only; special layouts such as thin pools require additional capacity checks.",
+      "references": [
+        {
+          "title": "Logical volume layout \u2014 primary documentation",
+          "url": "https://man7.org/linux/man-pages/"
+        }
+      ]
+    },
+    {
+      "id": "systems-command-28",
+      "topic": "systems",
+      "title": "Debian package inventory",
+      "command": "dpkg-query -W -f='${Package} ${Version}\\n' openssl",
+      "kind": "Shell command",
+      "definition": "Queries the installed Debian package database for a package version.",
+      "purpose": "Identify the package managed by the distribution before patch review.",
+      "environment": "Read-only; Debian/Ubuntu-family command. Check vendor advisories for security status.",
+      "expectedOutput": "openssl VERSION",
+      "interpretation": "Output contains package name and installed version; distribution backports mean upstream version alone may not establish vulnerability status.",
+      "safety": "Read-only; Debian/Ubuntu-family command. Check vendor advisories for security status.",
+      "references": [
+        {
+          "title": "Debian package inventory \u2014 primary documentation",
+          "url": "https://man7.org/linux/man-pages/"
+        }
+      ]
+    },
+    {
+      "id": "systems-command-29",
+      "topic": "systems",
+      "title": "RPM package inventory",
+      "command": "rpm -q openssl",
+      "kind": "Shell command",
+      "definition": "Queries the RPM database for an installed package.",
+      "purpose": "Check the distribution-managed package version on an RPM-based host.",
+      "environment": "Read-only; RPM-family system required. Vendor release metadata matters for backported fixes.",
+      "expectedOutput": "openssl-VERSION-RELEASE.ARCH",
+      "interpretation": "The returned name-version-release identifies the installed package; a not-installed result is distinct from an outdated version.",
+      "safety": "Read-only; RPM-family system required. Vendor release metadata matters for backported fixes.",
+      "references": [
+        {
+          "title": "RPM package inventory \u2014 primary documentation",
+          "url": "https://man7.org/linux/man-pages/"
+        }
+      ]
+    },
+    {
+      "id": "systems-command-30",
+      "topic": "systems",
+      "title": "Effective sudo privileges",
+      "command": "sudo -l",
+      "kind": "Shell command",
+      "definition": "Lists sudo commands permitted for the current identity.",
+      "purpose": "Review practical privilege boundaries before administration or access changes.",
+      "environment": "Read-only privilege inspection but may prompt authentication and generate audit records. Do not assume a narrow command name means narrow impact.",
+      "expectedOutput": "(root) /usr/bin/systemctl restart app.service",
+      "interpretation": "Runas and command rules identify allowed operations; tools with shell escape or arbitrary-file features may grant broader capabilities.",
+      "safety": "Read-only privilege inspection but may prompt authentication and generate audit records. Do not assume a narrow command name means narrow impact.",
+      "references": [
+        {
+          "title": "Effective sudo privileges \u2014 primary documentation",
+          "url": "https://man7.org/linux/man-pages/"
+        }
+      ]
     }
   ],
   "debugging": [

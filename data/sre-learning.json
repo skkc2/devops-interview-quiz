@@ -950,6 +950,234 @@
           "url": "https://git-scm.com/docs"
         }
       ]
+    },
+    {
+      "id": "sre-command-13",
+      "topic": "sre",
+      "title": "Long-window burn rate",
+      "command": "sum(rate(http_requests_total{job=\"checkout\",status=~\"5..\"}[1h])) / sum(rate(http_requests_total{job=\"checkout\"}[1h])) / 0.001",
+      "kind": "PromQL query",
+      "definition": "Compares the one-hour error ratio with the allowed ratio for a 99.9% SLO.",
+      "purpose": "Pair a sustained failure signal with a shorter window before paging.",
+      "environment": "PromQL; assumes 5xx defines bad eligible events and the metric has enough samples. Validate the SLI definition.",
+      "expectedOutput": "6",
+      "interpretation": "A value of 6 means six times the budget-compatible error rate, not 6% errors. A zero denominator requires a no-traffic policy.",
+      "safety": "PromQL; assumes 5xx defines bad eligible events and the metric has enough samples. Validate the SLI definition.",
+      "references": [
+        {
+          "title": "Long-window burn rate \u2014 primary documentation",
+          "url": "https://prometheus.io/docs/prometheus/latest/querying/functions/"
+        }
+      ]
+    },
+    {
+      "id": "sre-command-14",
+      "topic": "sre",
+      "title": "Regional success ratio",
+      "command": "sum by (region) (rate(http_requests_total{job=\"checkout\",status!~\"5..\"}[5m])) / sum by (region) (rate(http_requests_total{job=\"checkout\"}[5m]))",
+      "kind": "PromQL query",
+      "definition": "Calculates success fraction separately by region.",
+      "purpose": "Find a failing region hidden by a healthy global average.",
+      "environment": "PromQL with matching region labels; choose the same eligibility and success definitions in numerator and denominator.",
+      "expectedOutput": "{region=\"eu\"} 0.98",
+      "interpretation": "Each output value belongs to one region; 0.98 means a 98% success ratio for that region's eligible traffic.",
+      "safety": "PromQL with matching region labels; choose the same eligibility and success definitions in numerator and denominator.",
+      "references": [
+        {
+          "title": "Regional success ratio \u2014 primary documentation",
+          "url": "https://prometheus.io/docs/prometheus/latest/querying/functions/"
+        }
+      ]
+    },
+    {
+      "id": "sre-command-15",
+      "topic": "sre",
+      "title": "Canary error comparison",
+      "command": "sum by (version) (rate(http_requests_total{job=\"checkout\",status=~\"5..\"}[5m])) / sum by (version) (rate(http_requests_total{job=\"checkout\"}[5m]))",
+      "kind": "PromQL query",
+      "definition": "Compares recent error ratios grouped by deployed version.",
+      "purpose": "Assess whether a canary differs from the baseline.",
+      "environment": "PromQL; version labels and representative traffic are prerequisites. This query alone does not establish causation.",
+      "expectedOutput": "{version=\"canary\"} 0.04",
+      "interpretation": "Compare ratios together with sample size and traffic mix; a low-volume version may have noisy estimates.",
+      "safety": "PromQL; version labels and representative traffic are prerequisites. This query alone does not establish causation.",
+      "references": [
+        {
+          "title": "Canary error comparison \u2014 primary documentation",
+          "url": "https://prometheus.io/docs/prometheus/latest/querying/functions/"
+        }
+      ]
+    },
+    {
+      "id": "sre-command-16",
+      "topic": "sre",
+      "title": "Traffic by region",
+      "command": "sum by (region) (rate(http_requests_total{job=\"checkout\"}[5m]))",
+      "kind": "PromQL query",
+      "definition": "Calculates request rate per region.",
+      "purpose": "Check load movement during failover or traffic restoration.",
+      "environment": "PromQL using an illustrative request counter; verify region labels and traffic eligibility.",
+      "expectedOutput": "{region=\"eu\"} 1200",
+      "interpretation": "Values are requests per second for each region; compare them with safe surviving capacity.",
+      "safety": "PromQL using an illustrative request counter; verify region labels and traffic eligibility.",
+      "references": [
+        {
+          "title": "Traffic by region \u2014 primary documentation",
+          "url": "https://prometheus.io/docs/prometheus/latest/querying/functions/"
+        }
+      ]
+    },
+    {
+      "id": "sre-command-17",
+      "topic": "sre",
+      "title": "Unavailable scrape targets",
+      "command": "sum by (job) (up == bool 0)",
+      "kind": "PromQL query",
+      "definition": "Counts discovered scrape targets currently reporting a failed scrape.",
+      "purpose": "Check the breadth of a telemetry collection incident.",
+      "environment": "PromQL; this measures scraping, not direct customer availability. Add discovery/absence coverage separately.",
+      "expectedOutput": "{job=\"api\"} 2",
+      "interpretation": "A value of 2 means two selected targets have up=0; targets absent from discovery are not counted.",
+      "safety": "PromQL; this measures scraping, not direct customer availability. Add discovery/absence coverage separately.",
+      "references": [
+        {
+          "title": "Unavailable scrape targets \u2014 primary documentation",
+          "url": "https://prometheus.io/docs/prometheus/latest/querying/functions/"
+        }
+      ]
+    },
+    {
+      "id": "sre-command-18",
+      "topic": "sre",
+      "title": "Backlog peak during recovery",
+      "command": "max_over_time(queue_depth{queue=\"orders\"}[15m])",
+      "kind": "PromQL query",
+      "definition": "Reports the largest sampled queue depth during the recent recovery window.",
+      "purpose": "Check whether restoring traffic creates a larger backlog than before.",
+      "environment": "PromQL with an example gauge; compare with queue age and worker processing rate.",
+      "expectedOutput": "{queue=\"orders\"} 1800",
+      "interpretation": "The value is messages at the sampled peak; it does not measure oldest message age or processing throughput.",
+      "safety": "PromQL with an example gauge; compare with queue age and worker processing rate.",
+      "references": [
+        {
+          "title": "Backlog peak during recovery \u2014 primary documentation",
+          "url": "https://prometheus.io/docs/prometheus/latest/querying/functions/"
+        }
+      ]
+    },
+    {
+      "id": "sre-command-19",
+      "topic": "sre",
+      "title": "Bounded endpoint sample",
+      "command": "curl -sS --max-time 5 -D - -o /dev/null https://SERVICE/health",
+      "kind": "Shell command",
+      "definition": "Requests a health endpoint and prints response headers without the body.",
+      "purpose": "Collect status and routing evidence during a bounded incident check.",
+      "environment": "Sends one request; use an authorized endpoint and avoid exposing authentication headers in collected evidence.",
+      "expectedOutput": "HTTP/2 503",
+      "interpretation": "The HTTP status and selected headers show this one response; a 200 on a shallow health endpoint may not represent critical journeys.",
+      "safety": "Sends one request; use an authorized endpoint and avoid exposing authentication headers in collected evidence.",
+      "references": [
+        {
+          "title": "Bounded endpoint sample \u2014 primary documentation",
+          "url": "https://curl.se/docs/manpage.html"
+        }
+      ]
+    },
+    {
+      "id": "sre-command-20",
+      "topic": "sre",
+      "title": "Deployment revision evidence",
+      "command": "kubectl rollout history deployment/APP -n NAMESPACE",
+      "kind": "Shell command",
+      "definition": "Lists retained revisions of an affected Kubernetes workload.",
+      "purpose": "Correlate release timing and recovery candidates during triage.",
+      "environment": "Read-only; confirm context and namespace before proposing rollback.",
+      "expectedOutput": "REVISION CHANGE-CAUSE",
+      "interpretation": "Revision numbers identify controller history, not necessarily source commits or database migration compatibility.",
+      "safety": "Read-only; confirm context and namespace before proposing rollback.",
+      "references": [
+        {
+          "title": "Deployment revision evidence \u2014 primary documentation",
+          "url": "https://kubernetes.io/docs/reference/kubectl/quick-reference/"
+        }
+      ]
+    },
+    {
+      "id": "sre-command-21",
+      "topic": "sre",
+      "title": "Current deployment failures",
+      "command": "kubectl get pods -n NAMESPACE --field-selector=status.phase!=Running -o wide",
+      "kind": "Shell command",
+      "definition": "Lists Pods outside the Running phase in one namespace.",
+      "purpose": "Find Pending or failed workload instances during response.",
+      "environment": "Read-only; complement with readiness checks because phase is not a full health model.",
+      "expectedOutput": "api-... 0/1 Pending ...",
+      "interpretation": "STATUS and NODE help separate scheduling from startup issues; Running Pods with failing readiness are not included by this filter.",
+      "safety": "Read-only; complement with readiness checks because phase is not a full health model.",
+      "references": [
+        {
+          "title": "Current deployment failures \u2014 primary documentation",
+          "url": "https://kubernetes.io/docs/reference/kubectl/quick-reference/"
+        }
+      ]
+    },
+    {
+      "id": "sre-command-22",
+      "topic": "sre",
+      "title": "Recent host boot",
+      "command": "uptime -s",
+      "kind": "Shell command",
+      "definition": "Prints the host's boot time.",
+      "purpose": "Check whether a host restart aligns with an incident timeline.",
+      "environment": "Read-only Linux procps command; boot time is not application deployment time.",
+      "expectedOutput": "2026-10-23 09:42:00",
+      "interpretation": "The timestamp is in the host's local time zone; correlate using a consistent time basis.",
+      "safety": "Read-only Linux procps command; boot time is not application deployment time.",
+      "references": [
+        {
+          "title": "Recent host boot \u2014 primary documentation",
+          "url": "https://man7.org/linux/man-pages/"
+        }
+      ]
+    },
+    {
+      "id": "sre-command-23",
+      "topic": "sre",
+      "title": "Changed release scope",
+      "command": "git diff --name-status LAST_GOOD CURRENT",
+      "kind": "Shell command",
+      "definition": "Lists paths changed between two verified release revisions.",
+      "purpose": "Scope a release-related incident before reading the relevant patches.",
+      "environment": "Read-only; replace refs with deployed commit identities, not an assumed branch tip.",
+      "expectedOutput": "M src/checkout.js",
+      "interpretation": "A, M and D mark added, modified and deleted paths; a filename change alone does not prove causation.",
+      "safety": "Read-only; replace refs with deployed commit identities, not an assumed branch tip.",
+      "references": [
+        {
+          "title": "Changed release scope \u2014 primary documentation",
+          "url": "https://git-scm.com/docs"
+        }
+      ]
+    },
+    {
+      "id": "sre-command-24",
+      "topic": "sre",
+      "title": "Backup archive integrity",
+      "command": "gzip -t backup.sql.gz",
+      "kind": "Shell command",
+      "definition": "Tests the gzip stream's integrity without extracting it.",
+      "purpose": "Catch a corrupt or incomplete compressed backup before a restore exercise.",
+      "environment": "Read-only but reads the full archive; follow with an isolated application-level restore and verification.",
+      "expectedOutput": "No output on successful integrity test",
+      "interpretation": "No output with exit 0 means the compressed stream passes checks; it does not establish database consistency or recoverability.",
+      "safety": "Read-only but reads the full archive; follow with an isolated application-level restore and verification.",
+      "references": [
+        {
+          "title": "Backup archive integrity \u2014 primary documentation",
+          "url": "https://man7.org/linux/man-pages/"
+        }
+      ]
     }
   ],
   "debugging": [
@@ -1166,7 +1394,7 @@
         },
         {
           "title": "Diagnostic tool \u2014 primary documentation",
-          "url": "https://www.freedesktop.org/software/systemd/man/latest/systemctl.html"
+          "url": "https://prometheus.io/docs/prometheus/latest/querying/functions/"
         }
       ]
     },

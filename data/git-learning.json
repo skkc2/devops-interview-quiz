@@ -998,6 +998,348 @@
           "url": "https://git-scm.com/docs"
         }
       ]
+    },
+    {
+      "id": "git-command-13",
+      "topic": "git",
+      "title": "Repository location",
+      "command": "git rev-parse --show-toplevel",
+      "kind": "Shell command",
+      "definition": "Prints the root of the current working tree.",
+      "purpose": "Confirm which repository a script or terminal is operating in.",
+      "environment": "Read-only; verify this before running commands that change index or history.",
+      "expectedOutput": "/work/project",
+      "interpretation": "The output is an absolute path; an error means the current location is not inside a recognized working tree.",
+      "safety": "Read-only; verify this before running commands that change index or history.",
+      "references": [
+        {
+          "title": "Repository location \u2014 primary documentation",
+          "url": "https://git-scm.com/docs"
+        }
+      ]
+    },
+    {
+      "id": "git-command-14",
+      "topic": "git",
+      "title": "Configured remotes",
+      "command": "git remote -v",
+      "kind": "Shell command",
+      "definition": "Lists remote names and fetch/push URLs.",
+      "purpose": "Verify where changes will be retrieved from or published to.",
+      "environment": "Read-only; URLs can contain sensitive credentials in poorly configured repositories.",
+      "expectedOutput": "origin https://github.com/OWNER/REPO.git (fetch)",
+      "interpretation": "Fetch and push URLs may differ; a familiar remote name does not prove its destination.",
+      "safety": "Read-only; URLs can contain sensitive credentials in poorly configured repositories.",
+      "references": [
+        {
+          "title": "Configured remotes \u2014 primary documentation",
+          "url": "https://git-scm.com/docs"
+        }
+      ]
+    },
+    {
+      "id": "git-command-15",
+      "topic": "git",
+      "title": "Create a working branch",
+      "command": "git switch -c feature/clear-prompts",
+      "kind": "Shell command",
+      "definition": "Creates a branch at the current commit and switches to it.",
+      "purpose": "Isolate a new change before committing.",
+      "environment": "Mutates local branch/worktree selection; inspect status and intended starting commit first.",
+      "expectedOutput": "Switched to a new branch 'feature/clear-prompts'",
+      "interpretation": "The switch confirmation names the new branch; existing uncommitted edits may come along if compatible.",
+      "safety": "Mutates local branch/worktree selection; inspect status and intended starting commit first.",
+      "references": [
+        {
+          "title": "Create a working branch \u2014 primary documentation",
+          "url": "https://git-scm.com/docs"
+        }
+      ]
+    },
+    {
+      "id": "git-command-16",
+      "topic": "git",
+      "title": "Stage selected hunks",
+      "command": "git add -p -- PATH",
+      "kind": "Shell command",
+      "definition": "Interactively stages chosen changes from a file.",
+      "purpose": "Separate unrelated edits into reviewable commits.",
+      "environment": "Mutates the index, not the remote; only stage understood changes.",
+      "expectedOutput": "Stage this hunk [y,n,q,a,d,s,e,?]?",
+      "interpretation": "Each hunk prompt asks whether to stage the shown diff; review git diff --staged afterward.",
+      "safety": "Mutates the index, not the remote; only stage understood changes.",
+      "references": [
+        {
+          "title": "Stage selected hunks \u2014 primary documentation",
+          "url": "https://git-scm.com/docs"
+        }
+      ]
+    },
+    {
+      "id": "git-command-17",
+      "topic": "git",
+      "title": "Unstage without discarding",
+      "command": "git restore --staged -- PATH",
+      "kind": "Shell command",
+      "definition": "Restores an index entry from HEAD while retaining working-tree edits.",
+      "purpose": "Remove an accidental file change from the next commit.",
+      "environment": "Mutates the index. Do not omit --staged if the intention is to keep working-tree changes.",
+      "expectedOutput": "No output on success",
+      "interpretation": "Usually silent on success; git status and git diff show the retained unstaged work.",
+      "safety": "Mutates the index. Do not omit --staged if the intention is to keep working-tree changes.",
+      "references": [
+        {
+          "title": "Unstage without discarding \u2014 primary documentation",
+          "url": "https://git-scm.com/docs"
+        }
+      ]
+    },
+    {
+      "id": "git-command-18",
+      "topic": "git",
+      "title": "Create a local commit",
+      "command": "git commit -m 'Clarify practice question context'",
+      "kind": "Shell command",
+      "definition": "Creates a commit from the staged snapshot.",
+      "purpose": "Record one reviewed change with a useful explanation.",
+      "environment": "Mutates local history and can run repository hooks. Review staged content and test results first.",
+      "expectedOutput": "[feature/clear-prompts SHA] Clarify practice question context",
+      "interpretation": "The summary gives a new commit ID and file statistics; unstaged edits remain outside it.",
+      "safety": "Mutates local history and can run repository hooks. Review staged content and test results first.",
+      "references": [
+        {
+          "title": "Create a local commit \u2014 primary documentation",
+          "url": "https://git-scm.com/docs"
+        }
+      ]
+    },
+    {
+      "id": "git-command-19",
+      "topic": "git",
+      "title": "Inspect a complete commit",
+      "command": "git show --format=fuller COMMIT",
+      "kind": "Shell command",
+      "definition": "Displays commit metadata and its patch.",
+      "purpose": "Understand exactly what a candidate release or recovery commit changed.",
+      "environment": "Read-only; replace COMMIT with a verified reference.",
+      "expectedOutput": "commit SHA ... diff --git ...",
+      "interpretation": "Author and Commit dates can differ; the patch shows the change relative to parent context.",
+      "safety": "Read-only; replace COMMIT with a verified reference.",
+      "references": [
+        {
+          "title": "Inspect a complete commit \u2014 primary documentation",
+          "url": "https://git-scm.com/docs"
+        }
+      ]
+    },
+    {
+      "id": "git-command-20",
+      "topic": "git",
+      "title": "Find line history",
+      "command": "git blame -L 20,40 -- PATH",
+      "kind": "Shell command",
+      "definition": "Shows the last recorded change attribution for selected lines.",
+      "purpose": "Find relevant history before modifying unfamiliar behavior.",
+      "environment": "Read-only; follow the referenced commits to understand surrounding changes.",
+      "expectedOutput": "SHA (Author DATE 20) code",
+      "interpretation": "Each line includes a commit ID, author metadata and line content; attribution is not proof of fault or original design intent.",
+      "safety": "Read-only; follow the referenced commits to understand surrounding changes.",
+      "references": [
+        {
+          "title": "Find line history \u2014 primary documentation",
+          "url": "https://git-scm.com/docs"
+        }
+      ]
+    },
+    {
+      "id": "git-command-21",
+      "topic": "git",
+      "title": "Fast-forward integration",
+      "command": "git merge --ff-only origin/main",
+      "kind": "Shell command",
+      "definition": "Updates the current branch only if the integration can fast-forward.",
+      "purpose": "Avoid silently creating a merge commit when synchronizing a linear branch.",
+      "environment": "Mutates the local branch and files; preserve uncommitted work and confirm the current branch first.",
+      "expectedOutput": "Updating OLD..NEW Fast-forward",
+      "interpretation": "Fast-forward output means no merge commit was needed; failure means histories diverged and need an explicit decision.",
+      "safety": "Mutates the local branch and files; preserve uncommitted work and confirm the current branch first.",
+      "references": [
+        {
+          "title": "Fast-forward integration \u2014 primary documentation",
+          "url": "https://git-scm.com/docs"
+        }
+      ]
+    },
+    {
+      "id": "git-command-22",
+      "topic": "git",
+      "title": "Reverse a published change",
+      "command": "git revert COMMIT",
+      "kind": "Shell command",
+      "definition": "Creates a new change that reverses a selected commit.",
+      "purpose": "Undo an approved bad change while preserving published history.",
+      "environment": "Mutates files/history; review dependent changes and special handling for merge commits before use.",
+      "expectedOutput": "[branch NEW_SHA] Revert ...",
+      "interpretation": "A new commit is created after any conflicts are resolved; external effects and database migrations are not automatically reversed.",
+      "safety": "Mutates files/history; review dependent changes and special handling for merge commits before use.",
+      "references": [
+        {
+          "title": "Reverse a published change \u2014 primary documentation",
+          "url": "https://git-scm.com/docs"
+        }
+      ]
+    },
+    {
+      "id": "git-command-23",
+      "topic": "git",
+      "title": "Apply a selected fix",
+      "command": "git cherry-pick COMMIT",
+      "kind": "Shell command",
+      "definition": "Applies a commit's patch as a new commit on the current branch.",
+      "purpose": "Backport an isolated verified fix.",
+      "environment": "Mutates branch and working tree; inspect prerequisites and run relevant tests.",
+      "expectedOutput": "[release NEW_SHA] Fix ...",
+      "interpretation": "The new commit usually has a different ID; conflict messages require semantic resolution, not blind marker removal.",
+      "safety": "Mutates branch and working tree; inspect prerequisites and run relevant tests.",
+      "references": [
+        {
+          "title": "Apply a selected fix \u2014 primary documentation",
+          "url": "https://git-scm.com/docs"
+        }
+      ]
+    },
+    {
+      "id": "git-command-24",
+      "topic": "git",
+      "title": "Preserve temporary work",
+      "command": "git stash push -u -m 'before investigation'",
+      "kind": "Shell command",
+      "definition": "Stores tracked edits and untracked files, then cleans them from the working tree.",
+      "purpose": "Temporarily set aside work before a local investigation.",
+      "environment": "Mutates local files; inspect the stash and avoid treating it as a remote backup.",
+      "expectedOutput": "Saved working directory and index state ...",
+      "interpretation": "The saved message identifies a local stash; ignored files are not included by -u.",
+      "safety": "Mutates local files; inspect the stash and avoid treating it as a remote backup.",
+      "references": [
+        {
+          "title": "Preserve temporary work \u2014 primary documentation",
+          "url": "https://git-scm.com/docs"
+        }
+      ]
+    },
+    {
+      "id": "git-command-25",
+      "topic": "git",
+      "title": "Inspect a stash",
+      "command": "git stash show -p stash@{0}",
+      "kind": "Shell command",
+      "definition": "Displays the patch represented by a stash entry.",
+      "purpose": "Check saved work before restoring it.",
+      "environment": "Read-only; sensitive edits remain visible in the patch.",
+      "expectedOutput": "diff --git a/file b/file ...",
+      "interpretation": "The diff shows changes in that stash; confirm the entry name because new stashes change numeric positions.",
+      "safety": "Read-only; sensitive edits remain visible in the patch.",
+      "references": [
+        {
+          "title": "Inspect a stash \u2014 primary documentation",
+          "url": "https://git-scm.com/docs"
+        }
+      ]
+    },
+    {
+      "id": "git-command-26",
+      "topic": "git",
+      "title": "Start regression bisection",
+      "command": "git bisect start BAD_COMMIT GOOD_COMMIT",
+      "kind": "Shell command",
+      "definition": "Starts binary-search selection between known bad and good revisions.",
+      "purpose": "Narrow a reproducible regression to its introducing commit.",
+      "environment": "Changes the checkout, usually to detached HEAD. Preserve edits first and use git bisect reset to finish.",
+      "expectedOutput": "Bisecting: ... revisions left to test",
+      "interpretation": "Git checks out a candidate and reports remaining steps; mark each candidate good or bad after the same reliable test.",
+      "safety": "Changes the checkout, usually to detached HEAD. Preserve edits first and use git bisect reset to finish.",
+      "references": [
+        {
+          "title": "Start regression bisection \u2014 primary documentation",
+          "url": "https://git-scm.com/docs"
+        }
+      ]
+    },
+    {
+      "id": "git-command-27",
+      "topic": "git",
+      "title": "Exit regression bisection",
+      "command": "git bisect reset",
+      "kind": "Shell command",
+      "definition": "Ends a bisect session and returns to the original checkout.",
+      "purpose": "Restore normal development context after finding or abandoning a regression search.",
+      "environment": "Mutates checkout state; inspect local changes before ending a session.",
+      "expectedOutput": "Previous HEAD position was ... Switched to branch ...",
+      "interpretation": "The checkout summary identifies the restored branch/commit; any test-created edits still need inspection.",
+      "safety": "Mutates checkout state; inspect local changes before ending a session.",
+      "references": [
+        {
+          "title": "Exit regression bisection \u2014 primary documentation",
+          "url": "https://git-scm.com/docs"
+        }
+      ]
+    },
+    {
+      "id": "git-command-28",
+      "topic": "git",
+      "title": "Separate working tree",
+      "command": "git worktree add ../project-review -b review/changes origin/main",
+      "kind": "Shell command",
+      "definition": "Creates another working tree with a new branch.",
+      "purpose": "Review or implement independent work without disturbing the current checkout.",
+      "environment": "Writes a directory and creates a branch. Choose an unused destination and verify the base ref.",
+      "expectedOutput": "Preparing worktree (new branch 'review/changes')",
+      "interpretation": "The destination contains its own working files while sharing repository objects.",
+      "safety": "Writes a directory and creates a branch. Choose an unused destination and verify the base ref.",
+      "references": [
+        {
+          "title": "Separate working tree \u2014 primary documentation",
+          "url": "https://git-scm.com/docs"
+        }
+      ]
+    },
+    {
+      "id": "git-command-29",
+      "topic": "git",
+      "title": "Annotated release tag",
+      "command": "git tag -a v1.2.3 -m 'Release v1.2.3' COMMIT",
+      "kind": "Shell command",
+      "definition": "Creates a local annotated tag for a verified commit.",
+      "purpose": "Record release metadata before an authorized publication.",
+      "environment": "Mutates local refs; confirm version, target commit and release policy before creating or pushing.",
+      "expectedOutput": "No output on success",
+      "interpretation": "Usually silent; inspect with git show v1.2.3. This does not publish the tag or prove artifact provenance.",
+      "safety": "Mutates local refs; confirm version, target commit and release policy before creating or pushing.",
+      "references": [
+        {
+          "title": "Annotated release tag \u2014 primary documentation",
+          "url": "https://git-scm.com/docs"
+        }
+      ]
+    },
+    {
+      "id": "git-command-30",
+      "topic": "git",
+      "title": "Compare release contents",
+      "command": "git diff --stat BASE_COMMIT RELEASE_COMMIT",
+      "kind": "Shell command",
+      "definition": "Summarizes file changes between two revisions.",
+      "purpose": "Check the scope of a candidate release before reading detailed patches.",
+      "environment": "Read-only; verify both reference identities and inspect substantive patches separately.",
+      "expectedOutput": "src/app.js 12 ++++++------",
+      "interpretation": "Each row shows a file and insertion/deletion counts; statistics alone cannot prove correctness.",
+      "safety": "Read-only; verify both reference identities and inspect substantive patches separately.",
+      "references": [
+        {
+          "title": "Compare release contents \u2014 primary documentation",
+          "url": "https://git-scm.com/docs"
+        }
+      ]
     }
   ],
   "debugging": [

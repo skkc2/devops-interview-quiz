@@ -15,9 +15,20 @@ A free static learning and interview-practice app for DevOps, platform engineeri
 
 **At a glance:** 11 subjects · 1,020 scored questions · 330 interview prompts · 330 concepts · 348 command/query guides · 110 worked troubleshooting cases.
 
-## Release status: public beta
+## Release status: v0.1.0-beta.1 published
 
-The app is published on GitHub Pages. The latest functional release passed 28 Chromium browser tests, content validation and reproducible content generation. Tests cover session behavior, question visibility, learning modules, mobile layouts and failure paths.
+[v0.1.0-beta.1](https://github.com/skkc2/devops-interview-quiz/releases/tag/v0.1.0-beta.1) is published, and the app is live on GitHub Pages. The [release validation run](https://github.com/skkc2/devops-interview-quiz/actions/runs/40230491810) completed successfully:
+
+| Release check | Result |
+| --- | --- |
+| Chromium interaction suite | 29 tests passed |
+| Firefox interaction suite | 29 tests passed |
+| WebKit interaction suite | 29 tests passed |
+| Content/schema validation | Passed |
+| Reproducible content generation | Passed |
+| Beta publication | Succeeded |
+
+That is **29 test cases executed across three browser engines: 87 passing test executions**. Coverage includes session behavior, full question visibility, learning modules, keyboard-only practice, mobile layouts, local-storage failures and failed content downloads. These results describe the tagged beta; the workflow badges show ongoing validation.
 
 This is ready for public feedback as a learning tool. It is not a claim of exhaustive content accuracy, interview outcomes, certification alignment or compatibility with every platform. The beta release gate runs the interaction suite in Chromium, Firefox and WebKit. WebKit automation is not a claim of testing every Safari version or physical device. Independent subject-matter review and manual assistive-technology testing remain useful follow-up work. Browser storage is local to this device and may be cleared by the browser or user.
 
@@ -82,8 +93,9 @@ content/library/                   Authored learning and interview sources for a
 content/kubernetes-bank.json       Preserved Kubernetes scored bank and original interview items
 scripts/build-subject-packs.py     Deterministic editorial compiler (not a site build)
 scripts/validate-subjects.js       Whole-catalog schema, count and reference-host checks
-tests/test_app.py                  Chromium interaction and failure-path regressions
-.github/workflows/validate.yml     Validation and browser tests
+tests/test_app.py                  Chromium, Firefox and WebKit interaction regressions
+.github/workflows/validate.yml     Content checks and Chromium browser tests
+.github/workflows/release-beta.yml Three-engine validation and gated beta publication
 .github/workflows/deploy-pages.yml Validated GitHub Pages publishing from main
 ```
 
@@ -103,6 +115,15 @@ python3 scripts/build-subject-packs.py --check
 python -m pip install playwright
 python -m playwright install chromium
 python -m unittest discover -s tests -v
+```
+
+To repeat the release's three-browser checks locally (POSIX shell):
+
+```sh
+python -m playwright install chromium firefox webkit
+for browser in chromium firefox webkit; do
+  TEST_BROWSER="$browser" python -m unittest discover -s tests -v || exit 1
+done
 ```
 
 After editing authored content, run `python3 scripts/build-subject-packs.py` and commit both source and generated JSON. `--check` verifies that committed JSON exactly matches its source without writing files. All learning content is authored in `content/library/`; the preserved Kubernetes question source is `content/kubernetes-bank.json`. See [the library content guide](content/library/README.md).

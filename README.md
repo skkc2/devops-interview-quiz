@@ -2,7 +2,9 @@
 
 A free static learning and interview-practice app for DevOps, platform engineering, cloud infrastructure, systems administration and SRE. Runs on GitHub Pages with no account, backend, API key, framework or build step.
 
-**[Open OpsLab](https://skkc2.github.io/devops-interview-quiz/)**
+**[Open OpsLab](https://skkc2.github.io/devops-interview-quiz/)** · [Releases](https://github.com/skkc2/devops-interview-quiz/releases) · [Report a problem](https://github.com/skkc2/devops-interview-quiz/issues/new)
+
+[![Validation](https://github.com/skkc2/devops-interview-quiz/actions/workflows/validate.yml/badge.svg)](https://github.com/skkc2/devops-interview-quiz/actions/workflows/validate.yml)
 
 ## Start with one useful session
 
@@ -17,7 +19,7 @@ A free static learning and interview-practice app for DevOps, platform engineeri
 
 The app is published on GitHub Pages. The latest functional release passed 28 Chromium browser tests, content validation and reproducible content generation. Tests cover session behavior, question visibility, learning modules, mobile layouts and failure paths.
 
-This is ready for public feedback as a learning tool. It is not a claim of exhaustive content accuracy, interview outcomes, certification alignment or compatibility with every platform. Further release work includes independent subject-matter review, Safari/Firefox coverage and manual keyboard/screen-reader checks. Browser storage is local to this device and may be cleared by the browser or user.
+This is ready for public feedback as a learning tool. It is not a claim of exhaustive content accuracy, interview outcomes, certification alignment or compatibility with every platform. The beta release gate runs the interaction suite in Chromium, Firefox and WebKit. WebKit automation is not a claim of testing every Safari version or physical device. Independent subject-matter review and manual assistive-technology testing remain useful follow-up work. Browser storage is local to this device and may be cleared by the browser or user.
 
 ## Subjects and question counts
 
@@ -119,7 +121,7 @@ This is a study aid, not an official certification simulator. Pair exercises wit
 
 ## License
 
-A reuse license has not yet been selected. Public access to this repository should not be interpreted as a blanket license to redistribute its code or content. External documentation and trademarks remain subject to their owners' terms.
+MIT licensed. See [LICENSE](LICENSE). External documentation and trademarks remain subject to their owners' terms.
 
 ## Help improve OpsLab
 

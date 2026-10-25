@@ -33,7 +33,7 @@ class OpsLabBrowserTests(unittest.TestCase):
             raise RuntimeError("Static test server did not start")
 
         cls.playwright = sync_playwright().start()
-        cls.browser = cls.playwright.chromium.launch(headless=True)
+        cls.browser = getattr(cls.playwright, os.environ.get("TEST_BROWSER", "chromium")).launch(headless=True)
 
     @classmethod
     def tearDownClass(cls):
@@ -470,6 +470,27 @@ class OpsLabBrowserTests(unittest.TestCase):
         self.page.locator("#finish-quiz").click()
         expect(self.page.locator("#review-list")).to_contain_text(prompt)
         expect(self.page.locator("#review-list")).to_contain_text(context)
+
+    def test_keyboard_practice_and_visible_focus(self):
+        self.page.emulate_media(reduced_motion="reduce")
+        mode = self.page.locator('[data-mode="practice"]')
+        mode.focus()
+        mode.press("Enter")
+        expect(mode).to_have_attribute("aria-pressed", "true")
+        self.page.locator("#count-select").select_option("5")
+        self.page.locator("#start-quiz").focus()
+        self.page.keyboard.press("Enter")
+        expect(self.page.locator("#quiz-screen")).to_be_visible()
+        option = self.page.locator('[data-option="0"]')
+        option.focus()
+        option.press("Space")
+        expect(option).to_have_attribute("aria-pressed", "true")
+        self.page.locator("#check-answer").focus()
+        self.page.keyboard.press("Enter")
+        expect(self.page.locator("#question-feedback")).to_be_visible()
+        self.page.locator("#next-question").focus()
+        self.page.keyboard.press("Enter")
+        expect(self.page.locator("#question-counter")).to_contain_text("Question 2")
 
 
 if __name__ == "__main__":

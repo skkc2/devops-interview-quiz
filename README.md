@@ -4,6 +4,21 @@ A free static learning and interview-practice app for DevOps, platform engineeri
 
 **[Open OpsLab](https://skkc2.github.io/devops-interview-quiz/)**
 
+## Start with one useful session
+
+1. Open the live app and choose a subject.
+2. Use **Learn** to study a concept or interpret a command.
+3. Switch to **Practice**, choose a difficulty and answer a short set with explanations.
+4. Save difficult questions for review, or use **Interview** to rehearse an answer aloud.
+
+**At a glance:** 11 subjects · 1,020 scored questions · 330 interview prompts · 330 concepts · 348 command/query guides · 110 worked troubleshooting cases.
+
+## Release status: public beta
+
+The app is published on GitHub Pages. The latest functional release passed 28 Chromium browser tests, content validation and reproducible content generation. Tests cover session behavior, question visibility, learning modules, mobile layouts and failure paths.
+
+This is ready for public feedback as a learning tool. It is not a claim of exhaustive content accuracy, interview outcomes, certification alignment or compatibility with every platform. Further release work includes independent subject-matter review, Safari/Firefox coverage and manual keyboard/screen-reader checks. Browser storage is local to this device and may be cleared by the browser or user.
+
 ## Subjects and question counts
 
 | Subject | Scored questions | Self-reviewed interviews | Total |
@@ -102,7 +117,23 @@ The expected site is https://skkc2.github.io/devops-interview-quiz/. Use the dep
 
 This is a study aid, not an official certification simulator. Pair exercises with hands-on labs and version-appropriate documentation. Clearing browser storage removes local progress. Do not enter production secrets or sensitive incident data into notes.
 
-No license was present in the original repository; this change does not invent a licensing grant.
+## License
+
+A reuse license has not yet been selected. Public access to this repository should not be interpreted as a blanket license to redistribute its code or content. External documentation and trademarks remain subject to their owners' terms.
+
+## Help improve OpsLab
+
+Found an unclear question, incorrect answer or command that behaves differently on your platform? [Open an issue](https://github.com/skkc2/devops-interview-quiz/issues/new) with:
+
+- The subject, question or guide title, and the exact wording involved.
+- Expected versus observed behavior, including relevant tool versions.
+- A primary documentation reference and a proposed correction where possible.
+
+For interface problems, include browser, screen size and steps to reproduce. Remove credentials, private infrastructure details and personal data from reports.
+
+Content contributions should improve reasoning and operational relevance, rather than simply increase counts. Read [the content guide](content/README.md), run the validation commands above and include both source and generated changes. Changes to reviewed question wording also require updating its review record in `content/review/question-audit.json`.
+
+If OpsLab helps you, share a specific learning example with a colleague, link to the live app, or star the repository so you can find it again.
 
 ### Practice question clarity and command coverage
 
